@@ -1,0 +1,173 @@
+/* WUIBody v0.1 */
+
+class WUIBody {
+	static version = "0.1";
+	#defaults = {
+		environment: "",
+		importDirectory: "",
+		onCompleted: null,
+		debug: false
+	};
+	#htmlCount = 0;
+	#jsCount = 0;
+	#total = 0;
+	constructor (properties) {
+		Object.keys(this.#defaults).forEach(key => {
+			this[key] = typeof(properties) != "undefined" && key in properties ? properties[key] : this.#defaults[key];
+		});
+	}
+	get environment() {
+		return this._environment;
+	}
+	get importDirectory() {
+		return this._importDirectory;
+	}
+	get onCompleted() {
+		return this._onCompleted;
+	}
+	get debug() {
+		return this._debug;
+	}
+	set environment(value) {
+		this.setProperty("environment", value.toLowerCase(), "string");
+	}
+	set importDirectory(value) {
+		this.setProperty("importDirectory", value, "array");
+	}
+	set onCompleted(value) {
+		this.setProperty("onCompleted", value, "function");
+	}
+	set debug(value) {
+		this.setProperty("debug", value, "boolean");
+	}
+	setProperty(name, value, type = "string") {
+		if (type == typeof(value)) {
+			this["_"+name] = value;
+			return true;
+		} else {
+			this["_"+name] = this.#defaults[name];
+		}
+		return false;
+	}
+	#checkPath = (url) => {
+		const http = new XMLHttpRequest();
+		try {
+			http.open("HEAD", url, false);
+			http.send();
+		} catch(e) {}
+		return http.status != 404;
+	}
+	prepaare = () => {
+		if (this.environment == "android") {
+			document.body.querySelectorAll("a[target=_new], a[target=_blank]").forEach(a => {
+				a.setAttribute("href", "javascript:WUIBody.urlOpen('"+a.getAttribute("href")+"', '"+(a.getAttribute("download") || "")+"');");
+				a.removeAttribute("target");
+			});
+			document.body.querySelectorAll("input[type=text], input[type=password], input[type=file], input[type=email], input[type=number], input[type=tel], textarea").forEach(input => {
+				input.addEventListener("keyup", (event) => {
+					const maxlength = input.getAttribute("maxlength");
+					if (typeof(maxlength) != "undefined" && input.value.length > parseInt(maxlength)) {
+						input.value = input.value.substring(0, parseInt(maxlength));
+					}
+				});
+			});
+		} else if (this.environment == "ios") {
+			document.body.querySelectorAll("input[type=text], input[type=password], input[type=file], input[type=email], input[type=number], input[type=tel], textarea").forEach(input => {
+				input.addEventListener("keypress", (event) => {
+					const maxlength = input.getAttribute("maxlength");
+					if (typeof(maxlength) != "undefined" && input.value.length >= parseInt(maxlength)) {
+						return false;
+					}
+				});
+			});
+		}
+		document.body.querySelectorAll("input[type=text], input[type=password], input[type=file], input[type=email], input[type=number], input[type=tel], select, textarea").forEach(input => {
+			input.addEventListener("blur", () => {
+				document.activeElement.blur();
+			});
+		});
+	};
+	urlOpen = (url, download = "") => {
+		const link = document.createElement("a");
+		link.setAttribute("href", url);
+		link.style.display = "none";
+		if (download != "") {
+			link.setAttribute("download", download);
+		}
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
+	}
+	import = (id, path, done) => {
+		const token = Date.now();
+		const cssPath = this._importDirectory+path+".css?_="+token;
+		const htmlPath = this._importDirectory+path+".htm?_="+token;
+		const jsPath = this._importDirectory+path+".js?_="+token;
+		if (this.#checkPath(htmlPath)) {
+			fetch(htmlPath).then(response => {
+				return response.text();
+			}).then(html => {
+				if (html) {
+					let section = document.getElementById(id);
+					section.outerHTML = html;
+					section = document.getElementById(id);
+					if (this.debug) {
+						console.log("ui import htm:", id, section);
+					}
+					if (this.#checkPath(cssPath)) {
+						fetch(cssPath).then(response => {
+							return response.text();
+						}).then(css => {
+							if (css) {
+								const style = document.createElement("style");
+								style.textContent = css;
+								section.insertAdjacentElement("beforebegin", style);
+								if (this.debug) {
+									console.log("ui import css:", id, style);
+								}
+							}
+						});
+					}
+					if (this.#checkPath(jsPath)) {
+						fetch(jsPath).then(response => {
+							return response.text();
+						}).then(js => {
+							if (js) {
+								const script = document.createElement("script");
+								script.textContent = js;
+								section.insertAdjacentElement("afterend", script);
+								if (this.debug) {
+									console.log("ui import js:", id, script);
+								}
+							}
+							this.#jsCount++;
+							if (typeof(done) == "function") {
+								done();
+							}
+							if (2*this.#total == this.#htmlCount + this.#jsCount && typeof(this._onCompleted) == "function") {
+								this._onCompleted();
+							}
+						});
+					} else {
+						this.#jsCount++;
+					}
+				}
+				this.#htmlCount++;
+			});
+			this.#total++;
+		}
+	};
+	init = (onCompleted) => {
+		if (typeof(onCompleted) == "function") {
+			this._onCompleted = onCompleted;
+		}
+	};
+}
+/*
+DOM import struture:
+<body>
+	<style></style>
+	<div id=""></div>
+	<script></script>
+</body>
+*/

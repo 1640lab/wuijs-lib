@@ -1,0 +1,232 @@
+/* wui-grid */
+
+.wui-grid,
+.wui-grid > .header,
+.wui-grid > .head,
+.wui-grid > .head > .strip,
+.wui-grid > .body,
+.wui-grid > .body > .row,
+.wui-grid > .body > .row > .strip,
+.wui-grid > .footer {
+	display: flex;
+	position: relative;
+	width: 100%;
+	font-size: 14px;
+}
+.wui-grid {
+	max-height: 100%;
+	flex-direction: column;
+}
+.wui-grid > .header,
+.wui-grid > .head,
+.wui-grid > .body,
+.wui-grid > .footer {
+	padding: 0 20px;
+}
+.wui-grid > .header,
+.wui-grid > .head,
+.wui-grid > .footer {
+	flex-grow: 0;
+	flex-shrink: 0;
+	flex-basis: 40px;
+}
+.wui-grid > .header {
+	justify-content: center;
+	align-items: center;
+}
+.wui-grid > .head {
+	color: var(--wui-grid-head-textcolor-out);
+}
+.wui-grid > .body {
+	flex-direction: column;
+	flex-grow: 1;
+	flex-wrap: nowrap;
+	align-items: flex-start;
+}
+.wui-grid > .body > .row {
+	flex-grow: 1;
+	flex-shrink: 0;
+	height: 40px;
+	min-height: 40px;
+	overflow: hidden;
+	border-bottom-width: var(--wui-grid-row-bordercolor-width);
+	border-bottom-style: solid;
+	border-bottom-color: var(--wui-grid-row-bordercolor-out);
+	background-color: var(--wui-grid-row-bgcolor-out);
+	flex-direction: column;
+	color: var(--wui-grid-row-textcolor-out);
+}
+.wui-grid > .body > .row:hover,
+.wui-grid > .body > .row:focus-within {
+	z-index: 1;
+	border-bottom-color: var(--wui-grid-row-bordercolor-over);
+	background-color: var(--wui-grid-row-bgcolor-over);
+	color: var(--wui-grid-row-textcolor-over);
+}
+.wui-grid > .body > .row.selected {
+	z-index: 2 !important;
+	border-bottom-color: var(--wui-grid-row-bordercolor-selectds) !important;
+	background-color: var(--wui-grid-row-bgcolor-selectd) !important;
+	color: var(--wui-grid-row-textcolor-selectd) !important;
+}
+.wui-grid > .head > .strip,
+.wui-grid > .body > .row > .strip,
+.wui-grid > .body > .row > .content {
+	overflow: hidden;
+}
+.wui-grid > .head > .strip,
+.wui-grid > .body > .row > .strip {
+	height: 40px;
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-wrap: wrap;
+	flex-basis: 40px;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+.wui-grid > .body > .row > .content {
+	display: block;
+	position: relative;
+	width: 100%;
+	min-height: 40px;
+	white-space: wrap;
+}
+.wui-grid > .head > .strip > .column,
+.wui-grid > .body > .row > .strip > .cell {
+	display: flex;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	min-width: 40px;
+	min-height: 40px;
+	overflow: hidden;
+	padding: 0 10px;
+	align-items: center;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.wui-grid > .footer {
+	justify-content: flex-end;
+	align-items: center;
+}
+
+/* wui-grid scrollable */
+
+.wui-grid.scrollable > .body {
+	overflow: auto;
+}
+
+/* wui-grid extensible */
+
+.wui-grid.extensible > .head,
+.wui-grid.extensible > .body > .row {
+	padding-right: 40px;
+}
+.wui-grid.extensible > .body > .row.extended {
+	height: auto;
+}
+.wui-grid.extensible > .body > .row > .button {
+	position: absolute;
+	top: 2px;
+    right: 4px;
+	width: 32px;
+	height: 32px;
+}
+.wui-grid.extensible > .body > .row > .content {
+	width: 100%;
+	height: auto;
+	min-height: 40px;
+	padding: 10px;
+}
+.wui-grid.extensible > .body > .row:hover > .button,
+.wui-grid.extensible > .body > .row:focus-within > .button {
+	background-color: var(--wui-grid-row-textcolor-over);
+}
+.wui-grid.extensible > .body > .row.selected > .button {
+	background-color: var(--wui-grid-row-textcolor-selectd);
+}
+
+/* wui-grid soft */
+
+.wui-grid.soft > .body {
+	row-gap: 5px;
+}
+.wui-grid.soft > .body > .row {
+	--shadow: rgba(0, 0, 0, .05) 0px 4px 12px;
+	-webkit-box-shadow: var(--shadow);
+	-moz-box-shadow: var(--shadow);
+	box-shadow: var(--shadow);
+	-webkit-border-radius: var(--wui-grid-row-radius);
+	-moz-border-radius: var(--wui-grid-row-radius);
+	border-radius: var(--wui-grid-row-radius);
+}
+.wui-grid.soft > .body > .row:first-child {
+	margin-top: 5px;
+}
+.wui-grid.soft > .body > .row:last-child {
+	margin-bottom: 20px;
+}
+
+/* wui-grid mobile soft */
+
+@media screen and (max-width: 599px) {
+	.wui-grid.soft.mobile > .body {
+		row-gap: 0;
+	}
+	.wui-grid.soft.mobile > .body > .row {
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+		border-bottom-width: var(--wui-grid-mobile-row-bordercolor-width);
+		border-bottom-style: solid;
+		border-bottom-color: var(--wui-grid-mobile-row-bordercolor-out);
+		color: var(--wui-grid-mobile-row-textcolor-out);
+	}
+	.wui-grid.soft.mobile > .body > .row:hover,
+	.wui-grid.soft.mobile > .body > .row:focus-within {
+		border-bottom-color: var(--wui-grid-mobile-row-bordercolor-over);
+		color: var(--wui-grid-row-textcolor-over);
+	}
+	.wui-grid.soft.mobile > .body > .row.selected {
+		border-bottom-color: var(--wui-grid-mobile-row-bordercolor-selected);
+	}
+	.wui-grid.soft.mobile > .body > .row:first-child {
+		-webkit-border-top-left-radius: var(--wui-grid-mobile-row-radius);
+		-webkit-border-top-right-radius: var(--wui-grid-mobile-row-radius);
+		-moz-border-radius-topleft: var(--wui-grid-mobile-row-radius);
+		-moz-border-radius-topright: var(--wui-grid-mobile-row-radius);
+		border-top-left-radius: var(--wui-grid-mobile-row-radius);
+		border-top-right-radius: var(--wui-grid-mobile-row-radius);
+	}
+	.wui-grid.soft.mobile > .body > .row:last-child {
+		-webkit-border-bottom-left-radius: var(--wui-grid-mobile-row-radius);
+		-webkit-border-bottom-right-radius: var(--wui-grid-mobile-row-radius);
+		-moz-border-radius-bottomleft: var(--wui-grid-mobile-row-radius);
+		-moz-border-radius-bottomright: var(--wui-grid-mobile-row-radius);
+		border-bottom-left-radius: var(--wui-grid-mobile-row-radius);
+		border-bottom-right-radius: var(--wui-grid-mobile-row-radius);
+	}
+}
+
+/* wui-svgicon */
+
+.wui-grid > .header .wui-svgicon
+.wui-grid > .body > .strip > .column .wui-svgicon,
+.wui-grid > .body > .row > .cell .wui-svgicon,
+.wui-grid > .footer .wui-svgicon {
+	width: 32px;
+	height: 32px;
+}
+.wui-grid > .body > .row:hover > .cell .wui-svgicon,
+.wui-grid > .body > .row:focus-within > .cell .wui-svgicon,
+.wui-grid.extensible > .body > .row:hover > .content .wui-svgicon,
+.wui-grid.extensible > .body > .row:focus-within > .content .wui-svgicon {
+	background-color: var(--wui-grid-row-textcolor-over);
+}
+.wui-grid > .body > .row.selected > .cell .wui-svgicon,
+.wui-grid.extensible > .body > .row.selected > .content .wui-svgicon {
+	background-color: var(--wui-grid-row-textcolor-selectd);
+}
