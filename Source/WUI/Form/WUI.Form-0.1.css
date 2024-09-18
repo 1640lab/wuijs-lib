@@ -443,15 +443,6 @@
 .wui-form .link.highlight > .icon {
 	background-color: var(--wui-form-text-linkcolor-highlight);
 }
-.wui-form .lowercase {
-	text-transform: lowercase;
-}
-.wui-form .hidden {
-	display: none;
-}
-.wui-form .hidden-force {
-	display: none !important;
-}
 @media screen and (max-width: 599px) {
 	.wui-form {
 		padding-top: 0;
