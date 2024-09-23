@@ -53,6 +53,9 @@ class WUIList {
 	getElement() {
 		return this._element;
 	}
+	getHead() {
+		return this._head;
+	}
 	getBody() {
 		return this._body;
 	}

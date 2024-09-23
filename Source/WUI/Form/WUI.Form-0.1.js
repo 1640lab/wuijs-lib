@@ -25,6 +25,9 @@ class WUIForm {
 		if (typeof(value) == "string" && value != "") {
 			this._selector = value;
 			this._element = document.querySelector(value);
+			this._head = document.querySelector(value+" > .head");
+			this._body = document.querySelector(value+" > .body");
+			this._footer = document.querySelector(value+" > .footer");
 			this._form = this._element.localName == "form" ? this._element : this._element.querySelector("form");
 		}
 	}
@@ -40,6 +43,15 @@ class WUIForm {
 	}
 	getElement() {
 		return this._element;
+	}
+	getHead() {
+		return this._head;
+	}
+	getBody() {
+		return this._body;
+	}
+	getFooter() {
+		return this._footer;
 	}
 	getForm() {
 		return this._form;
