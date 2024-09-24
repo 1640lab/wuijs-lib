@@ -303,15 +303,15 @@ DOM struture:
 		<fieldset>
 			<div class="field">
 				<label for="wuiImput"></label>
-				<div class="input"><input type="text" name="wuiImput"></div>
+				<input type="text" name="wuiImput">
 			</div>
 			<div class="field textarea">
 				<label for="wuiTextarea"></label>
-				<div class="input"><textarea name="wuiTextarea"></textarea>
+				<textarea name="wuiTextarea"></textarea>
 			</div>
 			<div class="field checkbox">
 				<label for="wuiCheckbox""></label>
-				<div class="input [wui-checkbox]"><input type="checkbox" name="wuiCheckbox" value="1"></div>
+				<div class="[wui-checkbox]"><input type="checkbox" name="wuiCheckbox" value="1"></div>
 			</div>
 		</fieldset>
 		<div class="text"></div>

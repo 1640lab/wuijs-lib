@@ -114,12 +114,12 @@ class WUIRange {
 }
 /*
 DOM struture:
-<div class="input wui-range">
+<div class="wui-range">
 	<input type="range" min="0" max="100" value="0">
 </div>
 DOM form field struture:
 <div class="field range">
 	<label for="wuiRange""></label>
-	<div class="input wui-range"><input type="range" min="0" max="100" value="0"></div>
+	<div class="wui-range"><input type="range" min="0" max="100" value="0"></div>
 </div>
 */

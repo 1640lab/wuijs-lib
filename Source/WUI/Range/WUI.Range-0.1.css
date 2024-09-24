@@ -9,6 +9,7 @@
 .wui-range {
 	--shadow: 0 0 2px 0 rgba(0, 0, 0, .4);
 	--transition: background .2s ease-in-out;
+	width: 100%;
 }
 .wui-range > input[type="range"] {
 	--gradient: var(--wui-range-trackbar-bgcolor-active), var(--wui-range-trackbar-bgcolor-active);
