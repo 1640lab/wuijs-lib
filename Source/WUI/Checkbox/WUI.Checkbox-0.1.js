@@ -109,12 +109,12 @@ class WUICheckbox {
 }
 /*
 DOM struture:
-<div class="input wui-checkbox">
+<div class="wui-checkbox">
 	<input type="checkbox" value="1">
 </div>
 DOM form field  struture:
 <div class="field checkbox">
 	<label for="wuiCheckbox""></label>
-	<div class="input wui-checkbox"><input type="checkbox" name="wuiCheckbox" value="1"></div>
+	<div class="wui-checkbox"><input type="checkbox" name="wuiCheckbox" value="1"></div>
 </div>
 */
