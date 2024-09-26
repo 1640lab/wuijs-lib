@@ -312,11 +312,6 @@
 .wui-form fieldset > .field:focus-within > select:disabled {
 	background-image: var(--wui-form-select-arrowimage-disabled) !important;
 }
-.wui-form fieldset > .field.autosize textarea,
-.wui-form fieldset > .field textarea.autosize {
-	overflow-x: hidden;
-	overflow-y: auto;
-}
 .wui-form fieldset > .field textarea.noresize {
 	resize: none;
 }
@@ -325,6 +320,10 @@
 }
 .wui-form fieldset > .field textarea.hresize {
 	resize: horizontal;
+}
+.wui-form fieldset > .field textarea.autosize {
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 .wui-form fieldset > .field .data {
 	height: auto;
