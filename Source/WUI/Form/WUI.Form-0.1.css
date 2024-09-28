@@ -271,7 +271,6 @@
 	content: "";
 	cursor: pointer;
 	background-repeat: no-repeat;
-	background-size: 20px;
 }
 .wui-form fieldset > .field input[type="date"]::-webkit-calendar-picker-indicator,
 .wui-form fieldset > .field input[type="time"]::-webkit-calendar-picker-indicator {
@@ -280,6 +279,7 @@
 }
 .wui-form fieldset > .field input[type="date"]:before {
 	background-image: var(--wui-form-date-calendarimage-out);
+	background-size: var(--wui-form-date-calendarimage-size);
 }
 .wui-form fieldset > .field:hover input[type="date"]:enabled:before,
 .wui-form fieldset > .field:focus-within input[type="date"]:enabled:before {
@@ -291,6 +291,7 @@
 }
 .wui-form fieldset > .field input[type="time"]:before {
 	background-image: var(--wui-form-time-clockimage-out);
+	background-size: var(--wui-form-time-clockimage-size);
 }
 .wui-form fieldset > .field:hover input[type="time"]:enabled:before,
 .wui-form fieldset > .field:focus-within input[type="time"]:enabled:before {
@@ -310,6 +311,14 @@
 	background-size: 30px;
 	padding-right: 2rem;
 }
+.wui-form fieldset > .field:hover > select:enabled,
+.wui-form fieldset > .field:focus-within > select:enabled {
+	background-image: var(--wui-form-select-arrowimage-focus);
+}
+.wui-form fieldset > .field:hover > select:disabled,
+.wui-form fieldset > .field:focus-within > select:disabled {
+	background-image: var(--wui-form-select-arrowimage-disabled) !important;
+}
 /*.wui-form fieldset > .field select[multiple="true"] {
 	height: auto;
 	scrollbar-width: none;
@@ -322,14 +331,6 @@
     width: 0;
     height: 0;
 }*/
-.wui-form fieldset > .field:hover > select:enabled,
-.wui-form fieldset > .field:focus-within > select:enabled {
-	background-image: var(--wui-form-select-arrowimage-focus);
-}
-.wui-form fieldset > .field:hover > select:disabled,
-.wui-form fieldset > .field:focus-within > select:disabled {
-	background-image: var(--wui-form-select-arrowimage-disabled) !important;
-}
 .wui-form fieldset > .field textarea.noresize {
 	resize: none;
 }
