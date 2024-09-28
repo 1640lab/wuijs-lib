@@ -249,27 +249,32 @@
 .wui-form fieldset > .field input[type="checkbox"]:disabled:checked::before {
 	background-color: var(--wui-form-input-bordercolor-disabled) !important;
 }
-.wui-form fieldset > .field input[type="date,time"] {
+.wui-form fieldset > .field input[type="date"],
+.wui-form fieldset > .field input[type="time"] {
 	position: relative;
 	padding-right: 35px;
 	min-width: 140px;
 	color: transparent;
 }
-.wui-form fieldset > .field input[type="date,time"]:before,
-.wui-form fieldset > .field input[type="date,time"]::-webkit-calendar-picker-indicator {
+.wui-form fieldset > .field input[type="date"]:before,
+.wui-form fieldset > .field input[type="date"]::-webkit-calendar-picker-indicator,
+.wui-form fieldset > .field input[type="time"]:before,
+.wui-form fieldset > .field input[type="time"]::-webkit-calendar-picker-indicator {
 	position: absolute;
 	top: 4px;
 	right: 8px;
 	width: 20px;
 	height: 20px;
 }
-.wui-form fieldset > .field input[type="date,time"]:before {
+.wui-form fieldset > .field input[type="date"]:before,
+.wui-form fieldset > .field input[type="time"]:before {
 	content: "";
 	cursor: pointer;
 	background-repeat: no-repeat;
 	background-size: 20px;
 }
-.wui-form fieldset > .field input[type="date,time"]::-webkit-calendar-picker-indicator {
+.wui-form fieldset > .field input[type="date"]::-webkit-calendar-picker-indicator,
+.wui-form fieldset > .field input[type="time"]::-webkit-calendar-picker-indicator {
 	background: transparent;
 	color: transparent;
 }
@@ -567,7 +572,9 @@
 	top: calc(-0.8 * var(--wui-form-input-height) - var(--wui-form-input-borderwidth));
 }
 .wui-form.border fieldset > .field:not(.checkbox):not(.range):not(.button) input[type="text"],
-.wui-form.border fieldset > .field:not(.checkbox):not(.range):not(.button) input[type="number"] {
+.wui-form.border fieldset > .field:not(.checkbox):not(.range):not(.button) input[type="number"],
+.wui-form.border fieldset > .field:not(.checkbox):not(.range):not(.button) input[type="date"],
+.wui-form.border fieldset > .field:not(.checkbox):not(.range):not(.button) input[type="time"] {
 	position: relative;
     top: calc(-1 * var(--wui-form-input-borderwidth));
 }
@@ -694,7 +701,8 @@
 		-moz-border-radius: 50%;
 		border-radius: 50%;
 	}
-	.wui-form.mobile fieldset > .field input[type="date,time"] {
+	.wui-form.mobile fieldset > .field input[type="date"],
+	.wui-form.mobile fieldset > .field input[type="time"] {
 		margin-right: 0px;
 		color: var(--wui-form-input-textcolor) !important;
 	}
