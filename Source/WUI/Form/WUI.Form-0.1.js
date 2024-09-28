@@ -199,6 +199,13 @@ class WUIForm {
 				document.documentElement.style.setProperty("--wui-form-date-calendarimage-"+event, image);
 			});
 		}
+		if (this._element.querySelectorAll("input[type=time]").length > 0) {
+			["out", "focus", "disabled"].forEach(event => {
+				const color = (getComputedStyle(this._element).getPropertyValue("--wui-form-time-clockcolor-"+event) || getComputedStyle(document.documentElement).getPropertyValue("--wui-form-time-clockcolor-"+event)).replace(/#/g, "%23").trim();
+				const image = getComputedStyle(this._element.querySelector("input[type=time]")).getPropertyValue("--wui-form-time-clockimage-src").replace(/currentColor/g, color);
+				document.documentElement.style.setProperty("--wui-form-time-clockimage-"+event, image);
+			});
+		}
 		if (this._element.querySelectorAll("select").length > 0) {
 			["out", "focus", "disabled"].forEach(event => {
 				const color = (getComputedStyle(this._element).getPropertyValue("--wui-form-select-arrowcolor-"+event) || getComputedStyle(document.documentElement).getPropertyValue("--wui-form-select-arrowcolor-"+event)).replace(/#/g, "%23").trim();
@@ -210,11 +217,12 @@ class WUIForm {
 			const tag = input.localName.toLocaleLowerCase();
 			const label = input.parentNode.querySelector("label") || input.parentNode.parentNode.querySelector("label") || this.getLabel(input.name);
 			const type = input.getAttribute("type") || "";
-			if (tag == "select" || type == "date") {
+			if (tag.match(/^(select|date|time)$/)) {
 				["focus", "blur"].forEach(event => {
 					const instance = event == "focus" ? "over" : "out";
 					const value =
 						type == "date" ? "--wui-form-date-calendarcolor-"+instance :
+						type == "time" ? "--wui-form-time-clockcolor-"+instance :
 						tag == "select" ? "--wui-form-select-arrowimage-"+instance :
 						"";
 					const color = getComputedStyle(document.documentElement).getPropertyValue(value).trim();
@@ -248,7 +256,7 @@ class WUIForm {
 				}
 			}
 			if (label != null) {
-				if (type == "date") {
+				if (type.match(/^(date|time)$/)) {
 					label.classList.add("fixed");
 				}
 				if (input.value != "") {
