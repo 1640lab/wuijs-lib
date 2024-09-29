@@ -54,11 +54,11 @@
 }
 .wui-form legend,
 .wui-form fieldset,
-.wui-form fieldset > .field label,
-.wui-form fieldset > .field input,
-.wui-form fieldset > .field select,
-.wui-form fieldset > .field textarea,
-.wui-form fieldset > .field .data,
+.wui-form fieldset > .field > label,
+.wui-form fieldset > .field > input,
+.wui-form fieldset > .field > select,
+.wui-form fieldset > .field > textarea,
+.wui-form fieldset > .field > .data,
 .wui-form fieldset > .text,
 .wui-form fieldset > .message {
 	margin: 0;
@@ -122,11 +122,11 @@
 	border: 0;
 	background-color: transparent;
 }
-.wui-form fieldset > .field label,
+.wui-form fieldset > .field > label,
 .wui-form fieldset > .field:not(.textarea) {
 	height: var(--wui-form-input-height);
 }
-.wui-form fieldset > .field label {
+.wui-form fieldset > .field > label {
 	--transition-base: top .2s ease-out, color .2s ease-out;
 	--webkit-transition: var(--transition-base), -khtml-opacity .2s ease-out;
 	--moz-transition: var(--transition-base), -moz-opacity .2s ease-out;
@@ -142,22 +142,22 @@
 	-moz-transition: var(--moz-transition);
 	transition: var(--transition);
 }
-.wui-form fieldset > .field label.notempty,
+.wui-form fieldset > .field > label.notempty,
 .wui-form fieldset > .field:focus-within > label {
 	top: -12px;
 }
-.wui-form fieldset > .field:not(.checkbox):not(.range):not(.button) label.notempty {
+.wui-form fieldset > .field:not(.checkbox):not(.range):not(.button) > label.notempty {
 	color: var(--wui-form-label-textcolor-notempty);
 }
 .wui-form fieldset > .field:focus-within > label:not(.disabled),
 .wui-form fieldset > .field:not(.data):focus-within > label:not(.disabled) {
 	color: var(--wui-form-label-textcolor-focus);
 }
-.wui-form fieldset > .field label.disabled,
+.wui-form fieldset > .field > label.disabled,
 .wui-form fieldset > .field:not(.data):focus-within > label.disabled {
 	color: var(--wui-form-label-textcolor-disabled) !important;
 }
-.wui-form fieldset > .field.checkbox label {
+.wui-form fieldset > .field.checkbox > label {
 	cursor: pointer !important;
 	left: 0;
 	-webkit-touch-callout: none;
@@ -166,13 +166,13 @@
 	-moz-user-select: none;
 	user-select: none;
 }
-.wui-form fieldset > .field.button label {
+.wui-form fieldset > .field.button > label {
 	left: 0;
 }
-.wui-form fieldset > .field input:not([type="checkbox"]):not([type="range"]):not([type="button"]),
-.wui-form fieldset > .field select,
-.wui-form fieldset > .field textarea,
-.wui-form fieldset > .field .data {
+.wui-form fieldset > .field > input:not([type="checkbox"]):not([type="range"]):not([type="button"]),
+.wui-form fieldset > .field > select,
+.wui-form fieldset > .field > textarea,
+.wui-form fieldset > .field > .data {
 	width: 100%;
 	height: 30px;
 	outline: none;
@@ -184,30 +184,30 @@
 	text-align: left;
 	color: var(--wui-form-input-textcolor-out);
 }
-.wui-form fieldset > .field input:-webkit-autofill,
-.wui-form fieldset > .field input:-webkit-autofill:hover,
-.wui-form fieldset > .field input:-webkit-autofill:focus,
-.wui-form fieldset > .field input:-webkit-autofill:active,
-.wui-form fieldset > .field select:-webkit-autofill,
-.wui-form fieldset > .field select:-webkit-autofill:hover,
-.wui-form fieldset > .field select:-webkit-autofill:focus,
-.wui-form fieldset > .field select:-webkit-autofill:active,
-.wui-form fieldset > .field textarea:-webkit-autofill,
-.wui-form fieldset > .field textarea:-webkit-autofill:hover,
-.wui-form fieldset > .field textarea:-webkit-autofill:focus,
-.wui-form fieldset > .field textarea:-webkit-autofill:active {
+.wui-form fieldset > .field > input:-webkit-autofill,
+.wui-form fieldset > .field > input:-webkit-autofill:hover,
+.wui-form fieldset > .field > input:-webkit-autofill:focus,
+.wui-form fieldset > .field > input:-webkit-autofill:active,
+.wui-form fieldset > .field > select:-webkit-autofill,
+.wui-form fieldset > .field > select:-webkit-autofill:hover,
+.wui-form fieldset > .field > select:-webkit-autofill:focus,
+.wui-form fieldset > .field > select:-webkit-autofill:active,
+.wui-form fieldset > .field > textarea:-webkit-autofill,
+.wui-form fieldset > .field > textarea:-webkit-autofill:hover,
+.wui-form fieldset > .field > textarea:-webkit-autofill:focus,
+.wui-form fieldset > .field > textarea:-webkit-autofill:active {
 	--transition: color 9999s ease-out, background-color 9999s ease-out;
     -webkit-transition: var(--transition);
     -webkit-transition-delay: 9999s;
     transition: var(--transition);
     transition-delay: 9999s;
 }
-.wui-form fieldset > .field input:disabled,
-.wui-form fieldset > .field select:disabled,
-.wui-form fieldset > .field textarea:disabled {
+.wui-form fieldset > .field > input:disabled,
+.wui-form fieldset > .field > select:disabled,
+.wui-form fieldset > .field > textarea:disabled {
 	color: var(--wui-form-input-textcolor-disabled) !important;
 }
-.wui-form fieldset > .field input[type="checkbox"] {
+.wui-form fieldset > .field > input[type="checkbox"] {
 	display: flex;
 	width: 20px;
 	height: 20px;
@@ -223,17 +223,17 @@
 	justify-content: center;
 	align-items: center;
 }
-.wui-form fieldset > .field:hover input[type="checkbox"]:enabled,
-.wui-form fieldset > .field:focus-within input[type="checkbox"]:enabled {
+.wui-form fieldset > .field:hover > input[type="checkbox"]:enabled,
+.wui-form fieldset > .field:focus-within > input[type="checkbox"]:enabled {
 	border-color: var(--wui-form-input-bordercolor-focus);
 	background-color: var(--wui-form-input-bgcolor-focus);
 }
-.wui-form fieldset > .field:hover input[type="checkbox"]:disabled,
-.wui-form fieldset > .field:focus-within input[type="checkbox"]:disabled {
+.wui-form fieldset > .field:hover > input[type="checkbox"]:disabled,
+.wui-form fieldset > .field:focus-within > input[type="checkbox"]:disabled {
 	border-color: var(--wui-form-input-bordercolor-disabled) !important;
 	background-color: var(--wui-form-input-bgcolor-disabled) !important;
 }
-.wui-form fieldset > .field input[type="checkbox"]:checked::before {
+.wui-form fieldset > .field > input[type="checkbox"]:checked::before {
 	content: "";
 	cursor: pointer;
 	width: 12px;
@@ -243,76 +243,188 @@
 	border-radius: 4px;
 	background-color: transparent;
 }
-.wui-form fieldset > .field input[type="checkbox"]:enabled:checked::before {
+.wui-form fieldset > .field > input[type="checkbox"]:enabled:checked::before {
 	background-color: var(--wui-form-input-bordercolor-focus);
 }
-.wui-form fieldset > .field input[type="checkbox"]:disabled:checked::before {
+.wui-form fieldset > .field > input[type="checkbox"]:disabled:checked::before {
 	background-color: var(--wui-form-input-bordercolor-disabled) !important;
 }
-.wui-form fieldset > .field input[type="date"],
-.wui-form fieldset > .field input[type="time"] {
+.wui-form fieldset > .field > input[type="date"],
+.wui-form fieldset > .field > input[type="time"] {
 	position: relative;
 	padding-right: 35px;
 	min-width: 140px;
 	color: transparent;
 }
-.wui-form fieldset > .field input[type="date"]:before,
-.wui-form fieldset > .field input[type="date"]::-webkit-calendar-picker-indicator,
-.wui-form fieldset > .field input[type="time"]:before,
-.wui-form fieldset > .field input[type="time"]::-webkit-calendar-picker-indicator {
+.wui-form fieldset > .field > input[type="date"]:before,
+.wui-form fieldset > .field > input[type="date"]::-webkit-calendar-picker-indicator,
+.wui-form fieldset > .field > input[type="time"]:before,
+.wui-form fieldset > .field > input[type="time"]::-webkit-calendar-picker-indicator {
 	position: absolute;
 	top: 4px;
 	right: 0;
 	width: 20px;
 	height: 20px;
 }
-.wui-form fieldset > .field input[type="date"]:before,
-.wui-form fieldset > .field input[type="time"]:before {
+.wui-form fieldset > .field > input[type="date"]:before,
+.wui-form fieldset > .field > input[type="time"]:before {
 	content: "";
 	cursor: pointer;
 	background-repeat: no-repeat;
 	background-size: 20px;
 }
-.wui-form fieldset > .field input[type="date"]::-webkit-calendar-picker-indicator,
-.wui-form fieldset > .field input[type="time"]::-webkit-calendar-picker-indicator {
+.wui-form fieldset > .field > input[type="date"]::-webkit-calendar-picker-indicator,
+.wui-form fieldset > .field > input[type="time"]::-webkit-calendar-picker-indicator {
 	background: transparent;
 	color: transparent;
 }
-.wui-form fieldset > .field input[type="date"]:before {
+.wui-form fieldset > .field > input[type="date"]:before {
 	background-image: var(--wui-form-date-calendarimage-out);
 	background-size: var(--wui-form-date-calendarimage-size);
 }
-.wui-form fieldset > .field input[type="date"]:before,
-.wui-form fieldset > .field input[type="date"]::-webkit-calendar-picker-indicator {
+.wui-form fieldset > .field > input[type="date"]:before,
+.wui-form fieldset > .field > input[type="date"]::-webkit-calendar-picker-indicator {
 	width: var(--wui-form-date-calendarimage-size);
 	height: var(--wui-form-date-calendarimage-size);
 }
-.wui-form fieldset > .field:hover input[type="date"]:enabled:before,
-.wui-form fieldset > .field:focus-within input[type="date"]:enabled:before {
+.wui-form fieldset > .field:hover > input[type="date"]:enabled:before,
+.wui-form fieldset > .field:focus-within > input[type="date"]:enabled:before {
 	background-image: var(--wui-form-date-calendarimage-focus);
 }
-.wui-form fieldset > .field:hover input[type="date"]:disabled:before,
-.wui-form fieldset > .field:focus-within input[type="date"]:disabled:before {
+.wui-form fieldset > .field:hover > input[type="date"]:disabled:before,
+.wui-form fieldset > .field:focus-within > input[type="date"]:disabled:before {
 	background-image: var(--wui-form-date-calendarimage-disabled) !important;
 }
-.wui-form fieldset > .field input[type="time"]:before {
+.wui-form fieldset > .field > input[type="time"]:before {
 	background-image: var(--wui-form-time-clockimage-out);
 	background-size: var(--wui-form-time-clockimage-size);
 }
-.wui-form fieldset > .field input[type="time"]:before,
-.wui-form fieldset > .field input[type="time"]::-webkit-calendar-picker-indicator {
+.wui-form fieldset > .field > input[type="time"]:before,
+.wui-form fieldset > .field > input[type="time"]::-webkit-calendar-picker-indicator {
 	width: var(--wui-form-time-clockimage-size);
 	height: var(--wui-form-time-clockimage-size);
 }
-.wui-form fieldset > .field:hover input[type="time"]:enabled:before,
-.wui-form fieldset > .field:focus-within input[type="time"]:enabled:before {
+.wui-form fieldset > .field:hover > input[type="time"]:enabled:before,
+.wui-form fieldset > .field:focus-within > input[type="time"]:enabled:before {
 	background-image: var(--wui-form-time-clockimage-focus);
 }
-.wui-form fieldset > .field:hover input[type="time"]:disabled:before,
-.wui-form fieldset > .field:focus-within input[type="time"]:disabled:before {
+.wui-form fieldset > .field:hover > input[type="time"]:disabled:before,
+.wui-form fieldset > .field:focus-within > input[type="time"]:disabled:before {
 	background-image: var(--wui-form-time-clockimage-disabled) !important;
 }
-.wui-form fieldset > .field select {
+.wui-form fieldset > .field > input[type="range"]::-webkit-slider-thumb,
+.wui-form fieldset > .field > input[type="range"]::-moz-range-thumb,
+.wui-form fieldset > .field > input[type="range"]::-ms-thumb,
+.wui-form fieldset > .field > input[type="range"]::-webkit-slider-runnable-track,
+.wui-form fieldset > .field > input[type="range"]::-moz-range-track,
+.wui-form fieldset > .field > input[type="range"]::-ms-track {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.wui-form fieldset > .field > input[type="range"] {
+	--shadow: 0 0 2px 0 rgba(0, 0, 0, .4);
+	--transition: background .2s ease-in-out;
+	--gradient: var(--wui-form-range-trackbar-bgcolor-active), var(--wui-form-range-trackbar-bgcolor-active);
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	width: 100%;
+	height: var(--wui-form-range-trackbar-height);
+	-webkit-border-radius: calc(var(--wui-form-range-trackbar-height) / 2);
+	-moz-border-radius: calc(var(--wui-form-range-trackbar-height) / 2);
+	border-radius: calc(var(--wui-form-range-trackbar-height) / 2);
+	border: var(--wui-form-range-trackbar-borderwidth) solid var(--wui-form-range-trackbar-bordercolor);
+	background-color: transparent;
+	background-image: -webkit-linear-gradient(var(--gradient));
+    background-image: -moz-linear-gradient(var(--gradient));
+    background-image: -o-linear-gradient(var(--gradient));
+    background-image: linear-gradient(var(--gradient));
+	background-size: 0% 100%;
+	background-repeat: no-repeat;
+}
+.wui-form fieldset > .field > input[type="range"]::-webkit-slider-thumb {
+	height: var(--wui-form-range-thumb-size);
+	width: var(--wui-form-range-thumb-size);
+	-webkit-appearance: none;
+	-webkit-box-shadow: var(--shadow);
+	-webkit-border-radius: 50%;
+	-webkit-transition: var(--transition);
+}
+.wui-form fieldset > .field > input[type="range"]::-moz-range-thumb {
+	height: var(--wui-form-range-thumb-size);
+	width: var(--wui-form-range-thumb-size);
+	-moz-appearance: none;
+	-moz-box-shadow: var(--shadow);
+	-moz-border-radius: 50%;
+	-moz-transition: var(--transition);
+}
+.wui-form fieldset > .field > input[type="range"]::-ms-thumb {
+	height: var(--wui-form-range-thumb-size);
+	width: var(--wui-form-range-thumb-size);
+	appearance: none;
+	box-shadow: var(--shadow);
+	border-radius: 50%;
+	transition: var(--transition);
+}
+.wui-form fieldset > .field > input[type="range"]:not(:enabled) {
+	--gradient: var(--wui-form-range-trackbar-bgcolor-disabled), var(--wui-form-range-trackbar-bgcolor-disabled);
+}
+.wui-form fieldset > .field > input[type="range"]:not(:enabled):hover {
+	--gradient: var(--wui-form-range-trackbar-bgcolor-disabled), var(--wui-form-range-trackbar-bgcolor-disabled);
+}
+.wui-form fieldset > .field > input[type="range"]:enabled:hover {
+	--gradient: var(--wui-form-range-trackbar-bgcolor-over), var(--wui-form-range-trackbar-bgcolor-over);
+}
+.wui-form fieldset > .field > input[type="range"]:enabled::-webkit-slider-thumb {
+	cursor: ew-resize;
+	background-color: var(--wui-form-range-thumb-bgcolor-out);
+}
+.wui-form fieldset > .field > input[type="range"]:enabled::-webkit-slider-thumb:hover {
+	background-color: var(--wui-form-range-thumb-bgcolor-over);
+}
+.wui-form fieldset > .field > input[type="range"]:not(:enabled)::-webkit-slider-thumb {
+	background-color: var(--wui-form-range-thumb-bgcolor-disabled);
+}
+.wui-form fieldset > .field > input[type="range"]:enabled::-moz-range-thumb {
+	cursor: ew-resize;
+	background-color: var(--wui-form-range-thumb-bgcolor-out);
+}
+.wui-form fieldset > .field > input[type="range"]:enabled::-moz-range-thumb:hover {
+	background-color: var(--wui-form-range-thumb-bgcolor-over);
+}
+.wui-form fieldset > .field > input[type="range"]:not(:enabled)::-moz-range-thumb {
+	background-color: var(--wui-form-range-thumb-bgcolor-disabled);
+}
+.wui-form fieldset > .field > input[type="range"]:enabled::-ms-thumb {
+	cursor: ew-resize;
+	background-color: var(--wui-form-range-thumb-bgcolor-out);
+}
+.wui-form fieldset > .field > input[type="range"]:enabled::-ms-thumb:hover {
+	background-color: var(--wui-form-range-thumb-bgcolor-over);
+}
+.wui-form fieldset > .field > input[type="range"]:not(:enabled)::-ms-thumb {
+	background-color: var(--wui-form-range-thumb-bgcolor-disabled);
+}
+.wui-form fieldset > .field > input[type="range"]::-webkit-slider-runnable-track  {
+	-webkit-appearance: none;
+	-webkit-box-shadow: none;
+	border: none;
+	background: transparent;
+}
+.wui-form fieldset > .field > input[type="range"]::-moz-range-track {
+	-moz-appearance: none;
+	-moz-box-shadow: none;
+	border: none;
+	background: transparent;
+}
+.wui-form fieldset > .field > input[type="range"]::-ms-track {
+	-ms-appearance: none;
+	box-shadow: none;
+	border: none;
+	background: transparent;
+}
+.wui-form fieldset > .field > select {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
@@ -330,28 +442,28 @@
 .wui-form fieldset > .field:focus-within > select:disabled {
 	background-image: var(--wui-form-select-arrowimage-disabled) !important;
 }
-/*.wui-form fieldset > .field select[multiple="true"] {
+/*.wui-form fieldset > .field > select[multiple="true"] {
 	height: auto;
 	scrollbar-width: none;
     -ms-overflow-style: none;
 }
-.wui-form fieldset > .field select[multiple="true"]::-ms-expand {
+.wui-form fieldset > .field > select[multiple="true"]::-ms-expand {
 	display: none;
 }
-.wui-form fieldset > .field select[multiple="true"]:-webkit-scrollbar {
+.wui-form fieldset > .field > select[multiple="true"]:-webkit-scrollbar {
     width: 0;
     height: 0;
 }*/
-.wui-form fieldset > .field textarea.noresize {
+.wui-form fieldset > .field > textarea.noresize {
 	resize: none;
 }
-.wui-form fieldset > .field textarea.vresize {
+.wui-form fieldset > .field > textarea.vresize {
 	resize: vertical;
 }
-.wui-form fieldset > .field textarea.hresize {
+.wui-form fieldset > .field > textarea.hresize {
 	resize: horizontal;
 }
-.wui-form fieldset > .field textarea.autosize {
+.wui-form fieldset > .field > textarea.autosize {
 	overflow-x: hidden;
 	overflow-y: auto;
 }
@@ -484,16 +596,16 @@
 		flex-direction: column;
 		flex-wrap: nowrap;
 	}
-	.wui-form fieldset > .field label,
-	.wui-form fieldset > .field input,
-	.wui-form fieldset > .field select,
-	.wui-form fieldset > .field textarea,
+	.wui-form fieldset > .field > label,
+	.wui-form fieldset > .field > input,
+	.wui-form fieldset > .field > select,
+	.wui-form fieldset > .field > textarea,
 	.wui-form fieldset > .field .data,
 	.wui-form fieldset .text,
 	.wui-form fieldset .message {
 		font-size: 15px;
 	}
-	.wui-form fieldset > .field label,
+	.wui-form fieldset > .field > label,
 	.wui-form fieldset > .field:not(.textarea) {
 		height: var(--wui-form-input-responsive-height);
 	}
@@ -540,7 +652,7 @@
 .wui-form.line fieldset > .field:not(.checkbox):not(.range):not(.button):focus-within:after {
 	right: 0px;
 }
-.wui-form.line fieldset > .field label {
+.wui-form.line fieldset > .field > label {
 	display: flex;
 	cursor: text;
 	top: calc(-1 * var(--wui-form-input-borderwidth));
@@ -572,7 +684,7 @@
 	border-color: var(--wui-form-input-bordercolor-focus);
 	background-color: var(--wui-form-input-bgcolor-focus);
 }
-.wui-form.border fieldset > .field label {
+.wui-form.border fieldset > .field > label {
 	display: flex;
 	cursor: text;
 	top: calc(-1 * var(--wui-form-input-borderwidth));
@@ -671,7 +783,7 @@
 		border-color: var(--wui-form-mobile-field-bordercolor);
 		background-color: transparent;
 	}
-	.wui-form.mobile fieldset > .field label {
+	.wui-form.mobile fieldset > .field > label {
 		position: static;
 		float: left;
 		max-width: 70%;
@@ -680,22 +792,22 @@
 		flex-grow: 0;
 		font-size: 15px;
 	}
-	.wui-form.mobile fieldset > .field label.notempty {
+	.wui-form.mobile fieldset > .field > label.notempty {
 		color: var(--wui-form-mobile-label-textcolor);
 	}
-	.wui-form.mobile fieldset > .field label.notempty,
+	.wui-form.mobile fieldset > .field > label.notempty,
 	.wui-form.mobile fieldset > .field:focus-within > label {
 		top: auto;
 		left: auto;
 	}
-	.wui-form.mobile fieldset > .field label,
-	.wui-form.mobile fieldset > .field label.notempty,
+	.wui-form.mobile fieldset > .field > label,
+	.wui-form.mobile fieldset > .field > label.notempty,
 	.wui-form.mobile fieldset > .field:not(.data):focus-within > label {
 		color: var(--wui-form-mobile-label-textcolor);
 	}
-	.wui-form.mobile fieldset > .field input,
-	.wui-form.mobile fieldset > .field select,
-	.wui-form.mobile fieldset > .field textarea {
+	.wui-form.mobile fieldset > .field > input,
+	.wui-form.mobile fieldset > .field > select,
+	.wui-form.mobile fieldset > .field > textarea {
 		flex: 1;
 		-webkit-border-radius: 10px;
 		-moz-border-radius: 10px;
@@ -703,22 +815,22 @@
 		border: var(--wui-form-input-borderwidth) solid var(--wui-form-input-bgcolor-out);
 		text-align: right;
 	}
-	.wui-form.mobile fieldset > .field input,
-	.wui-form.mobile fieldset > .field select,
-	.wui-form.mobile fieldset > .field textarea {
+	.wui-form.mobile fieldset > .field > input,
+	.wui-form.mobile fieldset > .field > select,
+	.wui-form.mobile fieldset > .field > textarea {
 		background-color: var(--wui-form-mobile-input-bgcolor);
 	}
-	.wui-form fieldset > .field input[type="checkbox"]:checked::before {
+	.wui-form fieldset > .field > input[type="checkbox"]:checked::before {
 		-webkit-border-radius: 50%;
 		-moz-border-radius: 50%;
 		border-radius: 50%;
 	}
-	.wui-form.mobile fieldset > .field input[type="date"],
-	.wui-form.mobile fieldset > .field input[type="time"] {
+	.wui-form.mobile fieldset > .field > input[type="date"],
+	.wui-form.mobile fieldset > .field > input[type="time"] {
 		margin-right: 0px;
 		color: var(--wui-form-input-textcolor) !important;
 	}
-	.wui-form.mobile fieldset > .field textarea {
+	.wui-form.mobile fieldset > .field > textarea {
 		resize: none;
 	}
 	.wui-form.mobile fieldset > .field .data {

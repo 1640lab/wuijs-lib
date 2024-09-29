@@ -302,6 +302,11 @@ class WUIForm {
 	}
 }
 /*
+CSS
+--wui-form-date-calendarimage-src: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='none' stroke='currentColor' stroke-linejoin='round' stroke-width='32' x='48' y='80' width='416' height='384' rx='48'/><circle cx='296' cy='232' r='24' fill='currentColor'/><circle cx='376' cy='232' r='24' fill='currentColor'/><circle cx='296' cy='312' r='24' fill='currentColor'/><circle cx='376' cy='312' r='24' fill='currentColor'/><circle cx='136' cy='312' r='24' fill='currentColor'/><circle cx='216' cy='312' r='24' fill='currentColor'/><circle cx='136' cy='392' r='24' fill='currentColor'/><circle cx='216' cy='392' r='24' fill='currentColor'/><circle cx='296' cy='392' r='24' fill='currentColor'/><path fill='none' stroke='currentColor' stroke-linejoin='round' stroke-width='32' stroke-linecap='round' d='M128 48v32'/><path fill='none' stroke='currentColor' stroke-linejoin='round' stroke-width='32' stroke-linecap='round' d='M384 48v32'/><path fill='none' stroke='currentColor' stroke-linejoin='round' stroke-width='32' d='M464 160H48'/></svg>");
+--wui-form-date-calendarimage-size: 20px;
+--wui-form-time-clockimage-src: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z'/><path d='M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z'/></svg>");
+--wui-form-time-clockimage-size: 20px;
 DOM struture:
 <form class="wui-form (line|border) mobile">
 	<input type="hidden" name="wuiHidden">
