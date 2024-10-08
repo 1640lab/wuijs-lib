@@ -38,10 +38,12 @@
 }
 .wui-datebox > .calendar,
 .wui-datebox > .calendar > .head,
+.wui-datebox > .calendar > .head > .period,
 .wui-datebox > .calendar > .body,
-.wui-datebox > .calendar > .body > .period,
-.wui-datebox > .calendar > .body > .month,
-.wui-datebox > .calendar > .body > .month > div,
+.wui-datebox > .calendar > .body > .week,
+.wui-datebox > .calendar > .body > .week > div,
+.wui-datebox > .calendar > .body > .days,
+.wui-datebox > .calendar > .body > .days > div,
 .wui-datebox > .calendar > .footer {
 	display: flex;
 }
@@ -59,4 +61,8 @@
 .wui-datebox > .calendar > .body > .month > div {
 	width: 20px;
 	height: 20px;
+}
+.wui-datebox > .calendar > .body > .month > div:nth-child(-n + 7) {
+	text-transform: uppercase;
+	color: #ccc;
 }

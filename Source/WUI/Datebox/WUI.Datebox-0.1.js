@@ -6,12 +6,12 @@ class WUIDatebox {
 		selector: "",
 		min: "",
 		max: "",
-		value: 0,
-		calendarForstday: 1,
+		value: "",
+		locales: "es-cl",
 		enabled: true,
 		onChange: null
 	};
-	static prepare() {
+	static initClass() {
 		["out", "focus", "disabled"].forEach(event => {
 			const color = (getComputedStyle(document.documentElement).getPropertyValue("--wui-datebox-pickercolor-"+event) || getComputedStyle(document.documentElement).getPropertyValue("--wui-datebox-pickercolor-"+event)).replace(/#/g, "%23").trim();
 			const src = getComputedStyle(document.documentElement).getPropertyValue("--wui-datebox-pickerimage-src").replace(/currentColor/g, color);
@@ -35,8 +35,8 @@ class WUIDatebox {
 	get value() {
 		return this._input.value;
 	}
-	get calendarForstday() {
-		return this._calendarForstday;
+	get locales() {
+		return this._locales;
 	}
 	get enabled() {
 		return this._enabled;
@@ -66,9 +66,11 @@ class WUIDatebox {
 			this._input.value = value;
 		}
 	}
-	set calendarForstday(value) {
-		if (typeof(calendarForstday) == "number") {
-			this._calendarForstday = value;
+	set locales(value) {
+		if (typeof(value) == "string" && value.match(/^[a-z]{2}-[a-z]{2}$/i)) {
+			this._locales = value.split("-").map((x, i) => {
+				return i == 0 ? x.toLocaleLowerCase() : x.toUpperCase()
+			}).join("-");
 		}
 	}
 	set enabled(value) {
@@ -102,32 +104,39 @@ class WUIDatebox {
 	getInput() {
 		return this._input;
 	}
-	calendar() {
-		const calendar = document.createElement("div");
-		const head = document.createElement("div");
-		const body = document.createElement("div");
-		const period = document.createElement("div");
-		const month = document.createElement("div");
-		const footer = document.createElement("div");
-		period.className = "period";
-		month.className = "month";
-		for (let i=0; i<49; i++) {
-			const day = document.createElement("div");
-			day.className = i < 7 ? "" : "day";
-			month.appendChild(day);
-		}
-		head.className = "head";
-		body.className = "body";
-		body.appendChild(period);
-		body.appendChild(month);
-		calendar.className = "calendar";
-		calendar.appendChild(head);
-		calendar.appendChild(body);
-		calendar.appendChild(footer);
-		return calendar;
-	}
 	init() {
-		this._element.appendChild(this.calendar());
+		console.log("-->", this.locales);
+		let now = Date.now();
+		console.log("-->", now);
+		let day = new Date(now).toLocaleString("es-cl", {weekday: "short"});
+		console.log("-->", day);
+		//const he = new Intl.Locale("es-CL"); // Hebrew (Israel)
+		//console.log("-->", he.getWeekInfo());
+
+		this._calendar = document.createElement("div");
+		this._head = document.createElement("div");
+		this._period = document.createElement("div");
+		this._body = document.createElement("div");
+		this._week = document.createElement("div");
+		this._days = document.createElement("div");
+		this._footer = document.createElement("div");
+		this._period.className = "period";
+		this._week.className = "week";
+		this._days.className = "days";
+		for (let i=0; i<7; i++) {
+			const day = document.createElement("div");
+			this._week.appendChild(day);
+		}
+		this._head.className = "head";
+		this._head.appendChild(this._period);
+		this._body.className = "body";
+		this._body.appendChild(this._week);
+		this._body.appendChild(this._days);
+		this._calendar.className = "calendar";
+		this._calendar.appendChild(this._head);
+		this._calendar.appendChild(this._body);
+		this._calendar.appendChild(this._footer);
+		this._element.appendChild(this._calendar);
 		this._input.addEventListener("input", (event) => {
 			if (typeof(this._onChange) == "function") {
 				this._onChange(event, this._input.value);
@@ -135,7 +144,7 @@ class WUIDatebox {
 		});
 	}
 }
-WUIDatebox.prepare();
+WUIDatebox.initClass();
 /*
 DOM struture:
 <div class="wui-datebox">

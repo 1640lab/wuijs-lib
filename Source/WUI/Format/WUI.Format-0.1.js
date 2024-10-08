@@ -106,7 +106,7 @@ String.prototype.wuiConstants = {
 		+"WALES,WALMART,WALTER,WANG,WANGGOU,WATCH,WATCHES,WEATHER,WEATHERCHANNEL,WEBCAM,WEBER,WEBSITE,WED,WEDDING,WEIBO,WEIR,WF,WHOSWHO,WIEN,WIKI,WILLIAMHILL,WIN,WINDOWS,WINE,WINNERS,WME,WOLTERSKLUWER,WOODSIDE,WORK,WORKS,WORLD,WOW,WS,WTC,WTF,"
 		+"XBOX,XEROX,XFINITY,XIHUAN,XIN,XXX,XYZ,"
 		+"YACHTS,YAHOO,YAMAXUN,YANDEX,YE,YODOBASHI,YOGA,YOKOHAMA,YOU,YOUTUBE,YT,YUN,"
-		+"ZA,ZAPPOS,ZARA,ZERO,ZIP,ZM,ZONE,ZUERICH,ZW".split(",")
+		+"ZA,ZAPPOS,ZARA,ZERO,ZIP,ZM,ZONE,ZUERICH,ZW"
 }
 String.prototype.wuiValidDateFormat = function(format = "default") {
 	const pattern =
@@ -270,17 +270,17 @@ Number.prototype.wuiDefaults = {
 	decimalSeparator: ",",
 	thousandsSeparator: ".",
 };
-Number.prototype.wuiToString = function(settings = {}) {
+Number.prototype.wuiToString = function(options = {}) {
 	Object.keys(this.wuiDefaults).forEach(key => {
-		settings[key] = typeof(settings) != "undefined" && key in settings ? settings[key] : this.wuiDefaults[key];
+		options[key] = typeof(options) != "undefined" && key in options ? options[key] : this.wuiDefaults[key];
 	});
 	const number = parseFloat(this),
-		prefix = settings.numberPrefix,
+		prefix = options.numberPrefix,
 		symbol = number < 0 ? "-" : "",
-		decLen = settings.decimalLength,
-		decSep = settings.decimalSeparator,
-		thoSep = settings.thousandsSeparator,
-		sufix = settings.numberSufix;
+		decLen = options.decimalLength,
+		decSep = options.decimalSeparator,
+		thoSep = options.thousandsSeparator,
+		sufix = options.numberSufix;
 	let i, j;
 	if (decLen.toString().match(/auto/i)) {
 		decLen = number.toString().match(/\./) ?  number.toString().replace(/^-*\d+\./, "").length : 0;
@@ -298,26 +298,36 @@ Number.prototype.wuiToSizeString = function() {
 
 /* wui date prototype */
 
+Date.prototype.wuiConstants = {
+	locales: "" // https://www.techonthenet.com/js/language_tags.php 20241007
+		+"ar-SA,bn-BD,bn-IN,cs-CZ,da-DK,de-AT,de-CH,de-DE,el-GR,en-AU,en-CA,en-GB,en-IE,en-IN,en-NZ,en-US,en-ZA,es-AR,es-CL,es-CO,es-ES,es-MX,es-US,fi-FI,fr-BE,fr-CA,fr-CH,fr-FR,he-IL,hi-IN,hu-HU,id-ID,it-CH,it-IT,ja-JP,ko-KR,nl-BE,nl-NL,no-NO,pl-PL,pt-BR,pt-PT,ro-RO,ru-RU,sk-SK,sv-SE,ta-IN,ta-LK,th-TH,tr-TR,zh-CN,zh-HK,zh-TW"
+};
 Date.prototype.wuiDefaults = {
-	language: "en",
+	locales: "en-US",
 	dateFormat: "yyyy-mm-dd",
 	timeFormat: "hh:MM:ss",
 	datetimeFormat: "yyyy-mm-dd hh:MM:ss",
-	weekDaysNames: {
-		en: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-		es: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
-	},
-	monthsNames: {
-		en: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-		es: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
-	}
+	weekDaysNames: [],
+	monthsNames: []
 };
-Date.prototype.wuiLoad = function(value, format = "default", settings = {}) {
+Date.prototype.wuiLoadNames = function() {
+	if (this.wuiConstants.locales.toLowerCase().split(",").indexOf(this.wuiDefaults.locales.toLowerCase()) > -1) {
+		for (let i=0; i<7; i++) {
+			const name = new Date(2023, 0, i+1).toLocaleString(this.wuiDefaults.locales, {weekday: "long"}); // 2023-01-01: sunday
+			this.wuiDefaults.weekDaysNames[i] = name.replace(/^\s*(\w)/, letter => letter.toUpperCase());
+		}
+		for (let i=0; i<12; i++) {
+			const name = new Date(2023, i, 1).toLocaleString(this.wuiDefaults.locales, {month: "long"});
+			this.wuiDefaults.monthsNames[i] = name.replace(/^\s*(\w)/, letter => letter.toUpperCase());
+		}
+	}
+}
+Date.prototype.wuiLoad = function(value, format = "default", options = {}) {
 	Object.keys(this.wuiDefaults).forEach(key => {
-		settings[key] = typeof(settings) != "undefined" && key in settings ? settings[key] : this.wuiDefaults[key];
+		options[key] = typeof(options) != "undefined" && key in options ? options[key] : this.wuiDefaults[key];
 	});
 	const string =
-		format.match(/^(default|defaultDatetime|defaultFormat)$/i) ? settings.datetimeFormat :
+		format.match(/^(default|defaultDatetime|defaultFormat)$/i) ? options.datetimeFormat :
 		format.match(/^standard$/i) ? "yyyy-mm-dd hh:MM:ss" :
 		format.match(/^numeric$/i) ? "yyyy mm dd hh MM ss" :
 		format.match(/^longtime$/i) ? "yyyy-mm-dd T hh:MM:ss" :
@@ -325,7 +335,7 @@ Date.prototype.wuiLoad = function(value, format = "default", settings = {}) {
 	const strings = string.split(/\W+/);
 	const values = value.split(/\W+/);
 	if (values.length == strings.length) {
-		for (let i = 0; i < strings.length; i++) {
+		for (let i=0; i<strings.length; i++) {
 			const str = strings[i];
 			const val = parseInt(values[i]);
 			if (str.match(/^(yyyy|yy)$/)) {
@@ -345,22 +355,22 @@ Date.prototype.wuiLoad = function(value, format = "default", settings = {}) {
 	}
 	return this;
 };
-Date.prototype.wuiToString = function(format = "default", settings = {}) {
+Date.prototype.wuiToString = function(format = "default", options = {}) {
 	Object.keys(this.wuiDefaults).forEach(key => {
-		settings[key] = typeof(settings) != "undefined" && key in settings ? settings[key] : this.wuiDefaults[key];
+		options[key] = typeof(options) != "undefined" && key in options ? options[key] : this.wuiDefaults[key];
 	});
 	const year = this.getFullYear(),
 		month = this.getMonth() +1,
-		monthName = settings.monthsNames[settings.language][month -1],
+		monthName = options.monthsNames[month -1],
 		day = this.getDate(),
-		weekDay = this.getDay() == 6 ? 0 : this.getDay() +1,
-		weekDayName = settings.weekDaysNames[settings.language][weekDay],
+		weekDay = this.getDay(),
+		weekDayName = options.weekDaysNames[weekDay],
 		hour = this.getHours(),
 		minute = this.getMinutes(),
 		second = this.getSeconds();
 	const patterns = {
 		"yyyy": year,
-		"yy": year.toString().substr(2, 2),
+		"yy": year.toString().substring(2, 2),
 		"mmmm": monthName,
 		"mmm": monthName.substr(0, 3),
 		"mm": ("0"+month).slice(-2),
@@ -379,9 +389,9 @@ Date.prototype.wuiToString = function(format = "default", settings = {}) {
 		"s": second
 	};
 	let string =
-		format.match(/^(default|defaultDatetime|defaultFormat)$/i) ? settings.datetimeFormat :
-		format.match(/^(date|defaultDate|dateFormat)$/i) ? settings.dateFormat :
-		format.match(/^(time|defaultTime|timeFormat)$/i) ? settings.timeFormat :
+		format.match(/^(default|defaultDatetime|defaultFormat)$/i) ? options.datetimeFormat :
+		format.match(/^(date|defaultDate|dateFormat)$/i) ? options.dateFormat :
+		format.match(/^(time|defaultTime|timeFormat)$/i) ? options.timeFormat :
 		format.match(/^standard$/i) ? "yyyy-mm-dd hh:MM:ss" :
 		format.match(/^numeric$/i) ? "yyyy mm dd hh MM ss" :
 		format.match(/^longtime$/i) ? "yyyy-mm-dd T hh:MM:ss" :
@@ -398,3 +408,4 @@ Date.prototype.wuiToString = function(format = "default", settings = {}) {
 	}
 	return string;
 };
+Date.prototype.wuiLoadNames();
