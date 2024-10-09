@@ -48,21 +48,52 @@
 	display: flex;
 }
 .wui-datebox > .calendar {
+	--shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	--filter: blur(10px);
+	--day-width: 30px;
+	--day-height: 30px;
 	position: absolute;
+	z-index: 1;
+	-webkit-box-shadow: var(--shadow);
+	-moz-box-shadow: var(--shadow);
+	box-shadow: var(--shadow);
 	-webkit-border-radius: var(--wui-datebox-calendar-radius);
 	-moz-border-radius: var(--wui-datebox-calendar-radius);
 	border-radius: var(--wui-datebox-calendar-radius);
-	border: 1px solid #ccc;
+	border: 1px solid var(--wui-datebox-calendar-bordercolor);
+	background-color: var(--wui-datebox-calendar-bgcolor);
+	-webkit-backdrop-filter: var(--filter);
+	-moz-backdrop-filter: var(--filter);
+	backdrop-filter: var(--filter);
+	flex-direction: column;
 }
-.wui-datebox > .calendar > .body > .month {
-	width: 140px;
+.wui-datebox > .calendar > .head {
+	height: 24px;
+}
+.wui-datebox > .calendar > .body {
+	width: calc(7 * var(--day-width));
+	flex-direction: column;
+}
+.wui-datebox > .calendar > .body > .week,
+.wui-datebox > .calendar > .body > .days {
 	flex-wrap: wrap;
 }
-.wui-datebox > .calendar > .body > .month > div {
-	width: 20px;
+.wui-datebox > .calendar > .body > .week {
 	height: 20px;
 }
-.wui-datebox > .calendar > .body > .month > div:nth-child(-n + 7) {
+.wui-datebox > .calendar > .body > .week > div {
+	width: var(--day-width);
 	text-transform: uppercase;
-	color: #ccc;
+	color: #888;
+}
+.wui-datebox > .calendar > .body > .days {
+	height: 120px;
+}
+.wui-datebox > .calendar > .body > .days > div {
+	width: var(--day-width);
+	height: var(--day-height);
+}
+.wui-datebox > .calendar > .footer {
+	height: 24px;
+	border-top: 1px solid var(--wui-datebox-calendar-bordercolor);
 }

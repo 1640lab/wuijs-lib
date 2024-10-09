@@ -10,7 +10,7 @@ class WUIForm {
 	static initClass() {
 		["date", "time", "select"].forEach(type => {
 			["out", "focus", "disabled"].forEach(event => {
-				const color = (getComputedStyle(document.documentElement).getPropertyValue("--wui-form-"+type+"-pickercolor-"+event) || getComputedStyle(document.documentElement).getPropertyValue("--wui-datebox-pickercolor-"+event)).replace(/#/g, "%23").trim();
+				const color = getComputedStyle(document.documentElement).getPropertyValue("--wui-form-"+type+"-pickercolor-"+event).replace(/#/g, "%23").trim();
 				const src = getComputedStyle(document.documentElement).getPropertyValue("--wui-form-"+type+"-pickerimage-src").replace(/currentColor/g, color);
 				document.documentElement.style.setProperty("--wui-form-"+type+"-pickerimage-"+event, src);
 			});
