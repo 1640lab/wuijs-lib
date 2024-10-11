@@ -35,7 +35,7 @@ class WUICookie {
 			} catch (error) {
 				console.error("WUICookie error:", error);
 			}
-			for (let i = 0; i <cookies.length; i++) {
+			for (let i=0; i<cookies.length; i++) {
 				let part = cookies[i];
 				while (part.charAt(0) == " ") {
 					part = part.substring(1);

@@ -127,15 +127,19 @@
 .wui-list > .body > .row > .buttons > .button {
 	cursor: pointer;
 	width: var(--wui-list-button-size);
+	justify-content: center;
+	align-items: center;
+}
+.wui-list > .body > .row > .buttons > .button.round {
 	height: var(--wui-list-button-size);
 	margin-left: var(--wui-list-button-hmargin);
-	margin-right: var(--wui-list-button-hmargin);
 	-webkit-border-radius: var(--wui-list-button-radius);
 	-moz-border-radius: var(--wui-list-button-radius);
 	border-radius: var(--wui-list-button-radius);
 	background-color: var(--wui-list-button-bgcolor-enabled);
-	justify-content: center;
-	align-items: center;
+}
+.wui-list > .body > .row > .buttons > .button.stretch {
+	height: 100%;
 }
 .wui-list > .body > .row > .strip > .cell,
 .wui-list > .body > .row > .buttons > .button {

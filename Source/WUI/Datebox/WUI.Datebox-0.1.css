@@ -6,35 +6,25 @@
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
+.wui-datebox,
 .wui-datebox > input[type="date"] {
-	outline: none;
+	width: 100%;
+	margin: 0;
 	border: 0;
 	background-color: transparent;
+}
+.wui-datebox > input[type="date"] {
+	outline: none;
+	background-repeat: no-repeat;
+	background-position-x: 100%;
+	background-image: var(--wui-datebox-pickerimage-out);
+	background-size: var(--wui-datebox-pickerimage-size);
+	padding-right: 2rem;
 	font-family: inherit;
 	font-size: 14px;
 }
-.wui-datebox > input[type="date"]:before {
-	content: "";
-	cursor: pointer;
-	position: absolute;
-	top: 4px;
-	right: 0;
-	width: var(--wui-datebox-pickerimage-size);
-	height: var(--wui-datebox-pickerimage-size);
-	background-repeat: no-repeat;
-	background-image: var(--wui-datebox-pickerimage-out);
-	background-size: var(--wui-datebox-pickerimage-size);
-}
 .wui-datebox > input[type="date"]::-webkit-calendar-picker-indicator {
-    display: none;
-}
-.wui-datebox:hover > input[type="date"]:enabled:before,
-.wui-datebox:focus-within > input[type="date"]:enabled:before {
-	background-image: var(--wui-datebox-pickerimage-focus);
-}
-.wui-datebox:hover > input[type="date"]:disabled:before,
-.wui-datebox:focus-within > input[type="date"]:disabled:before {
-	background-image: var(--wui-datebox-pickerimage-disabled) !important;
+	background: none;
 }
 .wui-datebox > .calendar,
 .wui-datebox > .calendar > .head,
@@ -96,4 +86,9 @@
 .wui-datebox > .calendar > .footer {
 	height: 24px;
 	border-top: 1px solid var(--wui-datebox-calendar-bordercolor);
+}
+@media screen and (max-width: 599px) {
+	.wui-datebox > input[type="date"] {
+		font-size: 15px;
+	}
 }

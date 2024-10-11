@@ -7,6 +7,7 @@ class WUIList {
 		columns: [],
 		rows: [],
 		buttons: [],
+		buttonsStyle: "round",
 		onClick: null
 	};
 	constructor (properties) {
@@ -26,11 +27,15 @@ class WUIList {
 	get buttons() {
 		return this._buttons;
 	}
+	get buttonsStyle() {
+		return this._buttonsStyle;
+	}
 	get onClick() {
 		return this._onClick;
 	}
 	set selector(value) {
-		if (this.setProperty("selector", value, "string")) {
+		if (typeof(value) == "string") {
+			this._selector = value;
 			this._element = document.querySelector(value);
 			this._head = document.querySelector(value+" > .head");
 			this._body = document.querySelector(value+" > .body");
@@ -39,16 +44,29 @@ class WUIList {
 		}
 	}
 	set columns(value) {
-		this.setProperty("columns", value, "array");
+		if (Array.isArray(value)) {
+			this._columns = value;
+		}
 	}
 	set rows(value) {
-		this.setProperty("rows", value, "array");
+		if (Array.isArray(value)) {
+			this._rows = value;
+		}
 	}
 	set buttons(value) {
-		this.setProperty("buttons", value, "array");
+		if (Array.isArray(value)) {
+			this._buttons = value;
+		}
+	}
+	set buttonsStyle(value) {
+		if (typeof(value) == "string" && value.match(/^(round|stretch)$/i)) {
+			this._buttonsStyle = value.toLocaleLowerCase();
+		}
 	}
 	set onClick(value) {
-		this.setProperty("onClick", value, "function");
+		if (typeof(value) == "function") {
+			this._onClick = value;
+		}
 	}
 	getElement() {
 		return this._element;
@@ -64,18 +82,6 @@ class WUIList {
 	}
 	getFooter() {
 		return this._footer;
-	}
-	setProperty(name, value, type = "string") {
-		if ((
-			type == "array" && Array.isArray(value)) || (
-			type == typeof(value)
-		)) {
-			this["_"+name] = value;
-			return true;
-		} else {
-			this["_"+name] = this.#defaults[name];
-		}
-		return false;
 	}
 	init() {
 		this._strips = [];
@@ -145,7 +151,7 @@ class WUIList {
 						const button = document.createElement("div");
 						const icon = document.createElement("div");
 						const enabled = (typeof(options.enabled) == "boolean" && options.enabled) || (typeof(options.enabled) == "function" && options.enabled(i, id)) ? true : false;
-						button.className = "button";
+						button.className = "button "+this._buttonsStyle;
 						icon.className = "icon";
 						if (!enabled) {
 							button.classList.add("disabled");

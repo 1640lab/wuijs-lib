@@ -30,11 +30,6 @@ class WUIDatebox {
 				this.constants.countryFirstWeekDay[code] = wday;
 			});
 		});
-		["out", "focus", "disabled"].forEach(event => {
-			const color = getComputedStyle(document.documentElement).getPropertyValue("--wui-datebox-pickercolor-"+event).replace(/#/g, "%23").trim();
-			const src = getComputedStyle(document.documentElement).getPropertyValue("--wui-datebox-pickerimage-src").replace(/currentColor/g, color);
-			document.documentElement.style.setProperty("--wui-datebox-pickerimage-"+event, src);
-		});
 	}
 	constructor (properties) {
 		Object.keys(this.#defaults).forEach(key => {
@@ -129,13 +124,18 @@ class WUIDatebox {
 			const day = document.createElement("div");
 			this._week.appendChild(day);
 		}
-	}
-	init() {
 		//let now = Date.now();
 		//let day = new Date(now).toLocaleString("es-cl", {weekday: "short"});
 		//const he = new Intl.Locale("es-CL"); // Hebrew (Israel)
 		//console.log("-->", he.getWeekInfo());
-
+	}
+	init() {
+		const pickerImage = (event) => {
+			const element = this._input || this._element || document.documentElement;
+			const color = getComputedStyle(element).getPropertyValue("--wui-datebox-pickercolor-"+event).replace(/#/g, "%23").trim();
+			const image = getComputedStyle(element).getPropertyValue("--wui-datebox-pickerimage-src").replace(/currentColor/g, color);
+			return image;
+		}
 		this._calendar = document.createElement("div");
 		this._head = document.createElement("div");
 		this._period = document.createElement("div");
@@ -157,6 +157,17 @@ class WUIDatebox {
 		this._calendar.appendChild(this._body);
 		this._calendar.appendChild(this._footer);
 		this._element.appendChild(this._calendar);
+		this._input.style.backgroundImage = pickerImage(this._input.disabled ? "disabled" : "out");
+		["mouseover", "mouseout", "focus", "blur"].forEach(event => {
+			const pickerEvent = this._input.disabled ? "disabled" : event.replace(/mouse/, "");
+			this._input.addEventListener(event, () => {
+				this._input.style.backgroundImage = pickerImage(pickerEvent);
+				if (event == "focus") {
+					const open = new MouseEvent("mousedown");
+					this._input.dispatchEvent(open);
+				}
+			});
+		});
 		this._input.addEventListener("input", (event) => {
 			if (typeof(this._onChange) == "function") {
 				this._onChange(event, this._input.value);

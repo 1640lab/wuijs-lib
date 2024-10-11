@@ -7,15 +7,6 @@ class WUIForm {
 		submit: true,
 		onSubmit: true
 	};
-	static initClass() {
-		["date", "time", "select"].forEach(type => {
-			["out", "focus", "disabled"].forEach(event => {
-				const color = getComputedStyle(document.documentElement).getPropertyValue("--wui-form-"+type+"-pickercolor-"+event).replace(/#/g, "%23").trim();
-				const src = getComputedStyle(document.documentElement).getPropertyValue("--wui-form-"+type+"-pickerimage-src").replace(/currentColor/g, color);
-				document.documentElement.style.setProperty("--wui-form-"+type+"-pickerimage-"+event, src);
-			});
-		});
-	}	
 	constructor (properties) {
 		Object.keys(this.#defaults).forEach(key => {
 			this[key] = typeof(properties) != "undefined" && key in properties ? properties[key] : this.#defaults[key];
@@ -184,6 +175,12 @@ class WUIForm {
 		}
 	}
 	init() {
+		const pickerImage = (input, type, event) => {
+			const element = input || this._form || this._element || document.documentElement;
+			const color = getComputedStyle(element).getPropertyValue("--wui-form-"+type+"-pickercolor-"+event).replace(/#/g, "%23").trim();
+			const image = getComputedStyle(element).getPropertyValue("--wui-form-"+type+"-pickerimage-src").replace(/currentColor/g, color);
+			return image;
+		}
 		this._form.addEventListener("submit", (event) => {
 			if (!this._submit) {
 				event.preventDefault();
@@ -203,26 +200,22 @@ class WUIForm {
 		});
 		this._element.querySelectorAll("input,select,textarea").forEach(input => {
 			const tag = input.localName.toLocaleLowerCase();
-			const label = input.parentNode.querySelector("label") || input.parentNode.parentNode.querySelector("label") || this.getLabel(input.name);
 			const type = input.getAttribute("type") || "";
-			if (tag.match(/^(date|time|select)$/)) {
-				["focus", "blur"].forEach(event => {
-					const instance = event == "focus" ? "over" : "out";
-					const value =
-						type == "date" ? "--wui-form-date-pickercolor-"+instance :
-						type == "time" ? "--wui-form-time-clockcolor-"+instance :
-						tag == "select" ? "--wui-form-select-pickerimage-"+instance :
-						"";
-					const color = getComputedStyle(document.documentElement).getPropertyValue(value).trim();
+			const label = input.parentNode.querySelector("label") || input.parentNode.parentNode.querySelector("label") || this.getLabel(input.name);
+			if (type.match(/^(date|time)$/i) || tag.match(/^(select)$/i)) {
+				const pickerType = type || tag;
+				input.style.backgroundImage = pickerImage(input, pickerType, input.disabled ? "disabled" : "out");
+				["mouseover", "mouseout", "focus", "blur"].forEach(event => {
+					const pickerEvent = input.disabled ? "disabled" : event.replace(/mouse/, "");
 					input.addEventListener(event, () => {
 						if (label != null) {
-							if (event == "focus" || input.value != "") {
+							if (event.match(/mouseover|focus/) || input.value != "") {
 								label.classList.add("notempty");
 							} else {
 								label.classList.remove("notempty");
 							}
 						}
-						input.style.color = color;
+						input.style.backgroundImage = pickerImage(input, pickerType, pickerEvent);
 						if (event == "focus") {
 							const open = new MouseEvent("mousedown");
 							input.dispatchEvent(open);
@@ -289,13 +282,7 @@ class WUIForm {
 		this._form[name].style.height = this._form[name].scrollHeight+"px";
 	}
 }
-WUIForm.initClass();
 /*
-CSS
---wui-form-date-pickerimage-src: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='none' stroke='currentColor' stroke-linejoin='round' stroke-width='32' x='48' y='80' width='416' height='384' rx='48'/><circle cx='296' cy='232' r='24' fill='currentColor'/><circle cx='376' cy='232' r='24' fill='currentColor'/><circle cx='296' cy='312' r='24' fill='currentColor'/><circle cx='376' cy='312' r='24' fill='currentColor'/><circle cx='136' cy='312' r='24' fill='currentColor'/><circle cx='216' cy='312' r='24' fill='currentColor'/><circle cx='136' cy='392' r='24' fill='currentColor'/><circle cx='216' cy='392' r='24' fill='currentColor'/><circle cx='296' cy='392' r='24' fill='currentColor'/><path fill='none' stroke='currentColor' stroke-linejoin='round' stroke-width='32' stroke-linecap='round' d='M128 48v32'/><path fill='none' stroke='currentColor' stroke-linejoin='round' stroke-width='32' stroke-linecap='round' d='M384 48v32'/><path fill='none' stroke='currentColor' stroke-linejoin='round' stroke-width='32' d='M464 160H48'/></svg>");
---wui-form-date-pickerimage-size: 20px;
---wui-form-time-pickerimage-src: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z'/><path d='M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z'/></svg>");
---wui-form-time-pickerimage-size: 20px;
 DOM struture:
 <form class="wui-form (line|border) mobile">
 	<input type="hidden" name="wuiHidden">

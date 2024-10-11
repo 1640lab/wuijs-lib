@@ -206,107 +206,25 @@
 .wui-form fieldset > .field > textarea:disabled {
 	color: var(--wui-form-input-textcolor-disabled) !important;
 }
-.wui-form fieldset > .field > input[type="checkbox"] {
-	display: flex;
-	width: 20px;
-	height: 20px;
-	-webkit-appearance: none;
-    -moz-appearance: none;
-    -o-appearance: none;
-	appearance: none;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	border: 1px solid var(--wui-form-input-bordercolor-out);
-	background-color: var(--wui-form-input-bgcolor-out);
-	justify-content: center;
-	align-items: center;
-}
-.wui-form fieldset > .field:hover > input[type="checkbox"]:enabled,
-.wui-form fieldset > .field:focus-within > input[type="checkbox"]:enabled {
-	border-color: var(--wui-form-input-bordercolor-focus);
-	background-color: var(--wui-form-input-bgcolor-focus);
-}
-.wui-form fieldset > .field:hover > input[type="checkbox"]:disabled,
-.wui-form fieldset > .field:focus-within > input[type="checkbox"]:disabled {
-	border-color: var(--wui-form-input-bordercolor-disabled) !important;
-	background-color: var(--wui-form-input-bgcolor-disabled) !important;
-}
-.wui-form fieldset > .field > input[type="checkbox"]:checked::before {
-	content: "";
-	cursor: pointer;
-	width: 12px;
-	height: 12px;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-	background-color: transparent;
-}
-.wui-form fieldset > .field > input[type="checkbox"]:enabled:checked::before {
-	background-color: var(--wui-form-input-bordercolor-focus);
-}
-.wui-form fieldset > .field > input[type="checkbox"]:disabled:checked::before {
-	background-color: var(--wui-form-input-bordercolor-disabled) !important;
-}
 .wui-form fieldset > .field > input[type="date"],
 .wui-form fieldset > .field > input[type="time"] {
-	position: relative;
 	padding-right: 35px;
 	min-width: 140px;
-	color: transparent;
-}
-.wui-form fieldset > .field > input[type="date"]:before,
-.wui-form fieldset > .field > input[type="date"]::-webkit-calendar-picker-indicator,
-.wui-form fieldset > .field > input[type="time"]:before,
-.wui-form fieldset > .field > input[type="time"]::-webkit-calendar-picker-indicator {
-	position: absolute;
-	top: 4px;
-	right: 0;
-}
-.wui-form fieldset > .field > input[type="date"]:before,
-.wui-form fieldset > .field > input[type="time"]:before {
-	content: "";
-	cursor: pointer;
 	background-repeat: no-repeat;
+	background-position-x: 100%;
+	padding-right: 2rem;
 }
-.wui-form fieldset > .field > input[type="date"]::-webkit-calendar-picker-indicator,
-.wui-form fieldset > .field > input[type="time"]::-webkit-calendar-picker-indicator {
-	background: transparent;
-	color: transparent;
-}
-.wui-form fieldset > .field > input[type="date"]:before {
+.wui-form fieldset > .field > input[type="date"] {
 	background-image: var(--wui-form-date-pickerimage-out);
 	background-size: var(--wui-form-date-pickerimage-size);
 }
-.wui-form fieldset > .field > input[type="date"]:before,
-.wui-form fieldset > .field > input[type="date"]::-webkit-calendar-picker-indicator {
-	width: var(--wui-form-date-pickerimage-size);
-	height: var(--wui-form-date-pickerimage-size);
-}
-.wui-form fieldset > .field:hover > input[type="date"]:enabled:before,
-.wui-form fieldset > .field:focus-within > input[type="date"]:enabled:before {
-	background-image: var(--wui-form-date-pickerimage-focus);
-}
-.wui-form fieldset > .field:hover > input[type="date"]:disabled:before,
-.wui-form fieldset > .field:focus-within > input[type="date"]:disabled:before {
-	background-image: var(--wui-form-date-pickerimage-disabled) !important;
-}
-.wui-form fieldset > .field > input[type="time"]:before {
+.wui-form fieldset > .field > input[type="time"] {
 	background-image: var(--wui-form-time-pickerimage-out);
 	background-size: var(--wui-form-time-pickerimage-size);
 }
-.wui-form fieldset > .field > input[type="time"]:before,
+.wui-form fieldset > .field > input[type="date"]::-webkit-calendar-picker-indicator,
 .wui-form fieldset > .field > input[type="time"]::-webkit-calendar-picker-indicator {
-	width: var(--wui-form-time-pickerimage-size);
-	height: var(--wui-form-time-pickerimage-size);
-}
-.wui-form fieldset > .field:hover > input[type="time"]:enabled:before,
-.wui-form fieldset > .field:focus-within > input[type="time"]:enabled:before {
-	background-image: var(--wui-form-time-pickerimage-focus);
-}
-.wui-form fieldset > .field:hover > input[type="time"]:disabled:before,
-.wui-form fieldset > .field:focus-within > input[type="time"]:disabled:before {
-	background-image: var(--wui-form-time-pickerimage-disabled) !important;
+	background: none;
 }
 .wui-form fieldset > .field > input[type="range"]::-webkit-slider-thumb,
 .wui-form fieldset > .field > input[type="range"]::-moz-range-thumb,
@@ -420,6 +338,48 @@
 	border: none;
 	background: transparent;
 }
+.wui-form fieldset > .field > input[type="checkbox"] {
+	display: flex;
+	width: 20px;
+	height: 20px;
+	-webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+	appearance: none;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid var(--wui-form-input-bordercolor-out);
+	background-color: var(--wui-form-input-bgcolor-out);
+	justify-content: center;
+	align-items: center;
+}
+.wui-form fieldset > .field:hover > input[type="checkbox"]:enabled,
+.wui-form fieldset > .field:focus-within > input[type="checkbox"]:enabled {
+	border-color: var(--wui-form-input-bordercolor-focus);
+	background-color: var(--wui-form-input-bgcolor-focus);
+}
+.wui-form fieldset > .field:hover > input[type="checkbox"]:disabled,
+.wui-form fieldset > .field:focus-within > input[type="checkbox"]:disabled {
+	border-color: var(--wui-form-input-bordercolor-disabled) !important;
+	background-color: var(--wui-form-input-bgcolor-disabled) !important;
+}
+.wui-form fieldset > .field > input[type="checkbox"]:checked::before {
+	content: "";
+	cursor: pointer;
+	width: 12px;
+	height: 12px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	background-color: transparent;
+}
+.wui-form fieldset > .field > input[type="checkbox"]:enabled:checked::before {
+	background-color: var(--wui-form-input-bordercolor-focus);
+}
+.wui-form fieldset > .field > input[type="checkbox"]:disabled:checked::before {
+	background-color: var(--wui-form-input-bordercolor-disabled) !important;
+}
 .wui-form fieldset > .field > select {
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -427,16 +387,8 @@
 	background-repeat: no-repeat;
 	background-position-x: 100%;
 	background-image: var(--wui-form-select-pickerimage-out);
-	background-size: 30px;
+	background-size: var(--wui-form-select-pickerimage-size);
 	padding-right: 2rem;
-}
-.wui-form fieldset > .field:hover > select:enabled,
-.wui-form fieldset > .field:focus-within > select:enabled {
-	background-image: var(--wui-form-select-pickerimage-focus);
-}
-.wui-form fieldset > .field:hover > select:disabled,
-.wui-form fieldset > .field:focus-within > select:disabled {
-	background-image: var(--wui-form-select-pickerimage-disabled) !important;
 }
 /*.wui-form fieldset > .field > select[multiple="true"] {
 	height: auto;
