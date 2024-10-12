@@ -56,23 +56,29 @@
 	display: none;
 }
 .wui-datebox > .calendar > .header {
+	position: relative;
 	height: 40px;
 }
-.wui-datebox > .calendar > .header > .month {
+.wui-datebox > .calendar > .header > .period {
 	padding: 10px 5px;
 }
 .wui-datebox > .calendar > .header > .prev,
 .wui-datebox > .calendar > .header > .next {
-	width: 24px;
+	position: absolute;
+	top: 0;
+	width: 32px;
+	height: 40px;
 	background-repeat: no-repeat;
 	background-image: none;
 	background-position-x: center;
 	background-position-y: center;
 }
 .wui-datebox > .calendar > .header > .prev {
+	right: 24px;
 	background-size: var(--wui-datebox-calendar-previmage-size);
 }
 .wui-datebox > .calendar > .header > .next {
+	right: 0;
 	background-size: var(--wui-datebox-calendar-nextimage-size);
 }
 .wui-datebox > .calendar > .week,
