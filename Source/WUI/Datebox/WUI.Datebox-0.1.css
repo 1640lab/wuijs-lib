@@ -24,26 +24,20 @@
 	font-size: 14px;
 }
 .wui-datebox > input[type="date"]::-webkit-calendar-picker-indicator {
+	display: none;
 	background: none;
 }
 .wui-datebox > .calendar,
-.wui-datebox > .calendar > .head,
-.wui-datebox > .calendar > .head > .period,
-.wui-datebox > .calendar > .body,
-.wui-datebox > .calendar > .body > .week,
-.wui-datebox > .calendar > .body > .week > div,
-.wui-datebox > .calendar > .body > .days,
-.wui-datebox > .calendar > .body > .days > div,
-.wui-datebox > .calendar > .footer {
+.wui-datebox > .calendar * {
 	display: flex;
 }
 .wui-datebox > .calendar {
 	--shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 	--filter: blur(10px);
-	--day-width: 30px;
-	--day-height: 30px;
 	position: absolute;
 	z-index: 1;
+	width: 250px;
+	height: 260px;
 	-webkit-box-shadow: var(--shadow);
 	-moz-box-shadow: var(--shadow);
 	box-shadow: var(--shadow);
@@ -56,35 +50,61 @@
 	-moz-backdrop-filter: var(--filter);
 	backdrop-filter: var(--filter);
 	flex-direction: column;
+	padding: 5px;
+}
+.wui-datebox > .calendar.hidden {
+	display: none;
 }
 .wui-datebox > .calendar > .head {
-	height: 24px;
+	height: 40px;
 }
-.wui-datebox > .calendar > .body {
-	width: calc(7 * var(--day-width));
-	flex-direction: column;
+.wui-datebox > .calendar > .head > .month {
+	padding: 10px 5px;
 }
-.wui-datebox > .calendar > .body > .week,
-.wui-datebox > .calendar > .body > .days {
-	flex-wrap: wrap;
+.wui-datebox > .calendar > .week,
+.wui-datebox > .calendar > .days {
+	display: grid;
+	width: 100%;
+	grid-template-columns: repeat(7, 1fr);
 }
-.wui-datebox > .calendar > .body > .week {
-	height: 20px;
-}
-.wui-datebox > .calendar > .body > .week > div {
-	width: var(--day-width);
+.wui-datebox > .calendar > .week > div {
+	padding: 2px 5px;
 	text-transform: uppercase;
+	font-size: 10px;
 	color: #888;
 }
-.wui-datebox > .calendar > .body > .days {
-	height: 120px;
+.wui-datebox > .calendar > .days > div,
+.wui-datebox > .calendar > .days > div > div {
+	justify-content: center;
+	align-items: center;
 }
-.wui-datebox > .calendar > .body > .days > div {
-	width: var(--day-width);
-	height: var(--day-height);
+.wui-datebox > .calendar > .days > div > div {
+	cursor: pointer;
+	width: 32px;
+	height: 32px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	font-size: 12px;
+	color: var(--wui-datebox-day-textcolor-out);
+}
+.wui-datebox > .calendar > .days > div:hover > div {
+	background-color: var(--wui-datebox-day-bgcolor-over);
+	color: var(--wui-datebox-day-textcolor-over);
+}
+.wui-datebox > .calendar > .days > div > div.today {
+	background-color: var(--wui-datebox-day-bgcolor-today);
+}
+.wui-datebox > .calendar > .days > div > div.selected {
+	background-color: var(--wui-datebox-day-bgcolor-selected) !important;
+	color: var(--wui-datebox-day-textcolor-selected) !important;
 }
 .wui-datebox > .calendar > .footer {
-	height: 24px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 30px;
 	border-top: 1px solid var(--wui-datebox-calendar-bordercolor);
 }
 @media screen and (max-width: 599px) {

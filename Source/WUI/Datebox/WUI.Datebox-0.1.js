@@ -3,7 +3,8 @@
 class WUIDatebox {
 	static version = "0.1";
 	static constants = {
-		locales: "ar-SA bn-BD bn-IN cs-CZ da-DK de-AT de-CH de-DE el-GR en-AU en-CA en-GB en-IE en-IN en-NZ en-US en-ZA es-AR es-CL es-CO es-ES es-MX es-US fi-FI fr-BE fr-CA fr-CH fr-FR he-IL hi-IN hu-HU id-ID it-CH it-IT ja-JP ko-KR nl-BE nl-NL no-NO pl-PL pt-BR pt-PT ro-RO ru-RU sk-SK sv-SE ta-IN ta-LK th-TH tr-TR zh-CN zh-HK zh-TW",
+		locales: "" // https://www.techonthenet.com/js/language_tags.php 20241007
+			+"ar-SA bn-BD bn-IN cs-CZ da-DK de-AT de-CH de-DE el-GR en-AU en-CA en-GB en-IE en-IN en-NZ en-US en-ZA es-AR es-CL es-CO es-ES es-MX es-US fi-FI fr-BE fr-CA fr-CH fr-FR he-IL hi-IN hu-HU id-ID it-CH it-IT ja-JP ko-KR nl-BE nl-NL no-NO pl-PL pt-BR pt-PT ro-RO ru-RU sk-SK sv-SE ta-IN ta-LK th-TH tr-TR zh-CN zh-HK zh-TW",
 		firstWeekDayCountry: {
 			0: "AG AS AU BD BR BS BT BW BZ CA CN CO DM DO ET GT GU HK HN ID IL IN JM JP KE KH KR LA MH MM MO MT MX MZ NI NP PA PE PH PK PR PT PY SA SG SV TH TT TW UM US VE VI WS YE ZA ZW",
 			1: "AD AI AL AM AN AR AT AX AZ BA BE BG BM BN BY CH CL CM CR CY CZ DE DK EC EE ES FI FJ FO FR GB GE GF GP GR HR HU IE IS IT KG KZ LB LI LK LT LU LV MC MD ME MK MN MQ MY NL NO NZ PL RE RO RS RU SE SI SK SM TJ TM TR UA UY UZ VA VN XK",
@@ -21,11 +22,13 @@ class WUIDatebox {
 		max: "",
 		value: "",
 		locales: "en-US",
+		weekDaysNames: [],
+		monthsNames: [],
 		enabled: true,
 		onChange: null
 	};
 	static initClass() {
-		Object.entries(this.constants.firstWeekDayCountry).forEach(([countries, wday]) => {
+		Object.entries(this.constants.firstWeekDayCountry).forEach(([wday, countries]) => {
 			countries.split(/\s+/).forEach(code => {
 				this.constants.countryFirstWeekDay[code] = wday;
 			});
@@ -50,6 +53,12 @@ class WUIDatebox {
 	}
 	get locales() {
 		return this._locales;
+	}
+	get weekDaysNames() {
+		return this._weekDaysNames;
+	}
+	get monthsNames() {
+		return this._monthsNames;
 	}
 	get enabled() {
 		return this._enabled;
@@ -86,6 +95,16 @@ class WUIDatebox {
 			}).join("-");
 		}
 	}
+	set weekDaysNames(value) {
+		if (Array.isArray(value)) {
+			this._weekDaysNames = value;
+		}
+	}
+	set monthsNames(value) {
+		if (Array.isArray(value)) {
+			this._monthsNames = value;
+		}
+	}
 	set enabled(value) {
 		if (typeof(value) == "boolean") {
 			this._enabled = value;
@@ -117,18 +136,6 @@ class WUIDatebox {
 	getInput() {
 		return this._input;
 	}
-	calendar() {
-		const code = this.locales.split("-")[1].toUpperCase();
-		const firstwday = WUIDatebox.constants.countryFirstWeekDay[code];
-		for (let i=0; i<7; i++) {
-			const day = document.createElement("div");
-			this._week.appendChild(day);
-		}
-		//let now = Date.now();
-		//let day = new Date(now).toLocaleString("es-cl", {weekday: "short"});
-		//const he = new Intl.Locale("es-CL"); // Hebrew (Israel)
-		//console.log("-->", he.getWeekInfo());
-	}
 	init() {
 		const pickerImage = (event) => {
 			const element = this._input || this._element || document.documentElement;
@@ -138,23 +145,20 @@ class WUIDatebox {
 		}
 		this._calendar = document.createElement("div");
 		this._head = document.createElement("div");
-		this._period = document.createElement("div");
-		this._body = document.createElement("div");
+		this._month = document.createElement("div");
 		this._week = document.createElement("div");
 		this._days = document.createElement("div");
 		this._footer = document.createElement("div");
-		this._period.className = "period";
+		this._month.className = "month";
+		this._head.className = "head";
+		this._head.appendChild(this._month);
 		this._week.className = "week";
 		this._days.className = "days";
-		this._head.className = "head";
-		this._head.appendChild(this._period);
-		this._body.className = "body";
-		this._body.appendChild(this._week);
-		this._body.appendChild(this._days);
 		this._footer.className = "footer";
-		this._calendar.className = "calendar";
+		this._calendar.className = "calendar hidden";
 		this._calendar.appendChild(this._head);
-		this._calendar.appendChild(this._body);
+		this._calendar.appendChild(this._week);
+		this._calendar.appendChild(this._days);
 		this._calendar.appendChild(this._footer);
 		this._element.appendChild(this._calendar);
 		this._input.style.backgroundImage = pickerImage(this._input.disabled ? "disabled" : "out");
@@ -168,11 +172,93 @@ class WUIDatebox {
 				}
 			});
 		});
+		this._input.addEventListener("click", () => {
+			this._calendar.classList.toggle("hidden");
+			if (!this._calendar.classList.contains("hidden")) {
+				this.loadNames();
+				this.loadCalendar();
+			}
+		});
 		this._input.addEventListener("input", (event) => {
 			if (typeof(this._onChange) == "function") {
 				this._onChange(event, this._input.value);
 			}
 		});
+	}
+	loadNames() {
+		if (WUIDatebox.constants.locales.toLowerCase().split(/\s+/).indexOf(this._locales.toLowerCase()) > -1) {
+			let i;
+			for (i=0; i<7; i++) {
+				const name = new Date(2023, 0, i+1).toLocaleString(this._locales, {weekday: "long"}); // 2023-01-01: sunday
+				this._weekDaysNames[i] = name.replace(/^\s*(\w)/, letter => letter.toUpperCase());
+			}
+			for (i=0; i<12; i++) {
+				const name = new Date(2023, i, 1).toLocaleString(this._locales, {month: "long"});
+				this._monthsNames[i] = name.replace(/^\s*(\w)/, letter => letter.toUpperCase());
+			}
+		}
+	}
+	loadCalendar() {
+		const code = this.locales.split("-")[1].toUpperCase();
+		const firstwday = parseInt(WUIDatebox.constants.countryFirstWeekDay[code] || 0);
+		const today = () => {
+			const date = new Date();
+			const offset = date.getTimezoneOffset();
+			return new Date(date.getTime() - offset*60*1000).toISOString().split("T")[0];
+		}
+		const value = this._input.value || today();
+		const date = new Date(value);
+		const year = date.getFullYear();
+		const month = date.getMonth() +1;
+		const firstmday = new Date(value.replace(/\d{2}$/, "01T00:00:00")).getDay();
+		const lasmday = month == 2 ? year & 3 || !(year % 25) && year & 15 ? 28 : 29 : 30 + (month + (month >> 3) & 1);
+		let ini = 0;
+		let d = 1;
+		this._month.innerHTML = this._monthsNames[month -1]+" "+year;
+		this._week.innerHTML = "";
+		this._days.innerHTML = "";
+		for (let i=0; i<7; i++) {
+			const day = document.createElement("div");
+			let index = firstwday + i;
+			if (index > 6) {
+				index -= 7;
+			}
+			if (index == firstmday) {
+				ini = i;
+			}
+			day.textContent = this._weekDaysNames[index].substring(0, 3);
+			this._week.appendChild(day);
+		}
+		for (let i=0; i<7*5; i++) {
+			const day = document.createElement("div");
+			if (i >= ini && d <= lasmday) {
+				const number = document.createElement("div");
+				const dayValue = value.replace(/-\d{2}$/, "-"+("0"+d).slice(-2));
+				if (dayValue == today()) {
+					number.classList.add("today");
+				}
+				if (dayValue == value) {
+					number.classList.add("selected");
+				}
+				number.dataset.value = dayValue;
+				number.textContent = d;
+				number.addEventListener("click", () => {
+					this._days.querySelectorAll("div").forEach(div => {
+						if (typeof(div.dataset.value) != "undefined" && div.dataset.value != dayValue) {
+							div.classList.remove("selected");
+						}
+					});
+					number.classList.toggle("selected");
+					this._input.value = number.classList.contains("selected") ? dayValue : "";
+				});
+				day.appendChild(number);
+				d++;
+			}
+			this._days.appendChild(day);
+		}
+	}
+	close() {
+		this._calendar.classList.add("hidden");
 	}
 }
 WUIDatebox.initClass();
@@ -182,12 +268,10 @@ DOM struture:
 	<input type="date" value="">
 	<div class="calendar">
 		<div class="head">
-			<div class="period"></div>
+			<div class="month"></div>
 		</div>
-		<div class="body">
-			<div class="week"></div>
-			<div class="days"></div>
-		</div>
+		<div class="week"></div>
+		<div class="days"></div>
 		<div class="footer"></div>
 	</div>
 </div>
