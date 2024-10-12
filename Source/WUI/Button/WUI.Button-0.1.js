@@ -87,6 +87,6 @@ class WUIButton {
 	}
 }
 /*
-DOM struture:
+HTML struture:
 <button class="wui-button"></button>
 */

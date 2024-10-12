@@ -10,7 +10,7 @@
 .wui-form,
 .wui-form .request,
 .wui-form .response,
-.wui-form > .head,
+.wui-form > .header,
 .wui-form > .body,
 .wui-form > .footer {
 	display: flex;
@@ -31,14 +31,14 @@
 	padding-left: 20px;
 	padding-right: 20px;
 }
-.wui-form > .head,
+.wui-form > .header,
 .wui-form > .footer {
 	flex-direction: row;
 	flex-grow: 0;
 	flex-shrink: 0;
 	align-items: center;
 }
-.wui-form > .head {
+.wui-form > .header {
 	flex-basis: 40px;
 }
 .wui-form > .body {

@@ -79,7 +79,7 @@ class WUITabs {
 	} 
 }
 /*
-DOM struture:
+HTML struture:
 <div class="wui-tabs bottombar mobile">
 	<div class="body">
 		<div class="border"></div>

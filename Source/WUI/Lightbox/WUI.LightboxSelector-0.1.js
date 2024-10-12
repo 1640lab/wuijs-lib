@@ -284,7 +284,7 @@ class WUILightboxSelector extends WUILightbox {
 	}
 }
 /*
-DOM struture:
+HTML struture:
 <div class="wui-lightbox selector mobile priority">
 	<div class="box">
 		<div class="options"></div>

@@ -37,7 +37,7 @@ class WUIList {
 		if (typeof(value) == "string") {
 			this._selector = value;
 			this._element = document.querySelector(value);
-			this._head = document.querySelector(value+" > .head");
+			this._header = document.querySelector(value+" > .header");
 			this._body = document.querySelector(value+" > .body");
 			this._message = document.querySelector(value+" > .message");
 			this._footer = document.querySelector(value+" > .footer");
@@ -71,8 +71,8 @@ class WUIList {
 	getElement() {
 		return this._element;
 	}
-	getHead() {
-		return this._head;
+	getHeader() {
+		return this._header;
 	}
 	getBody() {
 		return this._body;
@@ -242,7 +242,7 @@ class WUIList {
 	}
 }
 /*
-DOM struture:
+HTML struture:
 <div class="wui-list soft mobile">
 	<div class="head"></div>
 	<div class="body">

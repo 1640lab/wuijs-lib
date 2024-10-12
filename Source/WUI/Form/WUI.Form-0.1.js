@@ -25,7 +25,7 @@ class WUIForm {
 		if (typeof(value) == "string" && value != "") {
 			this._selector = value;
 			this._element = document.querySelector(value);
-			this._head = document.querySelector(value+" > .head");
+			this._header = document.querySelector(value+" > .header");
 			this._body = document.querySelector(value+" > .body");
 			this._footer = document.querySelector(value+" > .footer");
 			this._form = this._element.localName == "form" ? this._element : this._element.querySelector("form");
@@ -44,8 +44,8 @@ class WUIForm {
 	getElement() {
 		return this._element;
 	}
-	getHead() {
-		return this._head;
+	getHeader() {
+		return this._header;
 	}
 	getBody() {
 		return this._body;
@@ -283,24 +283,40 @@ class WUIForm {
 	}
 }
 /*
-DOM struture:
-<form class="wui-form (line|border) mobile">
+HTML struture:
+<form class="wui-form (line|border) [mobile]">
 	<input type="hidden" name="wuiHidden">
-	<div class="head"></div>
+	<div class="header"></div>
 	<div class="body">
-		<legend>Fieldset title</legend>
+		<legend>Fieldset</legend>
 		<fieldset>
 			<div class="field">
-				<label for="wuiImput"></label>
-				<input type="text" name="wuiImput">
+				<label>Text</label>
+				<input type="text" name="text">
+			</div>
+			<div class="field">
+				<label>Date</label>
+				<input type="date" name="date">
+			</div>
+			<div class="field">
+				<label>Time</label>
+				<input type="time" name="time">
 			</div>
 			<div class="field textarea">
 				<label for="wuiTextarea"></label>
-				<textarea name="wuiTextarea"></textarea>
+				<textarea name="textarea"></textarea>
 			</div>
 			<div class="field checkbox">
-				<label for="wuiCheckbox""></label>
-				<div class="[wui-checkbox]"><input type="checkbox" name="wuiCheckbox" value="1"></div>
+				<label for="wuiCheckbox"">Checkbox</label>
+				<input type="checkbox" name="checkbox" value="1">
+			</div>
+			<div class="field">
+				<label for="wuiCheckbox"">WUI Datebox</label>
+				<div class="wui-datebox"><input type="date" name="wuiDatebox" value=""></div>
+			</div>
+			<div class="field checkbox">
+				<label for="wuiCheckbox"">WUI Checkbox</label>
+				<div class="wui-checkbox"><input type="checkbox" name="wuiCheckbox" value="1"></div>
 			</div>
 		</fieldset>
 		<div class="text"></div>

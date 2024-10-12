@@ -56,11 +56,11 @@ class WUILightbox {
 		if (this.setProperty("selector", value, "string")) {
 			this._element = document.querySelector(value);
 			this._box = document.querySelector(value+" > .box");
-			this._head = document.querySelector(value+" > .box > .head");
-			this._back = this._head ? document.querySelector(value+" > .box > .head > .back") : null;
-			this._topbar = this._head ? document.querySelector(value+" > .box > .head > .topbar") : null;
-			this._title = this._head ? document.querySelector(value+" > .box > .head > .title") : null;
-			this._close = this._head ? document.querySelector(value+" > .box > .head > .close") : null;
+			this._header = document.querySelector(value+" > .box > .header");
+			this._back = this._header ? document.querySelector(value+" > .box > .header > .back") : null;
+			this._topbar = this._header ? document.querySelector(value+" > .box > .header > .topbar") : null;
+			this._title = this._header ? document.querySelector(value+" > .box > .header > .title") : null;
+			this._close = this._header ? document.querySelector(value+" > .box > .header > .close") : null;
 			this._body = document.querySelector(value+" > .box > .body");
 			this._footer = document.querySelector(value+" > .box > .footer");
 		}
@@ -92,8 +92,8 @@ class WUILightbox {
 	getBox() {
 		return this._box;
 	}
-	getHead() {
-		return this._head;
+	getHeader() {
+		return this._header;
 	}
 	getBack() {
 		return this._back;
@@ -140,11 +140,11 @@ class WUILightbox {
 		});
 	}
 	setHeadBorder(border) {
-		if (this._head != null) {
+		if (this._header != null) {
 			if (border) {
-				this._head.classList.remove("border");
+				this._header.classList.remove("border");
 			} else {
-				this._head.classList.add("border");
+				this._header.classList.add("border");
 			}
 		}
 	}
@@ -398,8 +398,8 @@ class WUILightbox {
 	}
 }
 /*
-DOM message struture:
-<div class="wui-lightbox message mobile">
+HTML message struture:
+<div class="wui-lightbox message [mobile]">
 	<div class="box">
 		<div class="body">
 			<div class="icon"></div>
@@ -411,10 +411,10 @@ DOM message struture:
 		</div>
 	</div>
 </div>
-DOM page struture:
-<div class="wui-lightbox page mobile">
+HTML page struture:
+<div class="wui-lightbox page [mobile]">
 	<div class="box">
-		<div class="head">
+		<div class="header">
 			<div class="back">
 				<div class="icon wui-svgicon arrowhead-left-line"></div>
 				<div class="text"></div>

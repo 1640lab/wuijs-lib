@@ -1,7 +1,7 @@
 /* wui-list */
 
 .wui-list,
-.wui-list > .head,
+.wui-list > .header,
 .wui-list > .body > .row > .strip,
 .wui-list > .body > .row > .strip > .cell,
 .wui-list > .body > .row > .buttons,
@@ -20,19 +20,19 @@
 .wui-list > .body > .row {
 	position: relative;
 }
-.wui-list > .head,
+.wui-list > .header,
 .wui-list > .body,
 .wui-list > .footer {
 	width: 100%;
 	padding: 0 var(--wui-list-hmargin);
 }
-.wui-list > .head,
+.wui-list > .header,
 .wui-list > .footer {
 	flex-grow: 0;
 	flex-shrink: 0;
 	flex-basis: 40px;
 }
-.wui-list > .head {
+.wui-list > .header {
 	justify-content: center;
 	align-items: center;
 }

@@ -55,24 +55,24 @@
 .wui-datebox > .calendar.hidden {
 	display: none;
 }
-.wui-datebox > .calendar > .head {
+.wui-datebox > .calendar > .header {
 	height: 40px;
 }
-.wui-datebox > .calendar > .head > .month {
+.wui-datebox > .calendar > .header > .month {
 	padding: 10px 5px;
 }
-.wui-datebox > .calendar > .head > .prev,
-.wui-datebox > .calendar > .head > .next {
+.wui-datebox > .calendar > .header > .prev,
+.wui-datebox > .calendar > .header > .next {
 	width: 24px;
 	background-repeat: no-repeat;
 	background-image: none;
 	background-position-x: center;
 	background-position-y: center;
 }
-.wui-datebox > .calendar > .head > .prev {
+.wui-datebox > .calendar > .header > .prev {
 	background-size: var(--wui-datebox-calendar-previmage-size);
 }
-.wui-datebox > .calendar > .head > .next {
+.wui-datebox > .calendar > .header > .next {
 	background-size: var(--wui-datebox-calendar-nextimage-size);
 }
 .wui-datebox > .calendar > .week,

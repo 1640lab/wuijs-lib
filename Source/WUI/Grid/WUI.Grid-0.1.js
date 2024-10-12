@@ -244,7 +244,7 @@ class WUIGrid {
 	}
 }
 /*
-DOM struture:
+HTML struture:
 <div class="wui-grid soft mobile scroll">
 	<div class="header"></div>
 	<div class="head">

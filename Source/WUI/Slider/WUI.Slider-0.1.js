@@ -182,7 +182,7 @@ class WUISlider {
 	}
 }
 /*
-DOM struture:
+HTML struture:
 <div class="wui-slider">
 	<div class="body">
 		<div class="slide"></div>

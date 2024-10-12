@@ -55,7 +55,7 @@
 	-moz-opacity: 0;
 	opacity: 0;
 }
-.wui-lightbox > .box > .head {
+.wui-lightbox > .box > .header {
 	display: flex;
 	z-index: 2;
 	flex-shrink: 0;
@@ -66,19 +66,19 @@
 	justify-content: center;
     align-items: flex-end;
 }
-.wui-lightbox > .box > .head > .back,
-.wui-lightbox > .box > .head > .back > .icon,
-.wui-lightbox > .box > .head > .back > .text,
-.wui-lightbox > .box > .head > .topbar,
-.wui-lightbox > .box > .head > .title,
-.wui-lightbox > .box > .head > .close {
+.wui-lightbox > .box > .header > .back,
+.wui-lightbox > .box > .header > .back > .icon,
+.wui-lightbox > .box > .header > .back > .text,
+.wui-lightbox > .box > .header > .topbar,
+.wui-lightbox > .box > .header > .title,
+.wui-lightbox > .box > .header > .close {
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
 	-moz-user-select: none;
 	user-select: none;
 }
-.wui-lightbox > .box > .head > .back {
+.wui-lightbox > .box > .header > .back {
 	display: flex;
 	cursor: pointer;
 	position: absolute;
@@ -91,18 +91,18 @@
 	font-size: 14px;
 	color: var(--wui-lightbox-back-textcolor);
 }
-.wui-lightbox > .box > .head > .back.hidden {
+.wui-lightbox > .box > .header > .back.hidden {
 	display: none;
 }
-.wui-lightbox > .box > .head > .back > .icon {
+.wui-lightbox > .box > .header > .back > .icon {
 	width: 14px;
 	height: 14px;
 	background-color: var(--wui-lightbox-back-textcolor);
 }
-.wui-lightbox > .box > .head > .topbar {
+.wui-lightbox > .box > .header > .topbar {
 	display: none;
 }
-.wui-lightbox > .box > .head > .title {
+.wui-lightbox > .box > .header > .title {
 	height: 28px;
 	overflow: hidden;
 	white-space: nowrap;
@@ -113,7 +113,7 @@
 	font-size: 17px;
 	color: var(--wui-lightbox-title-textcolor);
 }
-.wui-lightbox > .box > .head > .close {
+.wui-lightbox > .box > .header > .close {
 	position: absolute;
 	z-index: 1;
 	top: 10px;
@@ -167,17 +167,17 @@
 /* wui-lightbox mobile */
 
 @media screen and (max-width: 599px) {
-	.wui-lightbox.mobile > .box > .head > .back {
+	.wui-lightbox.mobile > .box > .header > .back {
 		top: 14px;
 	}
-	.wui-lightbox.mobile > .box > .head > .back > .icon {
+	.wui-lightbox.mobile > .box > .header > .back > .icon {
 		width: 14px;
 		height: 14px;
 	}
-	.wui-lightbox.mobile > .box > .head > .back > .text {
+	.wui-lightbox.mobile > .box > .header > .back > .text {
 		font-size: 14px;
 	}
-	.wui-lightbox.mobile > .box > .head > .title {
+	.wui-lightbox.mobile > .box > .header > .title {
 		font-size: 17px;
 	}
 	.wui-lightbox.mobile > .box > .body {
@@ -296,16 +296,16 @@
 	height: var(--wui-lightbox-page-box-height);
 	background-color: var(--wui-lightbox-page-box-bgcolor);
 }
-.wui-lightbox.page > .box > .head {
-	border-bottom: 1px solid var(--wui-lightbox-page-head-bordercolor);
+.wui-lightbox.page > .box > .header {
+	border-bottom: 1px solid var(--wui-lightbox-page-header-bordercolor);
 }
-.wui-lightbox.page > div[data-scroll-body="0"].box > .head,
-.wui-lightbox.page > div[data-scroll-body="null"].box > .head {
+.wui-lightbox.page > div[data-scroll-body="0"].box > .header,
+.wui-lightbox.page > div[data-scroll-body="null"].box > .header {
 	border-bottom-color: transparent;
 }
-.wui-lightbox.page > .box > .head.border {
+.wui-lightbox.page > .box > .header.border {
 	border-bottom-width: 1px !important;
-	border-bottom-color: var(--wui-lightbox-page-head-bordercolor) !important;
+	border-bottom-color: var(--wui-lightbox-page-header-bordercolor) !important;
 }
 .wui-lightbox.page.small > .box {
 	width: var(--wui-lightbox-smallpage-box-width);
@@ -333,7 +333,7 @@
 		border-bottom-left-radius: 0;
 		border-bottom-right-radius: 0;
 	}
-	.wui-lightbox.page.mobile > .box > .head > .topbar {
+	.wui-lightbox.page.mobile > .box > .header > .topbar {
 		display: block;
 		position: absolute;
 		z-index: 1;
@@ -343,7 +343,7 @@
 		height: 30px;
     	margin-left: -50px;
 	}
-	.wui-lightbox.page.mobile > .box > .head > .topbar::before {
+	.wui-lightbox.page.mobile > .box > .header > .topbar::before {
 		--radius: calc(var(--wui-lightbox-topbar-height) / 2);
 		content: "";
 		display: block;
@@ -352,7 +352,7 @@
 		-webkit-border-radius: var(--radius);
 		-moz-border-radius: var(--radius);
 		border-radius: var(--radius);
-		background-color: var(--wui-lightbox-page-head-topbar-bgcolor);
+		background-color: var(--wui-lightbox-page-header-topbar-bgcolor);
 	}
 	.wui-lightbox.page.mobile.maximized > .box,
 	.wui-lightbox.page.mobile.small.maximized > .box {

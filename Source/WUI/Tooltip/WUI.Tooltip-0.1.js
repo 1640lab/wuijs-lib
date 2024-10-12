@@ -51,7 +51,7 @@ class WUITooltip {
 	}
 }
 /*
-DOM struture:
+HTML struture:
 <div class="wui-tooltip-target">
 	<div class="wui-tooltip-top"></div>
 </div>

@@ -144,7 +144,7 @@ class WUIDatebox {
 			return image;
 		}
 		this._calendar = document.createElement("div");
-		this._head = document.createElement("div");
+		this._header = document.createElement("div");
 		this._month = document.createElement("div");
 		this._prev = document.createElement("div");
 		this._next = document.createElement("div");
@@ -154,15 +154,15 @@ class WUIDatebox {
 		this._month.className = "month";
 		this._prev.className = "prev";
 		this._next.className = "next";
-		this._head.className = "head";
-		this._head.appendChild(this._month);
-		this._head.appendChild(this._prev);
-		this._head.appendChild(this._next);
+		this._header.className = "header";
+		this._header.appendChild(this._month);
+		this._header.appendChild(this._prev);
+		this._header.appendChild(this._next);
 		this._week.className = "week";
 		this._days.className = "days";
 		this._footer.className = "footer";
 		this._calendar.className = "calendar hidden";
-		this._calendar.appendChild(this._head);
+		this._calendar.appendChild(this._header);
 		this._calendar.appendChild(this._week);
 		this._calendar.appendChild(this._days);
 		this._calendar.appendChild(this._footer);
@@ -271,11 +271,11 @@ class WUIDatebox {
 }
 WUIDatebox.initClass();
 /*
-DOM struture:
+HTML struture:
 <div class="wui-datebox">
 	<input type="date" value="">
 	<div class="calendar">
-		<div class="head">
+		<div class="header">
 			<div class="month"></div>
 		</div>
 		<div class="week"></div>
