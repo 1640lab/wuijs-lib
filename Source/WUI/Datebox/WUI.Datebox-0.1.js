@@ -137,21 +137,27 @@ class WUIDatebox {
 		return this._input;
 	}
 	init() {
-		const pickerImage = (event) => {
+		const bgImage = (name, event) => {
 			const element = this._input || this._element || document.documentElement;
-			const color = getComputedStyle(element).getPropertyValue("--wui-datebox-pickercolor-"+event).replace(/#/g, "%23").trim();
-			const image = getComputedStyle(element).getPropertyValue("--wui-datebox-pickerimage-src").replace(/currentColor/g, color);
+			const color = getComputedStyle(element).getPropertyValue("--wui-datebox-"+name+"color-"+event).replace(/#/g, "%23").trim();
+			const image = getComputedStyle(element).getPropertyValue("--wui-datebox-"+name+"image-src").replace(/currentColor/g, color);
 			return image;
 		}
 		this._calendar = document.createElement("div");
 		this._head = document.createElement("div");
 		this._month = document.createElement("div");
+		this._prev = document.createElement("div");
+		this._next = document.createElement("div");
 		this._week = document.createElement("div");
 		this._days = document.createElement("div");
 		this._footer = document.createElement("div");
 		this._month.className = "month";
+		this._prev.className = "prev";
+		this._next.className = "next";
 		this._head.className = "head";
 		this._head.appendChild(this._month);
+		this._head.appendChild(this._prev);
+		this._head.appendChild(this._next);
 		this._week.className = "week";
 		this._days.className = "days";
 		this._footer.className = "footer";
@@ -161,11 +167,13 @@ class WUIDatebox {
 		this._calendar.appendChild(this._days);
 		this._calendar.appendChild(this._footer);
 		this._element.appendChild(this._calendar);
-		this._input.style.backgroundImage = pickerImage(this._input.disabled ? "disabled" : "out");
+		this._input.style.backgroundImage = bgImage("picker", this._input.disabled ? "disabled" : "out");
+		this._prev.style.backgroundImage = bgImage("calendar-prev", this._input.disabled ? "disabled" : "out");
+		this._next.style.backgroundImage = bgImage("calendar-next", this._input.disabled ? "disabled" : "out");
 		["mouseover", "mouseout", "focus", "blur"].forEach(event => {
 			const pickerEvent = this._input.disabled ? "disabled" : event.replace(/mouse/, "");
 			this._input.addEventListener(event, () => {
-				this._input.style.backgroundImage = pickerImage(pickerEvent);
+				this._input.style.backgroundImage = bgImage("picker", pickerEvent);
 				if (event == "focus") {
 					const open = new MouseEvent("mousedown");
 					this._input.dispatchEvent(open);

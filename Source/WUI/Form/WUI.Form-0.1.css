@@ -212,14 +212,13 @@
 	min-width: 140px;
 	background-repeat: no-repeat;
 	background-position-x: 100%;
+	background-image: none;
 	padding-right: 2rem;
 }
 .wui-form fieldset > .field > input[type="date"] {
-	background-image: var(--wui-form-date-pickerimage-out);
 	background-size: var(--wui-form-date-pickerimage-size);
 }
 .wui-form fieldset > .field > input[type="time"] {
-	background-image: var(--wui-form-time-pickerimage-out);
 	background-size: var(--wui-form-time-pickerimage-size);
 }
 .wui-form fieldset > .field > input[type="date"]::-webkit-calendar-picker-indicator,
@@ -386,7 +385,7 @@
 	appearance: none;
 	background-repeat: no-repeat;
 	background-position-x: 100%;
-	background-image: var(--wui-form-select-pickerimage-out);
+	background-image: none;
 	background-size: var(--wui-form-select-pickerimage-size);
 	padding-right: 2rem;
 }
