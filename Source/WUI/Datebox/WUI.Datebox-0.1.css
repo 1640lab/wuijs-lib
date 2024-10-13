@@ -60,6 +60,7 @@
 	height: 40px;
 }
 .wui-datebox > .calendar > .header > .period {
+	cursor: pointer;
 	padding: 10px 5px;
 }
 .wui-datebox > .calendar > .header > .prev,
@@ -81,10 +82,71 @@
 	right: 0;
 	background-size: var(--wui-datebox-calendar-nextimage-size);
 }
+.wui-datebox > .calendar > .months,
 .wui-datebox > .calendar > .week,
 .wui-datebox > .calendar > .days {
 	display: grid;
 	width: 100%;
+}
+.wui-datebox > .calendar > .months {
+	grid-template-columns: repeat(6, 1fr);
+}
+.wui-datebox > .calendar > .months > div,
+.wui-datebox > .calendar > .months > div > div {
+	justify-content: center;
+	align-items: center;
+}
+.wui-datebox > .calendar > .months > div:nth-child(13n+1) {
+	grid-column: span 6;
+}
+.wui-datebox > .calendar > .months > div:nth-child(13n+1) > div {
+	height: 24px;
+	color: var(--wui-datebox-calendar-month-titlecolor);
+}
+.wui-datebox > .calendar > .months > div:nth-child(13n+2) > div,
+.wui-datebox > .calendar > .months > div:nth-child(13n+3) > div,
+.wui-datebox > .calendar > .months > div:nth-child(13n+4) > div,
+.wui-datebox > .calendar > .months > div:nth-child(13n+5) > div,
+.wui-datebox > .calendar > .months > div:nth-child(13n+6) > div,
+.wui-datebox > .calendar > .months > div:nth-child(13n+7) > div,
+.wui-datebox > .calendar > .months > div:nth-child(13n+8) > div,
+.wui-datebox > .calendar > .months > div:nth-child(13n+9) > div,
+.wui-datebox > .calendar > .months > div:nth-child(13n+10) > div,
+.wui-datebox > .calendar > .months > div:nth-child(13n+11) > div,
+.wui-datebox > .calendar > .months > div:nth-child(13n+12) > div,
+.wui-datebox > .calendar > .months > div:nth-child(13n+13) > div {
+	cursor: pointer;
+	width: 39px;
+	height: 32px;
+	-webkit-border-top-left-radius: 16px;
+	-webkit-border-top-right-radius: 16px;
+	-webkit-border-bottom-left-radius: 16px;
+	-webkit-border-bottom-right-radius: 16px;
+	-moz-border-radius-topleft: 16px;
+	-moz-border-radius-topright: 16px;
+	-moz-border-radius-bottomleft: 16px;
+	-moz-border-radius-bottomright: 16px;
+	border-top-left-radius: 16px;
+	border-top-right-radius: 16px;
+	border-bottom-left-radius: 16px;
+	border-bottom-right-radius: 16px;
+	text-transform: uppercase;
+	font-size: 10px;
+	color: var(--wui-datebox-calendar-month-textcolor-out);
+}
+.wui-datebox > .calendar > .months > div:hover > div {
+	background-color: var(--wui-datebox-calendar-month-bgcolor-over);
+	color: var(--wui-datebox-calendar-month-textcolor-over);
+}
+.wui-datebox > .calendar > .months > div > div.today {
+	background-color: var(--wui-datebox-calendar-month-bgcolor-today);
+}
+.wui-datebox > .calendar > .months > div > div.selected {
+	background-color: var(--wui-datebox-calendar-month-bgcolor-selected) !important;
+	color: var(--wui-datebox-calendar-month-textcolor-selected) !important;
+}
+.wui-datebox > .calendar > .week,
+.wui-datebox > .calendar > .days {
 	grid-template-columns: repeat(7, 1fr);
 }
 .wui-datebox > .calendar > .week > div {
@@ -126,6 +188,16 @@
 	width: 100%;
 	height: 30px;
 	border-top: 1px solid var(--wui-datebox-calendar-bordercolor);
+	justify-content: space-between;
+}
+.wui-datebox > .calendar > .footer > div {
+	cursor: pointer;
+	padding: 5px 10px;
+	text-transform: lowercase;
+	color: var(--wui-datebox-calendar-buttons-textcolor-out);
+}
+.wui-datebox > .calendar > .footer > div:hover {
+	color: var(--wui-datebox-calendar-buttons-textcolor-over);
 }
 @media screen and (max-width: 599px) {
 	.wui-datebox > input[type="date"] {

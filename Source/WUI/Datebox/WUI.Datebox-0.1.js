@@ -14,7 +14,21 @@ class WUIDatebox {
 			5: "MV",
 			6: "AE AF BH DJ DZ EG IQ IR JO KW LY OM QA SD SY"
 		},
-		countryFirstWeekDay: {}
+		countryFirstWeekDay: {},
+		texts: {
+			de: {
+				reset: "zurücksetzen",
+				done: "ok"
+			},
+			en: {
+				reset: "reset",
+				done: "ok"
+			},
+			es: {
+				reset: "cancelar",
+				done: "listo"
+			}
+		}
 	};
 	#defaults = {
 		selector: "",
@@ -22,8 +36,10 @@ class WUIDatebox {
 		max: "",
 		value: "",
 		locales: "en-US",
-		weekDaysNames: [],
 		monthsNames: [],
+		weekDaysNames: [],
+		resetText: "",
+		doneText: "",
 		enabled: true,
 		onChange: null
 	};
@@ -54,11 +70,17 @@ class WUIDatebox {
 	get locales() {
 		return this._locales;
 	}
+	get monthsNames() {
+		return this._monthsNames;
+	}
 	get weekDaysNames() {
 		return this._weekDaysNames;
 	}
-	get monthsNames() {
-		return this._monthsNames;
+	get resetText() {
+		return this._resetText;
+	}
+	get doneText() {
+		return this._doneText;
 	}
 	get enabled() {
 		return this._enabled;
@@ -95,14 +117,24 @@ class WUIDatebox {
 			}).join("-");
 		}
 	}
+	set monthsNames(value) {
+		if (Array.isArray(value)) {
+			this._monthsNames = value;
+		}
+	}
 	set weekDaysNames(value) {
 		if (Array.isArray(value)) {
 			this._weekDaysNames = value;
 		}
 	}
-	set monthsNames(value) {
-		if (Array.isArray(value)) {
-			this._monthsNames = value;
+	set resetText(value) {
+		if (typeof(value) == "string") {
+			this._resetText = value;
+		}
+	}
+	set doneText(value) {
+		if (typeof(value) == "string") {
+			this._doneText = value;
 		}
 	}
 	set enabled(value) {
@@ -148,10 +180,14 @@ class WUIDatebox {
 		this._period = document.createElement("div");
 		this._prev = document.createElement("div");
 		this._next = document.createElement("div");
+		this._months = document.createElement("div");
 		this._week = document.createElement("div");
 		this._days = document.createElement("div");
 		this._footer = document.createElement("div");
+		this._reset = document.createElement("div");
+		this._done = document.createElement("div");
 		this._period.className = "period";
+		this._period.addEventListener("click", () => {this.toggle();});
 		this._prev.className = "prev";
 		this._prev.addEventListener("click", () => {this.prev();});
 		this._next.className = "next";
@@ -160,11 +196,19 @@ class WUIDatebox {
 		this._header.appendChild(this._period);
 		this._header.appendChild(this._prev);
 		this._header.appendChild(this._next);
+		this._months.className = "months";
 		this._week.className = "week";
 		this._days.className = "days";
+		this._reset.className = "reset";
+		this._reset.addEventListener("click", () => {this.reset();});
+		this._done.className = "done";
+		this._done.addEventListener("click", () => {this.done();});
 		this._footer.className = "footer";
+		this._footer.appendChild(this._reset);
+		this._footer.appendChild(this._done);
 		this._calendar.className = "calendar hidden";
 		this._calendar.appendChild(this._header);
+		this._calendar.appendChild(this._months);
 		this._calendar.appendChild(this._week);
 		this._calendar.appendChild(this._days);
 		this._calendar.appendChild(this._footer);
@@ -195,49 +239,132 @@ class WUIDatebox {
 		});
 	}
 	open() {
-		const today = () => {
-			const date = new Date();
-			const offset = date.getTimezoneOffset();
-			return new Date(date.getTime() - offset*60*1000).toISOString().split("T")[0];
-		}
-		this._today = today();
-		this._targetValue = this._input.value || today();
-		this._restoreValue = this._targetValue;
-		this._target = new Date(this._targetValue);
-		this._targetMode = "month";
-		this.loadNames();
-		this.loadMonth();
+		const today = (() => {
+			const now = new Date();
+			const offset = now.getTimezoneOffset();
+			return new Date(now.getTime() - offset*60*1000).toISOString().split("T")[0];
+		})();
+		console.log("-->", today);
+		this._todayValue = today;
+		this._todayYear = today.replace(/-\d{2}-\d{2}/, "");
+		this._todayMonth = today.replace(/\d{4}-0?(\d+)-\d{2}/, "$1");
+		this._targetValue = this._input.value || today;
+		this._targetDate = new Date(this._targetValue);
+		this._targetMode = "days";
+		this._resetValue = this._targetValue;
+		this.load();	
 	}
 	close() {
 		this._calendar.classList.add("hidden");
 	}
-	loadNames() {
+	toggle() {
+		this._targetMode = this._targetMode == "days" ? "months" : "days";
+		this.load();
+	}
+	load() {
+		this.loadTexts();
+		switch (this._targetMode) {
+			case "months": this.loadMonths(); break;
+			case "days": this.loadDays();; break;
+		}
+	}
+	loadTexts() {
 		if (WUIDatebox.constants.locales.toLowerCase().split(/\s+/).indexOf(this._locales.toLowerCase()) > -1) {
-			let i;
-			for (i=0; i<7; i++) {
+			const language = this.locales.split("-")[0].toLowerCase();
+			for (let i=0; i<7; i++) {
 				const name = new Date(2023, 0, i+1).toLocaleString(this._locales, {weekday: "long"}); // 2023-01-01: sunday
 				this._weekDaysNames[i] = name.replace(/^\s*(\w)/, letter => letter.toUpperCase());
 			}
-			for (i=0; i<12; i++) {
+			for (let i=0; i<12; i++) {
 				const name = new Date(2023, i, 1).toLocaleString(this._locales, {month: "long"});
 				this._monthsNames[i] = name.replace(/^\s*(\w)/, letter => letter.toUpperCase());
 			}
+			if (this._resetText == "" && language in WUIDatebox.constants.texts) {
+				this._resetText = WUIDatebox.constants.texts[language].reset;
+			}
+			if (this._doneText == "" && language in WUIDatebox.constants.texts) {
+				this._doneText = WUIDatebox.constants.texts[language].done;
+			}
+			this._reset.textContent = this._resetText;
+			this._done.textContent = this._doneText;
 		}
 	}
-	loadMonth() {
-		const year = this._target.getFullYear();
-		const month = this._target.getMonth() +1;
-		const code = this.locales.split("-")[1].toUpperCase();
-		const firstwday = parseInt(WUIDatebox.constants.countryFirstWeekDay[code] || 0);
+	loadMonths() {
+		const year = this._targetDate.getFullYear();
+		const month = this._targetDate.getMonth() +1;
+		let y = year;
+		let m = 1;
+		this._calendar.style.height = "260px";
+		this._period.innerHTML = this._monthsNames[month -1]+" "+year;
+		this._months.style.display = "grid";
+		this._months.innerHTML = "";
+		this._week.style.display = "none";
+		this._week.innerHTML = "";
+		this._days.style.display = "none";
+		this._days.innerHTML = "";
+		for (let i=0; i<13*2; i++) {
+			const cell = document.createElement("div");
+			if (i % 13 == 0) {
+				const cyear = document.createElement("div");
+				cyear.innerHTML = y;
+				cell.appendChild(cyear);
+				y++;
+				m = 1;
+			} else {
+				const button = document.createElement("div");
+				const buttonValue = this._targetValue.replace(/^\d{4}-\d{2}-/, (y -1)+"-"+("0"+m).slice(-2)+"-");
+				const buttonYear = y -1;
+				const buttonMonth = m;
+				if (buttonYear == this._todayYear && buttonMonth == this._todayMonth) {
+					button.classList.add("today");
+				}
+				if (buttonValue == this._input.value) {
+					button.classList.add("selected");
+				}
+				button.dataset.value = buttonValue;
+				button.dataset.year = buttonYear;
+				button.dataset.month = buttonMonth;
+				button.textContent = this.monthsNames[m -1].substring(0, 3);
+				button.addEventListener("click", () => {
+					this._months.querySelectorAll("div").forEach(div => {
+						if (typeof(div.dataset.value) != "undefined" && div.dataset.value != buttonValue) {
+							div.classList.remove("selected");
+						}
+					});
+					button.classList.toggle("selected");
+					this._period.innerHTML = this._monthsNames[button.dataset.month -1]+" "+button.dataset.year;
+					this._input.value = button.classList.contains("selected") ? buttonValue : "";
+					if (button.classList.contains("selected")) {
+						this._targetValue = buttonValue;
+						this._targetDate = new Date(buttonValue);
+					}
+				});
+				cell.appendChild(button);
+				m++;
+			}
+			this._months.appendChild(cell);
+		}
+	}
+	loadDays() {
+		const year = this._targetDate.getFullYear();
+		const month = this._targetDate.getMonth() +1;
+		const country = this.locales.split("-")[1].toUpperCase();
+		const firstwday = parseInt(WUIDatebox.constants.countryFirstWeekDay[country] || 0);
 		const firstmday = new Date(this._targetValue.replace(/\d{2}$/, "01T00:00:00")).getDay();
 		const lasmday = month == 2 ? year & 3 || !(year % 25) && year & 15 ? 28 : 29 : 30 + (month + (month >> 3) & 1);
 		let ini = 0;
+		let rows = 5;
 		let d = 1;
+		this._calendar.style.height = "260px";
 		this._period.innerHTML = this._monthsNames[month -1]+" "+year;
+		this._months.style.display = "none";
+		this._months.innerHTML = "";
+		this._week.style.display = "grid";
 		this._week.innerHTML = "";
+		this._days.style.display = "grid";
 		this._days.innerHTML = "";
 		for (let i=0; i<7; i++) {
-			const day = document.createElement("div");
+			const wday = document.createElement("div");
 			let index = firstwday + i;
 			if (index > 6) {
 				index -= 7;
@@ -245,63 +372,86 @@ class WUIDatebox {
 			if (index == firstmday) {
 				ini = i;
 			}
-			day.textContent = this._weekDaysNames[index].substring(0, 3);
-			this._week.appendChild(day);
+			wday.textContent = this._weekDaysNames[index].substring(0, 3);
+			this._week.appendChild(wday);
 		}
-		for (let i=0; i<7*6; i++) {
-			const day = document.createElement("div");
+		for (let i=0; i<7*rows; i++) {
+			const cell = document.createElement("div");
 			if (i >= ini && d <= lasmday) {
-				const number = document.createElement("div");
-				const dayValue = this._targetValue.replace(/-\d{2}$/, "-"+("0"+d).slice(-2));
-				if (dayValue == this._today) {
-					number.classList.add("today");
+				const button = document.createElement("div");
+				const buttonValue = this._targetValue.replace(/-\d{2}$/, "-"+("0"+d).slice(-2));
+				if (buttonValue == this._todayValue) {
+					button.classList.add("today");
 				}
-				if (dayValue == this._input.value) {
-					number.classList.add("selected");
+				if (buttonValue == this._input.value) {
+					button.classList.add("selected");
 				}
-				number.dataset.value = dayValue;
-				number.textContent = d;
-				number.addEventListener("click", () => {
+				button.dataset.value = buttonValue;
+				button.textContent = d;
+				button.addEventListener("click", () => {
 					this._days.querySelectorAll("div").forEach(div => {
-						if (typeof(div.dataset.value) != "undefined" && div.dataset.value != dayValue) {
+						if (typeof(div.dataset.value) != "undefined" && div.dataset.value != buttonValue) {
 							div.classList.remove("selected");
 						}
 					});
-					number.classList.toggle("selected");
-					this._input.value = number.classList.contains("selected") ? dayValue : "";
+					button.classList.toggle("selected");
+					this._input.value = button.classList.contains("selected") ? buttonValue : "";
+					if (button.classList.contains("selected")) {
+						this._targetValue = buttonValue;
+						this._targetDate = new Date(buttonValue);
+					}
 				});
-				day.appendChild(number);
+				cell.appendChild(button);
+				if (i == 7*5 -1 && d < lasmday) {
+					this._calendar.style.height = "290px";
+					rows++;
+				}
 				d++;
 			}
-			this._days.appendChild(day);
+			this._days.appendChild(cell);
 		}
 	}
-	targetMonthStep(step) {
-		let index = this._target.getMonth() +step;
-		if (index < 0) {
-			while (index < 0) {
-				this._target.setFullYear(this._target.getFullYear() -1);
-				index += 12;
+	targetYearsStep(step) {
+		const year = this._targetDate.getFullYear() +step;
+		this._targetDate.setFullYear(year);
+		this._targetValue = this._targetDate.toISOString().split("T")[0];
+		this.loadMonths();
+	}
+	targetMonthsStep(step) {
+		let month = this._targetDate.getMonth() +step;
+		if (month < 0) {
+			while (month < 0) {
+				this._targetDate.setFullYear(this._targetDate.getFullYear() -1);
+				month += 12;
 			}
-		} else if (index > 11) {
-			while (index > 11) {
-				this._target.setFullYear(this._target.getFullYear() +1);
-				index -= 12;
+		} else if (month > 11) {
+			while (month > 11) {
+				this._targetDate.setFullYear(this._targetDate.getFullYear() +1);
+				month -= 12;
 			}
 		}
-		this._target.setMonth(index);
-		this._targetValue = this._target.toISOString().split("T")[0];
-		this.loadMonth();
+		this._targetDate.setMonth(month);
+		this._targetValue = this._targetDate.toISOString().split("T")[0];
+		this.loadDays();
 	}
 	prev() {
-		if (this._targetMode == "month") {
-			this.targetMonthStep(-1);
+		switch (this._targetMode) {
+			case "months": this.targetYearsStep(-2); break;
+			case "days": this.targetMonthsStep(-1); break;
 		}
 	}
 	next() {
-		if (this._targetMode == "month") {
-			this.targetMonthStep(+1);
+		switch (this._targetMode) {
+			case "months": this.targetYearsStep(+2); break;
+			case "days": this.targetMonthsStep(+1); break;
 		}
+	}
+	reset() {
+		this._input.value = this._resetValue;
+		this.close();
+	}
+	done() {
+		this.close();
 	}
 }
 WUIDatebox.initClass();
@@ -311,19 +461,14 @@ HTML struture:
 	<input type="date" value="">
 	<div class="calendar">
 		<div class="header">
-			<div class="month"></div>
+			<div class="period"></div>
+			<div class="prev"></div>
+			<div class="next"></div>
 		</div>
+		<div class="years"></div>
 		<div class="week"></div>
 		<div class="days"></div>
 		<div class="footer"></div>
-	</div>
-</div>
-DOM form field struture:
-<div class="field">
-	<label></label>
-	<div class="wui-datebox">
-		<input type="date" value="">
-		<div class="calendar">...</div>
 	</div>
 </div>
 */
