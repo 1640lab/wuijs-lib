@@ -295,7 +295,7 @@ class WUIDatebox {
 		let y = year;
 		let m = 1;
 		this._calendar.style.height = "260px";
-		this._period.innerHTML = this._monthsNames[month -1]+" "+year;
+		this._period.innerHTML = this._monthsNames[month -1]+" "+year+" <div class='icon up'></div>";
 		this._months.style.display = "grid";
 		this._months.innerHTML = "";
 		this._week.style.display = "none";
@@ -332,7 +332,7 @@ class WUIDatebox {
 						}
 					});
 					button.classList.toggle("selected");
-					this._period.innerHTML = this._monthsNames[button.dataset.month -1]+" "+button.dataset.year;
+					this._period.innerHTML = this._monthsNames[button.dataset.month -1]+" "+button.dataset.year+" <div class='icon up'></div>";
 					this._input.value = button.classList.contains("selected") ? buttonValue : "";
 					if (button.classList.contains("selected")) {
 						this._targetValue = buttonValue;
@@ -356,7 +356,7 @@ class WUIDatebox {
 		let rows = 5;
 		let d = 1;
 		this._calendar.style.height = "260px";
-		this._period.innerHTML = this._monthsNames[month -1]+" "+year;
+		this._period.innerHTML = this._monthsNames[month -1]+" "+year+" <div class='icon down'></div>";
 		this._months.style.display = "none";
 		this._months.innerHTML = "";
 		this._week.style.display = "grid";
