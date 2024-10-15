@@ -89,7 +89,7 @@ class WUILanguage {
 						element.dataset[this._dataOutput] = text;
 					} else if (tagName.match(/^(meta)$/i)) {
 						element.setAttribute("content", text);
-					} else if (tagName.match(/^(div|span|h1|h2|h3|h4|h5|h6|p|li|a|legend|label|option|button)$/i)) {
+					} else if (tagName.match(/^(div|span|h1|h2|h3|h4|h5|h6|p|i|li|a|legend|label|option|button)$/i)) {
 						element.innerHTML = text;
 					} else if (tagName.match(/^(input|textarea)$/i)) {
 						element.setAttribute("placeholder", text);
