@@ -145,7 +145,7 @@
 .wui-form fieldset > .field:focus-within > label {
 	top: -12px;
 }
-.wui-form fieldset > .field:not(.checkbox):not(.button) > label.notempty {
+.wui-form fieldset > .field:not(.checkbox):not(.range):not(.button) > label.notempty {
 	color: var(--wui-form-label-textcolor-notempty);
 }
 .wui-form fieldset > .field:focus-within > label:not(.disabled),
@@ -238,7 +238,7 @@
 .wui-form fieldset > .field > input[type="range"] {
 	--shadow: 0 0 2px 0 rgba(0, 0, 0, .4);
 	--transition: background .2s ease-in-out;
-	--gradient: var(--wui-form-range-trackbar-bgcolor-active), var(--wui-form-range-trackbar-bgcolor-active);
+	--gradient: var(--wui-form-range-trackbar-bgcolor-out), var(--wui-form-range-trackbar-bgcolor-out);
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
@@ -248,7 +248,7 @@
 	-moz-border-radius: calc(var(--wui-form-range-trackbar-height) / 2);
 	border-radius: calc(var(--wui-form-range-trackbar-height) / 2);
 	border: var(--wui-form-range-trackbar-borderwidth) solid var(--wui-form-range-trackbar-bordercolor);
-	background-color: transparent;
+	background-color: var(--wui-form-range-trackbar-bgcolor-out);
 	background-image: -webkit-linear-gradient(var(--gradient));
     background-image: -moz-linear-gradient(var(--gradient));
     background-image: -o-linear-gradient(var(--gradient));
@@ -280,14 +280,14 @@
 	border-radius: 50%;
 	transition: var(--transition);
 }
+.wui-form fieldset > .field > input[type="range"]:enabled:hover {
+	--gradient: var(--wui-form-range-trackbar-bgcolor-over), var(--wui-form-range-trackbar-bgcolor-over);
+}
 .wui-form fieldset > .field > input[type="range"]:not(:enabled) {
 	--gradient: var(--wui-form-range-trackbar-bgcolor-disabled), var(--wui-form-range-trackbar-bgcolor-disabled);
 }
 .wui-form fieldset > .field > input[type="range"]:not(:enabled):hover {
 	--gradient: var(--wui-form-range-trackbar-bgcolor-disabled), var(--wui-form-range-trackbar-bgcolor-disabled);
-}
-.wui-form fieldset > .field > input[type="range"]:enabled:hover {
-	--gradient: var(--wui-form-range-trackbar-bgcolor-over), var(--wui-form-range-trackbar-bgcolor-over);
 }
 .wui-form fieldset > .field > input[type="range"]:enabled::-webkit-slider-thumb {
 	cursor: ew-resize;
@@ -570,16 +570,16 @@
 .wui-form.line fieldset legend {
 	padding: 0 0 20px 0;
 }
-.wui-form.line fieldset > .field:not(.checkbox):not(.button) {
+.wui-form.line fieldset > .field:not(.checkbox):not(.range):not(.button) {
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
 	border-radius: 0px;
 	border-bottom: var(--wui-form-input-borderwidth) solid var(--wui-form-input-bordercolor-out);
 }
-.wui-form.line fieldset > .field:not(.checkbox):not(.button):hover {
+.wui-form.line fieldset > .field:not(.checkbox):not(.range):not(.button):hover {
 	border-bottom-color: var(--wui-form-input-bordercolor-out);
 }
-.wui-form.line fieldset > .field:not(.checkbox):not(.button):after {
+.wui-form.line fieldset > .field:not(.checkbox):not(.range):not(.button):after {
 	--transition: right .4s ease-out;
 	content: "";
 	display: block;
@@ -596,7 +596,7 @@
 	-moz-transition: var(--transition);
 	transition: var(--transition);
 }
-.wui-form.line fieldset > .field:not(.checkbox):not(.button):focus-within:after {
+.wui-form.line fieldset > .field:not(.checkbox):not(.range):not(.button):focus-within:after {
 	right: 0px;
 }
 .wui-form.line fieldset > .field > label {
@@ -605,29 +605,29 @@
 	top: calc(-1 * var(--wui-form-input-borderwidth));
 	align-items: center;
 }
-.wui-form.line fieldset > .field:not(.checkbox):not(.button) label.fixed,
-.wui-form.line fieldset > .field:not(.checkbox):not(.button) label.notempty,
-.wui-form.line fieldset > .field:not(.checkbox):not(.button):focus-within > label {
+.wui-form.line fieldset > .field:not(.checkbox):not(.range):not(.button) label.fixed,
+.wui-form.line fieldset > .field:not(.checkbox):not(.range):not(.button) label.notempty,
+.wui-form.line fieldset > .field:not(.checkbox):not(.range):not(.button):focus-within > label {
 	top: calc(-0.7 * var(--wui-form-input-height) - var(--wui-form-input-borderwidth));
 }
 @media screen and (max-width: 599px) {
-	.wui-form.line fieldset > .field:not(.checkbox):not(.button) label.fixed,
-	.wui-form.line fieldset > .field:not(.checkbox):not(.button) label.notempty,
-	.wui-form.line fieldset > .field:not(.checkbox):not(.button):focus-within > label {
+	.wui-form.line fieldset > .field:not(.checkbox):not(.range):not(.button) label.fixed,
+	.wui-form.line fieldset > .field:not(.checkbox):not(.range):not(.button) label.notempty,
+	.wui-form.line fieldset > .field:not(.checkbox):not(.range):not(.button):focus-within > label {
 		top: calc(-0.7 * var(--wui-form-input-responsive-height) - var(--wui-form-input-borderwidth));
 	}
 }
 
 /* wui-form border */
 
-.wui-form.border fieldset > .field:not(.checkbox):not(.button) {
+.wui-form.border fieldset > .field:not(.checkbox):not(.range):not(.button) {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	border: var(--wui-form-input-borderwidth) solid var(--wui-form-input-bordercolor-out);
 	background-color: var(--wui-form-input-bgcolor-out);
 }
-.wui-form.border fieldset > .field:not(.checkbox):not(.button):focus-within {
+.wui-form.border fieldset > .field:not(.checkbox):not(.range):not(.button):focus-within {
 	border-color: var(--wui-form-input-bordercolor-focus);
 	background-color: var(--wui-form-input-bgcolor-focus);
 }
@@ -637,36 +637,36 @@
 	top: calc(-1 * var(--wui-form-input-borderwidth));
 	align-items: center;
 }
-.wui-form.border fieldset > .field:not(.checkbox):not(.button) label.fixed,
-.wui-form.border fieldset > .field:not(.checkbox):not(.button) label.notempty,
-.wui-form.border fieldset > .field:not(.checkbox):not(.button):focus-within > label {
+.wui-form.border fieldset > .field:not(.checkbox):not(.range):not(.button) label.fixed,
+.wui-form.border fieldset > .field:not(.checkbox):not(.range):not(.button) label.notempty,
+.wui-form.border fieldset > .field:not(.checkbox):not(.range):not(.button):focus-within > label {
 	top: calc(-0.8 * var(--wui-form-input-height) - var(--wui-form-input-borderwidth));
 }
-.wui-form.border fieldset > .field:not(.checkbox):not(.button) input[type="text"],
-.wui-form.border fieldset > .field:not(.checkbox):not(.button) input[type="number"],
-.wui-form.border fieldset > .field:not(.checkbox):not(.button) input[type="date"],
-.wui-form.border fieldset > .field:not(.checkbox):not(.button) input[type="time"] {
+.wui-form.border fieldset > .field:not(.checkbox):not(.range):not(.button) input[type="text"],
+.wui-form.border fieldset > .field:not(.checkbox):not(.range):not(.button) input[type="number"],
+.wui-form.border fieldset > .field:not(.checkbox):not(.range):not(.button) input[type="date"],
+.wui-form.border fieldset > .field:not(.checkbox):not(.range):not(.button) input[type="time"] {
 	position: relative;
     top: calc(-1 * var(--wui-form-input-borderwidth));
 }
 @media screen and (max-width: 599px) {
-	.wui-form.border fieldset > .field:not(.checkbox):not(.button) label.fixed,
-	.wui-form.border fieldset > .field:not(.checkbox):not(.button) label.notempty,
-	.wui-form.border fieldset > .field:not(.checkbox):not(.button):focus-within > label {
+	.wui-form.border fieldset > .field:not(.checkbox):not(.range):not(.button) label.fixed,
+	.wui-form.border fieldset > .field:not(.checkbox):not(.range):not(.button) label.notempty,
+	.wui-form.border fieldset > .field:not(.checkbox):not(.range):not(.button):focus-within > label {
 		top: calc(-0.8 * var(--wui-form-input-responsive-height) - var(--wui-form-input-borderwidth));
 	}
 }
 
 /* .wui-form border curve */
 
-.wui-form.border.curve fieldset > .field:not(.checkbox):not(.button) {
+.wui-form.border.curve fieldset > .field:not(.checkbox):not(.range):not(.button) {
 	--radius: calc(var(--wui-form-input-height) / 2);
 	-webkit-border-radius: var(--radius);
 	-moz-border-radius: var(--radius);
 	border-radius: var(--radius);
 }
 @media screen and (max-width: 599px) {
-	.wui-form.border.curve fieldset > .field:not(.checkbox):not(.button) {
+	.wui-form.border.curve fieldset > .field:not(.checkbox):not(.range):not(.button) {
 		--radius: calc(var(--wui-form-input-responsive-height) / 2);
 	}
 }
