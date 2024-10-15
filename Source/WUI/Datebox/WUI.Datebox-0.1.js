@@ -350,7 +350,7 @@ class WUIDatebox {
 		const month = this._targetDate.getMonth() +1;
 		const country = this.locales.split("-")[1].toUpperCase();
 		const firstwday = parseInt(WUIDatebox.constants.countryFirstWeekDay[country] || 0);
-		const firstmday = new Date(this._targetValue.replace(/\d{2}$/, "01T00:00:00")).getDay();
+		const firstmday = new Date(year, month, 1).getDay(); 
 		const lasmday = month == 2 ? year & 3 || !(year % 25) && year & 15 ? 28 : 29 : 30 + (month + (month >> 3) & 1);
 		let ini = 0;
 		let rows = 5;
