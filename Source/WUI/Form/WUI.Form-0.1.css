@@ -621,9 +621,9 @@
 /* wui-form border */
 
 .wui-form.border fieldset > .field:not(.checkbox):not(.range):not(.button) {
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
+	-webkit-border-radius: var(--wui-form-input-borderradius);
+	-moz-border-radius: var(--wui-form-input-borderradius);
+	border-radius: var(--wui-form-input-borderradius);
 	border: var(--wui-form-input-borderwidth) solid var(--wui-form-input-bordercolor-out);
 	background-color: var(--wui-form-input-bgcolor-out);
 }

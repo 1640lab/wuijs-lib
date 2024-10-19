@@ -120,24 +120,24 @@
 	color: var(--wui-button-dark-textcolor-disabled);
 }
 
-/* wui-button highlight */
+/* wui-button warning */
 
-.wui-button.highlight:not(.disabled) {
-	border-color: var(--wui-button-highlight-bordercolor-out);
-	background-color: var(--wui-button-highlight-bgcolor-out);
-	color: var(--wui-button-highlight-textcolor-out);
+.wui-button.warning:not(.disabled) {
+	border-color: var(--wui-button-warning-bordercolor-out);
+	background-color: var(--wui-button-warning-bgcolor-out);
+	color: var(--wui-button-warning-textcolor-out);
 }
-.wui-button.highlight:not(.disabled):hover,
-.wui-button.highlight:not(.disabled):focus,
-.wui-button.highlight:not(.disabled):focus-within {
-	border-color: var(--wui-button-highlight-bordercolor-over);
-	background-color: var(--wui-button-highlight-bgcolor-over);
-	color: var(--wui-button-highlight-textcolor-over);
+.wui-button.warning:not(.disabled):hover,
+.wui-button.warning:not(.disabled):focus,
+.wui-button.warning:not(.disabled):focus-within {
+	border-color: var(--wui-button-warning-bordercolor-over);
+	background-color: var(--wui-button-warning-bgcolor-over);
+	color: var(--wui-button-warning-textcolor-over);
 }
-.wui-button.highlight.disabled {
-	border-color: var(--wui-button-highlight-bordercolor-disabled);
-	background-color: var(--wui-button-highlight-bgcolor-disabled);
-	color: var(--wui-button-highlight-textcolor-disabled);
+.wui-button.warning.disabled {
+	border-color: var(--wui-button-warning-bordercolor-disabled);
+	background-color: var(--wui-button-warning-bgcolor-disabled);
+	color: var(--wui-button-warning-textcolor-disabled);
 }
 
 /* wui-button flat */
@@ -181,13 +181,13 @@
 .wui-button.dark:not(.disabled):focus-within > .wui-svgicon {
 	background-color: var(--wui-button-dark-textcolor-over);
 }
-.wui-button.highlight:not(.disabled) > .wui-svgicon {
-	background-color: var(--wui-button-highlight-textcolor-out);
+.wui-button.warning:not(.disabled) > .wui-svgicon {
+	background-color: var(--wui-button-warning-textcolor-out);
 }
-.wui-button.highlight:not(.disabled):hover > .wui-svgicon,
-.wui-button.highlight:not(.disabled):focus > .wui-svgicon,
-.wui-button.highlight:not(.disabled):focus-within > .wui-svgicon {
-	background-color: var(--wui-button-highlight-textcolor-over);
+.wui-button.warning:not(.disabled):hover > .wui-svgicon,
+.wui-button.warning:not(.disabled):focus > .wui-svgicon,
+.wui-button.warning:not(.disabled):focus-within > .wui-svgicon {
+	background-color: var(--wui-button-warning-textcolor-over);
 }
 .wui-button > .wui-svgicon.float-left,
 .wui-button > .wui-svgicon.float-right {
