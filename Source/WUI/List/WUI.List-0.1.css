@@ -89,6 +89,19 @@
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
+.wui-list > .body > .row:not(:last-child) > .strip > .cell:not(:first-child) {
+	border-bottom: var(--wui-list-row-borderwidth) solid var(--wui-list-row-bordercolor-out);
+}
+.wui-list > .body > .row > .buttons {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	height: 100%;
+	background-color: var(--wui-list-buttons-bgcolor);
+	justify-content: stretch;
+	align-items: center;
+}
 .wui-list > .body > .row:first-child {
 	-webkit-border-top-left-radius: var(--wui-list-radius);
 	-webkit-border-top-right-radius: var(--wui-list-radius);
@@ -105,24 +118,11 @@
 	-moz-border-radius-bottomright: var(--wui-list-radius);
 	border-bottom-left-radius: var(--wui-list-radius);
 	border-bottom-right-radius: var(--wui-list-radius);
-	margin-bottom: 20px;
 	/*border-bottom: var(--wui-list-borderwidth) solid var(--wui-list-bordercolor-out);*/
+	margin-bottom: 20px;
 }
 .wui-list > .body > .row:last-child > .strip {
 	border-bottom: 0;
-}
-.wui-list > .body > .row:not(:last-child) > .strip > .cell:not(:first-child) {
-	border-bottom: var(--wui-list-row-borderwidth) solid var(--wui-list-row-bordercolor-out);
-}
-.wui-list > .body > .row > .buttons {
-	position: absolute;
-	z-index: 1;
-	top: 0;
-	right: 0;
-	height: 100%;
-	background-color: var(--wui-list-buttons-bgcolor);
-	justify-content: stretch;
-	align-items: center;
 }
 .wui-list > .body > .row > .buttons > .button {
 	cursor: pointer;
@@ -140,6 +140,20 @@
 }
 .wui-list > .body > .row > .buttons > .button.stretch {
 	height: 100%;
+}
+.wui-list > .body > .row > .buttons > .button.stretch:last-child {
+	margin-right: 1px;
+}
+.wui-list > .body > .row:first-child > .buttons > .button.stretch:last-child {
+	-webkit-border-top-right-radius: var(--wui-list-radius);
+	-moz-border-radius-topright: var(--wui-list-radius);
+	border-top-right-radius: var(--wui-list-radius);
+}
+.wui-list > .body > .row:last-child > .buttons > .button.stretch:last-child {
+	margin-right: 1px;
+	-webkit-border-bottom-right-radius: var(--wui-list-radius);
+	-moz-border-radius-bottomright: var(--wui-list-radius);
+	border-bottom-right-radius: var(--wui-list-radius);
 }
 .wui-list > .body > .row > .strip > .cell,
 .wui-list > .body > .row > .buttons > .button {

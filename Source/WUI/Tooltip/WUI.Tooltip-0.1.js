@@ -5,7 +5,7 @@ class WUITooltip {
 	#defaults = {
 		selector: ".wui-tooltip-target"
 	};
-	#tooltipSelectors = ".wui-tooltip, .wui-tooltip-top, .wui-tooltip-bottom";
+	#tooltipSelectors = ".wui-tooltip, .wui-tooltip-top, .wui-tooltip-left, .wui-tooltip-right, .wui-tooltip-bottom";
 	constructor (properties) {
 		Object.keys(this.#defaults).forEach(key => {
 			this[key] = typeof(properties) != "undefined" && key in properties ? properties[key] : this.#defaults[key];
@@ -53,9 +53,9 @@ class WUITooltip {
 /*
 HTML struture:
 <div class="wui-tooltip-target">
-	<div class="wui-tooltip-top"></div>
+	<div class="wui-tooltip [top|left|right|bottom]"></div>
 </div>
 <div class="wui-tooltip-target">
-	<div class="wui-tooltip-bottom"></div>
+	<div class="wui-tooltip-[top|left|right|bottom]"></div>
 </div>
 */
