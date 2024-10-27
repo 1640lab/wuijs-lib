@@ -177,7 +177,7 @@ class WUIList {
 						buttons.append(button);
 						["touchstart", "mousedown"].forEach(type => {
 							strip.addEventListener(type, (event) => {
-								if (!this._strips[i].drag && !this._strips[i].look) {
+								if (!this._strips[i].drag) {
 									const initX = (event.type == "touchstart" ? event.touches[0].clientX : event.clientX || event.clientX) - event.target.offsetParent.offsetLeft;
 									this._strips[i].drag = true;
 									this._strips[i].initX = initX;
@@ -186,30 +186,18 @@ class WUIList {
 						});
 						["touchmove", "mousemove"].forEach(type => {
 							strip.addEventListener(type, (event) => {
-								if (this._strips[i].drag && !this._strips[i].look) {
+								if (this._strips[i].drag) {
 									const initX = parseFloat(this._strips[i].initX);
 									const moveX = (event.type == "touchmove" ? event.touches[0].clientX : event.clientX || event.clientX) - event.target.offsetParent.offsetLeft;
 									const diffX = moveX -initX;
 									const direction = diffX > 10 ? "right" : diffX < -10 ? "left" : null;
-									let right = direction == "right" ? buttons.clientWidth -diffX : direction == "left" ? -diffX : 0;
-									if (right < 0) {
-										right = 0;
-									} else if (right > buttons.clientWidth) {
-										right = buttons.clientWidth;
-									}
-									if (direction != null) {
-										strip.style.marginRight = right+"px";
-										if (direction == "left") {
-											this._strips[i].open = true;
-											this._strips.forEach((str, s) => {
-												if (str.open && s != i) {
-													this._body.querySelector(".row:nth-of-type("+(s+1)+") > .strip").style.marginRight = "0px";
-													this._strips[s].open = false;
-												}
-											});
-										} else if (this._strips[i].direction == "right") {
-											this._strips[i].open = false;
-										}
+									if (direction == "left") {
+										this._strips.forEach((str, s) => {
+											if (this._strips[s].open && s != i) {
+												this._body.querySelector(".row:nth-of-type("+(s+1)+") > .strip").style.marginRight = "0px";
+												this._strips[s].open = false;
+											}
+										});
 									}
 									this._strips[i].direction = direction;
 								}
@@ -223,8 +211,10 @@ class WUIList {
 									if (this._strips[i].direction != null) {
 										if (this._strips[i].direction == "left") {
 											strip.style.marginRight = buttons.clientWidth+"px";
+											this._strips[i].open = true;
 										} else if (this._strips[i].direction == "right") {
 											strip.style.marginRight = "0px";
+											this._strips[i].open = false;
 										}
 										setTimeout(() => {
 											this._strips[i].direction = null;

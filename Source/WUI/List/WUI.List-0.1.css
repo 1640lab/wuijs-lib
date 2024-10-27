@@ -141,16 +141,12 @@
 .wui-list > .body > .row > .buttons > .button.stretch {
 	height: 100%;
 }
-.wui-list > .body > .row > .buttons > .button.stretch:last-child {
-	margin-right: 1px;
-}
 .wui-list > .body > .row:first-child > .buttons > .button.stretch:last-child {
 	-webkit-border-top-right-radius: var(--wui-list-radius);
 	-moz-border-radius-topright: var(--wui-list-radius);
 	border-top-right-radius: var(--wui-list-radius);
 }
 .wui-list > .body > .row:last-child > .buttons > .button.stretch:last-child {
-	margin-right: 1px;
 	-webkit-border-bottom-right-radius: var(--wui-list-radius);
 	-moz-border-radius-bottomright: var(--wui-list-radius);
 	border-bottom-right-radius: var(--wui-list-radius);

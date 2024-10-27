@@ -183,9 +183,9 @@ class WUILightbox {
 		});
 		this._bodyStyle = {};
 		if (this._topbar != null) {
+			this._drag = false;
 			this._initY = null;
 			this._direction = null;
-			this._drag = false;
 			["touchstart", "mousedown"].forEach(type => {
 				this._topbar.addEventListener(type, (event) => {
 					if (!this._drag) {
@@ -209,8 +209,8 @@ class WUILightbox {
 			["touchend", "mouseup"].forEach(type => {
 				document.addEventListener(type, () => {
 					if (this._drag) {
-						this._initY = null;
 						this._drag = false;
+						this._initY = null;
 						if (this._direction != null) {
 							if (this._direction == "top") {
 								this.maximize();
