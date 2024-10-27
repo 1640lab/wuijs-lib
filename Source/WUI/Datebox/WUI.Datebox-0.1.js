@@ -265,7 +265,7 @@ class WUIDatebox {
 		this.loadTexts();
 		switch (this._targetMode) {
 			case "months": this.loadMonths(); break;
-			case "days": this.loadDays();; break;
+			case "days": this.loadDays(); break;
 		}
 	}
 	loadTexts() {

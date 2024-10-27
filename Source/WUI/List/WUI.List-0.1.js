@@ -150,17 +150,18 @@ class WUIList {
 					this._buttons.forEach(options => {
 						const button = document.createElement("div");
 						const icon = document.createElement("div");
+						const iconClass = typeof(options.iconClass) == "string" ? options.iconClass : typeof(options.iconClass) == "function" ? options.iconClass(i, id) : "";
+						const bgcolor = typeof(options.bgcolor) == "string" ? options.bgcolor : typeof(options.bgcolor) == "function" ? options.bgcolor(i, id) : "";
 						const enabled = (typeof(options.enabled) == "boolean" && options.enabled) || (typeof(options.enabled) == "function" && options.enabled(i, id)) ? true : false;
 						button.className = "button "+this._buttonsStyle;
 						icon.className = "icon";
 						if (!enabled) {
 							button.classList.add("disabled");
+						} else if (bgcolor != "") {
+							button.style.backgroundColor = bgcolor;
 						}
-						if (enabled && typeof(options.bgcolor) == "string" && options.bgcolor != "") {
-							button.style.backgroundColor = options.bgcolor;
-						}
-						if (typeof(options.iconClass) == "string" && options.iconClass != "") {
-							options.iconClass.split(/\s+/).forEach(name => {
+						if (iconClass != "") {
+							iconClass.split(/\s+/).forEach(name => {
 								icon.classList.add(name);
 							});
 						}
