@@ -150,6 +150,9 @@
 	text-align: left;
 	color: var(--wui-form-input-textcolor-out);
 }
+.wui-form fieldset > .field > progress {
+	width: 100%;
+}
 .wui-form fieldset > .field > input:-webkit-autofill,
 .wui-form fieldset > .field > input:-webkit-autofill:hover,
 .wui-form fieldset > .field > input:-webkit-autofill:focus,
@@ -493,19 +496,6 @@
 	text-decoration: none;
 	color: var(--wui-form-text-linkcolor-out);
 }
-.wui-form fieldset.halign {
-	gap: 0;
-}
-.wui-form fieldset.halign > .field {
-	height: auto;
-	flex-direction: row;
-}
-.wui-form fieldset.halign > .field > label {
-	position: relative;
-	top: auto;
-	left: 0;
-	height: auto;
-}
 .wui-form .link {
 	display: flex;
 	cursor: pointer;
@@ -573,6 +563,25 @@
 		width: 14px;
 		height: 14px;
 	}
+}
+
+/* wui-form grid */
+
+.wui-form.grid fieldset {
+	grid-gap: 10px;
+}
+.wui-form.grid fieldset > .field {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+.wui-form.grid fieldset > .field.icon {
+	grid-template-columns: 36px 1fr 1fr;
+}
+.wui-form.grid fieldset > .field > label {
+	position: relative;
+	top: auto;
+	left: 0;
+	height: auto;
 }
 
 /* wui-form line */
@@ -813,33 +822,37 @@
 .wui-form fieldset > .field.icon > .wui-svgicon,
 .wui-form fieldset > .field.icon-left > .wui-svgicon,
 .wui-form fieldset > .field.icon-right > .wui-svgicon {
-	position: absolute;
-	top: 50%;
 	width: 20px;
 	height: 20px;
+}
+.wui-form:not(.grid) fieldset > .field.icon > .wui-svgicon,
+.wui-form:not(.grid) fieldset > .field.icon-left > .wui-svgicon,
+.wui-form:not(.grid) fieldset > .field.icon-right > .wui-svgicon {
+	position: absolute;
+	top: 50%;
 	margin-top: -10px;
 }
-.wui-form fieldset > .field.icon > .wui-svgicon.icon-left,
-.wui-form fieldset > .field.icon-left > .wui-svgicon:first-child {
+.wui-form:not(.grid) fieldset > .field.icon > .wui-svgicon.icon-left,
+.wui-form:not(.grid) fieldset > .field.icon-left > .wui-svgicon:first-child {
 	left: 5px;
 }
-.wui-form fieldset > .field.icon > .wui-svgicon.icon-right,
-.wui-form fieldset > .field.icon-right > .wui-svgicon:last-child {
+.wui-form:not(.grid) fieldset > .field.icon > .wui-svgicon.icon-right,
+.wui-form:not(.grid) fieldset > .field.icon-right > .wui-svgicon:last-child {
 	right: 5px;
 }
-.wui-form fieldset > .field.icon-left label,
-.wui-form fieldset > .field.icon-left input,
-.wui-form fieldset > .field.icon-left select,
-.wui-form fieldset > .field.icon-left textarea,
-.wui-form fieldset > .field.icon-left data {
+.wui-form:not(.grid) fieldset > .field.icon-left label,
+.wui-form:not(.grid) fieldset > .field.icon-left input,
+.wui-form:not(.grid) fieldset > .field.icon-left select,
+.wui-form:not(.grid) fieldset > .field.icon-left textarea,
+.wui-form:not(.grid) fieldset > .field.icon-left data {
 	left: 0;
 	padding-left: 40px !important;
 }
-.wui-form fieldset > .field.icon-right label,
-.wui-form fieldset > .field.icon-right input,
-.wui-form fieldset > .field.icon-right select,
-.wui-form fieldset > .field.icon-right textarea,
-.wui-form fieldset > .field.icon-right data {
+.wui-form:not(.grid) fieldset > .field.icon-right label,
+.wui-form:not(.grid) fieldset > .field.icon-right input,
+.wui-form:not(.grid) fieldset > .field.icon-right select,
+.wui-form:not(.grid) fieldset > .field.icon-right textarea,
+.wui-form:not(.grid) fieldset > .field.icon-right data {
 	padding-right: 40px !important;
 }
 @media screen and (max-width: 599px) {
@@ -848,6 +861,10 @@
 	.wui-form fieldset > .field.icon-right > .wui-svgicon {
 		width: 24px;
 		height: 24px;
+	}
+	.wui-form:not(.grid) fieldset > .field.icon > .wui-svgicon,
+	.wui-form:not(.grid) fieldset > .field.icon-left > .wui-svgicon, 
+	.wui-form:not(.grid) fieldset > .field.icon-right > .wui-svgicon {
 		margin-top: -12px;
 	}
 }
