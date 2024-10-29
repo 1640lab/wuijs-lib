@@ -496,6 +496,12 @@
 	text-decoration: none;
 	color: var(--wui-form-text-linkcolor-out);
 }
+.wui-form hr {
+	width: 100%;
+	height: 1px;
+	border: 0;
+	background-color: var(--wui-form-line-bgcolor);
+}
 .wui-form .link {
 	display: flex;
 	cursor: pointer;
@@ -582,6 +588,11 @@
 	top: auto;
 	left: 0;
 	height: auto;
+}
+@media screen and (max-width: 599px) {
+	#sheetForm > .body > fieldset {
+		grid-gap: 8px;
+	}
 }
 
 /* wui-form line */
