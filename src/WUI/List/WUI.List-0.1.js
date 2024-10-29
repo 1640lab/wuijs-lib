@@ -234,8 +234,8 @@ class WUIList {
 }
 /*
 HTML struture:
-<div class="wui-list soft mobile">
-	<div class="head"></div>
+<div class="wui-list">
+	<div class="header"></div>
 	<div class="body">
 		<div class="row">
 			<div class="strip">

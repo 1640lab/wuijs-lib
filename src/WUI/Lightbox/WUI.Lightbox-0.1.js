@@ -424,6 +424,7 @@ HTML page struture:
 			<div class="close wui-svgicon close-lg-line"></div>
 		</div>
 		<div class="body"></div>
+		<div class="footer"></div>
 	</div>
 </div>
 */

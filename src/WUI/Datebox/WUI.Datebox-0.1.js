@@ -244,7 +244,6 @@ class WUIDatebox {
 			const offset = now.getTimezoneOffset();
 			return new Date(now.getTime() - offset*60*1000).toISOString().split("T")[0];
 		})();
-		console.log("-->", today);
 		this._todayValue = today;
 		this._todayYear = today.replace(/-\d{2}-\d{2}/, "");
 		this._todayMonth = today.replace(/\d{4}-0?(\d+)-\d{2}/, "$1");

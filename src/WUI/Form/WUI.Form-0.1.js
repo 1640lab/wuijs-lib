@@ -57,7 +57,7 @@ class WUIForm {
 		return this._form;
 	}
 	getNode(name, type) {
-		let node = this._element.querySelector(".data."+name) || this._form[name] || null;
+		let node = this._element.querySelector("data."+name) || this._form[name] || null;
 		if (type.match(/^(input|data)$/)) {
 			return node;
 		} else if (node instanceof HTMLElement) {
@@ -66,14 +66,14 @@ class WUIForm {
 			while (node != this._element.parentNode && loop <= 100) {
 				if (type.match(/^(label)$/) && node.querySelector(type)) {
 					node.querySelectorAll(type).forEach(nodeType => {
-						if (nodeReturn == null && (node.querySelector("[name="+name+"]") || node.querySelector(".data."+name))) {
+						if (nodeReturn == null && (node.querySelector("[name="+name+"]") || node.querySelector("data."+name))) {
 							nodeReturn = nodeType;
 						}
 					});
 					return nodeReturn;
 				} else if (type.match(/^(field)$/) && node.querySelector("."+type)) {
 					node.querySelectorAll("."+type).forEach(nodeType => {
-						if (nodeReturn == null && (nodeType.querySelector("[name="+name+"]") || nodeType.querySelector(".data."+name))) {
+						if (nodeReturn == null && (nodeType.querySelector("[name="+name+"]") || nodeType.querySelector("data."+name))) {
 							nodeReturn = nodeType;
 						}
 					});
@@ -101,7 +101,7 @@ class WUIForm {
 		return input != null ? input.value : data != null ? data.innerHTML : "";
 	}
 	getData(name) {
-		return this._element.querySelector(".data."+name);
+		return this._element.querySelector("data."+name);
 	}
 	getText(name) {
 		return this._element.querySelector(".text."+name);
@@ -136,6 +136,7 @@ class WUIForm {
 			}
 		}
 		if (data != null) {
+			data.value = value;
 			data.innerHTML = value;
 		}
 		return data;
@@ -284,8 +285,8 @@ class WUIForm {
 }
 /*
 HTML struture:
-<form class="wui-form (line|border) [mobile]">
-	<input type="hidden" name="wuiHidden">
+<form class="wui-form (line|border [curve]) [mobile]">
+	<input type="hidden" name="hidden">
 	<div class="header"></div>
 	<div class="body">
 		<legend>Fieldset</legend>
@@ -309,6 +310,10 @@ HTML struture:
 			<div class="field checkbox">
 				<label for="wuiCheckbox"">Checkbox</label>
 				<input type="checkbox" name="checkbox" value="1">
+			</div>
+			<div class="field">
+				<label>Data</label>
+				<data value="" class="name"></data>
 			</div>
 			<div class="field">
 				<label for="wuiCheckbox"">WUI Datebox</label>

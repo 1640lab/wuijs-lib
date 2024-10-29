@@ -53,9 +53,9 @@ class WUITooltip {
 /*
 HTML struture:
 <div class="wui-tooltip-target">
-	<div class="wui-tooltip [top|left|right|bottom]"></div>
+	<div class="wui-tooltip (top|left|right|bottom)"></div>
 </div>
 <div class="wui-tooltip-target">
-	<div class="wui-tooltip-[top|left|right|bottom]"></div>
+	<div class="wui-tooltip-(top|left|right|bottom)"></div>
 </div>
 */
