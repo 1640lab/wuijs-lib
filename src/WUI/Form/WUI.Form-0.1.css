@@ -59,6 +59,7 @@
 .wui-form fieldset > .field > select,
 .wui-form fieldset > .field > textarea,
 .wui-form fieldset > .field > data,
+.wui-form fieldset > .field > progress,
 .wui-form fieldset > .text,
 .wui-form fieldset > .message {
 	margin: 0;
@@ -149,9 +150,6 @@
 	justify-content: center;
 	text-align: left;
 	color: var(--wui-form-input-textcolor-out);
-}
-.wui-form fieldset > .field > progress {
-	width: 100%;
 }
 .wui-form fieldset > .field > input:-webkit-autofill,
 .wui-form fieldset > .field > input:-webkit-autofill:hover,
@@ -394,6 +392,35 @@
 .wui-form fieldset > .field > data.disabled {
 	color: var(--wui-form-data-textcolor-disabled) !important;
 }
+.wui-form fieldset > .field > progress[value] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	width: 100%;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	border: var(--wui-form-progress-borderwidth) solid var(--wui-form-progress-bordercolor);
+	background: var(--wui-form-progress-bgcolor);
+}
+.wui-form fieldset > .field > progress[value]::-webkit-progress-bar {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	background: var(--wui-form-progress-bgcolor);
+}
+.wui-form fieldset > .field > progress[value]::-webkit-progress-value {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	background: var(--wui-form-progress-valuecolor);
+}
+.wui-form fieldset > .field > progress[value]::-moz-progress-bar {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	background: var(--wui-form-progress-valuecolor);
+}
 .wui-form fieldset > .field.checkbox,
 .wui-form fieldset > .field.button {
 	border: 0;
@@ -590,8 +617,8 @@
 	height: auto;
 }
 @media screen and (max-width: 599px) {
-	#sheetForm > .body > fieldset {
-		grid-gap: 8px;
+	.wui-form.grid fieldset {
+		grid-gap: 5px;
 	}
 }
 
