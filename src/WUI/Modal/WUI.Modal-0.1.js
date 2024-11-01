@@ -1,6 +1,6 @@
-/* WUILightbox v0.1 */
+/* WUIModal v0.1 */
 
-class WUILightbox {
+class WUIModal {
 	static version = "0.1";
 	#defaults = {
 		selector: "",
@@ -14,19 +14,19 @@ class WUILightbox {
 		onBack: null
 	};
 	static #instances = [];
-	constructor (properties) {
-		this.setProperties(properties);
-		WUILightbox.#instances.push(this);
-	}
 	static getAllInstances() {
-		return WUILightbox.#instances;
+		return WUIModal.#instances;
 	}
 	static closeAll(except) {
-		WUILightbox.#instances.forEach(lightbox => {
-			if (lightbox.isOpen() && lightbox.selector != except) {
-				lightbox.close();
+		WUIModal.#instances.forEach(modal => {
+			if (modal.isOpen() && modal.selector != except) {
+				modal.close();
 			}
 		});
+	}
+	constructor (properties) {
+		this.setProperties(properties);
+		WUIModal.#instances.push(this);
 	}
 	get selector() {
 		return this._selector;
@@ -110,6 +110,9 @@ class WUILightbox {
 	getBody() {
 		return this._body;
 	}
+	getFooter() {
+		return this._footer;
+	}
 	getStatus() {
 		let status = [];
 		["opened", "maximized", "under", "close"].forEach(className => {
@@ -169,11 +172,11 @@ class WUILightbox {
 				esc = (event.keyCode === 27);
 			}
 			if (esc) {
-				WUILightbox.getAllInstances().every(lightbox => {
-					const classList = lightbox._element.classList;
+				WUIModal.getAllInstances().every(modal => {
+					const classList = modal._element.classList;
 					if (classList.contains("opened") && !classList.contains("under")) {
 						setTimeout(() => {
-							lightbox.close();
+							modal.close();
 						}, 100);
 						return false;
 					}
@@ -254,16 +257,16 @@ class WUILightbox {
 		const small = this._element.classList.contains("small") ? true : false;
 		const mobile = window.matchMedia("(max-width: 599px)").matches ? true : false;
 		const bodyHeight = document.body.offsetHeight;
-		const bgcolor = getComputedStyle(document.documentElement).getPropertyValue("--wui-lightbox-bgcolor").replace(/\s+/g, "").replace("rgba(", "").replace(")", "").split(",");
+		const bgcolor = getComputedStyle(document.documentElement).getPropertyValue("--wui-modal-bgcolor").replace(/\s+/g, "").replace("rgba(", "").replace(")", "").split(",");
 		let under = null;
 		let pages = 1;
 		let step = 0;
-		WUILightbox.#instances.forEach(lightbox => {
-			if (lightbox._element.classList.contains("opened") && !lightbox._element.classList.contains("under") && lightbox._selector != this._selector) {
-				lightbox._element.classList.add("under");
-				under = lightbox._element;
+		WUIModal.#instances.forEach(modal => {
+			if (modal._element.classList.contains("opened") && !modal._element.classList.contains("under") && modal._selector != this._selector) {
+				modal._element.classList.add("under");
+				under = modal._element;
 			}
-			if (lightbox._element.classList.contains("opened") && lightbox._element.classList.contains("page") && lightbox._element.classList.contains("under")) {
+			if (modal._element.classList.contains("opened") && modal._element.classList.contains("page") && modal._element.classList.contains("under")) {
 				pages++;
 			}
 		});
@@ -344,16 +347,16 @@ class WUILightbox {
 		const mobile = window.matchMedia("(max-width: 599px)").matches ? true : false;
 		const bodyHeight = document.body.offsetHeight;
 		const boxTop = this._box != null ? this._box.offsetTop : 0;
-		const bgcolor = getComputedStyle(document.documentElement).getPropertyValue("--wui-lightbox-bgcolor").replace(/\s+/g, "").replace("rgba(", "").replace(")", "").split(",");
+		const bgcolor = getComputedStyle(document.documentElement).getPropertyValue("--wui-modal-bgcolor").replace(/\s+/g, "").replace("rgba(", "").replace(")", "").split(",");
 		let under = null;
 		let step = 1;
 		if (typeof(this._startClose) == "function") {
 			this._startClose();
 		}
-		WUILightbox.#instances.forEach(lightbox => {
-			if (lightbox._element.classList.contains("under")) {
-				lightbox._element.classList.remove("under");
-				under = lightbox._element;
+		WUIModal.#instances.forEach(modal => {
+			if (modal._element.classList.contains("under")) {
+				modal._element.classList.remove("under");
+				under = modal._element;
 			}
 		});
 		this._element.classList.remove("maximized");
@@ -399,7 +402,7 @@ class WUILightbox {
 }
 /*
 HTML message struture:
-<div class="wui-lightbox message [mobile]">
+<div class="wui-modal message [mobile]">
 	<div class="box">
 		<div class="body">
 			<div class="icon"></div>
@@ -412,7 +415,7 @@ HTML message struture:
 	</div>
 </div>
 HTML page struture:
-<div class="wui-lightbox page [mobile]">
+<div class="wui-modal page [mobile]">
 	<div class="box">
 		<div class="header">
 			<div class="back">

@@ -1,6 +1,6 @@
-/* WUILightboxSelector v0.1 */
+/* WUIModalSelector v0.1 */
 
-class WUILightboxSelector extends WUILightbox {
+class WUIModalSelector extends WUIModal {
 	static version = "0.1";
 	constructor (properties) {
 		super(properties);
@@ -12,8 +12,8 @@ class WUILightboxSelector extends WUILightbox {
 		this._maxScreenWidth = 600;
 		this._acceptButton = new WUIButton({selector: properties.selector+" > .box > .footer > button.submit"});
 		this._cancelButton = new WUIButton({selector: properties.selector+" > .box > .footer > button.cancel"});
-		this._displayAccept = true;
-		this._displayCancel = true;
+		this._acceptDisplay = true;
+		this._cancelDisplay = true;
 		this._onSelect = null;
 		this._onAccept = null;
 		this._onCancel = null;
@@ -40,14 +40,14 @@ class WUILightboxSelector extends WUILightbox {
 	get acceptButton() {
 		return this._acceptButton;
 	}
+	get acceptDisplay() {
+		return this._acceptDisplay;
+	}
 	get cancelButton() {
 		return this._cancelButton;
 	}
-	get displayAccept() {
-		return this._displayAccept;
-	}
-	get displayCancel() {
-		return this._displayCancel;
+	get cancelDisplay() {
+		return this._cancelDisplay;
 	}
 	get onSelect() {
 		return this._onSelect;
@@ -79,14 +79,14 @@ class WUILightboxSelector extends WUILightbox {
 	set acceptButton(value) {
 		super.setProperty("acceptButton", value, "WUIButton");
 	}
+	set acceptDisplay(value) {
+		super.setProperty("acceptDisplay", value, "boolean");
+	}
 	set cancelButton(value) {
 		super.setProperty("cancelButton", value, "WUIButton");
 	}
-	set displayAccept(value) {
-		super.setProperty("displayAccept", value, "boolean");
-	}
-	set displayCancel(value) {
-		super.setProperty("displayCancel", value, "boolean");
+	set cancelDisplay(value) {
+		super.setProperty("cancelDisplay", value, "boolean");
 	}
 	set onSelect(value) {
 		super.setProperty("onSelect", value, "function");
@@ -104,7 +104,7 @@ class WUILightboxSelector extends WUILightbox {
 			const footer = document.createElement("div");
 			const cancelButton = document.createElement("button");
 			const acceptButton = document.createElement("button");
-			this._element.classList.add("wui-lightbox", "selector", "mobile", "priority");
+			this._element.classList.add("wui-modal", "selector", "mobile", "priority");
 			this._element.appendChild(this._box);
 			box.classList.add("box");
 			box.appendChild(options);
@@ -181,8 +181,8 @@ class WUILightboxSelector extends WUILightbox {
 								selected: values.indexOf(option.value) > -1 ? true : false
 							});
 						});
-						this._displayAccept = true;
-						this._displayCancel = true;
+						this._acceptDisplay = true;
+						this._cancelDisplay = true;
 						this.open();
 					} else {
 						input.setAttribute("dir", "ltr");
@@ -251,17 +251,17 @@ class WUILightboxSelector extends WUILightbox {
 				}
 			});
 		}
-		if (this._displayAccept || this._displayCancel) {
+		if (this._acceptDisplay || this._cancelDisplay) {
 			this._footer.classList.remove("hidden");
 		} else {
 			this._footer.classList.add("hidden");
 		}
-		if (this._displayAccept) {
+		if (this._acceptDisplay) {
 			this._acceptButton.getElement().classList.remove("hidden");
 		} else {
 			this._acceptButton.getElement().classList.add("hidden");
 		}
-		if (this._displayCancel) {
+		if (this._cancelDisplay) {
 			this._cancelButton.getElement().classList.remove("hidden");
 		} else {
 			this._cancelButton.getElement().classList.add("hidden");
@@ -274,8 +274,8 @@ class WUILightboxSelector extends WUILightbox {
 	close() {
 		super.close();
 		this._input = null;
-		this._displayAccept = true;
-		this._displayCancel = true;
+		this._acceptDisplay = true;
+		this._cancelDisplay = true;
 		this._onOpen = null;
 		this._onClose = null;
 		this._onSelect = null;
@@ -285,7 +285,7 @@ class WUILightboxSelector extends WUILightbox {
 }
 /*
 HTML struture:
-<div class="wui-lightbox selector mobile priority">
+<div class="wui-modal selector mobile priority">
 	<div class="box">
 		<div class="options"></div>
 		<div class="footer">

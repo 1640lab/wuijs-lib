@@ -15,9 +15,9 @@ class WUISelector {
 		return WUISelector.#instances;
 	}
 	static closeAll(except) {
-		WUISelector.#instances.forEach(lightbox => {
-			if (lightbox.isOpen() && lightbox.selector != except) {
-				lightbox.close();
+		WUISelector.#instances.forEach(modal => {
+			if (modal.isOpen() && modal.selector != except) {
+				modal.close();
 			}
 		});
 	}
@@ -78,11 +78,11 @@ class WUISelector {
 				esc = (event.keyCode === 27);
 			}
 			if (esc) {
-				WUISelector.getAllInstances().every(lightbox => {
-					const classList = lightbox._element.classList;
+				WUISelector.getAllInstances().every(modal => {
+					const classList = modal._element.classList;
 					if (classList.contains("opened")) {
 						setTimeout(() => {
-							lightbox.close();
+							modal.close();
 						}, 100);
 						return false;
 					}
