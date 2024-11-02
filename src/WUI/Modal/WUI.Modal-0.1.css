@@ -145,8 +145,9 @@
 	margin: 5px;
 }
 .wui-modal > .box > .footer.hidden,
-.wui-modal > .box > .footer > button.hidden {
-	display: none;
+.wui-modal > .box > .footer > button.hidden,
+.wui-modal > .box > .footer > a.hidden {
+	display: none !important;
 }
 @media screen and (min-width: 600px) {
 	.wui-modal > .box > .body.scroll {
