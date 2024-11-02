@@ -144,6 +144,10 @@
 .wui-modal > .box > .footer > button {
 	margin: 5px;
 }
+.wui-modal > .box > .footer.hidden,
+.wui-modal > .box > .footer > button.hidden {
+	display: none;
+}
 @media screen and (min-width: 600px) {
 	.wui-modal > .box > .body.scroll {
 		scrollbar-color: var(--wui-modal-body-scroll-bgcolor-out) transparent;
@@ -267,6 +271,13 @@
 	margin-left: 10px;
 	margin-right: 10px;
 }
+.wui-modal.message > .box > .footer > a {
+	margin-bottom: 30px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 14px;
+	color: var(--wui-modal-message-linkcolor);
+}
 
 /* wui-modal message mobile */
 
@@ -284,7 +295,22 @@
     	margin-right: 0;
 		border-top: 0;
 	}
-	.wui-modal.message.mobile > .box > .footer > button:first-child {
+	.wui-modal.message.mobile > .box > .footer > a {
+		display: flex;
+		margin-bottom: 0;
+		justify-content: center;
+		align-items: center;
+	}
+	.wui-modal.message.mobile > .box > .footer.list {
+		height: auto;
+		flex-direction: column;
+	}
+	.wui-modal.message.mobile > .box > .footer.list > * {
+		width: 100%;
+		height: 48px;
+		border-bottom: 1px solid var(--wui-modal-message-mobile-button-bordercolor);
+	}
+	.wui-modal.message.mobile > .box > .footer:not(.list) > button:first-child {
 		border-right: 1px solid var(--wui-modal-message-mobile-button-bordercolor);
 	}
 }
@@ -292,8 +318,7 @@
 /* wui-modal page */
 
 .wui-modal.page > .box {
-	width: 100%;
-	max-width: var(--wui-modal-page-box-width);
+	width: var(--wui-modal-page-box-width);
 	height: var(--wui-modal-page-box-height);
 	background-color: var(--wui-modal-page-box-bgcolor);
 }
@@ -318,8 +343,10 @@
 @media screen and (max-width: 599px) {
 	.wui-modal.page.mobile > .box {
 		top: 100%;
+		left: 0;
+		right: 0;
 		bottom: 0;
-		width: 100%;
+		width: auto;
 		height: auto;
 		-webkit-border-top-left-radius: var(--wui-modal-box-radius);
 		-webkit-border-top-right-radius: var(--wui-modal-box-radius);
@@ -371,6 +398,8 @@
 @media screen and (min-width: 600px) {
 	.wui-modal.page.mobile > .box {
 		top: auto !important;
+		left: auto !important;
+		right: auto !important;
 		bottom: auto !important;
 		max-height: var(--wui-modal-page-box-maxheight);
 	}

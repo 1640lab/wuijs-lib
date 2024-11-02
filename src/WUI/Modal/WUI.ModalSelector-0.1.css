@@ -100,10 +100,10 @@
 .wui-modal.selector > .box > .options > .option.disabled > .text {
 	color: var(--wui-modal-selector-option-textcolor-disabled);
 }
-/*.wui-modal.selector > .box > .options.multiple > .text {
+/*.wui-modal.selector.multiple > .box > .options > .text {
 	padding-right: 30px;
 }
-.wui-modal.selector > .box > .options.multiple > .option > .checker {
+.wui-modal.selector.multiple > .box > .options > .option > .checker {
 	width: 20px;
 	height: 20px;
 	-webkit-border-radius: 50%;
@@ -112,7 +112,7 @@
 	border: 1px solid var(--wui-modal-selector-option-checker-bordercolor-out);
 	background-color: var(--wui-modal-selector-option-checker-bgcolor-out);
 }
-.wui-modal.selector > .box > .options.multiple > .option.selected > .checker {
+.wui-modal.selector.multiple > .box > .options > .option.selected > .checker {
 	border-color: var(--wui-modal-selector-option-checker-bordercolor-selected);
 	background-color: var(--wui-modal-selector-option-checker-bgcolor-selected);
 }*/
@@ -124,10 +124,6 @@
 	margin-top: 15px;
 	margin-left: 10px;
 	margin-right: 10px;
-}
-.wui-modal.selector > .box > .footer.hidden,
-.wui-modal.selector > .box > .footer > button.hidden {
-	display: none;
 }
 @media screen and (max-width: 599px) {
 	.wui-modal.selector > .box > .options > .option:last-child {

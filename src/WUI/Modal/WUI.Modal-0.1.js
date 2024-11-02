@@ -253,9 +253,9 @@ class WUIModal {
 		}
 	}
 	open(onOpen = this._onOpen, delay = this._delay) {
-		const page = this._element.classList.contains("page") ? true : false;
-		const small = this._element.classList.contains("small") ? true : false;
-		const mobile = window.matchMedia("(max-width: 599px)").matches ? true : false;
+		const page = Boolean(this._element.classList.contains("page"));
+		const small = Boolean(this._element.classList.contains("small"));
+		const mobile = Boolean(this._element.classList.contains("mobile"));
 		const bodyHeight = document.body.offsetHeight;
 		const bgcolor = getComputedStyle(document.documentElement).getPropertyValue("--wui-modal-bgcolor").replace(/\s+/g, "").replace("rgba(", "").replace(")", "").split(",");
 		let under = null;
@@ -264,7 +264,7 @@ class WUIModal {
 		WUIModal.#instances.forEach(modal => {
 			if (modal._element.classList.contains("opened") && !modal._element.classList.contains("under") && modal._selector != this._selector) {
 				modal._element.classList.add("under");
-				under = modal._element;
+				under = modal;
 			}
 			if (modal._element.classList.contains("opened") && modal._element.classList.contains("page") && modal._element.classList.contains("under")) {
 				pages++;
@@ -297,66 +297,77 @@ class WUIModal {
 			this._startOpen();
 		}
 		const interval = setInterval(() => {
-			if (step >= 1) {
+			const t = step/100;
+			let ease = t > 0.5 ? 4 * Math.pow((t -1), 3) +1 : 4 * Math.pow(t, 3);
+			if (ease >= 1) {
 				clearInterval(interval);
-				step = 1;
+				ease = 1;
 			}
-			if (step == 0) {
+			if (ease == 0) {
 				this._element.style.display = "flex";
 			}
-			if (this._box != null) {
-				if (page && small && mobile) {
-					this._box.style.top = (bodyHeight - 280 * step)+"px";
-				} else if (page && mobile) {
-					this._box.style.top = (bodyHeight - (bodyHeight -44*pages) * step)+"px";
+			if (this._box != null && page && mobile) {
+				if (small) {
+					this._box.style.top = (bodyHeight - 280 * ease)+"px";
+				} else {
+					this._box.style.top = (bodyHeight - (bodyHeight -44) * ease)+"px";
 				}
 			}
-			this._element.style.opacity = step;
-			if (under != null && bgcolor.length == 4) {
-				const opacity = Math.round((1 -step) * parseFloat(bgcolor[3]) * 100) / 100;
-				under.style.backgroundColor = "rgba("+bgcolor[0]+", "+bgcolor[1]+", "+bgcolor[2]+", "+opacity+")";
+			this._element.style.opacity = ease;
+			if (under != null) {
+				if (bgcolor.length == 4) {
+					const opacity = Math.round((1 -ease) * parseFloat(bgcolor[3]) * 100) / 100;
+					under._element.style.backgroundColor = "rgba("+bgcolor[0]+", "+bgcolor[1]+", "+bgcolor[2]+", "+opacity+")";
+				}
+				if (under._element.classList.contains("page") && page) {
+					under._box.style.top = (bodyHeight - (bodyHeight -44) - 22 * ease)+"px";
+					under._box.style.left = (10 * ease)+"px";
+					under._box.style.right = (10 * ease)+"px";
+				}
 			}
-			if (step == 1 && typeof(onOpen) == "function") {
+			if (ease == 1 && typeof(onOpen) == "function") {
 				onOpen();
 			}
-			step += .1;
-		}, delay/10);
+			step++;
+		}, delay/100);
 	}
 	maximize(onMaximize = this._onMaximize, delay = this._delay) {
-		const page = this._element.classList.contains("page") ? true : false;
-		const mobile = window.matchMedia("(max-width: 599px)").matches ? true : false;
+		const page = Boolean(this._element.classList.contains("page"));
+		const mobile = Boolean(this._element.classList.contains("mobile"));
 		const boxTop = this._box != null ? this._box.offsetTop : 0;
-		let step = 1;
+		let step = 10;
 		this._element.classList.add("maximized");
 		const interval = setInterval(() => {
-			if (step <= 0) {
+			const t = step/10;
+			let ease = t > 0.5 ? 4 * Math.pow((t -1), 3) +1 : 4 * Math.pow(t, 3);
+			if (ease <= 0) {
 				clearInterval(interval);
-				step = 0;
+				ease = 0;
 			}
 			if (this._box != null && page && mobile) {
-				this._box.style.top = (boxTop * step)+"px";
+				this._box.style.top = (boxTop * ease)+"px";
 			}
-			if (step == 0 && typeof(onMaximize) == "function") {
+			if (ease == 0 && typeof(onMaximize) == "function") {
 				onMaximize();
 			}
-			step -= .1;
+			step--;
 		}, delay/100);
 	}
 	close(onClose = this._onClose, delay = this._delay) {
-		const page = this._element.classList.contains("page") ? true : false;
-		const mobile = window.matchMedia("(max-width: 599px)").matches ? true : false;
+		const page = Boolean(this._element.classList.contains("page"));
+		const mobile = Boolean(this._element.classList.contains("mobile"));
 		const bodyHeight = document.body.offsetHeight;
 		const boxTop = this._box != null ? this._box.offsetTop : 0;
 		const bgcolor = getComputedStyle(document.documentElement).getPropertyValue("--wui-modal-bgcolor").replace(/\s+/g, "").replace("rgba(", "").replace(")", "").split(",");
 		let under = null;
-		let step = 1;
+		let step = 100;
 		if (typeof(this._startClose) == "function") {
 			this._startClose();
 		}
 		WUIModal.#instances.forEach(modal => {
 			if (modal._element.classList.contains("under")) {
 				modal._element.classList.remove("under");
-				under = modal._element;
+				under = modal;
 			}
 		});
 		this._element.classList.remove("maximized");
@@ -375,26 +386,35 @@ class WUIModal {
 			}
 		}
 		const interval = setInterval(() =>  {
-			if (step <= 0) {
+			const t = step/100;
+			let ease = t > 0.5 ? 4 * Math.pow((t -1), 3) +1 : 4 * Math.pow(t, 3);
+			if (ease <= 0) {
 				clearInterval(interval);
-				step = 0;
+				ease = 0;
 			}
-			if (step == 0) {
+			if (ease == 0) {
 				this._element.style.display = "none";
 			}
 			if (this._box != null && page && mobile) {
-				this._box.style.top = (bodyHeight - (bodyHeight -boxTop) * step)+"px";
+				this._box.style.top = (bodyHeight - (bodyHeight -boxTop) * ease)+"px";
 			}
-			if (under != null && bgcolor.length == 4) {
-				const opacity = Math.round((1 -step) * parseFloat(bgcolor[3]) * 100) / 100;
-				under.style.backgroundColor = "rgba("+bgcolor[0]+", "+bgcolor[1]+", "+bgcolor[2]+", "+opacity+")";
+			if (under != null) {
+				if (bgcolor.length == 4) {
+					const opacity = Math.round((1 -ease) * parseFloat(bgcolor[3]) * 100) / 100;
+					under._element.style.backgroundColor = "rgba("+bgcolor[0]+", "+bgcolor[1]+", "+bgcolor[2]+", "+opacity+")";
+				}
+				if (under._element.classList.contains("page") && page) {
+					under._box.style.top = (bodyHeight - (bodyHeight -22) + 22 * (1 -ease))+"px";
+					under._box.style.left = (10 * ease)+"px";
+					under._box.style.right = (10 * ease)+"px";
+				}
 			}
-			this._element.style.opacity = step;
-			if (step == 0 && typeof(onClose) == "function") {
+			this._element.style.opacity = ease;
+			if (ease == 0 && typeof(onClose) == "function") {
 				onClose();
 			}
-			step -= .1;
-		}, delay/10);
+			step--;
+		}, delay/100);
 	}
 	isOpen() {
 		return this.getStatus().match(/opened/) ? true : false;
