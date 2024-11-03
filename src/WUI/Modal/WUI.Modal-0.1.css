@@ -98,7 +98,7 @@
 	height: 14px;
 	background-color: var(--wui-modal-back-textcolor);
 }
-.wui-modal.mobile > .box > .header > .back > .text {
+.wui-modal > .box > .header > .back > .text {
 	font-size: 14px;
 }
 .wui-modal > .box > .header > .topbar {
