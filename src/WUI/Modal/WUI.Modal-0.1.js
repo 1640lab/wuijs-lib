@@ -17,6 +17,15 @@ class WUIModal {
 	static getAllInstances() {
 		return WUIModal.#instances;
 	}
+	static getOpenInstances() {
+		const instances = [];
+		WUIModal.#instances.forEach(modal => {
+			if (modal.isOpen()) {
+				instances.push(modal);
+			}
+		});
+		return instances;
+	}
 	static closeAll(except) {
 		WUIModal.#instances.forEach(modal => {
 			if (modal.isOpen() && modal.selector != except) {

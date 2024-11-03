@@ -11,12 +11,12 @@ class WUIModalSelector extends WUIModal {
 		this._selecteableText = false;
 		this._maxScreenWidth = 600;
 		this._acceptButton = new WUIButton({selector: properties.selector+" > .box > .footer > button.submit"});
-		this._cancelButton = new WUIButton({selector: properties.selector+" > .box > .footer > button.cancel"});
 		this._acceptDisplay = true;
+		this._acceptOnClick = null;
+		this._cancelButton = new WUIButton({selector: properties.selector+" > .box > .footer > button.cancel"});
 		this._cancelDisplay = true;
+		this._cancelOnClick = null;
 		this._onSelect = null;
-		this._onAccept = null;
-		this._onCancel = null;
 		super.setProperties(properties);
 	}
 	get value() {
@@ -43,20 +43,20 @@ class WUIModalSelector extends WUIModal {
 	get acceptDisplay() {
 		return this._acceptDisplay;
 	}
+	get acceptOnClick() {
+		return this._acceptOnClick;
+	}
 	get cancelButton() {
 		return this._cancelButton;
 	}
 	get cancelDisplay() {
 		return this._cancelDisplay;
 	}
+	get cancelOnClick() {
+		return this._cancelOnClick;
+	}
 	get onSelect() {
 		return this._onSelect;
-	}
-	get onAccept() {
-		return this._onAccept;
-	}
-	get onCancel() {
-		return this._onCancel;
 	}
 	set value(value) {
 		super.setProperty("value", value, "string");
@@ -82,20 +82,20 @@ class WUIModalSelector extends WUIModal {
 	set acceptDisplay(value) {
 		super.setProperty("acceptDisplay", value, "boolean");
 	}
+	set acceptOnClick(value) {
+		super.setProperty("acceptOnClick", value, "function");
+	}
 	set cancelButton(value) {
 		super.setProperty("cancelButton", value, "WUIButton");
 	}
 	set cancelDisplay(value) {
 		super.setProperty("cancelDisplay", value, "boolean");
 	}
+	set cancelOnClick(value) {
+		super.setProperty("cancelOnClick", value, "function");
+	}
 	set onSelect(value) {
 		super.setProperty("onSelect", value, "function");
-	}
-	set onAccept(value) {
-		super.setProperty("onAccept", value, "function");
-	}
-	set onCancel(value) {
-		super.setProperty("onCancel", value, "function");
 	}
 	build() {
 		if (this._box == null) {
@@ -133,15 +133,15 @@ class WUIModalSelector extends WUIModal {
 				this._input.value = this._value;
 				this._input.dispatchEvent(new Event("change"));
 			}
-			if (typeof(this._onAccept) == "function") {
-				this._onAccept(this._value, indexes.join(","), texts.join(","));
+			if (typeof(this._acceptOnClick) == "function") {
+				this._acceptOnClick(this._value, indexes.join(","), texts.join(","));
 			}
 			this.close();
 		};
 		this._acceptButton.init();
 		this._cancelButton.onClick = () => {
-			if (typeof(this._onCancel) == "function") {
-				this._onCancel();
+			if (typeof(this._cancelOnClick) == "function") {
+				this._cancelOnClick();
 			}
 			this.close();
 		};
@@ -279,8 +279,8 @@ class WUIModalSelector extends WUIModal {
 		this._onOpen = null;
 		this._onClose = null;
 		this._onSelect = null;
-		this._onAccept = null;
-		this._onCancel = null;
+		this._acceptOnClick = null;
+		this._cancelOnClick = null;
 	}
 }
 /*

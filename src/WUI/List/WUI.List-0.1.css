@@ -181,6 +181,11 @@
 	justify-content: flex-end;
 	align-items: center;
 }
+@media screen and (max-width: 599px) {
+	.wui-list {
+		font-size: 15px;
+	}
+}
 @media screen and (min-width: 600px) {
 	.wui-list > .body.scroll {
 		scrollbar-color: var(--wui-list-scroll-bgcolor-out) transparent;
