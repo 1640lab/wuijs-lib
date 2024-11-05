@@ -29,25 +29,24 @@ class WUIBody {
 		return this._debug;
 	}
 	set environment(value) {
-		this.setProperty("environment", value.toLowerCase(), "string");
+		if (typeof(value) == "string" && value.match(/^(android|ios)?$/i)) {
+			this._environment = value.toLowerCase();
+		}
 	}
 	set importDirectory(value) {
-		this.setProperty("importDirectory", value, "array");
+		if (typeof(value) == "string") {
+			this._importDirectory = value;
+		}
 	}
 	set onCompleted(value) {
-		this.setProperty("onCompleted", value, "function");
+		if (typeof(value) == "function") {
+			this._onCompleted = value;
+		}
 	}
 	set debug(value) {
-		this.setProperty("debug", value, "boolean");
-	}
-	setProperty(name, value, type = "string") {
-		if (type == typeof(value)) {
-			this["_"+name] = value;
-			return true;
-		} else {
-			this["_"+name] = this.#defaults[name];
+		if (typeof(value) == "boolean") {
+			this._debug = value;
 		}
-		return false;
 	}
 	#checkPath = (url) => {
 		const http = new XMLHttpRequest();

@@ -74,43 +74,44 @@ class WUIScrolly {
 		return this._debug;
 	}
 	set sections(value) {
-		this.setProperty("sections", value, "array");
+		if (Array.isArray(value)) {
+			this._sections = value;
+		}
 	}
 	set behavior(value) {
-		this.setProperty("behavior", value, "regexp", /^(auto|smooth)$/i, (value) => {return value.toLowerCase()});
+		if (typeof(value) == "string" && value.match(/^(auto|smooth)$/i)) {
+			this._behavior = value.toLocaleLowerCase();
+		}
 	}
 	set dataScrollY(value) {
-		this.setProperty("dataScrollY", value, "string");
+		if (typeof(value) == "string") {
+			this._dataScrollY = value;
+		}
 	}
 	set dataDelay(value) {
-		this.setProperty("dataDelay", value, "string");
+		if (typeof(value) == "string") {
+			this._dataDelay = value;
+		}
 	}
 	set onStart(value) {
-		this.setProperty("onStart", value, "function");
+		if (typeof(value) == "function") {
+			this._onStart = value;
+		}
 	}
 	set onMove(value) {
-		this.setProperty("onMove", value, "function");
+		if (typeof(value) == "function") {
+			this._onMove = value;
+		}
 	}
 	set onStop(value) {
-		this.setProperty("onStop", value, "function");
+		if (typeof(value) == "function") {
+			this._onStop = value;
+		}
 	}
 	set debug(value) {
-		this.setProperty("debug", value, "boolean");
-	}
-	setProperty(name, value, type = "string", regexp, callback) {
-		if ((
-			type == "regexp" && typeof(value) == "string" && regexp instanceof RegExp && regexp.test(value)) || (
-			type == "array" && Array.isArray(value)) || (
-			type == "elemente" && typeof(value) == "object" && value instanceof HTMLElement) || (
-			type == typeof(value)) || (
-			type.match(/^WUI/) && typeof(value) == "object" && type == value.constructor.name
-		)) {
-			this["_"+name] = typeof(callback) == "function" ? callback(value) : value;
-			return true;
-		} else {
-			this["_"+name] = this.#defaults[name];
+		if (typeof(value) == "boolean") {
+			this._debug = value;
 		}
-		return false;
 	}
 	init() {
 		const debounce = (fn) => {

@@ -34,7 +34,7 @@ class WUIList {
 		return this._onClick;
 	}
 	set selector(value) {
-		if (typeof(value) == "string") {
+		if (typeof(value) == "string" && value != "") {
 			this._selector = value;
 			this._element = document.querySelector(value);
 			this._header = document.querySelector(value+" > .header");

@@ -172,7 +172,7 @@
 
 /* wui-grid mobile soft */
 
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
 	.wui-grid.soft.mobile > .body {
 		row-gap: 0;
 	}

@@ -12,7 +12,7 @@ class WUILanguage {
 		dataOutput: "text",
 		onLoad: null
 	};
-	log = [];
+	#log = [];
 	constructor (properties) {
 		Object.keys(this.#defaults).forEach(key => {
 			this[key] = typeof(properties) != "undefined" && key in properties ? properties[key] : this.#defaults[key];
@@ -40,42 +40,40 @@ class WUILanguage {
 		return this._onLoad;
 	}
 	set selector(value) {
-		if (this.setProperty("selector", value, "string")) {
+		if (typeof(value) == "string") {
+			this._selector = value;
 			this._elements = document.querySelectorAll(value);
 		}
 	}
 	set lang(value) {
-		this.setProperty("lang", value, "string");
+		if (typeof(value) == "string") {
+			this._lang = value;
+		}
 	}
 	set directory(value) {
-		this.setProperty("directory", value, "string");
+		if (typeof(value) == "string") {
+			this._directory = value;
+		}
 	}
 	set filePrefix(value) {
-		this.setProperty("filePrefix", value, "string");
+		if (typeof(value) == "string") {
+			this._filePrefix = value;
+		}
 	}
 	set dataKey(value) {
-		this.setProperty("dataKey", value, "string");
+		if (typeof(value) == "string") {
+			this._dataKey = value;
+		}
 	}
 	set dataOutput(value) {
-		this.setProperty("dataOutput", value, "string");
+		if (typeof(value) == "string") {
+			this._dataOutput = value;
+		}
 	}
 	set onLoad(value) {
-		this.setProperty("onLoad", value, "function");
-	}
-	setProperty(name, value, type = "string", regexp) {
-		if ((
-			type == "regexp" && typeof(value) == "string" && regexp instanceof RegExp && regexp.test(value)) || (
-			type == "array" && Array.isArray(value)) || (
-			type == "elemente" && typeof(value) == "object" && value instanceof HTMLElement) || (
-			type == typeof(value)) || (
-			type.match(/^WUI/) && typeof(value) == "object" && type == value.constructor.name
-		)) {
-			this["_"+name] = value;
-			return true;
-		} else {
-			this["_"+name] = this.#defaults[name];
+		if (typeof(value) == "function") {
+			this._onLoad = value;
 		}
-		return false;
 	}
 	load(lang = this.lang) {
 		const onLoad = () => {
@@ -100,7 +98,7 @@ class WUILanguage {
 				this._onLoad(lang);
 			}
 		}
-		if (this.log.indexOf(lang) == -1) {
+		if (this.#log.indexOf(lang) == -1) {
 			const script = document.createElement("script");
 			const token = new Date().getTime();
 			const src = this.directory+this.filePrefix+lang+".js?_="+token;
@@ -109,7 +107,7 @@ class WUILanguage {
 			script.setAttribute("src", src);
 			script.onload = onLoad;
 			document.getElementsByTagName("head")[0].appendChild(script);
-			this.log.push(lang);
+			this.#log.push(lang);
 		} else {
 			onLoad();
 		}

@@ -28,29 +28,19 @@ class WUISelector {
 		return this._onChange;
 	}
 	set selector(value) {
-		if (this.setProperty("selector", value, "string")) {
+		if (typeof(value) == "string" && value != "") {
+			this._selector = value;
 			this._element = document.querySelector(value);
 			this._box = document.querySelector(value+" > .box");
 		}
 	}
 	set onChange(value) {
-		this.setProperty("onChange", value, "function");
+		if (typeof(value) == "function") {
+			this._onChange = value;
+		}
 	}
 	getElement() {
 		return this._element;
-	}
-	setProperty(name, value, type = "string", regexp) {
-		if ((
-			type == "array" && Array.isArray(value)) || (
-			type == "element" && typeof(value) == "object" && value instanceof HTMLElement) || (
-			type == typeof(value)
-		)) {
-			this["_"+name] = value;
-			return true;
-		} else {
-			this["_"+name] = this.#defaults[name];
-		}
-		return false;
 	}
 	setProperties(properties) {
 		Object.keys(this.#defaults).forEach(key => {

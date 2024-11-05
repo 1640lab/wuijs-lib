@@ -91,10 +91,49 @@ class WUICheckbox {
 		return this._input;
 	}
 	init() {
-		this._element.addEventListener("mousedown", event => {
+		/*this._element.addEventListener("mousedown", event => {
 			event = new Event("change");
 			this.checked = !this._input.checked;
 			this._input.dispatchEvent(event);
+		});*/
+		this._drag = false;
+		this._initX = null;
+		this._direction = null;
+		["touchstart", "mousedown"].forEach(type => {
+			this._element.addEventListener(type, (event) => {
+				if (!this._drag) {
+					const initX = (event.type == "touchstart" ? event.touches[0].clientX : event.clientX || event.pageX) - event.target.offsetParent.offsetLeft;
+					this._initX = initX;
+					this._drag = true;
+				}
+			});
+		});
+		["touchmove", "mousemove"].forEach(type => {
+			this._element.addEventListener(type, (event) => {
+				if (this._drag) {
+					const initX = parseFloat(this._initX);
+					const moveX = (event.type == "touchmove" ? event.touches[0].clientX : event.clientX || event.pageX) - event.target.offsetParent.offsetLeft;
+					const diffX = moveX -initX;
+					const direction = diffX > 10 ? "right" : diffX < -10 ? "left" : null;
+					this._direction = direction;
+				}
+			});
+		});
+		["touchend", "mouseup"].forEach(type => {
+			document.addEventListener(type, () => {
+				if (this._drag) {
+					this._drag = false;
+					this._initX = null;
+					if (this._direction != null) {
+						const event = new Event("change");
+						this.checked = this._direction == "left" ? false : this._direction == "right" ? true : false;
+						this._input.dispatchEvent(event);
+						setTimeout(() => {
+							this._direction = null;
+						}, 400);
+					}
+				}
+			});
 		});
 		this._input.addEventListener("change", event => {
 			this.#setStyle();

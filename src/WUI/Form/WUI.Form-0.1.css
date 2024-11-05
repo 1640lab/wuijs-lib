@@ -558,7 +558,7 @@
 .wui-form .link.highlight > .icon {
 	background-color: var(--wui-form-text-linkcolor-highlight);
 }
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
 	.wui-form {
 		padding-top: 0;
 	}
@@ -616,7 +616,7 @@
 	left: 0;
 	height: auto;
 }
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
 	.wui-form.grid fieldset {
 		grid-gap: 5px;
 	}
@@ -667,7 +667,7 @@
 .wui-form.line fieldset > .field:not(.checkbox):not(.range):not(.button):focus-within > label {
 	top: calc(-0.7 * var(--wui-form-input-height) - var(--wui-form-input-borderwidth));
 }
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
 	.wui-form.line fieldset > .field:not(.checkbox):not(.range):not(.button) > label.fixed,
 	.wui-form.line fieldset > .field:not(.checkbox):not(.range):not(.button) > label.notempty,
 	.wui-form.line fieldset > .field:not(.checkbox):not(.range):not(.button):focus-within > label {
@@ -706,7 +706,7 @@
 	position: relative;
     top: calc(-1 * var(--wui-form-input-borderwidth));
 }
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
 	.wui-form.border fieldset > .field:not(.checkbox):not(.range):not(.button) > label.fixed,
 	.wui-form.border fieldset > .field:not(.checkbox):not(.range):not(.button) > label.notempty,
 	.wui-form.border fieldset > .field:not(.checkbox):not(.range):not(.button):focus-within > label {
@@ -722,7 +722,7 @@
 	-moz-border-radius: var(--radius);
 	border-radius: var(--radius);
 }
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
 	.wui-form.border.curve fieldset > .field:not(.checkbox):not(.range):not(.button) {
 		--radius: calc(var(--wui-form-input-responsive-height) / 2);
 	}
@@ -730,7 +730,7 @@
 
 /* wui-form mobile */
 
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
 	.wui-form.mobile legend {
 		padding: 10px;
 		font-size: 17px;
@@ -893,7 +893,7 @@
 .wui-form:not(.grid) fieldset > .field.icon-right data {
 	padding-right: 40px !important;
 }
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
 	.wui-form fieldset > .field.icon > .wui-svgicon,
 	.wui-form fieldset > .field.icon-left > .wui-svgicon, 
 	.wui-form fieldset > .field.icon-right > .wui-svgicon {
@@ -924,7 +924,7 @@
 .wui-form fieldset > .field.checkbox.invalid > .wui-checkbox:not(.disabled) {
 	border-color: var(--wui-checkbox-default-bordercolor-invalid) !important;
 }
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
 	.wui-form.mobile fieldset > .field.checkbox > .wui-checkbox {
 		right: 10px;
 	}
@@ -947,7 +947,7 @@
 	margin-right: 15px;
 	margin-bottom: 20px;
 }
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
 	.wui-form.mobile fieldset > .field.button > .input {
 		right: 10px;
 	}

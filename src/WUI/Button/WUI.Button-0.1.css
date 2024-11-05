@@ -35,7 +35,7 @@
 .wui-button.hidden {
 	display: none;
 }
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
 	.wui-button {
 		--radius: calc(var(--wui-button-default-responsive-height) / 2);
 		height: var(--wui-button-default-responsive-height);
@@ -93,7 +93,7 @@
 	background-color: var(--wui-submit-default-bgcolor-disabled);
 	color: var(--wui-button-submit-textcolor-disabled);
 }
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
 	.wui-button.submit {
 		--radius: calc(var(--wui-button-submit-responsive-height) / 2);
 		height: var(--wui-button-submit-responsive-height);
@@ -199,7 +199,7 @@
 .wui-button > .wui-svgicon.float-right {
 	right: var(--wui-button-icon-float-padding);
 }
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
 	.wui-button > .wui-svgicon.float-left {
 		left: var(--wui-button-icon-float-responsive-padding);
 	}

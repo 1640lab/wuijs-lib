@@ -101,7 +101,7 @@
 
 /* wui-tabs mobile */
 
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
 	.wui-tabs.mobile > .bar > .tab,
 	.wui-tabs.mobile > .bar > .tab:hover,
 	.wui-tabs.mobile > .bar > .tab.selected {

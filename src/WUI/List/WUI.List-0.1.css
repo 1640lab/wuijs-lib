@@ -181,12 +181,12 @@
 	justify-content: flex-end;
 	align-items: center;
 }
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
 	.wui-list {
 		font-size: 15px;
 	}
 }
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 768px) {
 	.wui-list > .body.scroll {
 		scrollbar-color: var(--wui-list-scroll-bgcolor-out) transparent;
 	}

@@ -66,7 +66,8 @@ class WUIGrid {
 		return this._onDblclick;
 	}
 	set selector(value) {
-		if (this.setProperty("selector", value, "string")) {
+		if (typeof(value) == "string" && value != "") {
+			this._selector = value;
 			this._element = document.querySelector(value);
 			this._head = document.querySelector(value+" > .head");
 			this._body = document.querySelector(value+" > .body");
@@ -74,63 +75,72 @@ class WUIGrid {
 		}
 	}
 	set columns(value) {
-		this.setProperty("columns", value, "array");
+		if (Array.isArray(value)) {
+			this._columns = value;
+		}
 	}
 	set ids(value) {
-		this.setProperty("ids", value, "array");
+		if (Array.isArray(value)) {
+			this._ids = value;
+		}
 	}
 	set rows(value) {
-		this.setProperty("rows", value, "array");
+		if (Array.isArray(value)) {
+			this._rows = value;
+		}
 	}
 	set contents(value) {
-		this.setProperty("contents", value, "array");
+		if (Array.isArray(value)) {
+			this._contents = value;
+		}
 	}
 	set rowOpenIconClass(value) {
-		this.setProperty("rowOpenIconClass", value, "string");
+		if (typeof(value) == "string") {
+			this._rowOpenIconClass = value;
+		}
 	}
 	set rowCloseIconClass(value) {
-		this.setProperty("rowCloseIconClass", value, "string");
+		if (typeof(value) == "string") {
+			this._rowCloseIconClass = value;
+		}
 	}
 	set scrollable(value) {
-		this.setProperty("scrollable", value, "boolean");
+		if (typeof(value) == "boolean") {
+			this._scrollable = value;
+		}
 	}
 	set selectable(value) {
-		this.setProperty("selectable", value, "boolean");
+		if (typeof(value) == "boolean") {
+			this._selectable = value;
+		}
 	}
 	set extensible(value) {
-		this.setProperty("extensible", value, "boolean");
+		if (typeof(value) == "boolean") {
+			this._extensible = value;
+		}
 	}
 	set extendOnClick(value) {
-		this.setProperty("extendOnClick", value, "boolean");
+		if (typeof(value) == "boolean") {
+			this._extendOnClick = value;
+		}
 	}
 	set dataAction(value) {
-		this.setProperty("dataAction", value, "string");
+		if (typeof(value) == "string") {
+			this._dataAction = value;
+		}
 	}
 	set onClick(value) {
-		this.setProperty("onClick", value, "function");
+		if (typeof(value) == "function") {
+			this._onClick = value;
+		}
 	}
 	set onDblclick(value) {
-		this.setProperty("onDblclick", value, "function");
+		if (typeof(value) == "function") {
+			this._onDblclick = value;
+		}
 	}
 	getElement() {
 		return this._element;
-	}
-	setProperty(name, value, type = "string", regexp) {
-		if ((
-			name.match(/^\w+$/) && name in this.#defaults
-		) && ((
-			//type == "regexp" && typeof(value) == "string" && regexp instanceof RegExp && regexp.test(value)) || (
-			type == "array" && Array.isArray(value)) || (
-			type == "elemente" && typeof(value) == "object" && value instanceof HTMLElement) || (
-			type == typeof(value)) || (
-			type.match(/^WUI/) && typeof(value) == "object" && type == value.constructor.name
-		))) {
-			this["_"+name] = value;
-			return true;
-		} else {
-			this["_"+name] = this.#defaults[name];
-		}
-		return false;
 	}
 	init() {
 		if (this._scrollable) {

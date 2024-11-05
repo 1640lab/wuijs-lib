@@ -41,6 +41,7 @@ class WUIDatebox {
 		resetText: "",
 		doneText: "",
 		enabled: true,
+		onOpen: null,
 		onChange: null
 	};
 	static initClass() {
@@ -84,6 +85,9 @@ class WUIDatebox {
 	}
 	get enabled() {
 		return this._enabled;
+	}
+	get onOpen() {
+		return this._onOpen;
 	}
 	get onChange() {
 		return this._onChange;
@@ -149,6 +153,11 @@ class WUIDatebox {
 			this.#setStyle();
 		}
 	}
+	set onOpen(value) {
+		if (typeof(value) == "function") {
+			this._onOpen = value;
+		}
+	}
 	set onChange(value) {
 		if (typeof(value) == "function") {
 			this._onChange = value;
@@ -175,7 +184,7 @@ class WUIDatebox {
 			const image = getComputedStyle(element).getPropertyValue("--wui-datebox-"+name+"image-src").replace(/currentColor/g, color);
 			return image;
 		}
-		this._calendar = document.createElement("div");
+		this._box = document.createElement("div");
 		this._header = document.createElement("div");
 		this._period = document.createElement("div");
 		this._prev = document.createElement("div");
@@ -206,16 +215,16 @@ class WUIDatebox {
 		this._footer.className = "footer";
 		this._footer.appendChild(this._reset);
 		this._footer.appendChild(this._done);
-		this._calendar.className = "calendar hidden";
-		this._calendar.appendChild(this._header);
-		this._calendar.appendChild(this._months);
-		this._calendar.appendChild(this._week);
-		this._calendar.appendChild(this._days);
-		this._calendar.appendChild(this._footer);
-		this._element.appendChild(this._calendar);
+		this._box.className = "box hidden";
+		this._box.appendChild(this._header);
+		this._box.appendChild(this._months);
+		this._box.appendChild(this._week);
+		this._box.appendChild(this._days);
+		this._box.appendChild(this._footer);
+		this._element.appendChild(this._box);
 		this._input.style.backgroundImage = bgImage("picker", this._input.disabled ? "disabled" : "out");
-		this._prev.style.backgroundImage = bgImage("calendar-prev", this._input.disabled ? "disabled" : "out");
-		this._next.style.backgroundImage = bgImage("calendar-next", this._input.disabled ? "disabled" : "out");
+		this._prev.style.backgroundImage = bgImage("box-prev", this._input.disabled ? "disabled" : "out");
+		this._next.style.backgroundImage = bgImage("box-next", this._input.disabled ? "disabled" : "out");
 		["mouseover", "mouseout", "focus", "blur"].forEach(event => {
 			const pickerEvent = this._input.disabled ? "disabled" : event.replace(/mouse/, "");
 			this._input.addEventListener(event, () => {
@@ -227,8 +236,8 @@ class WUIDatebox {
 			});
 		});
 		this._input.addEventListener("click", () => {
-			this._calendar.classList.toggle("hidden");
-			if (!this._calendar.classList.contains("hidden")) {
+			this._box.classList.toggle("hidden");
+			if (!this._box.classList.contains("hidden")) {
 				this.open();
 			}
 		});
@@ -240,9 +249,9 @@ class WUIDatebox {
 	}
 	open() {
 		const today = (() => {
-			const now = new Date();
-			const offset = now.getTimezoneOffset();
-			return new Date(now.getTime() - offset*60*1000).toISOString().split("T")[0];
+			const date = new Date();
+			const offset = date.getTimezoneOffset();
+			return new Date(date.getTime() - offset*60*1000).toISOString().split("T")[0];
 		})();
 		this._todayValue = today;
 		this._todayYear = today.replace(/-\d{2}-\d{2}/, "");
@@ -251,10 +260,13 @@ class WUIDatebox {
 		this._targetDate = new Date(this._targetValue);
 		this._targetMode = "days";
 		this._resetValue = this._targetValue;
-		this.load();	
+		this.load();
+		if (typeof(this._onOpen) == "function") {
+			this._onOpen(this._input.value);
+		}
 	}
 	close() {
-		this._calendar.classList.add("hidden");
+		this._box.classList.add("hidden");
 	}
 	toggle() {
 		this._targetMode = this._targetMode == "days" ? "months" : "days";
@@ -293,7 +305,7 @@ class WUIDatebox {
 		const month = this._targetDate.getMonth() +1;
 		let y = year;
 		let m = 1;
-		this._calendar.style.height = "260px";
+		this._box.style.height = "260px";
 		this._period.innerHTML = this._monthsNames[month -1]+" "+year+" <div class='icon up'></div>";
 		this._months.style.display = "grid";
 		this._months.innerHTML = "";
@@ -354,7 +366,7 @@ class WUIDatebox {
 		let ini = 0;
 		let rows = 5;
 		let d = 1;
-		this._calendar.style.height = "260px";
+		this._box.style.height = "260px";
 		this._period.innerHTML = this._monthsNames[month -1]+" "+year+" <div class='icon down'></div>";
 		this._months.style.display = "none";
 		this._months.innerHTML = "";
@@ -402,7 +414,7 @@ class WUIDatebox {
 				});
 				cell.appendChild(button);
 				if (i == 7*5 -1 && d < lasmday) {
-					this._calendar.style.height = "290px";
+					this._box.style.height = "290px";
 					rows++;
 				}
 				d++;
@@ -458,7 +470,7 @@ WUIDatebox.initClass();
 HTML struture:
 <div class="wui-datebox">
 	<input type="date" value="">
-	<div class="calendar">
+	<div class="box">
 		<div class="header">
 			<div class="period"></div>
 			<div class="prev"></div>
@@ -467,7 +479,10 @@ HTML struture:
 		<div class="years"></div>
 		<div class="week"></div>
 		<div class="days"></div>
-		<div class="footer"></div>
+		<div class="footer">
+			<div class="reset"></div>
+			<div class="done"></div>
+		</div>
 	</div>
 </div>
 */

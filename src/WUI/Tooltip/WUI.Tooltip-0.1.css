@@ -144,7 +144,7 @@
 .wui-tooltip-bottom.locked {
 	display: none;
 }
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
 	.wui-tooltip,
 	.wui-tooltip-top,
 	.wui-tooltip-left,

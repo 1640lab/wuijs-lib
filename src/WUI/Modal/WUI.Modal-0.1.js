@@ -62,7 +62,8 @@ class WUIModal {
 		return this._onBack;
 	}
 	set selector(value) {
-		if (this.setProperty("selector", value, "string")) {
+		if (typeof(value) == "string" && value != "") {
+			this._selector = value;
 			this._element = document.querySelector(value);
 			this._box = document.querySelector(value+" > .box");
 			this._header = document.querySelector(value+" > .box > .header");
@@ -75,25 +76,39 @@ class WUIModal {
 		}
 	}
 	set delay(value) {
-		this.setProperty("delay", value, "number");
+		if (typeof(value) == "number") {
+			this._delay = value;
+		}
 	}
 	set startOpen(value) {
-		this.setProperty("startOpen", value, "function");
+		if (typeof(value) == "function") {
+			this._startOpen = value;
+		}
 	}
 	set onOpen(value) {
-		this.setProperty("onOpen", value, "function");
+		if (typeof(value) == "function") {
+			this._onOpen = value;
+		}
 	}
 	set onMaximize(value) {
-		this.setProperty("onMaximize", value, "function");
+		if (typeof(value) == "function") {
+			this._onMaximize = value;
+		}
 	}
 	set startClose(value) {
-		this.setProperty("startClose", value, "function");
+		if (typeof(value) == "function") {
+			this._startClose = value;
+		}
 	}
 	set onClose(value) {
-		this.setProperty("onClose", value, "function");
+		if (typeof(value) == "function") {
+			this._onClose = value;
+		}
 	}
 	set onBack(value) {
-		this.setProperty("onBack", value, "function");
+		if (typeof(value) == "function") {
+			this._onBack = value;
+		}
 	}
 	getElement() {
 		return this._element;
@@ -130,21 +145,6 @@ class WUIModal {
 			}
 		});
 		return status.join(",");
-	}
-	setProperty(name, value, type = "string", regexp) {
-		if ((
-			type == "regexp" && typeof(value) == "string" && regexp instanceof RegExp && regexp.test(value)) || (
-			type == "array" && Array.isArray(value)) || (
-			type == "element" && typeof(value) == "object" && value instanceof HTMLElement) || (
-			type == typeof(value)) || (
-			type.match(/^WUI/) && typeof(value) == "object" && type == value.constructor.name
-		)) {
-			this["_"+name] = value;
-			return true;
-		} else {
-			this["_"+name] = this.#defaults[name];
-		}
-		return false;
 	}
 	setProperties(properties) {
 		Object.keys(this.#defaults).forEach(key => {
@@ -267,7 +267,7 @@ class WUIModal {
 	open(onOpen = this._onOpen, delay = this._delay) {
 		const page = Boolean(this._element.classList.contains("page"));
 		const small = Boolean(this._element.classList.contains("small"));
-		const mobile = Boolean(window.matchMedia("(max-width: 599px)").matches);
+		const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
 		const bodyHeight = document.body.offsetHeight;
 		const bgcolor = getComputedStyle(document.documentElement).getPropertyValue("--wui-modal-bgcolor").replace(/\s+/g, "").replace("rgba(", "").replace(")", "").split(",");
 		let under = null;
@@ -345,7 +345,7 @@ class WUIModal {
 	}
 	maximize(onMaximize = this._onMaximize, delay = this._delay) {
 		const page = Boolean(this._element.classList.contains("page"));
-		const mobile = Boolean(window.matchMedia("(max-width: 599px)").matches);
+		const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
 		const boxTop = this._box != null ? this._box.offsetTop : 0;
 		let step = 10;
 		this._element.classList.add("maximized");
@@ -367,7 +367,7 @@ class WUIModal {
 	}
 	close(onClose = this._onClose, delay = this._delay) {
 		const page = Boolean(this._element.classList.contains("page"));
-		const mobile = Boolean(window.matchMedia("(max-width: 599px)").matches);
+		const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
 		const bodyHeight = document.body.offsetHeight;
 		const boxTop = this._box != null ? this._box.offsetTop : 0;
 		const bgcolor = getComputedStyle(document.documentElement).getPropertyValue("--wui-modal-bgcolor").replace(/\s+/g, "").replace("rgba(", "").replace(")", "").split(",");
@@ -434,7 +434,7 @@ class WUIModal {
 }
 /*
 HTML message struture:
-<div class="wui-modal message [mobile]">
+<div class="wui-modal message [mobile] [priority]">
 	<div class="box">
 		<div class="body">
 			<div class="icon"></div>

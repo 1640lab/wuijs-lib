@@ -31,38 +31,31 @@ class WUILoader {
 		return this._dataSize;
 	}
 	set selector(value) {
-		if (this.setProperty("selector", value, "string")) {
+		if (typeof(value) == "string" && value != "") {
+			this._selector = value;
 			this._elements = document.querySelectorAll(value);
 		}
 	}
 	set style(value) {
-		this.setProperty("type", value, "regexp", new RegExp("^("+this.#styles.join("|")+")$", "i"), (value) => {return value.toLowerCase()});
+		if (typeof(value) == "string" && value.match(new RegExp("^("+this.#styles.join("|")+")$", "i"))) {
+			this._buttonsStyle = value.toLocaleLowerCase();
+		}
 	}
 	set size(value) {
-		if (this.setProperty("size", value, "number")) {
+		if (typeof(value) == "number") {
+			this._size = value;
 			this._scale = value/80;
 		}
 	}
 	set dataStyle(value) {
-		this.setProperty("dataStyle", value, "string");
+		if (typeof(value) == "string") {
+			this._dataStyle = value;
+		}
 	}
 	set dataSize(value) {
-		this.setProperty("dataSize", value, "string");
-	}
-	setProperty(name, value, type = "string", regexp, callback) {
-		if ((
-			type == "regexp" && typeof(value) == "string" && regexp instanceof RegExp && regexp.test(value)) || (
-			type == "array" && Array.isArray(value)) || (
-			type == "elemente" && typeof(value) == "object" && value instanceof HTMLElement) || (
-			type == typeof(value)) || (
-			type.match(/^WUI/) && typeof(value) == "object" && type == value.constructor.name
-		)) {
-			this["_"+name] = typeof(callback) == "function" ? callback(value) : value;
-			return true;
-		} else {
-			this["_"+name] = this.#defaults[name];
+		if (typeof(value) == "string") {
+			this._dataSize = value;
 		}
-		return false;
 	}
 	init() {
 		this._elements.forEach(element => {

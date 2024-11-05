@@ -257,8 +257,8 @@ class WUIForm {
 	reset() {
 		this._form.reset();
 		this._element.querySelectorAll("input,select,textarea").forEach(input => {
-			const field = input.parentNode.querySelector(".field") || input.parentNode.parentNode.querySelector(".field") || this.getField(input.name);
-			const label = input.parentNode.querySelector("label") || input.parentNode.parentNode.querySelector("label") || this.getLabel(input.name);
+			const field = input.parentNode.querySelector(".field") || input.parentNode.parentNode.querySelector(".field") || input.name != "" ? this.getField(input.name) : null;
+			const label = input.parentNode.querySelector("label") || input.parentNode.parentNode.querySelector("label") || input.name != "" ? this.getLabel(input.name) : null;
 			if (field != null) {
 				field.classList.remove("invalid");
 			}
@@ -308,20 +308,24 @@ HTML struture:
 				<textarea name="textarea"></textarea>
 			</div>
 			<div class="field checkbox">
-				<label for="wuiCheckbox"">Checkbox</label>
-				<input type="checkbox" name="checkbox" value="1">
+				<label for="checkbox">Checkbox</label>
+				<input id="checkbox" type="checkbox" name="checkbox" value="1">
 			</div>
 			<div class="field">
 				<label>Data</label>
 				<data value="" class="name"></data>
 			</div>
 			<div class="field">
-				<label for="wuiCheckbox"">WUI Datebox</label>
+				<label>WUI Datebox</label>
 				<div class="wui-datebox"><input type="date" name="wuiDatebox" value=""></div>
 			</div>
+			<div class="field">
+				<label>WUI Timebox</label>
+				<div class="wui-timebox"><input type="time" name="wuiTimebox" value=""></div>
+			</div>
 			<div class="field checkbox">
-				<label for="wuiCheckbox"">WUI Checkbox</label>
-				<div class="wui-checkbox"><input type="checkbox" name="wuiCheckbox" value="1"></div>
+				<label for="wuiCheckbox">WUI Checkbox</label>
+				<div class="wui-checkbox"><input id="wuiCheckbox" type="checkbox" name="wuiCheckbox" value="1"></div>
 			</div>
 		</fieldset>
 		<div class="text"></div>

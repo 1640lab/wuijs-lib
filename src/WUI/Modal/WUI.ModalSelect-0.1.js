@@ -1,9 +1,10 @@
-/* WUIModalSelector v0.1 */
+/* WUIModalSelect v0.1 */
 
-class WUIModalSelector extends WUIModal {
+class WUIModalSelect extends WUIModal {
 	static version = "0.1";
 	constructor (properties) {
 		super(properties);
+		this._input = null;
 		this._value = "";
 		this._options = [];
 		this._multiple = false;
@@ -59,43 +60,69 @@ class WUIModalSelector extends WUIModal {
 		return this._onSelect;
 	}
 	set value(value) {
-		super.setProperty("value", value, "string");
+		if (typeof(value) == "string") {
+			this._value = value;
+		}
 	}
 	set options(value) {
-		super.setProperty("options", value, "array");
+		if (Array.isArray(value)) {
+			this._options = value;
+		}
 	}
 	set multiple(value) {
-		super.setProperty("multiple", value, "boolean");
+		if (typeof(value) == "boolean") {
+			this._multiple = value;
+		}
 	}
 	set emptyText(value) {
-		super.setProperty("emptyText", value, "string");
+		if (typeof(value) == "string") {
+			this._emptyText = value;
+		}
 	}
 	set selecteableText(value) {
-		super.setProperty("selecteableText", value, "boolean");
+		if (typeof(value) == "boolean") {
+			this._selecteableText = value;
+		}
 	}
 	set maxScreenWidth(value) {
-		super.setProperty("maxScreenWidth", value, "integer");
+		if (typeof(value) == "integer") {
+			this._maxScreenWidth = value;
+		}
 	}
 	set acceptButton(value) {
-		super.setProperty("acceptButton", value, "WUIButton");
+		if (typeof(value) == "object" && value.constructor.name == "WUIButton") {
+			this._acceptButton = value;
+		}
 	}
 	set acceptDisplay(value) {
-		super.setProperty("acceptDisplay", value, "boolean");
+		if (typeof(value) == "boolean") {
+			this._acceptDisplay = value;
+		}
 	}
 	set acceptOnClick(value) {
-		super.setProperty("acceptOnClick", value, "function");
+		if (typeof(value) == "function") {
+			this._acceptOnClick = value;
+		}
 	}
 	set cancelButton(value) {
-		super.setProperty("cancelButton", value, "WUIButton");
+		if (typeof(value) == "object" && value.constructor.name == "WUIButton") {
+			this._cancelButton = value;
+		}
 	}
 	set cancelDisplay(value) {
-		super.setProperty("cancelDisplay", value, "boolean");
+		if (typeof(value) == "boolean") {
+			this._cancelDisplay = value;
+		}
 	}
 	set cancelOnClick(value) {
-		super.setProperty("cancelOnClick", value, "function");
+		if (typeof(value) == "function") {
+			this._cancelOnClick = value;
+		}
 	}
 	set onSelect(value) {
-		super.setProperty("onSelect", value, "function");
+		if (typeof(value) == "function") {
+			this._onSelect = value;
+		}
 	}
 	build() {
 		if (this._box == null) {
@@ -104,7 +131,7 @@ class WUIModalSelector extends WUIModal {
 			const footer = document.createElement("div");
 			const cancelButton = document.createElement("button");
 			const acceptButton = document.createElement("button");
-			this._element.classList.add("wui-modal", "selector", "mobile", "priority");
+			this._element.classList.add("wui-modal", "select", "mobile", "priority");
 			this._element.appendChild(this._box);
 			box.classList.add("box");
 			box.appendChild(options);
@@ -159,19 +186,28 @@ class WUIModalSelector extends WUIModal {
 					options[name] = value;
 				}
 			});
-			["touchstart", "mousedown"].forEach(type => {
-				input.style.position = "relative";
-				input.style.zIndex = 1;
-				input.addEventListener(type, (event) => {
-					const screenWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-					if ((type == "touchstart" && screenWidth <= this._maxScreenWidth) || options.force) {
+			input.style.position = "relative";
+			input.style.zIndex = 1;
+			input._touches = [];
+			input._drag = false;
+			input.addEventListener("touchstart", (event) => {
+				input._touches = event.touches || event.targetTouches;
+				input._drag = false;
+			});
+			input.addEventListener("touchmove", (event) => {
+				input._touches = [];
+				input._drag = true;
+			});
+			input.addEventListener("touchend", (event) => {
+				const screenWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+				if (screenWidth <= this._maxScreenWidth || options.force) {
+					if (!input._drag) {
 						if (event.cancelable) {
 							event.preventDefault();
 						}
 						const values = input.value.split(",");
 						const rect = input.getBoundingClientRect();
-						const touches = event.touches || event.targetTouches;
-						const rightTouch = event.target.clientWidth - (touches[0].clientX - rect.left);
+						const rightTouch = event.target.clientWidth - (input._touches[0].clientX - rect.left);
 						input.setAttribute("dir", options.direction);
 						input.querySelectorAll("option").forEach(option => {
 							option.style.display = "none";
@@ -193,13 +229,8 @@ class WUIModalSelector extends WUIModal {
 							this._cancelDisplay = true;
 							this.open();
 						}
-					} else {
-						input.setAttribute("dir", "ltr");
-						input.querySelectorAll("option").forEach(option => {
-							option.style.display = "block";
-						});
 					}
-				});
+				}
 			});
 		}
 	}
@@ -282,21 +313,30 @@ class WUIModalSelector extends WUIModal {
 	}
 	close() {
 		super.close();
+		if (this._input != null) {
+			this._input.setAttribute("dir", "ltr");
+			this._input.querySelectorAll("option").forEach(option => {
+				option.style.display = "block";
+			});
+		}
 		this._input = null;
 		this._acceptDisplay = true;
+		this._acceptOnClick = null;
 		this._cancelDisplay = true;
+		this._cancelOnClick = null;
 		this._onOpen = null;
 		this._onClose = null;
 		this._onSelect = null;
-		this._acceptOnClick = null;
-		this._cancelOnClick = null;
 	}
 }
 /*
 HTML struture:
-<div class="wui-modal selector mobile priority">
+<div class="wui-modal select [mobile] [priority]">
 	<div class="box">
-		<div class="options"></div>
+		<div class="options">
+			<div class="option"></div>
+			...
+		</div>
 		<div class="footer">
 			<button class="wui-button cancel flat wui-language" data-key="buttons.cancel"></button>
 			<button class="wui-button submit wui-language" data-key="buttons.accept"></button>

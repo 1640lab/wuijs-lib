@@ -155,7 +155,7 @@
 .wui-modal > .box > .footer > a.hidden {
 	display: none !important;
 }
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
 	.wui-modal > .box > .header > .back {
 		top: 15px;
 	}
@@ -211,7 +211,7 @@
 		color: var(--wui-button-highlight-textcolor-mobile);
 	}
 }
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 768px) {
 	.wui-modal > .box > .body.scroll {
 		scrollbar-color: var(--wui-modal-body-scroll-bgcolor-out) transparent;
 	}
@@ -234,7 +234,7 @@
 
 /* wui-modal mobile */
 
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
 	/*.wui-modal.mobile > .box > .header > .back {
 		top: 15pt;
 	}
@@ -305,7 +305,7 @@
 	font-size: 14px;
 	color: var(--wui-modal-message-linkcolor);
 }
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
 	.wui-modal.message > .box {
 		width: var(--wui-modal-message-mobile-box-width);
 	}
@@ -341,7 +341,7 @@
 
 /* wui-modal message mobile */
 
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
 }
 
 /* wui-modal page */
@@ -366,7 +366,7 @@
 	width: var(--wui-modal-smallpage-box-width);
 	height: var(--wui-modal-smallpage-box-height);
 }
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
 	.wui-modal.page > .box {
 		top: 100%;
 		left: 0;
@@ -421,7 +421,7 @@
 		transition-duration: .1s;
 	}
 }
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 768px) {
 	.wui-modal.page > .box {
 		top: auto !important;
 		left: auto !important;
@@ -433,7 +433,7 @@
 
 /* wui-modal page mobile */
 
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
 }
 
 /* wui-button */
