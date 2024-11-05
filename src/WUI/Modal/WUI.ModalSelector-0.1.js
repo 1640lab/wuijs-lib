@@ -9,7 +9,7 @@ class WUIModalSelector extends WUIModal {
 		this._multiple = false;
 		this._emptyText = "";
 		this._selecteableText = false;
-		this._maxScreenWidth = 600;
+		this._maxScreenWidth = 768;
 		this._acceptButton = new WUIButton({selector: properties.selector+" > .box > .footer > button.submit"});
 		this._acceptDisplay = true;
 		this._acceptOnClick = null;
@@ -61,17 +61,17 @@ class WUIModalSelector extends WUIModal {
 	set value(value) {
 		super.setProperty("value", value, "string");
 	}
-	set emptyText(value) {
-		super.setProperty("emptyText", value, "string");
-	}
-	set selecteableText(value) {
-		super.setProperty("selecteableText", value, "boolean");
-	}
 	set options(value) {
 		super.setProperty("options", value, "array");
 	}
 	set multiple(value) {
 		super.setProperty("multiple", value, "boolean");
+	}
+	set emptyText(value) {
+		super.setProperty("emptyText", value, "string");
+	}
+	set selecteableText(value) {
+		super.setProperty("selecteableText", value, "boolean");
 	}
 	set maxScreenWidth(value) {
 		super.setProperty("maxScreenWidth", value, "integer");
@@ -164,20 +164,24 @@ class WUIModalSelector extends WUIModal {
 				input.style.zIndex = 1;
 				input.addEventListener(type, (event) => {
 					const screenWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-					if ((type == "touchstart" && screenWidth < this._maxScreenWidth) || options.force) {
-						event.preventDefault();
+					if ((type == "touchstart" && screenWidth <= this._maxScreenWidth) || options.force) {
+						if (event.cancelable) {
+							event.preventDefault();
+						}
 						const values = input.value.split(",");
 						const rect = input.getBoundingClientRect();
 						const touches = event.touches || event.targetTouches;
 						const rightTouch = event.target.clientWidth - (touches[0].clientX - rect.left);
+						input.setAttribute("dir", options.direction);
+						input.querySelectorAll("option").forEach(option => {
+							option.style.display = "none";
+						});
 						if (rightTouch <= 30) {
 							this._input = input;
 							this._value = input.value;
 							this._options = [];
 							this._selecteableText = false;
-							this._input.setAttribute("dir", options.direction);
 							this._input.querySelectorAll("option").forEach(option => {
-								option.style.display = "none";
 								this._options.push({
 									icon: null,
 									text: option.text || option.emptyText || "",
