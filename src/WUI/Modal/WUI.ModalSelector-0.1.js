@@ -165,11 +165,11 @@ class WUIModalSelector extends WUIModal {
 				input.addEventListener(type, (event) => {
 					const screenWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
 					if ((type == "touchstart" && screenWidth < this._maxScreenWidth) || options.force) {
+						event.preventDefault();
 						const values = input.value.split(",");
 						const rect = input.getBoundingClientRect();
 						const touches = event.touches || event.targetTouches;
 						const rightTouch = event.target.clientWidth - (touches[0].clientX - rect.left);
-						event.preventDefault();
 						if (rightTouch <= 30) {
 							this._input = input;
 							this._value = input.value;
