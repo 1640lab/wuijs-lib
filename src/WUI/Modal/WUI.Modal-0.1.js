@@ -194,6 +194,9 @@ class WUIModal {
 			}
 		});
 		this._bodyStyle = {};
+		if (navigator.userAgent.match(/iphone|ipad|android/i) && navigator.maxTouchPoints > 1) {
+			this._element.classList.add("mobile");
+		}
 		if (this._topbar != null) {
 			this._drag = false;
 			this._initY = null;
@@ -264,7 +267,7 @@ class WUIModal {
 	open(onOpen = this._onOpen, delay = this._delay) {
 		const page = Boolean(this._element.classList.contains("page"));
 		const small = Boolean(this._element.classList.contains("small"));
-		const mobile = Boolean(this._element.classList.contains("mobile"));
+		const mobile = Boolean(window.matchMedia("(max-width: 599px)").matches);
 		const bodyHeight = document.body.offsetHeight;
 		const bgcolor = getComputedStyle(document.documentElement).getPropertyValue("--wui-modal-bgcolor").replace(/\s+/g, "").replace("rgba(", "").replace(")", "").split(",");
 		let under = null;
@@ -328,7 +331,7 @@ class WUIModal {
 					const opacity = Math.round((1 -ease) * parseFloat(bgcolor[3]) * 100) / 100;
 					under._element.style.backgroundColor = "rgba("+bgcolor[0]+", "+bgcolor[1]+", "+bgcolor[2]+", "+opacity+")";
 				}
-				if (under._element.classList.contains("page") && page) {
+				if (under._element.classList.contains("page") && page && mobile) {
 					under._box.style.top = (bodyHeight - (bodyHeight -44) - 22 * ease)+"px";
 					under._box.style.left = (10 * ease)+"px";
 					under._box.style.right = (10 * ease)+"px";
@@ -342,7 +345,7 @@ class WUIModal {
 	}
 	maximize(onMaximize = this._onMaximize, delay = this._delay) {
 		const page = Boolean(this._element.classList.contains("page"));
-		const mobile = Boolean(this._element.classList.contains("mobile"));
+		const mobile = Boolean(window.matchMedia("(max-width: 599px)").matches);
 		const boxTop = this._box != null ? this._box.offsetTop : 0;
 		let step = 10;
 		this._element.classList.add("maximized");
@@ -364,7 +367,7 @@ class WUIModal {
 	}
 	close(onClose = this._onClose, delay = this._delay) {
 		const page = Boolean(this._element.classList.contains("page"));
-		const mobile = Boolean(this._element.classList.contains("mobile"));
+		const mobile = Boolean(window.matchMedia("(max-width: 599px)").matches);
 		const bodyHeight = document.body.offsetHeight;
 		const boxTop = this._box != null ? this._box.offsetTop : 0;
 		const bgcolor = getComputedStyle(document.documentElement).getPropertyValue("--wui-modal-bgcolor").replace(/\s+/g, "").replace("rgba(", "").replace(")", "").split(",");
@@ -412,7 +415,7 @@ class WUIModal {
 					const opacity = Math.round((1 -ease) * parseFloat(bgcolor[3]) * 100) / 100;
 					under._element.style.backgroundColor = "rgba("+bgcolor[0]+", "+bgcolor[1]+", "+bgcolor[2]+", "+opacity+")";
 				}
-				if (under._element.classList.contains("page") && page) {
+				if (under._element.classList.contains("page") && page && mobile) {
 					under._box.style.top = (bodyHeight - (bodyHeight -22) + 22 * (1 -ease))+"px";
 					under._box.style.left = (10 * ease)+"px";
 					under._box.style.right = (10 * ease)+"px";

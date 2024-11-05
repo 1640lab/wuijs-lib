@@ -64,7 +64,7 @@
 	padding-left: 80px;
 	padding-right: 80px;
 	justify-content: center;
-    align-items: flex-end;
+	align-items: flex-end;
 }
 .wui-modal > .box > .header > .back,
 .wui-modal > .box > .header > .back > .icon,
@@ -107,9 +107,10 @@
 .wui-modal > .box > .header > .title {
 	height: 28px;
 	overflow: hidden;
+	padding: 0 10px;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-    text-transform: var(--wui-modal-title-textcase);
+	text-transform: var(--wui-modal-title-textcase);
 	font-family: var(--wui-modal-title-textfont);
 	font-weight: bold;
 	font-size: 17px;
@@ -159,8 +160,8 @@
 		top: 15px;
 	}
 	.wui-modal > .box > .header > .back > .icon {
-		width: 17px;
-		height: 17px;
+		width: 15px;
+		height: 15px;
 	}
 	.wui-modal > .box > .header > .back > .text {
 		font-size: 17px;
@@ -169,10 +170,41 @@
 		font-size: 17px;
 	}
 	.wui-modal > .box > .body {
-		font-size: 17px;
+		font-size: 20px;
 	}
 	.wui-modal > .box > .body > .text p {
 		font-size: 15px;
+	}
+	.wui-modal > .box > .footer > button {
+		width: 50%;
+		min-width: 100px;
+		height: 100%;
+		margin: 0;
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+		border-color: transparent;
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+		background-color: transparent;
+		flex-grow: 1;
+		text-align: center;
+		font-size: 17px;
+	}
+	.wui-modal > .box > .footer > button:hover,
+	.wui-modal > .box > .footer > button:focus,
+	.wui-modal > .box > .footer > button:focus-within {
+		border-color: transparent;
+		background-color: rgba(204, 204, 204, 0.3);
+	}
+	.wui-modal > .box > .footer > button.submit {
+		font-weight: bold;
+		color: var(--wui-button-submit-textcolor-mobile);
+	}
+	.wui-modal > .box > .footer > button.highlight {
+		font-weight: bold;
+		color: var(--wui-button-highlight-textcolor-mobile);
 	}
 }
 @media screen and (min-width: 600px) {
@@ -199,40 +231,28 @@
 /* wui-modal mobile */
 
 @media screen and (max-width: 599px) {
+	.wui-modal.mobile > .box > .header > .back {
+		top: 14pt;
+	}
+	.wui-modal.mobile > .box > .header > .back > .icon {
+		width: 14pt;
+		height: 14pt;
+	}
+	.wui-modal.mobile > .box > .header > .back > .text {
+		font-size: 14pt;
+	}
+	.wui-modal.mobile > .box > .header > .title {
+		font-size: 17pt;
+	}
+	.wui-modal.mobile > .box > .body {
+		font-size: 14pt;
+	}
+	.wui-modal.mobile > .box > .body > .text p {
+		font-size: 15pt;
+	}
 	.wui-modal.mobile > .box > .footer {
 		height: 48px;
 		flex-wrap: wrap;
-	}
-	.wui-modal.mobile > .box > .footer > button {
-		width: 50%;
-		min-width: 100px;
-		height: 100%;
-		margin: 0;
-		-webkit-box-shadow: none;
-		-moz-box-shadow: none;
-		box-shadow: none;
-		border-color: transparent;
-		-webkit-border-radius: 0;
-		-moz-border-radius: 0;
-		border-radius: 0;
-		background-color: transparent;
-		flex-grow: 1;
-		text-align: center;
-		font-size: 17px;
-	}
-	.wui-modal.mobile > .box > .footer > button:hover,
-	.wui-modal.mobile > .box > .footer > button:focus,
-	.wui-modal.mobile > .box > .footer > button:focus-within {
-		border-color: transparent;
-		background-color: rgba(204, 204, 204, 0.3);
-	}
-	.wui-modal.mobile > .box > .footer > button.submit {
-		font-weight: bold;
-		color: var(--wui-button-submit-textcolor-mobile);
-	}
-	.wui-modal.mobile > .box > .footer > button.highlight {
-		font-weight: bold;
-		color: var(--wui-button-highlight-textcolor-mobile);
 	}
 }
 
@@ -285,41 +305,43 @@
 	font-size: 14px;
 	color: var(--wui-modal-message-linkcolor);
 }
-
-/* wui-modal message mobile */
-
 @media screen and (max-width: 599px) {
-	.wui-modal.message.mobile > .box {
+	.wui-modal.message > .box {
 		width: var(--wui-modal-message-mobile-box-width);
 	}
-	.wui-modal.message.mobile > .box > .footer {
+	.wui-modal.message > .box > .footer {
 		height: 52px;
 		border-top: 1px solid var(--wui-modal-message-mobile-footer-bordercolor);
 	}
-	.wui-modal.message.mobile > .box > .footer > button {
+	.wui-modal.message > .box > .footer > button {
 		margin-top: 0;
 		margin-left: 0;
-    	margin-right: 0;
+		margin-right: 0;
 		border-top: 0;
 	}
-	.wui-modal.message.mobile > .box > .footer > a {
+	.wui-modal.message > .box > .footer > a {
 		display: flex;
 		margin-bottom: 0;
 		justify-content: center;
 		align-items: center;
 	}
-	.wui-modal.message.mobile > .box > .footer.list {
+	.wui-modal.message > .box > .footer.list {
 		height: auto;
 		flex-direction: column;
 	}
-	.wui-modal.message.mobile > .box > .footer.list > * {
+	.wui-modal.message > .box > .footer.list > * {
 		width: 100%;
 		height: 48px;
 		border-bottom: 1px solid var(--wui-modal-message-mobile-button-bordercolor);
 	}
-	.wui-modal.message.mobile > .box > .footer:not(.list) > button:first-child {
+	.wui-modal.message > .box > .footer:not(.list) > button:first-child {
 		border-right: 1px solid var(--wui-modal-message-mobile-button-bordercolor);
 	}
+}
+
+/* wui-modal message mobile */
+
+@media screen and (max-width: 599px) {
 }
 
 /* wui-modal page */
@@ -344,11 +366,8 @@
 	width: var(--wui-modal-smallpage-box-width);
 	height: var(--wui-modal-smallpage-box-height);
 }
-
-/* wui-modal page mobile */
-
 @media screen and (max-width: 599px) {
-	.wui-modal.page.mobile > .box {
+	.wui-modal.page > .box {
 		top: 100%;
 		left: 0;
 		right: 0;
@@ -368,7 +387,7 @@
 		border-bottom-left-radius: 0;
 		border-bottom-right-radius: 0;
 	}
-	.wui-modal.page.mobile > .box > .header > .topbar {
+	.wui-modal.page > .box > .header > .topbar {
 		display: block;
 		position: absolute;
 		z-index: 1;
@@ -376,9 +395,9 @@
 		left: 50%;
 		width: 100px;
 		height: 30px;
-    	margin-left: -50px;
+		margin-left: -50px;
 	}
-	.wui-modal.page.mobile > .box > .header > .topbar::before {
+	.wui-modal.page > .box > .header > .topbar::before {
 		--radius: calc(var(--wui-modal-topbar-height) / 2);
 		content: "";
 		display: block;
@@ -389,8 +408,8 @@
 		border-radius: var(--radius);
 		background-color: var(--wui-modal-page-header-topbar-bgcolor);
 	}
-	.wui-modal.page.mobile.maximized > .box,
-	.wui-modal.page.mobile.small.maximized > .box {
+	.wui-modal.page.maximized > .box,
+	.wui-modal.page.small.maximized > .box {
 		-webkit-border-top-left-radius: 0;
 		-webkit-border-top-right-radius: 0;
 		-moz-border-radius-topleft: 0;
@@ -403,13 +422,18 @@
 	}
 }
 @media screen and (min-width: 600px) {
-	.wui-modal.page.mobile > .box {
+	.wui-modal.page > .box {
 		top: auto !important;
 		left: auto !important;
 		right: auto !important;
 		bottom: auto !important;
 		max-height: var(--wui-modal-page-box-maxheight);
 	}
+}
+
+/* wui-modal page mobile */
+
+@media screen and (max-width: 599px) {
 }
 
 /* wui-button */
