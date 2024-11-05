@@ -194,10 +194,10 @@
 	background: none;
 }
 .wui-form fieldset > .field > input[type="range"]::-webkit-slider-thumb,
-.wui-form fieldset > .field > input[type="range"]::-moz-range-thumb,
-.wui-form fieldset > .field > input[type="range"]::-ms-thumb,
 .wui-form fieldset > .field > input[type="range"]::-webkit-slider-runnable-track,
+.wui-form fieldset > .field > input[type="range"]::-moz-range-thumb,
 .wui-form fieldset > .field > input[type="range"]::-moz-range-track,
+.wui-form fieldset > .field > input[type="range"]::-ms-thumb,
 .wui-form fieldset > .field > input[type="range"]::-ms-track {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;

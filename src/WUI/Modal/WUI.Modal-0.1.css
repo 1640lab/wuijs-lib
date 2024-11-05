@@ -175,6 +175,10 @@
 	.wui-modal > .box > .body > .text p {
 		font-size: 15px;
 	}
+	.wui-modal > .box > .footer {
+		height: 48px;
+		flex-wrap: wrap;
+	}
 	.wui-modal > .box > .footer > button {
 		width: 50%;
 		min-width: 100px;
@@ -231,15 +235,15 @@
 /* wui-modal mobile */
 
 @media screen and (max-width: 599px) {
-	.wui-modal.mobile > .box > .header > .back {
-		top: 14pt;
+	/*.wui-modal.mobile > .box > .header > .back {
+		top: 15pt;
 	}
 	.wui-modal.mobile > .box > .header > .back > .icon {
-		width: 14pt;
-		height: 14pt;
+		width: 15pt;
+		height: 15pt;
 	}
 	.wui-modal.mobile > .box > .header > .back > .text {
-		font-size: 14pt;
+		font-size: 17pt;
 	}
 	.wui-modal.mobile > .box > .header > .title {
 		font-size: 17pt;
@@ -249,11 +253,7 @@
 	}
 	.wui-modal.mobile > .box > .body > .text p {
 		font-size: 15pt;
-	}
-	.wui-modal.mobile > .box > .footer {
-		height: 48px;
-		flex-wrap: wrap;
-	}
+	}*/
 }
 
 /* wui-modal message */

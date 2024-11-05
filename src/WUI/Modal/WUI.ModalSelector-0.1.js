@@ -166,24 +166,29 @@ class WUIModalSelector extends WUIModal {
 					const screenWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
 					if ((type == "touchstart" && screenWidth < this._maxScreenWidth) || options.force) {
 						const values = input.value.split(",");
+						const rect = input.getBoundingClientRect();
+						const touches = event.touches || event.targetTouches;
+						const rightTouch = event.target.clientWidth - (touches[0].clientX - rect.left);
 						event.preventDefault();
-						this._input = input;
-						this._value = input.value;
-						this._options = [];
-						this._selecteableText = false;
-						this._input.setAttribute("dir", options.direction);
-						this._input.querySelectorAll("option").forEach(option => {
-							option.style.display = "none";
-							this._options.push({
-								icon: null,
-								text: option.text || option.emptyText || "",
-								value: option.value || "",
-								selected: values.indexOf(option.value) > -1 ? true : false
+						if (rightTouch <= 30) {
+							this._input = input;
+							this._value = input.value;
+							this._options = [];
+							this._selecteableText = false;
+							this._input.setAttribute("dir", options.direction);
+							this._input.querySelectorAll("option").forEach(option => {
+								option.style.display = "none";
+								this._options.push({
+									icon: null,
+									text: option.text || option.emptyText || "",
+									value: option.value || "",
+									selected: values.indexOf(option.value) > -1 ? true : false
+								});
 							});
-						});
-						this._acceptDisplay = true;
-						this._cancelDisplay = true;
-						this.open();
+							this._acceptDisplay = true;
+							this._cancelDisplay = true;
+							this.open();
+						}
 					} else {
 						input.setAttribute("dir", "ltr");
 						input.querySelectorAll("option").forEach(option => {
