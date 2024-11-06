@@ -2,11 +2,28 @@
 
 class WUITimebox {
 	static version = "0.1";
+	static #constants = {
+		texts: {
+			de: {
+				reset: "zurücksetzen",
+				done: "ok"
+			},
+			en: {
+				reset: "reset",
+				done: "ok"
+			},
+			es: {
+				reset: "cancelar",
+				done: "listo"
+			}
+		}
+	};
 	#defaults = {
 		selector: "",
 		min: "",
 		max: "",
 		value: "",
+		lang: "en",
 		resetText: "",
 		doneText: "",
 		enabled: true,
@@ -29,6 +46,9 @@ class WUITimebox {
 	}
 	get value() {
 		return this._input.value;
+	}
+	get lang() {
+		return this._lang;
 	}
 	get resetText() {
 		return this._resetText;
@@ -65,6 +85,11 @@ class WUITimebox {
 	set value(value) {
 		if (typeof(value) == "string" && value.match(/^(\d{2}:\d{2})?$/) && this._enabled) {
 			this._input.value = value;
+		}
+	}
+	set lang(value) {
+		if (typeof(value) == "string" && value.match(/^\w{2}$/)) {
+			this._lang = value.toLocaleLowerCase();
 		}
 	}
 	set resetText(value) {
@@ -122,18 +147,18 @@ class WUITimebox {
 		}
 		this._box = document.createElement("div");
 		this._select = document.createElement("div");
-		this._hour = document.createElement("menu");
-		this._minute = document.createElement("menu");
+		this._hours = document.createElement("menu");
+		this._minutes = document.createElement("menu");
 		this._meridiem = document.createElement("menu");
 		this._footer = document.createElement("div");
 		this._reset = document.createElement("div");
 		this._done = document.createElement("div");
-		this._hour.className = "hour";
-		this._minute.className = "minute";
+		this._hours.className = "hours";
+		this._minutes.className = "minutes";
 		this._meridiem.className = "meridiem";
 		this._select.className = "select";
-		this._select.appendChild(this._hour);
-		this._select.appendChild(this._minute);
+		this._select.appendChild(this._hours);
+		this._select.appendChild(this._minutes);
 		this._select.appendChild(this._meridiem);
 		this._reset.className = "reset";
 		this._reset.addEventListener("click", () => {this.reset();});
@@ -176,12 +201,11 @@ class WUITimebox {
 			return new Date(date.getTime() - offset*60*1000).toISOString().split("T")[1].slice(0, 5);
 		})();
 		this._nowValue = now;
-		/*this._todayYear = today.replace(/-\d{2}-\d{2}/, "");
-		this._todayMonth = today.replace(/\d{4}-0?(\d+)-\d{2}/, "$1");
-		this._targetValue = this._input.value || today;
-		this._targetDate = new Date(this._targetValue);
-		this._targetMode = "days";
-		this._resetValue = this._targetValue;*/
+		//this._todayYear = now.replace(/-\d{2}-\d{2}/, "");
+		//this._todayMonth = now.replace(/\d{4}-0?(\d+)-\d{2}/, "$1");
+		this._targetValue = this._input.value || now;
+		//this._targetDate = new Date(this._targetValue);
+		this._resetValue = this._targetValue;
 		this.load();
 		if (typeof(this._onOpen) == "function") {
 			this._onOpen(this._input.value);
@@ -191,8 +215,16 @@ class WUITimebox {
 		this._box.classList.add("hidden");
 	}
 	load() {
-		/*const year = this._targetDate.getFullYear();
-		const month = this._targetDate.getMonth() +1;*/
+		//const hours = this._targetDate.getHours();
+		//const minutes = this._targetDate.getMinutes();
+		if (this._lang in WUITimebox.#constants.texts) {
+			this._resetText = WUITimebox.#constants.texts[this._lang].reset;
+		}
+		if (this._lang in WUITimebox.#constants.texts) {
+			this._doneText = WUITimebox.#constants.texts[this._lang].done;
+		}
+		this._reset.textContent = this._resetText;
+		this._done.textContent = this._doneText;
 	}
 	reset() {
 		this._input.value = this._resetValue;
@@ -208,8 +240,8 @@ HTML struture:
 	<input type="time" value="">
 	<div class="box">
 		<div class="select">
-			<menu class="hour"></menu>
-			<menu class="minute"></menu>
+			<menu class="hours"></menu>
+			<menu class="minutes"></menu>
 			<menu class="meridiem"></menu>
 		</div>
 		<div class="footer">

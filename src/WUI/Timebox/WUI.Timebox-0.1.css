@@ -23,7 +23,7 @@
 	font-family: inherit;
 	font-size: 14px;
 }
-.wui-timebox > input[type="time"]::-webkit-box-picker-indicator {
+.wui-timebox > input[type="time"]::-webkit-calendar-picker-indicator {
 	display: none;
 	background: none;
 }

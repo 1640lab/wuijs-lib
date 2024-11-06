@@ -2,7 +2,7 @@
 
 class WUIDatebox {
 	static version = "0.1";
-	static constants = {
+	static #constants = {
 		locales: "" // https://www.techonthenet.com/js/language_tags.php 20241007
 			+"ar-SA bn-BD bn-IN cs-CZ da-DK de-AT de-CH de-DE el-GR en-AU en-CA en-GB en-IE en-IN en-NZ en-US en-ZA es-AR es-CL es-CO es-ES es-MX es-US fi-FI fr-BE fr-CA fr-CH fr-FR he-IL hi-IN hu-HU id-ID it-CH it-IT ja-JP ko-KR nl-BE nl-NL no-NO pl-PL pt-BR pt-PT ro-RO ru-RU sk-SK sv-SE ta-IN ta-LK th-TH tr-TR zh-CN zh-HK zh-TW",
 		firstWeekDayCountry: {
@@ -45,9 +45,9 @@ class WUIDatebox {
 		onChange: null
 	};
 	static initClass() {
-		Object.entries(this.constants.firstWeekDayCountry).forEach(([wday, countries]) => {
+		Object.entries(WUIDatebox.#constants.firstWeekDayCountry).forEach(([wday, countries]) => {
 			countries.split(/\s+/).forEach(code => {
-				this.constants.countryFirstWeekDay[code] = wday;
+				WUIDatebox.#constants.countryFirstWeekDay[code] = wday;
 			});
 		});
 	}
@@ -115,7 +115,7 @@ class WUIDatebox {
 		}
 	}
 	set locales(value) {
-		if (typeof(value) == "string" && value.match(/^[a-z]{2}-[a-z]{2}$/i) && WUIDatebox.constants.locales.toLowerCase().split(/\s+/).indexOf(value.toLowerCase()) > -1) {
+		if (typeof(value) == "string" && value.match(/^[a-z]{2}-[a-z]{2}$/i) && WUIDatebox.#constants.locales.toLowerCase().split(/\s+/).indexOf(value.toLowerCase()) > -1) {
 			this._locales = value.split("-").map((x, i) => {
 				return i == 0 ? x.toLocaleLowerCase() : x.toUpperCase()
 			}).join("-");
@@ -280,8 +280,8 @@ class WUIDatebox {
 		}
 	}
 	loadTexts() {
-		if (WUIDatebox.constants.locales.toLowerCase().split(/\s+/).indexOf(this._locales.toLowerCase()) > -1) {
-			const language = this.locales.split("-")[0].toLowerCase();
+		if (WUIDatebox.#constants.locales.toLowerCase().split(/\s+/).indexOf(this._locales.toLowerCase()) > -1) {
+			const lang = this._locales.split("-")[0].toLowerCase();
 			for (let i=0; i<7; i++) {
 				const name = new Date(2023, 0, i+1).toLocaleString(this._locales, {weekday: "long"}); // 2023-01-01: sunday
 				this._weekDaysNames[i] = name.replace(/^\s*(\w)/, letter => letter.toUpperCase());
@@ -290,11 +290,11 @@ class WUIDatebox {
 				const name = new Date(2023, i, 1).toLocaleString(this._locales, {month: "long"});
 				this._monthsNames[i] = name.replace(/^\s*(\w)/, letter => letter.toUpperCase());
 			}
-			if (this._resetText == "" && language in WUIDatebox.constants.texts) {
-				this._resetText = WUIDatebox.constants.texts[language].reset;
+			if (lang in WUIDatebox.#constants.texts) {
+				this._resetText = WUIDatebox.#constants.texts[lang].reset;
 			}
-			if (this._doneText == "" && language in WUIDatebox.constants.texts) {
-				this._doneText = WUIDatebox.constants.texts[language].done;
+			if (lang in WUIDatebox.#constants.texts) {
+				this._doneText = WUIDatebox.#constants.texts[lang].done;
 			}
 			this._reset.textContent = this._resetText;
 			this._done.textContent = this._doneText;
@@ -360,7 +360,7 @@ class WUIDatebox {
 		const year = this._targetDate.getFullYear();
 		const month = this._targetDate.getMonth() +1;
 		const country = this.locales.split("-")[1].toUpperCase();
-		const firstwday = parseInt(WUIDatebox.constants.countryFirstWeekDay[country] || 0);
+		const firstwday = parseInt(WUIDatebox.#constants.countryFirstWeekDay[country] || 0);
 		const firstmday = new Date(year, month, 1).getDay(); 
 		const lasmday = month == 2 ? year & 3 || !(year % 25) && year & 15 ? 28 : 29 : 30 + (month + (month >> 3) & 1);
 		let ini = 0;
