@@ -207,7 +207,7 @@ class WUIForm {
 				const pickerType = type || tag;
 				input.style.backgroundImage = bgImage(input, pickerType, input.disabled ? "disabled" : "out");
 				["mouseover", "mouseout", "focus", "blur"].forEach(event => {
-					const pickerEvent = input.disabled ? "disabled" : event.replace(/mouse/, "");
+					const pickerEvent = input.disabled ? "disabled" : event == "blur" ? "out" : event.replace(/mouse/, "");
 					input.addEventListener(event, () => {
 						if (label != null) {
 							if (event.match(/mouseover|focus/) || input.value != "") {

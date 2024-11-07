@@ -226,7 +226,7 @@ class WUIDatebox {
 		this._prev.style.backgroundImage = bgImage("box-prev", this._input.disabled ? "disabled" : "out");
 		this._next.style.backgroundImage = bgImage("box-next", this._input.disabled ? "disabled" : "out");
 		["mouseover", "mouseout", "focus", "blur"].forEach(event => {
-			const pickerEvent = this._input.disabled ? "disabled" : event.replace(/mouse/, "");
+			const pickerEvent = this._input.disabled ? "disabled" : event == "blur" ? "out" : event.replace(/mouse/, "");
 			this._input.addEventListener(event, () => {
 				this._input.style.backgroundImage = bgImage("picker", pickerEvent);
 				if (event == "focus") {
@@ -290,14 +290,8 @@ class WUIDatebox {
 				const name = new Date(2023, i, 1).toLocaleString(this._locales, {month: "long"});
 				this._monthsNames[i] = name.replace(/^\s*(\w)/, letter => letter.toUpperCase());
 			}
-			if (lang in WUIDatebox.#constants.texts) {
-				this._resetText = WUIDatebox.#constants.texts[lang].reset;
-			}
-			if (lang in WUIDatebox.#constants.texts) {
-				this._doneText = WUIDatebox.#constants.texts[lang].done;
-			}
-			this._reset.textContent = this._resetText;
-			this._done.textContent = this._doneText;
+			this._reset.textContent = this._resetText != "" ? this._resetText : lang in WUIDatebox.#constants.texts ? WUIDatebox.#constants.texts[lang].reset : "";
+			this._done.textContent = this._doneText != "" ? this._doneText : lang in WUIDatebox.#constants.texts ? WUIDatebox.#constants.texts[lang].done : "";
 		}
 	}
 	loadMonths() {

@@ -55,6 +55,42 @@
 .wui-timebox > .box.hidden {
 	display: none;
 }
+.wui-timebox > .box > .select {
+	height: 220px;
+	justify-content: center;
+	align-items: center;
+}
+.wui-timebox > .box > .select > ul {
+	display: block;
+	max-height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	margin: 0;
+	padding: 0 10px;
+	list-style-type: none;
+}
+.wui-timebox > .box > .select > ul > li {
+	cursor: pointer;
+	display: grid;
+	width: 48px;
+	height: 32px;
+	-webkit-border-radius: 16px;
+	-moz-border-radius: 16px;
+	border-radius: 16px;
+	place-items: center;
+	color: var(--wui-timebox-box-option-textcolor-out);
+}
+.wui-timebox > .box > .select > ul > li:hover {
+	background-color: var(--wui-timebox-box-option-bgcolor-over);
+	color: var(--wui-timebox-box-option-textcolor-over);
+}
+.wui-timebox > .box > .select > ul > li.now {
+	background-color: var(--wui-timebox-box-option-bgcolor-now);
+}
+.wui-timebox > .box > .select > ul > li.selected {
+	background-color: var(--wui-timebox-box-option-bgcolor-selected);
+	color: var(--wui-timebox-box-option-textcolor-selected);
+}
 .wui-timebox > .box > .footer {
 	position: absolute;
 	left: 0;
