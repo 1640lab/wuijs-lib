@@ -299,7 +299,7 @@ class WUIDatebox {
 		const month = this._targetDate.getMonth() +1;
 		let y = year;
 		let m = 1;
-		this._box.style.height = "260px";
+		//this._box.style.height = "260px";
 		this._period.innerHTML = this._monthsNames[month -1]+" "+year+" <div class='icon up'></div>";
 		this._months.style.display = "grid";
 		this._months.innerHTML = "";
@@ -360,7 +360,7 @@ class WUIDatebox {
 		let ini = 0;
 		let rows = 5;
 		let d = 1;
-		this._box.style.height = "260px";
+		//this._box.style.height = "260px";
 		this._period.innerHTML = this._monthsNames[month -1]+" "+year+" <div class='icon down'></div>";
 		this._months.style.display = "none";
 		this._months.innerHTML = "";
@@ -408,7 +408,7 @@ class WUIDatebox {
 				});
 				cell.appendChild(button);
 				if (i == 7*5 -1 && d < lasmday) {
-					this._box.style.height = "290px";
+					//this._box.style.height = "290px";
 					rows++;
 				}
 				d++;
