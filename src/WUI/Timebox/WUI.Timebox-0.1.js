@@ -20,8 +20,8 @@ class WUITimebox {
 	};
 	#defaults = {
 		selector: "",
-		min: "",
-		max: "",
+		min: "00:00",
+		max: "23:59",
 		value: "",
 		lang: "en",
 		resetText: "",
@@ -145,42 +145,48 @@ class WUITimebox {
 			const image = getComputedStyle(element).getPropertyValue("--wui-timebox-"+name+"image-src").replace(/currentColor/g, color);
 			return image;
 		}
+		/*this._inputHours = document.createElement("input");
+		this._inputMinutes = document.createElement("input");*/
 		this._box = document.createElement("div");
 		this._select = document.createElement("div");
-		this._hours = document.createElement("ul");
-		this._minutes = document.createElement("ul");
-		this._meridiem = document.createElement("ul");
+		this._selectHours = document.createElement("ul");
+		this._selectMinutes = document.createElement("ul");
 		this._footer = document.createElement("div");
 		this._reset = document.createElement("div");
 		this._done = document.createElement("div");
-		this._hours.className = "hours";
-		this._minutes.className = "minutes";
-		this._meridiem.className = "meridiem";
-		for (let i=0; i<12; i++) {
+		/*["Hours", "Minutes"].forEach(name => {
+			const input = this["_input"+name];
+			input.type = "text";
+			input.name = this._input.name+name;
+			input.min = 0;
+			input.max = name.match(/hours/i) ? 23 : 59;
+			this._element.appendChild(input);
+			if (name.match(/hours/i)) {
+				const separator = document.createElement("span");
+				separator.textContent = ":";
+				this._element.appendChild(separator);
+			}
+		});*/
+		this._selectHours.className = "hours";
+		this._selectMinutes.className = "minutes";
+		for (let i=0; i<23; i++) {
 			const li = document.createElement("li");
 			li.dataset.value = i;
 			li.textContent = i;
 			li.addEventListener("click", () => {
 				console.log("->", li);
 			});
-			this._hours.appendChild(li);
+			this._selectHours.appendChild(li);
 		}
 		for (let i=0; i<60; i++) {
 			const li = document.createElement("li");
 			li.dataset.value = i;
 			li.textContent = i;
-			this._minutes.appendChild(li);
+			this._selectMinutes.appendChild(li);
 		}
-		["AM", "PM"].forEach(i => {
-			const li = document.createElement("li");
-			li.dataset.value = i;
-			li.textContent = i;
-			this._meridiem.appendChild(li);
-		});
 		this._select.className = "select";
-		this._select.appendChild(this._hours);
-		this._select.appendChild(this._minutes);
-		this._select.appendChild(this._meridiem);
+		this._select.appendChild(this._selectHours);
+		this._select.appendChild(this._selectMinutes);
 		this._reset.className = "reset";
 		this._reset.addEventListener("click", () => {this.reset();});
 		this._done.className = "done";
@@ -237,41 +243,27 @@ class WUITimebox {
 		this._box.classList.add("hidden");
 	}
 	load() {
-		const nowHours = this._nowHours > 12 ? this._nowHours - 12 : this._nowHours;
-		const nowMeridiem = this._nowHours > 12 ? 1 : 0;
-		const targetHours = this._targetHours > 12 ? this._targetHours - 12 : this._targetHours;
-		const targetMeridiem = this._targetHours > 12 ? 1 : 0;
-		this._hours.querySelectorAll("li").forEach((li, i) => {
-			if (i == nowHours) {
+		/*this._inputHours.value = this._targetHours;
+		this._inputMinutes.value = this._targetMinutes;*/
+		this._selectHours.querySelectorAll("li").forEach((li, i) => {
+			if (i == this._nowHours) {
 				li.classList.add("now");
 			} else {
 				li.classList.remove("now");
 			}
-			if (i == targetHours) {
+			if (i == this._targetHours) {
 				li.classList.add("selected");
 			} else {
 				li.classList.remove("selected");
 			}
 		});
-		this._minutes.querySelectorAll("li").forEach((li, i) => {
+		this._selectMinutes.querySelectorAll("li").forEach((li, i) => {
 			if (i == this._nowMinutes) {
 				li.classList.add("now");
 			} else {
 				li.classList.remove("now");
 			}
 			if (i == this._targetMinutes) {
-				li.classList.add("selected");
-			} else {
-				li.classList.remove("selected");
-			}
-		});
-		this._meridiem.querySelectorAll("li").forEach((li, i) => {
-			if (i == nowMeridiem) {
-				li.classList.add("now");
-			} else {
-				li.classList.remove("now");
-			}
-			if (i == targetMeridiem) {
 				li.classList.add("selected");
 			} else {
 				li.classList.remove("selected");

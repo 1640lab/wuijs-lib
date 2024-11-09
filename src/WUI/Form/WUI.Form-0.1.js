@@ -285,7 +285,7 @@ class WUIForm {
 }
 /*
 HTML struture:
-<form class="wui-form (line|border [curve]) [mobile]">
+<form class="wui-form (line|border [curve]|mobile)">
 	<input type="hidden" name="hidden">
 	<div class="header"></div>
 	<div class="body">

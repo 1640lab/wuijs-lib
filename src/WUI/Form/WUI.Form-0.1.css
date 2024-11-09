@@ -824,7 +824,7 @@
 	.wui-form.mobile fieldset > .field > textarea {
 		background-color: var(--wui-form-mobile-input-bgcolor);
 	}
-	.wui-form fieldset > .field > input[type="checkbox"]:checked::before {
+	.wui-form.mobile fieldset > .field > input[type="checkbox"]:checked::before {
 		-webkit-border-radius: 50%;
 		-moz-border-radius: 50%;
 		border-radius: 50%;
@@ -840,18 +840,6 @@
 	.wui-form.mobile fieldset > .field > data {
 		padding-left: 0;
 		padding-right: 0;
-	}
-	/*.wui-form.mobile fieldset > .field.checkbox .input,
-	.wui-form.mobile fieldset > .field.button .input {
-		position: absolute;
-		right: 10px;
-		width: auto;
-	}*/
-
-	/* wui-form line mobile */
-
-	.wui-form.line.mobile fieldset > .field {
-		border-bottom-width: 0px;
 	}
 }
 
@@ -878,19 +866,19 @@
 .wui-form:not(.grid) fieldset > .field.icon-right > .wui-svgicon:last-child {
 	right: 5px;
 }
-.wui-form:not(.grid) fieldset > .field.icon-left label,
-.wui-form:not(.grid) fieldset > .field.icon-left input,
-.wui-form:not(.grid) fieldset > .field.icon-left select,
-.wui-form:not(.grid) fieldset > .field.icon-left textarea,
-.wui-form:not(.grid) fieldset > .field.icon-left data {
+.wui-form:not(.grid) fieldset > .field.icon-left > label,
+.wui-form:not(.grid) fieldset > .field.icon-left > input,
+.wui-form:not(.grid) fieldset > .field.icon-left > select,
+.wui-form:not(.grid) fieldset > .field.icon-left > textarea,
+.wui-form:not(.grid) fieldset > .field.icon-left > data {
 	left: 0;
 	padding-left: 40px !important;
 }
-.wui-form:not(.grid) fieldset > .field.icon-right label,
-.wui-form:not(.grid) fieldset > .field.icon-right input,
-.wui-form:not(.grid) fieldset > .field.icon-right select,
-.wui-form:not(.grid) fieldset > .field.icon-right textarea,
-.wui-form:not(.grid) fieldset > .field.icon-right data {
+.wui-form:not(.grid) fieldset > .field.icon-right > label,
+.wui-form:not(.grid) fieldset > .field.icon-right > input,
+.wui-form:not(.grid) fieldset > .field.icon-right > select,
+.wui-form:not(.grid) fieldset > .field.icon-right > textarea,
+.wui-form:not(.grid) fieldset > .field.icon-right > data {
 	padding-right: 40px !important;
 }
 @media screen and (max-width: 767px) {
@@ -907,7 +895,27 @@
 	}
 }
 
-/* .wui-checkbox */
+/* wui-datebox */
+
+.wui-form fieldset > .field.icon-left > .wui-datebox {
+	left: 0;
+	padding-left: 40px !important;
+}
+.wui-form fieldset > .field.icon-right > .wui-datebox {
+	padding-right: 40px !important;
+}
+
+/* wui-timebox */
+
+.wui-form fieldset > .field.icon-left > .wui-timebox {
+	left: 0;
+	padding-left: 40px !important;
+}
+.wui-form fieldset > .field.icon-right > .wui-timebox {
+	padding-right: 40px !important;
+}
+
+/* wui-checkbox */
 
 .wui-form fieldset > .field.checkbox > label {
 	right: 60px;

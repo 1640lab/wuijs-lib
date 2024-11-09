@@ -27,6 +27,21 @@
 	display: none;
 	background: none;
 }
+/*.wui-timebox {
+	display: flex;
+}
+.wui-timebox > input[type="time"] {
+	display: none;
+}
+.wui-timebox > input[type="text"] {
+	outline: none;
+	width: 30px;
+	margin: 0;
+	padding: 0 !important;
+	text-align: right;
+	font-family: inherit;
+	font-size: 14px;
+}*/
 .wui-timebox > .box,
 .wui-timebox > .box * {
 	display: flex;
@@ -68,6 +83,13 @@
 	margin: 0;
 	padding: 0 10px;
 	list-style-type: none;
+}
+.wui-timebox > .box > .select > ul::before,
+.wui-timebox > .box > .select > ul::after {
+	content: "";
+	display: block;
+	width: 48px;
+	height: 80px;
 }
 .wui-timebox > .box > .select > ul > li {
 	cursor: pointer;
