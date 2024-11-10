@@ -14,6 +14,7 @@
 	background-color: transparent;
 }
 .wui-timebox > input[type="time"] {
+	height: 30px;
 	outline: none;
 	background-repeat: no-repeat;
 	background-position-x: 100%;
@@ -22,6 +23,11 @@
 	padding-right: 2rem;
 	font-family: inherit;
 	font-size: 14px;
+}
+.wui-timebox > input[type="time"],
+.wui-timebox > input[type="time"]::-webkit-date-and-time-value {
+    padding-left: 0;
+    text-align: left;
 }
 .wui-timebox > input[type="time"]::-webkit-calendar-picker-indicator {
 	display: none;

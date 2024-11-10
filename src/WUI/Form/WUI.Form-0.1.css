@@ -189,6 +189,13 @@
 .wui-form fieldset > .field > input[type="time"] {
 	background-size: var(--wui-form-time-pickerimage-size);
 }
+.wui-form fieldset > .field > input[type="date"],
+.wui-form fieldset > .field > input[type="time"],
+.wui-form fieldset > .field > input[type="date"]::-webkit-date-and-time-value,
+.wui-form fieldset > .field > input[type="time"]::-webkit-date-and-time-value {
+    padding-left: 0;
+    text-align: left;
+}
 .wui-form fieldset > .field > input[type="date"]::-webkit-calendar-picker-indicator,
 .wui-form fieldset > .field > input[type="time"]::-webkit-calendar-picker-indicator {
 	background: none;

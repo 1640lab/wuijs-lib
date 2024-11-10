@@ -14,6 +14,7 @@
 	background-color: transparent;
 }
 .wui-datebox > input[type="date"] {
+	height: 30px;
 	outline: none;
 	background-repeat: no-repeat;
 	background-position-x: 100%;
@@ -22,6 +23,11 @@
 	padding-right: 2rem;
 	font-family: inherit;
 	font-size: 14px;
+}
+.wui-datebox > input[type="date"],
+.wui-datebox > input[type="date"]::-webkit-date-and-time-value {
+	padding-left: 0;
+    text-align: left;
 }
 .wui-datebox > input[type="date"]::-webkit-calendar-picker-indicator {
 	display: none;
