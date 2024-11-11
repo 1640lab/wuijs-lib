@@ -32,6 +32,8 @@
 .wui-timebox > input[type="time"]::-webkit-calendar-picker-indicator {
 	display: none;
 	background: none;
+	-webkit-appearance: none;
+	appearance: none;
 }
 /*.wui-timebox {
 	display: flex;

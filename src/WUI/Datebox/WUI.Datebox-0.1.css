@@ -6,32 +6,45 @@
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
-.wui-datebox,
-.wui-datebox > input[type="date"] {
+.wui-datebox {
 	width: 100%;
+	height: 30px;
 	margin: 0;
 	border: 0;
 	background-color: transparent;
-}
-.wui-datebox > input[type="date"] {
-	height: 30px;
-	outline: none;
 	background-repeat: no-repeat;
 	background-position-x: 100%;
 	background-image: none;
 	background-size: var(--wui-datebox-pickerimage-size);
 	padding-right: 2rem;
+}
+.wui-datebox > .inputs {
+	display: flex;
+	height: 100%;
+	align-items: center;
+}
+.wui-datebox > .inputs > input[type="text"] {
+	width: 30px;
+	height: 100%;
+	margin: 0;
+	outline: none;
+	border: 0;
+	background-color: transparent;
+	padding: 0;
+	text-align: center;
 	font-family: inherit;
 	font-size: 14px;
 }
-.wui-datebox > input[type="date"],
-.wui-datebox > input[type="date"]::-webkit-date-and-time-value {
-	padding-left: 0;
-    text-align: left;
+.wui-datebox > .inputs > input[type="text"].year {
+	width: 40px;
 }
-.wui-datebox > input[type="date"]::-webkit-calendar-picker-indicator {
-	display: none;
-	background: none;
+.wui-datebox > .inputs > span {
+	margin: 0;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
 }
 .wui-datebox > .box,
 .wui-datebox > .box * {
@@ -211,6 +224,7 @@
 	height: 30px;
 	border-top: 1px solid var(--wui-datebox-box-bordercolor);
 	justify-content: space-between;
+	font-size: 14px;
 }
 .wui-datebox > .box > .footer > div {
 	cursor: pointer;
@@ -284,6 +298,7 @@
 	}
 	.wui-datebox > .box > .footer {
 		height: 40px;
+		font-size: 15px;
 	}
 	.wui-datebox > .box > .footer > div {
 		padding: 10px 15px;

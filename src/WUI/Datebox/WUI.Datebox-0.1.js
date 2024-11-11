@@ -117,8 +117,11 @@ class WUIDatebox {
 	set locales(value) {
 		if (typeof(value) == "string" && value.match(/^[a-z]{2}-[a-z]{2}$/i) && WUIDatebox.#constants.locales.toLowerCase().split(/\s+/).indexOf(value.toLowerCase()) > -1) {
 			this._locales = value.split("-").map((x, i) => {
-				return i == 0 ? x.toLocaleLowerCase() : x.toUpperCase()
+				return i == 0 ? x.toLocaleLowerCase() : x.toUpperCase();
 			}).join("-");
+			if (typeof(this._inputs) != "undefined") {
+				this.load();
+			}
 		}
 	}
 	set monthsNames(value) {
@@ -163,6 +166,19 @@ class WUIDatebox {
 			this._onChange = value;
 		}
 	}
+	#setInputValue = () => {
+		const year = this._inputYear.value;
+		const month = this._inputMonth.value;
+		const day = this._inputDay.value;
+		if (year != "" && month != "" && day != "") {
+			this._input.value = ("000"+year).slice(-4)+"-"+("0"+month).slice(-2)+"-"+("0"+day).slice(-2);
+		}
+	}
+	#setInputsValues = (date) => {
+		this._inputYear.value = date instanceof Date ? date.getFullYear() : "";
+		this._inputMonth.value = date instanceof Date ? date.getMonth() +1 : "";
+		this._inputDay.value = date instanceof Date ? date.getDate() : "";
+	}
 	#setStyle() {
 		const disabled = this._input.disabled;
 		if (disabled) {
@@ -179,11 +195,15 @@ class WUIDatebox {
 	}
 	init() {
 		const bgImage = (name, event) => {
-			const element = this._input || this._element || document.documentElement;
+			const element = this._element || document.documentElement;
 			const color = getComputedStyle(element).getPropertyValue("--wui-datebox-"+name+"color-"+event).replace(/#/g, "%23").trim();
 			const image = getComputedStyle(element).getPropertyValue("--wui-datebox-"+name+"image-src").replace(/currentColor/g, color);
 			return image;
 		}
+		this._inputs = document.createElement("div");
+		this._inputYear = document.createElement("input");
+		this._inputMonth = document.createElement("input");
+		this._inputDay = document.createElement("input");
 		this._box = document.createElement("div");
 		this._header = document.createElement("div");
 		this._period = document.createElement("div");
@@ -195,6 +215,31 @@ class WUIDatebox {
 		this._footer = document.createElement("div");
 		this._reset = document.createElement("div");
 		this._done = document.createElement("div");
+		this._input.type = "hidden";
+		this._inputs.className = "inputs";
+		["year", "month", "day"].forEach((part, i) => {
+			const name = part.charAt(0).toUpperCase()+part.slice(1);
+			const input = this["_input"+name];
+			input.type = "text";
+			input.name = this._input.name+name;
+			input.placeholder = part == "year" ? "yyyy" : part == "month" ? "mm" : "dd";
+			input.maxLength = part == "year" ? 4 : 2;
+			input.className = part;
+			input.addEventListener("click", () => {
+				this._box.classList.toggle("hidden");
+				if (!this._box.classList.contains("hidden")) {
+					this.open();
+				}
+			});
+			input.addEventListener("keyup", (event) => {
+				const value = event.target.value;
+				const part = event.target.className;
+				const min = 1;
+				const max = part == "year" ? 3000 : part == "month" ? 12 : 31;
+				event.target.value = parseInt(value) > max ? max : parseInt(value) < min ? min : value;
+				this.#setInputValue();
+			});
+		});
 		this._period.className = "period";
 		this._period.addEventListener("click", () => {this.toggle();});
 		this._prev.className = "prev";
@@ -221,45 +266,21 @@ class WUIDatebox {
 		this._box.appendChild(this._week);
 		this._box.appendChild(this._days);
 		this._box.appendChild(this._footer);
+		this._element.appendChild(this._inputs);
 		this._element.appendChild(this._box);
-		this._input.style.backgroundImage = bgImage("picker", this._input.disabled ? "disabled" : "out");
+		this._element.style.backgroundImage = bgImage("picker", this._input.disabled ? "disabled" : "out");
 		this._prev.style.backgroundImage = bgImage("box-prev", this._input.disabled ? "disabled" : "out");
 		this._next.style.backgroundImage = bgImage("box-next", this._input.disabled ? "disabled" : "out");
-		["mouseover", "mouseout", "focus", "blur"].forEach(event => {
-			const pickerEvent = this._input.disabled ? "disabled" : event == "blur" ? "out" : event.replace(/mouse/, "");
-			this._input.addEventListener(event, () => {
-				this._input.style.backgroundImage = bgImage("picker", pickerEvent);
-				if (event == "focus") {
-					const open = new MouseEvent("mousedown");
-					this._input.dispatchEvent(open);
-				}
+		["mouseover", "mouseout", "focus", "blur"].forEach(type => {
+			const pickerEvent = this._input.disabled ? "disabled" : type == "blur" ? "out" : type.replace(/mouse/, "");
+			this._element.addEventListener(type, (event) => {
+				this._element.style.backgroundImage = bgImage("picker", pickerEvent);
 			});
 		});
-		this._input.addEventListener("click", () => {
-			this._box.classList.toggle("hidden");
-			if (!this._box.classList.contains("hidden")) {
-				this.open();
-			}
-		});
-		this._input.addEventListener("input", (event) => {
-			if (typeof(this._onChange) == "function") {
-				this._onChange(event, this._input.value);
-			}
-		});
+		this.load();
 	}
 	open() {
-		const today = (() => {
-			const date = new Date();
-			const offset = date.getTimezoneOffset();
-			return new Date(date.getTime() - offset*60*1000).toISOString().split("T")[0];
-		})();
-		this._todayValue = today;
-		this._todayYear = today.replace(/-\d{2}-\d{2}/, "");
-		this._todayMonth = today.replace(/\d{4}-0?(\d+)-\d{2}/, "$1");
-		this._targetValue = this._input.value || today;
-		this._targetDate = new Date(this._targetValue);
 		this._targetMode = "days";
-		this._resetValue = this._targetValue;
 		this.load();
 		if (typeof(this._onOpen) == "function") {
 			this._onOpen(this._input.value);
@@ -273,21 +294,55 @@ class WUIDatebox {
 		this.load();
 	}
 	load() {
+		const today = (() => {
+			const date = new Date();
+			const offset = date.getTimezoneOffset();
+			return new Date(date.getTime() - offset*60*1000).toISOString().split("T")[0];
+		})();
+		this._todayValue = today;
+		this._todayYear = today.replace(/-\d{2}-\d{2}/, "");
+		this._todayMonth = today.replace(/\d{4}-0?(\d+)-\d{2}/, "$1");
+		this._targetValue = this._input.value || today;
+		this._targetDate = new Date(this._targetValue+"T00:00:00");
+		this._resetInputValue = this._targetValue;
+		this._resetInputDate = new Date(this._targetValue+"T00:00:00");
+		this.loadInputs();
 		this.loadTexts();
-		switch (this._targetMode) {
-			case "months": this.loadMonths(); break;
-			case "days": this.loadDays(); break;
+		if (this._targetMode == "months") {
+			this.loadMonths();
+		} else if (this._targetMode == "days") {
+			this.loadDays();
 		}
+	}
+	loadInputs() {
+		const format =
+			this._locales.match(/(en-CA|en-ZA|ja-JP|ko-KR|zh-CN)/) ? ["year", "month", "day"] :
+			this._locales.match(/(en-US)/) ? ["month", "day", "year"] :
+			["day", "month", "year"];
+		this._inputs.innerHTML = "";
+		this._inputYear.value = this._targetDate.getFullYear();
+		this._inputMonth.value = this._targetDate.getMonth() +1;
+		this._inputDay.value = this._targetDate.getDate();
+		format.forEach((part, i) => {
+			const name = part.charAt(0).toUpperCase()+part.slice(1);
+			const input = this["_input"+name];
+			this._inputs.appendChild(input);
+			if (i < 2) {
+				const span = document.createElement("span");
+				span.textContent = "/";
+				this._inputs.appendChild(span);
+			}
+		});
 	}
 	loadTexts() {
 		if (WUIDatebox.#constants.locales.toLowerCase().split(/\s+/).indexOf(this._locales.toLowerCase()) > -1) {
 			const lang = this._locales.split("-")[0].toLowerCase();
 			for (let i=0; i<7; i++) {
-				const name = new Date(2023, 0, i+1).toLocaleString(this._locales, {weekday: "long"}); // 2023-01-01: sunday
+				const name = new Date(2023, 0, i+1, 0, 0, 0).toLocaleString(this._locales, {weekday: "long"}); // 2023-01-01: sunday
 				this._weekDaysNames[i] = name.replace(/^\s*(\w)/, letter => letter.toUpperCase());
 			}
 			for (let i=0; i<12; i++) {
-				const name = new Date(2023, i, 1).toLocaleString(this._locales, {month: "long"});
+				const name = new Date(2023, i, 1, 0, 0, 0).toLocaleString(this._locales, {month: "long"});
 				this._monthsNames[i] = name.replace(/^\s*(\w)/, letter => letter.toUpperCase());
 			}
 			this._reset.textContent = this._resetText != "" ? this._resetText : lang in WUIDatebox.#constants.texts ? WUIDatebox.#constants.texts[lang].reset : "";
@@ -331,6 +386,7 @@ class WUIDatebox {
 				button.dataset.month = buttonMonth;
 				button.textContent = this.monthsNames[m -1].substring(0, 3);
 				button.addEventListener("click", () => {
+					const selected = !Boolean(button.classList.contains("selected"));
 					this._months.querySelectorAll("div").forEach(div => {
 						if (typeof(div.dataset.value) != "undefined" && div.dataset.value != buttonValue) {
 							div.classList.remove("selected");
@@ -338,11 +394,10 @@ class WUIDatebox {
 					});
 					button.classList.toggle("selected");
 					this._period.innerHTML = this._monthsNames[button.dataset.month -1]+" "+button.dataset.year+" <div class='icon up'></div>";
-					this._input.value = button.classList.contains("selected") ? buttonValue : "";
-					if (button.classList.contains("selected")) {
-						this._targetValue = buttonValue;
-						this._targetDate = new Date(buttonValue);
-					}
+					this._input.value = selected ? buttonValue : "";
+					this._targetValue = selected ? buttonValue : "";
+					this._targetDate = selected ? new Date(buttonValue+"T00:00:00") : null;
+					this.#setInputsValues(this._targetDate);
 				});
 				cell.appendChild(button);
 				m++;
@@ -355,7 +410,7 @@ class WUIDatebox {
 		const month = this._targetDate.getMonth() +1;
 		const country = this.locales.split("-")[1].toUpperCase();
 		const firstwday = parseInt(WUIDatebox.#constants.countryFirstWeekDay[country] || 0);
-		const firstmday = new Date(year, month, 1).getDay(); 
+		const firstmday = new Date(year, month, 1, 0, 0, 0).getDay(); 
 		const lasmday = month == 2 ? year & 3 || !(year % 25) && year & 15 ? 28 : 29 : 30 + (month + (month >> 3) & 1);
 		let ini = 0;
 		let rows = 5;
@@ -394,17 +449,17 @@ class WUIDatebox {
 				button.dataset.value = buttonValue;
 				button.textContent = d;
 				button.addEventListener("click", () => {
+					const selected = !Boolean(button.classList.contains("selected"));
 					this._days.querySelectorAll("div").forEach(div => {
 						if (typeof(div.dataset.value) != "undefined" && div.dataset.value != buttonValue) {
 							div.classList.remove("selected");
 						}
 					});
 					button.classList.toggle("selected");
-					this._input.value = button.classList.contains("selected") ? buttonValue : "";
-					if (button.classList.contains("selected")) {
-						this._targetValue = buttonValue;
-						this._targetDate = new Date(buttonValue);
-					}
+					this._input.value = selected ? buttonValue : "";
+					this._targetValue = selected ? buttonValue : "";
+					this._targetDate = selected ? new Date(buttonValue+"T00:00:00") : null;
+					this.#setInputsValues(this._targetDate);
 				});
 				cell.appendChild(button);
 				if (i == 7*5 -1 && d < lasmday) {
@@ -452,7 +507,8 @@ class WUIDatebox {
 		}
 	}
 	reset() {
-		this._input.value = this._resetValue;
+		this._input.value = this._resetInputValue;
+		this.#setInputsValues(this._resetInputDate);
 		this.close();
 	}
 	done() {
@@ -463,7 +519,14 @@ WUIDatebox.initClass();
 /*
 HTML struture:
 <div class="wui-datebox">
-	<input type="date" value="">
+	<input type="hidden" value="(name)">
+	<div class="inputs">
+		<input type="text" value="(name)Year">
+		<span></span>
+		<input type="text" value="(name)Month">
+		<span></span>
+		<input type="text" value="(name)Day">
+	</div>
 	<div class="box">
 		<div class="header">
 			<div class="period"></div>

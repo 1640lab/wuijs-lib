@@ -194,7 +194,7 @@ class WUIModalSelect extends WUIModal {
 				input._touches = event.touches || event.targetTouches;
 				input._drag = false;
 			});
-			input.addEventListener("touchmove", (event) => {
+			input.addEventListener("touchmove", () => {
 				input._touches = [];
 				input._drag = true;
 			});
