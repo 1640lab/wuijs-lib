@@ -331,7 +331,7 @@ class WUIModalSelect extends WUIModal {
 }
 /*
 HTML struture:
-<div class="wui-modal select [mobile] [priority]">
+<div class="wui-modal select [priority]">
 	<div class="box">
 		<div class="options">
 			<div class="option"></div>

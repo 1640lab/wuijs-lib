@@ -277,6 +277,9 @@ class WUIDatebox {
 				this._element.style.backgroundImage = bgImage("picker", pickerEvent);
 			});
 		});
+		this._element.addEventListener("click", (event) => {
+			// ...
+		});
 		this.load();
 	}
 	open() {
