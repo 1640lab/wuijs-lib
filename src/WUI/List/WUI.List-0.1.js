@@ -125,7 +125,7 @@ class WUIList {
 					cell.innerHTML = item;
 					strip.append(cell);
 				});
-				strip.addEventListener("click", (event) => {
+				strip.addEventListener("click", event => {
 					if (this._buttons.length == 0 || this._strips[i].direction == null) {
 						if (typeof(this._onClick) == "function") {
 							this._onClick(i, id, event, dataRow);
@@ -165,7 +165,7 @@ class WUIList {
 								icon.classList.add(name);
 							});
 						}
-						button.addEventListener("click", (event) => {
+						button.addEventListener("click", event => {
 							const strip = this._body.querySelector(".row:nth-of-type("+(i+1)+") > .strip");
 							if (enabled && typeof(options.onClick) == "function") {
 								options.onClick(i, id, event);
@@ -177,7 +177,7 @@ class WUIList {
 						button.append(icon);
 						buttons.append(button);
 						["touchstart", "mousedown"].forEach(type => {
-							strip.addEventListener(type, (event) => {
+							strip.addEventListener(type, event => {
 								if (!this._strips[i].drag) {
 									const initX = (event.type == "touchstart" ? event.touches[0].clientX : event.clientX || event.clientX) - event.target.offsetParent.offsetLeft;
 									this._strips[i].drag = true;
@@ -186,7 +186,7 @@ class WUIList {
 							});
 						});
 						["touchmove", "mousemove"].forEach(type => {
-							strip.addEventListener(type, (event) => {
+							strip.addEventListener(type, event => {
 								if (this._strips[i].drag) {
 									const initX = parseFloat(this._strips[i].initX);
 									const moveX = (event.type == "touchmove" ? event.touches[0].clientX : event.clientX || event.clientX) - event.target.offsetParent.offsetLeft;

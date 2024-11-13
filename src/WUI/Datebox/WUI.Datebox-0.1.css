@@ -24,7 +24,7 @@
 	align-items: center;
 }
 .wui-datebox > .inputs > input[type="text"] {
-	width: 30px;
+	width: 20px;
 	height: 100%;
 	margin: 0;
 	outline: none;
@@ -236,7 +236,7 @@
 	color: var(--wui-datebox-box-buttons-textcolor-over);
 }
 @media screen and (max-width: 767px) {
-	.wui-datebox > input[type="date"] {
+	.wui-datebox > input[type="text"] {
 		font-size: 15px;
 	}
 	.wui-datebox > .box {

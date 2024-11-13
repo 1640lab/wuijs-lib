@@ -154,8 +154,8 @@ class WUIPaging {
 				}
 				page.dataset.scrollPage = 0;
 				if (page.classList.contains("scroll")) {
-					["scroll", "touchmove"].forEach(event => {
-						page.addEventListener(event, debounce(() => {
+					["scroll", "touchmove"].forEach(type => {
+						page.addEventListener(type, debounce(() => {
 							const top = page.scrollTop;
 							const scroll = top >= 0 ? top : 0;
 							page.dataset.scrollPage = scroll;

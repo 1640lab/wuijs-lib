@@ -59,7 +59,7 @@ class WUISelector {
 				});
 			}
 		};
-		document.addEventListener("keydown", (event) => {
+		document.addEventListener("keydown", event => {
 			let esc = false;
 			event = event || window.event;
 			if ("key" in event) {

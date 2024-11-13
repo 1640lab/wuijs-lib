@@ -20,11 +20,14 @@ class WUITooltip {
 			this._elements = document.querySelectorAll(value);
 		}
 	}
+	getElements() {
+		return this._elements;
+	}
 	init() {
 		this._elements = document.querySelectorAll(this._selector);
 		this._elements.forEach(target => {
-			["mouseover", "mouseout"].forEach(event => {
-				target.addEventListener(event, () => {
+			["mouseover", "mouseout"].forEach(type => {
+				target.addEventListener(type, () => {
 					target.querySelectorAll(this.#tooltipSelectors).forEach(tooltip => {
 						tooltip.classList.toggle("opened");
 					});
@@ -45,9 +48,6 @@ class WUITooltip {
 				tooltip.classList.remove("locked");
 			});
 		});
-	}
-	getElements() {
-		return this._elements;
 	}
 }
 /*

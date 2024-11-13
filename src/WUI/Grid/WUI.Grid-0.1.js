@@ -210,7 +210,7 @@ class WUIGrid {
 			row.dataset.id = id;
 			row.className = "row";
 			row.appendChild(strip);
-			row.addEventListener("click", (event) => {
+			row.addEventListener("click", event => {
 				if (!event.target.classList.contains("button")) {
 					if (this._selectable) {
 						row.classList.toggle("selected");
@@ -223,7 +223,7 @@ class WUIGrid {
 					}
 				}
 			});
-			row.addEventListener("dblclick", (event) => {
+			row.addEventListener("dblclick", event => {
 				if (typeof(this._onDblclick) == "function") {
 					this._onDblclick(event, i, id, row);
 				}
@@ -241,7 +241,7 @@ class WUIGrid {
 				const button = document.createElement("button");
 				const content = document.createElement("div");
 				button.setAttribute("class", "button wui-svgicon "+this._rowOpenIconClass);
-				button.addEventListener("click", (event) => {
+				button.addEventListener("click", event => {
 					this.extendRow(i);
 				});
 				content.setAttribute("class", "content");

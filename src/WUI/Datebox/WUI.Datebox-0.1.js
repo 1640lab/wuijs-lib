@@ -60,10 +60,10 @@ class WUIDatebox {
 		return this._selector;
 	}
 	get min() {
-		return this._input.min;
+		return this._min;
 	}
 	get max() {
-		return this._input.max;
+		return this._max;
 	}
 	get value() {
 		return this._input.value;
@@ -101,17 +101,18 @@ class WUIDatebox {
 	}
 	set min(value) {
 		if (typeof(value) == "string" && value.match(/^(\d{4}-\d{2}-\d{2})?$/)) {
-			this._input.min = value;
+			this._min = value;
 		}
 	}
 	set max(value) {
 		if (typeof(value) == "string" && value.match(/^(\d{4}-\d{2}-\d{2})?$/)) {
-			this._input.max = value;
+			this._max = value;
 		}
 	}
 	set value(value) {
 		if (typeof(value) == "string" && value.match(/^(\d{4}-\d{2}-\d{2})?$/) && this._enabled) {
 			this._input.value = value;
+			this.#load();
 		}
 	}
 	set locales(value) {
@@ -120,7 +121,7 @@ class WUIDatebox {
 				return i == 0 ? x.toLocaleLowerCase() : x.toUpperCase();
 			}).join("-");
 			if (typeof(this._inputs) != "undefined") {
-				this.load();
+				this.#loadInputs();
 			}
 		}
 	}
@@ -148,6 +149,11 @@ class WUIDatebox {
 		if (typeof(value) == "boolean") {
 			this._enabled = value;
 			this._input.disabled = !value;
+			if (typeof(this._inputs) != "undefined") {
+				this._inputYear.disabled = !value;
+				this._inputMonth.disabled = !value;
+				this._inputDay.disabled = !value;
+			}
 			if (value) {
 				this._input.removeAttribute("disabled");
 			} else {
@@ -166,18 +172,11 @@ class WUIDatebox {
 			this._onChange = value;
 		}
 	}
-	#setInputValue = () => {
-		const year = this._inputYear.value;
-		const month = this._inputMonth.value;
-		const day = this._inputDay.value;
-		if (year != "" && month != "" && day != "") {
-			this._input.value = ("000"+year).slice(-4)+"-"+("0"+month).slice(-2)+"-"+("0"+day).slice(-2);
-		}
+	getElement() {
+		return this._element;
 	}
-	#setInputsValues = (date) => {
-		this._inputYear.value = date instanceof Date ? date.getFullYear() : "";
-		this._inputMonth.value = date instanceof Date ? date.getMonth() +1 : "";
-		this._inputDay.value = date instanceof Date ? date.getDate() : "";
+	getInput() {
+		return this._input;
 	}
 	#setStyle() {
 		const disabled = this._input.disabled;
@@ -187,11 +186,10 @@ class WUIDatebox {
 			this._element.classList.remove("disabled");
 		}
 	}
-	getElement() {
-		return this._element;
-	}
-	getInput() {
-		return this._input;
+	#setDate(date) {
+		this._inputYear.value = date instanceof Date ? ("000"+date.getFullYear()).slice(-4) : "";
+		this._inputMonth.value = date instanceof Date ? ("0"+(date.getMonth() +1)).slice(-2) : "";
+		this._inputDay.value = date instanceof Date ? ("0"+date.getDate()).slice(-2) : "";
 	}
 	init() {
 		const bgImage = (name, event) => {
@@ -215,9 +213,31 @@ class WUIDatebox {
 		this._footer = document.createElement("div");
 		this._reset = document.createElement("div");
 		this._done = document.createElement("div");
+		this._element.appendChild(this._inputs);
+		this._element.appendChild(this._box);
+		this._element.style.backgroundImage = bgImage("picker", this._input.disabled ? "disabled" : "out");
+		this._element.addEventListener("click", event => {
+			if (event.target.classList.contains("wui-datebox") && this._element.offsetWidth - event.offsetX < 30) {
+				this.toggle();
+			}
+		});
+		["mouseover", "mouseout", "focus", "blur"].forEach(type => {
+			const pickerType = this._input.disabled ? "disabled" : type == "blur" ? "out" : type.replace(/mouse/, "");
+			this._element.addEventListener(type, () => {
+				this._element.style.backgroundImage = bgImage("picker", pickerType);
+			});
+		});
+		["min", "max", "style"].forEach(name => {
+			if (this._input.hasAttribute(name)) {
+				if (name.match(/(min|max)/)) {
+					this["_"+name] = this._input[name];
+				}
+				this._input.removeAttributeNode(this._input.getAttributeNode(name));
+			}
+		});
 		this._input.type = "hidden";
 		this._inputs.className = "inputs";
-		["year", "month", "day"].forEach((part, i) => {
+		["year", "month", "day"].forEach(part => {
 			const name = part.charAt(0).toUpperCase()+part.slice(1);
 			const input = this["_input"+name];
 			input.type = "text";
@@ -225,66 +245,51 @@ class WUIDatebox {
 			input.placeholder = part == "year" ? "yyyy" : part == "month" ? "mm" : "dd";
 			input.maxLength = part == "year" ? 4 : 2;
 			input.className = part;
-			input.addEventListener("click", () => {
-				this._box.classList.toggle("hidden");
-				if (!this._box.classList.contains("hidden")) {
-					this.open();
-				}
-			});
-			input.addEventListener("keyup", (event) => {
+			input.addEventListener("click", () => {this.toggle();});
+			input.addEventListener("keyup", event => {
 				const value = event.target.value;
 				const part = event.target.className;
 				const min = 1;
 				const max = part == "year" ? 3000 : part == "month" ? 12 : 31;
 				event.target.value = parseInt(value) > max ? max : parseInt(value) < min ? min : value;
-				this.#setInputValue();
+				this.#loadValue();
 			});
 		});
-		this._period.className = "period";
-		this._period.addEventListener("click", () => {this.toggle();});
-		this._prev.className = "prev";
-		this._prev.addEventListener("click", () => {this.prev();});
-		this._next.className = "next";
-		this._next.addEventListener("click", () => {this.next();});
-		this._header.className = "header";
-		this._header.appendChild(this._period);
-		this._header.appendChild(this._prev);
-		this._header.appendChild(this._next);
-		this._months.className = "months";
-		this._week.className = "week";
-		this._days.className = "days";
-		this._reset.className = "reset";
-		this._reset.addEventListener("click", () => {this.reset();});
-		this._done.className = "done";
-		this._done.addEventListener("click", () => {this.done();});
-		this._footer.className = "footer";
-		this._footer.appendChild(this._reset);
-		this._footer.appendChild(this._done);
 		this._box.className = "box hidden";
 		this._box.appendChild(this._header);
 		this._box.appendChild(this._months);
 		this._box.appendChild(this._week);
 		this._box.appendChild(this._days);
 		this._box.appendChild(this._footer);
-		this._element.appendChild(this._inputs);
-		this._element.appendChild(this._box);
-		this._element.style.backgroundImage = bgImage("picker", this._input.disabled ? "disabled" : "out");
+		this._header.className = "header";
+		this._header.appendChild(this._period);
+		this._header.appendChild(this._prev);
+		this._header.appendChild(this._next);
+		this._period.className = "period";
+		this._period.addEventListener("click", () => {this.toggleMode();});
+		this._prev.className = "prev";
 		this._prev.style.backgroundImage = bgImage("box-prev", this._input.disabled ? "disabled" : "out");
+		this._prev.addEventListener("click", () => {this.prev();});
+		this._next.className = "next";
 		this._next.style.backgroundImage = bgImage("box-next", this._input.disabled ? "disabled" : "out");
-		["mouseover", "mouseout", "focus", "blur"].forEach(type => {
-			const pickerEvent = this._input.disabled ? "disabled" : type == "blur" ? "out" : type.replace(/mouse/, "");
-			this._element.addEventListener(type, (event) => {
-				this._element.style.backgroundImage = bgImage("picker", pickerEvent);
-			});
-		});
-		this._element.addEventListener("click", (event) => {
-			// ...
-		});
-		this.load();
+		this._next.addEventListener("click", () => {this.next();});
+		this._months.className = "months";
+		this._week.className = "week";
+		this._days.className = "days";
+		this._footer.className = "footer";
+		this._footer.appendChild(this._reset);
+		this._footer.appendChild(this._done);
+		this._reset.className = "reset";
+		this._reset.addEventListener("click", () => {this.reset();});
+		this._done.className = "done";
+		this._done.addEventListener("click", () => {this.done();});
+		this.#load();
+		this.#loadInputs();
 	}
 	open() {
-		this._targetMode = "days";
-		this.load();
+		this.#load();
+		this.#loadTexts();
+		this.#loadBox();
 		if (typeof(this._onOpen) == "function") {
 			this._onOpen(this._input.value);
 		}
@@ -293,10 +298,16 @@ class WUIDatebox {
 		this._box.classList.add("hidden");
 	}
 	toggle() {
-		this._targetMode = this._targetMode == "days" ? "months" : "days";
-		this.load();
+		this._box.classList.toggle("hidden");
+		if (!this._box.classList.contains("hidden")) {
+			this.open();
+		}
 	}
-	load() {
+	toggleMode() {
+		this._mode = this._mode == "days" ? "months" : "days";
+		this.#loadBox();
+	}
+	#load() {
 		const today = (() => {
 			const date = new Date();
 			const offset = date.getTimezoneOffset();
@@ -307,25 +318,27 @@ class WUIDatebox {
 		this._todayMonth = today.replace(/\d{4}-0?(\d+)-\d{2}/, "$1");
 		this._targetValue = this._input.value || today;
 		this._targetDate = new Date(this._targetValue+"T00:00:00");
-		this._resetInputValue = this._targetValue;
-		this._resetInputDate = new Date(this._targetValue+"T00:00:00");
-		this.loadInputs();
-		this.loadTexts();
-		if (this._targetMode == "months") {
-			this.loadMonths();
-		} else if (this._targetMode == "days") {
-			this.loadDays();
+		this._resetValue = this._targetValue;
+		this._resetDate = new Date(this._targetValue+"T00:00:00");
+		this._mode = "days";
+		this.#setDate(this._targetDate);
+	}
+	#loadValue() {
+		const value = this._input.value;
+		const year = this._inputYear.value;
+		const month = this._inputMonth.value;
+		const day = this._inputDay.value;
+		this._input.value = year != "" && month != "" && day != "" ? ("000"+year).slice(-4)+"-"+("0"+month).slice(-2)+"-"+("0"+day).slice(-2) : "";
+		if (this._input.value != value && typeof(this._onChange) == "function") {
+			this._onChange(this._input.value);
 		}
 	}
-	loadInputs() {
+	#loadInputs() {
 		const format =
 			this._locales.match(/(en-CA|en-ZA|ja-JP|ko-KR|zh-CN)/) ? ["year", "month", "day"] :
 			this._locales.match(/(en-US)/) ? ["month", "day", "year"] :
 			["day", "month", "year"];
 		this._inputs.innerHTML = "";
-		this._inputYear.value = this._targetDate.getFullYear();
-		this._inputMonth.value = this._targetDate.getMonth() +1;
-		this._inputDay.value = this._targetDate.getDate();
 		format.forEach((part, i) => {
 			const name = part.charAt(0).toUpperCase()+part.slice(1);
 			const input = this["_input"+name];
@@ -337,7 +350,7 @@ class WUIDatebox {
 			}
 		});
 	}
-	loadTexts() {
+	#loadTexts() {
 		if (WUIDatebox.#constants.locales.toLowerCase().split(/\s+/).indexOf(this._locales.toLowerCase()) > -1) {
 			const lang = this._locales.split("-")[0].toLowerCase();
 			for (let i=0; i<7; i++) {
@@ -352,7 +365,14 @@ class WUIDatebox {
 			this._done.textContent = this._doneText != "" ? this._doneText : lang in WUIDatebox.#constants.texts ? WUIDatebox.#constants.texts[lang].done : "";
 		}
 	}
-	loadMonths() {
+	#loadBox() {
+		if (this._mode == "months") {
+			this.#buildMonths();
+		} else if (this._mode == "days") {
+			this.#buildDays();
+		}
+	}
+	#buildMonths() {
 		const year = this._targetDate.getFullYear();
 		const month = this._targetDate.getMonth() +1;
 		let y = year;
@@ -400,7 +420,7 @@ class WUIDatebox {
 					this._input.value = selected ? buttonValue : "";
 					this._targetValue = selected ? buttonValue : "";
 					this._targetDate = selected ? new Date(buttonValue+"T00:00:00") : null;
-					this.#setInputsValues(this._targetDate);
+					this.#setDate(this._targetDate);
 				});
 				cell.appendChild(button);
 				m++;
@@ -408,7 +428,7 @@ class WUIDatebox {
 			this._months.appendChild(cell);
 		}
 	}
-	loadDays() {
+	#buildDays() {
 		const year = this._targetDate.getFullYear();
 		const month = this._targetDate.getMonth() +1;
 		const country = this.locales.split("-")[1].toUpperCase();
@@ -462,7 +482,7 @@ class WUIDatebox {
 					this._input.value = selected ? buttonValue : "";
 					this._targetValue = selected ? buttonValue : "";
 					this._targetDate = selected ? new Date(buttonValue+"T00:00:00") : null;
-					this.#setInputsValues(this._targetDate);
+					this.#setDate(this._targetDate);
 				});
 				cell.appendChild(button);
 				if (i == 7*5 -1 && d < lasmday) {
@@ -474,13 +494,13 @@ class WUIDatebox {
 			this._days.appendChild(cell);
 		}
 	}
-	targetYearsStep(step) {
+	#yearsStep(step) {
 		const year = this._targetDate.getFullYear() +step;
 		this._targetDate.setFullYear(year);
 		this._targetValue = this._targetDate.toISOString().split("T")[0];
-		this.loadMonths();
+		this.#buildMonths();
 	}
-	targetMonthsStep(step) {
+	#monthsStep(step) {
 		let month = this._targetDate.getMonth() +step;
 		if (month < 0) {
 			while (month < 0) {
@@ -495,23 +515,23 @@ class WUIDatebox {
 		}
 		this._targetDate.setMonth(month);
 		this._targetValue = this._targetDate.toISOString().split("T")[0];
-		this.loadDays();
+		this.#buildDays();
 	}
 	prev() {
-		switch (this._targetMode) {
-			case "months": this.targetYearsStep(-2); break;
-			case "days": this.targetMonthsStep(-1); break;
+		switch (this._mode) {
+			case "months": this.#yearsStep(-2); break;
+			case "days": this.#monthsStep(-1); break;
 		}
 	}
 	next() {
-		switch (this._targetMode) {
-			case "months": this.targetYearsStep(+2); break;
-			case "days": this.targetMonthsStep(+1); break;
+		switch (this._mode) {
+			case "months": this.#yearsStep(+2); break;
+			case "days": this.#monthsStep(+1); break;
 		}
 	}
 	reset() {
-		this._input.value = this._resetInputValue;
-		this.#setInputsValues(this._resetInputDate);
+		this._input.value = this._resetValue;
+		this.#setDate(this._resetDate);
 		this.close();
 	}
 	done() {

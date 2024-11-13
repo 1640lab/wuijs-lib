@@ -289,13 +289,13 @@ class WUIScrolly {
 			}
 		}, this);
 		document.documentElement.dataset[this._dataScrollY] = window.scrollY >= 0 ? window.scrollY : 0;
-		["scroll", "touchmove"].forEach(event => {
-			document.addEventListener(event, debounce(onScrollCSS), {passive: true});
+		["scroll", "touchmove"].forEach(type => {
+			document.addEventListener(type, debounce(onScrollCSS), {passive: true});
 			if (this._sections.length > 0 || (typeof(this._onStart) == "function" || typeof(this._onMove) == "function" || typeof(this._onStop) == "function")) {
 				this._sceneIndex = null;
 				this._sceneStep = null;
 				this._sceneProgress = null;
-				document.addEventListener(event, debounce(onScrollJS), {passive: false});
+				document.addEventListener(type, debounce(onScrollJS), {passive: false});
 			}
 		}, this);
 	}

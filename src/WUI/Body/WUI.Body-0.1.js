@@ -56,14 +56,14 @@ class WUIBody {
 		} catch(e) {}
 		return http.status != 404;
 	}
-	prepaare = () => {
+	prepaare() {
 		if (this.environment == "android") {
 			document.body.querySelectorAll("a[target=_new], a[target=_blank]").forEach(a => {
 				a.setAttribute("href", "javascript:WUIBody.urlOpen('"+a.getAttribute("href")+"', '"+(a.getAttribute("download") || "")+"');");
 				a.removeAttribute("target");
 			});
 			document.body.querySelectorAll("input[type=text], input[type=password], input[type=file], input[type=email], input[type=number], input[type=tel], textarea").forEach(input => {
-				input.addEventListener("keyup", (event) => {
+				input.addEventListener("keyup", event => {
 					const maxlength = input.getAttribute("maxlength");
 					if (typeof(maxlength) != "undefined" && input.value.length > parseInt(maxlength)) {
 						input.value = input.value.substring(0, parseInt(maxlength));
@@ -72,7 +72,7 @@ class WUIBody {
 			});
 		} else if (this.environment == "ios") {
 			document.body.querySelectorAll("input[type=text], input[type=password], input[type=file], input[type=email], input[type=number], input[type=tel], textarea").forEach(input => {
-				input.addEventListener("keypress", (event) => {
+				input.addEventListener("keypress", event => {
 					const maxlength = input.getAttribute("maxlength");
 					if (typeof(maxlength) != "undefined" && input.value.length >= parseInt(maxlength)) {
 						return false;
@@ -86,7 +86,7 @@ class WUIBody {
 			});
 		});
 	};
-	urlOpen = (url, download = "") => {
+	urlOpen(url, download = "") {
 		const link = document.createElement("a");
 		link.setAttribute("href", url);
 		link.style.display = "none";
@@ -97,7 +97,7 @@ class WUIBody {
 		link.click();
 		document.body.removeChild(link);
 	}
-	import = (id, path, done) => {
+	import(id, path, done) {
 		const token = Date.now();
 		const cssPath = this._importDirectory+path+".css?_="+token;
 		const htmlPath = this._importDirectory+path+".htm?_="+token;
@@ -156,7 +156,7 @@ class WUIBody {
 			this.#total++;
 		}
 	};
-	init = (onCompleted) => {
+	init(onCompleted) {
 		if (typeof(onCompleted) == "function") {
 			this._onCompleted = onCompleted;
 		}

@@ -72,7 +72,7 @@ class WUIButton {
 		}
 	}
 	init() {
-		this._element.addEventListener("click", (event) => {
+		this._element.addEventListener("click", event => {
 			this.#setStyle();
 			if (!this._locked && this._enabled && typeof(this._onClick) == "function") {
 				this._onClick(event);

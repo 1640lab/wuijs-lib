@@ -71,7 +71,7 @@ class WUIFormat {
 	}
 }
 
-/* wui string prototype */
+/* wui-string prototype */
 
 String.prototype.wuiDefaults = {
 	emailListSeparator: ",",
@@ -261,7 +261,7 @@ String.prototype.wuiValidCLRUTFormat = function() {
 	return this.wuiValidModule11Format("K");
 };
 
-/* wui number prototype */
+/* wui-number prototype */
 
 Number.prototype.wuiDefaults = {
 	numberPrefix: "",
@@ -296,7 +296,7 @@ Number.prototype.wuiToSizeString = function() {
 	return parseInt(size/div).wuiToString()+" "+uni;
 };
 
-/* wui date prototype */
+/* wui-date prototype */
 
 Date.prototype.wuiConstants = {
 	locales: "" // https://www.techonthenet.com/js/language_tags.php 20241007

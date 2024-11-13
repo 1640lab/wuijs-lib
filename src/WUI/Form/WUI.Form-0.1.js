@@ -182,7 +182,7 @@ class WUIForm {
 			const image = getComputedStyle(element).getPropertyValue("--wui-form-"+type+"-pickerimage-src").replace(/currentColor/g, color);
 			return image;
 		}
-		this._form.addEventListener("submit", (event) => {
+		this._form.addEventListener("submit", event => {
 			if (!this._submit) {
 				event.preventDefault();
 			}
@@ -206,18 +206,18 @@ class WUIForm {
 			if (type.match(/^(date|time)$/i) || tag.match(/^(select)$/i)) {
 				const pickerType = type || tag;
 				input.style.backgroundImage = bgImage(input, pickerType, input.disabled ? "disabled" : "out");
-				["mouseover", "mouseout", "focus", "blur"].forEach(event => {
-					const pickerEvent = input.disabled ? "disabled" : event == "blur" ? "out" : event.replace(/mouse/, "");
-					input.addEventListener(event, () => {
+				["mouseover", "mouseout", "focus", "blur"].forEach(type => {
+					const pickerEvent = input.disabled ? "disabled" : type == "blur" ? "out" : type.replace(/mouse/, "");
+					input.addEventListener(type, () => {
 						if (label != null) {
-							if (event.match(/mouseover|focus/) || input.value != "") {
+							if (type.match(/mouseover|focus/) || input.value != "") {
 								label.classList.add("notempty");
 							} else {
 								label.classList.remove("notempty");
 							}
 						}
 						input.style.backgroundImage = bgImage(input, pickerType, pickerEvent);
-						if (event == "focus") {
+						if (type == "focus") {
 							const open = new MouseEvent("mousedown");
 							input.dispatchEvent(open);
 						}

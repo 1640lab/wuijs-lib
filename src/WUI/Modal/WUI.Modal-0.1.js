@@ -172,7 +172,7 @@ class WUIModal {
 				});
 			}
 		};
-		document.addEventListener("keydown", (event) => {
+		document.addEventListener("keydown", event => {
 			let esc = false;
 			event = event || window.event;
 			if ("key" in event) {
@@ -202,7 +202,7 @@ class WUIModal {
 			this._initY = null;
 			this._direction = null;
 			["touchstart", "mousedown"].forEach(type => {
-				this._topbar.addEventListener(type, (event) => {
+				this._topbar.addEventListener(type, event => {
 					if (!this._drag) {
 						const initY = (event.type == "touchstart" ? event.touches[0].clientY : event.clientY || event.pageY) - event.target.offsetParent.offsetTop;
 						this._initY = initY;
@@ -211,7 +211,7 @@ class WUIModal {
 				});
 			});
 			["touchmove", "mousemove"].forEach(type => {
-				this._topbar.addEventListener(type, (event) => {
+				this._topbar.addEventListener(type, event => {
 					if (this._drag) {
 						const initY = parseFloat(this._initY);
 						const moveY = (event.type == "touchmove" ? event.touches[0].clientY : event.clientY || event.pageY) - event.target.offsetParent.offsetTop;
@@ -255,8 +255,8 @@ class WUIModal {
 		if (this._box != null && this._body != null) {
 			this._box.dataset.scrollBody = 0;
 			if (this._body.classList.contains("scroll")) {
-				["scroll", "touchmove"].forEach(event => {
-					this._body.addEventListener(event, debounce(() => {
+				["scroll", "touchmove"].forEach(type => {
+					this._body.addEventListener(type, debounce(() => {
 						const top = this._body.scrollTop;
 						this._box.dataset.scrollBody = top >= 0 ? top : 0;
 					}), {passive: true});

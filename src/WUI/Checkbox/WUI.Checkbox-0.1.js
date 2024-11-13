@@ -91,16 +91,11 @@ class WUICheckbox {
 		return this._input;
 	}
 	init() {
-		/*this._element.addEventListener("mousedown", event => {
-			event = new Event("change");
-			this.checked = !this._input.checked;
-			this._input.dispatchEvent(event);
-		});*/
 		this._drag = false;
 		this._initX = null;
 		this._direction = null;
 		["touchstart", "mousedown"].forEach(type => {
-			this._element.addEventListener(type, (event) => {
+			this._element.addEventListener(type, event => {
 				if (!this._drag) {
 					const initX = (event.type == "touchstart" ? event.touches[0].clientX : event.clientX || event.pageX) - event.target.offsetParent.offsetLeft;
 					this._initX = initX;
@@ -109,7 +104,7 @@ class WUICheckbox {
 			});
 		});
 		["touchmove", "mousemove"].forEach(type => {
-			this._element.addEventListener(type, (event) => {
+			this._element.addEventListener(type, event => {
 				if (this._drag) {
 					const initX = parseFloat(this._initX);
 					const moveX = (event.type == "touchmove" ? event.touches[0].clientX : event.clientX || event.pageX) - event.target.offsetParent.offsetLeft;

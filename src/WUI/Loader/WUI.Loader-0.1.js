@@ -57,6 +57,9 @@ class WUILoader {
 			this._dataSize = value;
 		}
 	}
+	getElements() {
+		return this._elements;
+	}
 	init() {
 		this._elements.forEach(element => {
 			const dataStyle = element.dataset[this._dataStyle];
@@ -96,8 +99,5 @@ class WUILoader {
 				element.appendChild(child);
 			}
 		});
-	}
-	getElements() {
-		return this._elements;
 	}
 }

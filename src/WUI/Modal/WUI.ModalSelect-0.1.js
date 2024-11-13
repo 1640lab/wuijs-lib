@@ -190,7 +190,7 @@ class WUIModalSelect extends WUIModal {
 			input.style.zIndex = 1;
 			input._touches = [];
 			input._drag = false;
-			input.addEventListener("touchstart", (event) => {
+			input.addEventListener("touchstart", event => {
 				input._touches = event.touches || event.targetTouches;
 				input._drag = false;
 			});
@@ -198,7 +198,7 @@ class WUIModalSelect extends WUIModal {
 				input._touches = [];
 				input._drag = true;
 			});
-			input.addEventListener("touchend", (event) => {
+			input.addEventListener("touchend", event => {
 				const screenWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
 				if (screenWidth <= this._maxScreenWidth || options.force) {
 					if (!input._drag) {

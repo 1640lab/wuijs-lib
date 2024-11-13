@@ -31,16 +31,19 @@ class WUITabs {
 			this._index = value;
 		}
 	}
-	init = () => {
+	getElement = () => {
+		return this._element;
+	}
+	init() {
 		this._element.querySelectorAll(".bar > .tab").forEach(tab => {
-			tab.addEventListener("click", (event) => {
+			tab.addEventListener("click", event => {
 				const index = [...tab.parentElement.children].indexOf(tab);
 				this.select(index);
 			});
 		});
 		if (this._border) {
 			this._element.querySelectorAll(".body > .page").forEach(page => {
-				page.addEventListener("scroll", (event) => {
+				page.addEventListener("scroll", event => {
 					if (page.scrollTop > 0) {
 						this._border.classList.add("scroll");
 					} else {
@@ -50,9 +53,6 @@ class WUITabs {
 			});
 		}
 		this.select();
-	}
-	getElement = () => {
-		return this._element;
 	}
 	select = (index = 0) => {
 		this._bar.querySelectorAll("> .tab").forEach((tab, i) => {

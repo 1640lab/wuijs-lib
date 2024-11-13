@@ -39,10 +39,10 @@ class WUISlider {
 	getIndex() {
 		return this._index;
 	}
-	init = () => {
+	init() {
 		this.load();
 	}
-	load = () => {
+	load() {
 		if (this._body != null) {
 			if (this._dots != null) {
 				this._dots.innerHTML = "";
@@ -67,7 +67,7 @@ class WUISlider {
 					}
 				}
 				["touchstart", "mousedown"].forEach(type => {
-					this._data[i].slide.addEventListener(type, (event) => {
+					this._data[i].slide.addEventListener(type, event => {
 						if (!this._data[i].drag) {
 							const initX = (event.type == "touchstart" ? event.touches[0].clientX : event.clientX || event.pageX) - event.target.offsetParent.offsetLeft;
 							this._data[i].initX = initX;
@@ -76,13 +76,12 @@ class WUISlider {
 					});
 				});
 				["touchmove", "mousemove"].forEach(type => {
-					this._data[i].slide.addEventListener(type, (event) => {
+					this._data[i].slide.addEventListener(type, event => {
 						if (this._data[i].drag && !this._data[i].lock) {
 							const initX = parseFloat(this._data[i].initX);
 							const moveY = (event.type == "touchmove" ? event.touches[0].clientX : event.clientX || event.pageX) - event.target.offsetParent.offsetLeft;
 							const diffX = moveY -initX;
 							const direction = diffX > 10 ? "prev" : diffX < -10 ? "next" : null;
-							const delay = 200;
 							let step = 0;
 							if (direction == "next" && i < this._data.length -1) {
 								this.next();
