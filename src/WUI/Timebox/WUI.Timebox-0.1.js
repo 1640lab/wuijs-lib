@@ -191,7 +191,8 @@ class WUITimebox {
 		["hours", "minutes"].forEach((part, i) => {
 			const name = part.charAt(0).toUpperCase()+part.slice(1);
 			const input = this["_input"+name];
-			const max = part == "hour" ? 23 : 59;
+			const list = this["_list"+name];
+			const max = part == "hours" ? 23 : 59;
 			input.type = "text";
 			input.name = this._input.name+name;
 			input.placeholder = part == "hours" ? "hh" : "mm";
@@ -201,8 +202,8 @@ class WUITimebox {
 			input.addEventListener("keyup", event => {
 				const value = event.target.value;
 				const part = event.target.className;
-				const min = 1;
-				const max = part == "hour" ? 23 : 59;
+				const min = 0;
+				const max = part == "hours" ? 23 : 59;
 				event.target.value = parseInt(value) > max ? max : parseInt(value) < min ? min : value;
 				this.#loadValue();
 			});
@@ -212,12 +213,29 @@ class WUITimebox {
 				span.textContent = ":";
 				this._inputs.appendChild(span);
 			}
-			for (let i=0; i<max; i++) {
-				const li = document.createElement("li");
-				li.dataset.value = i;
-				li.textContent = i;
-				li.addEventListener("click", () => {});
-				this["_list"+name].appendChild(li);
+			for (let i=0; i<=max; i++) {
+				const target = document.createElement("li");
+				target.dataset.value = i;
+				target.textContent = i;
+				target.addEventListener("click", () => {
+					const selected = !Boolean(target.classList.contains("selected"));
+					const targetValue =
+						part == "hours" ? ("0"+i).slice(-2)+":"+("0"+this._inputMinutes.value).slice(-2) :
+						part == "minutes" ? ("0"+this._inputHours.value).slice(-2)+":"+("0"+i).slice(-2) :
+						"";
+					list.scrollTop = target.offsetTop - parseInt(list.clientHeight/2);
+					list.querySelectorAll("li").forEach(li => {
+						if (typeof(li.dataset.value) != "undefined" && li.dataset.value != i) {
+							li.classList.remove("selected");
+						}
+					});
+					target.classList.toggle("selected");
+					this._input.value = selected ? targetValue : "";
+					this._targetValue = selected ? targetValue : "";
+					this._targetDate = selected ? new Date("1970-01-01T"+targetValue+":00") : null;
+					this.#setTime(this._targetDate);
+				});
+				list.appendChild(target);
 			}
 		});
 		this._box.className = "box hidden";
@@ -271,7 +289,7 @@ class WUITimebox {
 		const value = this._input.value;
 		const hours = this._inputHours.value;
 		const minutes = this._inputMinutes.value;
-		this._input.value = hours != "" && minutes != "" ? ("0"+hours).slice(-2)+":"+("0"+minutes).slice(-2)+":00" : "";
+		this._input.value = hours != "" && minutes != "" ? ("0"+hours).slice(-2)+":"+("0"+minutes).slice(-2) : "";
 		if (this._input.value != value && typeof(this._onChange) == "function") {
 			this._onChange(this._input.value);
 		}
@@ -281,29 +299,25 @@ class WUITimebox {
 		this._done.textContent = this._doneText != "" ? this._doneText : lang in WUITimebox.#constants.texts ? WUITimebox.#constants.texts[lang].done : "";
 	}
 	#loadBox() {
-		this._listHours.querySelectorAll("li").forEach((li, i) => {
-			if (i == this._nowHours) {
-				li.classList.add("now");
-			} else {
-				li.classList.remove("now");
-			}
-			if (i == this._targetHours) {
-				li.classList.add("selected");
-			} else {
-				li.classList.remove("selected");
-			}
-		});
-		this._listMinutes.querySelectorAll("li").forEach((li, i) => {
-			if (i == this._nowMinutes) {
-				li.classList.add("now");
-			} else {
-				li.classList.remove("now");
-			}
-			if (i == this._targetMinutes) {
-				li.classList.add("selected");
-			} else {
-				li.classList.remove("selected");
-			}
+		const hours = this._targetTime.getHours();
+		const minutes = this._targetTime.getMinutes();
+		["hours", "minutes"].forEach(part => {
+			const name = part.charAt(0).toUpperCase()+part.slice(1);
+			const list = this["_list"+name];
+			const value = part == "hours" ? hours : minutes;
+			list.querySelectorAll("li").forEach((li, i) => {
+				if (i == this["_now"+name]) {
+					li.classList.add("now");
+				} else {
+					li.classList.remove("now");
+				}
+				if (i == value) {
+					list.scrollTop = li.offsetTop - parseInt(list.clientHeight/2);
+					li.classList.add("selected");
+				} else {
+					li.classList.remove("selected");
+				}
+			});	
 		});
 	}
 	reset() {

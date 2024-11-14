@@ -377,7 +377,7 @@ class WUIDatebox {
 		const month = this._targetDate.getMonth() +1;
 		let y = year;
 		let m = 1;
-		//this._box.style.height = "260px";
+		this._box.classList.remove("extended");
 		this._period.innerHTML = this._monthsNames[month -1]+" "+year+" <div class='icon up'></div>";
 		this._months.style.display = "grid";
 		this._months.innerHTML = "";
@@ -394,35 +394,35 @@ class WUIDatebox {
 				y++;
 				m = 1;
 			} else {
-				const button = document.createElement("div");
-				const buttonValue = this._targetValue.replace(/^\d{4}-\d{2}-/, (y -1)+"-"+("0"+m).slice(-2)+"-");
-				const buttonYear = y -1;
-				const buttonMonth = m;
-				if (buttonYear == this._todayYear && buttonMonth == this._todayMonth) {
-					button.classList.add("today");
+				const target = document.createElement("div");
+				const targetValue = this._targetValue.replace(/^\d{4}-\d{2}-/, (y -1)+"-"+("0"+m).slice(-2)+"-");
+				const targetYear = y -1;
+				const targetMonth = m;
+				if (targetYear == this._todayYear && targetMonth == this._todayMonth) {
+					target.classList.add("today");
 				}
-				if (buttonValue == this._input.value) {
-					button.classList.add("selected");
+				if (targetValue == this._input.value) {
+					target.classList.add("selected");
 				}
-				button.dataset.value = buttonValue;
-				button.dataset.year = buttonYear;
-				button.dataset.month = buttonMonth;
-				button.textContent = this.monthsNames[m -1].substring(0, 3);
-				button.addEventListener("click", () => {
-					const selected = !Boolean(button.classList.contains("selected"));
+				target.dataset.value = targetValue;
+				target.dataset.year = targetYear;
+				target.dataset.month = targetMonth;
+				target.textContent = this.monthsNames[m -1].substring(0, 3);
+				target.addEventListener("click", () => {
+					const selected = !Boolean(target.classList.contains("selected"));
 					this._months.querySelectorAll("div").forEach(div => {
-						if (typeof(div.dataset.value) != "undefined" && div.dataset.value != buttonValue) {
+						if (typeof(div.dataset.value) != "undefined" && div.dataset.value != targetValue) {
 							div.classList.remove("selected");
 						}
 					});
-					button.classList.toggle("selected");
-					this._period.innerHTML = this._monthsNames[button.dataset.month -1]+" "+button.dataset.year+" <div class='icon up'></div>";
-					this._input.value = selected ? buttonValue : "";
-					this._targetValue = selected ? buttonValue : "";
-					this._targetDate = selected ? new Date(buttonValue+"T00:00:00") : null;
+					target.classList.toggle("selected");
+					this._period.innerHTML = this._monthsNames[target.dataset.month -1]+" "+target.dataset.year+" <div class='icon up'></div>";
+					this._input.value = selected ? targetValue : "";
+					this._targetValue = selected ? targetValue : "";
+					this._targetDate = selected ? new Date(targetValue+"T00:00:00") : null;
 					this.#setDate(this._targetDate);
 				});
-				cell.appendChild(button);
+				cell.appendChild(target);
 				m++;
 			}
 			this._months.appendChild(cell);
@@ -438,7 +438,7 @@ class WUIDatebox {
 		let ini = 0;
 		let rows = 5;
 		let d = 1;
-		//this._box.style.height = "260px";
+		this._box.classList.remove("extended");
 		this._period.innerHTML = this._monthsNames[month -1]+" "+year+" <div class='icon down'></div>";
 		this._months.style.display = "none";
 		this._months.innerHTML = "";
@@ -461,32 +461,32 @@ class WUIDatebox {
 		for (let i=0; i<7*rows; i++) {
 			const cell = document.createElement("div");
 			if (i >= ini && d <= lasmday) {
-				const button = document.createElement("div");
-				const buttonValue = this._targetValue.replace(/-\d{2}$/, "-"+("0"+d).slice(-2));
-				if (buttonValue == this._todayValue) {
-					button.classList.add("today");
+				const target = document.createElement("div");
+				const targetValue = this._targetValue.replace(/-\d{2}$/, "-"+("0"+d).slice(-2));
+				if (targetValue == this._todayValue) {
+					target.classList.add("today");
 				}
-				if (buttonValue == this._input.value) {
-					button.classList.add("selected");
+				if (targetValue == this._input.value) {
+					target.classList.add("selected");
 				}
-				button.dataset.value = buttonValue;
-				button.textContent = d;
-				button.addEventListener("click", () => {
-					const selected = !Boolean(button.classList.contains("selected"));
+				target.dataset.value = targetValue;
+				target.textContent = d;
+				target.addEventListener("click", () => {
+					const selected = !Boolean(target.classList.contains("selected"));
 					this._days.querySelectorAll("div").forEach(div => {
-						if (typeof(div.dataset.value) != "undefined" && div.dataset.value != buttonValue) {
+						if (typeof(div.dataset.value) != "undefined" && div.dataset.value != targetValue) {
 							div.classList.remove("selected");
 						}
 					});
-					button.classList.toggle("selected");
-					this._input.value = selected ? buttonValue : "";
-					this._targetValue = selected ? buttonValue : "";
-					this._targetDate = selected ? new Date(buttonValue+"T00:00:00") : null;
+					target.classList.toggle("selected");
+					this._input.value = selected ? targetValue : "";
+					this._targetValue = selected ? targetValue : "";
+					this._targetDate = selected ? new Date(targetValue+"T00:00:00") : null;
 					this.#setDate(this._targetDate);
 				});
-				cell.appendChild(button);
-				if (i == 7*5 -1 && d < lasmday) {
-					//this._box.style.height = "290px";
+				cell.appendChild(target);
+				if (i +1 == 7*5 && d < lasmday) {
+					this._box.classList.add("extended");
 					rows++;
 				}
 				d++;

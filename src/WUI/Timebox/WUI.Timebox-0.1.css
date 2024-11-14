@@ -89,17 +89,17 @@
 .wui-timebox > .box > .lists > ul::after {
 	content: "";
 	display: block;
-	width: 48px;
-	height: 80px;
+	width: 32px;
+	height: calc(220px / 2  - 5px);
 }
 .wui-timebox > .box > .lists > ul > li {
 	cursor: pointer;
 	display: grid;
-	width: 48px;
+	width: 32px;
 	height: 32px;
-	-webkit-border-radius: 16px;
-	-moz-border-radius: 16px;
-	border-radius: 16px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
 	place-items: center;
 	font-size: 14px;
 	color: var(--wui-timebox-box-option-textcolor-out);
@@ -138,21 +138,40 @@
 	.wui-timebox > input[type="text"] {
 		font-size: 15px;
 	}
-	.wui-datebox > .box {
+	.wui-timebox > .box {
+		--transform: translate(-50%, -50%);
 		position: fixed;
-		top: calc(50% - 155px);
-		left: calc(50% - 150px);
+		top: 50%;
+		left: 50%;
 		width: 300px;
 		height: 310px;
+		-webkit-transform: var(--transform);
+		-moz-transform: var(--transform);
+		transform: var(--transform);
+	}
+	.wui-timebox > .box > .lists {
+		height: 260px;
+		overflow-y: auto;
+		overflow-x: hidden;
+		-webkit-overflow-scrolling: touch;
+		scroll-snap-type: y mandatory;
+		scrollbar-color: transparent transparent;
+	}
+	.wui-timebox > .box > .lists > ul::before,
+	.wui-timebox > .box > .lists > ul::after {
+		width: 32px;
+		height: calc(260px / 2 - 5px);
 	}
 	.wui-timebox > .box > .lists > ul > li {
+		width: 36px;
+		height: 36px;
 		font-size: 15px;
 	}
-	.wui-datebox > .box > .footer {
+	.wui-timebox > .box > .footer {
 		height: 40px;
-		font-size: 15px;
+		font-size: 17px;
 	}
-	.wui-datebox > .box > .footer > div {
+	.wui-timebox > .box > .footer > div {
 		padding: 10px 15px;
 	}
 }

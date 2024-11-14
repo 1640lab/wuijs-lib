@@ -56,6 +56,7 @@
 	position: absolute;
 	z-index: 1;
 	width: 250px;
+	height: 260px;
 	height: 290px;
 	-webkit-box-shadow: var(--shadow);
 	-moz-box-shadow: var(--shadow);
@@ -74,6 +75,9 @@
 .wui-datebox > .box.hidden {
 	display: none;
 }
+.wui-datebox > .box.extended {
+	height: 290px;
+}
 .wui-datebox > .box > .header {
 	position: relative;
 	height: 40px;
@@ -86,12 +90,15 @@
 .wui-datebox > .box > .header > .period > .icon {
 	width: 20px;
 	height: 20px;
-	-webkit-mask-position: center;
+	-webkit-mask-size: contain;
 	-webkit-mask-repeat: no-repeat;
-	-moz-mask-position: center;
+	-webkit-mask-position: center;
+	-moz-mask-size: contain;
 	-moz-mask-repeat: no-repeat;
-	mask-position: center;
+	-moz-mask-position: center;
+	mask-size: contain;
 	mask-repeat: no-repeat;
+	mask-position: center;
 	background-color: var(--wui-datebox-box-periodcolor-out);
 }
 .wui-datebox > .box > .header > .period:hover > .icon {
@@ -109,22 +116,26 @@
 }
 .wui-datebox > .box > .header > .prev,
 .wui-datebox > .box > .header > .next {
+	--transform: translateY(-50%);
+	cursor: pointer;
 	position: absolute;
-	top: 0;
-	width: 32px;
-	height: 32px;
-	background-repeat: no-repeat;
+	top: 50%;
+	width: 26px;
+	height: 26px;
 	background-image: none;
+	background-size: contain;
+	background-repeat: no-repeat;
 	background-position-x: center;
 	background-position-y: center;
+	-webkit-transform: var(--transform);
+	-moz-transform: var(--transform);
+	transform: var(--transform);
 }
 .wui-datebox > .box > .header > .prev {
 	right: 32px;
-	background-size: var(--wui-datebox-box-previmage-size);
 }
 .wui-datebox > .box > .header > .next {
 	right: 0;
-	background-size: var(--wui-datebox-box-nextimage-size);
 }
 .wui-datebox > .box > .months,
 .wui-datebox > .box > .week,
@@ -144,7 +155,8 @@
 	grid-column: span 6;
 }
 .wui-datebox > .box > .months > div:nth-child(13n+1) > div {
-	height: 24px;
+	height: 36px;
+	font-size: 14px;
 	color: var(--wui-datebox-box-month-titlecolor);
 }
 .wui-datebox > .box > .months > div:nth-child(13n+2) > div,
@@ -240,18 +252,26 @@
 		font-size: 15px;
 	}
 	.wui-datebox > .box {
+		--transform: translate(-50%, -50%);
 		position: fixed;
-		top: calc(50% - 155px);
-		left: calc(50% - 150px);
+		top: 50%;
+		left: 50%;
 		width: 300px;
 		height: 310px;
+		height: 348px;
+		-webkit-transform: var(--transform);
+		-moz-transform: var(--transform);
+		transform: var(--transform);
+	}
+	.wui-datebox > .box.extended {
+		height: 348px;
 	}
 	.wui-datebox > .box > .header {
 		height: 50px;
 	}
 	.wui-datebox > .box > .header > .period {
 		padding: 15px 5px;
-		font-size: 15px;
+		font-size: 17px;
 	}
 	.wui-datebox > .box > .header > .period > .icon {
 		width: 22px;
@@ -259,14 +279,15 @@
 	}
 	.wui-datebox > .box > .header > .prev,
 	.wui-datebox > .box > .header > .next {
-		width: 42px;
-		height: 42px;
+		width: 32px;
+		height: 32px;
 	}
 	.wui-datebox > .box > .header > .prev {
 		right: 42px;
 	}
 	.wui-datebox > .box > .months > div:nth-child(13n+1) > div {
-		height: 32px;
+		height: 46px;
+		font-size: 17px;
 	}
 	.wui-datebox > .box > .months > div:nth-child(13n+2) > div,
 	.wui-datebox > .box > .months > div:nth-child(13n+3) > div,
@@ -280,7 +301,7 @@
 	.wui-datebox > .box > .months > div:nth-child(13n+11) > div,
 	.wui-datebox > .box > .months > div:nth-child(13n+12) > div,
 	.wui-datebox > .box > .months > div:nth-child(13n+13) > div {
-		width: 50px;
+		width: 48px;
 		height: 36px;
 		-webkit-border-radius: 18px;
 		-moz-border-radius: 18px;
@@ -292,13 +313,13 @@
 		font-size: 12px;
 	}
 	.wui-datebox > .box > .days > div > div {
-		width: 32px;
-		height: 32px;
+		width: 36px;
+		height: 38px;
 		font-size: 15px;
 	}
 	.wui-datebox > .box > .footer {
 		height: 40px;
-		font-size: 15px;
+		font-size: 17px;
 	}
 	.wui-datebox > .box > .footer > div {
 		padding: 10px 15px;
