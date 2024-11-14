@@ -55,8 +55,8 @@
 	-moz-border-radius: 15px;
 	border-radius: 15px;
 	background-color: var(--wui-slider-dots-bgcolor);
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 	padding: 0 10px;
 	gap: 10px;
 }

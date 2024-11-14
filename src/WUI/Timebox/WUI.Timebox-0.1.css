@@ -73,8 +73,8 @@
 }
 .wui-timebox > .box > .lists {
 	height: 220px;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 }
 .wui-timebox > .box > .lists > ul {
 	display: block;

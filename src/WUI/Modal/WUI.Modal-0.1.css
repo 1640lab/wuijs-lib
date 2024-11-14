@@ -20,8 +20,8 @@
 	-khtml-opacity: 0;
 	-moz-opacity: 0;
 	opacity: 0;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 	background-color: var(--wui-modal-bgcolor);
 }
 .wui-modal.priority {
@@ -85,8 +85,8 @@
 	z-index: 1;
 	top: 16px;
 	left: 7px;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 	gap: 5px;
 	color: var(--wui-modal-back-textcolor);
 }
@@ -143,8 +143,8 @@
 	flex-grow: 0;
 	height: auto;
 	border-top: 1px solid var(--wui-modal-footer-bordercolor);
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 	flex-wrap: wrap;
 }
 .wui-modal > .box > .footer > button {
@@ -322,8 +322,8 @@
 	.wui-modal.message > .box > .footer > a {
 		display: flex;
 		margin-bottom: 0;
-		justify-content: center;
 		align-items: center;
+		justify-content: center;
 	}
 	.wui-modal.message > .box > .footer.list {
 		height: auto;

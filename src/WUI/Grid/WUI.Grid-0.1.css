@@ -31,8 +31,8 @@
 	flex-basis: 40px;
 }
 .wui-grid > .header {
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 }
 .wui-grid > .head {
 	color: var(--wui-grid-head-textcolor-out);
@@ -109,8 +109,8 @@
 	text-overflow: ellipsis;
 }
 .wui-grid > .footer {
-	justify-content: flex-end;
 	align-items: center;
+	justify-content: flex-end;
 }
 
 /* wui-grid scrollable */

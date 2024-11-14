@@ -148,8 +148,8 @@
 }
 .wui-datebox > .box > .months > div,
 .wui-datebox > .box > .months > div > div {
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 }
 .wui-datebox > .box > .months > div:nth-child(13n+1) {
 	grid-column: span 6;
@@ -204,8 +204,8 @@
 }
 .wui-datebox > .box > .days > div,
 .wui-datebox > .box > .days > div > div {
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 }
 .wui-datebox > .box > .days > div > div {
 	cursor: pointer;

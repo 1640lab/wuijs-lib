@@ -32,8 +32,8 @@
 	width: 100vw;
 	height: 100vh;
 	overflow: hidden;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 	flex-direction: column;
 }
 .wui-scrolly > .section > .scene.rows {
@@ -70,8 +70,8 @@
 	right: 0;
 	bottom: 40px;
 	height: 10px;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 	flex-direction: row;
 	-webkit-transition: -khtml-opacity var(--transition-opacity);
 	-moz-transition: -moz-opacity var(--transition-opacity);

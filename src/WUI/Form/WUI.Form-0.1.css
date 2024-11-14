@@ -33,10 +33,10 @@
 }
 .wui-form > .header,
 .wui-form > .footer {
+	align-items: center;
 	flex-direction: row;
 	flex-grow: 0;
 	flex-shrink: 0;
-	align-items: center;
 }
 .wui-form > .header {
 	flex-basis: 40px;
@@ -325,8 +325,8 @@
 	border-radius: 5px;
 	border: 1px solid var(--wui-form-input-bordercolor-out);
 	background-color: var(--wui-form-input-bgcolor-out);
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 }
 .wui-form fieldset > .field:hover > input[type="checkbox"]:enabled,
 .wui-form fieldset > .field:focus-within > input[type="checkbox"]:enabled {
@@ -517,9 +517,9 @@
 }
 .wui-form fieldset > .message.center {
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
+	flex-direction: column;
 }
 .wui-form fieldset > .message.center > .text {
 	text-align: center;
@@ -540,8 +540,8 @@
 	display: flex;
 	cursor: pointer;
 	outline: none;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 	gap: 5px;
 	text-decoration: none;
 	font-size: 14px;

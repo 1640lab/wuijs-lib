@@ -44,9 +44,9 @@
 	border-bottom: 1px solid var(--wui-modal-select-option-bordercolor-out);
 	background-color: var(--wui-modal-select-option-bgcolor-out);
 	padding: 0 10px;
+	align-items: center;
 	flex-grow: 1;
 	flex-shrink: 0;
-	align-items: center;
 	gap: 10px;
 }
 .wui-modal.select > .box > .options > .option > .icon {
