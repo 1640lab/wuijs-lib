@@ -124,6 +124,7 @@
 	margin-top: 15px;
 	margin-left: 10px;
 	margin-right: 10px;
+	font-size: 15px;
 }
 @media screen and (max-width: 767px) {
 	.wui-modal.select > .box > .options > .option:last-child {
@@ -139,6 +140,7 @@
     	margin-right: 0;
 		border-top: 0;
 		border-bottom: 0;
+		font-size: 17px;
 	}
 	.wui-modal.select > .box > .footer > button:first-child {
 		border-right: 1px solid var(--wui-modal-select-button-bordercolor);

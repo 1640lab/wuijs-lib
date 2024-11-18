@@ -17,9 +17,6 @@
 	bottom: 0;
 	width: 100vw;
 	overflow: hidden;
-	-khtml-opacity: 0;
-	-moz-opacity: 0;
-	opacity: 0;
 	align-items: center;
 	justify-content: center;
 	background-color: var(--wui-modal-bgcolor);
@@ -51,9 +48,6 @@
 }
 .wui-modal > .box.hidden {
 	display: none;
-	-khtml-opacity: 0;
-	-moz-opacity: 0;
-	opacity: 0;
 }
 .wui-modal > .box > .header {
 	display: flex;
@@ -232,30 +226,6 @@
 	}
 }
 
-/* wui-modal mobile */
-
-@media screen and (max-width: 767px) {
-	/*.wui-modal.mobile > .box > .header > .back {
-		top: 15pt;
-	}
-	.wui-modal.mobile > .box > .header > .back > .icon {
-		width: 15pt;
-		height: 15pt;
-	}
-	.wui-modal.mobile > .box > .header > .back > .text {
-		font-size: 17pt;
-	}
-	.wui-modal.mobile > .box > .header > .title {
-		font-size: 17pt;
-	}
-	.wui-modal.mobile > .box > .body {
-		font-size: 14pt;
-	}
-	.wui-modal.mobile > .box > .body > .text p {
-		font-size: 15pt;
-	}*/
-}
-
 /* wui-modal message */
 
 .wui-modal.message > .box {
@@ -337,11 +307,6 @@
 	.wui-modal.message > .box > .footer:not(.list) > button:first-child {
 		border-right: 1px solid var(--wui-modal-message-mobile-button-bordercolor);
 	}
-}
-
-/* wui-modal message mobile */
-
-@media screen and (max-width: 767px) {
 }
 
 /* wui-modal page */
@@ -429,11 +394,6 @@
 		bottom: auto !important;
 		max-height: var(--wui-modal-page-box-maxheight);
 	}
-}
-
-/* wui-modal page mobile */
-
-@media screen and (max-width: 767px) {
 }
 
 /* wui-button */

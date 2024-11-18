@@ -39,6 +39,7 @@
 	.wui-button {
 		--radius: calc(var(--wui-button-default-responsive-height) / 2);
 		height: var(--wui-button-default-responsive-height);
+		font-size: 17px;
 	}
 }
 
@@ -97,6 +98,7 @@
 	.wui-button.submit {
 		--radius: calc(var(--wui-button-submit-responsive-height) / 2);
 		height: var(--wui-button-submit-responsive-height);
+		font-size: 17px;
 	}
 }
 

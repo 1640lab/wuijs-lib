@@ -4,8 +4,9 @@ class WUIModal {
 	static version = "0.1";
 	#defaults = {
 		selector: "",
+		wideMode: "fade",
+		mobileMode: "from-down",
 		delay: 200,
-		title: "",
 		startOpen: null,
 		onOpen: null,
 		onMaximize: null,
@@ -13,6 +14,7 @@ class WUIModal {
 		onClose: null,
 		onBack: null
 	};
+	#modes = ["fade", "from-right", "from-down"];
 	static #instances = [];
 	static getAllInstances() {
 		return WUIModal.#instances;
@@ -39,6 +41,12 @@ class WUIModal {
 	}
 	get selector() {
 		return this._selector;
+	}
+	get wideMode() {
+		return this._wideMode;
+	}
+	get mobileMode() {
+		return this._mobileMode;
 	}
 	get delay() {
 		return this._delay;
@@ -73,6 +81,16 @@ class WUIModal {
 			this._close = this._header ? document.querySelector(value+" > .box > .header > .close") : null;
 			this._body = document.querySelector(value+" > .box > .body");
 			this._footer = document.querySelector(value+" > .box > .footer");
+		}
+	}
+	set wideMode(value) {
+		if (typeof(value) == "string" && this.#modes.indexOf(value.toLocaleLowerCase()) != -1) {
+			this._wideMode = value.toLocaleLowerCase();
+		}
+	}
+	set mobileMode(value) {
+		if (typeof(value) == "string" && this.#modes.indexOf(value.toLocaleLowerCase()) != -1) {
+			this._mobileMode = value;
 		}
 	}
 	set delay(value) {
@@ -315,8 +333,11 @@ class WUIModal {
 				clearInterval(interval);
 				ease = 1;
 			}
+			this._element.style.opacity = ease;
 			if (ease == 0) {
 				this._element.style.display = "flex";
+			} else if (ease == 1) {
+				this._element.style.removeProperty("opacity");
 			}
 			if (this._box != null && page && mobile) {
 				if (small) {
@@ -325,7 +346,6 @@ class WUIModal {
 					this._box.style.top = (bodyHeight - (bodyHeight -44) * ease)+"px";
 				}
 			}
-			this._element.style.opacity = ease;
 			if (under != null) {
 				if (bgcolor.length == 4) {
 					const opacity = Math.round((1 -ease) * parseFloat(bgcolor[3]) * 100) / 100;
@@ -397,13 +417,14 @@ class WUIModal {
 				this._box.scrollTop = 0;
 			}
 		}
-		const interval = setInterval(() =>  {
+		const interval = setInterval(() => {
 			const t = step/100;
 			let ease = t > 0.5 ? 4 * Math.pow((t -1), 3) +1 : 4 * Math.pow(t, 3);
 			if (ease <= 0) {
 				clearInterval(interval);
 				ease = 0;
 			}
+			this._element.style.opacity = ease;
 			if (ease == 0) {
 				this._element.style.display = "none";
 			}
@@ -421,7 +442,6 @@ class WUIModal {
 					under._box.style.right = (10 * ease)+"px";
 				}
 			}
-			this._element.style.opacity = ease;
 			if (ease == 0 && typeof(onClose) == "function") {
 				onClose();
 			}
@@ -434,7 +454,7 @@ class WUIModal {
 }
 /*
 HTML message struture:
-<div class="wui-modal message [mobile] [priority]">
+<div class="wui-modal message [priority]">
 	<div class="box">
 		<div class="body">
 			<div class="icon"></div>
@@ -447,7 +467,7 @@ HTML message struture:
 	</div>
 </div>
 HTML page struture:
-<div class="wui-modal page [mobile]">
+<div class="wui-modal page [priority]">
 	<div class="box">
 		<div class="header">
 			<div class="back">

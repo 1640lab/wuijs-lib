@@ -307,7 +307,7 @@ class WUIScrolly {
 			this._sections.push(section);
 		}
 	}
-	goSection(target, callback, behavior = this._behavior) {
+	goSection(target, done, behavior = this._behavior) {
 		const prepareAnimation = (i, sense = "start") => {
 			const section = this._sections[i];
 			if (typeof(section.animation) == "function") {
@@ -402,8 +402,8 @@ class WUIScrolly {
 					if (typeof(this._onMove) == "function") {
 						this._onMove();
 					}
-					if (typeof(callback) == "function") {
-						callback();
+					if (typeof(done) == "function") {
+						done();
 					}
 				}
 			}, 100);

@@ -1,6 +1,6 @@
 /* WUI.Language.js v0.1 */
 
-let languages = [];
+const languages = [];
 class WUILanguage {
 	static version = "0.1";
 	#defaults = {

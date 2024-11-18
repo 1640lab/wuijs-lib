@@ -10,7 +10,7 @@ class WUIBody {
 	};
 	#htmlCount = 0;
 	#jsCount = 0;
-	#total = 0;
+	#parts = 0;
 	constructor (properties) {
 		Object.keys(this.#defaults).forEach(key => {
 			this[key] = typeof(properties) != "undefined" && key in properties ? properties[key] : this.#defaults[key];
@@ -143,7 +143,7 @@ class WUIBody {
 							if (typeof(done) == "function") {
 								done();
 							}
-							if (2*this.#total == this.#htmlCount + this.#jsCount && typeof(this._onCompleted) == "function") {
+							if (2*this.#parts == this.#htmlCount + this.#jsCount && typeof(this._onCompleted) == "function") {
 								this._onCompleted();
 							}
 						});
@@ -153,7 +153,7 @@ class WUIBody {
 				}
 				this.#htmlCount++;
 			});
-			this.#total++;
+			this.#parts++;
 		}
 	};
 	init(onCompleted) {
