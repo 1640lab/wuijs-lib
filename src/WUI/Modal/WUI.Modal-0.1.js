@@ -4,17 +4,14 @@ class WUIModal {
 	static version = "0.1";
 	#defaults = {
 		selector: "",
-		wideMode: "fade",
-		mobileMode: "from-down",
-		delay: 200,
-		startOpen: null,
+		openDelay: 200,
+		onStartOpen: null,
 		onOpen: null,
 		onMaximize: null,
-		startClose: null,
+		onStartClose: null,
 		onClose: null,
 		onBack: null
 	};
-	#modes = ["fade", "from-right", "from-down"];
 	static #instances = [];
 	static getAllInstances() {
 		return WUIModal.#instances;
@@ -42,17 +39,11 @@ class WUIModal {
 	get selector() {
 		return this._selector;
 	}
-	get wideMode() {
-		return this._wideMode;
+	get openDelay() {
+		return this._openDelay;
 	}
-	get mobileMode() {
-		return this._mobileMode;
-	}
-	get delay() {
-		return this._delay;
-	}
-	get startOpen() {
-		return this._startOpen;
+	get onStartOpen() {
+		return this._onStartOpen;
 	}
 	get onOpen() {
 		return this._onOpen;
@@ -60,8 +51,8 @@ class WUIModal {
 	get onMaximize() {
 		return this._onMaximize;
 	}
-	get startClose() {
-		return this._startClose;
+	get onStartClose() {
+		return this._onStartClose;
 	}
 	get onClose() {
 		return this._onClose;
@@ -83,24 +74,14 @@ class WUIModal {
 			this._footer = document.querySelector(value+" > .box > .footer");
 		}
 	}
-	set wideMode(value) {
-		if (typeof(value) == "string" && this.#modes.indexOf(value.toLocaleLowerCase()) != -1) {
-			this._wideMode = value.toLocaleLowerCase();
-		}
-	}
-	set mobileMode(value) {
-		if (typeof(value) == "string" && this.#modes.indexOf(value.toLocaleLowerCase()) != -1) {
-			this._mobileMode = value;
-		}
-	}
-	set delay(value) {
+	set openDelay(value) {
 		if (typeof(value) == "number") {
-			this._delay = value;
+			this._openDelay = value;
 		}
 	}
-	set startOpen(value) {
+	set onStartOpen(value) {
 		if (typeof(value) == "function") {
-			this._startOpen = value;
+			this._onStartOpen = value;
 		}
 	}
 	set onOpen(value) {
@@ -113,9 +94,9 @@ class WUIModal {
 			this._onMaximize = value;
 		}
 	}
-	set startClose(value) {
+	set onStartClose(value) {
 		if (typeof(value) == "function") {
-			this._startClose = value;
+			this._onStartClose = value;
 		}
 	}
 	set onClose(value) {
@@ -282,12 +263,16 @@ class WUIModal {
 			}
 		}
 	}
-	open(onOpen = this._onOpen, delay = this._delay) {
+	open(onOpen = this._onOpen, openDelay = this._openDelay) {
 		const page = Boolean(this._element.classList.contains("page"));
 		const small = Boolean(this._element.classList.contains("small"));
+		const slide = Boolean(this._element.classList.contains("slide"));
 		const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
+		const bodyWidth = document.body.offsetWidth;
 		const bodyHeight = document.body.offsetHeight;
 		const bgcolor = getComputedStyle(document.documentElement).getPropertyValue("--wui-modal-bgcolor").replace(/\s+/g, "").replace("rgba(", "").replace(")", "").split(",");
+		const boxWidth = this._box != null ? this._box.clientWidth : 0;
+		const boxHeight = this._box != null ? this._box.clientHeight : 0;
 		let under = null;
 		let pages = 1;
 		let step = 0;
@@ -323,8 +308,8 @@ class WUIModal {
 				document.body.style.backgroundColor = boxStyle.backgroundColor;
 			}
 		}
-		if (typeof(this._startOpen) == "function") {
-			this._startOpen();
+		if (typeof(this._onStartOpen) == "function") {
+			this._onStartOpen();
 		}
 		const interval = setInterval(() => {
 			const t = step/100;
@@ -339,32 +324,43 @@ class WUIModal {
 			} else if (ease == 1) {
 				this._element.style.removeProperty("opacity");
 			}
-			if (this._box != null && page && mobile) {
-				if (small) {
-					this._box.style.top = (bodyHeight - 280 * ease)+"px";
-				} else {
-					this._box.style.top = (bodyHeight - (bodyHeight -44) * ease)+"px";
+			if (this._box != null && page) {
+				if (!mobile && slide) {
+					this._box.style.left = (bodyWidth - boxWidth * ease)+"px";
+				} else if (mobile) {
+					if (small) {
+						this._box.style.top = (bodyHeight - boxHeight * ease)+"px";
+					} else {
+						this._box.style.top = (bodyHeight - (bodyHeight -44) * ease)+"px";
+					}
 				}
 			}
 			if (under != null) {
+				const underPage = Boolean(under._element.classList.contains("page"));
+				const underSlide = Boolean(under._element.classList.contains("slide"));
 				if (bgcolor.length == 4) {
 					const opacity = Math.round((1 -ease) * parseFloat(bgcolor[3]) * 100) / 100;
 					under._element.style.backgroundColor = "rgba("+bgcolor[0]+", "+bgcolor[1]+", "+bgcolor[2]+", "+opacity+")";
 				}
-				if (under._element.classList.contains("page") && page && mobile) {
-					under._box.style.top = (bodyHeight - (bodyHeight -44) - 22 * ease)+"px";
-					under._box.style.left = (10 * ease)+"px";
-					under._box.style.right = (10 * ease)+"px";
+				if (under._box != null && underPage && page) {
+					if (!mobile && underSlide) {
+						// ...
+					} else if (mobile) {
+						under._box.style.top = (bodyHeight - (bodyHeight -44) - 22 * ease)+"px";
+						under._box.style.left = (10 * ease)+"px";
+						under._box.style.right = (10 * ease)+"px";
+					}
 				}
 			}
 			if (ease == 1 && typeof(onOpen) == "function") {
 				onOpen();
 			}
 			step++;
-		}, delay/100);
+		}, openDelay/100);
 	}
-	maximize(onMaximize = this._onMaximize, delay = this._delay) {
+	maximize(onMaximize = this._onMaximize, openDelay = this._openDelay) {
 		const page = Boolean(this._element.classList.contains("page"));
+		const slide = Boolean(this._element.classList.contains("slide"));
 		const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
 		const boxTop = this._box != null ? this._box.offsetTop : 0;
 		let step = 10;
@@ -376,25 +372,30 @@ class WUIModal {
 				clearInterval(interval);
 				ease = 0;
 			}
-			if (this._box != null && page && mobile) {
-				this._box.style.top = (boxTop * ease)+"px";
+			if (this._box != null && page) {
+				if (mobile && slide) {
+					this._box.style.top = (boxTop * ease)+"px";
+				}
 			}
 			if (ease == 0 && typeof(onMaximize) == "function") {
 				onMaximize();
 			}
 			step--;
-		}, delay/100);
+		}, openDelay/100);
 	}
-	close(onClose = this._onClose, delay = this._delay) {
+	close(onClose = this._onClose, openDelay = this._openDelay) {
 		const page = Boolean(this._element.classList.contains("page"));
+		const slide = Boolean(this._element.classList.contains("slide"));
 		const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
+		const bodyWidth = document.body.offsetWidth;
 		const bodyHeight = document.body.offsetHeight;
 		const boxTop = this._box != null ? this._box.offsetTop : 0;
+		const boxLeft = this._box != null ? this._box.offsetLeft : 0;
 		const bgcolor = getComputedStyle(document.documentElement).getPropertyValue("--wui-modal-bgcolor").replace(/\s+/g, "").replace("rgba(", "").replace(")", "").split(",");
 		let under = null;
 		let step = 100;
-		if (typeof(this._startClose) == "function") {
-			this._startClose();
+		if (typeof(this._onStartClose) == "function") {
+			this._onStartClose();
 		}
 		WUIModal.#instances.forEach(modal => {
 			if (modal._element.classList.contains("under")) {
@@ -428,25 +429,33 @@ class WUIModal {
 			if (ease == 0) {
 				this._element.style.display = "none";
 			}
-			if (this._box != null && page && mobile) {
-				this._box.style.top = (bodyHeight - (bodyHeight -boxTop) * ease)+"px";
+			if (this._box != null && page) {
+				if (!mobile && slide) {
+					this._box.style.right = (bodyWidth - (bodyWidth - boxLeft) * ease)+"px";
+				} else if (mobile) {
+					this._box.style.top = (bodyHeight - (bodyHeight - boxTop) * ease)+"px";
+				}
 			}
 			if (under != null) {
 				if (bgcolor.length == 4) {
 					const opacity = Math.round((1 -ease) * parseFloat(bgcolor[3]) * 100) / 100;
 					under._element.style.backgroundColor = "rgba("+bgcolor[0]+", "+bgcolor[1]+", "+bgcolor[2]+", "+opacity+")";
 				}
-				if (under._element.classList.contains("page") && page && mobile) {
-					under._box.style.top = (bodyHeight - (bodyHeight -22) + 22 * (1 -ease))+"px";
-					under._box.style.left = (10 * ease)+"px";
-					under._box.style.right = (10 * ease)+"px";
+				if (under._box != null && under._element.classList.contains("page") && page) {
+					if (!mobile && slide) {
+						// ...
+					} else if (mobile && this._mobilePageOpenMode == "slide") {
+						under._box.style.top = (bodyHeight - (bodyHeight -22) + 22 * (1 -ease))+"px";
+						under._box.style.left = (10 * ease)+"px";
+						under._box.style.right = (10 * ease)+"px";
+					}
 				}
 			}
 			if (ease == 0 && typeof(onClose) == "function") {
 				onClose();
 			}
 			step--;
-		}, delay/100);
+		}, openDelay/100);
 	}
 	isOpen() {
 		return this.getStatus().match(/opened/) ? true : false;
@@ -467,7 +476,7 @@ HTML message struture:
 	</div>
 </div>
 HTML page struture:
-<div class="wui-modal page [priority]">
+<div class="wui-modal page [slide] [priority]">
 	<div class="box">
 		<div class="header">
 			<div class="back">
