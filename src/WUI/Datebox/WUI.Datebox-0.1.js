@@ -189,13 +189,13 @@ class WUIDatebox {
 	#setInputEnable(input, enabled) {
 		input.disabled = !enabled;
 		if (enabled) {
-			input.removeAttributeNode("disabled");
+			input.removeAttribute("disabled");
 		} else {
 			input.setAttribute("disabled", "true");
 		}
 	}
 	init() {
-		const bgImage = (name, event) => {
+		const backgroundImage = (name, event) => {
 			const element = this._element || document.documentElement;
 			const color = getComputedStyle(element).getPropertyValue("--wui-datebox-"+name+"color-"+event).replace(/#/g, "%23").trim();
 			const image = getComputedStyle(element).getPropertyValue("--wui-datebox-"+name+"image-src").replace(/currentColor/g, color);
@@ -205,6 +205,7 @@ class WUIDatebox {
 		this._inputYear = document.createElement("input");
 		this._inputMonth = document.createElement("input");
 		this._inputDay = document.createElement("input");
+		this._background = document.createElement("div");
 		this._box = document.createElement("div");
 		this._header = document.createElement("div");
 		this._period = document.createElement("div");
@@ -217,8 +218,9 @@ class WUIDatebox {
 		this._cancel = document.createElement("div");
 		this._accept = document.createElement("div");
 		this._element.appendChild(this._inputs);
+		this._element.appendChild(this._background);
 		this._element.appendChild(this._box);
-		this._element.style.backgroundImage = bgImage("picker", this._input.disabled ? "disabled" : "out");
+		this._element.style.backgroundImage = backgroundImage("picker", this._input.disabled ? "disabled" : "out");
 		this._element.addEventListener("click", event => {
 			if (event.target.classList.contains("wui-datebox") && this._element.offsetWidth - event.offsetX < 30) {
 				this.toggle();
@@ -227,7 +229,7 @@ class WUIDatebox {
 		["mouseover", "mouseout", "focus", "blur"].forEach(type => {
 			const pickerType = this._input.disabled ? "disabled" : type == "blur" ? "out" : type.replace(/mouse/, "");
 			this._element.addEventListener(type, () => {
-				this._element.style.backgroundImage = bgImage("picker", pickerType);
+				this._element.style.backgroundImage = backgroundImage("picker", pickerType);
 			});
 		});
 		["min", "max", "style"].forEach(name => {
@@ -235,7 +237,9 @@ class WUIDatebox {
 				if (name.match(/(min|max)/)) {
 					this["_"+name] = this._input[name];
 				}
-				this._input.removeAttributeNode(this._input.getAttributeNode(name));
+				if (this._input.getAttribute(name) != null) {
+					this._input.removeAttributeNode(this._input.getAttributeNode(name));
+				}
 			}
 		});
 		this._input.type = "hidden";
@@ -258,6 +262,7 @@ class WUIDatebox {
 				this.#loadValue();
 			});
 		});
+		this._background.className = "background hidden";
 		this._box.className = "box hidden";
 		this._box.appendChild(this._header);
 		this._box.appendChild(this._months);
@@ -271,10 +276,10 @@ class WUIDatebox {
 		this._period.className = "period";
 		this._period.addEventListener("click", () => {this.toggleMode();});
 		this._prev.className = "prev";
-		this._prev.style.backgroundImage = bgImage("box-prev", this._input.disabled ? "disabled" : "out");
+		this._prev.style.backgroundImage = backgroundImage("box-prev", this._input.disabled ? "disabled" : "out");
 		this._prev.addEventListener("click", () => {this.prev();});
 		this._next.className = "next";
-		this._next.style.backgroundImage = bgImage("box-next", this._input.disabled ? "disabled" : "out");
+		this._next.style.backgroundImage = backgroundImage("box-next", this._input.disabled ? "disabled" : "out");
 		this._next.addEventListener("click", () => {this.next();});
 		this._months.className = "months";
 		this._week.className = "week";
@@ -298,9 +303,11 @@ class WUIDatebox {
 		}
 	}
 	close() {
+		this._background.classList.add("hidden");
 		this._box.classList.add("hidden");
 	}
 	toggle() {
+		this._background.classList.toggle("hidden");
 		this._box.classList.toggle("hidden");
 		if (!this._box.classList.contains("hidden")) {
 			this.open();
@@ -553,6 +560,7 @@ HTML struture:
 		<span></span>
 		<input type="text" value="(name)Day">
 	</div>
+	<div class="background"></div>
 	<div class="box">
 		<div class="header">
 			<div class="period"></div>

@@ -58,7 +58,7 @@ class WUICheckbox {
 			this._enabled = value;
 			this._input.disabled = !value;
 			if (value) {
-				this._input.removeAttributeNode("disabled");
+				this._input.removeAttribute("disabled");
 			} else {
 				this._input.setAttribute("disabled", "true");
 			}

@@ -18,6 +18,36 @@
 	background-size: var(--wui-selectbox-pickerimage-size);
 	padding-right: 2rem;
 }
+.wui-selectbox > select {
+	display: none;
+}
+.wui-selectbox > input[type="text"] {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	outline: none;
+	border: 0;
+	background-color: transparent;
+	padding: 0;
+	text-align: center;
+	font-family: inherit;
+	font-size: 14px;
+}
+.wui-selectbox > .background {
+	position: fixed;
+	display: none;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: var(--wui-selectbox-bgcolor);
+}
+.wui-selectbox > .background.hidden {
+	display: none;
+}
 .wui-selectbox > .box,
 .wui-selectbox > .box * {
 	display: flex;
@@ -26,9 +56,8 @@
 	--shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 	--filter: blur(10px);
 	position: absolute;
-	z-index: 1;
-	width: 250px;
-	height: 260px;
+	z-index: 100;
+	width: 100%;
 	height: 290px;
 	-webkit-box-shadow: var(--shadow);
 	-moz-box-shadow: var(--shadow);
@@ -49,6 +78,20 @@
 }
 .wui-selectbox > .box.extended {
 	height: 290px;
+}
+.wui-selectbox > .box > .options,
+.wui-selectbox > .box > .options > .option {
+	display: flex;
+	position: relative;
+	flex-grow: 1;
+	flex-shrink: 0;
+}
+.wui-selectbox > .box > .options {
+	max-height: calc(calc(10 * 44px) - 1px);
+	overflow: auto;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-items: flex-start;
 }
 .wui-selectbox > .box > .footer {
 	position: absolute;
@@ -72,6 +115,9 @@
 @media screen and (max-width: 767px) {
 	.wui-selectbox > input[type="text"] {
 		font-size: 15px;
+	}
+	.wui-selectbox > .background {
+		display: block;
 	}
 	.wui-selectbox > .box {
 		--transform: translate(-50%, -50%);

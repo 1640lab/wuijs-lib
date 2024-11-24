@@ -145,13 +145,13 @@ class WUITimebox {
 	#setInputEnable(input, enabled) {
 		input.disabled = !enabled;
 		if (enabled) {
-			input.removeAttributeNode("disabled");
+			input.removeAttribute("disabled");
 		} else {
 			input.setAttribute("disabled", "true");
 		}
 	}
 	init() {
-		const bgImage = (name, event) => {
+		const backgroundImage = (name, event) => {
 			const element = this._input || this._element || document.documentElement;
 			const color = getComputedStyle(element).getPropertyValue("--wui-timebox-"+name+"color-"+event).replace(/#/g, "%23").trim();
 			const image = getComputedStyle(element).getPropertyValue("--wui-timebox-"+name+"image-src").replace(/currentColor/g, color);
@@ -160,6 +160,7 @@ class WUITimebox {
 		this._inputs = document.createElement("div");
 		this._inputHours = document.createElement("input");
 		this._inputMinutes = document.createElement("input");
+		this._background = document.createElement("div");
 		this._box = document.createElement("div");
 		this._lists = document.createElement("div");
 		this._listHours = document.createElement("ul");
@@ -168,8 +169,9 @@ class WUITimebox {
 		this._cancel = document.createElement("div");
 		this._accept = document.createElement("div");
 		this._element.appendChild(this._inputs);
+		this._element.appendChild(this._background);
 		this._element.appendChild(this._box);
-		this._element.style.backgroundImage = bgImage("picker", this._input.disabled ? "disabled" : "out");
+		this._element.style.backgroundImage = backgroundImage("picker", this._input.disabled ? "disabled" : "out");
 		this._element.addEventListener("click", event => {
 			if (event.target.classList.contains("wui-timebox") && this._element.offsetWidth - event.offsetX < 30) {
 				this.toggle();
@@ -178,7 +180,7 @@ class WUITimebox {
 		["mouseover", "mouseout", "focus", "blur"].forEach(type => {
 			const pickerType = this._input.disabled ? "disabled" : type == "blur" ? "out" : type.replace(/mouse/, "");
 			this._element.addEventListener(type, () => {
-				this._element.style.backgroundImage = bgImage("picker", pickerType);
+				this._element.style.backgroundImage = backgroundImage("picker", pickerType);
 			});
 		});
 		["min", "max", "style"].forEach(name => {
@@ -186,7 +188,9 @@ class WUITimebox {
 				if (name.match(/(min|max)/)) {
 					this["_"+name] = this._input[name];
 				}
-				this._input.removeAttributeNode(this._input.getAttributeNode(name));
+				if (this._input.getAttribute(name) != null) {
+					this._input.removeAttributeNode(this._input.getAttributeNode(name));
+				}
 			}
 		});
 		this._input.type = "hidden";
@@ -241,6 +245,7 @@ class WUITimebox {
 				list.appendChild(target);
 			}
 		});
+		this._background.className = "background hidden";
 		this._box.className = "box hidden";
 		this._box.appendChild(this._lists);
 		this._box.appendChild(this._footer);
@@ -265,9 +270,11 @@ class WUITimebox {
 		}
 	}
 	close() {
+		this._background.classList.add("hidden");
 		this._box.classList.add("hidden");
 	}
 	toggle() {
+		this._background.classList.toggle("hidden");
 		this._box.classList.toggle("hidden");
 		if (!this._box.classList.contains("hidden")) {
 			this.open();
@@ -336,6 +343,7 @@ class WUITimebox {
 HTML struture:
 <div class="wui-timebox">
 	<input type="time" value="">
+	<div class="background"></div>
 	<div class="box">
 		<div class="select">
 			<ul class="hours">

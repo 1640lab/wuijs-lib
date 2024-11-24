@@ -46,6 +46,21 @@
 	-moz-user-select: none;
 	user-select: none;
 }
+.wui-datebox > .background {
+	position: fixed;
+	display: none;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: var(--wui-datebox-bgcolor);
+}
+.wui-datebox > .background.hidden {
+	display: none;
+}
 .wui-datebox > .box,
 .wui-datebox > .box * {
 	display: flex;
@@ -54,9 +69,8 @@
 	--shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 	--filter: blur(10px);
 	position: absolute;
-	z-index: 1;
+	z-index: 101;
 	width: 250px;
-	height: 260px;
 	height: 290px;
 	-webkit-box-shadow: var(--shadow);
 	-moz-box-shadow: var(--shadow);
@@ -251,13 +265,15 @@
 	.wui-datebox > input[type="text"] {
 		font-size: 15px;
 	}
+	.wui-datebox > .background {
+		display: block;
+	}
 	.wui-datebox > .box {
 		--transform: translate(-50%, -50%);
 		position: fixed;
 		top: 50%;
 		left: 50%;
 		width: 300px;
-		height: 310px;
 		height: 348px;
 		-webkit-transform: var(--transform);
 		-moz-transform: var(--transform);

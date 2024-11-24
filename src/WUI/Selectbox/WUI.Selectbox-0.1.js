@@ -112,7 +112,7 @@ class WUISelectbox {
 		return this._input;
 	}
 	#setText(value) {
-		const text = this._input.options.filter(opt => {opt.value == value}).map(opt => {opt.text})[0] || "";
+		const text = Array.from(this._input.options).filter(opt => {opt.value == value}).map(opt => {opt.text})[0] || "";
 		this._inputText.value = text;
 	}
 	#setStyle() {
@@ -126,27 +126,29 @@ class WUISelectbox {
 	#setInputEnable(input, enabled) {
 		input.disabled = !enabled;
 		if (enabled) {
-			input.removeAttributeNode("disabled");
+			input.removeAttribute("disabled");
 		} else {
 			input.setAttribute("disabled", "true");
 		}
 	}
 	init() {
-		const bgImage = (name, event) => {
+		const backgroundImage = (name, event) => {
 			const element = this._input || this._element || document.documentElement;
 			const color = getComputedStyle(element).getPropertyValue("--wui-selectbox-"+name+"color-"+event).replace(/#/g, "%23").trim();
 			const image = getComputedStyle(element).getPropertyValue("--wui-selectbox-"+name+"image-src").replace(/currentColor/g, color);
 			return image;
 		}
 		this._inputText = document.createElement("input");
+		this._background = document.createElement("div");
 		this._box = document.createElement("div");
 		this._options = document.createElement("div");
 		this._footer = document.createElement("div");
 		this._cancel = document.createElement("div");
 		this._accept = document.createElement("div");
 		this._element.appendChild(this._inputText);
+		this._element.appendChild(this._background);
 		this._element.appendChild(this._box);
-		this._element.style.backgroundImage = bgImage("picker", this._input.disabled ? "disabled" : "out");
+		this._element.style.backgroundImage = backgroundImage("picker", this._input.disabled ? "disabled" : "out");
 		this._element.addEventListener("click", event => {
 			if (event.target.classList.contains("wui-selectbox") && this._element.offsetWidth - event.offsetX < 30) {
 				this.toggle();
@@ -155,22 +157,28 @@ class WUISelectbox {
 		["mouseover", "mouseout", "focus", "blur"].forEach(type => {
 			const pickerType = this._input.disabled ? "disabled" : type == "blur" ? "out" : type.replace(/mouse/, "");
 			this._element.addEventListener(type, () => {
-				this._element.style.backgroundImage = bgImage("picker", pickerType);
+				this._element.style.backgroundImage = backgroundImage("picker", pickerType);
 			});
 		});
-		this._input.type = "hidden";
-		this._input.setAttribute("readonly");
-		this._input.removeAttributeNode(this._input.getAttributeNode("style"));
+		if (this._input.getAttribute("style") != null) {
+			this._input.removeAttributeNode(this._input.getAttributeNode("style"));
+		}
 		this._input.querySelectorAll("option").forEach(option => {
-			const options = this._options;
 			const target = document.createElement("div");
-			target.dataset.value = option.value;
 			target.textContent = option.text;
+			target.dataset.value = option.value;
+			target.className = "option";
+			Object.keys(option.classList).forEach(key => {
+				target.classList.add(key);
+			});
+			Object.keys(option.dataset).forEach(key => {
+				target.dataset[key] = option.dataset[key];
+			});
 			target.addEventListener("click", () => {
 				const selected = !Boolean(target.classList.contains("selected"));
 				const targetValue = target.dataset.value || "";
-				options.scrollTop = target.offsetTop - parseInt(options.clientHeight/2);
-				options.querySelectorAll("div").forEach(div => {
+				this._options.scrollTop = target.offsetTop - parseInt(this._options.clientHeight/2);
+				this._options.querySelectorAll("div").forEach(div => {
 					if (typeof(div.dataset.value) != "undefined" && div.dataset.value != value) {
 						div.classList.remove("selected");
 					}
@@ -180,7 +188,7 @@ class WUISelectbox {
 				this._targetValue = selected ? targetValue : "";
 				this.#setText(this._targetValue);
 			});
-			options.appendChild(target);
+			this._options.appendChild(target);
 		});
 		this._input.addEventListener("change", () => {
 			if (typeof(this._onChange) == "function") {
@@ -189,7 +197,9 @@ class WUISelectbox {
 		});
 		this._inputText.type = "text";
 		this._inputText.name = this._input.name+"Text";
+		this._inputText.readonly = true;
 		this._inputText.addEventListener("click", () => {this.toggle();});
+		this._background.className = "background hidden";
 		this._box.className = "box hidden";
 		this._box.appendChild(this._options);
 		this._box.appendChild(this._footer);
@@ -211,9 +221,11 @@ class WUISelectbox {
 		}
 	}
 	close() {
+		this._background.classList.add("hidden");
 		this._box.classList.add("hidden");
 	}
 	toggle() {
+		this._background.classList.toggle("hidden");
 		this._box.classList.toggle("hidden");
 		if (!this._box.classList.contains("hidden")) {
 			this.open();
@@ -246,7 +258,7 @@ HTML struture:
 	<input type="text" value="(name)Text" value="">
 	<div class="box">
 		<div class="options">
-			<div data-value="value1">value 1</div>
+			<div class="option" data-value="value1">value 1</div>
 			...
 		</div>
 		<div class="footer">
