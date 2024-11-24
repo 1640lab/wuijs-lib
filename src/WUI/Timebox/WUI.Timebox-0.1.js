@@ -145,7 +145,7 @@ class WUITimebox {
 	#setInputEnable(input, enabled) {
 		input.disabled = !enabled;
 		if (enabled) {
-			input.removeAttribute("disabled");
+			input.removeAttributeNode("disabled");
 		} else {
 			input.setAttribute("disabled", "true");
 		}

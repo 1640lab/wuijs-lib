@@ -126,7 +126,7 @@ class WUISelectbox {
 	#setInputEnable(input, enabled) {
 		input.disabled = !enabled;
 		if (enabled) {
-			input.removeAttribute("disabled");
+			input.removeAttributeNode("disabled");
 		} else {
 			input.setAttribute("disabled", "true");
 		}
@@ -158,8 +158,9 @@ class WUISelectbox {
 				this._element.style.backgroundImage = bgImage("picker", pickerType);
 			});
 		});
-		this._input.removeAttributeNode(this._input.getAttributeNode("style"));
 		this._input.type = "hidden";
+		this._input.setAttribute("readonly");
+		this._input.removeAttributeNode(this._input.getAttributeNode("style"));
 		this._input.querySelectorAll("option").forEach(option => {
 			const options = this._options;
 			const target = document.createElement("div");
