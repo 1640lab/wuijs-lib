@@ -17,16 +17,16 @@ class WUIDatebox {
 		countryFirstWeekDay: {},
 		texts: {
 			de: {
-				reset: "zurücksetzen",
-				done: "ok"
+				cancel: "akzeptieren",
+				accept: "ok"
 			},
 			en: {
-				reset: "reset",
-				done: "ok"
+				cancel: "cancel",
+				accept: "ok"
 			},
 			es: {
-				reset: "cancelar",
-				done: "listo"
+				cancel: "cancelar",
+				accept: "listo"
 			}
 		}
 	};
@@ -38,8 +38,8 @@ class WUIDatebox {
 		locales: "en-US",
 		monthsNames: [],
 		weekDaysNames: [],
-		resetText: "",
-		doneText: "",
+		cancelText: "",
+		acceptText: "",
 		enabled: true,
 		onOpen: null,
 		onChange: null
@@ -77,11 +77,11 @@ class WUIDatebox {
 	get weekDaysNames() {
 		return this._weekDaysNames;
 	}
-	get resetText() {
-		return this._resetText;
+	get cancelText() {
+		return this._cancelText;
 	}
-	get doneText() {
-		return this._doneText;
+	get acceptText() {
+		return this._acceptText;
 	}
 	get enabled() {
 		return this._enabled;
@@ -135,29 +135,24 @@ class WUIDatebox {
 			this._weekDaysNames = value;
 		}
 	}
-	set resetText(value) {
+	set cancelText(value) {
 		if (typeof(value) == "string") {
-			this._resetText = value;
+			this._cancelText = value;
 		}
 	}
-	set doneText(value) {
+	set acceptText(value) {
 		if (typeof(value) == "string") {
-			this._doneText = value;
+			this._acceptText = value;
 		}
 	}
 	set enabled(value) {
 		if (typeof(value) == "boolean") {
 			this._enabled = value;
-			this._input.disabled = !value;
+			this.#setInputEnable(this._input, value);
 			if (typeof(this._inputs) != "undefined") {
-				this._inputYear.disabled = !value;
-				this._inputMonth.disabled = !value;
-				this._inputDay.disabled = !value;
-			}
-			if (value) {
-				this._input.removeAttribute("disabled");
-			} else {
-				this._input.setAttribute("disabled", "true");
+				this.#setInputEnable(this._inputYear, value);
+				this.#setInputEnable(this._inputMonth, value);
+				this.#setInputEnable(this._inputDay, value);
 			}
 			this.#setStyle();
 		}
@@ -178,6 +173,11 @@ class WUIDatebox {
 	getInput() {
 		return this._input;
 	}
+	#setDate(date) {
+		this._inputYear.value = date instanceof Date ? ("000"+date.getFullYear()).slice(-4) : "";
+		this._inputMonth.value = date instanceof Date ? ("0"+(date.getMonth() +1)).slice(-2) : "";
+		this._inputDay.value = date instanceof Date ? ("0"+date.getDate()).slice(-2) : "";
+	}
 	#setStyle() {
 		const disabled = this._input.disabled;
 		if (disabled) {
@@ -186,10 +186,13 @@ class WUIDatebox {
 			this._element.classList.remove("disabled");
 		}
 	}
-	#setDate(date) {
-		this._inputYear.value = date instanceof Date ? ("000"+date.getFullYear()).slice(-4) : "";
-		this._inputMonth.value = date instanceof Date ? ("0"+(date.getMonth() +1)).slice(-2) : "";
-		this._inputDay.value = date instanceof Date ? ("0"+date.getDate()).slice(-2) : "";
+	#setInputEnable(input, enabled) {
+		input.disabled = !enabled;
+		if (enabled) {
+			input.removeAttribute("disabled");
+		} else {
+			input.setAttribute("disabled", "true");
+		}
 	}
 	init() {
 		const bgImage = (name, event) => {
@@ -211,8 +214,8 @@ class WUIDatebox {
 		this._week = document.createElement("div");
 		this._days = document.createElement("div");
 		this._footer = document.createElement("div");
-		this._reset = document.createElement("div");
-		this._done = document.createElement("div");
+		this._cancel = document.createElement("div");
+		this._accept = document.createElement("div");
 		this._element.appendChild(this._inputs);
 		this._element.appendChild(this._box);
 		this._element.style.backgroundImage = bgImage("picker", this._input.disabled ? "disabled" : "out");
@@ -277,12 +280,12 @@ class WUIDatebox {
 		this._week.className = "week";
 		this._days.className = "days";
 		this._footer.className = "footer";
-		this._footer.appendChild(this._reset);
-		this._footer.appendChild(this._done);
-		this._reset.className = "reset";
-		this._reset.addEventListener("click", () => {this.reset();});
-		this._done.className = "done";
-		this._done.addEventListener("click", () => {this.done();});
+		this._footer.appendChild(this._cancel);
+		this._footer.appendChild(this._accept);
+		this._cancel.className = "cancel";
+		this._cancel.addEventListener("click", () => {this.cancel();});
+		this._accept.className = "accept";
+		this._accept.addEventListener("click", () => {this.accept();});
 		this.#load();
 		this.#loadInputs();
 	}
@@ -318,8 +321,8 @@ class WUIDatebox {
 		this._todayMonth = today.replace(/\d{4}-0?(\d+)-\d{2}/, "$1");
 		this._targetValue = this._input.value || today;
 		this._targetDate = new Date(this._targetValue+"T00:00:00");
-		this._resetValue = this._targetValue;
-		this._resetDate = new Date(this._targetValue+"T00:00:00");
+		this._cancelValue = this._targetValue;
+		this._cancelDate = new Date(this._targetValue+"T00:00:00");
 		this._mode = "days";
 		this.#setDate(this._targetDate);
 	}
@@ -361,8 +364,8 @@ class WUIDatebox {
 				const name = new Date(2023, i, 1, 0, 0, 0).toLocaleString(this._locales, {month: "long"});
 				this._monthsNames[i] = name.replace(/^\s*(\w)/, letter => letter.toUpperCase());
 			}
-			this._reset.textContent = this._resetText != "" ? this._resetText : lang in WUIDatebox.#constants.texts ? WUIDatebox.#constants.texts[lang].reset : "";
-			this._done.textContent = this._doneText != "" ? this._doneText : lang in WUIDatebox.#constants.texts ? WUIDatebox.#constants.texts[lang].done : "";
+			this._cancel.textContent = this._cancelText != "" ? this._cancelText : lang in WUIDatebox.#constants.texts ? WUIDatebox.#constants.texts[lang].cancel : "";
+			this._accept.textContent = this._acceptText != "" ? this._acceptText : lang in WUIDatebox.#constants.texts ? WUIDatebox.#constants.texts[lang].accept : "";
 		}
 	}
 	#loadBox() {
@@ -529,12 +532,12 @@ class WUIDatebox {
 			case "days": this.#monthsStep(+1); break;
 		}
 	}
-	reset() {
-		this._input.value = this._resetValue;
-		this.#setDate(this._resetDate);
+	cancel() {
+		this._input.value = this._cancelValue;
+		this.#setDate(this._cancelDate);
 		this.close();
 	}
-	done() {
+	accept() {
 		this.close();
 	}
 }
@@ -560,8 +563,8 @@ HTML struture:
 		<div class="week"></div>
 		<div class="days"></div>
 		<div class="footer">
-			<div class="reset"></div>
-			<div class="done"></div>
+			<div class="cancel"></div>
+			<div class="accept"></div>
 		</div>
 	</div>
 </div>

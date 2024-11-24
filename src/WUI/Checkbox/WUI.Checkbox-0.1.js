@@ -70,6 +70,12 @@ class WUICheckbox {
 			this._onChange = value;
 		}
 	}
+	getElement() {
+		return this._element;
+	}
+	getInput() {
+		return this._input;
+	}
 	#setStyle() {
 		const checked = this._input.checked;
 		const disabled = this._input.disabled;
@@ -83,12 +89,6 @@ class WUICheckbox {
 		} else {
 			this._element.classList.remove("disabled");
 		}
-	}
-	getElement() {
-		return this._element;
-	}
-	getInput() {
-		return this._input;
 	}
 	init() {
 		this._drag = false;

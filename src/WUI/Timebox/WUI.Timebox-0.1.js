@@ -5,16 +5,16 @@ class WUITimebox {
 	static #constants = {
 		texts: {
 			de: {
-				reset: "zurücksetzen",
-				done: "ok"
+				cancel: "akzeptieren",
+				accept: "ok"
 			},
 			en: {
-				reset: "reset",
-				done: "ok"
+				cancel: "cancel",
+				accept: "ok"
 			},
 			es: {
-				reset: "cancelar",
-				done: "listo"
+				cancel: "cancelar",
+				accept: "listo"
 			}
 		}
 	};
@@ -24,8 +24,8 @@ class WUITimebox {
 		max: "23:59",
 		value: "",
 		lang: "en",
-		resetText: "",
-		doneText: "",
+		cancelText: "",
+		acceptText: "",
 		enabled: true,
 		onOpen: null,
 		onChange: null
@@ -50,11 +50,11 @@ class WUITimebox {
 	get lang() {
 		return this._lang;
 	}
-	get resetText() {
-		return this._resetText;
+	get cancelText() {
+		return this._cancelText;
 	}
-	get doneText() {
-		return this._doneText;
+	get acceptText() {
+		return this._acceptText;
 	}
 	get enabled() {
 		return this._enabled;
@@ -93,28 +93,23 @@ class WUITimebox {
 			this._lang = value.toLocaleLowerCase();
 		}
 	}
-	set resetText(value) {
+	set cancelText(value) {
 		if (typeof(value) == "string") {
-			this._resetText = value;
+			this._cancelText = value;
 		}
 	}
-	set doneText(value) {
+	set acceptText(value) {
 		if (typeof(value) == "string") {
-			this._doneText = value;
+			this._acceptText = value;
 		}
 	}
 	set enabled(value) {
 		if (typeof(value) == "boolean") {
 			this._enabled = value;
-			this._input.disabled = !value;
+			this.#setInputEnable(this._input, value);
 			if (typeof(this._inputs) != "undefined") {
-				this._inputHours.disabled = !value;
-				this._inputMinutes.disabled = !value;
-			}
-			if (value) {
-				this._input.removeAttribute("disabled");
-			} else {
-				this._input.setAttribute("disabled", "true");
+				this.#setInputEnable(this._inputHours, value);
+				this.#setInputEnable(this._inputMinutes, value);
 			}
 			this.#setStyle();
 		}
@@ -135,6 +130,10 @@ class WUITimebox {
 	getInput() {
 		return this._input;
 	}
+	#setTime(time) {
+		this._inputHours.value = time instanceof Date ? ("0"+time.getHours()).slice(-2) : "";
+		this._inputMinutes.value = time instanceof Date ? ("0"+time.getMinutes()).slice(-2) : "";
+	}
 	#setStyle() {
 		const disabled = this._input.disabled;
 		if (disabled) {
@@ -143,9 +142,13 @@ class WUITimebox {
 			this._element.classList.remove("disabled");
 		}
 	}
-	#setTime(time) {
-		this._inputHours.value = time instanceof Date ? ("0"+time.getHours()).slice(-2) : "";
-		this._inputMinutes.value = time instanceof Date ? ("0"+time.getMinutes()).slice(-2) : "";
+	#setInputEnable(input, enabled) {
+		input.disabled = !enabled;
+		if (enabled) {
+			input.removeAttribute("disabled");
+		} else {
+			input.setAttribute("disabled", "true");
+		}
 	}
 	init() {
 		const bgImage = (name, event) => {
@@ -162,8 +165,8 @@ class WUITimebox {
 		this._listHours = document.createElement("ul");
 		this._listMinutes = document.createElement("ul");
 		this._footer = document.createElement("div");
-		this._reset = document.createElement("div");
-		this._done = document.createElement("div");
+		this._cancel = document.createElement("div");
+		this._accept = document.createElement("div");
 		this._element.appendChild(this._inputs);
 		this._element.appendChild(this._box);
 		this._element.style.backgroundImage = bgImage("picker", this._input.disabled ? "disabled" : "out");
@@ -245,12 +248,12 @@ class WUITimebox {
 		this._lists.appendChild(this._listHours);
 		this._lists.appendChild(this._listMinutes);
 		this._footer.className = "footer";
-		this._footer.appendChild(this._reset);
-		this._footer.appendChild(this._done);
-		this._reset.className = "reset";
-		this._reset.addEventListener("click", () => {this.reset();});
-		this._done.className = "done";
-		this._done.addEventListener("click", () => {this.done();});
+		this._footer.appendChild(this._cancel);
+		this._footer.appendChild(this._accept);
+		this._cancel.className = "cancel";
+		this._cancel.addEventListener("click", () => {this.cancel();});
+		this._accept.className = "accept";
+		this._accept.addEventListener("click", () => {this.accept();});
 		this.#load();
 	}
 	open() {
@@ -281,8 +284,8 @@ class WUITimebox {
 		this._nowMinutes = parseInt(this._nowValue.split(":")[1]);
 		this._targetValue = this._input.value || now;
 		this._targetTime = new Date("1970-01-01T"+this._targetValue+":00");
-		this._resetValue = this._targetValue;
-		this._resetTime = new Date("1970-01-01T"+this._targetValue+":00");
+		this._cancelValue = this._targetValue;
+		this._cancelTime = new Date("1970-01-01T"+this._targetValue+":00");
 		this.#setTime(this._targetTime);
 	}
 	#loadValue() {
@@ -295,8 +298,8 @@ class WUITimebox {
 		}
 	}
 	#loadTexts() {
-		this._reset.textContent = this._resetText != "" ? this._resetText : lang in WUITimebox.#constants.texts ? WUITimebox.#constants.texts[lang].reset : "";
-		this._done.textContent = this._doneText != "" ? this._doneText : lang in WUITimebox.#constants.texts ? WUITimebox.#constants.texts[lang].done : "";
+		this._cancel.textContent = this._cancelText != "" ? this._cancelText : lang in WUITimebox.#constants.texts ? WUITimebox.#constants.texts[lang].cancel : "";
+		this._accept.textContent = this._acceptText != "" ? this._acceptText : lang in WUITimebox.#constants.texts ? WUITimebox.#constants.texts[lang].accept : "";
 	}
 	#loadBox() {
 		const hours = this._targetTime.getHours();
@@ -320,12 +323,12 @@ class WUITimebox {
 			});	
 		});
 	}
-	reset() {
-		this._input.value = this._resetValue;
-		this.#setTime(this._resetTime);
+	cancel() {
+		this._input.value = this._cancelValue;
+		this.#setTime(this._cancelTime);
 		this.close();
 	}
-	done() {
+	accept() {
 		this.close();
 	}
 }
@@ -335,13 +338,18 @@ HTML struture:
 	<input type="time" value="">
 	<div class="box">
 		<div class="select">
-			<menu class="hours"></menu>
-			<menu class="minutes"></menu>
-			<menu class="meridiem"></menu>
+			<ul class="hours">
+				<li></li>
+				...
+			</ul>
+			<ul class="minutes">
+				<li></li>
+				...
+			</ul>
 		</div>
 		<div class="footer">
-			<div class="reset"></div>
-			<div class="done"></div>
+			<div class="cancel"></div>
+			<div class="accept"></div>
 		</div>
 	</div>
 </div>

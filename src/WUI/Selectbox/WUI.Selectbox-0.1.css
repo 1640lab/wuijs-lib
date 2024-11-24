@@ -1,0 +1,98 @@
+/* wui-selectbox */
+
+.wui-selectbox,
+.wui-selectbox * {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.wui-selectbox {
+	width: 100%;
+	height: 30px;
+	margin: 0;
+	border: 0;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position-x: 100%;
+	background-image: none;
+	background-size: var(--wui-selectbox-pickerimage-size);
+	padding-right: 2rem;
+}
+.wui-selectbox > .box,
+.wui-selectbox > .box * {
+	display: flex;
+}
+.wui-selectbox > .box {
+	--shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	--filter: blur(10px);
+	position: absolute;
+	z-index: 1;
+	width: 250px;
+	height: 260px;
+	height: 290px;
+	-webkit-box-shadow: var(--shadow);
+	-moz-box-shadow: var(--shadow);
+	box-shadow: var(--shadow);
+	-webkit-border-radius: var(--wui-selectbox-box-radius);
+	-moz-border-radius: var(--wui-selectbox-box-radius);
+	border-radius: var(--wui-selectbox-box-radius);
+	border: 1px solid var(--wui-selectbox-box-bordercolor);
+	background-color: var(--wui-selectbox-box-bgcolor);
+	-webkit-backdrop-filter: var(--filter);
+	-moz-backdrop-filter: var(--filter);
+	backdrop-filter: var(--filter);
+	flex-direction: column;
+	padding: 5px;
+}
+.wui-selectbox > .box.hidden {
+	display: none;
+}
+.wui-selectbox > .box.extended {
+	height: 290px;
+}
+.wui-selectbox > .box > .footer {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 30px;
+	border-top: 1px solid var(--wui-selectbox-box-bordercolor);
+	justify-content: space-between;
+	font-size: 14px;
+}
+.wui-selectbox > .box > .footer > div {
+	cursor: pointer;
+	padding: 5px 10px;
+	text-transform: lowercase;
+	color: var(--wui-selectbox-box-buttons-textcolor-out);
+}
+.wui-selectbox > .box > .footer > div:hover {
+	color: var(--wui-selectbox-box-buttons-textcolor-over);
+}
+@media screen and (max-width: 767px) {
+	.wui-selectbox > input[type="text"] {
+		font-size: 15px;
+	}
+	.wui-selectbox > .box {
+		--transform: translate(-50%, -50%);
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		width: 300px;
+		height: 310px;
+		height: 348px;
+		-webkit-transform: var(--transform);
+		-moz-transform: var(--transform);
+		transform: var(--transform);
+	}
+	.wui-selectbox > .box.extended {
+		height: 348px;
+	}
+	.wui-selectbox > .box > .footer {
+		height: 40px;
+		font-size: 17px;
+	}
+	.wui-selectbox > .box > .footer > div {
+		padding: 10px 15px;
+	}
+}
