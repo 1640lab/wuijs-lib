@@ -5,16 +5,19 @@ class WUISelectbox {
 	static #constants = {
 		texts: {
 			de: {
+				empty: "leer",
 				cancel: "akzeptieren",
 				accept: "ok"
 			},
 			en: {
+				empty: "empty",
 				cancel: "cancel",
-				accept: "ok"
+				accept: "accept"
 			},
 			es: {
+				empty: "vacío",
 				cancel: "cancelar",
-				accept: "listo"
+				accept: "aceptar"
 			}
 		}
 	}
@@ -22,6 +25,7 @@ class WUISelectbox {
 		selector: "",
 		value: "",
 		lang: "en",
+		emptyText: "",
 		cancelText: "",
 		acceptText: "",
 		enabled: true,
@@ -41,6 +45,9 @@ class WUISelectbox {
 	}
 	get lang() {
 		return this._lang;
+	}
+	get emptyText() {
+		return thie._emptyText;
 	}
 	get cancelText() {
 		return this._cancelText;
@@ -73,6 +80,11 @@ class WUISelectbox {
 	set lang(value) {
 		if (typeof(value) == "string" && value.match(/^\w{2}$/)) {
 			this._lang = value.toLocaleLowerCase();
+		}
+	}
+	set emptyText(value) {
+		if (typeof(value) == "string") {
+			this._emptyText = value;
 		}
 	}
 	set cancelText(value) {
@@ -143,14 +155,14 @@ class WUISelectbox {
 		this._box = document.createElement("div");
 		this._options = document.createElement("div");
 		this._footer = document.createElement("div");
-		this._cancel = document.createElement("div");
-		this._accept = document.createElement("div");
+		this._cancel = document.createElement("button");
+		this._accept = document.createElement("button");
 		this._element.appendChild(this._inputText);
 		this._element.appendChild(this._background);
 		this._element.appendChild(this._box);
 		this._element.style.backgroundImage = backgroundImage("picker", this._input.disabled ? "disabled" : "out");
 		this._element.addEventListener("click", event => {
-			if (event.target.classList.contains("wui-selectbox") && this._element.offsetWidth - event.offsetX < 30) {
+			if (event.target.classList.contains("wui-selectbox")) { // && this._element.offsetWidth - event.offsetX < 30
 				this.toggle();
 			}
 		});
@@ -164,31 +176,38 @@ class WUISelectbox {
 			this._input.removeAttributeNode(this._input.getAttributeNode("style"));
 		}
 		this._input.querySelectorAll("option").forEach(option => {
-			const target = document.createElement("div");
-			target.textContent = option.text;
-			target.dataset.value = option.value;
-			target.className = "option";
-			Object.keys(option.classList).forEach(key => {
-				target.classList.add(key);
+			const item = document.createElement("div");
+			const icon = document.createElement("div");
+			const text = document.createElement("div");
+			const selected = Boolean(option.selected);
+			icon.className = "icon "+(typeof(option.icon) == "string" && option.icon != "" ? option.icon : "wui-svgicon check-line");
+			text.className = "text "+(this._selecteableText ? "selecteable" : "");
+			text.innerHTML = option.value == "" ? "<i class='empty'>"+(this._emptyText != "" ? this._emptyText : lang in WUISelectbox.#constants.texts ? WUISelectbox.#constants.texts[lang].empty : "")+"</i>" : option.text;
+			option.classList.forEach(key => {
+				text.classList.add(key);
 			});
 			Object.keys(option.dataset).forEach(key => {
-				target.dataset[key] = option.dataset[key];
+				text.dataset[key] = option.dataset[key];
 			});
-			target.addEventListener("click", () => {
-				const selected = !Boolean(target.classList.contains("selected"));
-				const targetValue = target.dataset.value || "";
-				this._options.scrollTop = target.offsetTop - parseInt(this._options.clientHeight/2);
+			item.className = "option"+(selected ? " selected" : "");	
+			item.dataset.value = option.value;
+			item.appendChild(icon);
+			item.appendChild(text);
+			item.addEventListener("click", () => {
+				const selected = !Boolean(item.classList.contains("selected"));
+				const targetValue = item.dataset.value || "";
+				this._options.scrollTop = item.offsetTop - parseInt(this._options.clientHeight/2);
 				this._options.querySelectorAll("div").forEach(div => {
-					if (typeof(div.dataset.value) != "undefined" && div.dataset.value != value) {
+					if (typeof(div.dataset.value) != "undefined" && div.dataset.value != targetValue) {
 						div.classList.remove("selected");
 					}
 				});
-				target.classList.toggle("selected");
+				item.classList.toggle("selected");
 				this._input.value = selected ? targetValue : "";
 				this._targetValue = selected ? targetValue : "";
 				this.#setText(this._targetValue);
 			});
-			this._options.appendChild(target);
+			this._options.appendChild(item);
 		});
 		this._input.addEventListener("change", () => {
 			if (typeof(this._onChange) == "function") {
@@ -243,6 +262,7 @@ class WUISelectbox {
 	cancel() {
 		this._input.value = this._cancelValue;
 		this.#setText(this._cancelValue);
+		this.close();
 	}
 	accept() {
 		this.close();

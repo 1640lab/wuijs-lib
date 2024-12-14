@@ -10,11 +10,11 @@ class WUITimebox {
 			},
 			en: {
 				cancel: "cancel",
-				accept: "ok"
+				accept: "accept"
 			},
 			es: {
 				cancel: "cancelar",
-				accept: "listo"
+				accept: "aceptar"
 			}
 		}
 	};
@@ -166,8 +166,8 @@ class WUITimebox {
 		this._listHours = document.createElement("ul");
 		this._listMinutes = document.createElement("ul");
 		this._footer = document.createElement("div");
-		this._cancel = document.createElement("div");
-		this._accept = document.createElement("div");
+		this._cancel = document.createElement("button");
+		this._accept = document.createElement("button");
 		this._element.appendChild(this._inputs);
 		this._element.appendChild(this._background);
 		this._element.appendChild(this._box);
@@ -221,28 +221,28 @@ class WUITimebox {
 				this._inputs.appendChild(span);
 			}
 			for (let i=0; i<=max; i++) {
-				const target = document.createElement("li");
-				target.dataset.value = i;
-				target.textContent = i;
-				target.addEventListener("click", () => {
-					const selected = !Boolean(target.classList.contains("selected"));
-					const targetValue =
+				const item = document.createElement("li");
+				item.dataset.value = i;
+				item.textContent = i;
+				item.addEventListener("click", () => {
+					const selected = !Boolean(item.classList.contains("selected"));
+					const itemValue =
 						part == "hours" ? ("0"+i).slice(-2)+":"+("0"+this._inputMinutes.value).slice(-2) :
 						part == "minutes" ? ("0"+this._inputHours.value).slice(-2)+":"+("0"+i).slice(-2) :
 						"";
-					list.scrollTop = target.offsetTop - parseInt(list.clientHeight/2);
+					list.scrollTop = item.offsetTop - parseInt(list.clientHeight/2);
 					list.querySelectorAll("li").forEach(li => {
 						if (typeof(li.dataset.value) != "undefined" && li.dataset.value != i) {
 							li.classList.remove("selected");
 						}
 					});
-					target.classList.toggle("selected");
-					this._input.value = selected ? targetValue : "";
-					this._targetValue = selected ? targetValue : "";
-					this._targetDate = selected ? new Date("1970-01-01T"+targetValue+":00") : null;
+					item.classList.toggle("selected");
+					this._input.value = selected ? itemValue : "";
+					this._targetValue = selected ? itemValue : "";
+					this._targetDate = selected ? new Date("1970-01-01T"+itemValue+":00") : null;
 					this.#setTime(this._targetDate);
 				});
-				list.appendChild(target);
+				list.appendChild(item);
 			}
 		});
 		this._background.className = "background hidden";

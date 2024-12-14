@@ -22,11 +22,11 @@ class WUIDatebox {
 			},
 			en: {
 				cancel: "cancel",
-				accept: "ok"
+				accept: "accept"
 			},
 			es: {
 				cancel: "cancelar",
-				accept: "listo"
+				accept: "aceptar"
 			}
 		}
 	};
@@ -215,8 +215,8 @@ class WUIDatebox {
 		this._week = document.createElement("div");
 		this._days = document.createElement("div");
 		this._footer = document.createElement("div");
-		this._cancel = document.createElement("div");
-		this._accept = document.createElement("div");
+		this._cancel = document.createElement("button");
+		this._accept = document.createElement("button");
 		this._element.appendChild(this._inputs);
 		this._element.appendChild(this._background);
 		this._element.appendChild(this._box);
@@ -398,41 +398,41 @@ class WUIDatebox {
 		for (let i=0; i<13*2; i++) {
 			const cell = document.createElement("div");
 			if (i % 13 == 0) {
-				const cyear = document.createElement("div");
-				cyear.innerHTML = y;
-				cell.appendChild(cyear);
+				const item = document.createElement("div");
+				item.innerHTML = y;
+				cell.appendChild(item);
 				y++;
 				m = 1;
 			} else {
-				const target = document.createElement("div");
-				const targetValue = this._targetValue.replace(/^\d{4}-\d{2}-/, (y -1)+"-"+("0"+m).slice(-2)+"-");
-				const targetYear = y -1;
-				const targetMonth = m;
-				if (targetYear == this._todayYear && targetMonth == this._todayMonth) {
-					target.classList.add("today");
+				const item = document.createElement("div");
+				const itemValue = this._targetValue.replace(/^\d{4}-\d{2}-/, (y -1)+"-"+("0"+m).slice(-2)+"-");
+				const itemYear = y -1;
+				const itemMonth = m;
+				if (itemYear == this._todayYear && itemMonth == this._todayMonth) {
+					item.classList.add("today");
 				}
-				if (targetValue == this._input.value) {
-					target.classList.add("selected");
+				if (itemValue == this._input.value) {
+					item.classList.add("selected");
 				}
-				target.dataset.value = targetValue;
-				target.dataset.year = targetYear;
-				target.dataset.month = targetMonth;
-				target.textContent = this.monthsNames[m -1].substring(0, 3);
-				target.addEventListener("click", () => {
-					const selected = !Boolean(target.classList.contains("selected"));
+				item.dataset.value = itemValue;
+				item.dataset.year = itemYear;
+				item.dataset.month = itemMonth;
+				item.textContent = this.monthsNames[m -1].substring(0, 3);
+				item.addEventListener("click", () => {
+					const selected = !Boolean(item.classList.contains("selected"));
 					this._months.querySelectorAll("div").forEach(div => {
-						if (typeof(div.dataset.value) != "undefined" && div.dataset.value != targetValue) {
+						if (typeof(div.dataset.value) != "undefined" && div.dataset.value != itemValue) {
 							div.classList.remove("selected");
 						}
 					});
-					target.classList.toggle("selected");
-					this._period.innerHTML = this._monthsNames[target.dataset.month -1]+" "+target.dataset.year+" <div class='icon up'></div>";
-					this._input.value = selected ? targetValue : "";
-					this._targetValue = selected ? targetValue : "";
-					this._targetDate = selected ? new Date(targetValue+"T00:00:00") : null;
+					item.classList.toggle("selected");
+					this._period.innerHTML = this._monthsNames[item.dataset.month -1]+" "+item.dataset.year+" <div class='icon up'></div>";
+					this._input.value = selected ? itemValue : "";
+					this._targetValue = selected ? itemValue : "";
+					this._targetDate = selected ? new Date(itemValue+"T00:00:00") : null;
 					this.#setDate(this._targetDate);
 				});
-				cell.appendChild(target);
+				cell.appendChild(item);
 				m++;
 			}
 			this._months.appendChild(cell);
@@ -471,30 +471,30 @@ class WUIDatebox {
 		for (let i=0; i<7*rows; i++) {
 			const cell = document.createElement("div");
 			if (i >= ini && d <= lasmday) {
-				const target = document.createElement("div");
-				const targetValue = this._targetValue.replace(/-\d{2}$/, "-"+("0"+d).slice(-2));
-				if (targetValue == this._todayValue) {
-					target.classList.add("today");
+				const item = document.createElement("div");
+				const itemValue = this._targetValue.replace(/-\d{2}$/, "-"+("0"+d).slice(-2));
+				if (itemValue == this._todayValue) {
+					item.classList.add("today");
 				}
-				if (targetValue == this._input.value) {
-					target.classList.add("selected");
+				if (itemValue == this._input.value) {
+					item.classList.add("selected");
 				}
-				target.dataset.value = targetValue;
-				target.textContent = d;
-				target.addEventListener("click", () => {
-					const selected = !Boolean(target.classList.contains("selected"));
+				item.dataset.value = itemValue;
+				item.textContent = d;
+				item.addEventListener("click", () => {
+					const selected = !Boolean(item.classList.contains("selected"));
 					this._days.querySelectorAll("div").forEach(div => {
-						if (typeof(div.dataset.value) != "undefined" && div.dataset.value != targetValue) {
+						if (typeof(div.dataset.value) != "undefined" && div.dataset.value != itemValue) {
 							div.classList.remove("selected");
 						}
 					});
-					target.classList.toggle("selected");
-					this._input.value = selected ? targetValue : "";
-					this._targetValue = selected ? targetValue : "";
-					this._targetDate = selected ? new Date(targetValue+"T00:00:00") : null;
+					item.classList.toggle("selected");
+					this._input.value = selected ? itemValue : "";
+					this._targetValue = selected ? itemValue : "";
+					this._targetDate = selected ? new Date(itemValue+"T00:00:00") : null;
 					this.#setDate(this._targetDate);
 				});
-				cell.appendChild(target);
+				cell.appendChild(item);
 				if (i +1 == 7*5 && d < lasmday) {
 					this._box.classList.add("extended");
 					rows++;

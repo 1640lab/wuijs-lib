@@ -47,8 +47,8 @@
 	user-select: none;
 }
 .wui-datebox > .background {
-	position: fixed;
 	display: none;
+	position: fixed;
 	z-index: 100;
 	top: 0;
 	left: 0;
@@ -243,23 +243,43 @@
 	color: var(--wui-datebox-box-day-textcolor-selected) !important;
 }
 .wui-datebox > .box > .footer {
+	display: flex;
 	position: absolute;
 	left: 0;
 	bottom: 0;
 	width: 100%;
 	height: 30px;
 	border-top: 1px solid var(--wui-datebox-box-bordercolor);
-	justify-content: space-between;
-	font-size: 14px;
+	align-items: center;
+	justify-content: center;
+	flex-grow: 0;
+	flex-wrap: wrap;
 }
-.wui-datebox > .box > .footer > div {
+.wui-datebox > .box > .footer > button {
 	cursor: pointer;
-	padding: 5px 10px;
+	height: 100%;
+	margin: 0;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	border-color: transparent;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	border: 0;
+	background-color: transparent;
+	flex-grow: 1;
+	align-items: center;
+	justify-content: center;
 	text-transform: lowercase;
-	color: var(--wui-datebox-box-buttons-textcolor-out);
+	font-size: 14px;
+	color: var(--wui-datebox-box-button-textcolor-out);
 }
-.wui-datebox > .box > .footer > div:hover {
-	color: var(--wui-datebox-box-buttons-textcolor-over);
+.wui-datebox > .box > .footer > button:hover {
+	color: var(--wui-datebox-box-button-textcolor-over);
+}
+.wui-datebox > .box > .footer > button.accept {
+	font-weight: bold;
 }
 @media screen and (max-width: 767px) {
 	.wui-datebox > input[type="text"] {
@@ -335,9 +355,8 @@
 	}
 	.wui-datebox > .box > .footer {
 		height: 40px;
-		font-size: 17px;
 	}
-	.wui-datebox > .box > .footer > div {
-		padding: 10px 15px;
+	.wui-datebox > .box > .footer > button {
+		font-size: 17px;
 	}
 }

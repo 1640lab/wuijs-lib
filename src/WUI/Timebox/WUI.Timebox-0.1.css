@@ -44,8 +44,8 @@
 	user-select: none;
 }
 .wui-timebox > .background {
-	position: fixed;
 	display: none;
+	position: fixed;
 	z-index: 100;
 	top: 0;
 	left: 0;
@@ -66,7 +66,7 @@
 	--shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 	--filter: blur(10px);
 	position: absolute;
-	z-index: 100;
+	z-index: 101;
 	width: 250px;
 	height: 260px;
 	-webkit-box-shadow: var(--shadow);
@@ -131,23 +131,43 @@
 	color: var(--wui-timebox-box-option-textcolor-selected);
 }
 .wui-timebox > .box > .footer {
+	display: flex;
 	position: absolute;
 	left: 0;
 	bottom: 0;
 	width: 100%;
 	height: 30px;
 	border-top: 1px solid var(--wui-timebox-box-bordercolor);
-	justify-content: space-between;
-	font-size: 14px;
+	align-items: center;
+	justify-content: center;
+	flex-grow: 0;
+	flex-wrap: wrap;
 }
-.wui-timebox > .box > .footer > div {
+.wui-timebox > .box > .footer > button {
 	cursor: pointer;
-	padding: 5px 10px;
+	height: 100%;
+	margin: 0;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	border-color: transparent;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	border: 0;
+	background-color: transparent;
+	flex-grow: 1;
+	align-items: center;
+	justify-content: center;
 	text-transform: lowercase;
-	color: var(--wui-timebox-box-buttons-textcolor-out);
+	font-size: 14px;
+	color: var(--wui-timebox-box-button-textcolor-out);
 }
 .wui-timebox > .box > .footer > div:hover {
-	color: var(--wui-timebox-box-buttons-textcolor-over);
+	color: var(--wui-timebox-box-button-textcolor-over);
+}
+.wui-timebox > .box > .footer > div.accept {
+	font-weight: bold;
 }
 @media screen and (max-width: 767px) {
 	.wui-timebox > input[type="text"] {
@@ -187,9 +207,8 @@
 	}
 	.wui-timebox > .box > .footer {
 		height: 40px;
-		font-size: 17px;
 	}
-	.wui-timebox > .box > .footer > div {
-		padding: 10px 15px;
+	.wui-timebox > .box > .footer > button {
+		font-size: 17px;
 	}
 }

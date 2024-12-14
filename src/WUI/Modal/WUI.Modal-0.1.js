@@ -338,6 +338,7 @@ class WUIModal {
 			if (under != null) {
 				const underPage = Boolean(under._element.classList.contains("page"));
 				const underSlide = Boolean(under._element.classList.contains("slide"));
+				const underMaximized = Boolean(under._element.classList.contains("maximized"));
 				if (bgcolor.length == 4) {
 					const opacity = Math.round((1 -ease) * parseFloat(bgcolor[3]) * 100) / 100;
 					under._element.style.backgroundColor = "rgba("+bgcolor[0]+", "+bgcolor[1]+", "+bgcolor[2]+", "+opacity+")";
@@ -345,10 +346,9 @@ class WUIModal {
 				if (under._box != null && underPage && page) {
 					if (!mobile && underSlide) {
 						// ...
-					} else if (mobile) {
-						under._box.style.top = (bodyHeight - (bodyHeight -44) - 22 * ease)+"px";
-						under._box.style.left = (10 * ease)+"px";
-						under._box.style.right = (10 * ease)+"px";
+					} else if (mobile && !underMaximized) {
+						under._box.style.top = (bodyHeight - (bodyHeight -44) - 44 * ease)+"px";
+						under._box.style.scale = (1 - ease/10);
 					}
 				}
 			}
@@ -361,6 +361,7 @@ class WUIModal {
 	maximize(onMaximize = this._onMaximize, openDelay = this._openDelay) {
 		const page = Boolean(this._element.classList.contains("page"));
 		const slide = Boolean(this._element.classList.contains("slide"));
+		const maximized = Boolean(this._element.classList.contains("maximized"));
 		const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
 		const boxTop = this._box != null ? this._box.offsetTop : 0;
 		let step = 10;
@@ -373,7 +374,9 @@ class WUIModal {
 				ease = 0;
 			}
 			if (this._box != null && page) {
-				if (mobile && slide) {
+				if (!mobile && slide) {
+					// ...
+				} else if (mobile && !maximized) {
 					this._box.style.top = (boxTop * ease)+"px";
 				}
 			}
@@ -437,17 +440,19 @@ class WUIModal {
 				}
 			}
 			if (under != null) {
+				const underPage = Boolean(under._element.classList.contains("page"));
+				const underSlide = Boolean(under._element.classList.contains("slide"));
+				const underMaximized = Boolean(under._element.classList.contains("maximized"));
 				if (bgcolor.length == 4) {
 					const opacity = Math.round((1 -ease) * parseFloat(bgcolor[3]) * 100) / 100;
 					under._element.style.backgroundColor = "rgba("+bgcolor[0]+", "+bgcolor[1]+", "+bgcolor[2]+", "+opacity+")";
 				}
-				if (under._box != null && under._element.classList.contains("page") && page) {
-					if (!mobile && slide) {
+				if (under._box != null && underPage && page) {
+					if (!mobile && underSlide) {
 						// ...
-					} else if (mobile && this._mobilePageOpenMode == "slide") {
-						under._box.style.top = (bodyHeight - (bodyHeight -22) + 22 * (1 -ease))+"px";
-						under._box.style.left = (10 * ease)+"px";
-						under._box.style.right = (10 * ease)+"px";
+					} else if (mobile && !underMaximized) {
+						under._box.style.top = (bodyHeight - (bodyHeight -44) - 44 * ease)+"px";
+						under._box.style.scale = (1 - ease/10);
 					}
 				}
 			}
