@@ -35,6 +35,9 @@
 	font-family: inherit;
 	font-size: 14px;
 }
+.wui-timebox > .inputs > input[type="text"]:last-child {
+	width: 24px;
+}
 .wui-timebox > .inputs > span {
 	margin: 0;
 	-webkit-touch-callout: none;

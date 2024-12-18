@@ -73,8 +73,8 @@ class WUISelectbox {
 	}
 	set value(value) {
 		if (typeof(value) == "string" && this._enabled) {
-			this._input.value = value;
-			this.#load();
+			this.#setValue(value);
+			this.#prepare();
 		}
 	}
 	set lang(value) {
@@ -123,8 +123,12 @@ class WUISelectbox {
 	getInput() {
 		return this._input;
 	}
+	#setValue(value) {
+		this._input.value = value;
+		this._input.dispatchEvent(new Event("change"));
+	}
 	#setText(value) {
-		const text = Array.from(this._input.options).filter(opt => {opt.value == value}).map(opt => {opt.text})[0] || "";
+		const text = Array.from(this._input.options).filter(opt => opt.value == value).map(opt => opt.text)[0] || "";
 		this._inputText.value = text;
 	}
 	#setStyle() {
@@ -196,16 +200,17 @@ class WUISelectbox {
 			item.addEventListener("click", () => {
 				const selected = !Boolean(item.classList.contains("selected"));
 				const targetValue = item.dataset.value || "";
+				const value = selected ? targetValue : "";
 				this._options.scrollTop = item.offsetTop - parseInt(this._options.clientHeight/2);
-				this._options.querySelectorAll("div").forEach(div => {
+				this._options.querySelectorAll(".option").forEach(div => {
 					if (typeof(div.dataset.value) != "undefined" && div.dataset.value != targetValue) {
 						div.classList.remove("selected");
 					}
 				});
 				item.classList.toggle("selected");
-				this._input.value = selected ? targetValue : "";
-				this._targetValue = selected ? targetValue : "";
-				this.#setText(this._targetValue);
+				this._targetValue = value;
+				this.#setValue(value);
+				this.#setText(value);
 			});
 			this._options.appendChild(item);
 		});
@@ -230,11 +235,32 @@ class WUISelectbox {
 		this._cancel.addEventListener("click", () => {this.cancel();});
 		this._accept.className = "accept";
 		this._accept.addEventListener("click", () => {this.accept();});
-		this.#load();
+		this.#prepare();
+	}
+	#prepare() {
+		const lang = this._lang;
+		this._targetValue = this._input.value || "";
+		this._cancelValue = this._targetValue;
+		this._cancel.textContent = this._cancelText != "" ? this._cancelText : lang in WUISelectbox.#constants.texts ? WUISelectbox.#constants.texts[lang].cancel : "";
+		this._accept.textContent = this._acceptText != "" ? this._acceptText : lang in WUISelectbox.#constants.texts ? WUISelectbox.#constants.texts[lang].accept : "";
+		this.#setText(this._targetValue);
+	}
+	#loadBox() {
+		const value = this._targetValue;
+		this._options.querySelectorAll(".option").forEach(div => {
+			if (typeof(div.dataset.value) != "undefined") {
+				if (div.dataset.value == value) {
+					this._options.scrollTop = div.offsetTop - parseInt(this._options.clientHeight/2);
+					div.classList.add("selected");
+				} else {
+					div.classList.remove("selected");
+				}
+			}
+		});
 	}
 	open() {
-		this.#load();
-		this.#loadTexts();
+		this.#prepare();
+		this.#loadBox();
 		if (typeof(this._onOpen) == "function") {
 			this._onOpen(this._input.value);
 		}
@@ -250,17 +276,8 @@ class WUISelectbox {
 			this.open();
 		}
 	}
-	#load() {
-		this._targetValue = this._input.value || "";
-		this._cancelValue = this._input.value;
-		this.#setText(this._targetValue);
-	}
-	#loadTexts() {
-		this._cancel.textContent = this._cancelText != "" ? this._cancelText : lang in WUISelectbox.#constants.texts ? WUISelectbox.#constants.texts[lang].cancel : "";
-		this._accept.textContent = this._acceptText != "" ? this._acceptText : lang in WUISelectbox.#constants.texts ? WUISelectbox.#constants.texts[lang].accept : "";
-	}
 	cancel() {
-		this._input.value = this._cancelValue;
+		this.#setValue(this._cancelValue);
 		this.#setText(this._cancelValue);
 		this.close();
 	}

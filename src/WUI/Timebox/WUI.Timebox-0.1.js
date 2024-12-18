@@ -84,8 +84,8 @@ class WUITimebox {
 	}
 	set value(value) {
 		if (typeof(value) == "string" && value.match(/^(\d{2}:\d{2})?$/) && this._enabled) {
-			this._input.value = value;
-			this.#load();
+			this.#setValue(value);
+			this.#prepare();
 		}
 	}
 	set lang(value) {
@@ -130,7 +130,11 @@ class WUITimebox {
 	getInput() {
 		return this._input;
 	}
-	#setTime(time) {
+	#setValue(value) {
+		this._input.value = value;
+		this._input.dispatchEvent(new Event("change"));
+	}
+	#setText(time) {
 		this._inputHours.value = time instanceof Date ? ("0"+time.getHours()).slice(-2) : "";
 		this._inputMinutes.value = time instanceof Date ? ("0"+time.getMinutes()).slice(-2) : "";
 	}
@@ -226,10 +230,12 @@ class WUITimebox {
 				item.textContent = i;
 				item.addEventListener("click", () => {
 					const selected = !Boolean(item.classList.contains("selected"));
-					const itemValue =
+					const targetValue =
 						part == "hours" ? ("0"+i).slice(-2)+":"+("0"+this._inputMinutes.value).slice(-2) :
 						part == "minutes" ? ("0"+this._inputHours.value).slice(-2)+":"+("0"+i).slice(-2) :
 						"";
+					const value = selected ? targetValue : "";
+					const time = selected ? new Date("1970-01-01T"+targetValue+":00") : null;
 					list.scrollTop = item.offsetTop - parseInt(list.clientHeight/2);
 					list.querySelectorAll("li").forEach(li => {
 						if (typeof(li.dataset.value) != "undefined" && li.dataset.value != i) {
@@ -237,10 +243,10 @@ class WUITimebox {
 						}
 					});
 					item.classList.toggle("selected");
-					this._input.value = selected ? itemValue : "";
-					this._targetValue = selected ? itemValue : "";
-					this._targetDate = selected ? new Date("1970-01-01T"+itemValue+":00") : null;
-					this.#setTime(this._targetDate);
+					this._targetValue = value;
+					this._targetDate = time;
+					this.#setValue(value);
+					this.#setText(time);
 				});
 				list.appendChild(item);
 			}
@@ -259,28 +265,9 @@ class WUITimebox {
 		this._cancel.addEventListener("click", () => {this.cancel();});
 		this._accept.className = "accept";
 		this._accept.addEventListener("click", () => {this.accept();});
-		this.#load();
+		this.#prepare();
 	}
-	open() {
-		this.#load();
-		this.#loadTexts();
-		this.#loadBox();
-		if (typeof(this._onOpen) == "function") {
-			this._onOpen(this._input.value);
-		}
-	}
-	close() {
-		this._background.classList.add("hidden");
-		this._box.classList.add("hidden");
-	}
-	toggle() {
-		this._background.classList.toggle("hidden");
-		this._box.classList.toggle("hidden");
-		if (!this._box.classList.contains("hidden")) {
-			this.open();
-		}
-	}
-	#load() {
+	#prepare() {
 		const now = (() => {
 			const date = new Date();
 			const offset = date.getTimezoneOffset();
@@ -293,20 +280,9 @@ class WUITimebox {
 		this._targetTime = new Date("1970-01-01T"+this._targetValue+":00");
 		this._cancelValue = this._targetValue;
 		this._cancelTime = new Date("1970-01-01T"+this._targetValue+":00");
-		this.#setTime(this._targetTime);
-	}
-	#loadValue() {
-		const value = this._input.value;
-		const hours = this._inputHours.value;
-		const minutes = this._inputMinutes.value;
-		this._input.value = hours != "" && minutes != "" ? ("0"+hours).slice(-2)+":"+("0"+minutes).slice(-2) : "";
-		if (this._input.value != value && typeof(this._onChange) == "function") {
-			this._onChange(this._input.value);
-		}
-	}
-	#loadTexts() {
 		this._cancel.textContent = this._cancelText != "" ? this._cancelText : lang in WUITimebox.#constants.texts ? WUITimebox.#constants.texts[lang].cancel : "";
 		this._accept.textContent = this._acceptText != "" ? this._acceptText : lang in WUITimebox.#constants.texts ? WUITimebox.#constants.texts[lang].accept : "";
+		this.#setText(this._targetTime);
 	}
 	#loadBox() {
 		const hours = this._targetTime.getHours();
@@ -330,9 +306,36 @@ class WUITimebox {
 			});	
 		});
 	}
+	#loadValue() {
+		const value = this._input.value;
+		const hours = this._inputHours.value;
+		const minutes = this._inputMinutes.value;
+		this.#setValue(hours != "" && minutes != "" ? ("0"+hours).slice(-2)+":"+("0"+minutes).slice(-2) : "");
+		if (this._input.value != value && typeof(this._onChange) == "function") {
+			this._onChange(this._input.value);
+		}
+	}
+	open() {
+		this.#prepare();
+		this.#loadBox();
+		if (typeof(this._onOpen) == "function") {
+			this._onOpen(this._input.value);
+		}
+	}
+	close() {
+		this._background.classList.add("hidden");
+		this._box.classList.add("hidden");
+	}
+	toggle() {
+		this._background.classList.toggle("hidden");
+		this._box.classList.toggle("hidden");
+		if (!this._box.classList.contains("hidden")) {
+			this.open();
+		}
+	}
 	cancel() {
-		this._input.value = this._cancelValue;
-		this.#setTime(this._cancelTime);
+		this.#setValue(this._cancelValue);
+		this.#setText(this._cancelTime);
 		this.close();
 	}
 	accept() {
