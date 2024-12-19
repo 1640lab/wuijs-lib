@@ -1,0 +1,365 @@
+/* wui-datepicker */
+
+.wui-datepicker,
+.wui-datepicker * {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.wui-datepicker {
+	width: 100%;
+	height: 30px;
+	margin: 0;
+	border: 0;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position-x: 100%;
+	background-image: none;
+	background-size: var(--wui-datepicker-pickerimage-size);
+	padding-right: 2rem;
+}
+.wui-datepicker > input[type="date"] {
+	display: none;
+}
+.wui-datepicker > .inputs {
+	display: flex;
+	height: 100%;
+	align-items: center;
+}
+.wui-datepicker > .inputs > input[type="text"] {
+	width: 20px;
+	height: 100%;
+	margin: 0;
+	outline: none;
+	border: 0;
+	background-color: transparent;
+	padding: 0;
+	text-align: center;
+	font-family: inherit;
+	font-size: 14px;
+}
+.wui-datepicker > .inputs > input[type="text"].year {
+	width: 40px;
+}
+.wui-datepicker > .inputs > span {
+	margin: 0;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+.wui-datepicker > .background {
+	display: none;
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: var(--wui-datepicker-bgcolor);
+}
+.wui-datepicker > .background.hidden {
+	display: none;
+}
+.wui-datepicker > .box,
+.wui-datepicker > .box * {
+	display: flex;
+}
+.wui-datepicker > .box {
+	--shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	--filter: blur(10px);
+	position: absolute;
+	z-index: 101;
+	width: 250px;
+	height: 290px;
+	-webkit-box-shadow: var(--shadow);
+	-moz-box-shadow: var(--shadow);
+	box-shadow: var(--shadow);
+	-webkit-border-radius: var(--wui-datepicker-box-radius);
+	-moz-border-radius: var(--wui-datepicker-box-radius);
+	border-radius: var(--wui-datepicker-box-radius);
+	border: 1px solid var(--wui-datepicker-box-bordercolor);
+	background-color: var(--wui-datepicker-box-bgcolor);
+	-webkit-backdrop-filter: var(--filter);
+	-moz-backdrop-filter: var(--filter);
+	backdrop-filter: var(--filter);
+	flex-direction: column;
+	padding: 5px;
+}
+.wui-datepicker > .box.hidden {
+	display: none;
+}
+.wui-datepicker > .box.extended {
+	height: 290px;
+}
+.wui-datepicker > .box > .header {
+	position: relative;
+	height: 40px;
+}
+.wui-datepicker > .box > .header > .period {
+	cursor: pointer;
+	padding: 10px 5px;
+	font-size: 14px;
+}
+.wui-datepicker > .box > .header > .period > .icon {
+	width: 20px;
+	height: 20px;
+	-webkit-mask-size: contain;
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-position: center;
+	-moz-mask-size: contain;
+	-moz-mask-repeat: no-repeat;
+	-moz-mask-position: center;
+	mask-size: contain;
+	mask-repeat: no-repeat;
+	mask-position: center;
+	background-color: var(--wui-datepicker-box-periodcolor-out);
+}
+.wui-datepicker > .box > .header > .period:hover > .icon {
+	background-color: var(--wui-datepicker-box-periodcolor-over);
+}
+.wui-datepicker > .box > .header > .period > .icon.up {
+	-webkit-mask-image: var(--wui-datepicker-box-periodimage-upsrc);
+	-moz-mask-image: var(--wui-datepicker-box-periodimage-upsrc);
+	mask-image: var(--wui-datepicker-box-periodimage-upsrc);
+}
+.wui-datepicker > .box > .header > .period > .icon.down {
+	-webkit-mask-image: var(--wui-datepicker-box-periodimage-downsrc);
+	-moz-mask-image: var(--wui-datepicker-box-periodimage-downsrc);
+	mask-image: var(--wui-datepicker-box-periodimage-downsrc);
+}
+.wui-datepicker > .box > .header > .prev,
+.wui-datepicker > .box > .header > .next {
+	--transform: translateY(-50%);
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: 26px;
+	height: 26px;
+	background-image: none;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position-x: center;
+	background-position-y: center;
+	-webkit-transform: var(--transform);
+	-moz-transform: var(--transform);
+	transform: var(--transform);
+}
+.wui-datepicker > .box > .header > .prev {
+	right: 32px;
+}
+.wui-datepicker > .box > .header > .next {
+	right: 0;
+}
+.wui-datepicker > .box > .months,
+.wui-datepicker > .box > .week,
+.wui-datepicker > .box > .days {
+	display: grid;
+	width: 100%;
+}
+.wui-datepicker > .box > .months {
+	grid-template-columns: repeat(6, 1fr);
+}
+.wui-datepicker > .box > .months > div,
+.wui-datepicker > .box > .months > div > div {
+	align-items: center;
+	justify-content: center;
+}
+.wui-datepicker > .box > .months > div:nth-child(13n+1) {
+	grid-column: span 6;
+}
+.wui-datepicker > .box > .months > div:nth-child(13n+1) > div {
+	height: 36px;
+	font-size: 14px;
+	color: var(--wui-datepicker-box-month-titlecolor);
+}
+.wui-datepicker > .box > .months > div:nth-child(13n+2) > div,
+.wui-datepicker > .box > .months > div:nth-child(13n+3) > div,
+.wui-datepicker > .box > .months > div:nth-child(13n+4) > div,
+.wui-datepicker > .box > .months > div:nth-child(13n+5) > div,
+.wui-datepicker > .box > .months > div:nth-child(13n+6) > div,
+.wui-datepicker > .box > .months > div:nth-child(13n+7) > div,
+.wui-datepicker > .box > .months > div:nth-child(13n+8) > div,
+.wui-datepicker > .box > .months > div:nth-child(13n+9) > div,
+.wui-datepicker > .box > .months > div:nth-child(13n+10) > div,
+.wui-datepicker > .box > .months > div:nth-child(13n+11) > div,
+.wui-datepicker > .box > .months > div:nth-child(13n+12) > div,
+.wui-datepicker > .box > .months > div:nth-child(13n+13) > div {
+	cursor: pointer;
+	width: 39px;
+	height: 32px;
+	-webkit-border-radius: 16px;
+	-moz-border-radius: 16px;
+	border-radius: 16px;
+	text-transform: uppercase;
+	font-size: 10px;
+	color: var(--wui-datepicker-box-month-textcolor-out);
+}
+.wui-datepicker > .box > .months > div:not(:nth-child(13n+1)):hover > div {
+	background-color: var(--wui-datepicker-box-month-bgcolor-over);
+	color: var(--wui-datepicker-box-month-textcolor-over);
+}
+.wui-datepicker > .box > .months > div:not(:nth-child(13n+1)) > div.today {
+	background-color: var(--wui-datepicker-box-month-bgcolor-today);
+}
+.wui-datepicker > .box > .months > div:not(:nth-child(13n+1)) > div.selected {
+	background-color: var(--wui-datepicker-box-month-bgcolor-selected) !important;
+	color: var(--wui-datepicker-box-month-textcolor-selected) !important;
+}
+.wui-datepicker > .box > .week,
+.wui-datepicker > .box > .days {
+	grid-template-columns: repeat(7, 1fr);
+}
+.wui-datepicker > .box > .week > div {
+	padding: 2px 5px;
+	text-transform: uppercase;
+	font-size: 10px;
+	color: #888;
+}
+.wui-datepicker > .box > .days > div,
+.wui-datepicker > .box > .days > div > div {
+	align-items: center;
+	justify-content: center;
+}
+.wui-datepicker > .box > .days > div > div {
+	cursor: pointer;
+	width: 32px;
+	height: 32px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	font-size: 12px;
+	color: var(--wui-datepicker-box-day-textcolor-out);
+}
+.wui-datepicker > .box > .days > div:hover > div {
+	background-color: var(--wui-datepicker-box-day-bgcolor-over);
+	color: var(--wui-datepicker-box-day-textcolor-over);
+}
+.wui-datepicker > .box > .days > div > div.today {
+	background-color: var(--wui-datepicker-box-day-bgcolor-today);
+}
+.wui-datepicker > .box > .days > div > div.selected {
+	background-color: var(--wui-datepicker-box-day-bgcolor-selected) !important;
+	color: var(--wui-datepicker-box-day-textcolor-selected) !important;
+}
+.wui-datepicker > .box > .footer {
+	display: flex;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 30px;
+	border-top: 1px solid var(--wui-datepicker-box-bordercolor);
+	align-items: center;
+	justify-content: center;
+	flex-grow: 0;
+	flex-wrap: wrap;
+}
+.wui-datepicker > .box > .footer > button {
+	cursor: pointer;
+	height: 100%;
+	margin: 0;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	border-color: transparent;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	border: 0;
+	background-color: transparent;
+	flex-grow: 1;
+	align-items: center;
+	justify-content: center;
+	text-transform: lowercase;
+	font-size: 14px;
+	color: var(--wui-datepicker-box-button-textcolor-out);
+}
+.wui-datepicker > .box > .footer > button:hover {
+	color: var(--wui-datepicker-box-button-textcolor-over);
+}
+.wui-datepicker > .box > .footer > button.accept {
+	font-weight: bold;
+}
+@media screen and (max-width: 767px) {
+	.wui-datepicker > input[type="text"] {
+		font-size: 15px;
+	}
+	.wui-datepicker > .background {
+		display: block;
+	}
+	.wui-datepicker > .box {
+		--transform: translate(-50%, -50%);
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		width: 300px;
+		height: 348px;
+		-webkit-transform: var(--transform);
+		-moz-transform: var(--transform);
+		transform: var(--transform);
+	}
+	.wui-datepicker > .box.extended {
+		height: 348px;
+	}
+	.wui-datepicker > .box > .header {
+		height: 50px;
+	}
+	.wui-datepicker > .box > .header > .period {
+		padding: 15px 5px;
+		font-size: 17px;
+	}
+	.wui-datepicker > .box > .header > .period > .icon {
+		width: 22px;
+		height: 22px;
+	}
+	.wui-datepicker > .box > .header > .prev,
+	.wui-datepicker > .box > .header > .next {
+		width: 32px;
+		height: 32px;
+	}
+	.wui-datepicker > .box > .header > .prev {
+		right: 42px;
+	}
+	.wui-datepicker > .box > .months > div:nth-child(13n+1) > div {
+		height: 46px;
+		font-size: 17px;
+	}
+	.wui-datepicker > .box > .months > div:nth-child(13n+2) > div,
+	.wui-datepicker > .box > .months > div:nth-child(13n+3) > div,
+	.wui-datepicker > .box > .months > div:nth-child(13n+4) > div,
+	.wui-datepicker > .box > .months > div:nth-child(13n+5) > div,
+	.wui-datepicker > .box > .months > div:nth-child(13n+6) > div,
+	.wui-datepicker > .box > .months > div:nth-child(13n+7) > div,
+	.wui-datepicker > .box > .months > div:nth-child(13n+8) > div,
+	.wui-datepicker > .box > .months > div:nth-child(13n+9) > div,
+	.wui-datepicker > .box > .months > div:nth-child(13n+10) > div,
+	.wui-datepicker > .box > .months > div:nth-child(13n+11) > div,
+	.wui-datepicker > .box > .months > div:nth-child(13n+12) > div,
+	.wui-datepicker > .box > .months > div:nth-child(13n+13) > div {
+		width: 48px;
+		height: 36px;
+		-webkit-border-radius: 18px;
+		-moz-border-radius: 18px;
+		border-radius: 18px;
+		font-size: 12px;
+	}
+	.wui-datepicker > .box > .week > div {
+		padding: 2px 5px;
+		font-size: 12px;
+	}
+	.wui-datepicker > .box > .days > div > div {
+		width: 36px;
+		height: 38px;
+		font-size: 15px;
+	}
+	.wui-datepicker > .box > .footer {
+		height: 40px;
+	}
+	.wui-datepicker > .box > .footer > button {
+		font-size: 17px;
+	}
+}

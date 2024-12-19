@@ -1,0 +1,261 @@
+/* wui-selectpicker */
+
+.wui-selectpicker,
+.wui-selectpicker * {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.wui-selectpicker {
+	width: 100%;
+	height: 30px;
+	margin: 0;
+	border: 0;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position-x: 100%;
+	background-image: none;
+	background-size: var(--wui-selectpicker-pickerimage-size);
+	padding-right: 2rem;
+}
+.wui-selectpicker > select {
+	display: none;
+}
+.wui-selectpicker > input[type="text"] {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	outline: none;
+	border: 0;
+	background-color: transparent;
+	padding: 0;
+	text-align: left;
+	font-family: inherit;
+	font-size: 14px;
+}
+.wui-selectpicker > .background {
+	display: none;
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: var(--wui-selectpicker-bgcolor);
+}
+.wui-selectpicker > .background.hidden {
+	display: none;
+}
+.wui-selectpicker > .box,
+.wui-selectpicker > .box * {
+	display: flex;
+}
+.wui-selectpicker > .box {
+	--shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	--filter: blur(10px);
+	position: absolute;
+	z-index: 101;
+	left: 0;
+	width: 100%;
+	height: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
+	-webkit-box-shadow: var(--shadow);
+	-moz-box-shadow: var(--shadow);
+	box-shadow: var(--shadow);
+	-webkit-border-radius: var(--wui-selectpicker-box-radius);
+	-moz-border-radius: var(--wui-selectpicker-box-radius);
+	border-radius: var(--wui-selectpicker-box-radius);
+	border: 1px solid var(--wui-selectpicker-box-bordercolor);
+	background-color: var(--wui-selectpicker-box-bgcolor);
+	-webkit-backdrop-filter: var(--filter);
+	-moz-backdrop-filter: var(--filter);
+	backdrop-filter: var(--filter);
+	flex-direction: column;
+	padding: 0;
+}
+.wui-selectpicker > .box.hidden {
+	display: none;
+}
+.wui-selectpicker > .box > .options,
+.wui-selectpicker > .box > .options > .option {
+	display: flex;
+	position: relative;
+	flex-grow: 1;
+	flex-shrink: 0;
+}
+.wui-selectpicker > .box > .options {
+	max-height: calc(calc(10 * 30px) - 1px);
+	overflow: hidden;
+	-webkit-border-radius: var(--wui-selectpicker-box-radius);
+	-moz-border-radius: var(--wui-selectpicker-box-radius);
+	border-radius: var(--wui-selectpicker-box-radius);
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-items: flex-start;
+}
+.wui-selectpicker > .box > .options > .option {
+	width: 100%;
+	height: 30px;
+	background-color: var(--wui-selectpicker-box-option-bgcolor-out);
+	padding: 0 10px;
+	align-items: center;
+	gap: 10px;
+}
+.wui-selectpicker > .box > .options > .option > .icon {
+	visibility: hidden;
+	width: 24px;
+	height: 24px;
+	flex-shrink: 0;
+}
+.wui-selectpicker > .box > .options > .option > .icon:not([class$="color"]) {
+	background-color: var(--wui-selectpicker-box-option-iconcolor-out);
+}
+.wui-selectpicker > .box > .options > .option > .icon.visible,
+.wui-selectpicker > .box > .options > .option.selected > .icon {
+	visibility: visible;
+}
+.wui-selectpicker > .box > .options > .option > .text {
+	cursor: default;
+	overflow: hidden;
+	flex-grow: 1;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	color: var(--wui-selectpicker-box-option-textcolor-out);
+}
+.wui-selectpicker > .box > .options > .option.selected > .text.selecteable {
+	color: var(--wui-selectpicker-box-option-textcolor-selected) !important;
+}
+.wui-selectpicker > .box > .options > .option > .text > .empty {
+	-khtml-opacity: .7;
+	-moz-opacity: .7;
+	opacity: .7;
+}
+.wui-selectpicker > .box > .options > .option:not(.disabled):hover,
+.wui-selectpicker > .box > .options > .option:not(.disabled):focus,
+.wui-selectpicker > .box > .options > .option:not(.disabled):focus-within {
+	border-color: var(--wui-selectpicker-box-option-bordercolor-over);
+	background-color: var(--wui-selectpicker-box-option-bgcolor-over);
+}
+.wui-selectpicker > .box > .options > .option:not(.disabled):hover > .icon,
+.wui-selectpicker > .box > .options > .option:not(.disabled):focus > .icon,
+.wui-selectpicker > .box > .options > .option:not(.disabled):focus-within > .icon {
+	background-color: var(--wui-selectpicker-box-option-iconcolor-over);
+}
+.wui-selectpicker > .box > .options > .option:not(.disabled):hover > .text,
+.wui-selectpicker > .box > .options > .option:not(.disabled):focus > .text,
+.wui-selectpicker > .box > .options > .option:not(.disabled):focus-within > .text {
+	color: var(--wui-selectpicker-box-option-textcolor-over);
+}
+.wui-selectpicker > .box > .options > .option.disabled > .icon {
+	background-color: var(--wui-selectpicker-box-option-iconcolor-disabled);
+}
+.wui-selectpicker > .box > .options > .option.disabled > .text {
+	color: var(--wui-selectpicker-box-option-textcolor-disabled);
+}
+.wui-selectpicker > .box > .footer {
+	display: none;
+	height: 30px;
+	border-top: 1px solid var(--wui-selectpicker-box-button-bordercolor);
+	align-items: center;
+	justify-content: center;
+	flex-grow: 0;
+	flex-wrap: wrap;
+}
+.wui-selectpicker > .box > .footer > button {
+	cursor: pointer;
+	height: 100%;
+	margin: 0;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	border-color: transparent;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	border: 0;
+	background-color: transparent;
+	flex-grow: 1;
+	align-items: center;
+	justify-content: center;
+	text-transform: lowercase;
+	font-size: 14px;
+	color: var(--wui-selectpicker-box-button-textcolor-out);
+}
+.wui-selectpicker > .box > .footer > button:hover {
+	color: var(--wui-selectpicker-box-button-textcolor-over);
+}
+.wui-selectpicker > .box > .footer > button.accept {
+	font-weight: bold;
+}
+@media screen and (max-width: 767px) {
+	.wui-selectpicker > input[type="text"] {
+		font-size: 15px;
+	}
+	.wui-selectpicker > .background {
+		display: block;
+	}
+	.wui-selectpicker > .box {
+		--shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+		--transform: translate(-50%, -50%);
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		width: var(--wui-modal-select-box-width);
+		min-height: 96px;
+		overflow: hidden;
+		-webkit-box-shadow: var(--shadow);
+		-moz-box-shadow: var(--shadow);
+		box-shadow: var(--shadow);
+		-webkit-border-radius: var(--wui-modal-box-radius);
+		-moz-border-radius: var(--wui-modal-box-radius);
+		border-radius: var(--wui-modal-box-radius);
+		-webkit-transform: var(--transform);
+		-moz-transform: var(--transform);
+		transform: var(--transform);
+	}
+	.wui-selectpicker > .box.extended {
+		height: 348px;
+	}
+	.wui-selectpicker > .box > .options {
+		max-height: calc(calc(10 * 44px) - 1px);
+		-webkit-border-top-left-radius: var(--wui-modal-box-radius);
+		-webkit-border-top-right-radius: var(--wui-modal-box-radius);
+		-webkit-border-bottom-left-radius: 0;
+		-webkit-border-bottom-right-radius: 0;
+		-moz-border-radius-topleft: var(--wui-modal-box-radius);
+		-moz-border-radius-topright: var(--wui-modal-box-radius);
+		-moz-border-radius-bottomleft: 0;
+		-moz-border-radius-bottomright: 0;
+		border-top-left-radius: var(--wui-modal-box-radius);
+		border-top-right-radius: var(--wui-modal-box-radius);
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+	.wui-selectpicker > .box > .options > .option {
+		height: 44px;
+	}
+	.wui-selectpicker > .box > .options > .option:not(:last-child) {
+		border-bottom: 1px solid var(--wui-selectpicker-box-option-bordercolor-out);
+	}
+	.wui-selectpicker > .box > .footer {
+		display: flex;
+		height: 52px;
+		font-size: 17px;
+	}
+	.wui-selectpicker > .box > .footer > button {
+		width: 50%;
+		font-size: 17px;
+	}
+	.wui-selectpicker > .box > .footer > button:hover,
+	.wui-selectpicker > .box > .footer > button:focus,
+	.wui-selectpicker > .box > .footer > button:focus-within {
+		border-color: transparent;
+		background-color: rgba(204, 204, 204, 0.3);
+	}
+	.wui-selectpicker > .box > .footer > button:first-child {
+		border-right: 1px solid var(--wui-selectpicker-box-button-bordercolor);
+	}
+}

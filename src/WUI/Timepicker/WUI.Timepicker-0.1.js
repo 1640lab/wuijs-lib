@@ -1,6 +1,6 @@
-/* WUITimebox v0.1 */
+/* WUITimepicker v0.1 */
 
-class WUITimebox {
+class WUITimepicker {
 	static version = "0.1";
 	static #constants = {
 		texts: {
@@ -157,8 +157,8 @@ class WUITimebox {
 	init() {
 		const backgroundImage = (name, event) => {
 			const element = this._input || this._element || document.documentElement;
-			const color = getComputedStyle(element).getPropertyValue("--wui-timebox-"+name+"color-"+event).replace(/#/g, "%23").trim();
-			const image = getComputedStyle(element).getPropertyValue("--wui-timebox-"+name+"image-src").replace(/currentColor/g, color);
+			const color = getComputedStyle(element).getPropertyValue("--wui-timepicker-"+name+"color-"+event).replace(/#/g, "%23").trim();
+			const image = getComputedStyle(element).getPropertyValue("--wui-timepicker-"+name+"image-src").replace(/currentColor/g, color);
 			return image;
 		}
 		this._inputs = document.createElement("div");
@@ -177,7 +177,7 @@ class WUITimebox {
 		this._element.appendChild(this._box);
 		this._element.style.backgroundImage = backgroundImage("picker", this._input.disabled ? "disabled" : "out");
 		this._element.addEventListener("click", event => {
-			if (event.target.classList.contains("wui-timebox") && this._element.offsetWidth - event.offsetX < 30) {
+			if (event.target.classList.contains("wui-timepicker") && this._element.offsetWidth - event.offsetX < 30) {
 				this.toggle();
 			}
 		});
@@ -279,8 +279,8 @@ class WUITimebox {
 		this._targetTime = new Date("1970-01-01T"+this._targetValue+":00");
 		this._cancelValue = this._targetValue;
 		this._cancelTime = new Date("1970-01-01T"+this._targetValue+":00");
-		this._cancel.textContent = this._cancelText != "" ? this._cancelText : lang in WUITimebox.#constants.texts ? WUITimebox.#constants.texts[lang].cancel : "";
-		this._accept.textContent = this._acceptText != "" ? this._acceptText : lang in WUITimebox.#constants.texts ? WUITimebox.#constants.texts[lang].accept : "";
+		this._cancel.textContent = this._cancelText != "" ? this._cancelText : lang in WUITimepicker.#constants.texts ? WUITimepicker.#constants.texts[lang].cancel : "";
+		this._accept.textContent = this._acceptText != "" ? this._acceptText : lang in WUITimepicker.#constants.texts ? WUITimepicker.#constants.texts[lang].accept : "";
 		this.#setText(this._targetTime);
 	}
 	#loadBox() {
@@ -343,7 +343,7 @@ class WUITimebox {
 }
 /*
 HTML struture:
-<div class="wui-timebox">
+<div class="wui-timepicker">
 	<input type="time" name="(name)" value="">
 	<div class="inputs">
 		<input type="text" name="(name))Hours" class="hours">

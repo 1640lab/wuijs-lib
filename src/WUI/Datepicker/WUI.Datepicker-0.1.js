@@ -1,6 +1,6 @@
-/* WUIDatebox v0.1 */
+/* WUIDatepicker v0.1 */
 
-class WUIDatebox {
+class WUIDatepicker {
 	static version = "0.1";
 	static #constants = {
 		locales: "" // https://www.techonthenet.com/js/language_tags.php 20241007
@@ -45,9 +45,9 @@ class WUIDatebox {
 		onChange: null
 	};
 	static initClass() {
-		Object.entries(WUIDatebox.#constants.firstWeekDayCountry).forEach(([wday, countries]) => {
+		Object.entries(WUIDatepicker.#constants.firstWeekDayCountry).forEach(([wday, countries]) => {
 			countries.split(/\s+/).forEach(code => {
-				WUIDatebox.#constants.countryFirstWeekDay[code] = wday;
+				WUIDatepicker.#constants.countryFirstWeekDay[code] = wday;
 			});
 		});
 	}
@@ -116,7 +116,7 @@ class WUIDatebox {
 		}
 	}
 	set locales(value) {
-		if (typeof(value) == "string" && value.match(/^[a-z]{2}-[a-z]{2}$/i) && WUIDatebox.#constants.locales.toLowerCase().split(/\s+/).indexOf(value.toLowerCase()) > -1) {
+		if (typeof(value) == "string" && value.match(/^[a-z]{2}-[a-z]{2}$/i) && WUIDatepicker.#constants.locales.toLowerCase().split(/\s+/).indexOf(value.toLowerCase()) > -1) {
 			this._locales = value.split("-").map((x, i) => {
 				return i == 0 ? x.toLocaleLowerCase() : x.toUpperCase();
 			}).join("-");
@@ -201,8 +201,8 @@ class WUIDatebox {
 	init() {
 		const backgroundImage = (name, event) => {
 			const element = this._element || document.documentElement;
-			const color = getComputedStyle(element).getPropertyValue("--wui-datebox-"+name+"color-"+event).replace(/#/g, "%23").trim();
-			const image = getComputedStyle(element).getPropertyValue("--wui-datebox-"+name+"image-src").replace(/currentColor/g, color);
+			const color = getComputedStyle(element).getPropertyValue("--wui-datepicker-"+name+"color-"+event).replace(/#/g, "%23").trim();
+			const image = getComputedStyle(element).getPropertyValue("--wui-datepicker-"+name+"image-src").replace(/currentColor/g, color);
 			return image;
 		}
 		this._inputs = document.createElement("div");
@@ -226,7 +226,7 @@ class WUIDatebox {
 		this._element.appendChild(this._box);
 		this._element.style.backgroundImage = backgroundImage("picker", this._input.disabled ? "disabled" : "out");
 		this._element.addEventListener("click", event => {
-			if (event.target.classList.contains("wui-datebox") && this._element.offsetWidth - event.offsetX < 30) {
+			if (event.target.classList.contains("wui-datepicker") && this._element.offsetWidth - event.offsetX < 30) {
 				this.toggle();
 			}
 		});
@@ -321,8 +321,8 @@ class WUIDatebox {
 			const name = new Date(2023, i, 1, 0, 0, 0).toLocaleString(this._locales, {month: "long"});
 			this._monthsNames[i] = name.replace(/^\s*(\w)/, letter => letter.toUpperCase());
 		}
-		this._cancel.textContent = this._cancelText != "" ? this._cancelText : lang in WUIDatebox.#constants.texts ? WUIDatebox.#constants.texts[lang].cancel : "";
-		this._accept.textContent = this._acceptText != "" ? this._acceptText : lang in WUIDatebox.#constants.texts ? WUIDatebox.#constants.texts[lang].accept : "";
+		this._cancel.textContent = this._cancelText != "" ? this._cancelText : lang in WUIDatepicker.#constants.texts ? WUIDatepicker.#constants.texts[lang].cancel : "";
+		this._accept.textContent = this._acceptText != "" ? this._acceptText : lang in WUIDatepicker.#constants.texts ? WUIDatepicker.#constants.texts[lang].accept : "";
 		this.#setText(this._targetDate);
 	}
 	#loadValue() {
@@ -422,7 +422,7 @@ class WUIDatebox {
 		const year = this._targetDate.getFullYear();
 		const month = this._targetDate.getMonth() +1;
 		const country = this.locales.split("-")[1].toUpperCase();
-		const firstwday = parseInt(WUIDatebox.#constants.countryFirstWeekDay[country] || 0);
+		const firstwday = parseInt(WUIDatepicker.#constants.countryFirstWeekDay[country] || 0);
 		const firstmday = new Date(year, month, 1, 0, 0, 0).getDay(); 
 		const lasmday = month == 2 ? year & 3 || !(year % 25) && year & 15 ? 28 : 29 : 30 + (month + (month >> 3) & 1);
 		let ini = 0;
@@ -553,10 +553,10 @@ class WUIDatebox {
 		this.close();
 	}
 }
-WUIDatebox.initClass();
+WUIDatepicker.initClass();
 /*
 HTML struture:
-<div class="wui-datebox">
+<div class="wui-datepicker">
 	<input type="date" value="(name)" value="">
 	<div class="inputs">
 		<input type="text" value="(name)Year">

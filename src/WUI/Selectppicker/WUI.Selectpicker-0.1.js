@@ -1,18 +1,21 @@
-/* WUIColorbox v0.1 */
+/* WUISelectpicker v0.1 */
 
-class WUIColorbox {
+class WUISelectpicker {
 	static version = "0.1";
 	static #constants = {
 		texts: {
 			de: {
+				empty: "leer",
 				cancel: "akzeptieren",
 				accept: "ok"
 			},
 			en: {
+				empty: "empty",
 				cancel: "cancel",
 				accept: "accept"
 			},
 			es: {
+				empty: "vacío",
 				cancel: "cancelar",
 				accept: "aceptar"
 			}
@@ -22,6 +25,7 @@ class WUIColorbox {
 		selector: "",
 		value: "",
 		lang: "en",
+		emptyText: "",
 		cancelText: "",
 		acceptText: "",
 		enabled: true,
@@ -41,6 +45,9 @@ class WUIColorbox {
 	}
 	get lang() {
 		return this._lang;
+	}
+	get emptyText() {
+		return thie._emptyText;
 	}
 	get cancelText() {
 		return this._cancelText;
@@ -73,6 +80,11 @@ class WUIColorbox {
 	set lang(value) {
 		if (typeof(value) == "string" && value.match(/^\w{2}$/)) {
 			this._lang = value.toLocaleLowerCase();
+		}
+	}
+	set emptyText(value) {
+		if (typeof(value) == "string") {
+			this._emptyText = value;
 		}
 	}
 	set cancelText(value) {
@@ -148,8 +160,8 @@ class WUIColorbox {
 	init() {
 		const backgroundImage = (name, event) => {
 			const element = this._input || this._element || document.documentElement;
-			const color = getComputedStyle(element).getPropertyValue("--wui-selectbox-"+name+"color-"+event).replace(/#/g, "%23").trim();
-			const image = getComputedStyle(element).getPropertyValue("--wui-selectbox-"+name+"image-src").replace(/currentColor/g, color);
+			const color = getComputedStyle(element).getPropertyValue("--wui-selectpicker-"+name+"color-"+event).replace(/#/g, "%23").trim();
+			const image = getComputedStyle(element).getPropertyValue("--wui-selectpicker-"+name+"image-src").replace(/currentColor/g, color);
 			return image;
 		}
 		this._inputText = document.createElement("input");
@@ -164,7 +176,7 @@ class WUIColorbox {
 		this._element.appendChild(this._box);
 		this._element.style.backgroundImage = backgroundImage("picker", this._input.disabled ? "disabled" : "out");
 		this._element.addEventListener("click", event => {
-			if (event.target.classList.contains("wui-selectbox")) { // && this._element.offsetWidth - event.offsetX < 30
+			if (event.target.classList.contains("wui-selectpicker")) { // && this._element.offsetWidth - event.offsetX < 30
 				this.toggle();
 			}
 		});
@@ -184,7 +196,7 @@ class WUIColorbox {
 			const selected = Boolean(option.selected);
 			icon.className = "icon "+(typeof(option.icon) == "string" && option.icon != "" ? option.icon : "wui-svgicon check-line");
 			text.className = "text "+(this._selecteableText ? "selecteable" : "");
-			text.innerHTML = option.value == "" ? "<i class='empty'>"+(this._emptyText != "" ? this._emptyText : lang in WUIColorbox.#constants.texts ? WUIColorbox.#constants.texts[lang].empty : "")+"</i>" : option.text;
+			text.innerHTML = option.value == "" ? "<i class='empty'>"+(this._emptyText != "" ? this._emptyText : lang in WUISelectpicker.#constants.texts ? WUISelectpicker.#constants.texts[lang].empty : "")+"</i>" : option.text;
 			option.classList.forEach(key => {
 				text.classList.add(key);
 			});
@@ -243,8 +255,8 @@ class WUIColorbox {
 		const lang = this._lang;
 		this._targetValue = this._input.value || "";
 		this._cancelValue = this._targetValue;
-		this._cancel.textContent = this._cancelText != "" ? this._cancelText : lang in WUIColorbox.#constants.texts ? WUIColorbox.#constants.texts[lang].cancel : "";
-		this._accept.textContent = this._acceptText != "" ? this._acceptText : lang in WUIColorbox.#constants.texts ? WUIColorbox.#constants.texts[lang].accept : "";
+		this._cancel.textContent = this._cancelText != "" ? this._cancelText : lang in WUISelectpicker.#constants.texts ? WUISelectpicker.#constants.texts[lang].cancel : "";
+		this._accept.textContent = this._acceptText != "" ? this._acceptText : lang in WUISelectpicker.#constants.texts ? WUISelectpicker.#constants.texts[lang].accept : "";
 		this.#setText(this._targetValue);
 	}
 	#loadBox() {

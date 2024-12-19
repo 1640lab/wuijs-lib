@@ -902,54 +902,47 @@
 	}
 }
 
-/* wui-selectbox */
+/* wui-selectpicker */
+/* wui-datepicker */
+/* wui-timepicker */
 
-.wui-form fieldset > .field.icon-left > .wui-selectbox {
+.wui-form fieldset > .field.icon-left > .wui-selectpicker,
+.wui-form fieldset > .field.icon-left > .wui-datepicker,
+.wui-form fieldset > .field.icon-left > .wui-timepicker {
 	left: 0;
 	padding-left: 40px !important;
 }
-.wui-form fieldset > .field.icon-right > .wui-selectbox {
+.wui-form fieldset > .field.icon-right > .wui-selectpicker,
+.wui-form fieldset > .field.icon-right > .wui-datepicker,
+.wui-form fieldset > .field.icon-right > .wui-timepicker {
 	padding-right: 40px !important;
 }
 
-/* wui-datebox */
-
-.wui-form fieldset > .field.icon-left > .wui-datebox {
-	left: 0;
-	padding-left: 40px !important;
-}
-.wui-form fieldset > .field.icon-right > .wui-datebox {
-	padding-right: 40px !important;
-}
-
-/* wui-timebox */
-
-.wui-form fieldset > .field.icon-left > .wui-timebox {
-	left: 0;
-	padding-left: 40px !important;
-}
-.wui-form fieldset > .field.icon-right > .wui-timebox {
-	padding-right: 40px !important;
-}
-
+/* wui-colorpicker */
 /* wui-checkbox */
 
+.wui-form fieldset > .field.colorpicker > label,
 .wui-form fieldset > .field.checkbox > label {
 	right: 60px;
     padding-left: 10px;
 	white-space: normal;
 }
+.wui-form fieldset > .field.colorpicker > .wui-colorpicker,
 .wui-form fieldset > .field.checkbox > .wui-checkbox {
 	position: absolute;
 }
+.wui-form.line fieldset > .field.colorpicker > .wui-colorpicker,
 .wui-form.line fieldset > .field.checkbox > .wui-checkbox,
+.wui-form.border fieldset > .field.colorpicker > .wui-colorpicker,
 .wui-form.border fieldset > .field.checkbox > .wui-checkbox {
 	right: 0;
 }
+.wui-form fieldset > .field.colorpicker.invalid > .wui-colorpicker:not(.disabled),
 .wui-form fieldset > .field.checkbox.invalid > .wui-checkbox:not(.disabled) {
-	border-color: var(--wui-checkbox-default-bordercolor-invalid) !important;
+	border-color: var(--wui-colorpicker-default-bordercolor-invalid) !important;
 }
 @media screen and (max-width: 767px) {
+	.wui-form.mobile fieldset > .field.colorpicker > .wui-colorpicker,
 	.wui-form.mobile fieldset > .field.checkbox > .wui-checkbox {
 		right: 10px;
 	}

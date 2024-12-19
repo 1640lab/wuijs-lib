@@ -316,12 +316,12 @@ HTML struture:
 				<data value="" class="name"></data>
 			</div>
 			<div class="field">
-				<label>WUI Datebox</label>
-				<div class="wui-datebox"><input type="date" name="wuiDatebox" value=""></div>
+				<label>WUI Datepicker</label>
+				<div class="wui-datepicker"><input type="date" name="wuiDatepicker" value=""></div>
 			</div>
 			<div class="field">
-				<label>WUI Timebox</label>
-				<div class="wui-timebox"><input type="time" name="wuiTimebox" value=""></div>
+				<label>WUI Timepicker</label>
+				<div class="wui-timepicker"><input type="time" name="wuiTimepicker" value=""></div>
 			</div>
 			<div class="field checkbox">
 				<label for="wuiCheckbox">WUI Checkbox</label>
