@@ -557,7 +557,7 @@ WUIDatebox.initClass();
 /*
 HTML struture:
 <div class="wui-datebox">
-	<input type="hidden" value="(name)">
+	<input type="date" value="(name)" value="">
 	<div class="inputs">
 		<input type="text" value="(name)Year">
 		<span></span>
@@ -576,8 +576,8 @@ HTML struture:
 		<div class="week"></div>
 		<div class="days"></div>
 		<div class="footer">
-			<div class="cancel"></div>
-			<div class="accept"></div>
+			<button class="cancel"></button>
+			<button class="accept"></button>
 		</div>
 	</div>
 </div>

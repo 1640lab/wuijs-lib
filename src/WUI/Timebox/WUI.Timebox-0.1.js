@@ -197,7 +197,6 @@ class WUITimebox {
 				}
 			}
 		});
-		this._input.type = "hidden";
 		this._inputs.className = "inputs";
 		["hours", "minutes"].forEach((part, i) => {
 			const name = part.charAt(0).toUpperCase()+part.slice(1);
@@ -345,7 +344,12 @@ class WUITimebox {
 /*
 HTML struture:
 <div class="wui-timebox">
-	<input type="time" value="">
+	<input type="time" name="(name)" value="">
+	<div class="inputs">
+		<input type="text" name="(name))Hours" class="hours">
+		<span></span>
+		<input type="text" name="(name)Minutes" class="minutes">
+	</div>
 	<div class="background"></div>
 	<div class="box">
 		<div class="select">
@@ -359,8 +363,8 @@ HTML struture:
 			</ul>
 		</div>
 		<div class="footer">
-			<div class="cancel"></div>
-			<div class="accept"></div>
+			<button class="cancel"></button>
+			<button class="accept"></button>
 		</div>
 	</div>
 </div>

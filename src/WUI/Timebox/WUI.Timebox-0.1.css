@@ -18,6 +18,9 @@
 	background-size: var(--wui-timebox-pickerimage-size);
 	padding-right: 2rem;
 }
+.wui-timebox > input[type="time"] {
+	display: none;
+}
 .wui-timebox > .inputs {
 	display: flex;
 	height: 100%;

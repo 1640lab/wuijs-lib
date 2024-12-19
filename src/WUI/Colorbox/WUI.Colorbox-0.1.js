@@ -1,21 +1,18 @@
-/* WUISelectbox v0.1 */
+/* WUIColorbox v0.1 */
 
-class WUISelectbox {
+class WUIColorbox {
 	static version = "0.1";
 	static #constants = {
 		texts: {
 			de: {
-				empty: "leer",
 				cancel: "akzeptieren",
 				accept: "ok"
 			},
 			en: {
-				empty: "empty",
 				cancel: "cancel",
 				accept: "accept"
 			},
 			es: {
-				empty: "vacío",
 				cancel: "cancelar",
 				accept: "aceptar"
 			}
@@ -25,7 +22,6 @@ class WUISelectbox {
 		selector: "",
 		value: "",
 		lang: "en",
-		emptyText: "",
 		cancelText: "",
 		acceptText: "",
 		enabled: true,
@@ -45,9 +41,6 @@ class WUISelectbox {
 	}
 	get lang() {
 		return this._lang;
-	}
-	get emptyText() {
-		return thie._emptyText;
 	}
 	get cancelText() {
 		return this._cancelText;
@@ -80,11 +73,6 @@ class WUISelectbox {
 	set lang(value) {
 		if (typeof(value) == "string" && value.match(/^\w{2}$/)) {
 			this._lang = value.toLocaleLowerCase();
-		}
-	}
-	set emptyText(value) {
-		if (typeof(value) == "string") {
-			this._emptyText = value;
 		}
 	}
 	set cancelText(value) {
@@ -196,7 +184,7 @@ class WUISelectbox {
 			const selected = Boolean(option.selected);
 			icon.className = "icon "+(typeof(option.icon) == "string" && option.icon != "" ? option.icon : "wui-svgicon check-line");
 			text.className = "text "+(this._selecteableText ? "selecteable" : "");
-			text.innerHTML = option.value == "" ? "<i class='empty'>"+(this._emptyText != "" ? this._emptyText : lang in WUISelectbox.#constants.texts ? WUISelectbox.#constants.texts[lang].empty : "")+"</i>" : option.text;
+			text.innerHTML = option.value == "" ? "<i class='empty'>"+(this._emptyText != "" ? this._emptyText : lang in WUIColorbox.#constants.texts ? WUIColorbox.#constants.texts[lang].empty : "")+"</i>" : option.text;
 			option.classList.forEach(key => {
 				text.classList.add(key);
 			});
@@ -255,8 +243,8 @@ class WUISelectbox {
 		const lang = this._lang;
 		this._targetValue = this._input.value || "";
 		this._cancelValue = this._targetValue;
-		this._cancel.textContent = this._cancelText != "" ? this._cancelText : lang in WUISelectbox.#constants.texts ? WUISelectbox.#constants.texts[lang].cancel : "";
-		this._accept.textContent = this._acceptText != "" ? this._acceptText : lang in WUISelectbox.#constants.texts ? WUISelectbox.#constants.texts[lang].accept : "";
+		this._cancel.textContent = this._cancelText != "" ? this._cancelText : lang in WUIColorbox.#constants.texts ? WUIColorbox.#constants.texts[lang].cancel : "";
+		this._accept.textContent = this._acceptText != "" ? this._acceptText : lang in WUIColorbox.#constants.texts ? WUIColorbox.#constants.texts[lang].accept : "";
 		this.#setText(this._targetValue);
 	}
 	#loadBox() {

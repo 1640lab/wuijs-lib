@@ -18,6 +18,9 @@
 	background-size: var(--wui-datebox-pickerimage-size);
 	padding-right: 2rem;
 }
+.wui-datebox > input[type="date"] {
+	display: none;
+}
 .wui-datebox > .inputs {
 	display: flex;
 	height: 100%;
