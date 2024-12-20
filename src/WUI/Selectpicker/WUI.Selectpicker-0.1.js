@@ -6,8 +6,8 @@ class WUISelectpicker {
 		texts: {
 			de: {
 				empty: "leer",
-				cancel: "akzeptieren",
-				accept: "ok"
+				cancel: "stornieren",
+				accept: "akzeptieren"
 			},
 			en: {
 				empty: "empty",

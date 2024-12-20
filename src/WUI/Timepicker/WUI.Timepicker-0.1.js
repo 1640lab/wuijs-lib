@@ -5,8 +5,8 @@ class WUITimepicker {
 	static #constants = {
 		texts: {
 			de: {
-				cancel: "akzeptieren",
-				accept: "ok"
+				cancel: "stornieren",
+				accept: "akzeptieren"
 			},
 			en: {
 				cancel: "cancel",
