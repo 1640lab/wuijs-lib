@@ -69,23 +69,23 @@
 	display: flex;
 }
 .wui-timepicker > .box {
-	--shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-	--filter: blur(10px);
+	--box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	--box-filter: blur(10px);
 	position: absolute;
 	z-index: 101;
 	width: 250px;
 	height: 260px;
-	-webkit-box-shadow: var(--shadow);
-	-moz-box-shadow: var(--shadow);
-	box-shadow: var(--shadow);
+	-webkit-box-shadow: var(--box-shadow);
+	-moz-box-shadow: var(--box-shadow);
+	box-shadow: var(--box-shadow);
 	-webkit-border-radius: var(--wui-timepicker-box-radius);
 	-moz-border-radius: var(--wui-timepicker-box-radius);
 	border-radius: var(--wui-timepicker-box-radius);
 	border: 1px solid var(--wui-timepicker-box-bordercolor);
 	background-color: var(--wui-timepicker-box-bgcolor);
-	-webkit-backdrop-filter: var(--filter);
-	-moz-backdrop-filter: var(--filter);
-	backdrop-filter: var(--filter);
+	-webkit-backdrop-filter: var(--box-filter);
+	-moz-backdrop-filter: var(--box-filter);
+	backdrop-filter: var(--box-filter);
 	flex-direction: column;
 	padding: 5px;
 }
@@ -169,10 +169,10 @@
 	font-size: 14px;
 	color: var(--wui-timepicker-box-button-textcolor-out);
 }
-.wui-timepicker > .box > .footer > div:hover {
+.wui-timepicker > .box > .footer > button:hover {
 	color: var(--wui-timepicker-box-button-textcolor-over);
 }
-.wui-timepicker > .box > .footer > div.accept {
+.wui-timepicker > .box > .footer > button.accept {
 	font-weight: bold;
 }
 @media screen and (max-width: 767px) {
@@ -183,15 +183,19 @@
 		display: block;
 	}
 	.wui-timepicker > .box {
-		--transform: translate(-50%, -50%);
+		--box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+		--box-transform: translate(-50%, -50%);
 		position: fixed;
 		top: 50%;
 		left: 50%;
 		width: 300px;
 		height: 310px;
-		-webkit-transform: var(--transform);
-		-moz-transform: var(--transform);
-		transform: var(--transform);
+		-webkit-box-shadow: var(--box-shadow);
+		-moz-box-shadow: var(--box-shadow);
+		box-shadow: var(--box-shadow);
+		-webkit-transform: var(--box-transform);
+		-moz-transform: var(--box-transform);
+		transform: var(--box-transform);
 	}
 	.wui-timepicker > .box > .lists {
 		height: 260px;

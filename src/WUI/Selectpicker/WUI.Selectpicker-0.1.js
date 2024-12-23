@@ -100,9 +100,14 @@ class WUISelectpicker {
 	set enabled(value) {
 		if (typeof(value) == "boolean") {
 			this._enabled = value;
-			this.#setInputEnable(this._input, value);
+			this._input.disabled = !value;
 			if (typeof(this._inputText) != "undefined") {
-				this.#setInputEnable(this._inputText, value);
+				this._inputText.disabled = !value;
+				if (value) {
+					this._inputText.removeAttribute("disabled");
+				} else {
+					this._inputText.setAttribute("disabled", "true");
+				}
 			}
 			this.#setStyle();
 		}
@@ -137,7 +142,7 @@ class WUISelectpicker {
 		this._input.value = value;
 		this._input.dispatchEvent(new Event("change"));
 	}
-	#setText(value) {
+	#setView(value) {
 		const text = Array.from(this._input.options).filter(opt => opt.value == value).map(opt => opt.text)[0] || "";
 		this._inputText.value = text;
 	}
@@ -147,14 +152,6 @@ class WUISelectpicker {
 			this._element.classList.add("disabled");
 		} else {
 			this._element.classList.remove("disabled");
-		}
-	}
-	#setInputEnable(input, enabled) {
-		input.disabled = !enabled;
-		if (enabled) {
-			input.removeAttribute("disabled");
-		} else {
-			input.setAttribute("disabled", "true");
 		}
 	}
 	init() {
@@ -221,7 +218,7 @@ class WUISelectpicker {
 				item.classList.toggle("selected");
 				this._targetValue = value;
 				this.#setValue(value);
-				this.#setText(value);
+				this.#setView(value);
 				if (!mobile) {
 					this.close();
 				}
@@ -257,7 +254,7 @@ class WUISelectpicker {
 		this._cancelValue = this._targetValue;
 		this._cancel.textContent = this._cancelText != "" ? this._cancelText : lang in WUISelectpicker.#constants.texts ? WUISelectpicker.#constants.texts[lang].cancel : "";
 		this._accept.textContent = this._acceptText != "" ? this._acceptText : lang in WUISelectpicker.#constants.texts ? WUISelectpicker.#constants.texts[lang].accept : "";
-		this.#setText(this._targetValue);
+		this.#setView(this._targetValue);
 	}
 	#loadBox() {
 		const value = this._targetValue;
@@ -292,7 +289,7 @@ class WUISelectpicker {
 	}
 	cancel() {
 		this.#setValue(this._cancelValue);
-		this.#setText(this._cancelValue);
+		this.#setView(this._cancelValue);
 		this.close();
 	}
 	accept() {

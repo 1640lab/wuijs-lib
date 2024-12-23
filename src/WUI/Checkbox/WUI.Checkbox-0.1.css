@@ -1,10 +1,17 @@
 /* wui-checkbox */
 
 .wui-checkbox,
+.wui-checkbox::before,
+.wui-checkbox::after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.wui-checkbox,
 .wui-checkbox::before {
-	--radius: calc(var(--wui-checkbox-default-size) / 2);
-	width: calc(1.7 * var(--wui-checkbox-default-size)) !important;
-	height: var(--wui-checkbox-default-size);
+	--radius: calc(var(--wui-checkbox-button-size) / 2);
+	width: calc(1.7 * var(--wui-checkbox-button-size)) !important;
+	height: var(--wui-checkbox-button-size);
 	-webkit-border-radius: var(--radius);
 	-moz-border-radius: var(--radius);
 	border-radius: var(--radius);
@@ -16,9 +23,6 @@
 	position: relative;
 	margin: 0;
 	overflow: hidden;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
 	border-width: 1px;
 	border-style: solid;
 	flex-direction: row;
@@ -33,7 +37,7 @@
 	--on-transition: left .2s ease-out;
 	content: "";
 	position: absolute;
-	left: calc(calc(-0.7 * var(--wui-checkbox-default-size)) - 1px);
+	left: calc(calc(-0.7 * var(--wui-checkbox-button-size)) - 1px);
 	-webkit-transition: var(--checkedbg-transition);
 	-moz-transition: var(--checkedbg-transition);
 	transition: var(--checkedbg-transition);
@@ -44,15 +48,12 @@
 	content: "";
 	position: absolute;
 	left: -1px;
-	width: var(--wui-checkbox-default-size);
-	height: var(--wui-checkbox-default-size);
+	width: var(--wui-checkbox-button-size);
+	height: var(--wui-checkbox-button-size);
 	overflow: hidden;
 	-webkit-box-shadow: var(--button-shadow);
 	-moz-box-shadow: var(--button-shadow);
 	box-shadow: var(--button-shadow);
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
 	border-width: 1px;
 	border-style: solid;
 	-webkit-border-radius: 50%;
@@ -71,7 +72,7 @@
 	left: 0;
 }
 .wui-checkbox.checked::after {
-	left: calc(calc(0.7 * var(--wui-checkbox-default-size)) - 1px);
+	left: calc(calc(0.7 * var(--wui-checkbox-button-size)) - 1px);
 }
 .wui-checkbox.disabled::after {
 	-webkit-box-shadow: none;

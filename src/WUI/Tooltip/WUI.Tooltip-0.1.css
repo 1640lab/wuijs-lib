@@ -8,9 +8,9 @@
 .wui-tooltip-left,
 .wui-tooltip-right,
 .wui-tooltip-bottom {
-	--shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-	--transform: translateX(-50%);
-	--transition-opacity: .4s;
+	--tooltip-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+	--tooltip-transform: translateX(-50%);
+	--tooltip-transition: .4s;
 	visibility: hidden;
 	-khtml-opacity: 0;
 	-moz-opacity: 0;
@@ -24,9 +24,9 @@
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	-webkit-box-shadow: var(--shadow);
-	-moz-box-shadow: var(--shadow);
-	box-shadow: var(--shadow);
+	-webkit-box-shadow: var(--tooltip-shadow);
+	-moz-box-shadow: var(--tooltip-shadow);
+	box-shadow: var(--tooltip-shadow);
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
@@ -35,12 +35,12 @@
 	text-align: center;
 	font-size: 12px;
 	color: var(--wui-tooltip-textcolor);
-	-webkit-transform: var(--transform);
-	-moz-transform: var(--transform);
-	transform: var(--transform);
-	-webkit-transition: -khtml-opacity var(--transition-opacity);
-	-moz-transition: -moz-opacity var(--transition-opacity);
-	transition: opacity var(--transition-opacity);
+	-webkit-transform: var(--tooltip-transform);
+	-moz-transform: var(--tooltip-transform);
+	transform: var(--tooltip-transform);
+	-webkit-transition: -khtml-opacity var(--tooltip-transition);
+	-moz-transition: -moz-opacity var(--tooltip-transition);
+	transition: opacity var(--tooltip-transition);
 }
 .wui-tooltip::before,
 .wui-tooltip::after,
@@ -70,49 +70,49 @@
 }
 .wui-tooltip.top,
 .wui-tooltip-top {
-	--transform: translate(-50%, -100%);
+	--tooltip-transform: translate(-50%, -100%);
 	top: -50%;
 	left: 50%;
 }
 .wui-tooltip.top::after,
 .wui-tooltip-top::after {
-	--transform: translate(-50%, 50%) rotate(-45deg);
+	--tooltip-transform: translate(-50%, 50%) rotate(-45deg);
 	top: 9px;
 	left: 50%;
 }
 .wui-tooltip.left,
 .wui-tooltip-left {
-	--transform: translate(-100%, -50%);
+	--tooltip-transform: translate(-100%, -50%);
 	top: 50%;
 	right: 50%;
 }
 .wui-tooltip.left::before,
 .wui-tooltip-left::before {
-	--transform: translate(50%, -50%) rotate(-45deg);
+	--tooltip-transform: translate(50%, -50%) rotate(-45deg);
     top: 50%;
     left: 9px;
 }
 .wui-tooltip.right,
 .wui-tooltip-right {
-	--transform: translate(100%, -50%);
+	--tooltip-transform: translate(100%, -50%);
 	top: 50%;
 	right: -50%;
 }
 .wui-tooltip.right::before,
 .wui-tooltip-right::before {
-	--transform: translate(50%, -50%) rotate(-45deg);
+	--tooltip-transform: translate(50%, -50%) rotate(-45deg);
     top: 50%;
     left: -9px;
 }
 .wui-tooltip.bottom,
 .wui-tooltip-bottom {
-	--transform: translate(-50%, 100%);
+	--tooltip-transform: translate(-50%, 100%);
 	top: 50%;
 	left: 50%;
 }
 .wui-tooltip.bottom::after,
 .wui-tooltip-bottom::after {
-	--transform: translate(-50%, 50%) rotate(-45deg);
+	--tooltip-transform: translate(-50%, 50%) rotate(-45deg);
 	top: -9px;
 	left: 50%;
 }

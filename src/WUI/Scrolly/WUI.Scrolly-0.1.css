@@ -47,19 +47,19 @@
 	top: 0;
 }
 .wui-scrolly > .section > .scene.shadow {
-	--shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-	-webkit-box-shadow: var(--shadow);
-	-moz-box-shadow: var(--shadow);
-	box-shadow: var(--shadow);
+	--scene-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+	-webkit-box-shadow: var(--scene-shadow);
+	-moz-box-shadow: var(--scene-shadow);
+	box-shadow: var(--scene-shadow);
 }
 .wui-scrolly > .section > .scene.shadow-inset {
-	--shadow: rgb(0, 0, 0, 0.25) 0px -50px 50px -30px inset, rgb(0, 0, 0, 0.06) 0px -15px 15px -15px inset;
-	-webkit-box-shadow: var(--shadow);
-	-moz-box-shadow: var(--shadow);
-	box-shadow: var(--shadow);
+	--scene-shadow: rgb(0, 0, 0, 0.25) 0px -50px 50px -30px inset, rgb(0, 0, 0, 0.06) 0px -15px 15px -15px inset;
+	-webkit-box-shadow: var(--scene-shadow);
+	-moz-box-shadow: var(--scene-shadow);
+	box-shadow: var(--scene-shadow);
 }
 .wui-scrolly > .section > .paging {
-	--transition-opacity: .4s;
+	--paging-transition: .4s;
 	display: flex;
 	-khtml-opacity: 0;
 	-moz-opacity: 0;
@@ -73,9 +73,9 @@
 	align-items: center;
 	justify-content: center;
 	flex-direction: row;
-	-webkit-transition: -khtml-opacity var(--transition-opacity);
-	-moz-transition: -moz-opacity var(--transition-opacity);
-	transition: opacity var(--transition-opacity);
+	-webkit-transition: -khtml-opacity var(--paging-transition);
+	-moz-transition: -moz-opacity var(--paging-transition);
+	transition: opacity var(--paging-transition);
 }
 .wui-scrolly > .section > .paging.fixed {
 	-khtml-opacity: 1;
@@ -147,10 +147,10 @@
 .wui-scrolly-load.fadein-up,
 .wui-scrolly-load.fadein-left,
 .wui-scrolly-load.fadein-right {
-	--transition: all .8s;
-	-webkit-transition: var(--transition);
-	-moz-transition: var(--transition);
-	transition: var(--transition);
+	--fadein-transition: all .8s;
+	-webkit-transition: var(--fadein-transition);
+	-moz-transition: var(--fadein-transition);
+	transition: var(--fadein-transition);
 }
 .wui-scrolly-load.fadein-up {
 	top: 56px;

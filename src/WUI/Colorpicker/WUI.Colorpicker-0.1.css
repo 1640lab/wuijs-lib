@@ -21,6 +21,39 @@
 .wui-colorpicker > input[type="color"] {
 	display: none;
 }
+.wui-colorpicker > button {
+	--button-radius: calc(var(--wui-colorpicker-button-size) / 2);
+	--button-transition: border-color .2s ease-out;
+	display: flex;
+	cursor: pointer;
+	position: relative;
+	width: calc(1.7 * var(--wui-colorpicker-button-size));
+	height: var(--wui-colorpicker-button-size);
+	margin: 0;
+	overflow: hidden;
+	-webkit-border-radius: var(--button-radius);
+	-moz-border-radius: var(--button-radius);
+	border-radius: var(--button-radius);
+	border-width: 1px;
+	border-style: solid;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 2px;
+	-webkit-transition: var(--button-transition);
+	-moz-transition: var(--button-transition);
+	transition: var(--button-transition);
+}
+.wui-colorpicker > button > .preview {
+	--preview-size: calc(var(--wui-colorpicker-button-size) - 4);
+	width: var(--preview-size);
+	height: var(--preview-size);
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	border-width: 1px;
+	border-style: solid;
+}
 /*.wui-colorpicker > input[type="text"] {
 	width: 100%;
 	height: 100%;

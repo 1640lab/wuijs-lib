@@ -45,8 +45,8 @@
 	bottom: 0;
 }
 .wui-tabs > .body > .border {
-	--shadow: none;
-	--transition-opacity: .8s;
+	--border-shadow: none;
+	--border-transition: .8s;
 	-khtml-opacity: 0;
 	-moz-opacity: 0;
 	opacity: 0;
@@ -57,13 +57,13 @@
 	right: 0;
 	height: 1px;
 	border: 0;
-	-webkit-box-shadow: var(--shadow);
-	-moz-box-shadow: var(--shadow);
-	box-shadow: var(--shadow);
+	-webkit-box-shadow: var(--border-shadow);
+	-moz-box-shadow: var(--border-shadow);
+	box-shadow: var(--border-shadow);
 	background-color: #ccc;
-	-webkit-transition: -khtml-opacity var(--transition-opacity);
-	-moz-transition: -moz-opacity var(--transition-opacity);
-	transition: opacity var(--transition-opacity);
+	-webkit-transition: -khtml-opacity var(--border-transition);
+	-moz-transition: -moz-opacity var(--border-transition);
+	transition: opacity var(--border-transition);
 }
 .wui-tabs > .body > .border.scroll {
 	-khtml-opacity: 1;

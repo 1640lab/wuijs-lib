@@ -53,8 +53,8 @@
 	display: flex;
 }
 .wui-selectpicker > .box {
-	--shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-	--filter: blur(10px);
+	--box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	--box-filter: blur(10px);
 	position: absolute;
 	z-index: 101;
 	left: 0;
@@ -62,17 +62,17 @@
 	height: auto;
 	overflow-x: hidden;
 	overflow-y: auto;
-	-webkit-box-shadow: var(--shadow);
-	-moz-box-shadow: var(--shadow);
-	box-shadow: var(--shadow);
+	-webkit-box-shadow: var(--box-shadow);
+	-moz-box-shadow: var(--box-shadow);
+	box-shadow: var(--box-shadow);
 	-webkit-border-radius: var(--wui-selectpicker-box-radius);
 	-moz-border-radius: var(--wui-selectpicker-box-radius);
 	border-radius: var(--wui-selectpicker-box-radius);
 	border: 1px solid var(--wui-selectpicker-box-bordercolor);
 	background-color: var(--wui-selectpicker-box-bgcolor);
-	-webkit-backdrop-filter: var(--filter);
-	-moz-backdrop-filter: var(--filter);
-	backdrop-filter: var(--filter);
+	-webkit-backdrop-filter: var(--box-filter);
+	-moz-backdrop-filter: var(--box-filter);
+	backdrop-filter: var(--box-filter);
 	flex-direction: column;
 	padding: 0;
 }
@@ -198,23 +198,23 @@
 		display: block;
 	}
 	.wui-selectpicker > .box {
-		--shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-		--transform: translate(-50%, -50%);
+		--box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+		--box-transform: translate(-50%, -50%);
 		position: fixed;
 		top: 50%;
 		left: 50%;
 		width: var(--wui-modal-select-box-width);
 		min-height: 96px;
 		overflow: hidden;
-		-webkit-box-shadow: var(--shadow);
-		-moz-box-shadow: var(--shadow);
-		box-shadow: var(--shadow);
+		-webkit-box-shadow: var(--box-shadow);
+		-moz-box-shadow: var(--box-shadow);
+		box-shadow: var(--box-shadow);
 		-webkit-border-radius: var(--wui-modal-box-radius);
 		-moz-border-radius: var(--wui-modal-box-radius);
 		border-radius: var(--wui-modal-box-radius);
-		-webkit-transform: var(--transform);
-		-moz-transform: var(--transform);
-		transform: var(--transform);
+		-webkit-transform: var(--box-transform);
+		-moz-transform: var(--box-transform);
+		transform: var(--box-transform);
 	}
 	.wui-selectpicker > .box.extended {
 		height: 348px;

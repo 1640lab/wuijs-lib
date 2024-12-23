@@ -25,26 +25,26 @@
 	z-index: 101;
 }
 .wui-modal > .box {
-	--shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-	--filter: blur(10px);
-	--transition: width .2s ease-out, height .2s ease-out;
+	--box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+	--box-filter: blur(10px);
+	--box-transition: width .2s ease-out, height .2s ease-out;
 	display: flex;
 	position: absolute;
 	overflow: hidden;
-	-webkit-box-shadow: var(--shadow);
-	-moz-box-shadow: var(--shadow);
-	box-shadow: var(--shadow);
+	-webkit-box-shadow: var(--box-shadow);
+	-moz-box-shadow: var(--box-shadow);
+	box-shadow: var(--box-shadow);
 	-webkit-border-radius: var(--wui-modal-box-radius);
 	-moz-border-radius: var(--wui-modal-box-radius);
 	border-radius: var(--wui-modal-box-radius);
 	background-color: var(--wui-modal-box-bgcolor);
-	-webkit-backdrop-filter: var(--filter);
-	-moz-backdrop-filter: var(--filter);
-	backdrop-filter: var(--filter);
+	-webkit-backdrop-filter: var(--box-filter);
+	-moz-backdrop-filter: var(--box-filter);
+	backdrop-filter: var(--box-filter);
 	flex-direction: column;
-	-webkit-transition: var(--transition);
-	-moz-transition: var(--transition);
-	transition: var(--transition);
+	-webkit-transition: var(--box-transition);
+	-moz-transition: var(--box-transition);
+	transition: var(--box-transition);
 }
 .wui-modal > .box.hidden {
 	display: none;
@@ -366,14 +366,14 @@
 		margin-left: -50px;
 	}
 	.wui-modal.page > .box > .header > .topbar::before {
-		--radius: calc(var(--wui-modal-topbar-height) / 2);
+		--topbar-radius: calc(var(--wui-modal-topbar-height) / 2);
 		content: "";
 		display: block;
 		width: 100px;
 		height: var(--wui-modal-topbar-height);
-		-webkit-border-radius: var(--radius);
-		-moz-border-radius: var(--radius);
-		border-radius: var(--radius);
+		-webkit-border-radius: var(--topbar-radius);
+		-moz-border-radius: var(--topbar-radius);
+		border-radius: var(--topbar-radius);
 		background-color: var(--wui-modal-page-header-topbar-bgcolor);
 	}
 	.wui-modal.page.maximized > .box,

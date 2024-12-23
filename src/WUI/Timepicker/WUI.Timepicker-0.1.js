@@ -106,10 +106,17 @@ class WUITimepicker {
 	set enabled(value) {
 		if (typeof(value) == "boolean") {
 			this._enabled = value;
-			this.#setInputEnable(this._input, value);
+			this._input.disabled = !value;
 			if (typeof(this._inputs) != "undefined") {
-				this.#setInputEnable(this._inputHours, value);
-				this.#setInputEnable(this._inputMinutes, value);
+				this._inputHours.disabled = !value;
+				this._inputMinutes.disabled = !value;
+				if (value) {
+					this._inputHours.removeAttribute("disabled");
+					this._inputMinutes.removeAttribute("disabled");
+				} else {
+					this._inputHours.setAttribute("disabled", "true");
+					this._inputMinutes.setAttribute("disabled", "true");
+				}
 			}
 			this.#setStyle();
 		}
@@ -134,7 +141,7 @@ class WUITimepicker {
 		this._input.value = value;
 		this._input.dispatchEvent(new Event("change"));
 	}
-	#setText(time) {
+	#setView(time) {
 		this._inputHours.value = time instanceof Date ? ("0"+time.getHours()).slice(-2) : "";
 		this._inputMinutes.value = time instanceof Date ? ("0"+time.getMinutes()).slice(-2) : "";
 	}
@@ -144,14 +151,6 @@ class WUITimepicker {
 			this._element.classList.add("disabled");
 		} else {
 			this._element.classList.remove("disabled");
-		}
-	}
-	#setInputEnable(input, enabled) {
-		input.disabled = !enabled;
-		if (enabled) {
-			input.removeAttribute("disabled");
-		} else {
-			input.setAttribute("disabled", "true");
 		}
 	}
 	init() {
@@ -245,7 +244,7 @@ class WUITimepicker {
 					this._targetValue = value;
 					this._targetDate = time;
 					this.#setValue(value);
-					this.#setText(time);
+					this.#setView(time);
 				});
 				list.appendChild(item);
 			}
@@ -281,7 +280,7 @@ class WUITimepicker {
 		this._cancelTime = new Date("1970-01-01T"+this._targetValue+":00");
 		this._cancel.textContent = this._cancelText != "" ? this._cancelText : lang in WUITimepicker.#constants.texts ? WUITimepicker.#constants.texts[lang].cancel : "";
 		this._accept.textContent = this._acceptText != "" ? this._acceptText : lang in WUITimepicker.#constants.texts ? WUITimepicker.#constants.texts[lang].accept : "";
-		this.#setText(this._targetTime);
+		this.#setView(this._targetTime);
 	}
 	#loadBox() {
 		const hours = this._targetTime.getHours();
@@ -334,7 +333,7 @@ class WUITimepicker {
 	}
 	cancel() {
 		this.#setValue(this._cancelValue);
-		this.#setText(this._cancelTime);
+		this.#setView(this._cancelTime);
 		this.close();
 	}
 	accept() {

@@ -1,9 +1,9 @@
 /* wui-button */
 
 .wui-button {
-	--shadow: rgba(50, 50, 93, .25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-	--radius: calc(var(--wui-button-default-height) / 2);
-	--transition: border-color .2s, background-color .2s, color .2s;
+	--button-shadow: rgba(50, 50, 93, .25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+	--button-radius: calc(var(--wui-button-default-height) / 2);
+	--button-transition: border-color .2s, background-color .2s, color .2s;
 	display: flex;
 	cursor: pointer;
 	position: relative;
@@ -12,13 +12,13 @@
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	-webkit-box-shadow: var(--shadow);
-	-moz-box-shadow: var(--shadow);
-	box-shadow: var(--shadow);
+	-webkit-box-shadow: var(--button-shadow);
+	-moz-box-shadow: var(--button-shadow);
+	box-shadow: var(--button-shadow);
 	outline: none;
-	-webkit-border-radius: var(--radius);
-	-moz-border-radius: var(--radius);
-	border-radius: var(--radius);
+	-webkit-border-radius: var(--button-radius);
+	-moz-border-radius: var(--button-radius);
+	border-radius: var(--button-radius);
 	border-width: 1px;
 	border-style: solid;
 	flex-direction: row;
@@ -28,16 +28,16 @@
 	gap: 5px;
 	white-space: nowrap;
 	font-size: var(--wui-button-default-textsize);
-	-webkit-transition: var(--transition);
-	-moz-transition: var(--transition);
-	transition: var(--transition);
+	-webkit-transition: var(--button-transition);
+	-moz-transition: var(--button-transition);
+	transition: var(--button-transition);
 }
 .wui-button.hidden {
 	display: none;
 }
 @media screen and (max-width: 767px) {
 	.wui-button {
-		--radius: calc(var(--wui-button-default-responsive-height) / 2);
+		--button-radius: calc(var(--wui-button-default-responsive-height) / 2);
 		height: var(--wui-button-default-responsive-height);
 		font-size: 17px;
 	}
@@ -69,12 +69,12 @@
 /* wui-button submit */
 
 .wui-button.submit {
-	--radius: calc(var(--wui-button-submit-height) / 2);
+	--button-radius: calc(var(--wui-button-submit-height) / 2);
 	min-width: var(--wui-button-submit-minwidth);
 	height: var(--wui-button-submit-height);
-	-webkit-border-radius: var(--radius);
-	-moz-border-radius: var(--radius);
-	border-radius: var(--radius);
+	-webkit-border-radius: var(--button-radius);
+	-moz-border-radius: var(--button-radius);
+	border-radius: var(--button-radius);
 	font-size: var(--wui-button-submit-textsize);
 }
 .wui-button.submit:not(.disabled) {
@@ -96,7 +96,7 @@
 }
 @media screen and (max-width: 767px) {
 	.wui-button.submit {
-		--radius: calc(var(--wui-button-submit-responsive-height) / 2);
+		--button-radius: calc(var(--wui-button-submit-responsive-height) / 2);
 		height: var(--wui-button-submit-responsive-height);
 		font-size: 17px;
 	}

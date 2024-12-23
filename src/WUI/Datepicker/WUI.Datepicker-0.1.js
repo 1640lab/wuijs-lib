@@ -148,11 +148,20 @@ class WUIDatepicker {
 	set enabled(value) {
 		if (typeof(value) == "boolean") {
 			this._enabled = value;
-			this.#setInputEnable(this._input, value);
+			this._input.disabled = !value;
 			if (typeof(this._inputs) != "undefined") {
-				this.#setInputEnable(this._inputYear, value);
-				this.#setInputEnable(this._inputMonth, value);
-				this.#setInputEnable(this._inputDay, value);
+				this._inputYear.disabled = !value;
+				this._inputMonth.disabled = !value;
+				this._inputDay.disabled = !value;
+				if (value) {
+					this._inputYear.removeAttribute("disabled");
+					this._inputMonth.removeAttribute("disabled");
+					this._inputDay.removeAttribute("disabled");
+				} else {
+					this._inputYear.setAttribute("disabled", "true");
+					this._inputMonth.setAttribute("disabled", "true");
+					this._inputDay.setAttribute("disabled", "true");
+				}
 			}
 			this.#setStyle();
 		}
@@ -177,7 +186,7 @@ class WUIDatepicker {
 		this._input.value = value;
 		this._input.dispatchEvent(new Event("change"));
 	}
-	#setText(date) {
+	#setView(date) {
 		this._inputYear.value = date instanceof Date ? ("000"+date.getFullYear()).slice(-4) : "";
 		this._inputMonth.value = date instanceof Date ? ("0"+(date.getMonth() +1)).slice(-2) : "";
 		this._inputDay.value = date instanceof Date ? ("0"+date.getDate()).slice(-2) : "";
@@ -188,14 +197,6 @@ class WUIDatepicker {
 			this._element.classList.add("disabled");
 		} else {
 			this._element.classList.remove("disabled");
-		}
-	}
-	#setInputEnable(input, enabled) {
-		input.disabled = !enabled;
-		if (enabled) {
-			input.removeAttribute("disabled");
-		} else {
-			input.setAttribute("disabled", "true");
 		}
 	}
 	init() {
@@ -323,7 +324,7 @@ class WUIDatepicker {
 		}
 		this._cancel.textContent = this._cancelText != "" ? this._cancelText : lang in WUIDatepicker.#constants.texts ? WUIDatepicker.#constants.texts[lang].cancel : "";
 		this._accept.textContent = this._acceptText != "" ? this._acceptText : lang in WUIDatepicker.#constants.texts ? WUIDatepicker.#constants.texts[lang].accept : "";
-		this.#setText(this._targetDate);
+		this.#setView(this._targetDate);
 	}
 	#loadValue() {
 		const value = this._input.value;
@@ -410,7 +411,7 @@ class WUIDatepicker {
 					this._targetDate = date;
 					this._period.innerHTML = this._monthsNames[item.dataset.month -1]+" "+item.dataset.year+" <div class='icon up'></div>";
 					this.#setValue(value);
-					this.#setText(date);
+					this.#setView(date);
 				});
 				cell.appendChild(item);
 				m++;
@@ -475,7 +476,7 @@ class WUIDatepicker {
 					this._targetValue = value;
 					this._targetDate = date;
 					this.#setValue(value);
-					this.#setText(date);
+					this.#setView(date);
 				});
 				cell.appendChild(item);
 				if (i +1 == 7*5 && d < lasmday) {
@@ -546,7 +547,7 @@ class WUIDatepicker {
 	}
 	cancel() {
 		this.#setValue(this._cancelValue);
-		this.#setText(this._cancelDate);
+		this.#setView(this._cancelDate);
 		this.close();
 	}
 	accept() {

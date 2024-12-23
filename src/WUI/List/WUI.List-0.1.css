@@ -37,19 +37,19 @@
 	justify-content: center;
 }
 .wui-list > .body > .row {
-	--shadow: rgba(48, 77, 99, .04) 0px 4px 12px;
+	--row-shadow: rgba(48, 77, 99, .04) 0px 4px 12px;
 	z-index: 2;
 	width: 100%;
 	height: var(--wui-list-row-height);
 	overflow: hidden;
-	-webkit-box-shadow: var(--shadow);
-	-moz-box-shadow: var(--shadow);
-	box-shadow: var(--shadow);
+	-webkit-box-shadow: var(--row-shadow);
+	-moz-box-shadow: var(--row-shadow);
+	box-shadow: var(--row-shadow);
 	/*border-left: var(--wui-list-borderwidth) solid var(--wui-list-bordercolor-out);
 	border-right: var(--wui-list-borderwidth) solid var(--wui-list-bordercolor-out);*/
 }
 .wui-list > .body > .row > .strip {
-	--transition: margin-right .4s cubic-bezier(0, 0, .05, 1);
+	--strip-transition: margin-right .4s cubic-bezier(0, 0, .05, 1);
 	position: relative;
 	cursor: pointer;
 	z-index: 2;
@@ -60,9 +60,9 @@
 	flex-wrap: wrap;
 	justify-content: space-between;
 	color: var(--wui-list-row-textcolor-out);
-	-webkit-transition: var(--transition);
-	-moz-transition: var(--transition);
-	transition: var(--transition);
+	-webkit-transition: var(--strip-transition);
+	-moz-transition: var(--strip-transition);
+	transition: var(--strip-transition);
 }
 .wui-list > .body > .row > .strip:hover,
 .wui-list > .body > .row > .strip:focus-within {

@@ -61,7 +61,7 @@ class WUIColorpicker {
 		if (typeof(value) == "string" && value != "") {
 			this._selector = value;
 			this._element = document.querySelector(value);
-			this._input = document.querySelector(value+" > select");
+			this._input = document.querySelector(value+" > input[type='color']");
 		}
 	}
 	set value(value) {
@@ -88,9 +88,14 @@ class WUIColorpicker {
 	set enabled(value) {
 		if (typeof(value) == "boolean") {
 			this._enabled = value;
-			this.#setInputEnable(this._input, value);
-			if (typeof(this._inputText) != "undefined") {
-				this.#setInputEnable(this._inputText, value);
+			this._input.disabled = !value;
+			if (typeof(this._button) != "undefined") {
+				this._button.disabled = !value;
+				if (value) {
+					this._button.removeAttribute("disabled");
+				} else {
+					this._button.setAttribute("disabled", "true");
+				}
 			}
 			this.#setStyle();
 		}
@@ -111,23 +116,12 @@ class WUIColorpicker {
 	getInput() {
 		return this._input;
 	}
-	addOption(option) {
-		if (typeof(this._input) != "undefined") {
-			const selected = typeof(option.selected) == "boolean" ? option.selected : false;
-			const element = new Option(option.text || "", option.value || "", selected);
-			if (typeof(option.className) == "string") {
-				element.className = option.className;
-			}
-			this._input.appendChild(element);
-		}
-	}
 	#setValue(value) {
 		this._input.value = value;
 		this._input.dispatchEvent(new Event("change"));
 	}
-	#setText(value) {
-		const text = Array.from(this._input.options).filter(opt => opt.value == value).map(opt => opt.text)[0] || "";
-		this._inputText.value = text;
+	#setView(value) {
+		// ...
 	}
 	#setStyle() {
 		const disabled = this._input.disabled;
@@ -137,34 +131,29 @@ class WUIColorpicker {
 			this._element.classList.remove("disabled");
 		}
 	}
-	#setInputEnable(input, enabled) {
-		input.disabled = !enabled;
-		if (enabled) {
-			input.removeAttribute("disabled");
-		} else {
-			input.setAttribute("disabled", "true");
-		}
-	}
 	init() {
 		const backgroundImage = (name, event) => {
 			const element = this._input || this._element || document.documentElement;
-			const color = getComputedStyle(element).getPropertyValue("--wui-selectpicker-"+name+"color-"+event).replace(/#/g, "%23").trim();
-			const image = getComputedStyle(element).getPropertyValue("--wui-selectpicker-"+name+"image-src").replace(/currentColor/g, color);
+			const color = getComputedStyle(element).getPropertyValue("--wui-colorpicker-"+name+"color-"+event).replace(/#/g, "%23").trim();
+			const image = getComputedStyle(element).getPropertyValue("--wui-colorpicker-"+name+"image-src").replace(/currentColor/g, color);
 			return image;
 		}
-		this._inputText = document.createElement("input");
+		this._button = document.createElement("button");
+		this._preview = document.createElement("div");
 		this._background = document.createElement("div");
 		this._box = document.createElement("div");
 		this._options = document.createElement("div");
 		this._footer = document.createElement("div");
 		this._cancel = document.createElement("button");
 		this._accept = document.createElement("button");
-		this._element.appendChild(this._inputText);
+		this._element.appendChild(this._button);
 		this._element.appendChild(this._background);
 		this._element.appendChild(this._box);
-		this._element.style.backgroundImage = backgroundImage("picker", this._input.disabled ? "disabled" : "out");
+		this._preview.className = "preview";
+		this._button.appendChild(this._preview);
+		/*this._element.style.backgroundImage = backgroundImage("picker", this._input.disabled ? "disabled" : "out");
 		this._element.addEventListener("click", event => {
-			if (event.target.classList.contains("wui-selectpicker")) { // && this._element.offsetWidth - event.offsetX < 30
+			if (event.target.classList.contains("wui-colorpicker")) { // && this._element.offsetWidth - event.offsetX < 30
 				this.toggle();
 			}
 		});
@@ -209,7 +198,7 @@ class WUIColorpicker {
 				item.classList.toggle("selected");
 				this._targetValue = value;
 				this.#setValue(value);
-				this.#setText(value);
+				this.#setView(value);
 				if (!mobile) {
 					this.close();
 				}
@@ -236,7 +225,7 @@ class WUIColorpicker {
 		this._cancel.className = "cancel";
 		this._cancel.addEventListener("click", () => {this.cancel();});
 		this._accept.className = "accept";
-		this._accept.addEventListener("click", () => {this.accept();});
+		this._accept.addEventListener("click", () => {this.accept();});*/
 		this.#prepare();
 	}
 	#prepare() {
@@ -245,11 +234,11 @@ class WUIColorpicker {
 		this._cancelValue = this._targetValue;
 		this._cancel.textContent = this._cancelText != "" ? this._cancelText : lang in WUIColorpicker.#constants.texts ? WUIColorpicker.#constants.texts[lang].cancel : "";
 		this._accept.textContent = this._acceptText != "" ? this._acceptText : lang in WUIColorpicker.#constants.texts ? WUIColorpicker.#constants.texts[lang].accept : "";
-		this.#setText(this._targetValue);
+		this.#setView(this._targetValue);
 	}
 	#loadBox() {
 		const value = this._targetValue;
-		this._options.querySelectorAll(".option").forEach(div => {
+		/*this._options.querySelectorAll(".option").forEach(div => {
 			if (typeof(div.dataset.value) != "undefined") {
 				if (div.dataset.value == value) {
 					this._options.scrollTop = div.offsetTop - parseInt(this._options.clientHeight/2);
@@ -258,7 +247,7 @@ class WUIColorpicker {
 					div.classList.remove("selected");
 				}
 			}
-		});
+		});*/
 	}
 	open() {
 		this.#prepare();
@@ -280,7 +269,7 @@ class WUIColorpicker {
 	}
 	cancel() {
 		this.#setValue(this._cancelValue);
-		this.#setText(this._cancelValue);
+		this.#setView(this._cancelValue);
 		this.close();
 	}
 	accept() {
@@ -290,15 +279,14 @@ class WUIColorpicker {
 /*
 HTML struture:
 <div class="wui-selector">
-	<select name="(name)">
-		<option value="value1">value 1</option>
-		...
-	</select>
-	<input type="text" value="(name)Text" value="">
+	<input type="color" value="(name)" value="">
+	<button class="background">
+		<div class="preview"></div>
+	</button>
 	<div class="background"></div>
 	<div class="box">
 		<div class="options">
-			<div class="option" data-value="value1">value 1</div>
+			<div class="option" data-value="value1"></div>
 			...
 		</div>
 		<div class="footer">

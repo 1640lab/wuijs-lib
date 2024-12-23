@@ -155,10 +155,10 @@
 	row-gap: 5px;
 }
 .wui-grid.soft > .body > .row {
-	--shadow: rgba(0, 0, 0, .05) 0px 4px 12px;
-	-webkit-box-shadow: var(--shadow);
-	-moz-box-shadow: var(--shadow);
-	box-shadow: var(--shadow);
+	--row-shadow: rgba(0, 0, 0, .05) 0px 4px 12px;
+	-webkit-box-shadow: var(--row-shadow);
+	-moz-box-shadow: var(--row-shadow);
+	box-shadow: var(--row-shadow);
 	-webkit-border-radius: var(--wui-grid-row-radius);
 	-moz-border-radius: var(--wui-grid-row-radius);
 	border-radius: var(--wui-grid-row-radius);
