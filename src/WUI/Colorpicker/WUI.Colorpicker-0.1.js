@@ -121,7 +121,13 @@ class WUIColorpicker {
 		this._input.dispatchEvent(new Event("change"));
 	}
 	#setView(value) {
-		// ...
+		if (value == "") {
+			this._preview.style.backgroundColor = "transparent";
+			this._preview.classList.add("empty");
+		} else {
+			this._preview.style.backgroundColor = value;
+			this._preview.classList.remove("empty");
+		}
 	}
 	#setStyle() {
 		const disabled = this._input.disabled;
@@ -149,11 +155,9 @@ class WUIColorpicker {
 		this._element.appendChild(this._button);
 		this._element.appendChild(this._background);
 		this._element.appendChild(this._box);
-		this._preview.className = "preview";
-		this._button.appendChild(this._preview);
-		/*this._element.style.backgroundImage = backgroundImage("picker", this._input.disabled ? "disabled" : "out");
+		this._element.style.backgroundImage = backgroundImage("picker", this._input.disabled ? "disabled" : "out");
 		this._element.addEventListener("click", event => {
-			if (event.target.classList.contains("wui-colorpicker")) { // && this._element.offsetWidth - event.offsetX < 30
+			if (event.target.tagName.toLocaleLowerCase() == "button") {
 				this.toggle();
 			}
 		});
@@ -166,7 +170,7 @@ class WUIColorpicker {
 		if (this._input.getAttribute("style") != null) {
 			this._input.removeAttributeNode(this._input.getAttributeNode("style"));
 		}
-		this._input.querySelectorAll("option").forEach(option => {
+		/*this._input.querySelectorAll("option").forEach(option => {
 			const item = document.createElement("div");
 			const icon = document.createElement("div");
 			const text = document.createElement("div");
@@ -204,16 +208,14 @@ class WUIColorpicker {
 				}
 			});
 			this._options.appendChild(item);
-		});
+		});*/
 		this._input.addEventListener("change", () => {
 			if (typeof(this._onChange) == "function") {
 				this._onChange(this._input.value);
 			}
 		});
-		this._inputText.type = "text";
-		this._inputText.name = this._input.name+"Text";
-		this._inputText.readonly = true;
-		this._inputText.addEventListener("click", () => {this.toggle();});
+		this._preview.className = "preview";
+		this._button.appendChild(this._preview);
 		this._background.className = "background hidden";
 		this._box.className = "box hidden";
 		this._box.appendChild(this._options);
@@ -225,7 +227,7 @@ class WUIColorpicker {
 		this._cancel.className = "cancel";
 		this._cancel.addEventListener("click", () => {this.cancel();});
 		this._accept.className = "accept";
-		this._accept.addEventListener("click", () => {this.accept();});*/
+		this._accept.addEventListener("click", () => {this.accept();});
 		this.#prepare();
 	}
 	#prepare() {
@@ -238,7 +240,7 @@ class WUIColorpicker {
 	}
 	#loadBox() {
 		const value = this._targetValue;
-		/*this._options.querySelectorAll(".option").forEach(div => {
+		this._options.querySelectorAll(".option").forEach(div => {
 			if (typeof(div.dataset.value) != "undefined") {
 				if (div.dataset.value == value) {
 					this._options.scrollTop = div.offsetTop - parseInt(this._options.clientHeight/2);
@@ -247,7 +249,7 @@ class WUIColorpicker {
 					div.classList.remove("selected");
 				}
 			}
-		});*/
+		});
 	}
 	open() {
 		this.#prepare();

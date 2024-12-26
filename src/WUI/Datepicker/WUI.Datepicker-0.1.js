@@ -247,8 +247,6 @@ class WUIDatepicker {
 				}
 			}
 		});
-		this._input.type = "hidden";
-		this._inputs.className = "inputs";
 		["year", "month", "day"].forEach(part => {
 			const name = part.charAt(0).toUpperCase()+part.slice(1);
 			const input = this["_input"+name];
@@ -267,6 +265,8 @@ class WUIDatepicker {
 				this.#loadValue();
 			});
 		});
+		this._input.type = "hidden";
+		this._inputs.className = "inputs";
 		this._background.className = "background hidden";
 		this._box.className = "box hidden";
 		this._box.appendChild(this._header);

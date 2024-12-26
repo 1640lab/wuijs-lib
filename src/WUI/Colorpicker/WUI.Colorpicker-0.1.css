@@ -7,7 +7,7 @@
 	box-sizing: border-box;
 }
 .wui-colorpicker {
-	width: 100%;
+	width: auto;
 	height: 30px;
 	margin: 0;
 	border: 0;
@@ -16,7 +16,7 @@
 	background-position-x: 100%;
 	background-image: none;
 	background-size: var(--wui-colorpicker-pickerimage-size);
-	padding-right: 2rem;
+	padding-right: 0;
 }
 .wui-colorpicker > input[type="color"] {
 	display: none;
@@ -27,8 +27,9 @@
 	display: flex;
 	cursor: pointer;
 	position: relative;
-	width: calc(1.7 * var(--wui-colorpicker-button-size));
+	width: calc(1.9 * var(--wui-colorpicker-button-size));
 	height: var(--wui-colorpicker-button-size);
+	outline: none;
 	margin: 0;
 	overflow: hidden;
 	-webkit-border-radius: var(--button-radius);
@@ -44,27 +45,33 @@
 	-moz-transition: var(--button-transition);
 	transition: var(--button-transition);
 }
+.wui-colorpicker:not(.disabled) > button {
+	border-color: var(--wui-colorpicker-bordercolor-out);
+	background-color: var(--wui-colorpicker-bgcolor-out);
+}
+.wui-colorpicker:not(.disabled):hover > button,
+.wui-colorpicker:not(.disabled):focus-within > button {
+	border-color: var(--wui-colorpicker-bordercolor-over);
+	background-color: var(--wui-colorpicker-bgcolor-over);
+}
+.wui-colorpicker.disabled {
+	border-color: var(--wui-colorpicker-bordercolor-disabled);
+	background-color: var(--wui-colorpicker-bgcolor-disabled);
+}
 .wui-colorpicker > button > .preview {
-	--preview-size: calc(var(--wui-colorpicker-button-size) - 4);
+	--preview-size: calc(var(--wui-colorpicker-button-size) - 6px);
 	width: var(--preview-size);
 	height: var(--preview-size);
+	overflow: hidden;
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
 	border-radius: 50%;
-	border-width: 1px;
+	border-width: var(--wui-colorpicker-preview-borderwidth);
 	border-style: solid;
+	border-color: var(--wui-colorpicker-preview-bordercolor);
 }
-/*.wui-colorpicker > input[type="text"] {
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	outline: none;
-	border: 0;
-	background-color: transparent;
-	padding: 0;
-	text-align: left;
-	font-family: inherit;
-	font-size: 14px;
+.wui-colorpicker > button > .preview.empty {
+	border-width: 5px;
 }
 .wui-colorpicker > .background {
 	display: none;
@@ -86,32 +93,31 @@
 	display: flex;
 }
 .wui-colorpicker > .box {
-	--shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-	--filter: blur(10px);
+	--box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	--box-filter: blur(10px);
 	position: absolute;
 	z-index: 101;
-	left: 0;
-	width: 100%;
-	height: auto;
-	overflow-x: hidden;
-	overflow-y: auto;
-	-webkit-box-shadow: var(--shadow);
-	-moz-box-shadow: var(--shadow);
-	box-shadow: var(--shadow);
+	right: 0;
+	width: 250px;
+	height: 260px;
+	-webkit-box-shadow: var(--box-shadow);
+	-moz-box-shadow: var(--box-shadow);
+	box-shadow: var(--box-shadow);
 	-webkit-border-radius: var(--wui-colorpicker-box-radius);
 	-moz-border-radius: var(--wui-colorpicker-box-radius);
 	border-radius: var(--wui-colorpicker-box-radius);
 	border: 1px solid var(--wui-colorpicker-box-bordercolor);
 	background-color: var(--wui-colorpicker-box-bgcolor);
-	-webkit-backdrop-filter: var(--filter);
-	-moz-backdrop-filter: var(--filter);
-	backdrop-filter: var(--filter);
+	-webkit-backdrop-filter: var(--box-filter);
+	-moz-backdrop-filter: var(--box-filter);
+	backdrop-filter: var(--box-filter);
 	flex-direction: column;
-	padding: 0;
+	padding: 5px;
 }
 .wui-colorpicker > .box.hidden {
 	display: none;
 }
+/*
 .wui-colorpicker > .box > .options,
 .wui-colorpicker > .box > .options > .option {
 	display: flex;
@@ -187,11 +193,15 @@
 }
 .wui-colorpicker > .box > .options > .option.disabled > .text {
 	color: var(--wui-colorpicker-box-option-textcolor-disabled);
-}
+}*/
 .wui-colorpicker > .box > .footer {
-	display: none;
+	display: flex;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
 	height: 30px;
-	border-top: 1px solid var(--wui-colorpicker-box-button-bordercolor);
+	border-top: 1px solid var(--wui-colorpicker-box-bordercolor);
 	align-items: center;
 	justify-content: center;
 	flex-grow: 0;
@@ -224,35 +234,25 @@
 	font-weight: bold;
 }
 @media screen and (max-width: 767px) {
-	.wui-colorpicker > input[type="text"] {
-		font-size: 15px;
-	}
 	.wui-colorpicker > .background {
 		display: block;
 	}
 	.wui-colorpicker > .box {
-		--shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-		--transform: translate(-50%, -50%);
+		--box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+		--box-transform: translate(-50%, -50%);
 		position: fixed;
 		top: 50%;
 		left: 50%;
-		width: var(--wui-modal-select-box-width);
-		min-height: 96px;
-		overflow: hidden;
-		-webkit-box-shadow: var(--shadow);
-		-moz-box-shadow: var(--shadow);
-		box-shadow: var(--shadow);
-		-webkit-border-radius: var(--wui-modal-box-radius);
-		-moz-border-radius: var(--wui-modal-box-radius);
-		border-radius: var(--wui-modal-box-radius);
-		-webkit-transform: var(--transform);
-		-moz-transform: var(--transform);
-		transform: var(--transform);
+		width: 300px;
+		height: 310px;
+		-webkit-box-shadow: var(--box-shadow);
+		-moz-box-shadow: var(--box-shadow);
+		box-shadow: var(--box-shadow);
+		-webkit-transform: var(--box-transform);
+		-moz-transform: var(--box-transform);
+		transform: var(--box-transform);
 	}
-	.wui-colorpicker > .box.extended {
-		height: 348px;
-	}
-	.wui-colorpicker > .box > .options {
+	/*.wui-colorpicker > .box > .options {
 		max-height: calc(calc(10 * 44px) - 1px);
 		-webkit-border-top-left-radius: var(--wui-modal-box-radius);
 		-webkit-border-top-right-radius: var(--wui-modal-box-radius);
@@ -272,23 +272,11 @@
 	}
 	.wui-colorpicker > .box > .options > .option:not(:last-child) {
 		border-bottom: 1px solid var(--wui-colorpicker-box-option-bordercolor-out);
-	}
+	}*/
 	.wui-colorpicker > .box > .footer {
-		display: flex;
-		height: 52px;
-		font-size: 17px;
+		height: 40px;
 	}
 	.wui-colorpicker > .box > .footer > button {
-		width: 50%;
 		font-size: 17px;
 	}
-	.wui-colorpicker > .box > .footer > button:hover,
-	.wui-colorpicker > .box > .footer > button:focus,
-	.wui-colorpicker > .box > .footer > button:focus-within {
-		border-color: transparent;
-		background-color: rgba(204, 204, 204, 0.3);
-	}
-	.wui-colorpicker > .box > .footer > button:first-child {
-		border-right: 1px solid var(--wui-colorpicker-box-button-bordercolor);
-	}
-}*/
+}
