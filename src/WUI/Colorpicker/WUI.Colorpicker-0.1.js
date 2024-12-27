@@ -16,6 +16,43 @@ class WUIColorpicker {
 				cancel: "cancelar",
 				accept: "aceptar"
 			}
+		},
+		colors: {
+			grid: [
+				["#ffffff", "#ebebeb", "#d6d6d6", "#c2c2c2", "#adadad", "#999999", "#858585", "#707070", "#5c5c5c", "#474747", "#333333", "#000000"],
+				["#01374a", "#001d57", "#12013b", "#2f043d", "#3c081a", "#5c0600", "#591d00", "#583300", "#563c00", "#666100", "#4f5503", "#263d0e"],
+				["#024d65", "#002f7b", "#1a0a52", "#450c59", "#550f2a", "#831200", "#7b2a00", "#7b4901", "#785800", "#8d8600", "#6f760a", "#38571a"],
+				["#056e8f", "#0042a9", "#2c0777", "#61177c", "#79193d", "#b51a00", "#ad3f00", "#a96800", "#a57b02", "#c5bc00", "#9aa50d", "#4d7a27"],
+				["#028cb4", "#0056d6", "#371a94", "#7a219e", "#99234f", "#e22400", "#da5100", "#d38302", "#d19d00", "#f5ec00", "#c3d118", "#659d34"],
+				["#00a1d8", "#0161fe", "#4d22b2", "#982abd", "#b92d5d", "#ff4013", "#ff6a00", "#ffab02", "#fec701", "#fffb41", "#dbeb38", "#76bb41"],
+				["#02c7fc", "#3a87fe", "#5e30eb", "#be37f3", "#e63c7b", "#ff6151", "#ff8648", "#feb43f", "#fecb3e", "#fff76b", "#e3ef65", "#96d35f"],
+				["#50d6fc", "#73a7ff", "#864ffe", "#d357fe", "#ee709e", "#ff8c82", "#ffa57d", "#ffc777", "#ffd977", "#fff994", "#e9f28f", "#b1dd8b"],
+				["#93e3fd", "#a7c6ff", "#b18cfe", "#e292fe", "#f4a4c0", "#ffb5af", "#ffc5ab", "#ffd9a8", "#fee4a8", "#fffbba", "#f2f7b7", "#cde8b5"],
+				["#cbf0ff", "#d3e1ff", "#d9c8fe", "#efcaff", "#f9d3df", "#ffdbd8", "#ffe2d7", "#ffecd4", "#fff3d6", "#fefcdd", "#f9fadb", "#dfedd4"]
+			],
+			list: [
+				"black",
+				"darkSlateGray",
+				"slateGrey",
+				"lightSlateGrey",
+				"aliceBlue",
+				"white",
+				"aqua",
+				"aquamarine",
+				"darkTurquoise",
+				"deepSkyBlue",
+				"dodgerBlue",
+				"cornflowerBlue",
+				"rebeccaPurple",
+				"darkViolet",
+				"purple",
+				"deepPink",
+				"red",
+				"coral",
+				"orange",
+				"gold",
+				"yellow"
+			]
 		}
 	}
 	#defaults = {
@@ -65,14 +102,14 @@ class WUIColorpicker {
 		}
 	}
 	set value(value) {
-		if (typeof(value).toString().match(/string|number/) && this._enabled) {
-			this.#setValue(value);
+		if (typeof(value).toString() == "string" && this._enabled) {
+			this.#setValue(value.trim());
 			this.#prepare();
 		}
 	}
 	set lang(value) {
 		if (typeof(value) == "string" && value.match(/^\w{2}$/)) {
-			this._lang = value.toLocaleLowerCase();
+			this._lang = value.toLowerCase();
 		}
 	}
 	set cancelText(value) {
@@ -117,16 +154,16 @@ class WUIColorpicker {
 		return this._input;
 	}
 	#setValue(value) {
-		this._input.value = value;
+		this._input.value = value.trim();
 		this._input.dispatchEvent(new Event("change"));
 	}
 	#setView(value) {
 		if (value == "") {
-			this._preview.style.backgroundColor = "transparent";
-			this._preview.classList.add("empty");
+			this._view.style.backgroundColor = "transparent";
+			this._view.classList.add("empty");
 		} else {
-			this._preview.style.backgroundColor = value;
-			this._preview.classList.remove("empty");
+			this._view.style.backgroundColor = value;
+			this._view.classList.remove("empty");
 		}
 	}
 	#setStyle() {
@@ -144,11 +181,23 @@ class WUIColorpicker {
 			const image = getComputedStyle(element).getPropertyValue("--wui-colorpicker-"+name+"image-src").replace(/currentColor/g, color);
 			return image;
 		}
+		const onClick = (value) => {
+			const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
+			this._targetValue = value;
+			this.#setValue(value);
+			this.#setView(value);
+			if (!mobile) {
+				this.close();
+			}
+		}
 		this._button = document.createElement("button");
-		this._preview = document.createElement("div");
+		this._view = document.createElement("div");
 		this._background = document.createElement("div");
 		this._box = document.createElement("div");
-		this._options = document.createElement("div");
+		this._header = document.createElement("div");
+		this._grid = document.createElement("div");
+		this._list = document.createElement("div");
+		this._preview = document.createElement("div");
 		this._footer = document.createElement("div");
 		this._cancel = document.createElement("button");
 		this._accept = document.createElement("button");
@@ -157,7 +206,7 @@ class WUIColorpicker {
 		this._element.appendChild(this._box);
 		this._element.style.backgroundImage = backgroundImage("picker", this._input.disabled ? "disabled" : "out");
 		this._element.addEventListener("click", event => {
-			if (event.target.tagName.toLocaleLowerCase() == "button") {
+			if (event.target.tagName.toLowerCase() == "button") {
 				this.toggle();
 			}
 		});
@@ -170,57 +219,72 @@ class WUIColorpicker {
 		if (this._input.getAttribute("style") != null) {
 			this._input.removeAttributeNode(this._input.getAttributeNode("style"));
 		}
-		/*this._input.querySelectorAll("option").forEach(option => {
-			const item = document.createElement("div");
-			const icon = document.createElement("div");
-			const text = document.createElement("div");
-			const selected = Boolean(option.selected);
-			icon.className = "icon "+(typeof(option.icon) == "string" && option.icon != "" ? option.icon : "wui-svgicon check-line");
-			text.className = "text "+(this._selecteableText ? "selecteable" : "");
-			text.innerHTML = option.value == "" ? "<i class='empty'>"+(this._emptyText != "" ? this._emptyText : lang in WUIColorpicker.#constants.texts ? WUIColorpicker.#constants.texts[lang].empty : "")+"</i>" : option.text;
-			option.classList.forEach(key => {
-				text.classList.add(key);
-			});
-			Object.keys(option.dataset).forEach(key => {
-				text.dataset[key] = option.dataset[key];
-			});
-			item.className = "option"+(selected ? " selected" : "");	
-			item.dataset.value = option.value;
-			item.appendChild(icon);
-			item.appendChild(text);
-			item.addEventListener("click", () => {
-				const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
-				const selected = !Boolean(item.classList.contains("selected"));
-				const targetValue = item.dataset.value || "";
-				const value = selected ? targetValue : "";
-				this._options.scrollTop = item.offsetTop - parseInt(this._options.clientHeight/2);
-				this._options.querySelectorAll(".option").forEach(div => {
-					if (typeof(div.dataset.value) != "undefined" && div.dataset.value != targetValue) {
-						div.classList.remove("selected");
-					}
-				});
-				item.classList.toggle("selected");
-				this._targetValue = value;
-				this.#setValue(value);
-				this.#setView(value);
-				if (!mobile) {
-					this.close();
-				}
-			});
-			this._options.appendChild(item);
-		});*/
 		this._input.addEventListener("change", () => {
 			if (typeof(this._onChange) == "function") {
 				this._onChange(this._input.value);
 			}
 		});
-		this._preview.className = "preview";
-		this._button.appendChild(this._preview);
+		WUIColorpicker.#constants.colors.grid.forEach(row => {
+			row.forEach(color => {
+				const item = document.createElement("div");
+				const selected = Boolean(this._input.value.toLowerCase() == color.toLowerCase());
+				item.className = "color"+(selected ? " selected" : "");
+				item.style.backgroundColor = color;
+				item.dataset.value = color;
+				item.addEventListener("click", () => {
+					const selected = !Boolean(item.classList.contains("selected"));
+					const targetValue = item.dataset.value || "";
+					const value = selected ? targetValue : "";
+					this._grid.querySelectorAll(".color").forEach(div => {
+						if (typeof(div.dataset.value) != "undefined" && div.dataset.value != targetValue) {
+							div.classList.remove("selected");
+						}
+					});
+					item.classList.toggle("selected");
+					onClick(value);
+				});
+				this._grid.appendChild(item);
+			});
+		});
+		WUIColorpicker.#constants.colors.list.forEach(color => {
+			const item = document.createElement("div");
+			const icon = document.createElement("div");
+			const text = document.createElement("div");
+			const selected = Boolean(this._input.value.toLowerCase() == color.toLowerCase());
+			icon.className = "icon";
+			icon.style.backgroundColor = color;
+			text.className = "text";
+			text.textContent = color;
+			item.className = "option"+(selected ? " selected" : "");
+			item.dataset.value = color;
+			item.appendChild(icon);
+			item.appendChild(text);
+			item.addEventListener("click", () => {
+				const selected = !Boolean(item.classList.contains("selected"));
+				const targetValue = item.dataset.value || "";
+				const value = selected ? targetValue : "";
+				this._list.scrollTop = item.offsetTop - parseInt(this._list.clientHeight/2);
+				this._list.querySelectorAll(".option").forEach(div => {
+					if (typeof(div.dataset.value) != "undefined" && div.dataset.value != targetValue) {
+						div.classList.remove("selected");
+					}
+				});
+				item.classList.toggle("selected");
+				onClick(value);
+			});
+			this._list.appendChild(item);
+		});
+		this._view.className = "view";
+		this._button.appendChild(this._view);
 		this._background.className = "background hidden";
 		this._box.className = "box hidden";
-		this._box.appendChild(this._options);
+		this._box.appendChild(this._header);
+		this._box.appendChild(this._grid);
+		this._box.appendChild(this._list);
 		this._box.appendChild(this._footer);
-		this._options.className = "options";
+		this._header.className = "header";
+		this._grid.className = "grid";
+		this._list.className = "list hidden";
 		this._footer.className = "footer";
 		this._footer.appendChild(this._cancel);
 		this._footer.appendChild(this._accept);
@@ -240,10 +304,9 @@ class WUIColorpicker {
 	}
 	#loadBox() {
 		const value = this._targetValue;
-		this._options.querySelectorAll(".option").forEach(div => {
+		this._grid.querySelectorAll(".color").forEach(div => {
 			if (typeof(div.dataset.value) != "undefined") {
 				if (div.dataset.value == value) {
-					this._options.scrollTop = div.offsetTop - parseInt(this._options.clientHeight/2);
 					div.classList.add("selected");
 				} else {
 					div.classList.remove("selected");
@@ -283,13 +346,25 @@ HTML struture:
 <div class="wui-selector">
 	<input type="color" value="(name)" value="">
 	<button class="background">
-		<div class="preview"></div>
+		<div class="view"></div>
 	</button>
 	<div class="background"></div>
 	<div class="box">
-		<div class="options">
-			<div class="option" data-value="value1"></div>
+		<div class="header"></div>
+		<div class="grid">
+			<div class="color" data-value="value1"></div>
 			...
+		</div>
+		<div class="list">
+			<div class="option" data-value="value1">
+				<div class="icon"></div>
+				<div class="text"></div>
+			</div>
+			...
+		</div>
+		<div class="preview">
+			<div class="color"></div>
+			<div class="code"></div>
 		</div>
 		<div class="footer">
 			<button class="cancel"></button>

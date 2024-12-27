@@ -37,8 +37,8 @@ class WUILoader {
 		}
 	}
 	set style(value) {
-		if (typeof(value) == "string" && this.#styles.indexOf(value.toLocaleLowerCase()) != -1) {
-			this._style = value.toLocaleLowerCase();
+		if (typeof(value) == "string" && this.#styles.indexOf(value.toLowerCase()) != -1) {
+			this._style = value.toLowerCase();
 		}
 	}
 	set size(value) {

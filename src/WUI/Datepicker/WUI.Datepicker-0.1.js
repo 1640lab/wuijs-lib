@@ -118,7 +118,7 @@ class WUIDatepicker {
 	set locales(value) {
 		if (typeof(value) == "string" && value.match(/^[a-z]{2}-[a-z]{2}$/i) && WUIDatepicker.#constants.locales.toLowerCase().split(/\s+/).indexOf(value.toLowerCase()) > -1) {
 			this._locales = value.split("-").map((x, i) => {
-				return i == 0 ? x.toLocaleLowerCase() : x.toUpperCase();
+				return i == 0 ? x.toLowerCase() : x.toUpperCase();
 			}).join("-");
 			if (typeof(this._inputs) != "undefined") {
 				this.#loadInputs();

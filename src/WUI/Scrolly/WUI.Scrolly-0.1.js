@@ -80,7 +80,7 @@ class WUIScrolly {
 	}
 	set behavior(value) {
 		if (typeof(value) == "string" && value.match(/^(auto|smooth)$/i)) {
-			this._behavior = value.toLocaleLowerCase();
+			this._behavior = value.toLowerCase();
 		}
 	}
 	set dataScrollY(value) {

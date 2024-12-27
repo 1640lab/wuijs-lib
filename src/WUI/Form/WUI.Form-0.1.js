@@ -108,7 +108,7 @@ class WUIForm {
 	}
 	setType = (name, type) => {
 		const input = this.getInput(name);
-		input.type = type.toLocaleLowerCase();
+		input.type = type.toLowerCase();
 	}
 	setValue = (name, value, visible = true) => {
 		const label = this.getLabel(name);
@@ -200,7 +200,7 @@ class WUIForm {
 			});
 		});
 		this._element.querySelectorAll("input,select,textarea").forEach(input => {
-			const tag = input.localName.toLocaleLowerCase();
+			const tag = input.localName.toLowerCase();
 			const type = input.getAttribute("type") || "";
 			const label = input.parentNode.querySelector("label") || input.parentNode.parentNode.querySelector("label") || this.getLabel(input.name);
 			if (type.match(/^(date|time)$/i) || tag.match(/^(select)$/i)) {

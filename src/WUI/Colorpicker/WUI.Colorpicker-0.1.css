@@ -58,19 +58,19 @@
 	border-color: var(--wui-colorpicker-bordercolor-disabled);
 	background-color: var(--wui-colorpicker-bgcolor-disabled);
 }
-.wui-colorpicker > button > .preview {
-	--preview-size: calc(var(--wui-colorpicker-button-size) - 6px);
-	width: var(--preview-size);
-	height: var(--preview-size);
+.wui-colorpicker > button > .view {
+	--view-size: calc(var(--wui-colorpicker-button-size) - 6px);
+	width: var(--view-size);
+	height: var(--view-size);
 	overflow: hidden;
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
 	border-radius: 50%;
-	border-width: var(--wui-colorpicker-preview-borderwidth);
+	border-width: var(--wui-colorpicker-view-borderwidth);
 	border-style: solid;
-	border-color: var(--wui-colorpicker-preview-bordercolor);
+	border-color: var(--wui-colorpicker-view-bordercolor);
 }
-.wui-colorpicker > button > .preview.empty {
+.wui-colorpicker > button > .view.empty {
 	border-width: 5px;
 }
 .wui-colorpicker > .background {
@@ -99,7 +99,7 @@
 	z-index: 101;
 	right: 0;
 	width: 250px;
-	height: 260px;
+	height: 290px;
 	-webkit-box-shadow: var(--box-shadow);
 	-moz-box-shadow: var(--box-shadow);
 	box-shadow: var(--box-shadow);
@@ -117,83 +117,28 @@
 .wui-colorpicker > .box.hidden {
 	display: none;
 }
-/*
-.wui-colorpicker > .box > .options,
-.wui-colorpicker > .box > .options > .option {
-	display: flex;
-	position: relative;
-	flex-grow: 1;
-	flex-shrink: 0;
-}
-.wui-colorpicker > .box > .options {
-	max-height: calc(calc(10 * 30px) - 1px);
-	overflow: hidden;
-	-webkit-border-radius: var(--wui-colorpicker-box-radius);
-	-moz-border-radius: var(--wui-colorpicker-box-radius);
-	border-radius: var(--wui-colorpicker-box-radius);
-	flex-direction: column;
-	flex-wrap: nowrap;
-	align-items: flex-start;
-}
-.wui-colorpicker > .box > .options > .option {
+.wui-colorpicker > .box > .grid {
+	--grid-radius: calc(var(--wui-colorpicker-box-radius) - 5px);
+	display: grid;
 	width: 100%;
-	height: 30px;
-	background-color: var(--wui-colorpicker-box-option-bgcolor-out);
-	padding: 0 10px;
-	align-items: center;
-	gap: 10px;
-}
-.wui-colorpicker > .box > .options > .option > .icon {
-	visibility: hidden;
-	width: 24px;
-	height: 24px;
-	flex-shrink: 0;
-}
-.wui-colorpicker > .box > .options > .option > .icon:not([class$="color"]) {
-	background-color: var(--wui-colorpicker-box-option-iconcolor-out);
-}
-.wui-colorpicker > .box > .options > .option > .icon.visible,
-.wui-colorpicker > .box > .options > .option.selected > .icon {
-	visibility: visible;
-}
-.wui-colorpicker > .box > .options > .option > .text {
-	cursor: default;
 	overflow: hidden;
-	flex-grow: 1;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	color: var(--wui-colorpicker-box-option-textcolor-out);
+	-webkit-border-radius: var(--grid-radius);
+	-moz-border-radius: var(--grid-radius);
+	border-radius: var(--grid-radius);
+	grid-template-columns: repeat(12, 1fr);
 }
-.wui-colorpicker > .box > .options > .option.selected > .text.selecteable {
-	color: var(--wui-colorpicker-box-option-textcolor-selected) !important;
+.wui-colorpicker > .box > .grid.hidden {
+	display: none;
 }
-.wui-colorpicker > .box > .options > .option > .text > .empty {
-	-khtml-opacity: .7;
-	-moz-opacity: .7;
-	opacity: .7;
+.wui-colorpicker > .box > .grid > .color {
+	height: 20px;
 }
-.wui-colorpicker > .box > .options > .option:not(.disabled):hover,
-.wui-colorpicker > .box > .options > .option:not(.disabled):focus,
-.wui-colorpicker > .box > .options > .option:not(.disabled):focus-within {
-	border-color: var(--wui-colorpicker-box-option-bordercolor-over);
-	background-color: var(--wui-colorpicker-box-option-bgcolor-over);
+.wui-colorpicker > .box > .list {
+	display: flex;
 }
-.wui-colorpicker > .box > .options > .option:not(.disabled):hover > .icon,
-.wui-colorpicker > .box > .options > .option:not(.disabled):focus > .icon,
-.wui-colorpicker > .box > .options > .option:not(.disabled):focus-within > .icon {
-	background-color: var(--wui-colorpicker-box-option-iconcolor-over);
+.wui-colorpicker > .box > .list.hidden {
+	display: none;
 }
-.wui-colorpicker > .box > .options > .option:not(.disabled):hover > .text,
-.wui-colorpicker > .box > .options > .option:not(.disabled):focus > .text,
-.wui-colorpicker > .box > .options > .option:not(.disabled):focus-within > .text {
-	color: var(--wui-colorpicker-box-option-textcolor-over);
-}
-.wui-colorpicker > .box > .options > .option.disabled > .icon {
-	background-color: var(--wui-colorpicker-box-option-iconcolor-disabled);
-}
-.wui-colorpicker > .box > .options > .option.disabled > .text {
-	color: var(--wui-colorpicker-box-option-textcolor-disabled);
-}*/
 .wui-colorpicker > .box > .footer {
 	display: flex;
 	position: absolute;

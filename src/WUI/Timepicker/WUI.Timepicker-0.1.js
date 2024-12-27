@@ -90,7 +90,7 @@ class WUITimepicker {
 	}
 	set lang(value) {
 		if (typeof(value) == "string" && value.match(/^\w{2}$/)) {
-			this._lang = value.toLocaleLowerCase();
+			this._lang = value.toLowerCase();
 		}
 	}
 	set cancelText(value) {

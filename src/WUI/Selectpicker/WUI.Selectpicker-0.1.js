@@ -73,13 +73,13 @@ class WUISelectpicker {
 	}
 	set value(value) {
 		if (typeof(value).toString().match(/string|number/) && this._enabled) {
-			this.#setValue(value);
+			this.#setValue(typeof(value) == "string" ? value.trim() : value);
 			this.#prepare();
 		}
 	}
 	set lang(value) {
 		if (typeof(value) == "string" && value.match(/^\w{2}$/)) {
-			this._lang = value.toLocaleLowerCase();
+			this._lang = value.toLowerCase();
 		}
 	}
 	set emptyText(value) {
@@ -186,6 +186,11 @@ class WUISelectpicker {
 		if (this._input.getAttribute("style") != null) {
 			this._input.removeAttributeNode(this._input.getAttributeNode("style"));
 		}
+		this._input.addEventListener("change", () => {
+			if (typeof(this._onChange) == "function") {
+				this._onChange(this._input.value);
+			}
+		});
 		this._input.querySelectorAll("option").forEach(option => {
 			const item = document.createElement("div");
 			const icon = document.createElement("div");
@@ -224,11 +229,6 @@ class WUISelectpicker {
 				}
 			});
 			this._options.appendChild(item);
-		});
-		this._input.addEventListener("change", () => {
-			if (typeof(this._onChange) == "function") {
-				this._onChange(this._input.value);
-			}
 		});
 		this._inputText.type = "text";
 		this._inputText.name = this._input.name+"Text";

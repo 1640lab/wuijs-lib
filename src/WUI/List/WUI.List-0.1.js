@@ -60,7 +60,7 @@ class WUIList {
 	}
 	set buttonsStyle(value) {
 		if (typeof(value) == "string" && value.match(/^(round|stretch)$/i)) {
-			this._buttonsStyle = value.toLocaleLowerCase();
+			this._buttonsStyle = value.toLowerCase();
 		}
 	}
 	set onClick(value) {
