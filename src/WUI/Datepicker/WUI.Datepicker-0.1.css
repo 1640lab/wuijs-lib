@@ -99,10 +99,12 @@
 .wui-datepicker > .box > .header {
 	position: relative;
 	height: 40px;
+	padding: 0 5px;
+	justify-content: flex-start;
+	align-items: center;
 }
 .wui-datepicker > .box > .header > .period {
 	cursor: pointer;
-	padding: 10px 5px;
 	font-size: 14px;
 }
 .wui-datepicker > .box > .header > .period > .icon {

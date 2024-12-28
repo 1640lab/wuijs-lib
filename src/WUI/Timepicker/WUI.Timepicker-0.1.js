@@ -169,8 +169,8 @@ class WUITimepicker {
 		this._listHours = document.createElement("ul");
 		this._listMinutes = document.createElement("ul");
 		this._footer = document.createElement("div");
-		this._cancel = document.createElement("button");
-		this._accept = document.createElement("button");
+		this._cancelButton = document.createElement("button");
+		this._acceptButton = document.createElement("button");
 		this._element.appendChild(this._inputs);
 		this._element.appendChild(this._background);
 		this._element.appendChild(this._box);
@@ -257,12 +257,12 @@ class WUITimepicker {
 		this._lists.appendChild(this._listHours);
 		this._lists.appendChild(this._listMinutes);
 		this._footer.className = "footer";
-		this._footer.appendChild(this._cancel);
-		this._footer.appendChild(this._accept);
-		this._cancel.className = "cancel";
-		this._cancel.addEventListener("click", () => {this.cancel();});
-		this._accept.className = "accept";
-		this._accept.addEventListener("click", () => {this.accept();});
+		this._footer.appendChild(this._cancelButton);
+		this._footer.appendChild(this._acceptButton);
+		this._cancelButton.className = "cancel";
+		this._cancelButton.addEventListener("click", () => {this.cancel();});
+		this._acceptButton.className = "accept";
+		this._acceptButton.addEventListener("click", () => {this.accept();});
 		this.#prepare();
 	}
 	#prepare() {
@@ -278,8 +278,8 @@ class WUITimepicker {
 		this._targetTime = new Date("1970-01-01T"+this._targetValue+":00");
 		this._cancelValue = this._targetValue;
 		this._cancelTime = new Date("1970-01-01T"+this._targetValue+":00");
-		this._cancel.textContent = this._cancelText != "" ? this._cancelText : lang in WUITimepicker.#constants.texts ? WUITimepicker.#constants.texts[lang].cancel : "";
-		this._accept.textContent = this._acceptText != "" ? this._acceptText : lang in WUITimepicker.#constants.texts ? WUITimepicker.#constants.texts[lang].accept : "";
+		this._cancelButton.textContent = this._cancelText != "" ? this._cancelText : lang in WUITimepicker.#constants.texts ? WUITimepicker.#constants.texts[lang].cancel : "";
+		this._acceptButton.textContent = this._acceptText != "" ? this._acceptText : lang in WUITimepicker.#constants.texts ? WUITimepicker.#constants.texts[lang].accept : "";
 		this.#setView(this._targetTime);
 	}
 	#loadBox() {
@@ -314,6 +314,8 @@ class WUITimepicker {
 		}
 	}
 	open() {
+		this._background.classList.remove("hidden");
+		this._box.classList.remove("hidden");
 		this.#prepare();
 		this.#loadBox();
 		if (typeof(this._onOpen) == "function") {
@@ -325,10 +327,10 @@ class WUITimepicker {
 		this._box.classList.add("hidden");
 	}
 	toggle() {
-		this._background.classList.toggle("hidden");
-		this._box.classList.toggle("hidden");
-		if (!this._box.classList.contains("hidden")) {
+		if (this._box.classList.contains("hidden")) {
 			this.open();
+		} else {
+			this.close();
 		}
 	}
 	cancel() {
@@ -338,6 +340,9 @@ class WUITimepicker {
 	}
 	accept() {
 		this.close();
+	}
+	isOpen() {
+		return !Boolean(this._box.classList.contains("hidden"));
 	}
 }
 /*

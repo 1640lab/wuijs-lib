@@ -3,20 +3,6 @@
 class WUIColorpicker {
 	static version = "0.1";
 	static #constants = {
-		texts: {
-			de: {
-				cancel: "stornieren",
-				accept: "akzeptieren"
-			},
-			en: {
-				cancel: "cancel",
-				accept: "accept"
-			},
-			es: {
-				cancel: "cancelar",
-				accept: "aceptar"
-			}
-		},
 		colors: {
 			grid: [
 				["#ffffff", "#ebebeb", "#d6d6d6", "#c2c2c2", "#adadad", "#999999", "#858585", "#707070", "#5c5c5c", "#474747", "#333333", "#000000"],
@@ -38,9 +24,11 @@ class WUIColorpicker {
 				"aliceBlue",
 				"white",
 				"aqua",
+				"green",
 				"aquamarine",
 				"darkTurquoise",
 				"deepSkyBlue",
+				"blue",
 				"dodgerBlue",
 				"cornflowerBlue",
 				"rebeccaPurple",
@@ -53,12 +41,34 @@ class WUIColorpicker {
 				"gold",
 				"yellow"
 			]
+		},
+		texts: {
+			de: {
+				grid: "netz",
+				list: "liste",
+				cancel: "stornieren",
+				accept: "akzeptieren"
+			},
+			en: {
+				grid: "grid",
+				list: "list",
+				cancel: "cancel",
+				accept: "accept"
+			},
+			es: {
+				grid: "grilla",
+				list: "lista",
+				cancel: "cancelar",
+				accept: "aceptar"
+			}
 		}
 	}
 	#defaults = {
 		selector: "",
 		value: "",
 		lang: "en",
+		gridText: "",
+		listText: "",
 		cancelText: "",
 		acceptText: "",
 		enabled: true,
@@ -78,6 +88,12 @@ class WUIColorpicker {
 	}
 	get lang() {
 		return this._lang;
+	}
+	get gridText() {
+		return this._gridText;
+	}
+	get listText() {
+		return this._listText;
 	}
 	get cancelText() {
 		return this._cancelText;
@@ -103,13 +119,23 @@ class WUIColorpicker {
 	}
 	set value(value) {
 		if (typeof(value).toString() == "string" && this._enabled) {
-			this.#setValue(value.trim());
+			this.#setValue(value.trim().toLowerCase());
 			this.#prepare();
 		}
 	}
 	set lang(value) {
 		if (typeof(value) == "string" && value.match(/^\w{2}$/)) {
 			this._lang = value.toLowerCase();
+		}
+	}
+	set gridText(value) {
+		if (typeof(value) == "string") {
+			this._gridText = value;
+		}
+	}
+	set listText(value) {
+		if (typeof(value) == "string") {
+			this._listText = value;
 		}
 	}
 	set cancelText(value) {
@@ -181,32 +207,27 @@ class WUIColorpicker {
 			const image = getComputedStyle(element).getPropertyValue("--wui-colorpicker-"+name+"image-src").replace(/currentColor/g, color);
 			return image;
 		}
-		const onClick = (value) => {
-			const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
-			this._targetValue = value;
-			this.#setValue(value);
-			this.#setView(value);
-			if (!mobile) {
-				this.close();
-			}
-		}
 		this._button = document.createElement("button");
 		this._view = document.createElement("div");
 		this._background = document.createElement("div");
 		this._box = document.createElement("div");
 		this._header = document.createElement("div");
+		this._gridTab = document.createElement("div");
+		this._listTab = document.createElement("div");
 		this._grid = document.createElement("div");
 		this._list = document.createElement("div");
 		this._preview = document.createElement("div");
+		this._previewColor = document.createElement("div");
+		this._previewCode = document.createElement("div");
 		this._footer = document.createElement("div");
-		this._cancel = document.createElement("button");
-		this._accept = document.createElement("button");
+		this._cancelButton = document.createElement("button");
+		this._acceptButton = document.createElement("button");
 		this._element.appendChild(this._button);
 		this._element.appendChild(this._background);
 		this._element.appendChild(this._box);
 		this._element.style.backgroundImage = backgroundImage("picker", this._input.disabled ? "disabled" : "out");
 		this._element.addEventListener("click", event => {
-			if (event.target.tagName.toLowerCase() == "button") {
+			if (event.target.classList.contains("button") || event.target.classList.contains("view")) {
 				this.toggle();
 			}
 		});
@@ -241,7 +262,9 @@ class WUIColorpicker {
 						}
 					});
 					item.classList.toggle("selected");
-					onClick(value);
+					this._targetValue = value;
+					this.#setValue(value);
+					this.#setView(value);
 				});
 				this._grid.appendChild(item);
 			});
@@ -254,7 +277,7 @@ class WUIColorpicker {
 			icon.className = "icon";
 			icon.style.backgroundColor = color;
 			text.className = "text";
-			text.textContent = color;
+			text.textContent = color.replace(/([a-z])([A-Z])/g, "$1 $2").toLowerCase();
 			item.className = "option"+(selected ? " selected" : "");
 			item.dataset.value = color;
 			item.appendChild(icon);
@@ -270,36 +293,51 @@ class WUIColorpicker {
 					}
 				});
 				item.classList.toggle("selected");
-				onClick(value);
+				this._targetValue = value;
+				this.#setValue(value);
+				this.#setView(value);
 			});
 			this._list.appendChild(item);
 		});
 		this._view.className = "view";
+		this._button.className = "button";
 		this._button.appendChild(this._view);
 		this._background.className = "background hidden";
 		this._box.className = "box hidden";
 		this._box.appendChild(this._header);
 		this._box.appendChild(this._grid);
 		this._box.appendChild(this._list);
+		this._box.appendChild(this._preview);
 		this._box.appendChild(this._footer);
 		this._header.className = "header";
+		this._header.appendChild(this._gridTab);
+		this._header.appendChild(this._listTab);
+		this._gridTab.className = "tab grid selected";
+		this._gridTab.addEventListener("click", () => {this.selectMode("grid");});
+		this._listTab.className = "tab list";
+		this._listTab.addEventListener("click", () => {this.selectMode("list");});
 		this._grid.className = "grid";
 		this._list.className = "list hidden";
+		this._preview.className = "preview";
+		this._preview.appendChild(this._previewColor);
+		this._preview.appendChild(this._previewCode);
 		this._footer.className = "footer";
-		this._footer.appendChild(this._cancel);
-		this._footer.appendChild(this._accept);
-		this._cancel.className = "cancel";
-		this._cancel.addEventListener("click", () => {this.cancel();});
-		this._accept.className = "accept";
-		this._accept.addEventListener("click", () => {this.accept();});
+		this._footer.appendChild(this._cancelButton);
+		this._footer.appendChild(this._acceptButton);
+		this._cancelButton.className = "cancel";
+		this._cancelButton.addEventListener("click", () => {this.cancel();});
+		this._acceptButton.className = "accept";
+		this._acceptButton.addEventListener("click", () => {this.accept();});
 		this.#prepare();
 	}
 	#prepare() {
 		const lang = this._lang;
 		this._targetValue = this._input.value || "";
 		this._cancelValue = this._targetValue;
-		this._cancel.textContent = this._cancelText != "" ? this._cancelText : lang in WUIColorpicker.#constants.texts ? WUIColorpicker.#constants.texts[lang].cancel : "";
-		this._accept.textContent = this._acceptText != "" ? this._acceptText : lang in WUIColorpicker.#constants.texts ? WUIColorpicker.#constants.texts[lang].accept : "";
+		this._gridTab.textContent = this._gridText != "" ? this._gridText : lang in WUIColorpicker.#constants.texts ? WUIColorpicker.#constants.texts[lang].grid : "";
+		this._listTab.textContent = this._listText != "" ? this._listText : lang in WUIColorpicker.#constants.texts ? WUIColorpicker.#constants.texts[lang].list : "";
+		this._cancelButton.textContent = this._cancelText != "" ? this._cancelText : lang in WUIColorpicker.#constants.texts ? WUIColorpicker.#constants.texts[lang].cancel : "";
+		this._acceptButton.textContent = this._acceptText != "" ? this._acceptText : lang in WUIColorpicker.#constants.texts ? WUIColorpicker.#constants.texts[lang].accept : "";
 		this.#setView(this._targetValue);
 	}
 	#loadBox() {
@@ -313,8 +351,19 @@ class WUIColorpicker {
 				}
 			}
 		});
+		this._list.querySelectorAll(".option").forEach(div => {
+			if (typeof(div.dataset.value) != "undefined") {
+				if (div.dataset.value == value) {
+					div.classList.add("selected");
+				} else {
+					div.classList.remove("selected");
+				}
+			}
+		});
 	}
 	open() {
+		this._background.classList.remove("hidden");
+		this._box.classList.remove("hidden");
 		this.#prepare();
 		this.#loadBox();
 		if (typeof(this._onOpen) == "function") {
@@ -326,11 +375,24 @@ class WUIColorpicker {
 		this._box.classList.add("hidden");
 	}
 	toggle() {
-		this._background.classList.toggle("hidden");
-		this._box.classList.toggle("hidden");
-		if (!this._box.classList.contains("hidden")) {
+		if (this._box.classList.contains("hidden")) {
 			this.open();
+		} else {
+			this.close();
 		}
+	}
+	selectMode(mode) {
+		["grid", "list"].forEach(name => {
+			const tab = this["_"+name+"Tab"];
+			const content = this["_"+name];
+			if (name == mode) {
+				tab.classList.add("selected");
+				content.classList.remove("hidden");
+			} else {
+				tab.classList.remove("selected");
+				content.classList.add("hidden");
+			}
+		});
 	}
 	cancel() {
 		this.#setValue(this._cancelValue);
@@ -339,6 +401,9 @@ class WUIColorpicker {
 	}
 	accept() {
 		this.close();
+	}
+	isOpen() {
+		return !Boolean(this._box.classList.contains("hidden"));
 	}
 }
 /*
@@ -357,8 +422,8 @@ HTML struture:
 		</div>
 		<div class="list">
 			<div class="option" data-value="value1">
-				<div class="icon"></div>
-				<div class="text"></div>
+				<div class="color"></div>
+				<div class="name"></div>
 			</div>
 			...
 		</div>

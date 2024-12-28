@@ -166,8 +166,8 @@ class WUISelectpicker {
 		this._box = document.createElement("div");
 		this._options = document.createElement("div");
 		this._footer = document.createElement("div");
-		this._cancel = document.createElement("button");
-		this._accept = document.createElement("button");
+		this._cancelButton = document.createElement("button");
+		this._acceptButton = document.createElement("button");
 		this._element.appendChild(this._inputText);
 		this._element.appendChild(this._background);
 		this._element.appendChild(this._box);
@@ -240,20 +240,20 @@ class WUISelectpicker {
 		this._box.appendChild(this._footer);
 		this._options.className = "options";
 		this._footer.className = "footer";
-		this._footer.appendChild(this._cancel);
-		this._footer.appendChild(this._accept);
-		this._cancel.className = "cancel";
-		this._cancel.addEventListener("click", () => {this.cancel();});
-		this._accept.className = "accept";
-		this._accept.addEventListener("click", () => {this.accept();});
+		this._footer.appendChild(this._cancelButton);
+		this._footer.appendChild(this._acceptButton);
+		this._cancelButton.className = "cancel";
+		this._cancelButton.addEventListener("click", () => {this.cancel();});
+		this._acceptButton.className = "accept";
+		this._acceptButton.addEventListener("click", () => {this.accept();});
 		this.#prepare();
 	}
 	#prepare() {
 		const lang = this._lang;
 		this._targetValue = this._input.value || "";
 		this._cancelValue = this._targetValue;
-		this._cancel.textContent = this._cancelText != "" ? this._cancelText : lang in WUISelectpicker.#constants.texts ? WUISelectpicker.#constants.texts[lang].cancel : "";
-		this._accept.textContent = this._acceptText != "" ? this._acceptText : lang in WUISelectpicker.#constants.texts ? WUISelectpicker.#constants.texts[lang].accept : "";
+		this._cancelButton.textContent = this._cancelText != "" ? this._cancelText : lang in WUISelectpicker.#constants.texts ? WUISelectpicker.#constants.texts[lang].cancel : "";
+		this._acceptButton.textContent = this._acceptText != "" ? this._acceptText : lang in WUISelectpicker.#constants.texts ? WUISelectpicker.#constants.texts[lang].accept : "";
 		this.#setView(this._targetValue);
 	}
 	#loadBox() {
@@ -270,6 +270,8 @@ class WUISelectpicker {
 		});
 	}
 	open() {
+		this._background.classList.remove("hidden");
+		this._box.classList.remove("hidden");
 		this.#prepare();
 		this.#loadBox();
 		if (typeof(this._onOpen) == "function") {
@@ -281,10 +283,10 @@ class WUISelectpicker {
 		this._box.classList.add("hidden");
 	}
 	toggle() {
-		this._background.classList.toggle("hidden");
-		this._box.classList.toggle("hidden");
-		if (!this._box.classList.contains("hidden")) {
+		if (this._box.classList.contains("hidden")) {
 			this.open();
+		} else {
+			this.close();
 		}
 	}
 	cancel() {
@@ -294,6 +296,9 @@ class WUISelectpicker {
 	}
 	accept() {
 		this.close();
+	}
+	isOpen() {
+		return !Boolean(this._box.classList.contains("hidden"));
 	}
 }
 /*

@@ -58,7 +58,7 @@
 	border-color: var(--wui-colorpicker-bordercolor-disabled);
 	background-color: var(--wui-colorpicker-bgcolor-disabled);
 }
-.wui-colorpicker > button > .view {
+.wui-colorpicker > button.button > .view {
 	--view-size: calc(var(--wui-colorpicker-button-size) - 6px);
 	width: var(--view-size);
 	height: var(--view-size);
@@ -70,7 +70,7 @@
 	border-style: solid;
 	border-color: var(--wui-colorpicker-view-bordercolor);
 }
-.wui-colorpicker > button > .view.empty {
+.wui-colorpicker > button.button > .view.empty {
 	border-width: 5px;
 }
 .wui-colorpicker > .background {
@@ -99,7 +99,7 @@
 	z-index: 101;
 	right: 0;
 	width: 250px;
-	height: 290px;
+	height: 310px;
 	-webkit-box-shadow: var(--box-shadow);
 	-moz-box-shadow: var(--box-shadow);
 	box-shadow: var(--box-shadow);
@@ -117,14 +117,33 @@
 .wui-colorpicker > .box.hidden {
 	display: none;
 }
-.wui-colorpicker > .box > .grid {
+.wui-colorpicker > .box > .header {
+	position: relative;
+	height: 40px;
+	padding: 0 5px;
+	justify-content: flex-start;
+	align-items: center;
+}
+.wui-colorpicker > .box > .header > .tab {
+	cursor: pointer;
+	padding: 0 10px;
+	font-size: 14px;
+	color: var(--wui-colorpicker-box-tab-textcolor-out);
+}
+.wui-colorpicker > .box > .header > .tab.selected {
+	color: var(--wui-colorpicker-box-tab-textcolor-selected);
+}
+.wui-colorpicker > .box > .grid,
+.wui-colorpicker > .box > .list {
 	--grid-radius: calc(var(--wui-colorpicker-box-radius) - 5px);
-	display: grid;
-	width: 100%;
-	overflow: hidden;
 	-webkit-border-radius: var(--grid-radius);
 	-moz-border-radius: var(--grid-radius);
 	border-radius: var(--grid-radius);
+}
+.wui-colorpicker > .box > .grid {
+	display: grid;
+	width: 100%;
+	overflow: hidden;
 	grid-template-columns: repeat(12, 1fr);
 }
 .wui-colorpicker > .box > .grid.hidden {
@@ -133,11 +152,58 @@
 .wui-colorpicker > .box > .grid > .color {
 	height: 20px;
 }
-.wui-colorpicker > .box > .list {
+.wui-colorpicker > .box > .list,
+.wui-colorpicker > .box > .list > .option {
 	display: flex;
+	position: relative;
+	flex-grow: 1;
+	flex-shrink: 0;
+}
+.wui-colorpicker > .box > .list {
+	width: 100%;
+	height: 200px;
+	overflow: hidden;
 }
 .wui-colorpicker > .box > .list.hidden {
 	display: none;
+}
+.wui-colorpicker > .box > .list {
+	position: absolute;
+	top: 40px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow: auto;
+	flex-direction: column;
+}
+.wui-colorpicker > .box > .list > .option {
+	--option-radius: 5px;
+	width: 100%;
+	height: 30px;
+	-webkit-border-radius: var(--option-radius);
+	-moz-border-radius: var(--option-radius);
+	border-radius: var(--option-radius);
+	background-color: var(--wui-colorpicker-box-option-bgcolor-out);
+	padding: 0 10px;
+	align-items: center;
+	gap: 10px;
+}
+.wui-colorpicker > .box > .list > .option:hover,
+.wui-colorpicker > .box > .list > .option:focus,
+.wui-colorpicker > .box > .list > .option:focus-within {
+	border-color: var(--wui-colorpicker-box-option-bordercolor-over);
+	background-color: var(--wui-colorpicker-box-option-bgcolor-over);
+}
+.wui-colorpicker > .box > .list > .option > .icon {
+	width: 24px;
+	height: 24px;
+	overflow: hidden;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	border-width: var(--wui-colorpicker-view-borderwidth);
+	border-style: solid;
+	border-color: var(--wui-colorpicker-view-bordercolor);
 }
 .wui-colorpicker > .box > .footer {
 	display: flex;
@@ -197,27 +263,6 @@
 		-moz-transform: var(--box-transform);
 		transform: var(--box-transform);
 	}
-	/*.wui-colorpicker > .box > .options {
-		max-height: calc(calc(10 * 44px) - 1px);
-		-webkit-border-top-left-radius: var(--wui-modal-box-radius);
-		-webkit-border-top-right-radius: var(--wui-modal-box-radius);
-		-webkit-border-bottom-left-radius: 0;
-		-webkit-border-bottom-right-radius: 0;
-		-moz-border-radius-topleft: var(--wui-modal-box-radius);
-		-moz-border-radius-topright: var(--wui-modal-box-radius);
-		-moz-border-radius-bottomleft: 0;
-		-moz-border-radius-bottomright: 0;
-		border-top-left-radius: var(--wui-modal-box-radius);
-		border-top-right-radius: var(--wui-modal-box-radius);
-		border-bottom-left-radius: 0;
-		border-bottom-right-radius: 0;
-	}
-	.wui-colorpicker > .box > .options > .option {
-		height: 44px;
-	}
-	.wui-colorpicker > .box > .options > .option:not(:last-child) {
-		border-bottom: 1px solid var(--wui-colorpicker-box-option-bordercolor-out);
-	}*/
 	.wui-colorpicker > .box > .footer {
 		height: 40px;
 	}
