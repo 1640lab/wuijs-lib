@@ -31,6 +31,7 @@ class WUITimepicker {
 		value: "",
 		lang: "en",
 		texts: {},
+		openDirection: "down",
 		enabled: true,
 		onOpen: null,
 		onChange: null
@@ -57,6 +58,9 @@ class WUITimepicker {
 	}
 	get texts() {
 		return this._texts;
+	}
+	get openDirection() {
+		return this._openDirection;
 	}
 	get enabled() {
 		return this._enabled;
@@ -103,6 +107,11 @@ class WUITimepicker {
 				}
 			});
 			this._texts = value;
+		}
+	}
+	set openDirection(value) {
+		if (typeof(value) == "string" && value.match(/^(up|down)$/i)) {
+			this._openDirection = value.toLowerCase();
 		}
 	}
 	set enabled(value) {
@@ -252,7 +261,7 @@ class WUITimepicker {
 		});
 		this._inputs.className = "inputs";
 		this._background.className = "background hidden";
-		this._box.className = "box hidden";
+		this._box.className = "box "+this._openDirection+" hidden";
 		this._box.appendChild(this._lists);
 		this._box.appendChild(this._footer);
 		this._lists.className = "lists";
@@ -318,8 +327,10 @@ class WUITimepicker {
 		}
 	}
 	open() {
+		const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
 		this._background.classList.remove("hidden");
 		this._box.classList.remove("hidden");
+		this._box.style.marginBottom = !mobile && this._openDirection == "up" ? this._element.clientHeight+"px" : "auto";
 		this.#prepare();
 		this.#loadBox();
 		if (typeof(this._onOpen) == "function") {

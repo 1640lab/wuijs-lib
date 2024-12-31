@@ -75,6 +75,12 @@
 	flex-direction: column;
 	padding: 0;
 }
+.wui-selectpicker > .box.down {
+	bottom: auto;
+}
+.wui-selectpicker > .box.up {
+	bottom: 0;
+}
 .wui-selectpicker > .box.hidden {
 	display: none;
 }
@@ -213,6 +219,7 @@
 		position: fixed;
 		top: 50%;
 		left: 50%;
+		bottom: auto;
 		width: var(--wui-selectpicker-mobile-box-width);
 		min-height: 96px;
 		overflow: hidden;
