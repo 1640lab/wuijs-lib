@@ -86,7 +86,6 @@
 	bottom: 0;
 	width: 100vw;
 	height: 100vh;
-	background-color: var(--wui-colorpicker-bgcolor);
 }
 .wui-colorpicker > .background.hidden {
 	display: none;
@@ -294,6 +293,7 @@
 @media screen and (max-width: 767px) {
 	.wui-colorpicker > .background {
 		display: block;
+		background-color: var(--wui-colorpicker-mobile-bgcolor);
 	}
 	.wui-colorpicker > .box {
 		--box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;

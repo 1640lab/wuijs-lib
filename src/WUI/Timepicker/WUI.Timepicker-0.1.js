@@ -3,6 +3,12 @@
 class WUITimepicker {
 	static version = "0.1";
 	static #constants = {
+		icons: {
+			open: ""
+				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
+				+"<path d='M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0z'/>"
+				+"</svg>"
+		},
 		texts: {
 			de: {
 				cancel: "stornieren",
@@ -24,8 +30,7 @@ class WUITimepicker {
 		max: "23:59",
 		value: "",
 		lang: "en",
-		cancelText: "",
-		acceptText: "",
+		texts: {},
 		enabled: true,
 		onOpen: null,
 		onChange: null
@@ -50,11 +55,8 @@ class WUITimepicker {
 	get lang() {
 		return this._lang;
 	}
-	get cancelText() {
-		return this._cancelText;
-	}
-	get acceptText() {
-		return this._acceptText;
+	get texts() {
+		return this._texts;
 	}
 	get enabled() {
 		return this._enabled;
@@ -93,14 +95,14 @@ class WUITimepicker {
 			this._lang = value.toLowerCase();
 		}
 	}
-	set cancelText(value) {
-		if (typeof(value) == "string") {
-			this._cancelText = value;
-		}
-	}
-	set acceptText(value) {
-		if (typeof(value) == "string") {
-			this._acceptText = value;
+	set texts(value) {
+		if (typeof(value) == "object" && !Array.isArray(value) && value !== null) {
+			Object.keys(WUITimepicker.#constants.texts.en).forEach(text => {
+				if (!(text in value)) {
+					value[text] = "";
+				}
+			});
+			this._texts = value;
 		}
 	}
 	set enabled(value) {
@@ -137,6 +139,12 @@ class WUITimepicker {
 	getInput() {
 		return this._input;
 	}
+	#getSRCIcon(name, event) {
+		const element = this._element || document.documentElement;
+		const color = getComputedStyle(element).getPropertyValue("--wui-timepicker-"+name+"icon-"+event).replace(/#/g, "%23").trim();
+		const src = getComputedStyle(element).getPropertyValue("--wui-timepicker-"+name+"icon-src").replace(/currentColor/g, color);
+		return src != "" && !src.match(/^(none|url\(\))$/) ? src : "url(\"data:image/svg+xml,"+WUITimepicker.#constants.icons[name].replace(/currentColor/g, color)+"\")";
+	}
 	#setValue(value) {
 		this._input.value = value;
 		this._input.dispatchEvent(new Event("change"));
@@ -154,12 +162,6 @@ class WUITimepicker {
 		}
 	}
 	init() {
-		const backgroundImage = (name, event) => {
-			const element = this._input || this._element || document.documentElement;
-			const color = getComputedStyle(element).getPropertyValue("--wui-timepicker-"+name+"color-"+event).replace(/#/g, "%23").trim();
-			const image = getComputedStyle(element).getPropertyValue("--wui-timepicker-"+name+"image-src").replace(/currentColor/g, color);
-			return image;
-		}
 		this._inputs = document.createElement("div");
 		this._inputHours = document.createElement("input");
 		this._inputMinutes = document.createElement("input");
@@ -174,16 +176,16 @@ class WUITimepicker {
 		this._element.appendChild(this._inputs);
 		this._element.appendChild(this._background);
 		this._element.appendChild(this._box);
-		this._element.style.backgroundImage = backgroundImage("picker", this._input.disabled ? "disabled" : "out");
+		this._element.style.backgroundImage = this.#getSRCIcon("open", this._input.disabled ? "disabled" : "out");
 		this._element.addEventListener("click", event => {
 			if (event.target.classList.contains("wui-timepicker") && this._element.offsetWidth - event.offsetX < 30) {
 				this.toggle();
 			}
 		});
 		["mouseover", "mouseout", "focus", "blur"].forEach(type => {
-			const pickerType = this._input.disabled ? "disabled" : type == "blur" ? "out" : type.replace(/mouse/, "");
+			const event = this._input.disabled ? "disabled" : type == "blur" ? "out" : type.replace(/mouse/, "");
 			this._element.addEventListener(type, () => {
-				this._element.style.backgroundImage = backgroundImage("picker", pickerType);
+				this._element.style.backgroundImage = this.#getSRCIcon("open", event);
 			});
 		});
 		["min", "max", "style"].forEach(name => {
@@ -266,6 +268,8 @@ class WUITimepicker {
 		this.#prepare();
 	}
 	#prepare() {
+		const lang = this._locales.split("-")[0].toLowerCase();
+		const texts = WUITimepicker.#constants.texts;
 		const now = (() => {
 			const date = new Date();
 			const offset = date.getTimezoneOffset();
@@ -278,8 +282,8 @@ class WUITimepicker {
 		this._targetTime = new Date("1970-01-01T"+this._targetValue+":00");
 		this._cancelValue = this._targetValue;
 		this._cancelTime = new Date("1970-01-01T"+this._targetValue+":00");
-		this._cancelButton.textContent = this._cancelText != "" ? this._cancelText : lang in WUITimepicker.#constants.texts ? WUITimepicker.#constants.texts[lang].cancel : "";
-		this._acceptButton.textContent = this._acceptText != "" ? this._acceptText : lang in WUITimepicker.#constants.texts ? WUITimepicker.#constants.texts[lang].accept : "";
+		this._cancelButton.textContent = this._texts.cancel != "" ? this._texts.cancel : lang in texts ? texts[lang].cancel : "";
+		this._acceptButton.textContent = this._texts.accept != "" ? this._texts.accept : lang in texts ? texts[lang].accept : "";
 		this.#setView(this._targetTime);
 	}
 	#loadBox() {

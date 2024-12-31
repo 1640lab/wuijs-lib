@@ -59,7 +59,6 @@
 	bottom: 0;
 	width: 100vw;
 	height: 100vh;
-	background-color: var(--wui-datepicker-bgcolor);
 }
 .wui-datepicker > .background.hidden {
 	display: none;
@@ -293,6 +292,7 @@
 	}
 	.wui-datepicker > .background {
 		display: block;
+		background-color: var(--wui-datepicker-mobile-bgcolor);
 	}
 	.wui-datepicker > .box {
 		--box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;

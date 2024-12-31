@@ -59,7 +59,6 @@
 	bottom: 0;
 	width: 100vw;
 	height: 100vh;
-	background-color: var(--wui-timepicker-bgcolor);
 }
 .wui-timepicker > .background.hidden {
 	display: none;
@@ -182,6 +181,7 @@
 	}
 	.wui-timepicker > .background {
 		display: block;
+		background-color: var(--wui-timepicker-mobile-bgcolor);
 	}
 	.wui-timepicker > .box {
 		--box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;

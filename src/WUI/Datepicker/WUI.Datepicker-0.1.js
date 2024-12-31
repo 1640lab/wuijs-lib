@@ -15,6 +15,24 @@ class WUIDatepicker {
 			6: "AE AF BH DJ DZ EG IQ IR JO KW LY OM QA SD SY"
 		},
 		countryFirstWeekDay: {},
+		icons: {
+			open: ""
+				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
+				+"<path d='M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0z'/>"
+				+"</svg>",
+			down: ""
+				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
+				+"<path d='M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0z'/>"
+				+"</svg>",
+			prev: ""
+				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
+				+"<path d='M14.71 15.88L10.83 12l3.88-3.88a.996.996 0 1 0-1.41-1.41L8.71 11.3a.996.996 0 0 0 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0c.38-.39.39-1.03 0-1.42z'/>"
+				+"</svg>",
+			next: ""
+				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
+				+"<path d='M9.29 15.88L13.17 12L9.29 8.12a.996.996 0 1 1 1.41-1.41l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3a.996.996 0 0 1-1.41 0c-.38-.39-.39-1.03 0-1.42z'/>"
+				+"</svg>"
+		},
 		texts: {
 			de: {
 				cancel: "stornieren",
@@ -38,8 +56,7 @@ class WUIDatepicker {
 		locales: "en-US",
 		monthsNames: [],
 		weekDaysNames: [],
-		cancelText: "",
-		acceptText: "",
+		texts: {},
 		enabled: true,
 		onOpen: null,
 		onChange: null
@@ -77,11 +94,8 @@ class WUIDatepicker {
 	get weekDaysNames() {
 		return this._weekDaysNames;
 	}
-	get cancelText() {
-		return this._cancelText;
-	}
-	get acceptText() {
-		return this._acceptText;
+	get texts() {
+		return this._texts;
 	}
 	get enabled() {
 		return this._enabled;
@@ -135,14 +149,14 @@ class WUIDatepicker {
 			this._weekDaysNames = value;
 		}
 	}
-	set cancelText(value) {
-		if (typeof(value) == "string") {
-			this._cancelText = value;
-		}
-	}
-	set acceptText(value) {
-		if (typeof(value) == "string") {
-			this._acceptText = value;
+	set texts(value) {
+		if (typeof(value) == "object" && !Array.isArray(value) && value !== null) {
+			Object.keys(WUIDatepicker.#constants.texts.en).forEach(text => {
+				if (!(text in value)) {
+					value[text] = "";
+				}
+			});
+			this._texts = value;
 		}
 	}
 	set enabled(value) {
@@ -182,6 +196,12 @@ class WUIDatepicker {
 	getInput() {
 		return this._input;
 	}
+	#getSRCIcon(name, event) {
+		const element = this._element || document.documentElement;
+		const color = getComputedStyle(element).getPropertyValue("--wui-datepicker-"+name+"icon-"+event).replace(/#/g, "%23").trim();
+		const src = getComputedStyle(element).getPropertyValue("--wui-datepicker-"+name+"icon-src").replace(/currentColor/g, color);
+		return src != "" && !src.match(/^(none|url\(\))$/) ? src : "url(\"data:image/svg+xml,"+WUIDatepicker.#constants.icons[name].replace(/currentColor/g, color)+"\")";
+	}
 	#setValue(value) {
 		this._input.value = value;
 		this._input.dispatchEvent(new Event("change"));
@@ -200,12 +220,6 @@ class WUIDatepicker {
 		}
 	}
 	init() {
-		const backgroundImage = (name, event) => {
-			const element = this._element || document.documentElement;
-			const color = getComputedStyle(element).getPropertyValue("--wui-datepicker-"+name+"color-"+event).replace(/#/g, "%23").trim();
-			const image = getComputedStyle(element).getPropertyValue("--wui-datepicker-"+name+"image-src").replace(/currentColor/g, color);
-			return image;
-		}
 		this._inputs = document.createElement("div");
 		this._inputYear = document.createElement("input");
 		this._inputMonth = document.createElement("input");
@@ -225,16 +239,16 @@ class WUIDatepicker {
 		this._element.appendChild(this._inputs);
 		this._element.appendChild(this._background);
 		this._element.appendChild(this._box);
-		this._element.style.backgroundImage = backgroundImage("picker", this._input.disabled ? "disabled" : "out");
+		this._element.style.backgroundImage = this.#getSRCIcon("open", this._input.disabled ? "disabled" : "out");
 		this._element.addEventListener("click", event => {
 			if (event.target.classList.contains("wui-datepicker") && this._element.offsetWidth - event.offsetX < 30) {
 				this.toggle();
 			}
 		});
 		["mouseover", "mouseout", "focus", "blur"].forEach(type => {
-			const pickerType = this._input.disabled ? "disabled" : type == "blur" ? "out" : type.replace(/mouse/, "");
+			const event = this._input.disabled ? "disabled" : type == "blur" ? "out" : type.replace(/mouse/, "");
 			this._element.addEventListener(type, () => {
-				this._element.style.backgroundImage = backgroundImage("picker", pickerType);
+				this._element.style.backgroundImage = this.#getSRCIcon("open", event);
 			});
 		});
 		["min", "max", "style"].forEach(name => {
@@ -281,10 +295,10 @@ class WUIDatepicker {
 		this._period.className = "period";
 		this._period.addEventListener("click", () => {this.toggleMode();});
 		this._prev.className = "prev";
-		this._prev.style.backgroundImage = backgroundImage("box-prev", this._input.disabled ? "disabled" : "out");
+		this._prev.style.backgroundImage = this.#getSRCIcon("box-prev", this._input.disabled ? "disabled" : "out");
 		this._prev.addEventListener("click", () => {this.prev();});
 		this._next.className = "next";
-		this._next.style.backgroundImage = backgroundImage("box-next", this._input.disabled ? "disabled" : "out");
+		this._next.style.backgroundImage = this.#getSRCIcon("box-next", this._input.disabled ? "disabled" : "out");
 		this._next.addEventListener("click", () => {this.next();});
 		this._months.className = "months";
 		this._week.className = "week";
@@ -301,6 +315,7 @@ class WUIDatepicker {
 	}
 	#prepare() {
 		const lang = this._locales.split("-")[0].toLowerCase();
+		const texts = WUIDatepicker.#constants.texts;
 		const today = (() => {
 			const date = new Date();
 			const offset = date.getTimezoneOffset();
@@ -322,8 +337,8 @@ class WUIDatepicker {
 			const name = new Date(2023, i, 1, 0, 0, 0).toLocaleString(this._locales, {month: "long"});
 			this._monthsNames[i] = name.replace(/^\s*(\w)/, letter => letter.toUpperCase());
 		}
-		this._cancelButton.textContent = this._cancelText != "" ? this._cancelText : lang in WUIDatepicker.#constants.texts ? WUIDatepicker.#constants.texts[lang].cancel : "";
-		this._acceptButton.textContent = this._acceptText != "" ? this._acceptText : lang in WUIDatepicker.#constants.texts ? WUIDatepicker.#constants.texts[lang].accept : "";
+		this._cancelButton.textContent = this._texts.cancel != "" ? this._texts.cancel : lang in texts ? texts[lang].cancel : "";
+		this._acceptButton.textContent = this._texts.accept != "" ? this._texts.accept : lang in texts ? texts[lang].accept : "";
 		this.#setView(this._targetDate);
 	}
 	#loadValue() {
