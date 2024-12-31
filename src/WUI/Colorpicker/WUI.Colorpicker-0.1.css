@@ -15,7 +15,7 @@
 	background-repeat: no-repeat;
 	background-position-x: 100%;
 	background-image: none;
-	background-size: var(--wui-colorpicker-pickerimage-size);
+	background-size: var(--wui-colorpicker-openicon-size);
 	padding-right: 0;
 }
 .wui-colorpicker > input[type="color"] {
@@ -46,32 +46,35 @@
 	transition: var(--button-transition);
 }
 .wui-colorpicker:not(.disabled) > button {
-	border-color: var(--wui-colorpicker-bordercolor-out);
-	background-color: var(--wui-colorpicker-bgcolor-out);
+	border-color: var(--wui-colorpicker-button-bordercolor-out);
+	background-color: var(--wui-colorpicker-button-bgcolor-out);
 }
 .wui-colorpicker:not(.disabled):hover > button,
 .wui-colorpicker:not(.disabled):focus-within > button {
-	border-color: var(--wui-colorpicker-bordercolor-over);
-	background-color: var(--wui-colorpicker-bgcolor-over);
+	border-color: var(--wui-colorpicker-button-bordercolor-over);
+	background-color: var(--wui-colorpicker-button-bgcolor-over);
 }
 .wui-colorpicker.disabled {
-	border-color: var(--wui-colorpicker-bordercolor-disabled);
-	background-color: var(--wui-colorpicker-bgcolor-disabled);
+	border-color: var(--wui-colorpicker-button-bordercolor-disabled);
+	background-color: var(--wui-colorpicker-button-bgcolor-disabled);
 }
-.wui-colorpicker > button.button > .view {
-	--view-size: calc(var(--wui-colorpicker-button-size) - 6px);
-	width: var(--view-size);
-	height: var(--view-size);
-	overflow: hidden;
+.wui-colorpicker > button.button > .color {
+	--viewicon-size: calc(var(--wui-colorpicker-button-size) - 6px);
+	width: var(--viewicon-size);
+	height: var(--viewicon-size);
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
 	border-radius: 50%;
-	border-width: var(--wui-colorpicker-view-borderwidth);
+	border-width: var(--wui-colorpicker-viewicon-borderwidth);
 	border-style: solid;
-	border-color: var(--wui-colorpicker-view-bordercolor);
+	border-color: var(--wui-colorpicker-viewicon-bordercolor);
 }
-.wui-colorpicker > button.button > .view.empty {
-	border-width: 5px;
+.wui-colorpicker > button.button > .color.empty {
+	border: 0;
+	background-color: transparent;
+	background-position: center; 
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 .wui-colorpicker > .background {
 	display: none;
@@ -99,7 +102,7 @@
 	z-index: 101;
 	right: 0;
 	width: 250px;
-	height: 310px;
+	height: 320px;
 	-webkit-box-shadow: var(--box-shadow);
 	-moz-box-shadow: var(--box-shadow);
 	box-shadow: var(--box-shadow);
@@ -133,23 +136,21 @@
 .wui-colorpicker > .box > .header > .tab.selected {
 	color: var(--wui-colorpicker-box-tab-textcolor-selected);
 }
-.wui-colorpicker > .box > .grid,
-.wui-colorpicker > .box > .list {
-	--grid-radius: calc(var(--wui-colorpicker-box-radius) - 5px);
-	-webkit-border-radius: var(--grid-radius);
-	-moz-border-radius: var(--grid-radius);
-	border-radius: var(--grid-radius);
-}
 .wui-colorpicker > .box > .grid {
+	--grid-radius: calc(var(--wui-colorpicker-box-radius) - 5px);
 	display: grid;
 	width: 100%;
 	overflow: hidden;
+	-webkit-border-radius: var(--grid-radius);
+	-moz-border-radius: var(--grid-radius);
+	border-radius: var(--grid-radius);
 	grid-template-columns: repeat(12, 1fr);
 }
 .wui-colorpicker > .box > .grid.hidden {
 	display: none;
 }
 .wui-colorpicker > .box > .grid > .color {
+	cursor: pointer;
 	height: 20px;
 }
 .wui-colorpicker > .box > .list,
@@ -160,24 +161,23 @@
 	flex-shrink: 0;
 }
 .wui-colorpicker > .box > .list {
-	width: 100%;
+	position: absolute;
+	top: 45px;
+	left: 0;
+	right: 0;
 	height: 200px;
-	overflow: hidden;
+	overflow: auto;
+	border-top: 1px solid var(--wui-colorpicker-box-bordercolor);
+	border-bottom: 1px solid var(--wui-colorpicker-box-bordercolor);
+	padding: 5px;
+	flex-direction: column;
 }
 .wui-colorpicker > .box > .list.hidden {
 	display: none;
 }
-.wui-colorpicker > .box > .list {
-	position: absolute;
-	top: 40px;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	overflow: auto;
-	flex-direction: column;
-}
 .wui-colorpicker > .box > .list > .option {
 	--option-radius: 5px;
+	cursor: pointer;
 	width: 100%;
 	height: 30px;
 	-webkit-border-radius: var(--option-radius);
@@ -194,16 +194,63 @@
 	border-color: var(--wui-colorpicker-box-option-bordercolor-over);
 	background-color: var(--wui-colorpicker-box-option-bgcolor-over);
 }
-.wui-colorpicker > .box > .list > .option > .icon {
+.wui-colorpicker > .box > .list > .option.selected {
+	background-color: var(--wui-colorpicker-box-option-bgcolor-selected);
+}
+.wui-colorpicker > .box > .list > .option > .color {
 	width: 24px;
 	height: 24px;
-	overflow: hidden;
-	-webkit-border-radius: 12px;
-	-moz-border-radius: 12px;
-	border-radius: 12px;
-	border-width: var(--wui-colorpicker-view-borderwidth);
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	border-width: var(--wui-colorpicker-viewicon-borderwidth);
 	border-style: solid;
-	border-color: var(--wui-colorpicker-view-bordercolor);
+	border-color: var(--wui-colorpicker-viewicon-bordercolor);
+}
+.wui-colorpicker > .box > .list > .option > .text {
+	font-size: 14px;
+	color: var(--wui-colorpicker-box-option-textcolor-out);
+}
+.wui-colorpicker > .box > .list > .option:hover > .text,
+.wui-colorpicker > .box > .list > .option:focus > .text,
+.wui-colorpicker > .box > .list > .option:focus-within > .text {
+	color: var(--wui-colorpicker-box-option-textcolor-over);
+}
+.wui-colorpicker > .box > .list > .option.selected > .text {
+	color: var(--wui-colorpicker-box-option-textcolor-selected);
+}
+.wui-colorpicker > .box > .preview {
+	position: absolute;
+	left: 5px;
+	right: 5px;
+	bottom: 30px;
+	height: 40px;
+	padding: 0 10px;
+	align-items: center;
+	gap: 10px;
+}
+.wui-colorpicker > .box > .preview > .color {
+	--option-radius: 5px;
+	width: 24px;
+	height: 24px;
+	-webkit-border-radius: var(--option-radius);
+	-moz-border-radius: var(--option-radius);
+	border-radius: var(--option-radius);
+}
+.wui-colorpicker > .box > .preview > .color.empty {
+	border: 0;
+	background-color: transparent;
+	background-position: center; 
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.wui-colorpicker > .box > .preview > .text {
+	font-size: 14px;
+	color: var(--wui-colorpicker-box-preview-textcolor-out);
+}
+.wui-colorpicker > .box > .preview > .text.empty {
+	font-style: italic;
+	color: var(--wui-colorpicker-box-preview-textcolor-empty);
 }
 .wui-colorpicker > .box > .footer {
 	display: flex;
@@ -255,13 +302,36 @@
 		top: 50%;
 		left: 50%;
 		width: 300px;
-		height: 310px;
-		-webkit-box-shadow: var(--box-shadow);
-		-moz-box-shadow: var(--box-shadow);
-		box-shadow: var(--box-shadow);
+		height: 368px;
 		-webkit-transform: var(--box-transform);
 		-moz-transform: var(--box-transform);
 		transform: var(--box-transform);
+	}
+	.wui-colorpicker > .box > .header > .tab {
+		font-size: 17px;
+	}
+	.wui-colorpicker > .box > .grid > .color {
+		height: 24px;
+	}
+	.wui-colorpicker > .box > .list {
+		height: 240px;
+	}
+	.wui-colorpicker > .box > .list > .option {
+		--option-radius: 8px;
+		height: 40px;
+	}
+	.wui-colorpicker > .box > .list > .option > .color {
+		width: 26px;
+		height: 26px;
+	}
+	.wui-colorpicker > .box > .list > .option > .text {
+		font-size: 17px;
+	}
+	.wui-colorpicker > .box > .preview {
+		bottom: 40px;
+	}
+	.wui-colorpicker > .box > .preview > .text {
+		font-size: 17px;
 	}
 	.wui-colorpicker > .box > .footer {
 		height: 40px;

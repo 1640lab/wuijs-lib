@@ -3,6 +3,16 @@
 class WUISelectpicker {
 	static version = "0.1";
 	static #constants = {
+		icons: {
+			open: ""
+				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
+				+"<path d='M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0z'/>"
+				+"</svg>",
+			check: ""
+				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'>"
+				+"<path d='M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z'/>"
+				+"</svg>"
+		},
 		texts: {
 			de: {
 				empty: "leer",
@@ -25,9 +35,7 @@ class WUISelectpicker {
 		selector: "",
 		value: "",
 		lang: "en",
-		emptyText: "",
-		cancelText: "",
-		acceptText: "",
+		texts: {},
 		enabled: true,
 		onOpen: null,
 		onChange: null
@@ -46,14 +54,8 @@ class WUISelectpicker {
 	get lang() {
 		return this._lang;
 	}
-	get emptyText() {
-		return thie._emptyText;
-	}
-	get cancelText() {
-		return this._cancelText;
-	}
-	get acceptText() {
-		return this._acceptText;
+	get texts() {
+		return this._texts;
 	}
 	get enabled() {
 		return this._enabled;
@@ -82,19 +84,14 @@ class WUISelectpicker {
 			this._lang = value.toLowerCase();
 		}
 	}
-	set emptyText(value) {
-		if (typeof(value) == "string") {
-			this._emptyText = value;
-		}
-	}
-	set cancelText(value) {
-		if (typeof(value) == "string") {
-			this._cancelText = value;
-		}
-	}
-	set acceptText(value) {
-		if (typeof(value) == "string") {
-			this._acceptText = value;
+	set texts(value) {
+		if (typeof(value) == "object" && !Array.isArray(value) && value !== null) {
+			Object.keys(WUISelectpicker.#constants.texts.en).forEach(text => {
+				if (!(text in value)) {
+					value[text] = "";
+				}
+			});
+			this._texts = value;
 		}
 	}
 	set enabled(value) {
@@ -128,15 +125,11 @@ class WUISelectpicker {
 	getInput() {
 		return this._input;
 	}
-	addOption(option) {
-		if (typeof(this._input) != "undefined") {
-			const selected = typeof(option.selected) == "boolean" ? option.selected : false;
-			const element = new Option(option.text || "", option.value || "", selected);
-			if (typeof(option.className) == "string") {
-				element.className = option.className;
-			}
-			this._input.appendChild(element);
-		}
+	#getSRCIcon(name, event) {
+		const element = this._element || document.documentElement;
+		const color = getComputedStyle(element).getPropertyValue("--wui-selectpicker-"+name+"icon-"+event).replace(/#/g, "%23").trim();
+		const src = getComputedStyle(element).getPropertyValue("--wui-selectpicker-"+name+"icon-src").replace(/currentColor/g, color);
+		return src != "" && !src.match(/^(none|url\(\))$/) ? src : "url(\"data:image/svg+xml,"+WUISelectpicker.#constants.icons[name].replace(/currentColor/g, color)+"\")";
 	}
 	#setValue(value) {
 		this._input.value = value;
@@ -154,13 +147,17 @@ class WUISelectpicker {
 			this._element.classList.remove("disabled");
 		}
 	}
-	init() {
-		const backgroundImage = (name, event) => {
-			const element = this._input || this._element || document.documentElement;
-			const color = getComputedStyle(element).getPropertyValue("--wui-selectpicker-"+name+"color-"+event).replace(/#/g, "%23").trim();
-			const image = getComputedStyle(element).getPropertyValue("--wui-selectpicker-"+name+"image-src").replace(/currentColor/g, color);
-			return image;
+	addOption(option) {
+		if (typeof(this._input) != "undefined") {
+			const selected = typeof(option.selected) == "boolean" ? option.selected : false;
+			const element = new Option(option.text || "", option.value || "", selected);
+			if (typeof(option.className) == "string") {
+				element.className = option.className;
+			}
+			this._input.appendChild(element);
 		}
+	}
+	init() {
 		this._inputText = document.createElement("input");
 		this._background = document.createElement("div");
 		this._box = document.createElement("div");
@@ -171,16 +168,16 @@ class WUISelectpicker {
 		this._element.appendChild(this._inputText);
 		this._element.appendChild(this._background);
 		this._element.appendChild(this._box);
-		this._element.style.backgroundImage = backgroundImage("picker", this._input.disabled ? "disabled" : "out");
+		this._element.style.backgroundImage = this.#getSRCIcon("open", this._input.disabled ? "disabled" : "out");
 		this._element.addEventListener("click", event => {
 			if (event.target.classList.contains("wui-selectpicker")) { // && this._element.offsetWidth - event.offsetX < 30
 				this.toggle();
 			}
 		});
 		["mouseover", "mouseout", "focus", "blur"].forEach(type => {
-			const pickerType = this._input.disabled ? "disabled" : type == "blur" ? "out" : type.replace(/mouse/, "");
+			const event = this._input.disabled ? "disabled" : type == "blur" ? "out" : type.replace(/mouse/, "");
 			this._element.addEventListener(type, () => {
-				this._element.style.backgroundImage = backgroundImage("picker", pickerType);
+				this._element.style.backgroundImage = this.#getSRCIcon("open", event);
 			});
 		});
 		if (this._input.getAttribute("style") != null) {
@@ -196,9 +193,11 @@ class WUISelectpicker {
 			const icon = document.createElement("div");
 			const text = document.createElement("div");
 			const selected = Boolean(option.selected);
-			icon.className = "icon "+(typeof(option.icon) == "string" && option.icon != "" ? option.icon : "wui-svgicon check-line");
-			text.className = "text "+(this._selecteableText ? "selecteable" : "");
-			text.innerHTML = option.value == "" ? "<i class='empty'>"+(this._emptyText != "" ? this._emptyText : lang in WUISelectpicker.#constants.texts ? WUISelectpicker.#constants.texts[lang].empty : "")+"</i>" : option.text;
+			const customIcon = Boolean(typeof(option.icon) == "string" && option.icon != "");
+			icon.className = "icon"+(customIcon ? " "+option.icon : "");
+			icon.style.maskImage = !customIcon ? this.#getSRCIcon("check", selected ? "selected" : "out") : "url()";
+			text.className = "text"+(option.value == " empty" ? "" : "")+(this._selecteableText ? " selecteable" : "");
+			text.innerHTML = option.value == "" ? (this.texts.empty != "" ? this.texts.empty : lang in WUISelectpicker.#constants.texts ? WUISelectpicker.#constants.texts[lang].empty : "") : option.text;
 			option.classList.forEach(key => {
 				text.classList.add(key);
 			});
@@ -250,10 +249,11 @@ class WUISelectpicker {
 	}
 	#prepare() {
 		const lang = this._lang;
+		const texts = WUISelectpicker.#constants.texts;
 		this._targetValue = this._input.value || "";
 		this._cancelValue = this._targetValue;
-		this._cancelButton.textContent = this._cancelText != "" ? this._cancelText : lang in WUISelectpicker.#constants.texts ? WUISelectpicker.#constants.texts[lang].cancel : "";
-		this._acceptButton.textContent = this._acceptText != "" ? this._acceptText : lang in WUISelectpicker.#constants.texts ? WUISelectpicker.#constants.texts[lang].accept : "";
+		this._cancelButton.textContent = this._texts.cancel != "" ? this._texts.cancel : lang in texts ? texts[lang].cancel : "";
+		this._acceptButton.textContent = this._texts.accept != "" ? this._texts.accept : lang in texts ? texts[lang].accept : "";
 		this.#setView(this._targetValue);
 	}
 	#loadBox() {

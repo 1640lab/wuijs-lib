@@ -191,9 +191,6 @@
 		left: 50%;
 		width: 300px;
 		height: 310px;
-		-webkit-box-shadow: var(--box-shadow);
-		-moz-box-shadow: var(--box-shadow);
-		box-shadow: var(--box-shadow);
 		-webkit-transform: var(--box-transform);
 		-moz-transform: var(--box-transform);
 		transform: var(--box-transform);
