@@ -15,7 +15,7 @@
 	background-repeat: no-repeat;
 	background-position-x: 100%;
 	background-image: none;
-	background-size: var(--wui-timepicker-pickerimage-size);
+	background-size: var(--wui-timepicker-openicon-size);
 	padding-right: 2rem;
 }
 .wui-timepicker > input[type="time"] {

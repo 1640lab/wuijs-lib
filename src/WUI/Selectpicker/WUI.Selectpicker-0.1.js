@@ -8,7 +8,7 @@ class WUISelectpicker {
 				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
 				+"<path d='M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0z'/>"
 				+"</svg>",
-			check: ""
+			"box-option-check": ""
 				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'>"
 				+"<path d='M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z'/>"
 				+"</svg>"
@@ -127,7 +127,7 @@ class WUISelectpicker {
 	}
 	#getSRCIcon(name, event) {
 		const element = this._element || document.documentElement;
-		const color = getComputedStyle(element).getPropertyValue("--wui-selectpicker-"+name+"icon-"+event).replace(/#/g, "%23").trim();
+		const color = getComputedStyle(element).getPropertyValue("--wui-selectpicker-"+name+"color-"+event).replace(/#/g, "%23").trim();
 		const src = getComputedStyle(element).getPropertyValue("--wui-selectpicker-"+name+"icon-src").replace(/currentColor/g, color);
 		return src != "" && !src.match(/^(none|url\(\))$/) ? src : "url(\"data:image/svg+xml,"+WUISelectpicker.#constants.icons[name].replace(/currentColor/g, color)+"\")";
 	}
@@ -194,9 +194,9 @@ class WUISelectpicker {
 			const text = document.createElement("div");
 			const selected = Boolean(option.selected);
 			const customIcon = Boolean(typeof(option.icon) == "string" && option.icon != "");
-			icon.className = "icon"+(customIcon ? " "+option.icon : "");
-			icon.style.maskImage = !customIcon ? this.#getSRCIcon("check", selected ? "selected" : "out") : "url()";
-			text.className = "text"+(option.value == " empty" ? "" : "")+(this._selecteableText ? " selecteable" : "");
+			icon.className = "icon "+(customIcon ? option.icon : "check");
+			icon.style.maskImage = !customIcon ? this.#getSRCIcon("box-option-check", selected ? "selected" : "out") : "url()";
+			text.className = "text "+(option.value == "" ? "empty" : this._selecteableText ? "selecteable" : "");
 			text.innerHTML = option.value == "" ? (this.texts.empty != "" ? this.texts.empty : lang in WUISelectpicker.#constants.texts ? WUISelectpicker.#constants.texts[lang].empty : "") : option.text;
 			option.classList.forEach(key => {
 				text.classList.add(key);

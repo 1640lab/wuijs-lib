@@ -141,7 +141,7 @@ class WUITimepicker {
 	}
 	#getSRCIcon(name, event) {
 		const element = this._element || document.documentElement;
-		const color = getComputedStyle(element).getPropertyValue("--wui-timepicker-"+name+"icon-"+event).replace(/#/g, "%23").trim();
+		const color = getComputedStyle(element).getPropertyValue("--wui-timepicker-"+name+"color-"+event).replace(/#/g, "%23").trim();
 		const src = getComputedStyle(element).getPropertyValue("--wui-timepicker-"+name+"icon-src").replace(/currentColor/g, color);
 		return src != "" && !src.match(/^(none|url\(\))$/) ? src : "url(\"data:image/svg+xml,"+WUITimepicker.#constants.icons[name].replace(/currentColor/g, color)+"\")";
 	}
@@ -268,7 +268,7 @@ class WUITimepicker {
 		this.#prepare();
 	}
 	#prepare() {
-		const lang = this._locales.split("-")[0].toLowerCase();
+		const lang = this._lang;
 		const texts = WUITimepicker.#constants.texts;
 		const now = (() => {
 			const date = new Date();

@@ -15,7 +15,7 @@
 	background-repeat: no-repeat;
 	background-position-x: 100%;
 	background-image: none;
-	background-size: var(--wui-datepicker-pickerimage-size);
+	background-size: var(--wui-datepicker-openicon-size);
 	padding-right: 2rem;
 }
 .wui-datepicker > input[type="date"] {
@@ -104,51 +104,28 @@
 }
 .wui-datepicker > .box > .header > .period {
 	cursor: pointer;
+}
+.wui-datepicker > .box > .header > .period > .text {
 	font-size: 14px;
+}
+.wui-datepicker > .box > .header > .period > .icon,
+.wui-datepicker > .box > .header > .prev,
+.wui-datepicker > .box > .header > .next {
+	cursor: pointer;
+	background-image: none;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 .wui-datepicker > .box > .header > .period > .icon {
 	width: 20px;
 	height: 20px;
-	-webkit-mask-size: contain;
-	-webkit-mask-repeat: no-repeat;
-	-webkit-mask-position: center;
-	-moz-mask-size: contain;
-	-moz-mask-repeat: no-repeat;
-	-moz-mask-position: center;
-	mask-size: contain;
-	mask-repeat: no-repeat;
-	mask-position: center;
-	background-color: var(--wui-datepicker-box-periodcolor-out);
-}
-.wui-datepicker > .box > .header > .period:hover > .icon {
-	background-color: var(--wui-datepicker-box-periodcolor-over);
-}
-.wui-datepicker > .box > .header > .period > .icon.up {
-	-webkit-mask-image: var(--wui-datepicker-box-periodimage-upsrc);
-	-moz-mask-image: var(--wui-datepicker-box-periodimage-upsrc);
-	mask-image: var(--wui-datepicker-box-periodimage-upsrc);
-}
-.wui-datepicker > .box > .header > .period > .icon.down {
-	-webkit-mask-image: var(--wui-datepicker-box-periodimage-downsrc);
-	-moz-mask-image: var(--wui-datepicker-box-periodimage-downsrc);
-	mask-image: var(--wui-datepicker-box-periodimage-downsrc);
 }
 .wui-datepicker > .box > .header > .prev,
 .wui-datepicker > .box > .header > .next {
-	--paging-transform: translateY(-50%);
-	cursor: pointer;
 	position: absolute;
-	top: 50%;
 	width: 26px;
 	height: 26px;
-	background-image: none;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position-x: center;
-	background-position-y: center;
-	-webkit-transform: var(--paging-transform);
-	-moz-transform: var(--paging-transform);
-	transform: var(--paging-transform);
 }
 .wui-datepicker > .box > .header > .prev {
 	right: 32px;

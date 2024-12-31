@@ -108,6 +108,12 @@
 	align-items: center;
 	gap: 10px;
 }
+.wui-selectpicker > .box > .options > .option:not(.disabled):hover,
+.wui-selectpicker > .box > .options > .option:not(.disabled):focus,
+.wui-selectpicker > .box > .options > .option:not(.disabled):focus-within {
+	border-color: var(--wui-selectpicker-box-option-bordercolor-over);
+	background-color: var(--wui-selectpicker-box-option-bgcolor-over);
+}
 .wui-selectpicker > .box > .options > .option > .icon {
 	visibility: hidden;
 	width: 24px;
@@ -119,11 +125,21 @@
 	-moz-mask-repeat: no-repeat;
 	mask-position: center;
 	mask-repeat: no-repeat;
-	background-color: var(--wui-selectpicker-box-option-iconcolor-out);
 }
 .wui-selectpicker > .box > .options > .option > .icon.visible,
 .wui-selectpicker > .box > .options > .option.selected > .icon {
 	visibility: visible;
+}
+.wui-selectpicker > .box > .options > .option > .icon.check {
+	background-color: var(--wui-selectpicker-box-option-checkicon-out);
+}
+.wui-selectpicker > .box > .options > .option:not(.disabled):hover > .icon.check,
+.wui-selectpicker > .box > .options > .option:not(.disabled):focus > .icon.check,
+.wui-selectpicker > .box > .options > .option:not(.disabled):focus-within > .icon.check {
+	background-color: var(--wui-selectpicker-box-option-checkicon-over);
+}
+.wui-selectpicker > .box > .options > .option.disabled > .icon.check {
+	background-color: var(--wui-selectpicker-box-option-checkicon-disabled);
 }
 .wui-selectpicker > .box > .options > .option > .text {
 	cursor: default;
@@ -133,34 +149,20 @@
 	text-overflow: ellipsis;
 	color: var(--wui-selectpicker-box-option-textcolor-out);
 }
-.wui-selectpicker > .box > .options > .option.selected > .text.selecteable {
-	color: var(--wui-selectpicker-box-option-textcolor-selected) !important;
-}
 .wui-selectpicker > .box > .options > .option > .text.empty {
 	font-style: italic;
 	color: var(--wui-selectpicker-box-option-textcolor-empty);
-}
-.wui-selectpicker > .box > .options > .option:not(.disabled):hover,
-.wui-selectpicker > .box > .options > .option:not(.disabled):focus,
-.wui-selectpicker > .box > .options > .option:not(.disabled):focus-within {
-	border-color: var(--wui-selectpicker-box-option-bordercolor-over);
-	background-color: var(--wui-selectpicker-box-option-bgcolor-over);
-}
-.wui-selectpicker > .box > .options > .option:not(.disabled):hover > .icon,
-.wui-selectpicker > .box > .options > .option:not(.disabled):focus > .icon,
-.wui-selectpicker > .box > .options > .option:not(.disabled):focus-within > .icon {
-	background-color: var(--wui-selectpicker-box-option-iconcolor-over);
 }
 .wui-selectpicker > .box > .options > .option:not(.disabled):hover > .text,
 .wui-selectpicker > .box > .options > .option:not(.disabled):focus > .text,
 .wui-selectpicker > .box > .options > .option:not(.disabled):focus-within > .text {
 	color: var(--wui-selectpicker-box-option-textcolor-over);
 }
-.wui-selectpicker > .box > .options > .option.disabled > .icon {
-	background-color: var(--wui-selectpicker-box-option-iconcolor-disabled);
-}
 .wui-selectpicker > .box > .options > .option.disabled > .text {
 	color: var(--wui-selectpicker-box-option-textcolor-disabled);
+}
+.wui-selectpicker > .box > .options > .option.selected > .text.selecteable {
+	color: var(--wui-selectpicker-box-option-textcolor-selected) !important;
 }
 .wui-selectpicker > .box > .footer {
 	display: none;

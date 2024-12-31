@@ -20,15 +20,19 @@ class WUIDatepicker {
 				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
 				+"<path d='M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0z'/>"
 				+"</svg>",
-			down: ""
+			"box-up": ""
+				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
+				+"<path d='M8.12 14.71L12 10.83l3.88 3.88a.996.996 0 1 0 1.41-1.41L12.7 8.71a.996.996 0 0 0-1.41 0L6.7 13.3a.996.996 0 0 0 0 1.41c.39.38 1.03.39 1.42 0z'/>"
+				+"</svg>",
+			"box-down": ""
 				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
 				+"<path d='M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0z'/>"
 				+"</svg>",
-			prev: ""
+			"box-prev": ""
 				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
 				+"<path d='M14.71 15.88L10.83 12l3.88-3.88a.996.996 0 1 0-1.41-1.41L8.71 11.3a.996.996 0 0 0 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0c.38-.39.39-1.03 0-1.42z'/>"
 				+"</svg>",
-			next: ""
+			"box-next": ""
 				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
 				+"<path d='M9.29 15.88L13.17 12L9.29 8.12a.996.996 0 1 1 1.41-1.41l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3a.996.996 0 0 1-1.41 0c-.38-.39-.39-1.03 0-1.42z'/>"
 				+"</svg>"
@@ -198,7 +202,7 @@ class WUIDatepicker {
 	}
 	#getSRCIcon(name, event) {
 		const element = this._element || document.documentElement;
-		const color = getComputedStyle(element).getPropertyValue("--wui-datepicker-"+name+"icon-"+event).replace(/#/g, "%23").trim();
+		const color = getComputedStyle(element).getPropertyValue("--wui-datepicker-"+name+"color-"+event).replace(/#/g, "%23").trim();
 		const src = getComputedStyle(element).getPropertyValue("--wui-datepicker-"+name+"icon-src").replace(/currentColor/g, color);
 		return src != "" && !src.match(/^(none|url\(\))$/) ? src : "url(\"data:image/svg+xml,"+WUIDatepicker.#constants.icons[name].replace(/currentColor/g, color)+"\")";
 	}
@@ -228,6 +232,8 @@ class WUIDatepicker {
 		this._box = document.createElement("div");
 		this._header = document.createElement("div");
 		this._period = document.createElement("div");
+		this._periodText = document.createElement("div");
+		this._periodIcon = document.createElement("div");
 		this._prev = document.createElement("div");
 		this._next = document.createElement("div");
 		this._months = document.createElement("div");
@@ -249,6 +255,9 @@ class WUIDatepicker {
 			const event = this._input.disabled ? "disabled" : type == "blur" ? "out" : type.replace(/mouse/, "");
 			this._element.addEventListener(type, () => {
 				this._element.style.backgroundImage = this.#getSRCIcon("open", event);
+			});
+			this._period.addEventListener(type, () => {
+				this._periodIcon.style.backgroundImage = this.#getSRCIcon("box-"+(this._mode == "months" ? "up" : "down"), event);
 			});
 		});
 		["min", "max", "style"].forEach(name => {
@@ -294,6 +303,10 @@ class WUIDatepicker {
 		this._header.appendChild(this._next);
 		this._period.className = "period";
 		this._period.addEventListener("click", () => {this.toggleMode();});
+		this._period.appendChild(this._periodText);
+		this._period.appendChild(this._periodIcon);
+		this._periodText.className = "text";
+		this._periodIcon.className = "icon";
 		this._prev.className = "prev";
 		this._prev.style.backgroundImage = this.#getSRCIcon("box-prev", this._input.disabled ? "disabled" : "out");
 		this._prev.addEventListener("click", () => {this.prev();});
@@ -381,7 +394,8 @@ class WUIDatepicker {
 		let y = year;
 		let m = 1;
 		this._box.classList.remove("extended");
-		this._period.innerHTML = this._monthsNames[month -1]+" "+year+" <div class='icon up'></div>";
+		this._periodText.textContent = this._monthsNames[month -1]+" "+year;
+		this._periodIcon.style.backgroundImage = this.#getSRCIcon("box-up", this._input.disabled ? "disabled" : "out");
 		this._months.style.display = "grid";
 		this._months.innerHTML = "";
 		this._week.style.display = "none";
@@ -445,7 +459,8 @@ class WUIDatepicker {
 		let rows = 5;
 		let d = 1;
 		this._box.classList.remove("extended");
-		this._period.innerHTML = this._monthsNames[month -1]+" "+year+" <div class='icon down'></div>";
+		this._periodText.textContent = this._monthsNames[month -1]+" "+year;
+		this._periodIcon.style.backgroundImage = this.#getSRCIcon("box-down", this._input.disabled ? "disabled" : "out");
 		this._months.style.display = "none";
 		this._months.innerHTML = "";
 		this._week.style.display = "grid";

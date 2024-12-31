@@ -269,7 +269,7 @@ class WUIColorpicker {
 	}
 	#getSRCIcon(name, event) {
 		const element = this._element || document.documentElement;
-		const color = getComputedStyle(element).getPropertyValue("--wui-colorpicker-"+name+"icon-"+event).replace(/#/g, "%23").trim();
+		const color = getComputedStyle(element).getPropertyValue("--wui-colorpicker-"+name+"color-"+event).replace(/#/g, "%23").trim();
 		const src = getComputedStyle(element).getPropertyValue("--wui-colorpicker-"+name+"icon-src").replace(/currentColor/g, color);
 		return src != "" && !src.match(/^(none|url\(\))$/) ? src : "url(\"data:image/svg+xml,"+WUIColorpicker.#constants.icons[name].replace(/currentColor/g, color)+"\")";
 	}
