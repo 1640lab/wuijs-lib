@@ -7,8 +7,8 @@ class WUITabs {
 		index: 0
 	};
 	constructor (properties) {
-		Object.keys(this.#defaults).forEach(key => {
-			this[key] = typeof(properties) != "undefined" && key in properties ? properties[key] : this.#defaults[key];
+		Object.keys(this.#defaults).forEach(prop => {
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : this.#defaults[prop];
 		});
 	}
 	get selector() {

@@ -11,8 +11,8 @@ class WUIList {
 		onClick: null
 	};
 	constructor (properties) {
-		Object.keys(this.#defaults).forEach(key => {
-			this[key] = typeof(properties) != "undefined" && key in properties ? properties[key] : this.#defaults[key];
+		Object.keys(this.#defaults).forEach(prop => {
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : this.#defaults[prop];
 		});
 	}
 	get selector() {
@@ -102,33 +102,32 @@ class WUIList {
 		this._strips = [];
 		if (this._body != null) {
 			this._body.innerHTML = "";
-			this._rows.forEach((dataRow, i) => {
+			this._rows.forEach((rowDataset, i) => {
 				const row = document.createElement("div");
 				const strip = document.createElement("div");
-				const id = "id" in dataRow ? dataRow.id : null;
-				strip.className = "strip";
+				const id = "id" in rowDataset ? rowDataset.id : null;
 				row.dataset.index = i;
 				row.dataset.id = id;
 				row.className = "row";
 				row.append(strip);
-				dataRow.data.forEach((item, j) => {
-					const dataColumn = this._columns[j] || {};
+				strip.className = "strip";
+				this._columns.forEach((columnDataset, j) => {
 					const cell = document.createElement("div");
 					cell.className = "cell";
-					cell.classList.add(dataColumn.align || "left");
-					if (typeof(dataColumn.width) == "number") {
-						cell.style.width = dataColumn.width+"px";
+					cell.classList.add(columnDataset.align || "left");
+					if (typeof(columnDataset.width) == "number") {
+						cell.style.width = columnDataset.width+"px";
 					} else {
 						cell.style.flex = "1";
 					}
-					cell.style.textAlign = dataColumn.align || "left";
-					cell.innerHTML = item;
+					cell.style.textAlign = columnDataset.align || "left";
+					cell.innerHTML = rowDataset.data[i] || "";
 					strip.append(cell);
 				});
 				strip.addEventListener("click", event => {
 					if (this._buttons.length == 0 || this._strips[i].direction == null) {
 						if (typeof(this._onClick) == "function") {
-							this._onClick(i, id, event, dataRow);
+							this._onClick(i, id, event, rowDataset);
 						}
 						this._strips.forEach((str, s) => {
 							if (str.open) {

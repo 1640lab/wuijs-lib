@@ -74,8 +74,8 @@ class WUIDatepicker {
 		});
 	}
 	constructor (properties) {
-		Object.keys(this.#defaults).forEach(key => {
-			this[key] = typeof(properties) != "undefined" && key in properties ? properties[key] : this.#defaults[key];
+		Object.keys(this.#defaults).forEach(prop => {
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : this.#defaults[prop];
 		});
 	}
 	get selector() {
@@ -392,12 +392,12 @@ class WUIDatepicker {
 	}
 	#loadBox() {
 		if (this._mode == "months") {
-			this.#buildMonths();
+			this.#printMonths();
 		} else if (this._mode == "days") {
-			this.#buildDays();
+			this.#printDays();
 		}
 	}
-	#buildMonths() {
+	#printMonths() {
 		const year = this._targetDate.getFullYear();
 		const month = this._targetDate.getMonth() +1;
 		let y = year;
@@ -457,7 +457,7 @@ class WUIDatepicker {
 			this._months.appendChild(cell);
 		}
 	}
-	#buildDays() {
+	#printDays() {
 		const year = this._targetDate.getFullYear();
 		const month = this._targetDate.getMonth() +1;
 		const country = this.locales.split("-")[1].toUpperCase();
@@ -531,7 +531,7 @@ class WUIDatepicker {
 		const year = this._targetDate.getFullYear() +step;
 		this._targetDate.setFullYear(year);
 		this._targetValue = this._targetDate.toISOString().split("T")[0];
-		this.#buildMonths();
+		this.#printMonths();
 	}
 	#monthsStep(step) {
 		let month = this._targetDate.getMonth() +step;
@@ -548,7 +548,7 @@ class WUIDatepicker {
 		}
 		this._targetDate.setMonth(month);
 		this._targetValue = this._targetDate.toISOString().split("T")[0];
-		this.#buildDays();
+		this.#printDays();
 	}
 	open() {
 		const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
