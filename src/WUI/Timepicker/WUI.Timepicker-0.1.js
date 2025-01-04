@@ -149,10 +149,15 @@ class WUITimepicker {
 		return this._input;
 	}
 	#getSRCIcon(name, event) {
+		const rgb2Hex = (rgb) => "#"+rgb.map(x => {return ("0"+parseInt(x).toString(16)).slice(-2);}).join("");
+		const prepareColor = (color) => {
+			return color.replace(/\s+/g, "").match(/\d+\,\d+\,\d+/) ? rgb2Hex(color.replace(/\s+/g, "").replace(/rgb\((\d+\,\d+\,\d+)\)$/, "$1").split(",")) : color;
+		}
 		const element = this._element || document.documentElement;
-		const color = getComputedStyle(element).getPropertyValue("--wui-timepicker-"+name+"color-"+event).replace(/#/g, "%23").trim();
-		const src = getComputedStyle(element).getPropertyValue("--wui-timepicker-"+name+"icon-src").replace(/currentColor/g, color);
-		return src != "" && !src.match(/^(none|url\(\))$/) ? src : "url(\"data:image/svg+xml,"+WUITimepicker.#constants.icons[name].replace(/currentColor/g, color)+"\")";
+		const baseColor = getComputedStyle(element).getPropertyValue("--wui-timepicker-"+name+"color-"+event);
+		const hexColor = prepareColor(baseColor).replace(/#/g, "%23").trim();
+		const src = getComputedStyle(element).getPropertyValue("--wui-timepicker-"+name+"icon-src").replace(/currentColor/g, hexColor);
+		return src != "" && !src.match(/^(none|url\(\))$/) ? src : "url(\"data:image/svg+xml,"+WUITimepicker.#constants.icons[name].replace(/currentColor/g, hexColor)+"\")";
 	}
 	#setValue(value) {
 		this._input.value = value;

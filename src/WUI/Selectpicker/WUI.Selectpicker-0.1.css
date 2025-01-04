@@ -137,15 +137,15 @@
 	visibility: visible;
 }
 .wui-selectpicker > .box > .options > .option > .icon.check {
-	background-color: var(--wui-selectpicker-box-option-checkicon-out);
+	background-color: var(--wui-selectpicker-box-option-checkcolor-out);
 }
 .wui-selectpicker > .box > .options > .option:not(.disabled):hover > .icon.check,
 .wui-selectpicker > .box > .options > .option:not(.disabled):focus > .icon.check,
 .wui-selectpicker > .box > .options > .option:not(.disabled):focus-within > .icon.check {
-	background-color: var(--wui-selectpicker-box-option-checkicon-over);
+	background-color: var(--wui-selectpicker-box-option-checkcolor-over);
 }
 .wui-selectpicker > .box > .options > .option.disabled > .icon.check {
-	background-color: var(--wui-selectpicker-box-option-checkicon-disabled);
+	background-color: var(--wui-selectpicker-box-option-checkcolor-disabled);
 }
 .wui-selectpicker > .box > .options > .option > .text {
 	cursor: default;
