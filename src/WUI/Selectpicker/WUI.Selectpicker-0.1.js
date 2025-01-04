@@ -37,6 +37,7 @@ class WUISelectpicker {
 		lang: "en",
 		texts: {},
 		openDirection: "down",
+		filterable: true,
 		enabled: true,
 		onOpen: null,
 		onChange: null
@@ -60,6 +61,9 @@ class WUISelectpicker {
 	}
 	get openDirection() {
 		return this._openDirection;
+	}
+	get filterable() {
+		return this._filterable;
 	}
 	get enabled() {
 		return this._enabled;
@@ -103,6 +107,19 @@ class WUISelectpicker {
 			this._openDirection = value.toLowerCase();
 		}
 	}
+	set filterable(value) {
+		if (typeof(value) == "boolean") {
+			this._filterable = value;
+			if (typeof(this._inputText) != "undefined") {
+				this._inputText.readonly = !value;
+				if (value) {
+					this._inputText.removeAttribute("readonly");
+				} else {
+					this._inputText.setAttribute("readonly", "true");
+				}
+			}
+		}
+	}
 	set enabled(value) {
 		if (typeof(value) == "boolean") {
 			this._enabled = value;
@@ -135,9 +152,9 @@ class WUISelectpicker {
 		return this._input;
 	}
 	#getSRCIcon(name, event) {
-		const rgb2Hex = (rgb) => "#"+rgb.map(x => {return ("0"+parseInt(x).toString(16)).slice(-2);}).join("");
+		const rgb2Hex = (rgba) => "#"+rgba.map((x, i) => {return ("0"+parseInt(i == 3 ? 255*x : x).toString(16)).slice(-2);}).join("");
 		const prepareColor = (color) => {
-			return color.replace(/\s+/g, "").match(/\d+\,\d+\,\d+/) ? rgb2Hex(color.replace(/\s+/g, "").replace(/rgb\((\d+\,\d+\,\d+)\)$/, "$1").split(",")) : color;
+			return color.replace(/\s+/g, "").match(/\d+\,\d+\,\d+/) ? rgb2Hex(color.replace(/\s+/g, "").replace(/^rgba?\((\d+\,\d+\,\d+)(\,[\d.]+)?\)$/, "$1$2").split(",")) : color;
 		}
 		const element = this._element || document.documentElement;
 		const baseColor = getComputedStyle(element).getPropertyValue("--wui-selectpicker-"+name+"color-"+event);
@@ -245,8 +262,13 @@ class WUISelectpicker {
 		});
 		this._inputText.type = "text";
 		this._inputText.name = this._input.name+"Text";
-		this._inputText.readonly = true;
+		this._inputText.setAttribute("readonly", this._filterable ? "false" : "true");
 		this._inputText.addEventListener("click", () => {this.toggle();});
+		this._inputText.addEventListener("keyup", () => {
+			if (this._inputText.readonly) {
+				// ...
+			}
+		});
 		this._background.className = "background hidden";
 		this._box.className = "box "+this._openDirection+" hidden";
 		this._box.appendChild(this._options);
@@ -275,7 +297,8 @@ class WUISelectpicker {
 		this._options.querySelectorAll(".option").forEach(div => {
 			if (typeof(div.dataset.value) != "undefined") {
 				if (div.dataset.value == value) {
-					this._options.scrollTop = div.offsetTop - parseInt(this._options.clientHeight/2);
+					const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
+					this._options.scrollTop = div.offsetTop - parseInt(this._options.clientHeight/2) + (mobile ? parseInt(div.clientHeight/2) : 0);
 					div.classList.add("selected");
 				} else {
 					div.classList.remove("selected");

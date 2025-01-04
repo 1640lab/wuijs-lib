@@ -277,9 +277,9 @@ class WUIColorpicker {
 		return this._input;
 	}
 	#getSRCIcon(name, event) {
-		const rgb2Hex = (rgb) => "#"+rgb.map(x => {return ("0"+parseInt(x).toString(16)).slice(-2);}).join("");
+		const rgb2Hex = (rgba) => "#"+rgba.map((x, i) => {return ("0"+parseInt(i == 3 ? 255*x : x).toString(16)).slice(-2);}).join("");
 		const prepareColor = (color) => {
-			return color.replace(/\s+/g, "").match(/\d+\,\d+\,\d+/) ? rgb2Hex(color.replace(/\s+/g, "").replace(/rgb\((\d+\,\d+\,\d+)\)$/, "$1").split(",")) : color;
+			return color.replace(/\s+/g, "").match(/\d+\,\d+\,\d+/) ? rgb2Hex(color.replace(/\s+/g, "").replace(/^rgba?\((\d+\,\d+\,\d+)(\,[\d.]+)?\)$/, "$1$2").split(",")) : color;
 		}
 		const element = this._element || document.documentElement;
 		const baseColor = getComputedStyle(element).getPropertyValue("--wui-colorpicker-"+name+"color-"+event);

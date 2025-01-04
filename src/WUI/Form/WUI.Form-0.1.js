@@ -2,6 +2,14 @@
 
 class WUIForm {
 	static version = "0.1";
+	static #constants = {
+		icons: {
+			open: ""
+				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
+				+"<path d='M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0z'/>"
+				+"</svg>"
+		}
+	};
 	#defaults = {
 		selector: "",
 		submit: true,
@@ -106,6 +114,17 @@ class WUIForm {
 	getText(name) {
 		return this._element.querySelector(".text."+name);
 	}
+	#getSRCIcon(input, name, event) {
+		const rgb2Hex = (rgba) => "#"+rgba.map((x, i) => {return ("0"+parseInt(i == 3 ? 255*x : x).toString(16)).slice(-2);}).join("");
+		const prepareColor = (color) => {
+			return color.replace(/\s+/g, "").match(/\d+\,\d+\,\d+/) ? rgb2Hex(color.replace(/\s+/g, "").replace(/^rgba?\((\d+\,\d+\,\d+)(\,[\d.]+)?\)$/, "$1$2").split(",")) : color;
+		}
+		const element = input || this._form || this._element || document.documentElement;
+		const baseColor = getComputedStyle(element).getPropertyValue("--wui-form-"+name+"color-"+event);
+		const hexColor = prepareColor(baseColor).replace(/#/g, "%23").trim();
+		const src = getComputedStyle(element).getPropertyValue("--wui-form-"+name+"icon-src").replace(/currentColor/g, hexColor);
+		return src != "" && !src.match(/^(none|url\(\))$/) ? src : "url(\"data:image/svg+xml,"+WUIForm.#constants.icons[name].replace(/currentColor/g, hexColor)+"\")";
+	}
 	setType = (name, type) => {
 		const input = this.getInput(name);
 		input.type = type.toLowerCase();
@@ -176,12 +195,6 @@ class WUIForm {
 		}
 	}
 	init() {
-		const bgImage = (input, type, event) => {
-			const element = input || this._form || this._element || document.documentElement;
-			const color = getComputedStyle(element).getPropertyValue("--wui-form-"+type+"-pickercolor-"+event).replace(/#/g, "%23").trim();
-			const image = getComputedStyle(element).getPropertyValue("--wui-form-"+type+"-pickerimage-src").replace(/currentColor/g, color);
-			return image;
-		}
 		this._form.addEventListener("submit", event => {
 			if (!this._submit) {
 				event.preventDefault();
@@ -204,10 +217,10 @@ class WUIForm {
 			const type = input.getAttribute("type") || "";
 			const label = input.parentNode.querySelector("label") || input.parentNode.parentNode.querySelector("label") || this.getLabel(input.name);
 			if (type.match(/^(date|time)$/i) || tag.match(/^(select)$/i)) {
-				const pickerType = type || tag;
-				input.style.backgroundImage = bgImage(input, pickerType, input.disabled ? "disabled" : "out");
+				const icon = (type || tag)+"-open";
+				input.style.backgroundImage = this.#getSRCIcon(input, icon, input.disabled ? "disabled" : "out");
 				["mouseover", "mouseout", "focus", "blur"].forEach(type => {
-					const pickerEvent = input.disabled ? "disabled" : type == "blur" ? "out" : type.replace(/mouse/, "");
+					const event = input.disabled ? "disabled" : type == "blur" ? "out" : type.replace(/mouse/, "");
 					input.addEventListener(type, () => {
 						if (label != null) {
 							if (type.match(/mouseover|focus/) || input.value != "") {
@@ -216,7 +229,7 @@ class WUIForm {
 								label.classList.remove("notempty");
 							}
 						}
-						input.style.backgroundImage = bgImage(input, pickerType, pickerEvent);
+						input.style.backgroundImage = this.#getSRCIcon(input, icon, event);
 						if (type == "focus") {
 							const open = new MouseEvent("mousedown");
 							input.dispatchEvent(open);
@@ -285,7 +298,7 @@ class WUIForm {
 }
 /*
 HTML struture:
-<form class="wui-form (line|border [curve]|mobile)">
+<form class="wui-form (line|border [curve]) [mobile]">
 	<input type="hidden" name="hidden">
 	<div class="header"></div>
 	<div class="body">
@@ -303,6 +316,17 @@ HTML struture:
 				<label>Time</label>
 				<input type="time" name="time">
 			</div>
+			<div class="field">
+				<label>Select</label>
+				<select name="select">
+					<option value="value1">value 1</option>
+					...
+				</select>
+			</div>
+			<div class="field color">
+				<label>Color</label>
+				<input type="color" name="color">
+			</div>
 			<div class="field textarea">
 				<label for="wuiTextarea"></label>
 				<textarea name="textarea"></textarea>
@@ -315,13 +339,29 @@ HTML struture:
 				<label>Data</label>
 				<data value="" class="name"></data>
 			</div>
+		</fieldset>
+		<legend>WUI Fieldset</legend>
+		<fieldset>
+			<div class="field">
+				<label>WUI Selectpicker</label>
+				<div class="wui-selectpicker">
+					<select name="wuiSelect">
+						<option value="value1">value 1</option>
+						...
+					</select>
+				</div>
+			</div>
 			<div class="field">
 				<label>WUI Datepicker</label>
-				<div class="wui-datepicker"><input type="date" name="wuiDatepicker" value=""></div>
+				<div class="wui-datepicker"><input type="date" name="wuiDate" value=""></div>
 			</div>
 			<div class="field">
 				<label>WUI Timepicker</label>
-				<div class="wui-timepicker"><input type="time" name="wuiTimepicker" value=""></div>
+				<div class="wui-timepicker"><input type="time" name="wuiTime" value=""></div>
+			</div>
+			<div class="field color">
+				<label>WUI Timepicker</label>
+				<div class="wui-colorpicker"><input type="color" name="wuiColor" value=""></div>
 			</div>
 			<div class="field checkbox">
 				<label for="wuiCheckbox">WUI Checkbox</label>
@@ -331,8 +371,8 @@ HTML struture:
 		<div class="text"></div>
 	</div>
 	<div class="footer">
-		<button class="wui-button cancel"></button>
-		<button class="wui-button submit"></button>
+		<button class="wui-button cancel">cancel</button>
+		<button class="wui-button submit">submit</button>
 	</div>
 </form>
 */

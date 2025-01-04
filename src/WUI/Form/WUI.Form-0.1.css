@@ -186,10 +186,10 @@
 	padding-right: 2rem;
 }
 .wui-form fieldset > .field > input[type="date"] {
-	background-size: var(--wui-form-date-pickerimage-size);
+	background-size: var(--wui-form-date-openicon-size);
 }
 .wui-form fieldset > .field > input[type="time"] {
-	background-size: var(--wui-form-time-pickerimage-size);
+	background-size: var(--wui-form-time-openicon-size);
 }
 .wui-form fieldset > .field > input[type="date"],
 .wui-form fieldset > .field > input[type="time"],
@@ -363,7 +363,7 @@
 	background-repeat: no-repeat;
 	background-position-x: 100%;
 	background-image: none;
-	background-size: var(--wui-form-select-pickerimage-size);
+	background-size: var(--wui-form-select-openicon-size);
 	padding-right: 2rem;
 }
 /*.wui-form fieldset > .field > select[multiple="true"] {
