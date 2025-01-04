@@ -121,7 +121,7 @@ class WUIList {
 						cell.style.flex = "1";
 					}
 					cell.style.textAlign = columnDataset.align || "left";
-					cell.innerHTML = rowDataset.data[i] || "";
+					cell.innerHTML = rowDataset.data[j] || "";
 					strip.append(cell);
 				});
 				strip.addEventListener("click", event => {
