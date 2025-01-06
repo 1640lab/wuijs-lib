@@ -51,9 +51,7 @@ class WUISelectpicker {
 				intro: Boolean(event.key == "Enter")
 			};
 			if (keys.up || keys.down) {
-				WUISelectpicker.getOpenInstances().every(selectpicker => {
-					// ...
-				});
+				// ...
 			} else if (keys.intro) {
 				// ...
 			}
