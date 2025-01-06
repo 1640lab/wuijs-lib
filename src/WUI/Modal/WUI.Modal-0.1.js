@@ -13,21 +13,31 @@ class WUIModal {
 		onBack: null
 	};
 	static #instances = [];
+	static initClass() {
+		document.addEventListener("keydown", event => {
+			if (event.key == "Escape") {
+				WUIModal.getAllInstances().every(modal => {
+					const classList = modal._element.classList;
+					if (classList.contains("opened") && !classList.contains("under")) {
+						setTimeout(() => {
+							modal.close();
+						}, 100);
+						return false;
+					}
+					return true;
+				});
+			}
+		});
+	}
 	static getAllInstances() {
 		return WUIModal.#instances;
 	}
 	static getOpenInstances() {
-		const instances = [];
-		WUIModal.#instances.forEach(modal => {
-			if (modal.isOpen()) {
-				instances.push(modal);
-			}
-		});
-		return instances;
+		return WUIModal.#instances.filter(modal => modal.isOpen());
 	}
 	static closeAll(except) {
-		WUIModal.#instances.forEach(modal => {
-			if (modal.isOpen() && modal.selector != except) {
+		WUIModal.getOpenInstances().forEach(modal => {
+			if (modal.selector != except) {
 				modal.close();
 			}
 		});
@@ -171,27 +181,6 @@ class WUIModal {
 				});
 			}
 		};
-		document.addEventListener("keydown", event => {
-			let esc = false;
-			event = event || window.event;
-			if ("key" in event) {
-				esc = (event.key === "Escape" || event.key === "Esc");
-			} else if ("keyCode" in event) {
-				esc = (event.keyCode === 27);
-			}
-			if (esc) {
-				WUIModal.getAllInstances().every(modal => {
-					const classList = modal._element.classList;
-					if (classList.contains("opened") && !classList.contains("under")) {
-						setTimeout(() => {
-							modal.close();
-						}, 100);
-						return false;
-					}
-					return true;
-				});
-			}
-		});
 		this._bodyStyle = {};
 		if (navigator.userAgent.match(/iphone|ipad|android/i) && navigator.maxTouchPoints > 1) {
 			this._element.classList.add("mobile");
@@ -466,6 +455,7 @@ class WUIModal {
 		return this.getStatus().match(/opened/) ? true : false;
 	}
 }
+WUIModal.initClass();
 /*
 HTML message struture:
 <div class="wui-modal message [priority]">

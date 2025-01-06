@@ -37,6 +37,13 @@
 	text-align: center;
 	font-family: inherit;
 	font-size: 14px;
+	color: var(--wui-datepicker-input-textcolor-out);
+}
+.wui-datepicker > .inputs > input[type="text"]:is(:hover, :focus, :focus-within) {
+	color: var(--wui-datepicker-input-textcolor-over);
+}
+.wui-datepicker > .inputs > input[type="text"]:disabled {
+	color: var(--wui-datepicker-input-textcolor-disabled) !important;
 }
 .wui-datepicker > .inputs > input[type="text"].year {
 	width: 40px;

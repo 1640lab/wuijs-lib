@@ -42,10 +42,31 @@ class WUISelectpicker {
 		onOpen: null,
 		onChange: null
 	};
+	static #instances = [];
+	static initClass() {
+		document.addEventListener("keydown", event => {
+			const keys = {
+				up: Boolean(event.key == "ArrowUp"),
+				down: Boolean(event.key == "ArrowDown"),
+				intro: Boolean(event.key == "Enter")
+			};
+			if (keys.up || keys.down) {
+				WUISelectpicker.getOpenInstances().every(selectpicker => {
+					// ...
+				});
+			} else if (keys.intro) {
+				// ...
+			}
+		});
+	}
+	static getOpenInstances() {
+		return WUISelectpicker.#instances.filter(selectpicker => selectpicker.isOpen());
+	}
 	constructor (properties) {
 		Object.keys(this.#defaults).forEach(prop => {
 			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : this.#defaults[prop];
 		});
+		WUISelectpicker.#instances.push(this);
 	}
 	get selector() {
 		return this._selector;
@@ -201,7 +222,8 @@ class WUISelectpicker {
 		this._element.appendChild(this._box);
 		this._element.style.backgroundImage = this.#getSRCIcon("open", this._input.disabled ? "disabled" : "out");
 		this._element.addEventListener("click", event => {
-			if (event.target.classList.contains("wui-selectpicker")) { // && this._element.offsetWidth - event.offsetX < 30
+			const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
+			if (event.target.classList.contains("wui-selectpicker") && (!(!mobile && this._filterable) || (this._element.offsetWidth - event.offsetX < 30))) {
 				this.toggle();
 			}
 		});
@@ -262,11 +284,31 @@ class WUISelectpicker {
 		});
 		this._inputText.type = "text";
 		this._inputText.name = this._input.name+"Text";
-		this._inputText.setAttribute("readonly", this._filterable ? "false" : "true");
-		this._inputText.addEventListener("click", () => {this.toggle();});
+		this._inputText.addEventListener("click", () => {
+			const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
+			if (!mobile && this._filterable) {
+				if (!this.isOpen()) {
+					this.open();
+				}
+			} else {
+				this.toggle();
+			}
+		});
 		this._inputText.addEventListener("keyup", () => {
-			if (this._inputText.readonly) {
-				// ...
+			const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
+			if (!mobile && this._filterable) {
+				const prepare = str => str.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ñ/g, "n");
+				const key = this._inputText.value;
+				const regexp = new RegExp(prepare(key));
+				this._options.querySelectorAll(".option").forEach(item => {
+					const value = item.dataset.value;
+					const text = this._input.querySelector("option[value='"+value+"']").text.trim().toLowerCase();
+					if (regexp.test(prepare(text))) {
+						item.classList.remove("hidden");
+					} else {
+						item.classList.add("hidden");
+					}
+				});
 			}
 		});
 		this._background.className = "background hidden";
@@ -320,6 +362,9 @@ class WUISelectpicker {
 	close() {
 		this._background.classList.add("hidden");
 		this._box.classList.add("hidden");
+		this._options.querySelectorAll(".option").forEach(item => {
+			item.classList.remove("hidden");
+		});
 	}
 	toggle() {
 		if (this._box.classList.contains("hidden")) {
