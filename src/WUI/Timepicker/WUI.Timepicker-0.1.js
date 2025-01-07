@@ -26,9 +26,9 @@ class WUITimepicker {
 	};
 	#defaults = {
 		selector: "",
+		value: "",
 		min: "00:00",
 		max: "23:59",
-		value: "",
 		lang: "en",
 		texts: {},
 		openDirection: "down",
@@ -44,14 +44,17 @@ class WUITimepicker {
 	get selector() {
 		return this._selector;
 	}
+	get type() {
+		return this.constructor.name;
+	}
+	get value() {
+		return this._input.value;
+	}
 	get min() {
 		return this._input.min;
 	}
 	get max() {
 		return this._input.max;
-	}
-	get value() {
-		return this._input.value;
 	}
 	get lang() {
 		return this._lang;
@@ -78,6 +81,12 @@ class WUITimepicker {
 			this._input = document.querySelector(value+" > input[type='time']");
 		}
 	}
+	set value(value) {
+		if (typeof(value) == "string" && value.match(/^(\d{2}:\d{2})?$/) && this._enabled) {
+			this.#setValue(value);
+			this.#prepare();
+		}
+	}
 	set min(value) {
 		if (typeof(value) == "string" && value.match(/^(\d{2}:\d{2})?$/)) {
 			this._input.min = value;
@@ -86,12 +95,6 @@ class WUITimepicker {
 	set max(value) {
 		if (typeof(value) == "string" && value.match(/^(\d{2}:\d{2})?$/)) {
 			this._input.max = value;
-		}
-	}
-	set value(value) {
-		if (typeof(value) == "string" && value.match(/^(\d{2}:\d{2})?$/) && this._enabled) {
-			this.#setValue(value);
-			this.#prepare();
 		}
 	}
 	set lang(value) {
@@ -144,6 +147,9 @@ class WUITimepicker {
 	}
 	getElement() {
 		return this._element;
+	}
+	getFocusableElements() {
+		return [this._inputHours, this._inputMinutes];
 	}
 	getInput() {
 		return this._input;
@@ -363,6 +369,12 @@ class WUITimepicker {
 	}
 	isOpen() {
 		return !Boolean(this._box.classList.contains("hidden"));
+	}
+	isEmpty() {
+		return this._input.value == "" || this._inputHours.value == "" || this._inputMinutes.value == "";
+	}
+	isValid() {
+		return this._input.value.match(/^(\d{2}:\d{2})?$/);
 	}
 }
 /*

@@ -183,6 +183,9 @@ class WUIColorpicker {
 	get selector() {
 		return this._selector;
 	}
+	get type() {
+		return this.constructor.name;
+	}
 	get value() {
 		return this._input.value == this._emptyValue ? "" : this._input.value;
 	}
@@ -215,13 +218,13 @@ class WUIColorpicker {
 		}
 	}
 	set value(value) {
-		if (typeof(value).toString() == "string" && this._enabled) {
+		if (typeof(value) == "string" && (value.match(/^#([0-9A-F]{3}){1,2}$/i) || Object.values(WUIColorpicker.#constants.colors.list).map(x => x.toLowerCase()).indexOf(value.toLowerCase()) > 0) && this._enabled) {
 			this.#setValue(value.trim().toLowerCase());
 			this.#prepare();
 		}
 	}
 	set emptyValue(value) {
-		if (typeof(value) == "string" && value.match(/^#[0-9a-f]{6}$/i)) {
+		if (typeof(value) == "string" && value.match(/^#([0-9A-F]{3}){1,2}$/i)) {
 			this._emptyValue = value.toLowerCase();
 		}
 	}
@@ -272,6 +275,9 @@ class WUIColorpicker {
 	}
 	getElement() {
 		return this._element;
+	}
+	getFocusableElements() {
+		return [this._button];
 	}
 	getInput() {
 		return this._input;
@@ -472,7 +478,7 @@ class WUIColorpicker {
 	open() {
 		const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
 		this._background.classList.remove("hidden");
-		this._box.classList.remove("hidden");
+		this._box.className = "box "+this._openDirection;
 		this._box.style.marginBottom = !mobile && this._openDirection == "up" ? this._element.clientHeight+"px" : "auto";
 		this.#prepare();
 		this.#loadBox();
@@ -524,6 +530,12 @@ class WUIColorpicker {
 	}
 	isOpen() {
 		return !Boolean(this._box.classList.contains("hidden"));
+	}
+	isEmpty() {
+		return this._input.value == "";
+	}
+	isValid() {
+		return this._input.value.match(/^#([0-9A-F]{3}){1,2}$/i);
 	}
 }
 /*

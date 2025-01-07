@@ -99,13 +99,14 @@
 	flex-shrink: 0;
 }
 .wui-selectpicker > .box > .options {
-	min-height: calc(calc(2 * 30px) - 1px);
-	max-height: calc(calc(11 * 30px) - 1px);
+	min-height: calc(calc(2 * 30px) + 10px - 1px);
+	max-height: calc(calc(11 * 30px) + 10px - 1px);
 	overflow-x: hidden;
 	overflow-y: auto;
 	-webkit-border-radius: var(--wui-selectpicker-box-radius);
 	-moz-border-radius: var(--wui-selectpicker-box-radius);
 	border-radius: var(--wui-selectpicker-box-radius);
+	padding: 5px;
 	flex-direction: column;
 	flex-wrap: nowrap;
 	align-items: flex-start;
@@ -259,6 +260,7 @@
 		border-top-right-radius: var(--wui-selectpicker-mobile-box-radius);
 		border-bottom-left-radius: 0;
 		border-bottom-right-radius: 0;
+		padding: 0;
 	}
 	.wui-selectpicker > .box > .options > .option {
 		height: 44px;

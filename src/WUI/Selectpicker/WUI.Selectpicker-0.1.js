@@ -43,17 +43,31 @@ class WUISelectpicker {
 		onChange: null
 	};
 	static #instances = [];
+	static #active = null;
 	static initClass() {
 		document.addEventListener("keydown", event => {
-			const keys = {
-				up: Boolean(event.key == "ArrowUp"),
-				down: Boolean(event.key == "ArrowDown"),
-				intro: Boolean(event.key == "Enter")
-			};
-			if (keys.up || keys.down) {
-				// ...
-			} else if (keys.intro) {
-				// ...
+			if (WUISelectpicker.#active != null && WUISelectpicker.#active._box.classList.contains("hidden")) {
+				const keys = {
+					up: Boolean(event.key == "ArrowUp"),
+					down: Boolean(event.key == "ArrowDown"),
+					intro: Boolean(event.key == "Enter")
+				};
+				if (keys.up || keys.down) {
+					let index = null;
+					WUISelectpicker.#active._options.forEach((opt, i) => {
+						if (opt.classList.contains("selected")) {
+							index = i;
+						}
+					});
+					if (index == null) {
+						//const WUISelectpicker.#active
+						// ...
+					} else {
+						// ...
+					}
+				} else if (keys.intro) {
+					// ...
+				}
 			}
 		});
 	}
@@ -68,6 +82,9 @@ class WUISelectpicker {
 	}
 	get selector() {
 		return this._selector;
+	}
+	get type() {
+		return this.constructor.name;
 	}
 	get value() {
 		return this._input.value;
@@ -166,6 +183,9 @@ class WUISelectpicker {
 	}
 	getElement() {
 		return this._element;
+	}
+	getFocusableElements() {
+		return [this._inputText];
 	}
 	getInput() {
 		return this._input;
@@ -298,13 +318,13 @@ class WUISelectpicker {
 				const prepare = str => str.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ñ/g, "n");
 				const key = this._inputText.value;
 				const regexp = new RegExp(prepare(key));
-				this._options.querySelectorAll(".option").forEach(item => {
-					const value = item.dataset.value;
+				this._options.querySelectorAll(".option").forEach(opt => {
+					const value = opt.dataset.value;
 					const text = this._input.querySelector("option[value='"+value+"']").text.trim().toLowerCase();
 					if (regexp.test(prepare(text))) {
-						item.classList.remove("hidden");
+						opt.classList.remove("hidden");
 					} else {
-						item.classList.add("hidden");
+						opt.classList.add("hidden");
 					}
 				});
 			}
@@ -333,15 +353,15 @@ class WUISelectpicker {
 		this.#setView(this._targetValue);
 	}
 	#loadBox() {
+		const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
 		const value = this._targetValue;
-		this._options.querySelectorAll(".option").forEach(div => {
-			if (typeof(div.dataset.value) != "undefined") {
-				if (div.dataset.value == value) {
-					const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
-					this._options.scrollTop = div.offsetTop - parseInt(this._options.clientHeight/2) + (mobile ? parseInt(div.clientHeight/2) : 0);
-					div.classList.add("selected");
+		this._options.querySelectorAll(".option").forEach(opt => {
+			if (typeof(opt.dataset.value) != "undefined") {
+				if (opt.dataset.value == value) {
+					this._options.scrollTop = opt.offsetTop - parseInt((this._options.clientHeight - opt.clientHeight)/2);
+					opt.classList.add("selected");
 				} else {
-					div.classList.remove("selected");
+					opt.classList.remove("selected");
 				}
 			}
 		});
@@ -356,12 +376,13 @@ class WUISelectpicker {
 		if (typeof(this._onOpen) == "function") {
 			this._onOpen(this._input.value);
 		}
+		WUISelectpicker.#active = this;
 	}
 	close() {
 		this._background.classList.add("hidden");
 		this._box.classList.add("hidden");
-		this._options.querySelectorAll(".option").forEach(item => {
-			item.classList.remove("hidden");
+		this._options.querySelectorAll(".option").forEach(opt => {
+			opt.classList.remove("hidden");
 		});
 	}
 	toggle() {
@@ -381,6 +402,12 @@ class WUISelectpicker {
 	}
 	isOpen() {
 		return !Boolean(this._box.classList.contains("hidden"));
+	}
+	isEmpty() {
+		return this._input.value == "" || this._inputText.value == "";
+	}
+	isValid() {
+		return (Array.from(this._input.options).filter(opt => opt.text == this._inputText.value).length > 0);
 	}
 }
 /*

@@ -81,14 +81,17 @@ class WUIDatepicker {
 	get selector() {
 		return this._selector;
 	}
+	get type() {
+		return this.constructor.name;
+	}
+	get value() {
+		return this._input.value;
+	}
 	get min() {
 		return this._min;
 	}
 	get max() {
 		return this._max;
-	}
-	get value() {
-		return this._input.value;
 	}
 	get locales() {
 		return this._locales;
@@ -121,6 +124,12 @@ class WUIDatepicker {
 			this._input = document.querySelector(value+" > input[type='date']");
 		}
 	}
+	set value(value) {
+		if (typeof(value) == "string" && value.match(/^(\d{4}-\d{2}-\d{2})?$/) && this._enabled) {
+			this.#setValue(value);
+			this.#prepare();
+		}
+	}
 	set min(value) {
 		if (typeof(value) == "string" && value.match(/^(\d{4}-\d{2}-\d{2})?$/)) {
 			this._min = value;
@@ -129,12 +138,6 @@ class WUIDatepicker {
 	set max(value) {
 		if (typeof(value) == "string" && value.match(/^(\d{4}-\d{2}-\d{2})?$/)) {
 			this._max = value;
-		}
-	}
-	set value(value) {
-		if (typeof(value) == "string" && value.match(/^(\d{4}-\d{2}-\d{2})?$/) && this._enabled) {
-			this.#setValue(value);
-			this.#prepare();
 		}
 	}
 	set locales(value) {
@@ -205,6 +208,9 @@ class WUIDatepicker {
 	}
 	getElement() {
 		return this._element;
+	}
+	getFocusableElements() {
+		return [this._inputYear, this._inputMonth, this._inputDay];
 	}
 	getInput() {
 		return this._input;
@@ -603,6 +609,12 @@ class WUIDatepicker {
 	}
 	isOpen() {
 		return !Boolean(this._box.classList.contains("hidden"));
+	}
+	isEmpty() {
+		return this._input.value == "" || this._inputYear.value == "" || this._inputMonth.value == "" || this._inputDay.value == "";
+	}
+	isValid() {
+		return this._input.value.match(/^(\d{4}-\d{2}-\d{2})?$/);
 	}
 }
 WUIDatepicker.initClass();

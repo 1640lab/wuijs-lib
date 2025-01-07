@@ -17,6 +17,9 @@ class WUICheckbox {
 	get selector() {
 		return this._selector;
 	}
+	get type() {
+		return this.constructor.name;
+	}
 	get value() {
 		return this._input.value;
 	}
@@ -72,6 +75,9 @@ class WUICheckbox {
 	}
 	getElement() {
 		return this._element;
+	}
+	getFocusableElements() {
+		return [this._input];
 	}
 	getInput() {
 		return this._input;
