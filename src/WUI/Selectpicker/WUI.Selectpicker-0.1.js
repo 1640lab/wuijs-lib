@@ -46,24 +46,39 @@ class WUISelectpicker {
 	static #active = null;
 	static initClass() {
 		document.addEventListener("keydown", event => {
-			if (WUISelectpicker.#active != null && WUISelectpicker.#active._box.classList.contains("hidden")) {
+			const active = WUISelectpicker.#active;
+			if (active != null && active.enabled && !active._box.classList.contains("hidden")) {
 				const keys = {
 					up: Boolean(event.key == "ArrowUp"),
 					down: Boolean(event.key == "ArrowDown"),
 					intro: Boolean(event.key == "Enter")
 				};
 				if (keys.up || keys.down) {
+					const options = active._options.querySelectorAll(".option");
+					const event = new MouseEvent("mouseover", {
+						"view": window,
+						"bubbles": true,
+						"cancelable": true
+					});
 					let index = null;
-					WUISelectpicker.#active._options.forEach((opt, i) => {
+					let selected = false;
+					options.forEach((opt, i) => {
 						if (opt.classList.contains("selected")) {
 							index = i;
 						}
 					});
-					if (index == null) {
-						//const WUISelectpicker.#active
+					if (keys.up) {
+						let i = (index || options.length) -1;
+						while (!selected && i >= 0) {
+							if (!options[i].classList.contains("hidden")) {
+								options[i].dispatchEvent(event);
+								selected = true;
+							}
+							i--;
+						}
+					} else if (keys.down) {
 						// ...
-					} else {
-						// ...
+					
 					}
 				} else if (keys.intro) {
 					// ...
@@ -285,9 +300,9 @@ class WUISelectpicker {
 				const targetValue = item.dataset.value || "";
 				const value = selected ? targetValue : "";
 				this._options.scrollTop = item.offsetTop - parseInt(this._options.clientHeight/2);
-				this._options.querySelectorAll(".option").forEach(div => {
-					if (typeof(div.dataset.value) != "undefined" && div.dataset.value != targetValue) {
-						div.classList.remove("selected");
+				this._options.querySelectorAll(".option").forEach(opt => {
+					if (typeof(opt.dataset.value) != "undefined" && opt.dataset.value != targetValue) {
+						opt.classList.remove("selected");
 					}
 				});
 				item.classList.toggle("selected");
@@ -410,6 +425,7 @@ class WUISelectpicker {
 		return (Array.from(this._input.options).filter(opt => opt.text == this._inputText.value).length > 0);
 	}
 }
+WUISelectpicker.initClass();
 /*
 HTML struture:
 <div class="wui-selector">
