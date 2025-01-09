@@ -13,7 +13,7 @@ class WUIModal {
 		onBack: null
 	};
 	static #instances = [];
-	static initClass() {
+	static _initClass() {
 		document.addEventListener("keydown", event => {
 			if (event.key == "Escape") {
 				WUIModal.getAllInstances().every(modal => {
@@ -455,7 +455,7 @@ class WUIModal {
 		return this.getStatus().match(/opened/) ? true : false;
 	}
 }
-WUIModal.initClass();
+WUIModal._initClass();
 /*
 HTML message struture:
 <div class="wui-modal message [priority]">

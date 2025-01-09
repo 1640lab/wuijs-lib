@@ -66,7 +66,7 @@ class WUIDatepicker {
 		onOpen: null,
 		onChange: null
 	};
-	static initClass() {
+	static _initClass() {
 		Object.entries(WUIDatepicker.#constants.firstWeekDayCountry).forEach(([wday, countries]) => {
 			countries.split(/\s+/).forEach(code => {
 				WUIDatepicker.#constants.countryFirstWeekDay[code] = wday;
@@ -617,7 +617,7 @@ class WUIDatepicker {
 		return this._input.value.match(/^(\d{4}-\d{2}-\d{2})?$/);
 	}
 }
-WUIDatepicker.initClass();
+WUIDatepicker._initClass();
 /*
 HTML struture:
 <div class="wui-datepicker">

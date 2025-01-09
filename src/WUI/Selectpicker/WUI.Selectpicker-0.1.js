@@ -42,34 +42,52 @@ class WUISelectpicker {
 		onOpen: null,
 		onChange: null
 	};
-	static #instances = [];
 	static #active = null;
-	static initClass() {
+	static _initClass() {
 		document.addEventListener("keydown", event => {
 			const active = WUISelectpicker.#active;
-			if (active != null && active.enabled && !active._box.classList.contains("hidden")) {
+			if (active != null && active.enabled && active.isOpen()) {
 				const keys = {
 					up: Boolean(event.key == "ArrowUp"),
 					down: Boolean(event.key == "ArrowDown"),
-					intro: Boolean(event.key == "Enter")
+					intro: Boolean(event.key == "Enter"),
+					esc: Boolean(event.key == "Escape")
 				};
+				const focusOption = active._options.querySelector(".option.focus");
 				if (keys.up || keys.down) {
-					const selected = active._options.querySelector(".option.selected");
-					// ...
+					const options = Array.from(active._options.querySelectorAll(".option")).filter(option => !option.classList.contains("hidden"));
+					const focusIndex = options.indexOf(focusOption);
+					const nextIndex =
+						options.length == 0 ? null :
+						keys.up && focusOption == null ? options.length -1 :
+						keys.up && focusOption != null ? focusIndex -1 :
+						keys.down && focusOption == null ? 0 :
+						keys.down && focusOption != null ? focusIndex +1 :
+						null;
+					const nextOption = nextIndex != null ? options[nextIndex] : null;
+					if (focusOption != null) {
+						focusOption.classList.remove("focus");
+					}
+					if (nextOption != null) {
+						active._options.scrollTop = nextOption.offsetTop - parseInt(active._options.clientHeight/2);
+						nextOption.classList.add("focus");
+					}
 				} else if (keys.intro) {
-					// ...
+					if (focusOption != null) {
+						const value = focusOption.dataset.value;
+						active.value = value;
+						active.close();
+					}
+				} else if (keys.esc) {
+					active.close();
 				}
 			}
 		});
-	}
-	static getOpenInstances() {
-		return WUISelectpicker.#instances.filter(selectpicker => selectpicker.isOpen());
 	}
 	constructor (properties) {
 		Object.keys(this.#defaults).forEach(prop => {
 			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : this.#defaults[prop];
 		});
-		WUISelectpicker.#instances.push(this);
 	}
 	get selector() {
 		return this._selector;
@@ -257,7 +275,7 @@ class WUISelectpicker {
 			const selected = Boolean(opt.selected);
 			const customIcon = Boolean(typeof(opt.icon) == "string" && opt.icon != "");
 			icon.className = "icon "+(customIcon ? opt.icon : "check");
-			icon.style.maskImage = !customIcon ? this.#getSRCIcon("box-option-check", selected ? "selected" : "out") : "url()";
+			icon.style.maskImage = !customIcon ? this.#getSRCIcon("box-option-check", selected ? "selected focus" : "out") : "url()";
 			text.className = "text "+(opt.value == "" ? "empty" : this._selecteableText ? "selecteable" : "");
 			text.innerHTML = opt.value == "" ? (this.texts.empty != "" ? this.texts.empty : lang in WUISelectpicker.#constants.texts ? WUISelectpicker.#constants.texts[lang].empty : "") : opt.text;
 			opt.classList.forEach(key => {
@@ -280,10 +298,10 @@ class WUISelectpicker {
 				this._options.scrollTop = option.offsetTop - parseInt(this._options.clientHeight/2);
 				this._options.querySelectorAll(".option").forEach(option => {
 					if (typeof(option.dataset.value) != "undefined" && option.dataset.value != targetValue) {
-						option.classList.remove("selected");
+						option.classList.remove("selected", "focus");
 					}
 				});
-				option.classList.toggle("selected");
+				option.classList.toggle("selected", "focus");
 				this._targetValue = value;
 				this.#setValue(value);
 				this.#setView(value);
@@ -305,9 +323,9 @@ class WUISelectpicker {
 				this.toggle();
 			}
 		});
-		this._inputText.addEventListener("keyup", () => {
+		this._inputText.addEventListener("keyup", (event) => {
 			const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
-			if (!mobile && this._filterable) {
+			if (!mobile && this._filterable && !event.key.match(/^(ArrowUp|ArrowDown|Enter|Escape)$/)) {
 				const prepare = str => str.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ñ/g, "n");
 				const key = this._inputText.value;
 				const regexp = new RegExp(prepare(key));
@@ -320,6 +338,9 @@ class WUISelectpicker {
 						option.classList.add("hidden");
 					}
 				});
+				if (!this.isOpen()) {
+					this.open();
+				}
 			}
 		});
 		this._background.className = "background hidden";
@@ -346,15 +367,14 @@ class WUISelectpicker {
 		this.#setView(this._targetValue);
 	}
 	#loadBox() {
-		const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
 		const value = this._targetValue;
 		this._options.querySelectorAll(".option").forEach(option => {
 			if (typeof(option.dataset.value) != "undefined") {
 				if (option.dataset.value == value) {
 					this._options.scrollTop = option.offsetTop - parseInt((this._options.clientHeight - option.clientHeight)/2);
-					option.classList.add("selected");
+					option.classList.add("selected", "focus");
 				} else {
-					option.classList.remove("selected");
+					option.classList.remove("selected", "focus");
 				}
 			}
 		});
@@ -403,7 +423,7 @@ class WUISelectpicker {
 		return (Array.from(this._input.options).filter(opt => opt.text == this._inputText.value).length > 0);
 	}
 }
-WUISelectpicker.initClass();
+WUISelectpicker._initClass();
 /*
 HTML struture:
 <div class="wui-selector">
