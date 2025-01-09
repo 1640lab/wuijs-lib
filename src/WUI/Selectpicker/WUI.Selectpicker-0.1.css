@@ -124,9 +124,7 @@
 	align-items: center;
 	gap: 10px;
 }
-.wui-selectpicker > .box > .options > .option:not(.disabled):hover,
-.wui-selectpicker > .box > .options > .option:not(.disabled):focus,
-.wui-selectpicker > .box > .options > .option:not(.disabled):focus-within {
+.wui-selectpicker > .box > .options > .option:not(.disabled):is(:hover, :focus, :focus-within, .focus) {
 	border-color: var(--wui-selectpicker-box-option-bordercolor-over);
 	background-color: var(--wui-selectpicker-box-option-bgcolor-over);
 }
@@ -152,9 +150,7 @@
 .wui-selectpicker > .box > .options > .option > .icon.check {
 	background-color: var(--wui-selectpicker-box-option-checkcolor-out);
 }
-.wui-selectpicker > .box > .options > .option:not(.disabled):hover > .icon.check,
-.wui-selectpicker > .box > .options > .option:not(.disabled):focus > .icon.check,
-.wui-selectpicker > .box > .options > .option:not(.disabled):focus-within > .icon.check {
+.wui-selectpicker > .box > .options > .option:not(.disabled):is(:hover, :focus, :focus-within, .focus) > .icon.check {
 	background-color: var(--wui-selectpicker-box-option-checkcolor-over);
 }
 .wui-selectpicker > .box > .options > .option.disabled > .icon.check {
@@ -172,9 +168,7 @@
 	font-style: italic;
 	color: var(--wui-selectpicker-box-option-textcolor-empty);
 }
-.wui-selectpicker > .box > .options > .option:not(.disabled):hover > .text,
-.wui-selectpicker > .box > .options > .option:not(.disabled):focus > .text,
-.wui-selectpicker > .box > .options > .option:not(.disabled):focus-within > .text {
+.wui-selectpicker > .box > .options > .option:not(.disabled):is(:hover, :focus, :focus-within, .focus) > .text {
 	color: var(--wui-selectpicker-box-option-textcolor-over);
 }
 .wui-selectpicker > .box > .options > .option.disabled > .text {
@@ -280,9 +274,7 @@
 		width: 50%;
 		font-size: 17px;
 	}
-	.wui-selectpicker > .box > .footer > button:hover,
-	.wui-selectpicker > .box > .footer > button:focus,
-	.wui-selectpicker > .box > .footer > button:focus-within {
+	.wui-selectpicker > .box > .footer > button:is(:hover, :focus, :focus-within) {
 		border-color: transparent;
 		background-color: rgba(204, 204, 204, 0.3);
 	}

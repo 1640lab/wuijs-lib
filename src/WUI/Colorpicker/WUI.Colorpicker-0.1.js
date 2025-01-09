@@ -329,16 +329,16 @@ class WUIColorpicker {
 		}
 	}
 	init() {
-		const itemOnClick = (mode, item) => {
-			const selected = !Boolean(item.classList.contains("selected"));
-			const targetValue = item.dataset.value || "";
+		const optionOnClick = (option, mode) => {
+			const selected = !Boolean(option.classList.contains("selected"));
+			const targetValue = option.dataset.value || "";
 			const value = selected ? targetValue : "";
 			this["_"+mode].querySelectorAll(mode == "list" ? ".option" : ".color").forEach(div => {
 				if (typeof(div.dataset.value) != "undefined" && div.dataset.value != targetValue) {
 					div.classList.remove("selected");
 				}
 			});
-			item.classList.toggle("selected");
+			option.classList.toggle("selected");
 			this._targetValue = value;
 			this.#setValue(value);
 			this.#setView(value);
@@ -383,17 +383,17 @@ class WUIColorpicker {
 		});
 		WUIColorpicker.#constants.colors.grid.forEach(row => {
 			row.forEach(value => {
-				const item = document.createElement("div");
+				const option = document.createElement("div");
 				const selected = Boolean(this._input.value.toLowerCase() == value.toLowerCase());
-				item.className = "color"+(selected ? " selected" : "");
-				item.style.backgroundColor = value;
-				item.dataset.value = value;
-				item.addEventListener("click", () => {itemOnClick("grid", item);});
-				this._grid.appendChild(item);
+				option.className = "color"+(selected ? " selected" : "");
+				option.style.backgroundColor = value;
+				option.dataset.value = value;
+				option.addEventListener("click", () => {optionOnClick(option, "grid");});
+				this._grid.appendChild(option);
 			});
 		});
 		Object.entries(WUIColorpicker.#constants.colors.list).forEach(([value, name]) => {
-			const item = document.createElement("div");
+			const option = document.createElement("div");
 			const color = document.createElement("div");
 			const text = document.createElement("div");
 			const selected = Boolean(this._input.value.toLowerCase() == value.toLowerCase());
@@ -401,12 +401,12 @@ class WUIColorpicker {
 			color.style.backgroundColor = value;
 			text.className = "text";
 			text.textContent = name.replace(/([a-z])([A-Z])/g, "$1 $2").toLowerCase();
-			item.className = "option "+name+(selected ? " selected" : "");
-			item.dataset.value = value.toLowerCase();
-			item.appendChild(color);
-			item.appendChild(text);
-			item.addEventListener("click", () => {itemOnClick("list", item);});
-			this._list.appendChild(item);
+			option.className = "option "+name+(selected ? " selected" : "");
+			option.dataset.value = value.toLowerCase();
+			option.appendChild(color);
+			option.appendChild(text);
+			option.addEventListener("click", () => {optionOnClick(option, "list");});
+			this._list.appendChild(option);
 		});
 		this._button.className = "button";
 		this._button.appendChild(this._buttonColor);
@@ -454,25 +454,18 @@ class WUIColorpicker {
 	}
 	#loadBox() {
 		const value = this._targetValue;
-		this._grid.querySelectorAll(".color").forEach(div => {
-			if (typeof(div.dataset.value) != "undefined") {
-				if (div.dataset.value == value) {
-					div.classList.add("selected");
-					this.selectMode("grid");
-				} else {
-					div.classList.remove("selected");
+		["grid", "list"].forEach(name => {
+			const content = this["_"+name];
+			content.querySelectorAll(name == "grid" ? ".color" : ".option").forEach(opt => {
+				if (typeof(opt.dataset.value) != "undefined") {
+					if (opt.dataset.value == value) {
+						opt.classList.add("selected");
+						this.selectMode(name);
+					} else {
+						opt.classList.remove("selected");
+					}
 				}
-			}
-		});
-		this._list.querySelectorAll(".option").forEach(div => {
-			if (typeof(div.dataset.value) != "undefined") {
-				if (div.dataset.value == value) {
-					div.classList.add("selected");
-					this.selectMode("list");
-				} else {
-					div.classList.remove("selected");
-				}
-			}
+			});
 		});
 	}
 	open() {

@@ -425,29 +425,29 @@ class WUIDatepicker {
 		for (let i=0; i<13*2; i++) {
 			const cell = document.createElement("div");
 			if (i % 13 == 0) {
-				const item = document.createElement("div");
-				item.innerHTML = y;
-				cell.appendChild(item);
+				const option = document.createElement("div");
+				option.innerHTML = y;
+				cell.appendChild(option);
 				y++;
 				m = 1;
 			} else {
-				const item = document.createElement("div");
-				const itemValue = this._targetValue.replace(/^\d{4}-\d{2}-/, (y -1)+"-"+("0"+m).slice(-2)+"-");
-				const itemYear = y -1;
-				const itemMonth = m;
-				if (itemYear == this._todayYear && itemMonth == this._todayMonth) {
-					item.classList.add("today");
+				const option = document.createElement("div");
+				const optionValue = this._targetValue.replace(/^\d{4}-\d{2}-/, (y -1)+"-"+("0"+m).slice(-2)+"-");
+				const optionYear = y -1;
+				const optionMonth = m;
+				if (optionYear == this._todayYear && optionMonth == this._todayMonth) {
+					option.classList.add("today");
 				}
-				if (itemValue == this._input.value) {
-					item.classList.add("selected");
+				if (optionValue == this._input.value) {
+					option.classList.add("selected");
 				}
-				item.dataset.value = itemValue;
-				item.dataset.year = itemYear;
-				item.dataset.month = itemMonth;
-				item.textContent = this.monthsNames[m -1].substring(0, 3);
-				item.addEventListener("click", () => {
-					const selected = !Boolean(item.classList.contains("selected"));
-					const targetValue = itemValue;
+				option.dataset.value = optionValue;
+				option.dataset.year = optionYear;
+				option.dataset.month = optionMonth;
+				option.textContent = this.monthsNames[m -1].substring(0, 3);
+				option.addEventListener("click", () => {
+					const selected = !Boolean(option.classList.contains("selected"));
+					const targetValue = optionValue;
 					const value = selected ? targetValue : "";
 					const date = selected ? new Date(targetValue+"T00:00:00") : null;
 					this._months.querySelectorAll("div").forEach(div => {
@@ -455,14 +455,14 @@ class WUIDatepicker {
 							div.classList.remove("selected");
 						}
 					});
-					item.classList.toggle("selected");
+					option.classList.toggle("selected");
 					this._targetValue = value;
 					this._targetDate = date;
-					this._period.innerHTML = this._monthsNames[item.dataset.month -1]+" "+item.dataset.year+" <div class='icon up'></div>";
+					this._period.innerHTML = this._monthsNames[option.dataset.month -1]+" "+option.dataset.year+" <div class='icon up'></div>";
 					this.#setValue(value);
 					this.#setView(date);
 				});
-				cell.appendChild(item);
+				cell.appendChild(option);
 				m++;
 			}
 			this._months.appendChild(cell);
@@ -502,19 +502,19 @@ class WUIDatepicker {
 		for (let i=0; i<7*rows; i++) {
 			const cell = document.createElement("div");
 			if (i >= ini && d <= lasmday) {
-				const item = document.createElement("div");
-				const itemValue = this._targetValue.replace(/-\d{2}$/, "-"+("0"+d).slice(-2));
-				if (itemValue == this._todayValue) {
-					item.classList.add("today");
+				const option = document.createElement("div");
+				const optionValue = this._targetValue.replace(/-\d{2}$/, "-"+("0"+d).slice(-2));
+				if (optionValue == this._todayValue) {
+					option.classList.add("today");
 				}
-				if (itemValue == this._input.value) {
-					item.classList.add("selected");
+				if (optionValue == this._input.value) {
+					option.classList.add("selected");
 				}
-				item.dataset.value = itemValue;
-				item.textContent = d;
-				item.addEventListener("click", () => {
-					const selected = !Boolean(item.classList.contains("selected"));
-					const targetValue = itemValue;
+				option.dataset.value = optionValue;
+				option.textContent = d;
+				option.addEventListener("click", () => {
+					const selected = !Boolean(option.classList.contains("selected"));
+					const targetValue = optionValue;
 					const value = selected ? targetValue : "";
 					const date = selected ? new Date(targetValue+"T00:00:00") : null;
 					this._days.querySelectorAll("div").forEach(div => {
@@ -522,13 +522,13 @@ class WUIDatepicker {
 							div.classList.remove("selected");
 						}
 					});
-					item.classList.toggle("selected");
+					option.classList.toggle("selected");
 					this._targetValue = value;
 					this._targetDate = date;
 					this.#setValue(value);
 					this.#setView(date);
 				});
-				cell.appendChild(item);
+				cell.appendChild(option);
 				if (i +1 == 7*5 && d < lasmday) {
 					this._box.classList.add("extended");
 					rows++;

@@ -244,30 +244,30 @@ class WUITimepicker {
 				this._inputs.appendChild(span);
 			}
 			for (let i=0; i<=max; i++) {
-				const item = document.createElement("li");
-				item.dataset.value = i;
-				item.textContent = i;
-				item.addEventListener("click", () => {
-					const selected = !Boolean(item.classList.contains("selected"));
+				const option = document.createElement("li");
+				option.dataset.value = i;
+				option.textContent = i;
+				option.addEventListener("click", () => {
+					const selected = !Boolean(option.classList.contains("selected"));
 					const targetValue =
 						part == "hours" ? ("0"+i).slice(-2)+":"+("0"+this._inputMinutes.value).slice(-2) :
 						part == "minutes" ? ("0"+this._inputHours.value).slice(-2)+":"+("0"+i).slice(-2) :
 						"";
 					const value = selected ? targetValue : "";
 					const time = selected ? new Date("1970-01-01T"+targetValue+":00") : null;
-					list.scrollTop = item.offsetTop - parseInt(list.clientHeight/2);
+					list.scrollTop = option.offsetTop - parseInt(list.clientHeight/2);
 					list.querySelectorAll("li").forEach(li => {
 						if (typeof(li.dataset.value) != "undefined" && li.dataset.value != i) {
 							li.classList.remove("selected");
 						}
 					});
-					item.classList.toggle("selected");
+					option.classList.toggle("selected");
 					this._targetValue = value;
 					this._targetDate = time;
 					this.#setValue(value);
 					this.#setView(time);
 				});
-				list.appendChild(item);
+				list.appendChild(option);
 			}
 		});
 		this._inputs.className = "inputs";

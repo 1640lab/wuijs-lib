@@ -54,32 +54,8 @@ class WUISelectpicker {
 					intro: Boolean(event.key == "Enter")
 				};
 				if (keys.up || keys.down) {
-					const options = active._options.querySelectorAll(".option");
-					const event = new MouseEvent("mouseover", {
-						"view": window,
-						"bubbles": true,
-						"cancelable": true
-					});
-					let index = null;
-					let selected = false;
-					options.forEach((opt, i) => {
-						if (opt.classList.contains("selected")) {
-							index = i;
-						}
-					});
-					if (keys.up) {
-						let i = (index || options.length) -1;
-						while (!selected && i >= 0) {
-							if (!options[i].classList.contains("hidden")) {
-								options[i].dispatchEvent(event);
-								selected = true;
-							}
-							i--;
-						}
-					} else if (keys.down) {
-						// ...
-					
-					}
+					const selected = active._options.querySelector(".option.selected");
+					// ...
 				} else if (keys.intro) {
 					// ...
 				}
@@ -274,38 +250,40 @@ class WUISelectpicker {
 				this._onChange(this._input.value);
 			}
 		});
-		this._input.querySelectorAll("option").forEach(option => {
-			const item = document.createElement("div");
+		Array.from(this._input.options).forEach(opt => {
+			const option = document.createElement("div");
 			const icon = document.createElement("div");
 			const text = document.createElement("div");
-			const selected = Boolean(option.selected);
-			const customIcon = Boolean(typeof(option.icon) == "string" && option.icon != "");
-			icon.className = "icon "+(customIcon ? option.icon : "check");
+			const selected = Boolean(opt.selected);
+			const customIcon = Boolean(typeof(opt.icon) == "string" && opt.icon != "");
+			icon.className = "icon "+(customIcon ? opt.icon : "check");
 			icon.style.maskImage = !customIcon ? this.#getSRCIcon("box-option-check", selected ? "selected" : "out") : "url()";
-			text.className = "text "+(option.value == "" ? "empty" : this._selecteableText ? "selecteable" : "");
-			text.innerHTML = option.value == "" ? (this.texts.empty != "" ? this.texts.empty : lang in WUISelectpicker.#constants.texts ? WUISelectpicker.#constants.texts[lang].empty : "") : option.text;
-			option.classList.forEach(key => {
+			text.className = "text "+(opt.value == "" ? "empty" : this._selecteableText ? "selecteable" : "");
+			text.innerHTML = opt.value == "" ? (this.texts.empty != "" ? this.texts.empty : lang in WUISelectpicker.#constants.texts ? WUISelectpicker.#constants.texts[lang].empty : "") : opt.text;
+			opt.classList.forEach(key => {
 				text.classList.add(key);
 			});
-			Object.keys(option.dataset).forEach(key => {
-				text.dataset[key] = option.dataset[key];
+			Object.keys(opt.dataset).forEach(key => {
+				text.dataset[key] = opt.dataset[key];
 			});
-			item.className = "option"+(selected ? " selected" : "");	
-			item.dataset.value = option.value;
-			item.appendChild(icon);
-			item.appendChild(text);
-			item.addEventListener("click", () => {
+			option.className = "option"+(selected ? " selected" : "");	
+			option.dataset.value = opt.value;
+			option.appendChild(icon);
+			option.appendChild(text);
+			option.addEventListener("mouseover", () => {option.classList.add("focus");});
+			option.addEventListener("mouseout", () => {option.classList.remove("focus");});
+			option.addEventListener("click", () => {
 				const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
-				const selected = !Boolean(item.classList.contains("selected"));
-				const targetValue = item.dataset.value || "";
+				const selected = !Boolean(option.classList.contains("selected"));
+				const targetValue = option.dataset.value || "";
 				const value = selected ? targetValue : "";
-				this._options.scrollTop = item.offsetTop - parseInt(this._options.clientHeight/2);
-				this._options.querySelectorAll(".option").forEach(opt => {
-					if (typeof(opt.dataset.value) != "undefined" && opt.dataset.value != targetValue) {
-						opt.classList.remove("selected");
+				this._options.scrollTop = option.offsetTop - parseInt(this._options.clientHeight/2);
+				this._options.querySelectorAll(".option").forEach(option => {
+					if (typeof(option.dataset.value) != "undefined" && option.dataset.value != targetValue) {
+						option.classList.remove("selected");
 					}
 				});
-				item.classList.toggle("selected");
+				option.classList.toggle("selected");
 				this._targetValue = value;
 				this.#setValue(value);
 				this.#setView(value);
@@ -313,7 +291,7 @@ class WUISelectpicker {
 					this.close();
 				}
 			});
-			this._options.appendChild(item);
+			this._options.appendChild(option);
 		});
 		this._inputText.type = "text";
 		this._inputText.name = this._input.name+"Text";
@@ -333,13 +311,13 @@ class WUISelectpicker {
 				const prepare = str => str.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ñ/g, "n");
 				const key = this._inputText.value;
 				const regexp = new RegExp(prepare(key));
-				this._options.querySelectorAll(".option").forEach(opt => {
-					const value = opt.dataset.value;
+				this._options.querySelectorAll(".option").forEach(option => {
+					const value = option.dataset.value;
 					const text = this._input.querySelector("option[value='"+value+"']").text.trim().toLowerCase();
 					if (regexp.test(prepare(text))) {
-						opt.classList.remove("hidden");
+						option.classList.remove("hidden");
 					} else {
-						opt.classList.add("hidden");
+						option.classList.add("hidden");
 					}
 				});
 			}
@@ -370,13 +348,13 @@ class WUISelectpicker {
 	#loadBox() {
 		const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
 		const value = this._targetValue;
-		this._options.querySelectorAll(".option").forEach(opt => {
-			if (typeof(opt.dataset.value) != "undefined") {
-				if (opt.dataset.value == value) {
-					this._options.scrollTop = opt.offsetTop - parseInt((this._options.clientHeight - opt.clientHeight)/2);
-					opt.classList.add("selected");
+		this._options.querySelectorAll(".option").forEach(option => {
+			if (typeof(option.dataset.value) != "undefined") {
+				if (option.dataset.value == value) {
+					this._options.scrollTop = option.offsetTop - parseInt((this._options.clientHeight - option.clientHeight)/2);
+					option.classList.add("selected");
 				} else {
-					opt.classList.remove("selected");
+					option.classList.remove("selected");
 				}
 			}
 		});
@@ -396,8 +374,8 @@ class WUISelectpicker {
 	close() {
 		this._background.classList.add("hidden");
 		this._box.classList.add("hidden");
-		this._options.querySelectorAll(".option").forEach(opt => {
-			opt.classList.remove("hidden");
+		this._options.querySelectorAll(".option").forEach(option => {
+			option.classList.remove("hidden");
 		});
 	}
 	toggle() {
