@@ -59,20 +59,14 @@
 	-moz-opacity: .7;
 	opacity: .7;
 }
-.wui-modal.select > .box > .options > .option:not(.disabled):hover,
-.wui-modal.select > .box > .options > .option:not(.disabled):focus,
-.wui-modal.select > .box > .options > .option:not(.disabled):focus-within {
+.wui-modal.select > .box > .options > .option:not(.disabled):is(:hover, :focus, :focus-within) {
 	border-color: var(--wui-modal-select-option-bordercolor-over);
 	background-color: var(--wui-modal-select-option-bgcolor-over);
 }
-.wui-modal.select > .box > .options > .option:not(.disabled):hover > .icon,
-.wui-modal.select > .box > .options > .option:not(.disabled):focus > .icon,
-.wui-modal.select > .box > .options > .option:not(.disabled):focus-within > .icon {
+.wui-modal.select > .box > .options > .option:not(.disabled):is(:hover, :focus, :focus-within) > .icon {
 	background-color: var(--wui-modal-select-option-iconcolor-over);
 }
-.wui-modal.select > .box > .options > .option:not(.disabled):hover > .text,
-.wui-modal.select > .box > .options > .option:not(.disabled):focus > .text,
-.wui-modal.select > .box > .options > .option:not(.disabled):focus-within > .text {
+.wui-modal.select > .box > .options > .option:not(.disabled):is(:hover, :focus, :focus-within) > .text {
 	color: var(--wui-modal-select-option-textcolor-over);
 }
 .wui-modal.select > .box > .options > .option.disabled > .icon {
@@ -119,8 +113,7 @@
 		border-radius: 2px;
 		background-color: var(--wui-modal-body-scroll-bgcolor-out);
 	}
-	.wui-modal.select > .box > .options::-webkit-scrollbar-thumb:hover,
-	.wui-modal.select > .box > .options::-webkit-scrollbar-thumb:active {
+	.wui-modal.select > .box > .options::-webkit-scrollbar-thumb:is(:hover, :active) {
 		background-color: var(--wui-modal-body-scroll-bgcolor-over);
 	}
 	.wui-modal.select > .box > .options::-webkit-scrollbar-track {

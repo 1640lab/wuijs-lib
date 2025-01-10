@@ -65,8 +65,7 @@
 	border-radius: 2px;
 	background-color: var(--wui-paging-page-scroll-bgcolor-out);
 }
-.wui-paging > .page.scroll::-webkit-scrollbar-thumb:hover,
-.wui-paging > .page.scroll::-webkit-scrollbar-thumb:active {
+.wui-paging > .page.scroll::-webkit-scrollbar-thumb:is(:hover, :active) {
 	background-color: var(--wui-paging-page-scroll-bgcolor-over);
 }
 .wui-paging > .page.scroll::-webkit-scrollbar-track {

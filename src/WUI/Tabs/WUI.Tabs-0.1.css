@@ -103,12 +103,10 @@
 
 @media screen and (max-width: 767px) {
 	.wui-tabs.mobile > .bar > .tab,
-	.wui-tabs.mobile > .bar > .tab:hover,
-	.wui-tabs.mobile > .bar > .tab.selected {
+	.wui-tabs.mobile > .bar > .tab:is(:hover, .selected) {
 		background-color: transparent;
 	}
-	.wui-tabs.mobile > .bar > .tab:hover > .icon,
-	.wui-tabs.mobile > .bar > .tab.selected > .icon {
+	.wui-tabs.mobile > .bar > .tab:is(:hover, .selected) > .icon {
 		background-color: var(--wui-tabs-tab-iconcolor-mobile);
 	}
 	.wui-tabs.mobile > .bar > .tab > .text {

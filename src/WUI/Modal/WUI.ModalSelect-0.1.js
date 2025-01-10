@@ -244,24 +244,24 @@ class WUIModalSelect extends WUIModal {
 		}*/
 		options.innerHTML = "";
 		if (Array.isArray(this._options)) {
-			this._options.forEach((option, i) => {
-				const item = document.createElement("div");
+			this._options.forEach((opt, i) => {
+				const option = document.createElement("div");
 				const icon = document.createElement("div");
 				const text = document.createElement("div");
 				/*const checker = this.multiple ? document.createElement("div") : null;*/
-				const enabled = typeof(option.enabled) == "boolean" && !option.enabled ? false : true;
-				const selected = Boolean(option.selected);
-				icon.className = "icon "+(typeof(option.icon) == "string" && option.icon != "" ? option.icon : "wui-svgicon check-line");
+				const enabled = typeof(opt.enabled) == "boolean" && !opt.enabled ? false : true;
+				const selected = Boolean(opt.selected);
+				icon.className = "icon "+(typeof(opt.icon) == "string" && opt.icon != "" ? opt.icon : "wui-svgicon check-line");
 				text.className = "text "+(this._selecteableText ? "selecteable" : "");
-				text.innerHTML = option.value == "" ? "<i class='empty'>"+this._emptyText+"</i>" : option.text;
-				item.className = "option"+(selected ? " selected" : "");
-				item.dataset.index = i;
-				item.dataset.value = option.value;
-				item.dataset.text = option.text;
-				item.addEventListener("click", () => {
+				text.innerHTML = opt.value == "" ? "<i class='empty'>"+this._emptyText+"</i>" : opt.text;
+				option.className = "option"+(selected ? " selected" : "");
+				option.dataset.index = i;
+				option.dataset.value = opt.value;
+				option.dataset.text = opt.text;
+				option.addEventListener("click", () => {
 					if (enabled) {
-						const index = item.dataset.index;
-						const value = item.dataset.value;
+						const index = option.dataset.index;
+						const value = option.dataset.value;
 						this._box.querySelectorAll(".option").forEach((opt, j) => {
 							if (opt.dataset.value == value) {
 								opt.classList.add("selected");
@@ -276,16 +276,16 @@ class WUIModalSelect extends WUIModal {
 						}	
 					}
 				});
-				item.appendChild(icon);
-				item.appendChild(text);
+				option.appendChild(icon);
+				option.appendChild(text);
 				/*if (this.multiple) {
 					checker.className = "checker";
-					item.appendChild(checker);
+					option.appendChild(checker);
 				}*/
 				if (!enabled) {
-					item.classList.add("disabled");
+					option.classList.add("disabled");
 				}
-				options.appendChild(item);
+				options.appendChild(option);
 				if (selected) {
 					index = i;
 				}
@@ -315,8 +315,8 @@ class WUIModalSelect extends WUIModal {
 		super.close();
 		if (this._input != null) {
 			this._input.setAttribute("dir", "ltr");
-			this._input.querySelectorAll("option").forEach(option => {
-				option.style.display = "block";
+			this._input.querySelectorAll("option").forEach(opt => {
+				opt.style.display = "block";
 			});
 		}
 		this._input = null;

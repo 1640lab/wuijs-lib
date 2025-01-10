@@ -193,9 +193,7 @@
     	justify-content: center;
 		font-size: 17px;
 	}
-	.wui-modal > .box > .footer > button:hover,
-	.wui-modal > .box > .footer > button:focus,
-	.wui-modal > .box > .footer > button:focus-within {
+	.wui-modal > .box > .footer > button:is(:hover, :focus, :focus-within) {
 		border-color: transparent;
 		background-color: rgba(204, 204, 204, 0.3);
 	}
@@ -220,8 +218,7 @@
 		border-radius: 2px;
 		background-color: var(--wui-modal-body-scroll-bgcolor-out);
 	}
-	.wui-modal > .box > .body.scroll::-webkit-scrollbar-thumb:hover,
-	.wui-modal > .box > .body.scroll::-webkit-scrollbar-thumb:active {
+	.wui-modal > .box > .body.scroll::-webkit-scrollbar-thumb:is(:hover, :active) {
 		background-color: var(--wui-modal-body-scroll-bgcolor-over);
 	}
 	.wui-modal > .box > .body.scroll::-webkit-scrollbar-track {

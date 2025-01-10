@@ -64,8 +64,7 @@
 	-moz-transition: var(--strip-transition);
 	transition: var(--strip-transition);
 }
-.wui-list > .body > .row > .strip:hover,
-.wui-list > .body > .row > .strip:focus-within {
+.wui-list > .body > .row > .strip:is(:hover, :focus, :focus-within) {
 	border-color: var(--wui-list-row-bordercolor-over);
 	background-color: var(--wui-list-row-bgcolor-over);
 	color: var(--wui-list-row-textcolor-over);
@@ -198,8 +197,7 @@
 		border-radius: 2px;
 		background-color: var(--wui-list-scroll-bgcolor-out);
 	}
-	.wui-list > .body.scroll::-webkit-scrollbar-thumb:hover,
-	.wui-list > .body.scroll::-webkit-scrollbar-thumb:active {
+	.wui-list > .body.scroll::-webkit-scrollbar-thumb:is(:hover, :active) {
 		background-color: var(--wui-list-scroll-bgcolor-over);
 	}
 	.wui-list > .body.scroll::-webkit-scrollbar-track {

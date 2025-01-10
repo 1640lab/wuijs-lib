@@ -307,11 +307,9 @@ class WUIModal {
 				clearInterval(interval);
 				ease = 1;
 			}
-			this._element.style.opacity = ease;
+			this._element.style.opacity = ease == 1 ? null : ease;
 			if (ease == 0) {
 				this._element.style.display = "flex";
-			} else if (ease == 1) {
-				this._element.style.removeProperty("opacity");
 			}
 			if (this._box != null && page) {
 				if (!mobile && slide) {
