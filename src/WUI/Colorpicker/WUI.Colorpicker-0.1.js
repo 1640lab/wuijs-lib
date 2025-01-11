@@ -30,21 +30,135 @@ class WUIColorpicker {
 			grid: "netz",
 			list: "liste",
 			cancel: "stornieren",
-			accept: "akzeptieren"
+			accept: "akzeptieren",
+			colors: {}
 		},
 		en: {
 			empty: "empty",
 			grid: "grid",
 			list: "list",
 			cancel: "cancel",
-			accept: "accept"
+			accept: "accept",
+			colors: {}
 		},
 		es: {
 			empty: "vacío",
 			grid: "grilla",
 			list: "lista",
 			cancel: "cancelar",
-			accept: "aceptar"
+			accept: "aceptar",
+			colors: {
+				// Neutrals
+				black: "negro",
+				darkSlateGray: "gris pizarra oscuro",
+				dimGray: "gris oscuro",
+				slateGray: "gris pizarra",
+				gray: "gris",
+				lightSlateGray: "gris pizarra claro",
+				darkGray: "gris oscuro",
+				silver: "plata",
+				gainsboro: "gainsboro",
+				whiteSmoke: "humo blanco",
+				aliceBlue: "azul alice",
+				ghostWhite: "blanco fantasma",
+				white: "blanco",
+				// Reds and pinks
+				darkRed: "rojo oscuro",
+				red: "rojo",
+				fireBrick: "ladrillo refractario",
+				crimson: "carmesí",
+				pink: "rosa",
+				lightPink: "rosa claro",
+				hotPink: "rosa fuerte",
+				deepPink: "rosa intenso",
+				paleVioletRed: "rojo violeta pálido",
+				mediumVioletRed: "rojo violeta medio",
+				// Oranges
+				coral: "coral",
+				tomato: "tomate",
+				orangeRed: "rojo anaranjado",
+				darkOrange: "naranja oscuro",
+				orange: "naranja",
+				bisque: "sopa de mariscos",
+				blanchedAlmond: "almendra blanqueada",
+				navajoWhite: "blanco navajo",
+				seashell: "concha marina",
+				// Yellows
+				gold: "oro",
+				yellow: "amarillo",
+				lightYellow: "amarillo claro",
+				lemonChiffon: "gasa de limón",
+				lightGoldenRodYellow: "amarillo vara de oro claro",
+				papayaWhip: "papaya batida",
+				moccasin: "mocasín",
+				peachPuff: "melocotón",
+				cornsilk: "seda de maíz",
+				// Greens
+				darkGreen: "verde oscuro",
+				green: "verde",
+				forestGreen: "verde bosque",
+				seaGreen: "verde marino",
+				mediumSeaGreen: "verde marino medio",
+				limeGreen: "verde lima",
+				lime: "lima",
+				springGreen: "verde primavera",
+				mediumSpringGreen: "verde primavera medio",
+				lightGreen: "verde claro",
+				paleGreen: "verde pálido",
+				honeyDew: "rocío de miel",
+				// Cianes
+				darkCyan: "cian oscuro",
+				teal: "verde azulado",
+				aqua: "agua",
+				lightCyan: "cian claro",
+				darkTurquoise: "turquesa oscuro",
+				turquoise: "turquesa",
+				mediumTurquoise: "turquesa medio",
+				mintCream: "crema de menta",
+				// Blues
+				midnightBlue: "azul medianoche",
+				navy: "azul marino",
+				darkBlue: "azul oscuro",
+				mediumBlue: "azul medio",
+				blue: "azul",
+				dodgerBlue: "azul dodger",
+				deepSkyBlue: "azul cielo profundo",
+				skyBlue: "azul cielo",
+				lightSkyBlue: "azul cielo claro",
+				steelBlue: "azul acero",
+				lightSteelBlue: "azul acero claro",
+				aliceBlue: "azul alice",
+				// Violets
+				indigo: "índigo",
+				purple: "púrpura",
+				darkMagenta: "magenta oscuro",
+				darkViolet: "violeta oscuro",
+				mediumPurple: "púrpura medio",
+				orchid: "orquídea",
+				violet: "violeta",
+				plum: "ciruela",
+				thistle: "cardo",
+				lavender: "lavanda",
+				rebeccaPurple: "púrpura rebecca",
+				// Browns
+				saddleBrown: "marrón silla",
+				sienna: "siena",
+				chocolate: "chocolate",
+				darkGoldenRod: "vara de oro oscuro",
+				peru: "perú",
+				rosyBrown: "marrón rosado",
+				goldenRod: "vara de oro",
+				burlyWood: "madera robusta",
+				wheat: "trigo",
+				tan: "bronceado",
+				linen: "lino",
+				// Whites
+				floralWhite: "blanco floral",
+				ivory: "marfil",
+				oldLace: "encaje antiguo",
+				antiqueWhite: "blanco antiguo",
+				cornsilk: "seda de maíz"
+			}
 		}
 	};
 	static #colors = {
@@ -446,6 +560,12 @@ class WUIColorpicker {
 		this._cancelValue = this._targetValue;
 		this._gridTab.textContent = this._texts.grid != "" ? this._texts.grid : lang in texts ? texts[lang].grid : "";
 		this._listTab.textContent = this._texts.list != "" ? this._texts.list : lang in texts ? texts[lang].list : "";
+		if (lang.match(/(es)/)) {
+			Object.values(WUIColorpicker.#colors.list).forEach(name => {	
+				const text = this._list.querySelector(".option."+name+" > .text");
+				text.textContent = texts[lang].colors[name];
+			});
+		}
 		this._cancelButton.textContent = this._texts.cancel != "" ? this._texts.cancel : lang in texts ? texts[lang].cancel : "";
 		this._acceptButton.textContent = this._texts.accept != "" ? this._texts.accept : lang in texts ? texts[lang].accept : "";
 		this.#setView(this._targetValue);
