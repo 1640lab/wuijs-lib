@@ -1,6 +1,6 @@
 /* WUI.Language.js v0.1 */
 
-const languages = [];
+const languages = {};
 class WUILanguage {
 	static version = "0.1";
 	static #defaults = {
@@ -115,9 +115,6 @@ class WUILanguage {
 				const script = document.createElement("script");
 				const token = new Date().getTime();
 				const src = this._directory+set+"-"+lang+".js?_="+token;
-				if (!(lang in languages)) {
-					languages[lang] = {};
-				}
 				script.setAttribute("type", "text/javascript");
 				script.setAttribute("charset", "UTF-8");
 				script.setAttribute("src", src);
