@@ -48,7 +48,7 @@ class WUIColorpicker {
 			cancel: "cancelar",
 			accept: "aceptar",
 			colors: {
-				// Neutrals
+				// Neutrales
 				black: "negro",
 				darkSlateGray: "gris pizarra oscuro",
 				dimGray: "gris oscuro",
@@ -62,7 +62,7 @@ class WUIColorpicker {
 				aliceBlue: "azul alice",
 				ghostWhite: "blanco fantasma",
 				white: "blanco",
-				// Reds and pinks
+				// Rojos y rosas
 				darkRed: "rojo oscuro",
 				red: "rojo",
 				fireBrick: "ladrillo refractario",
@@ -73,7 +73,7 @@ class WUIColorpicker {
 				deepPink: "rosa intenso",
 				paleVioletRed: "rojo violeta pálido",
 				mediumVioletRed: "rojo violeta medio",
-				// Oranges
+				// Naranjas
 				coral: "coral",
 				tomato: "tomate",
 				orangeRed: "rojo anaranjado",
@@ -83,7 +83,7 @@ class WUIColorpicker {
 				blanchedAlmond: "almendra blanqueada",
 				navajoWhite: "blanco navajo",
 				seashell: "concha marina",
-				// Yellows
+				// Amarillos
 				gold: "oro",
 				yellow: "amarillo",
 				lightYellow: "amarillo claro",
@@ -93,7 +93,7 @@ class WUIColorpicker {
 				moccasin: "mocasín",
 				peachPuff: "melocotón",
 				cornsilk: "seda de maíz",
-				// Greens
+				// Verdes
 				darkGreen: "verde oscuro",
 				green: "verde",
 				forestGreen: "verde bosque",
@@ -115,7 +115,7 @@ class WUIColorpicker {
 				turquoise: "turquesa",
 				mediumTurquoise: "turquesa medio",
 				mintCream: "crema de menta",
-				// Blues
+				// Azules
 				midnightBlue: "azul medianoche",
 				navy: "azul marino",
 				darkBlue: "azul oscuro",
@@ -128,7 +128,7 @@ class WUIColorpicker {
 				steelBlue: "azul acero",
 				lightSteelBlue: "azul acero claro",
 				aliceBlue: "azul alice",
-				// Violets
+				// Violetas
 				indigo: "índigo",
 				purple: "púrpura",
 				darkMagenta: "magenta oscuro",
@@ -140,7 +140,7 @@ class WUIColorpicker {
 				thistle: "cardo",
 				lavender: "lavanda",
 				rebeccaPurple: "púrpura rebecca",
-				// Browns
+				// Marrones
 				saddleBrown: "marrón silla",
 				sienna: "siena",
 				chocolate: "chocolate",
@@ -152,7 +152,7 @@ class WUIColorpicker {
 				wheat: "trigo",
 				tan: "bronceado",
 				linen: "lino",
-				// Whites
+				// Blancos
 				floralWhite: "blanco floral",
 				ivory: "marfil",
 				oldLace: "encaje antiguo",
