@@ -2,13 +2,13 @@
 
 class WUISVGIcon {
 	static version = "0.1";
-	#defaults = {
+	static #defaults = {
 		selector: ".wui-svgicon",
 		dataURL: "url"
 	};
 	constructor (properties) {
-		Object.keys(this.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : this.#defaults[prop];
+		Object.keys(WUISVGIcon.#defaults).forEach(prop => {
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUISVGIcon.#defaults[prop];
 		});
 	}
 	get selector() {

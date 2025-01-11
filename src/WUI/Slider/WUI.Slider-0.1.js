@@ -2,13 +2,13 @@
 
 class WUISlider {
 	static version = "0.1";
-	#defaults = {
+	static #defaults = {
 		selector: "",
 		onChange: null
 	};
 	constructor (properties) {
-		Object.keys(this.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : this.#defaults[prop];
+		Object.keys(WUISlider.#defaults).forEach(prop => {
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUISlider.#defaults[prop];
 		});
 	}
 	get selector() {

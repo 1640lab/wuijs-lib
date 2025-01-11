@@ -2,7 +2,7 @@
 
 class WUIPaging {
 	static version = "0.1";
-	#defaults = {
+	static #defaults = {
 		selector: "",
 		index: null,
 		dataTarget: "target",
@@ -14,8 +14,8 @@ class WUIPaging {
 	constructor (properties) {
 		this._target = null;
 		this._history = [];
-		Object.keys(this.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : this.#defaults[prop];
+		Object.keys(WUIPaging.#defaults).forEach(prop => {
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUIPaging.#defaults[prop];
 		});
 	}
 	get selector() {

@@ -1,14 +1,14 @@
 /* WUITabs v0.1 */
 
 class WUITabs {
-	version = "0.1";
-	#defaults = {
+	static version = "0.1";
+	static #defaults = {
 		selector: "",
 		index: 0
 	};
 	constructor (properties) {
-		Object.keys(this.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : this.#defaults[prop];
+		Object.keys(WUITabs.#defaults).forEach(prop => {
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUITabs.#defaults[prop];
 		});
 	}
 	get selector() {

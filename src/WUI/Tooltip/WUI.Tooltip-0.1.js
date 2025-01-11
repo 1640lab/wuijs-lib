@@ -2,13 +2,13 @@
 
 class WUITooltip {
 	static version = "0.1";
-	#defaults = {
+	static #defaults = {
 		selector: ".wui-tooltip-target"
 	};
-	#tooltipSelectors = ".wui-tooltip, .wui-tooltip-top, .wui-tooltip-left, .wui-tooltip-right, .wui-tooltip-bottom";
+	static #tooltipSelectors = ".wui-tooltip, .wui-tooltip-top, .wui-tooltip-left, .wui-tooltip-right, .wui-tooltip-bottom";
 	constructor (properties) {
-		Object.keys(this.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : this.#defaults[prop];
+		Object.keys(WUITooltip.#defaults).forEach(prop => {
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUITooltip.#defaults[prop];
 		});
 	}
 	get selector() {
@@ -28,7 +28,7 @@ class WUITooltip {
 		this._elements.forEach(target => {
 			["mouseover", "mouseout"].forEach(type => {
 				target.addEventListener(type, () => {
-					target.querySelectorAll(this.#tooltipSelectors).forEach(tooltip => {
+					target.querySelectorAll(WUITooltip.#tooltipSelectors).forEach(tooltip => {
 						tooltip.classList.toggle("opened");
 					});
 				});
@@ -37,14 +37,14 @@ class WUITooltip {
 	}
 	lock() {
 		this._elements.forEach(target => {
-			target.querySelectorAll(this.#tooltipSelectors).forEach(tooltip => {
+			target.querySelectorAll(WUITooltip.#tooltipSelectors).forEach(tooltip => {
 				tooltip.classList.add("locked");
 			});
 		});
 	}
 	unlock() {
 		this._elements.forEach(target => {
-			target.querySelectorAll(this.#tooltipSelectors).forEach(tooltip => {
+			target.querySelectorAll(WUITooltip.#tooltipSelectors).forEach(tooltip => {
 				tooltip.classList.remove("locked");
 			});
 		});

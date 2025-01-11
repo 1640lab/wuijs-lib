@@ -3,32 +3,32 @@
 const languages = [];
 class WUILanguage {
 	static version = "0.1";
-	#defaults = {
+	static #defaults = {
 		selector: ".wui-language",
-		lang: "es",
 		directory: "Languages/",
-		filePrefix: "",
+		set: "main",
+		lang: "es",
 		dataKey: "key",
 		dataOutput: "text",
 		onLoad: null
 	};
-	#log = [];
+	static #log = [];
 	constructor (properties) {
-		Object.keys(this.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : this.#defaults[prop];
+		Object.keys(WUILanguage.#defaults).forEach(prop => {
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUILanguage.#defaults[prop];
 		});
 	}
 	get selector() {
 		return this._selector;
 	}
-	get lang() {
-		return this._lang;
-	}
 	get directory() {
 		return this._directory;
 	}
-	get filePrefix() {
-		return this._filePrefix;
+	get set() {
+		return this._set;
+	}
+	get lang() {
+		return this._lang;
 	}
 	get dataKey() {
 		return this._dataKey;
@@ -45,19 +45,19 @@ class WUILanguage {
 			this._elements = document.querySelectorAll(value);
 		}
 	}
-	set lang(value) {
-		if (typeof(value) == "string") {
-			this._lang = value;
-		}
-	}
 	set directory(value) {
 		if (typeof(value) == "string") {
 			this._directory = value;
 		}
 	}
-	set filePrefix(value) {
+	set set(value) {
 		if (typeof(value) == "string") {
-			this._filePrefix = value;
+			this._set = value;
+		}
+	}
+	set lang(value) {
+		if (typeof(value) == "string") {
+			this._lang = value;
 		}
 	}
 	set dataKey(value) {
@@ -75,41 +75,58 @@ class WUILanguage {
 			this._onLoad = value;
 		}
 	}
-	load(lang = this.lang) {
-		const onLoad = () => {
-			document.querySelectorAll(this._selector).forEach(element => {
-				const tagName = element.tagName;
-				const dataKey = element.dataset[this._dataKey];
-				const dataOutput = element.dataset[this._dataOutput];
-				if (dataKey != "") {
-					const text = eval("languages."+lang+"."+dataKey);
-					if (typeof(dataOutput) != "undefined") {
-						element.dataset[this._dataOutput] = text;
-					} else if (tagName.match(/^(meta)$/i)) {
-						element.setAttribute("content", text);
-					} else if (tagName.match(/^(h1|h2|h3|h4|h5|h6|div|span|p|i|li|a|legend|label|option|data|button)$/i)) {
-						element.innerHTML = text;
-					} else if (tagName.match(/^(input|textarea)$/i)) {
-						element.setAttribute("placeholder", text);
+	load(lang = this._lang, sets = [this._set]) {
+		const onLoad = (set) => {
+			temp[set] = Object.assign({}, languages[lang]);
+			total++;
+			if (total == sets.length) {
+				sets.forEach(set => {
+					Object.keys(temp[set]).forEach(key => {
+						Object.assign(languages[lang][key], temp[set][key]);	
+					});
+				});
+				document.querySelectorAll(this._selector).forEach(element => {
+					const tagName = element.tagName;
+					const dataKey = element.dataset[this._dataKey];
+					const dataOutput = element.dataset[this._dataOutput];
+					if (dataKey != "") {
+						const text = eval("languages."+lang+"."+dataKey);
+						if (typeof(dataOutput) != "undefined") {
+							element.dataset[this._dataOutput] = text;
+						} else if (tagName.match(/^(meta)$/i)) {
+							element.setAttribute("content", text);
+						} else if (tagName.match(/^(h1|h2|h3|h4|h5|h6|div|span|p|i|li|a|legend|label|option|data|button)$/i)) {
+							element.innerHTML = text;
+						} else if (tagName.match(/^(input|textarea)$/i)) {
+							element.setAttribute("placeholder", text);
+						}
 					}
+				});
+				if (typeof(this._onLoad) == "function") {
+					this._onLoad(lang);
 				}
-			});
-			if (typeof(this._onLoad) == "function") {
-				this._onLoad(lang);
 			}
 		}
-		if (this.#log.indexOf(lang) == -1) {
-			const script = document.createElement("script");
-			const token = new Date().getTime();
-			const src = this.directory+this.filePrefix+lang+".js?_="+token;
-			script.setAttribute("type", "text/javascript");
-			script.setAttribute("charset", "UTF-8");
-			script.setAttribute("src", src);
-			script.onload = onLoad;
-			document.getElementsByTagName("head")[0].appendChild(script);
-			this.#log.push(lang);
-		} else {
-			onLoad();
-		}
+		let total = 0;
+		let temp = {};
+		sets.forEach(set => {
+			const key = set+"-"+lang;
+			if (WUILanguage.#log.indexOf(key) == -1) {
+				const script = document.createElement("script");
+				const token = new Date().getTime();
+				const src = this._directory+set+"-"+lang+".js?_="+token;
+				if (!(lang in languages)) {
+					languages[lang] = {};
+				}
+				script.setAttribute("type", "text/javascript");
+				script.setAttribute("charset", "UTF-8");
+				script.setAttribute("src", src);
+				script.onload = () => {onLoad(set);};
+				document.getElementsByTagName("head")[0].appendChild(script);
+				WUILanguage.#log.push(key)
+			} else {
+				onLoad(set);
+			}
+		});
 	}
 }

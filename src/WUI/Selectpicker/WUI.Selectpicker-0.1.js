@@ -2,36 +2,7 @@
 
 class WUISelectpicker {
 	static version = "0.1";
-	static #constants = {
-		icons: {
-			open: ""
-				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
-				+"<path d='M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0z'/>"
-				+"</svg>",
-			"box-option-check": ""
-				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'>"
-				+"<path d='M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z'/>"
-				+"</svg>"
-		},
-		texts: {
-			de: {
-				empty: "leer",
-				cancel: "stornieren",
-				accept: "akzeptieren"
-			},
-			en: {
-				empty: "empty",
-				cancel: "cancel",
-				accept: "accept"
-			},
-			es: {
-				empty: "vacío",
-				cancel: "cancelar",
-				accept: "aceptar"
-			}
-		}
-	}
-	#defaults = {
+	static #defaults = {
 		selector: "",
 		value: "",
 		lang: "en",
@@ -41,6 +12,33 @@ class WUISelectpicker {
 		enabled: true,
 		onOpen: null,
 		onChange: null
+	};
+	static #icons = {
+		open: ""
+			+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
+			+"<path d='M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0z'/>"
+			+"</svg>",
+		"box-option-check": ""
+			+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'>"
+			+"<path d='M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z'/>"
+			+"</svg>"
+	};
+	static #texts = {
+		de: {
+			empty: "leer",
+			cancel: "stornieren",
+			accept: "akzeptieren"
+		},
+		en: {
+			empty: "empty",
+			cancel: "cancel",
+			accept: "accept"
+		},
+		es: {
+			empty: "vacío",
+			cancel: "cancelar",
+			accept: "aceptar"
+		}
 	};
 	static #active = null;
 	static _initClass() {
@@ -85,8 +83,8 @@ class WUISelectpicker {
 		});
 	}
 	constructor (properties) {
-		Object.keys(this.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : this.#defaults[prop];
+		Object.keys(WUISelectpicker.#defaults).forEach(prop => {
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUISelectpicker.#defaults[prop];
 		});
 	}
 	get selector() {
@@ -139,7 +137,7 @@ class WUISelectpicker {
 	}
 	set texts(value) {
 		if (typeof(value) == "object" && !Array.isArray(value) && value !== null) {
-			Object.keys(WUISelectpicker.#constants.texts.en).forEach(text => {
+			Object.keys(WUISelectpicker.#texts.en).forEach(text => {
 				if (!(text in value)) {
 					value[text] = "";
 				}
@@ -208,7 +206,7 @@ class WUISelectpicker {
 		const baseColor = getComputedStyle(element).getPropertyValue("--wui-selectpicker-"+name+"color-"+event);
 		const hexColor = prepareColor(baseColor).replace(/#/g, "%23").trim();
 		const src = getComputedStyle(element).getPropertyValue("--wui-selectpicker-"+name+"icon-src").replace(/currentColor/g, hexColor);
-		return src != "" && !src.match(/^(none|url\(\))$/) ? src : "url(\"data:image/svg+xml,"+WUISelectpicker.#constants.icons[name].replace(/currentColor/g, hexColor)+"\")";
+		return src != "" && !src.match(/^(none|url\(\))$/) ? src : "url(\"data:image/svg+xml,"+WUISelectpicker.#icons[name].replace(/currentColor/g, hexColor)+"\")";
 	}
 	#setValue(value) {
 		this._input.value = value;
@@ -277,7 +275,7 @@ class WUISelectpicker {
 			icon.className = "icon "+(customIcon ? opt.icon : "check");
 			icon.style.maskImage = !customIcon ? this.#getSRCIcon("box-option-check", selected ? "selected focus" : "out") : "url()";
 			text.className = "text "+(opt.value == "" ? "empty" : this._selecteableText ? "selecteable" : "");
-			text.innerHTML = opt.value == "" ? (this.texts.empty != "" ? this.texts.empty : lang in WUISelectpicker.#constants.texts ? WUISelectpicker.#constants.texts[lang].empty : "") : opt.text;
+			text.innerHTML = opt.value == "" ? (this.texts.empty != "" ? this.texts.empty : lang in WUISelectpicker.#texts ? WUISelectpicker.#texts[lang].empty : "") : opt.text;
 			opt.classList.forEach(key => {
 				text.classList.add(key);
 			});
@@ -358,8 +356,8 @@ class WUISelectpicker {
 		this.#prepare();
 	}
 	#prepare() {
+		const texts = WUISelectpicker.#texts;
 		const lang = this._lang;
-		const texts = WUISelectpicker.#constants.texts;
 		this._targetValue = this._input.value || "";
 		this._cancelValue = this._targetValue;
 		this._cancelButton.textContent = this._texts.cancel != "" ? this._texts.cancel : lang in texts ? texts[lang].cancel : "";

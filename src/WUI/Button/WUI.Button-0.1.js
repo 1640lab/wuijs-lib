@@ -2,7 +2,7 @@
 
 class WUIButton {
 	static version = "0.1";
-	#defaults = {
+	static #defaults = {
 		selector: "",
 		text: "",
 		locked: false,
@@ -10,8 +10,8 @@ class WUIButton {
 		onClick: null
 	};
 	constructor (properties) {
-		Object.keys(this.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : this.#defaults[prop];
+		Object.keys(WUIButton.#defaults).forEach(prop => {
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUIButton.#defaults[prop];
 		});
 	}
 	get selector() {

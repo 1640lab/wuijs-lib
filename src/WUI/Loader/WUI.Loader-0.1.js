@@ -2,7 +2,7 @@
 
 class WUILoader {
 	static version = "0.1";
-	#defaults = {
+	static #defaults = {
 		selector: ".wui-loader",
 		style: "ring",
 		size: 80,
@@ -11,8 +11,8 @@ class WUILoader {
 	};
 	#styles = ["ring", "dualring", "spinner", "roller", "ellipsis", "grid"];
 	constructor (properties) {
-		Object.keys(this.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : this.#defaults[prop];
+		Object.keys(WUILoader.#defaults).forEach(prop => {
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUILoader.#defaults[prop];
 		});
 	}
 	get selector() {

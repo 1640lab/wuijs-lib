@@ -2,7 +2,7 @@
 
 class WUIModal {
 	static version = "0.1";
-	#defaults = {
+	static #defaults = {
 		selector: "",
 		openDelay: 200,
 		onStartOpen: null,
@@ -156,8 +156,8 @@ class WUIModal {
 		return status.join(",");
 	}
 	setProperties(properties) {
-		Object.keys(this.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : this.#defaults[prop];
+		Object.keys(WUIModal.#defaults).forEach(prop => {
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUIModal.#defaults[prop];
 		});
 	}
 	setHeadBorder(border) {

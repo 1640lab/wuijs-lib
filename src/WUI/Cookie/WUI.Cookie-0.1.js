@@ -2,17 +2,17 @@
 
 class WUICookie {
 	static version = "0.1";
-	static defaults = {
+	static #defaults = {
 		domain: location.hostname,
 		path: "/",
 		minutes: 365*24*60,
 		overssl: false
 	};
 	static set(name, value, options = {}) {
-		const domain = typeof(options.domain) == "string" ? options.domain : WUICookie.defaults.domain;
-		const path = typeof(options.path) == "string" ? options.path : WUICookie.defaults.path;
-		const minutes = typeof(options.minutes) == "number" ? options.minutes : WUICookie.defaults.minutes;
-		const overssl = typeof(options.overssl) == "boolean" ? options.path : WUICookie.defaults.overssl;
+		const domain = typeof(options.domain) == "string" ? options.domain : WUICookie.#defaults.domain;
+		const path = typeof(options.path) == "string" ? options.path : WUICookie.#defaults.path;
+		const minutes = typeof(options.minutes) == "number" ? options.minutes : WUICookie.#defaults.minutes;
+		const overssl = typeof(options.overssl) == "boolean" ? options.overssl : WUICookie.#defaults.overssl;
 		const cookie = encodeURIComponent(name)+"="+encodeURIComponent(value)
 			+(domain != "" ? "; domain="+domain : "")
 			+"; path="+path;

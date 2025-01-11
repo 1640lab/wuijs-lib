@@ -2,7 +2,7 @@
 
 class WUIBody {
 	static version = "0.1";
-	#defaults = {
+	static #defaults = {
 		environment: "",
 		importDirectory: "",
 		onCompleted: null,
@@ -12,8 +12,8 @@ class WUIBody {
 	#jsCount = 0;
 	#parts = 0;
 	constructor (properties) {
-		Object.keys(this.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : this.#defaults[prop];
+		Object.keys(WUIBody.#defaults).forEach(prop => {
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUIBody.#defaults[prop];
 		});
 	}
 	get environment() {

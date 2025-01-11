@@ -2,19 +2,7 @@
 
 class WUITable {
 	static version = "0.1";
-	static #constants = {
-		icons: {
-			"header-column-up": ""
-				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
-				+"<path d='M8.12 14.71L12 10.83l3.88 3.88a.996.996 0 1 0 1.41-1.41L12.7 8.71a.996.996 0 0 0-1.41 0L6.7 13.3a.996.996 0 0 0 0 1.41c.39.38 1.03.39 1.42 0z'/>"
-				+"</svg>",
-			"header-column-down": ""
-				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
-				+"<path d='M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0z'/>"
-				+"</svg>"
-		}
-	};
-	#defaults = {
+	static #defaults = {
 		selector: ".wui-grid",
 		columns: [],
 		rows: [],
@@ -26,9 +14,19 @@ class WUITable {
 		onClick: null,
 		onDblclick: null
 	};
+	static #icons = {
+		"header-column-up": ""
+			+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
+			+"<path d='M8.12 14.71L12 10.83l3.88 3.88a.996.996 0 1 0 1.41-1.41L12.7 8.71a.996.996 0 0 0-1.41 0L6.7 13.3a.996.996 0 0 0 0 1.41c.39.38 1.03.39 1.42 0z'/>"
+			+"</svg>",
+		"header-column-down": ""
+			+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
+			+"<path d='M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0z'/>"
+			+"</svg>"
+	};
 	constructor (properties) {
-		Object.keys(this.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : this.#defaults[prop];
+		Object.keys(WUITable.#defaults).forEach(prop => {
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUITable.#defaults[prop];
 		});
 	}
 	get selector() {
@@ -122,7 +120,7 @@ class WUITable {
 		const element = this._element || document.documentElement;
 		const color = getComputedStyle(element).getPropertyValue("--wui-grid-"+name+"color-"+event).replace(/#/g, "%23").trim();
 		const src = getComputedStyle(element).getPropertyValue("--wui-grid-"+name+"icon-src").replace(/currentColor/g, color);
-		return src != "" && !src.match(/^(none|url\(\))$/) ? src : "url(\"data:image/svg+xml,"+WUITable.#constants.icons[name].replace(/currentColor/g, color)+"\")";
+		return src != "" && !src.match(/^(none|url\(\))$/) ? src : "url(\"data:image/svg+xml,"+WUITable.#icons[name].replace(/currentColor/g, color)+"\")";
 	}
 	addColumn(column) {
 		this._columns.push(column);

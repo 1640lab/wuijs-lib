@@ -1,8 +1,8 @@
 /* WUIScrolly v0.1 */
 
 class WUIScrolly {
-	version = "0.1";
-	#defaults = {
+	static version = "0.1";
+	static #defaults = {
 		sections: [],
 		behavior: "smooth",
 		dataScrollY: "scrollY",
@@ -24,8 +24,8 @@ class WUIScrolly {
 		return Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
 	}
 	constructor (properties) {
-		Object.keys(this.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : this.#defaults[prop];
+		Object.keys(WUIScrolly.#defaults).forEach(prop => {
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUIScrolly.#defaults[prop];
 		});
 	}
 	get sections() {

@@ -2,7 +2,7 @@
 
 class WUIList {
 	static version = "0.1";
-	#defaults = {
+	static #defaults = {
 		selector: ".wui-list",
 		columns: [],
 		rows: [],
@@ -11,8 +11,8 @@ class WUIList {
 		onClick: null
 	};
 	constructor (properties) {
-		Object.keys(this.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : this.#defaults[prop];
+		Object.keys(WUIList.#defaults).forEach(prop => {
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUIList.#defaults[prop];
 		});
 	}
 	get selector() {

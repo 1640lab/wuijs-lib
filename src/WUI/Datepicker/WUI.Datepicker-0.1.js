@@ -2,57 +2,7 @@
 
 class WUIDatepicker {
 	static version = "0.1";
-	static #constants = {
-		locales: "" // https://www.techonthenet.com/js/language_tags.php 20241007
-			+"ar-SA bn-BD bn-IN cs-CZ da-DK de-AT de-CH de-DE el-GR en-AU en-CA en-GB en-IE en-IN en-NZ en-US en-ZA es-AR es-CL es-CO es-ES es-MX es-US fi-FI fr-BE fr-CA fr-CH fr-FR he-IL hi-IN hu-HU id-ID it-CH it-IT ja-JP ko-KR nl-BE nl-NL no-NO pl-PL pt-BR pt-PT ro-RO ru-RU sk-SK sv-SE ta-IN ta-LK th-TH tr-TR zh-CN zh-HK zh-TW",
-		firstWeekDayCountry: {
-			0: "AG AS AU BD BR BS BT BW BZ CA CN CO DM DO ET GT GU HK HN ID IL IN JM JP KE KH KR LA MH MM MO MT MX MZ NI NP PA PE PH PK PR PT PY SA SG SV TH TT TW UM US VE VI WS YE ZA ZW",
-			1: "AD AI AL AM AN AR AT AX AZ BA BE BG BM BN BY CH CL CM CR CY CZ DE DK EC EE ES FI FJ FO FR GB GE GF GP GR HR HU IE IS IT KG KZ LB LI LK LT LU LV MC MD ME MK MN MQ MY NL NO NZ PL RE RO RS RU SE SI SK SM TJ TM TR UA UY UZ VA VN XK",
-			2: "",
-			3: "",
-			4: "",
-			5: "MV",
-			6: "AE AF BH DJ DZ EG IQ IR JO KW LY OM QA SD SY"
-		},
-		countryFirstWeekDay: {},
-		icons: {
-			open: ""
-				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
-				+"<path d='M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0z'/>"
-				+"</svg>",
-			"box-up": ""
-				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
-				+"<path d='M8.12 14.71L12 10.83l3.88 3.88a.996.996 0 1 0 1.41-1.41L12.7 8.71a.996.996 0 0 0-1.41 0L6.7 13.3a.996.996 0 0 0 0 1.41c.39.38 1.03.39 1.42 0z'/>"
-				+"</svg>",
-			"box-down": ""
-				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
-				+"<path d='M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0z'/>"
-				+"</svg>",
-			"box-prev": ""
-				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
-				+"<path d='M14.71 15.88L10.83 12l3.88-3.88a.996.996 0 1 0-1.41-1.41L8.71 11.3a.996.996 0 0 0 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0c.38-.39.39-1.03 0-1.42z'/>"
-				+"</svg>",
-			"box-next": ""
-				+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
-				+"<path d='M9.29 15.88L13.17 12L9.29 8.12a.996.996 0 1 1 1.41-1.41l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3a.996.996 0 0 1-1.41 0c-.38-.39-.39-1.03 0-1.42z'/>"
-				+"</svg>"
-		},
-		texts: {
-			de: {
-				cancel: "stornieren",
-				accept: "akzeptieren"
-			},
-			en: {
-				cancel: "cancel",
-				accept: "accept"
-			},
-			es: {
-				cancel: "cancelar",
-				accept: "aceptar"
-			}
-		}
-	};
-	#defaults = {
+	static #defaults = {
 		selector: "",
 		min: "",
 		max: "",
@@ -66,16 +16,63 @@ class WUIDatepicker {
 		onOpen: null,
 		onChange: null
 	};
+	static #icons = {
+		open: ""
+			+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
+			+"<path d='M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0z'/>"
+			+"</svg>",
+		"box-up": ""
+			+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
+			+"<path d='M8.12 14.71L12 10.83l3.88 3.88a.996.996 0 1 0 1.41-1.41L12.7 8.71a.996.996 0 0 0-1.41 0L6.7 13.3a.996.996 0 0 0 0 1.41c.39.38 1.03.39 1.42 0z'/>"
+			+"</svg>",
+		"box-down": ""
+			+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
+			+"<path d='M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0z'/>"
+			+"</svg>",
+		"box-prev": ""
+			+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
+			+"<path d='M14.71 15.88L10.83 12l3.88-3.88a.996.996 0 1 0-1.41-1.41L8.71 11.3a.996.996 0 0 0 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0c.38-.39.39-1.03 0-1.42z'/>"
+			+"</svg>",
+		"box-next": ""
+			+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
+			+"<path d='M9.29 15.88L13.17 12L9.29 8.12a.996.996 0 1 1 1.41-1.41l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3a.996.996 0 0 1-1.41 0c-.38-.39-.39-1.03 0-1.42z'/>"
+			+"</svg>"
+	};
+	static #texts = {
+		de: {
+			cancel: "stornieren",
+			accept: "akzeptieren"
+		},
+		en: {
+			cancel: "cancel",
+			accept: "accept"
+		},
+		es: {
+			cancel: "cancelar",
+			accept: "aceptar"
+		}
+	};
+	static #localesSet = "ar-SA bn-BD bn-IN cs-CZ da-DK de-AT de-CH de-DE el-GR en-AU en-CA en-GB en-IE en-IN en-NZ en-US en-ZA es-AR es-CL es-CO es-ES es-MX es-US fi-FI fr-BE fr-CA fr-CH fr-FR he-IL hi-IN hu-HU id-ID it-CH it-IT ja-JP ko-KR nl-BE nl-NL no-NO pl-PL pt-BR pt-PT ro-RO ru-RU sk-SK sv-SE ta-IN ta-LK th-TH tr-TR zh-CN zh-HK zh-TW"; // https://www.techonthenet.com/js/language_tags.php 20241007
+	static #firstWeekDayCountry = {
+		0: "AG AS AU BD BR BS BT BW BZ CA CN CO DM DO ET GT GU HK HN ID IL IN JM JP KE KH KR LA MH MM MO MT MX MZ NI NP PA PE PH PK PR PT PY SA SG SV TH TT TW UM US VE VI WS YE ZA ZW",
+		1: "AD AI AL AM AN AR AT AX AZ BA BE BG BM BN BY CH CL CM CR CY CZ DE DK EC EE ES FI FJ FO FR GB GE GF GP GR HR HU IE IS IT KG KZ LB LI LK LT LU LV MC MD ME MK MN MQ MY NL NO NZ PL RE RO RS RU SE SI SK SM TJ TM TR UA UY UZ VA VN XK",
+		2: "",
+		3: "",
+		4: "",
+		5: "MV",
+		6: "AE AF BH DJ DZ EG IQ IR JO KW LY OM QA SD SY"
+	};
+	static #countryFirstWeekDay = {};
 	static _initClass() {
-		Object.entries(WUIDatepicker.#constants.firstWeekDayCountry).forEach(([wday, countries]) => {
+		Object.entries(WUIDatepicker.#firstWeekDayCountry).forEach(([wday, countries]) => {
 			countries.split(/\s+/).forEach(code => {
-				WUIDatepicker.#constants.countryFirstWeekDay[code] = wday;
+				WUIDatepicker.#countryFirstWeekDay[code] = wday;
 			});
 		});
 	}
 	constructor (properties) {
-		Object.keys(this.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : this.#defaults[prop];
+		Object.keys(WUIDatepicker.#defaults).forEach(prop => {
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUIDatepicker.#defaults[prop];
 		});
 	}
 	get selector() {
@@ -141,7 +138,7 @@ class WUIDatepicker {
 		}
 	}
 	set locales(value) {
-		if (typeof(value) == "string" && value.match(/^[a-z]{2}-[a-z]{2}$/i) && WUIDatepicker.#constants.locales.toLowerCase().split(/\s+/).indexOf(value.toLowerCase()) > -1) {
+		if (typeof(value) == "string" && value.match(/^[a-z]{2}-[a-z]{2}$/i) && WUIDatepicker.#localesSet.toLowerCase().split(/\s+/).indexOf(value.toLowerCase()) > -1) {
 			this._locales = value.split("-").map((x, i) => {
 				return i == 0 ? x.toLowerCase() : x.toUpperCase();
 			}).join("-");
@@ -162,7 +159,7 @@ class WUIDatepicker {
 	}
 	set texts(value) {
 		if (typeof(value) == "object" && !Array.isArray(value) && value !== null) {
-			Object.keys(WUIDatepicker.#constants.texts.en).forEach(text => {
+			Object.keys(WUIDatepicker.#texts.en).forEach(text => {
 				if (!(text in value)) {
 					value[text] = "";
 				}
@@ -224,7 +221,7 @@ class WUIDatepicker {
 		const baseColor = getComputedStyle(element).getPropertyValue("--wui-datepicker-"+name+"color-"+event);
 		const hexColor = prepareColor(baseColor).replace(/#/g, "%23").trim();
 		const src = getComputedStyle(element).getPropertyValue("--wui-datepicker-"+name+"icon-src").replace(/currentColor/g, hexColor);
-		return src != "" && !src.match(/^(none|url\(\))$/) ? src : "url(\"data:image/svg+xml,"+WUIDatepicker.#constants.icons[name].replace(/currentColor/g, hexColor)+"\")";
+		return src != "" && !src.match(/^(none|url\(\))$/) ? src : "url(\"data:image/svg+xml,"+WUIDatepicker.#icons[name].replace(/currentColor/g, hexColor)+"\")";
 	}
 	#setValue(value) {
 		this._input.value = value;
@@ -347,8 +344,8 @@ class WUIDatepicker {
 		this.#loadInputs();
 	}
 	#prepare() {
+		const texts = WUIDatepicker.#texts;
 		const lang = this._locales.split("-")[0].toLowerCase();
-		const texts = WUIDatepicker.#constants.texts;
 		const today = (() => {
 			const date = new Date();
 			const offset = date.getTimezoneOffset();
@@ -472,7 +469,7 @@ class WUIDatepicker {
 		const year = this._targetDate.getFullYear();
 		const month = this._targetDate.getMonth() +1;
 		const country = this.locales.split("-")[1].toUpperCase();
-		const firstwday = parseInt(WUIDatepicker.#constants.countryFirstWeekDay[country] || 0);
+		const firstwday = parseInt(WUIDatepicker.#countryFirstWeekDay[country] || 0);
 		const firstmday = new Date(year, month, 1, 0, 0, 0).getDay(); 
 		const lasmday = month == 2 ? year & 3 || !(year % 25) && year & 15 ? 28 : 29 : 30 + (month + (month >> 3) & 1);
 		let ini = 0;

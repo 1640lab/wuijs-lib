@@ -2,7 +2,7 @@
 
 class WUICheckbox {
 	static version = "0.1";
-	#defaults = {
+	static #defaults = {
 		selector: "",
 		value: "1",
 		checked: false,
@@ -10,8 +10,8 @@ class WUICheckbox {
 		onChange: null
 	};
 	constructor (properties) {
-		Object.keys(this.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : this.#defaults[prop];
+		Object.keys(WUICheckbox.#defaults).forEach(prop => {
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUICheckbox.#defaults[prop];
 		});
 	}
 	get selector() {
