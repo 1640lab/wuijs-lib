@@ -157,7 +157,7 @@ class WUIModal {
 	}
 	setProperties(properties) {
 		Object.keys(WUIModal.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUIModal.#defaults[prop];
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUIModal.#defaults ? WUIModal.#defaults[prop] : null;
 		});
 	}
 	setHeadBorder(border) {

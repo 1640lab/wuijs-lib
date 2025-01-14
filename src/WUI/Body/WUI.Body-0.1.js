@@ -13,7 +13,7 @@ class WUIBody {
 	#parts = 0;
 	constructor (properties) {
 		Object.keys(WUIBody.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUIBody.#defaults[prop];
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUIBody.#defaults ? WUIBody.#defaults[prop] : null;
 		});
 	}
 	get environment() {

@@ -12,7 +12,7 @@ class WUILoader {
 	#styles = ["ring", "dualring", "spinner", "roller", "ellipsis", "grid"];
 	constructor (properties) {
 		Object.keys(WUILoader.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUILoader.#defaults[prop];
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUILoader.#defaults ? WUILoader.#defaults[prop] : null;
 		});
 	}
 	get selector() {

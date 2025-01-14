@@ -8,7 +8,7 @@ class WUISlider {
 	};
 	constructor (properties) {
 		Object.keys(WUISlider.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUISlider.#defaults[prop];
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUISlider.#defaults ? WUISlider.#defaults[prop] : null;
 		});
 	}
 	get selector() {

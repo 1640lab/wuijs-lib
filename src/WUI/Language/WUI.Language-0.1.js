@@ -15,7 +15,7 @@ class WUILanguage {
 	static #log = [];
 	constructor (properties) {
 		Object.keys(WUILanguage.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUILanguage.#defaults[prop];
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUILanguage.#defaults ? WUILanguage.#defaults[prop] : null;
 		});
 	}
 	get selector() {
@@ -82,6 +82,9 @@ class WUILanguage {
 			if (total == sets.length) {
 				sets.forEach(set => {
 					Object.keys(temp[set]).forEach(key => {
+						if (!(key in languages[lang])) {
+							languages[lang][key] = {};
+						}
 						Object.assign(languages[lang][key], temp[set][key]);	
 					});
 				});

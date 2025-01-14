@@ -84,7 +84,7 @@ class WUISelectpicker {
 	}
 	constructor (properties) {
 		Object.keys(WUISelectpicker.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUISelectpicker.#defaults[prop];
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUISelectpicker.#defaults ? WUISelectpicker.#defaults[prop] : null;
 		});
 	}
 	get selector() {

@@ -8,7 +8,7 @@ class WUITooltip {
 	static #tooltipSelectors = ".wui-tooltip, .wui-tooltip-top, .wui-tooltip-left, .wui-tooltip-right, .wui-tooltip-bottom";
 	constructor (properties) {
 		Object.keys(WUITooltip.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUITooltip.#defaults[prop];
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUITooltip.#defaults ? WUITooltip.#defaults[prop] : null;
 		});
 	}
 	get selector() {

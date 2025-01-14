@@ -23,7 +23,7 @@ class WUIForm {
 	};
 	constructor (properties) {
 		Object.keys(WUIForm.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUIForm.#defaults[prop];
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUIForm.#defaults ? WUIForm.#defaults[prop] : null;
 		});
 	}
 	get selector() {

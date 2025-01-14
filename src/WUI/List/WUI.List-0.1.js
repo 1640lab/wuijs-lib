@@ -12,7 +12,7 @@ class WUIList {
 	};
 	constructor (properties) {
 		Object.keys(WUIList.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUIList.#defaults[prop];
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUIList.#defaults ? WUIList.#defaults[prop] : null;
 		});
 	}
 	get selector() {

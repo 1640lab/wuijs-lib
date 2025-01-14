@@ -15,7 +15,7 @@ class WUIPaging {
 		this._target = null;
 		this._history = [];
 		Object.keys(WUIPaging.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUIPaging.#defaults[prop];
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUIPaging.#defaults ? WUIPaging.#defaults[prop] : null;
 		});
 	}
 	get selector() {

@@ -72,7 +72,7 @@ class WUIDatepicker {
 	}
 	constructor (properties) {
 		Object.keys(WUIDatepicker.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUIDatepicker.#defaults[prop];
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUIDatepicker.#defaults ? WUIDatepicker.#defaults[prop] : null;
 		});
 	}
 	get selector() {

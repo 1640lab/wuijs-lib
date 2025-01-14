@@ -289,7 +289,7 @@ class WUIColorpicker {
 	};
 	constructor (properties) {
 		Object.keys(WUIColorpicker.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUIColorpicker.#defaults[prop];
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUIColorpicker.#defaults ? WUIColorpicker.#defaults[prop] : null;
 		});
 	}
 	get selector() {

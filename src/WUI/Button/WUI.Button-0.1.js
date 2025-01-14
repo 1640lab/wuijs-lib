@@ -11,7 +11,7 @@ class WUIButton {
 	};
 	constructor (properties) {
 		Object.keys(WUIButton.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUIButton.#defaults[prop];
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUIButton.#defaults ? WUIButton.#defaults[prop] : null;
 		});
 	}
 	get selector() {

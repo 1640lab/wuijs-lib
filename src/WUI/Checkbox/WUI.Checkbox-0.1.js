@@ -11,7 +11,7 @@ class WUICheckbox {
 	};
 	constructor (properties) {
 		Object.keys(WUICheckbox.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUICheckbox.#defaults[prop];
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUICheckbox.#defaults ? WUICheckbox.#defaults[prop] : null;
 		});
 	}
 	get selector() {

@@ -26,7 +26,7 @@ class WUITable {
 	};
 	constructor (properties) {
 		Object.keys(WUITable.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUITable.#defaults[prop];
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUITable.#defaults ? WUITable.#defaults[prop] : null;
 		});
 	}
 	get selector() {

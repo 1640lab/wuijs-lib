@@ -25,7 +25,7 @@ class WUIScrolly {
 	}
 	constructor (properties) {
 		Object.keys(WUIScrolly.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUIScrolly.#defaults[prop];
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUIScrolly.#defaults ? WUIScrolly.#defaults[prop] : null;
 		});
 	}
 	get sections() {

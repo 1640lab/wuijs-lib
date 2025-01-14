@@ -8,7 +8,7 @@ class WUISVGIcon {
 	};
 	constructor (properties) {
 		Object.keys(WUISVGIcon.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : WUISVGIcon.#defaults[prop];
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUISVGIcon.#defaults ? WUISVGIcon.#defaults[prop] : null;
 		});
 	}
 	get selector() {
