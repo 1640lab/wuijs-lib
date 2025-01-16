@@ -85,7 +85,7 @@ class WUILanguage {
 						if (!(key in languages[lang])) {
 							languages[lang][key] = {};
 						}
-						Object.assign(languages[lang][key], temp[set][key]);	
+						Object.assign(languages[lang][key], temp[set][key]);
 					});
 				});
 				document.querySelectorAll(this._selector).forEach(element => {
