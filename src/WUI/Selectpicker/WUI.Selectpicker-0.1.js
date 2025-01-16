@@ -154,7 +154,7 @@ class WUISelectpicker {
 		if (typeof(value) == "boolean") {
 			this._filterable = value;
 			if (typeof(this._inputText) != "undefined") {
-				this._inputText.readonly = !value;
+				this._inputText.readOnly = !value;
 				if (value) {
 					this._inputText.removeAttribute("readonly");
 				} else {
@@ -311,6 +311,7 @@ class WUISelectpicker {
 		});
 		this._inputText.type = "text";
 		this._inputText.name = this._input.name+"Text";
+		this._inputText.readOnly = !this._filterable;
 		this._inputText.addEventListener("click", () => {
 			const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
 			if (!mobile && this._filterable) {
@@ -324,7 +325,7 @@ class WUISelectpicker {
 		this._inputText.addEventListener("keyup", (event) => {
 			const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
 			if (!mobile && this._filterable && !event.key.match(/^(ArrowUp|ArrowDown|Enter|Escape)$/)) {
-				const prepare = str => str.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ñ/g, "n");
+				const prepare = str => str.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ñ/g, "n").replace(/\W+/g, "");
 				const key = this._inputText.value;
 				const regexp = new RegExp(prepare(key));
 				this._options.querySelectorAll(".option").forEach(option => {
