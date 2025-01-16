@@ -58,9 +58,9 @@
 	width: 10px;
 	height: 10px;
 	background-color: var(--wui-tooltip-bgcolor);
-	-webkit-transform: var(--transform);
-	-moz-transform: var(--transform);
-	transform: var(--transform);
+	-webkit-transform: var(--tooltip-transform);
+	-moz-transform: var(--tooltip-transform);
+	transform: var(--tooltip-transform);
 }
 .wui-tooltip.top::before,
 .wui-tooltip.left::after,

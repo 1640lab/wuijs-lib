@@ -445,16 +445,17 @@ class WUIDatepicker {
 				option.addEventListener("click", () => {
 					const selected = !Boolean(option.classList.contains("selected"));
 					const targetValue = optionValue;
+					const targetDate = new Date(targetValue+"T00:00:00");
 					const value = selected ? targetValue : "";
-					const date = selected ? new Date(targetValue+"T00:00:00") : null;
+					const date = selected ? targetDate : null;
 					this._months.querySelectorAll("div").forEach(div => {
 						if (typeof(div.dataset.value) != "undefined" && div.dataset.value != targetValue) {
 							div.classList.remove("selected");
 						}
 					});
 					option.classList.toggle("selected");
-					this._targetValue = value;
-					this._targetDate = date;
+					this._targetValue = targetValue;
+					this._targetDate = targetDate;
 					this._period.innerHTML = this._monthsNames[option.dataset.month -1]+" "+option.dataset.year+" <div class='icon up'></div>";
 					this.#setValue(value);
 					this.#setView(date);
@@ -470,7 +471,7 @@ class WUIDatepicker {
 		const month = this._targetDate.getMonth() +1;
 		const country = this.locales.split("-")[1].toUpperCase();
 		const firstwday = parseInt(WUIDatepicker.#countryFirstWeekDay[country] || 0);
-		const firstmday = new Date(year, month, 1, 0, 0, 0).getDay(); 
+		const firstmday = new Date(year, month -1, 1, 0, 0, 0).getDay();
 		const lasmday = month == 2 ? year & 3 || !(year % 25) && year & 15 ? 28 : 29 : 30 + (month + (month >> 3) & 1);
 		let ini = 0;
 		let rows = 5;
@@ -512,16 +513,17 @@ class WUIDatepicker {
 				option.addEventListener("click", () => {
 					const selected = !Boolean(option.classList.contains("selected"));
 					const targetValue = optionValue;
+					const targetDate = new Date(targetValue+"T00:00:00");
 					const value = selected ? targetValue : "";
-					const date = selected ? new Date(targetValue+"T00:00:00") : null;
+					const date = selected ? targetDate : null;
 					this._days.querySelectorAll("div").forEach(div => {
 						if (typeof(div.dataset.value) != "undefined" && div.dataset.value != targetValue) {
 							div.classList.remove("selected");
 						}
 					});
 					option.classList.toggle("selected");
-					this._targetValue = value;
-					this._targetDate = date;
+					this._targetValue = targetValue;
+					this._targetDate = targetDate;
 					this.#setValue(value);
 					this.#setView(date);
 				});
