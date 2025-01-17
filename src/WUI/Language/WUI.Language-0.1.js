@@ -76,8 +76,9 @@ class WUILanguage {
 		}
 	}
 	load(lang = this._lang, sets = [this._set]) {
+		const temp = {};
 		const onLoad = (set) => {
-			temp[set] = Object.assign({}, languages[lang]);
+			temp[set] = Object.assign(set in temp ? temp[set] : {}, languages[lang]);
 			total++;
 			if (total == sets.length) {
 				sets.forEach(set => {
@@ -111,7 +112,6 @@ class WUILanguage {
 			}
 		}
 		let total = 0;
-		let temp = {};
 		sets.forEach(set => {
 			const key = set+"-"+lang;
 			if (WUILanguage.#log.indexOf(key) == -1) {
