@@ -82,11 +82,20 @@ class WUILanguage {
 			total++;
 			if (total == sets.length) {
 				sets.forEach(set => {
-					Object.keys(temp[set]).forEach(key => {
-						if (!(key in languages[lang])) {
-							languages[lang][key] = {};
+					Object.keys(temp[set]).forEach(key1 => {
+						if (!(key1 in languages[lang])) {
+							languages[lang][key1] = {};
 						}
-						Object.assign(languages[lang][key], temp[set][key]);
+						Object.keys(temp[set][key1]).forEach(key2 => {
+							if (typeof(temp[set][key1][key2]) == "string") {
+								languages[lang][key1][key2] = temp[set][key1][key2];
+							} else {
+								if (!(key2 in languages[lang][key1])) {
+									languages[lang][key1][key2] = {};
+								}
+								Object.assign(languages[lang][key1][key2], temp[set][key1][key2]);
+							}
+						});
 					});
 				});
 				document.querySelectorAll(this._selector).forEach(element => {
