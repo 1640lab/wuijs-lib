@@ -181,7 +181,7 @@ class WUISlider {
 	}
 }
 /*
-HTML struture:
+Generated HTML code:
 <div class="wui-slider">
 	<div class="body">
 		<div class="slide"></div>

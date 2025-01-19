@@ -330,7 +330,7 @@ class WUIModalSelect extends WUIModal {
 	}
 }
 /*
-HTML struture:
+Generated HTML code:
 <div class="wui-modal select [priority]">
 	<div class="box">
 		<div class="options">

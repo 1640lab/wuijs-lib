@@ -232,7 +232,7 @@ class WUIList {
 	}
 }
 /*
-HTML struture:
+Generated HTML code:
 <div class="wui-list">
 	<div class="header"></div>
 	<div class="body">
@@ -249,6 +249,7 @@ HTML struture:
 		</div>
 		...
 	</div>
+	<div class="message"></div>
 	<div class="footer"></div>
 </div>
 */

@@ -376,7 +376,7 @@ class WUITimepicker {
 	}
 }
 /*
-HTML struture:
+Generated HTML code:
 <div class="wui-timepicker">
 	<input type="time" name="(name)" value="">
 	<div class="inputs">

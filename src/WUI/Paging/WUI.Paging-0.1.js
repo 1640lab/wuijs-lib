@@ -236,7 +236,7 @@ class WUIPaging {
 	}
 }
 /*
-HTML struture:
+Generated HTML code:
 <div class="wui-paging">
 	<div class="page selected" data-target="pg1"></div>
 	<div class="page" data-target="pg2"></div>

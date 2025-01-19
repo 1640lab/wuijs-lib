@@ -51,7 +51,7 @@ class WUITooltip {
 	}
 }
 /*
-HTML struture:
+Generated HTML code:
 <div class="wui-tooltip-target">
 	<div class="wui-tooltip (top|left|right|bottom)"></div>
 </div>

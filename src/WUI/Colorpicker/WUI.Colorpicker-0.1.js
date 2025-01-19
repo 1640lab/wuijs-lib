@@ -650,7 +650,7 @@ class WUIColorpicker {
 	}
 }
 /*
-HTML struture:
+Generated HTML code:
 <div class="wui-selector">
 	<input type="color" value="(name)" value="">
 	<button class="button">

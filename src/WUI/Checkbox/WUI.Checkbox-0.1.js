@@ -148,7 +148,7 @@ class WUICheckbox {
 	}
 }
 /*
-HTML struture:
+Generated HTML code:
 <div class="wui-checkbox">
 	<input type="checkbox" value="1">
 </div>

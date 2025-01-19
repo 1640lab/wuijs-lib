@@ -618,7 +618,7 @@ class WUIDatepicker {
 }
 WUIDatepicker._initClass();
 /*
-HTML struture:
+Generated HTML code:
 <div class="wui-datepicker">
 	<input type="date" value="(name)" value="">
 	<div class="inputs">

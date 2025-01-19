@@ -424,7 +424,7 @@ class WUISelectpicker {
 }
 WUISelectpicker._initClass();
 /*
-HTML struture:
+Generated HTML code:
 <div class="wui-selector">
 	<select name="(name)">
 		<option value="value1">value 1</option>

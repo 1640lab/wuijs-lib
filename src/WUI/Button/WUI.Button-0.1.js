@@ -87,6 +87,6 @@ class WUIButton {
 	}
 }
 /*
-HTML struture:
+Generated HTML code:
 <button class="wui-button"></button>
 */

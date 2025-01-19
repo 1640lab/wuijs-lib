@@ -3,7 +3,7 @@
 class WUITable {
 	static version = "0.1";
 	static #defaults = {
-		selector: ".wui-grid",
+		selector: ".wui-table",
 		columns: [],
 		rows: [],
 		paging: 0,
@@ -65,6 +65,7 @@ class WUITable {
 			this._element = document.querySelector(value);
 			this._head = document.querySelector(value+" > .head");
 			this._body = document.querySelector(value+" > .body");
+			this._message = document.querySelector(value+" > .message");
 			this._footer = document.querySelector(value+" > .footer");
 		}
 	}
@@ -115,6 +116,18 @@ class WUITable {
 	}
 	getElement() {
 		return this._element;
+	}
+	getHeader() {
+		return this._header;
+	}
+	getBody() {
+		return this._body;
+	}
+	getMessage() {
+		return this._message;
+	}
+	getFooter() {
+		return this._footer;
 	}
 	#getSRCIcon(name, event) {
 		const element = this._element || document.documentElement;
@@ -189,7 +202,17 @@ class WUITable {
 	}
 }
 /*
-HTML struture:
+HTML code:
+<div class="wui-table"></div>
+
+JS code:
+const table = new WUITable({
+	selector: ".wui-table",
+	columns: []
+});
+table.init();
+
+Generated HTML code:
 <div class="wui-table">
 	<div class="header"></div>
 	<div class="body">
@@ -213,6 +236,7 @@ HTML struture:
 			</tfoot>
 		</table>
 	</div>
+	<div class="message"></div>
 	<div class="footer"></div>
 </div>
 */
