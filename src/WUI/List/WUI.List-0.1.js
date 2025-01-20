@@ -37,10 +37,6 @@ class WUIList {
 		if (typeof(value) == "string" && value != "") {
 			this._selector = value;
 			this._element = document.querySelector(value);
-			this._header = document.querySelector(value+" > .header");
-			this._body = document.querySelector(value+" > .body");
-			this._message = document.querySelector(value+" > .message");
-			this._footer = document.querySelector(value+" > .footer");
 		}
 	}
 	set columns(value) {
@@ -71,67 +67,55 @@ class WUIList {
 	getElement() {
 		return this._element;
 	}
-	getHeader() {
-		return this._header;
-	}
-	getBody() {
-		return this._body;
-	}
-	getMessage() {
-		return this._message;
-	}
-	getFooter() {
-		return this._footer;
-	}
 	init() {
 		this._strips = [];
 		if (this._rows.length > 0) {
 			this.print();
 		}
 	}
-	addColumn(column) {
-		this._columns.push(column);
+	addColumn(options) {
+		this._columns.push(options);
 	}
-	addRow(row) {
-		this._rows.push(row);
+	addRow(options) {
+		this._rows.push(options);
 	}
-	addButton(button) {
-		this._buttons.push(button);
+	addButton(options) {
+		this._buttons.push(options);
 	}
 	print() {
 		this._strips = [];
-		if (this._body != null) {
-			this._body.innerHTML = "";
-			this._rows.forEach((rowDataset, i) => {
+		if (this._element != null) {
+			this._element.innerHTML = "";
+			this._rows.forEach((rowOptions, i) => {
 				const row = document.createElement("div");
 				const strip = document.createElement("div");
-				const id = "id" in rowDataset ? rowDataset.id : null;
+				const id = "id" in rowOptions ? rowOptions.id : null;
 				row.dataset.index = i;
 				row.dataset.id = id;
 				row.className = "row";
 				row.append(strip);
 				strip.className = "strip";
-				this._columns.forEach((columnDataset, j) => {
+				this._columns.forEach((colOptions, j) => {
 					const cell = document.createElement("div");
 					cell.className = "cell";
-					cell.classList.add(columnDataset.align || "left");
-					if (typeof(columnDataset.width) == "number") {
-						cell.style.width = columnDataset.width+"px";
+					cell.classList.add(colOptions.align || "left");
+					if (typeof(colOptions.width) == "number") {
+						cell.style.width = colOptions.width+"px";
 					} else {
 						cell.style.flex = "1";
 					}
-					cell.style.textAlign = columnDataset.align || "left";
-					cell.innerHTML = rowDataset.data[j] || "";
+					cell.style.textAlign = colOptions.align || "left";
+					cell.innerHTML = rowOptions.data[j] || "";
 					strip.append(cell);
 				});
 				strip.addEventListener("click", event => {
 					if (this._buttons.length == 0 || this._strips[i].direction == null) {
 						if (typeof(this._onClick) == "function") {
-							this._onClick(i, id, event, rowDataset);
+							this._onClick(i, id, event, rowOptions);
 						}
 						this._strips.forEach((str, s) => {
 							if (str.open) {
-								this._body.querySelector(".row:nth-of-type("+(s+1)+") > .strip").style.marginRight = "0px";
+								this._element.querySelector(".row:nth-of-type("+(s+1)+") > .strip").style.marginRight = "0px";
 								this._strips[s].open = false;
 							}
 						});
@@ -146,12 +130,12 @@ class WUIList {
 						direction: null,
 						open: false
 					};
-					this._buttons.forEach(options => {
+					this._buttons.forEach(btnOptions => {
 						const button = document.createElement("div");
 						const icon = document.createElement("div");
-						const iconClass = typeof(options.iconClass) == "string" ? options.iconClass : typeof(options.iconClass) == "function" ? options.iconClass(i, id) : "";
-						const bgcolor = typeof(options.bgcolor) == "string" ? options.bgcolor : typeof(options.bgcolor) == "function" ? options.bgcolor(i, id) : "";
-						const enabled = (typeof(options.enabled) == "boolean" && options.enabled) || (typeof(options.enabled) == "function" && options.enabled(i, id)) ? true : false;
+						const iconClass = typeof(btnOptions.iconClass) == "string" ? btnOptions.iconClass : typeof(btnOptions.iconClass) == "function" ? btnOptions.iconClass(i, id) : "";
+						const bgcolor = typeof(btnOptions.bgcolor) == "string" ? btnOptions.bgcolor : typeof(btnOptions.bgcolor) == "function" ? btnOptions.bgcolor(i, id) : "";
+						const enabled = (typeof(btnOptions.enabled) == "boolean" && btnOptions.enabled) || (typeof(btnOptions.enabled) == "function" && btnOptions.enabled(i, id)) ? true : false;
 						button.className = "button "+this._buttonsStyle;
 						icon.className = "icon";
 						if (!enabled) {
@@ -165,9 +149,9 @@ class WUIList {
 							});
 						}
 						button.addEventListener("click", event => {
-							const strip = this._body.querySelector(".row:nth-of-type("+(i+1)+") > .strip");
-							if (enabled && typeof(options.onClick) == "function") {
-								options.onClick(i, id, event);
+							const strip = this._element.querySelector(".row:nth-of-type("+(i+1)+") > .strip");
+							if (enabled && typeof(btnOptions.onClick) == "function") {
+								btnOptions.onClick(i, id, event);
 							}
 							if (strip != null) {
 								strip.style.marginRight = "0px";
@@ -194,7 +178,7 @@ class WUIList {
 									if (direction == "left") {
 										this._strips.forEach((str, s) => {
 											if (this._strips[s].open && s != i) {
-												this._body.querySelector(".row:nth-of-type("+(s+1)+") > .strip").style.marginRight = "0px";
+												this._element.querySelector(".row:nth-of-type("+(s+1)+") > .strip").style.marginRight = "0px";
 												this._strips[s].open = false;
 											}
 										});
@@ -226,30 +210,35 @@ class WUIList {
 					});
 					row.append(buttons);
 				}
-				this._body.append(row);
+				this._element.append(row);
 			});
 		}
 	}
 }
 /*
+HTML code:
+<div class="wui-list"></div>
+
+JS code:
+const list = new WUIList({
+	selector: ".wui-list",
+	columns: []
+});
+list.init();
+
 Generated HTML code:
 <div class="wui-list">
-	<div class="header"></div>
-	<div class="body">
-		<div class="row">
-			<div class="strip">
-				<div class="cell"></div>
-				...
-			</div>
-			<div class="buttons">
-				<div class="button edit"></div>
-				<div class="button delete"></div>
-				...
-			</div>
+	<div class="row">
+		<div class="strip">
+			<div class="cell"></div>
+			...
 		</div>
-		...
+		<div class="buttons">
+			<div class="button edit"></div>
+			<div class="button delete"></div>
+			...
+		</div>
 	</div>
-	<div class="message"></div>
-	<div class="footer"></div>
+	...
 </div>
 */

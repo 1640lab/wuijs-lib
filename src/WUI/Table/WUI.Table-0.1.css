@@ -1,6 +1,15 @@
 /* wui-table */
 
+.wui-table {
+	font-size: 14px;
+}
+.wui-table > .body > table > thead > tr > th {
+	vertical-align: top;
+}
 @media screen and (max-width: 767px) {
+	.wui-table {
+		font-size: 15px;
+	}
 }
 @media screen and (min-width: 768px) {
 }

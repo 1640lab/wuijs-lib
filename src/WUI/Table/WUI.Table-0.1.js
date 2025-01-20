@@ -63,10 +63,6 @@ class WUITable {
 		if (typeof(value) == "string" && value != "") {
 			this._selector = value;
 			this._element = document.querySelector(value);
-			this._head = document.querySelector(value+" > .head");
-			this._body = document.querySelector(value+" > .body");
-			this._message = document.querySelector(value+" > .message");
-			this._footer = document.querySelector(value+" > .footer");
 		}
 	}
 	set columns(value) {
@@ -117,47 +113,47 @@ class WUITable {
 	getElement() {
 		return this._element;
 	}
-	getHeader() {
-		return this._header;
-	}
-	getBody() {
-		return this._body;
-	}
-	getMessage() {
-		return this._message;
-	}
-	getFooter() {
-		return this._footer;
-	}
 	#getSRCIcon(name, event) {
 		const element = this._element || document.documentElement;
 		const color = getComputedStyle(element).getPropertyValue("--wui-grid-"+name+"color-"+event).replace(/#/g, "%23").trim();
 		const src = getComputedStyle(element).getPropertyValue("--wui-grid-"+name+"icon-src").replace(/currentColor/g, color);
 		return src != "" && !src.match(/^(none|url\(\))$/) ? src : "url(\"data:image/svg+xml,"+WUITable.#icons[name].replace(/currentColor/g, color)+"\")";
 	}
-	addColumn(column) {
-		this._columns.push(column);
+	addColumn(options) {
+		this._columns.push(options);
 	}
-	addRow(row) {
-		this._rows.push(row);
+	addRow(options) {
+		this._rows.push(options);
 	}
 	init() {
+		this._table = document.createElement("table");
 		this._thead = document.createElement("thead");
 		this._theadRow = document.createElement("tr");
 		this._tbody = document.createElement("tbody");
 		this._tfooter = document.createElement("tfoot");
 		this._tfooterRow = document.createElement("tr");
-		this._body.appendChild(this._thead);
-		this._body.appendChild(this._tbody);
-		this._body.appendChild(this._tfooter);
-		if (this._head) {
-			// ...
+		this._element.appendChild(this._table);
+		this._table.appendChild(this._thead);
+		this._table.appendChild(this._tbody);
+		this._table.appendChild(this._tfooter);
+		this._thead.appendChild(this._theadRow);
+		this._tfooter.appendChild(this._tfooterRow);
+		if (this._columns.length > 0) {
+			this.printHead();
 		}
-		this._columns.forEach((columnDataset, j) => {
+		if (this._rows.length > 0) {
+			this.print();
+		}
+	}
+	printHead() {
+		this._columns.forEach((colOptions, j) => {
 			const th = document.createElement("th");
-			th.style.width = !columnDataset.width ? "100px" : columnDataset.width+(typeof(columnDataset.width) == "integer" ? "px" : "");
-			th.style.textAlign = columnDataset.align || "left";
-			th.innerHTML = columnDataset.label || "";
+			if (typeof(colOptions.width) == "number") {
+				th.style.width = colOptions.width+"px";
+			}
+			th.style.textAlign = colOptions.align || "left";
+			th.style.verticalAlign = colOptions.valign || "top";
+			th.innerHTML = colOptions.label || "";
 			["sortable", "resizable"].forEach(prop => {
 				if (this["_"+prop]) {
 					const span = document.createElement("span");
@@ -167,13 +163,6 @@ class WUITable {
 			});
 			this._theadRow.appendChild(th);
 		});
-		if (this._footer) {
-			// ...
-		}
-		this._thead.appendChild(this._theadRow);
-		this._tfooter.className = "hidden";
-		this._tfooter.appendChild(this._tfooterRow);
-		this.print();
 	}
 	print(page = 0, sort = "") {
 		const ini = page*this._paging;
@@ -183,10 +172,13 @@ class WUITable {
 			for (let i=ini; i<=end; i++) {
 				const tr = document.createElement("tr");
 				const rowDataset = this._rows[i] || {};
-				this._columns.forEach((columnDataset, j) => {
+				this._columns.forEach((colOptions, j) => {
 					const td = document.createElement("td");
-					td.style.width = !columnDataset.width ? "100px" : columnDataset.width+(typeof(columnDataset.width) == "integer" ? "px" : "");
-					td.style.textAlign = columnDataset.align || "left";
+					if (typeof(colOptions.width) == "number") {
+						td.style.width = colOptions.width+"px";
+					}
+					td.style.textAlign = colOptions.align || "left";
+					th.style.verticalAlign = colOptions.valign || "top";
 					td.innerHTML = rowDataset.data[i] || "";
 					tr.appendChild(td);
 				});
@@ -214,29 +206,24 @@ table.init();
 
 Generated HTML code:
 <div class="wui-table">
-	<div class="header"></div>
-	<div class="body">
-		<table>
-			<thead>
-				<tr>
-					<th>column 1 <span class="sortable"></span><span class="resizable"></span></td>
-					...
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td></td>
-					...
-				</tr>
+	<table>
+		<thead>
+			<tr>
+				<th>column 1 <span class="sortable"></span><span class="resizable"></span></td>
 				...
-			</tbody>
-			<tfoot>
-				<tr>
-				</tr>
-			</tfoot>
-		</table>
-	</div>
-	<div class="message"></div>
-	<div class="footer"></div>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td></td>
+				...
+			</tr>
+			...
+		</tbody>
+		<tfoot>
+			<tr>
+			</tr>
+		</tfoot>
+	</table>
 </div>
 */
