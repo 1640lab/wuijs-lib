@@ -76,8 +76,8 @@ class WUITable {
 		}
 	}
 	set paging(value) {
-		if (typeof(value) == "integer" && value >= 0) {
-			this._paging = value;
+		if (typeof(value) == "number" && value >= 0) {
+			this._paging = parseInt(value);
 		}
 	}
 	set sortable(value) {
@@ -166,30 +166,28 @@ class WUITable {
 	}
 	print(page = 0, sort = "") {
 		const ini = page*this._paging;
-		const end = this._paging > 0 ? ini + this._paging : this._rows;
-		if (this._body != null) {
-			this._tbody.innerHTML = "";
-			for (let i=ini; i<=end; i++) {
-				const tr = document.createElement("tr");
-				const rowDataset = this._rows[i] || {};
-				this._columns.forEach((colOptions, j) => {
-					const td = document.createElement("td");
-					if (typeof(colOptions.width) == "number") {
-						td.style.width = colOptions.width+"px";
-					}
-					td.style.textAlign = colOptions.align || "left";
-					th.style.verticalAlign = colOptions.valign || "top";
-					td.innerHTML = rowDataset.data[i] || "";
-					tr.appendChild(td);
-				});
-				tr.dataset.index = i;
-				tr.addEventListener("click", event => {
-					if (this._selectable) {
-						// ...
-					}
-				});
-				this._tbody.appendChild(tr);
-			}
+		const end = this._paging > 0 ? ini + this._paging : this._rows.length -1;
+		this._tbody.innerHTML = "";
+		for (let i=ini; i<=end; i++) {
+			const tr = document.createElement("tr");
+			const rowOptions = this._rows[i] || {};
+			this._columns.forEach((colOptions, j) => {
+				const td = document.createElement("td");
+				if (typeof(colOptions.width) == "number") {
+					td.style.width = colOptions.width+"px";
+				}
+				td.style.textAlign = colOptions.align || "left";
+				td.style.verticalAlign = rowOptions.valign || "top";
+				td.innerHTML = rowOptions.data[j] || "";
+				tr.appendChild(td);
+			});
+			tr.dataset.index = i;
+			tr.addEventListener("click", event => {
+				if (this._selectable) {
+					// ...
+				}
+			});
+			this._tbody.appendChild(tr);
 		}
 	}
 }
