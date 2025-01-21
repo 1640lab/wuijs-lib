@@ -24,8 +24,6 @@
 .wui-form > .body {
 	flex-grow: 1;
 	align-items: stretch;
-	padding-left: 20px;
-	padding-right: 20px;
 }
 .wui-form > :is(.header, .footer) {
 	align-items: center;
@@ -37,6 +35,8 @@
 	flex-basis: 40px;
 }
 .wui-form > .body {
+	margin: 0;
+	padding: 10px;
 	flex-wrap: nowrap;
 }
 .wui-form > .body.scroll {
@@ -73,9 +73,9 @@
 	flex-wrap: wrap;
 }
 .wui-form fieldset {
-	margin: 10px 0;
+	margin: 0;
 	border: 0;
-	padding: 10px;
+	padding: 10px 20px;
 	flex-direction: row;
 	gap: 24px;
 }
@@ -548,10 +548,6 @@
 	}
 	.wui-form .request,
 	.wui-form .response,
-	.wui-form > .body {
-		padding-left: 10px;
-		padding-right: 10px;
-	}
 	.wui-form fieldset {
 		flex-direction: column;
 		flex-wrap: nowrap;
