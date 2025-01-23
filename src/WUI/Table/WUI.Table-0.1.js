@@ -6,6 +6,8 @@ class WUITable {
 		selector: ".wui-table",
 		columns: [],
 		rows: [],
+		align: "left",
+		valign: "center",
 		paging: 0,
 		sortable: true,
 		resizable: true,
@@ -37,6 +39,12 @@ class WUITable {
 	}
 	get rows() {
 		return this._rows;
+	}
+	get align() {
+		return this._align;
+	}
+	get valign() {
+		return this._valign;
 	}
 	get paging() {
 		return this._paging;
@@ -73,6 +81,16 @@ class WUITable {
 	set rows(value) {
 		if (Array.isArray(value)) {
 			this._rows = value;
+		}
+	}
+	set align(value) {
+		if (typeof(value) == "string" && value.match(/^(left|center|right)$/i)) {
+			this._align = value.toLowerCase();
+		}
+	}
+	set valign(value) {
+		if (typeof(value) == "string" && value.match(/^(top|center|bottom)$/i)) {
+			this._valign = value.toLowerCase();
 		}
 	}
 	set paging(value) {
@@ -126,13 +144,16 @@ class WUITable {
 		this._rows.push(options);
 	}
 	init() {
+		this._style = document.createElement("style");
 		this._table = document.createElement("table");
 		this._thead = document.createElement("thead");
 		this._theadRow = document.createElement("tr");
 		this._tbody = document.createElement("tbody");
 		this._tfooter = document.createElement("tfoot");
 		this._tfooterRow = document.createElement("tr");
+		this._element.appendChild(this._style);
 		this._element.appendChild(this._table);
+		this._table.setAttribute("cellspacing", "0");
 		this._table.appendChild(this._thead);
 		this._table.appendChild(this._tbody);
 		this._table.appendChild(this._tfooter);
@@ -146,13 +167,17 @@ class WUITable {
 		}
 	}
 	printHead() {
+		this._style.innerHTML = "";
 		this._columns.forEach((colOptions, j) => {
 			const th = document.createElement("th");
-			if (typeof(colOptions.width) == "number") {
-				th.style.width = colOptions.width+"px";
-			}
-			th.style.textAlign = colOptions.align || "left";
-			th.style.verticalAlign = colOptions.valign || "top";
+			const align = colOptions.align || this._align;
+			const valign = colOptions.valign || this._valign;
+			this._style.innerHTML += ""
+				+this._selector+" > table :is(thead, tbody, tfoot) > tr > :is(th, td):nth-child("+(j + 1)+") {\n"
+				+(typeof(colOptions.width) == "number" ? "\twidth: "+colOptions.width+"px;\n" : "")
+				+(valign != "center" ? "\tvertical-align: "+align+";\n" : "")
+				+(align != "left" ? "\ttext-align: "+align+";\n" : "")
+				+"}\n";
 			th.innerHTML = colOptions.label || "";
 			["sortable", "resizable"].forEach(prop => {
 				if (this["_"+prop]) {
@@ -164,27 +189,37 @@ class WUITable {
 			this._theadRow.appendChild(th);
 		});
 	}
-	print(page = 0, sort = "") {
+	printBody(page = 0, sort = "") {
 		const ini = page*this._paging;
 		const end = this._paging > 0 ? ini + this._paging : this._rows.length -1;
 		this._tbody.innerHTML = "";
 		for (let i=ini; i<=end; i++) {
 			const tr = document.createElement("tr");
 			const rowOptions = this._rows[i] || {};
+			const id = "id" in rowOptions ? rowOptions.id : null;
+			const align = rowOptions.align || this._align;
+			const valign = rowOptions.valign || this._valign;
 			this._columns.forEach((colOptions, j) => {
 				const td = document.createElement("td");
-				if (typeof(colOptions.width) == "number") {
-					td.style.width = colOptions.width+"px";
+				if (typeof(colOptions.target) == "string") {
+					td.dataset.target = colOptions.target;
 				}
-				td.style.textAlign = colOptions.align || "left";
-				td.style.verticalAlign = rowOptions.valign || "top";
+				if (typeof(align) == "string" && align != "left" && align.match(/^(left|center|right)$/i)) {
+					td.style.textAlign = align;
+				}
+				if (typeof(valign) == "string" && valign != "center" && valign.match(/^(top|center|bottom)$/i)) {
+					td.style.verticalAlign = valign;
+				}
 				td.innerHTML = rowOptions.data[j] || "";
 				tr.appendChild(td);
 			});
+			if (id != null) {
+				tr.dataset.id = id;
+			}
 			tr.dataset.index = i;
 			tr.addEventListener("click", event => {
-				if (this._selectable) {
-					// ...
+				if (this._selectable && typeof(this._onClick) == "function") {
+					this._onClick(i, id, event, rowOptions);
 				}
 			});
 			this._tbody.appendChild(tr);
@@ -207,12 +242,12 @@ Generated HTML code:
 	<table>
 		<thead>
 			<tr>
-				<th>column 1 <span class="sortable"></span><span class="resizable"></span></td>
+				<th>column 0 <span class="sortable"></span><span class="resizable"></span></td>
 				...
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
+			<tr data-index="0" [data-id="id-row-0"]>
 				<td></td>
 				...
 			</tr>
@@ -220,6 +255,8 @@ Generated HTML code:
 		</tbody>
 		<tfoot>
 			<tr>
+				[<th></th>
+				...]
 			</tr>
 		</tfoot>
 	</table>

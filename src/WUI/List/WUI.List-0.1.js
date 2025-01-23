@@ -91,7 +91,9 @@ class WUIList {
 				const strip = document.createElement("div");
 				const id = "id" in rowOptions ? rowOptions.id : null;
 				row.dataset.index = i;
-				row.dataset.id = id;
+				if (id != null) {
+					row.dataset.id = id;
+				}
 				row.className = "row";
 				row.append(strip);
 				strip.className = "strip";

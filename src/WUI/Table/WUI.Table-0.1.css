@@ -1,14 +1,59 @@
 /* wui-table */
 
 .wui-table {
-	font-size: 14px;
+	width: 100%;
+	border-collapse: collapse;
+	text-align: left;
+	font-size: 12px;
 }
-.wui-table > .body > table > thead > tr > th {
-	vertical-align: top;
+.wui-table > table > * > tr > * {
+	position: relative;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	padding: 5px;
+	vertical-align: center;
+}
+.wui-table > table > thead > tr > th {
+	border-color: var(--wui-table-column-bordercolor-out);
+	background-color: var(--wui-table-column-bgcolor-out);
+	color: var(--wui-table-column-textcolor-out);
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+.wui-table > table > thead > tr > th:not(.disabled):is(:hover, :focus, :focus-within) {
+	border-color: var(--wui-table-column-bordercolor-over);
+	background-color: var(--wui-table-column-bgcolor-over);
+	color: var(--wui-table-column-textcolor-over);
+}
+.wui-table > table > thead > tr > th.disabled {
+	border-color: var(--wui-table-column-bordercolor-disabled);
+	background-color: var(--wui-table-column-bgcolor-disabled);
+	color: var(--wui-table-column-textcolor-disabled);
+}
+.wui-table > table > tbody > tr > td {
+	border-color: var(--wui-table-row-bordercolor-out);
+	background-color: var(--wui-table-row-bgcolor-out);
+	color: var(--wui-table-row-textcolor-out);
+}
+.wui-table > table > tbody > tr:is(:hover, :focus, :focus-within) > td:not(.disabled) {
+	border-color: var(--wui-table-row-bordercolor-over);
+	background-color: var(--wui-table-row-bgcolor-over);
+	color: var(--wui-table-row-textcolor-over);
+}
+.wui-table > table > tbody > tr > td.disabled {
+	border-color: var(--wui-table-row-bordercolor-disabled) !important;
+	background-color: var(--wui-table-row-bgcolor-disabled) !important;
+	color: var(--wui-table-row-textcolor-disabled) !important;
+}
+.wui-table > table > tbody > tr > td.selected {
+	border-color: var(--wui-table-row-bordercolor-selectd);
+	background-color: var(--wui-table-row-bgcolor-selectd);
+	color: var(--wui-table-row-textcolor-selected);
 }
 @media screen and (max-width: 767px) {
 	.wui-table {
-		font-size: 15px;
+		font-size: 12px;
 	}
 }
 @media screen and (min-width: 768px) {

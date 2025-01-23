@@ -3,7 +3,7 @@
 class WUIColorpicker {
 	static version = "0.1";
 	static #defaults = {
-		selector: "",
+		selector: ".wui-colorpicker",
 		value: "",
 		emptyValue: "#000001",
 		lang: "en",
@@ -650,15 +650,29 @@ class WUIColorpicker {
 	}
 }
 /*
+HTML code:
+<div class="wui-colorpicker">
+	<input type="color" value="(name)" value="">
+</div>
+
+JS code:
+const colorpicker = new WUIColorpicker({
+	selector: ".wui-colorpicker"
+});
+colorpicker.init();
+
 Generated HTML code:
-<div class="wui-selector">
+<div class="wui-colorpicker">
 	<input type="color" value="(name)" value="">
 	<button class="button">
 		<div class="color"></div>
 	</button>
 	<div class="background"></div>
 	<div class="box">
-		<div class="header"></div>
+		<div class="header">
+			<div class="tab grid"></div>
+			<div class="tab list"></div>
+		</div>
 		<div class="grid">
 			<div class="color" data-value="value1"></div>
 			...
