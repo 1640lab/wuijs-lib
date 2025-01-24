@@ -254,14 +254,13 @@ class WUIModal {
 	}
 	open(onOpen = this._onOpen, openDelay = this._openDelay) {
 		const page = Boolean(this._element.classList.contains("page"));
-		const small = Boolean(this._element.classList.contains("small"));
 		const slide = Boolean(this._element.classList.contains("slide"));
+		const small = Boolean(this._element.classList.contains("small"));
 		const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
-		const bodyWidth = document.body.offsetWidth;
 		const bodyHeight = document.body.offsetHeight;
-		const bgcolor = getComputedStyle(document.documentElement).getPropertyValue("--wui-modal-bgcolor").replace(/\s+/g, "").replace("rgba(", "").replace(")", "").split(",");
-		const boxWidth = this._box != null ? this._box.clientWidth : 0;
-		const boxHeight = this._box != null ? this._box.clientHeight : 0;
+		const bodyStyle = getComputedStyle(document.body);
+		const bgcolor = getComputedStyle(this._element).getPropertyValue("--wui-modal-bgcolor").replace(/\s+/g, "").replace("rgba(", "").replace(")", "").split(",");
+		const slideMargin = parseInt(getComputedStyle(this._element).getPropertyValue("--wui-modal-slidepage-box-margin").replace(/\D+/g, "") || 0);
 		let under = null;
 		let pages = 1;
 		let step = 0;
@@ -274,13 +273,15 @@ class WUIModal {
 				pages++;
 			}
 		});
+		this._element.style.display = "flex";
 		this._element.style.zIndex = 103 +pages;
+		this._element.style.visibility = "hidden";
+		this._element.style.opacity = 0;
 		this._element.classList.remove("maximized");
 		this._element.classList.remove("closed");
 		this._element.classList.add("opened");
 		if (this._box != null) {
-			const bodyStyle = window.getComputedStyle(document.body);
-			const boxStyle = window.getComputedStyle(this._box);
+			const boxStyle = getComputedStyle(this._box);
 			const scrollbarWidth = window.innerWidth - document.body.clientWidth;
 			const scrollbarHeight = window.innerHeight - document.body.clientHeight;
 			["overflowY", "overflowX", "background", "backgroundColor", "backgroundImage", "paddingRight", "paddingBottom"].forEach(key => {
@@ -307,16 +308,25 @@ class WUIModal {
 				clearInterval(interval);
 				ease = 1;
 			}
-			this._element.style.opacity = ease == 1 ? null : ease;
 			if (ease == 0) {
-				this._element.style.display = "flex";
+				if (this._box != null && page) {
+					this._box.style.top = mobile ? "100%" : slide ? slideMargin+"px" : "auto";
+					this._box.style.left = mobile ? "0px" : "auto";
+					this._box.style.right = mobile ? "0px" : "auto";
+					this._box.style.bottom = mobile ? "0px" : slide ? slideMargin+"px" : "auto";
+					this._box.style.width = mobile ? "auto" : "var(--wui-modal-"+(small ? "small" : "")+"page-box-width)";
+					this._box.style.height = mobile || slide ? "auto" :  "var(--wui-modal-"+(small ? "small" : "")+"page-box-height)";
+					this._boxWidth = this._box.clientWidth;
+				}
+				this._element.style.visibility = "visible";
 			}
+			this._element.style.opacity = ease == 1 ? null : ease;
 			if (this._box != null && page) {
 				if (!mobile && slide) {
-					this._box.style.left = (bodyWidth - boxWidth * ease)+"px";
+					this._box.style.right = (this._boxWidth * (ease -1) + slideMargin)+"px";
 				} else if (mobile) {
 					if (small) {
-						this._box.style.top = (bodyHeight - boxHeight * ease)+"px";
+						this._box.style.top = (bodyHeight - this._boxWidth * ease)+"px";
 					} else {
 						this._box.style.top = (bodyHeight - (bodyHeight -44) * ease)+"px";
 					}
@@ -332,7 +342,7 @@ class WUIModal {
 				}
 				if (under._box != null && underPage && page) {
 					if (!mobile && underSlide) {
-						// ...
+						//this._box.style.top = (bodyHeight - this._boxWidth * ease)+"px";
 					} else if (mobile && !underMaximized) {
 						under._box.style.top = (bodyHeight - (bodyHeight -44) - 44 * ease)+"px";
 						under._box.style.scale = (1 - ease/10);
@@ -376,12 +386,11 @@ class WUIModal {
 	close(onClose = this._onClose, openDelay = this._openDelay) {
 		const page = Boolean(this._element.classList.contains("page"));
 		const slide = Boolean(this._element.classList.contains("slide"));
+		//const small = Boolean(this._element.classList.contains("small"));
 		const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
-		const bodyWidth = document.body.offsetWidth;
 		const bodyHeight = document.body.offsetHeight;
-		const boxTop = this._box != null ? this._box.offsetTop : 0;
-		const boxLeft = this._box != null ? this._box.offsetLeft : 0;
-		const bgcolor = getComputedStyle(document.documentElement).getPropertyValue("--wui-modal-bgcolor").replace(/\s+/g, "").replace("rgba(", "").replace(")", "").split(",");
+		const bgcolor = getComputedStyle(this._element).getPropertyValue("--wui-modal-bgcolor").replace(/\s+/g, "").replace("rgba(", "").replace(")", "").split(",");
+		const slideMargin = parseInt(getComputedStyle(this._element).getPropertyValue("--wui-modal-slidepage-box-margin").replace(/\D+/g, "") || 0);
 		let under = null;
 		let step = 100;
 		if (typeof(this._onStartClose) == "function") {
@@ -396,17 +405,15 @@ class WUIModal {
 		this._element.classList.remove("maximized");
 		this._element.classList.remove("opened");
 		this._element.classList.add("closed");
+		if (this._topbar != null) {
+			this._initY = null;
+			this._drag = false;
+		}
 		if (this._box != null) {
 			Object.keys(this._bodyStyle).forEach(key => {
 				document.body.style[key] = this._bodyStyle[key];
 			});
-			if (this._topbar != null) {
-				this._initY = null;
-				this._drag = false;
-			}
-			if (this._box != null) {
-				this._box.scrollTop = 0;
-			}
+			this._box.scrollTop = 0;
 		}
 		const interval = setInterval(() => {
 			const t = step/100;
@@ -415,15 +422,16 @@ class WUIModal {
 				clearInterval(interval);
 				ease = 0;
 			}
-			this._element.style.opacity = ease;
 			if (ease == 0) {
 				this._element.style.display = "none";
+				this._element.style.visibility = "hidden";
 			}
+			this._element.style.opacity = ease;
 			if (this._box != null && page) {
 				if (!mobile && slide) {
-					this._box.style.right = (bodyWidth - (bodyWidth - boxLeft) * ease)+"px";
+					this._box.style.right = (this._boxWidth * (ease -1) + slideMargin)+"px";
 				} else if (mobile) {
-					this._box.style.top = (bodyHeight - (bodyHeight - boxTop) * ease)+"px";
+					this._box.style.top = (bodyHeight - this._boxWidth * ease)+"px";
 				}
 			}
 			if (under != null) {
@@ -469,7 +477,7 @@ HTML message struture:
 	</div>
 </div>
 HTML page struture:
-<div class="wui-modal page [slide] [priority]">
+<div class="wui-modal page [slide|small] [priority]">
 	<div class="box">
 		<div class="header">
 			<div class="back">

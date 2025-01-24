@@ -7,6 +7,7 @@
 	font-size: 12px;
 }
 .wui-table > table > * > tr > * {
+	cursor: pointer;
 	position: relative;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
@@ -40,6 +41,22 @@
 	border-color: var(--wui-table-row-bordercolor-over);
 	background-color: var(--wui-table-row-bgcolor-over);
 	color: var(--wui-table-row-textcolor-over);
+}
+.wui-table > table > tbody > tr:is(:hover, :focus, :focus-within) > td:not(.disabled):first-child {
+	-webkit-border-top-left-radius: var(--wui-table-row-radius);
+	-webkit-border-bottom-left-radius: var(--wui-table-row-radius);
+	-moz-border-radius-topleft: var(--wui-table-row-radius);
+	-moz-border-radius-bottomleft: var(--wui-table-row-radius);
+	border-top-left-radius: var(--wui-table-row-radius);
+	border-bottom-left-radius: var(--wui-table-row-radius);
+}
+.wui-table > table > tbody > tr:is(:hover, :focus, :focus-within) > td:not(.disabled):last-child {
+	-webkit-border-top-right-radius: var(--wui-table-row-radius);
+	-webkit-border-bottom-right-radius: var(--wui-table-row-radius);
+	-moz-border-radius-topright: var(--wui-table-row-radius);
+	-moz-border-radius-bottomright: var(--wui-table-row-radius);
+	border-top-right-radius: var(--wui-table-row-radius);
+	border-bottom-right-radius: var(--wui-table-row-radius);
 }
 .wui-table > table > tbody > tr > td.disabled {
 	border-color: var(--wui-table-row-bordercolor-disabled) !important;

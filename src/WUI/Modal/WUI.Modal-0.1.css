@@ -9,6 +9,7 @@
 }
 .wui-modal {
 	display: none;
+	visibility: hidden;
 	position: fixed;
 	z-index: 100;
 	top: 0;
@@ -327,6 +328,11 @@
 	border-bottom-width: 1px !important;
 	border-bottom-color: var(--wui-modal-page-header-bordercolor) !important;
 }
+.wui-modal.page.slide > .box {
+	top: var(--wui-modal-slidepage-box-margin);
+	bottom: var(--wui-modal-slidepage-box-margin);
+	height: auto;
+}
 .wui-modal.page.small > .box {
 	width: var(--wui-modal-smallpage-box-width);
 	height: var(--wui-modal-smallpage-box-height);
@@ -373,8 +379,7 @@
 		border-radius: var(--topbar-radius);
 		background-color: var(--wui-modal-page-header-topbar-bgcolor);
 	}
-	.wui-modal.page.maximized > .box,
-	.wui-modal.page.small.maximized > .box {
+	.wui-modal.page.maximized > .box {
 		-webkit-border-top-left-radius: 0;
 		-webkit-border-top-right-radius: 0;
 		-moz-border-radius-topleft: 0;
@@ -387,7 +392,7 @@
 	}
 }
 @media screen and (min-width: 768px) {
-	.wui-modal.page > .box {
+	.wui-modal.page:not(.slide) > .box {
 		top: auto !important;
 		left: auto !important;
 		right: auto !important;
