@@ -2,6 +2,7 @@
 
 .wui-table {
 	width: 100%;
+	overflow-x: auto;
 	border-collapse: collapse;
 	text-align: left;
 	font-size: 12px;
@@ -31,6 +32,9 @@
 	border-color: var(--wui-table-column-bordercolor-disabled);
 	background-color: var(--wui-table-column-bgcolor-disabled);
 	color: var(--wui-table-column-textcolor-disabled);
+}
+.wui-table > table > tbody {
+	overflow-y: auto;
 }
 .wui-table > table > tbody > tr > td {
 	border-color: var(--wui-table-row-bordercolor-out);
