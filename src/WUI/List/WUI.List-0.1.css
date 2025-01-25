@@ -42,6 +42,7 @@
 	flex-wrap: wrap;
 	justify-content: space-between;
 	color: var(--wui-list-row-textcolor-out);
+	-webkit-tap-highlight-color: transparent;
 	-webkit-transition: var(--strip-transition);
 	-moz-transition: var(--strip-transition);
 	transition: var(--strip-transition);
