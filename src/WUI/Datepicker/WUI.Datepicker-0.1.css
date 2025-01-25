@@ -5,6 +5,7 @@
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
 }
 .wui-datepicker {
 	width: 100%;
@@ -168,18 +169,20 @@
 	font-size: 14px;
 	color: var(--wui-datepicker-box-month-titlecolor);
 }
-.wui-datepicker > .box > .months > div:nth-child(13n+2) > div,
-.wui-datepicker > .box > .months > div:nth-child(13n+3) > div,
-.wui-datepicker > .box > .months > div:nth-child(13n+4) > div,
-.wui-datepicker > .box > .months > div:nth-child(13n+5) > div,
-.wui-datepicker > .box > .months > div:nth-child(13n+6) > div,
-.wui-datepicker > .box > .months > div:nth-child(13n+7) > div,
-.wui-datepicker > .box > .months > div:nth-child(13n+8) > div,
-.wui-datepicker > .box > .months > div:nth-child(13n+9) > div,
-.wui-datepicker > .box > .months > div:nth-child(13n+10) > div,
-.wui-datepicker > .box > .months > div:nth-child(13n+11) > div,
-.wui-datepicker > .box > .months > div:nth-child(13n+12) > div,
-.wui-datepicker > .box > .months > div:nth-child(13n+13) > div {
+.wui-datepicker > .box > .months > div:is(
+	:nth-child(13n+2),
+	:nth-child(13n+3),
+	:nth-child(13n+4),
+	:nth-child(13n+5),
+	:nth-child(13n+6),
+	:nth-child(13n+7),
+	:nth-child(13n+8),
+	:nth-child(13n+9),
+	:nth-child(13n+10),
+	:nth-child(13n+11),
+	:nth-child(13n+12),
+	:nth-child(13n+13)
+) > div {
 	cursor: pointer;
 	width: 39px;
 	height: 32px;
@@ -189,7 +192,6 @@
 	text-transform: uppercase;
 	font-size: 10px;
 	color: var(--wui-datepicker-box-month-textcolor-out);
-	-webkit-tap-highlight-color: transparent;
 }
 .wui-datepicker > .box > .months > div:not(:nth-child(13n+1)):hover > div {
 	background-color: var(--wui-datepicker-box-month-bgcolor-over);
@@ -226,7 +228,6 @@
 	border-radius: 50%;
 	font-size: 12px;
 	color: var(--wui-datepicker-box-day-textcolor-out);
-	-webkit-tap-highlight-color: transparent;
 }
 .wui-datepicker > .box > .days > div:hover > div {
 	background-color: var(--wui-datepicker-box-day-bgcolor-over);
@@ -271,7 +272,6 @@
 	text-transform: lowercase;
 	font-size: 14px;
 	color: var(--wui-datepicker-box-button-textcolor-out);
-	-webkit-tap-highlight-color: transparent;
 }
 .wui-datepicker > .box > .footer > button:hover {
 	color: var(--wui-datepicker-box-button-textcolor-over);
@@ -326,18 +326,20 @@
 		height: 46px;
 		font-size: 17px;
 	}
-	.wui-datepicker > .box > .months > div:nth-child(13n+2) > div,
-	.wui-datepicker > .box > .months > div:nth-child(13n+3) > div,
-	.wui-datepicker > .box > .months > div:nth-child(13n+4) > div,
-	.wui-datepicker > .box > .months > div:nth-child(13n+5) > div,
-	.wui-datepicker > .box > .months > div:nth-child(13n+6) > div,
-	.wui-datepicker > .box > .months > div:nth-child(13n+7) > div,
-	.wui-datepicker > .box > .months > div:nth-child(13n+8) > div,
-	.wui-datepicker > .box > .months > div:nth-child(13n+9) > div,
-	.wui-datepicker > .box > .months > div:nth-child(13n+10) > div,
-	.wui-datepicker > .box > .months > div:nth-child(13n+11) > div,
-	.wui-datepicker > .box > .months > div:nth-child(13n+12) > div,
-	.wui-datepicker > .box > .months > div:nth-child(13n+13) > div {
+	.wui-datepicker > .box > .months > div:is(
+		:nth-child(13n+2),
+		:nth-child(13n+3),
+		:nth-child(13n+4),
+		:nth-child(13n+5),
+		:nth-child(13n+6),
+		:nth-child(13n+7),
+		:nth-child(13n+8),
+		:nth-child(13n+9),
+		:nth-child(13n+10),
+		:nth-child(13n+11),
+		:nth-child(13n+12),
+		:nth-child(13n+13)
+	) > div  {
 		width: 48px;
 		height: 36px;
 		-webkit-border-radius: 18px;

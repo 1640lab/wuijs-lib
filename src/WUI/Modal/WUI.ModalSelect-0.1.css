@@ -29,7 +29,6 @@
 	padding: 0 10px;
 	align-items: center;
 	gap: 10px;
-	-webkit-tap-highlight-color: transparent;
 }
 .wui-modal.select > .box > .options > .option > .icon {
 	visibility: hidden;
@@ -101,7 +100,6 @@
 	margin-left: 10px;
 	margin-right: 10px;
 	font-size: 15px;
-	-webkit-tap-highlight-color: transparent;
 }
 @media screen and (max-width: 767px) {
 	.wui-modal.select > .box > .options {

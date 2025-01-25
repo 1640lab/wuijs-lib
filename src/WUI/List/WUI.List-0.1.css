@@ -1,6 +1,13 @@
 /* wui-list */
 
 .wui-list,
+.wui-list * {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
+}
+.wui-list,
 .wui-list > .row > .strip,
 .wui-list > .row > .strip > .cell,
 .wui-list > .row > .buttons,
@@ -42,7 +49,6 @@
 	flex-wrap: wrap;
 	justify-content: space-between;
 	color: var(--wui-list-row-textcolor-out);
-	-webkit-tap-highlight-color: transparent;
 	-webkit-transition: var(--strip-transition);
 	-moz-transition: var(--strip-transition);
 	transition: var(--strip-transition);
@@ -134,7 +140,6 @@
 }
 .wui-list > .row > .strip > .cell,
 .wui-list > .row > .buttons > .button {
-	-webkit-tap-highlight-color: transparent;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;

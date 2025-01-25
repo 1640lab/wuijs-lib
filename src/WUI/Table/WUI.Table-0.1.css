@@ -1,5 +1,12 @@
 /* wui-table */
 
+.wui-table,
+.wui-table * {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
+}
 .wui-table {
 	width: 100%;
 	overflow-x: auto;
@@ -14,7 +21,6 @@
 	border-bottom-style: solid;
 	padding: 5px;
 	vertical-align: center;
-	-webkit-tap-highlight-color: transparent;
 }
 .wui-table > table > thead > tr > th {
 	border-color: var(--wui-table-column-bordercolor-out);

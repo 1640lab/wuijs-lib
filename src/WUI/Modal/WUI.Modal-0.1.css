@@ -6,6 +6,7 @@
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
 }
 .wui-modal {
 	display: none;
@@ -118,7 +119,6 @@
 	right: 10px;
 	width: 24px;
 	height: 24px;
-	-webkit-tap-highlight-color: transparent;
 }
 .wui-modal > .box > .body {
 	display: flex;

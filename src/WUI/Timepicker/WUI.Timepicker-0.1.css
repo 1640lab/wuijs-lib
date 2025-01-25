@@ -5,6 +5,7 @@
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
 }
 .wui-timepicker {
 	width: 100%;
@@ -219,7 +220,6 @@
 		width: 36px;
 		height: 36px;
 		font-size: 15px;
-		-webkit-tap-highlight-color: transparent;
 	}
 	.wui-timepicker > .box > .footer {
 		height: 40px;
