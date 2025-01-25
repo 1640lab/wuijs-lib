@@ -118,6 +118,7 @@
 	right: 10px;
 	width: 24px;
 	height: 24px;
+	-webkit-tap-highlight-color: transparent;
 }
 .wui-modal > .box > .body {
 	display: flex;
@@ -315,6 +316,9 @@
 .wui-modal.page > .box {
 	width: var(--wui-modal-page-box-width);
 	height: var(--wui-modal-page-box-height);
+	-webkit-border-radius: var(--wui-modal-page-box-radius);
+	-moz-border-radius: var(--wui-modal-page-box-radius);
+	border-radius: var(--wui-modal-page-box-radius);
 	background-color: var(--wui-modal-page-box-bgcolor);
 }
 .wui-modal.page > .box > .header {

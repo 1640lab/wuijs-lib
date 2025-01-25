@@ -41,6 +41,7 @@
 	justify-content: flex-start;
 	align-items: center;
 	padding: 2px;
+	-webkit-tap-highlight-color: transparent;
 	-webkit-transition: var(--button-transition);
 	-moz-transition: var(--button-transition);
 	transition: var(--button-transition);
@@ -137,6 +138,7 @@
 	padding: 0 10px;
 	font-size: 14px;
 	color: var(--wui-colorpicker-box-tab-textcolor-out);
+	-webkit-tap-highlight-color: transparent;
 }
 .wui-colorpicker > .box > .header > .tab.selected {
 	color: var(--wui-colorpicker-box-tab-textcolor-selected);
@@ -157,6 +159,7 @@
 .wui-colorpicker > .box > .grid > .color {
 	cursor: pointer;
 	height: 20px;
+	-webkit-tap-highlight-color: transparent;
 }
 .wui-colorpicker > .box > .list,
 .wui-colorpicker > .box > .list > .option {
@@ -192,6 +195,7 @@
 	padding: 0 10px;
 	align-items: center;
 	gap: 10px;
+	-webkit-tap-highlight-color: transparent;
 }
 .wui-colorpicker > .box > .list > .option:hover,
 .wui-colorpicker > .box > .list > .option:focus,

@@ -133,6 +133,7 @@
 }
 .wui-list > .row > .strip > .cell,
 .wui-list > .row > .buttons > .button {
+	-webkit-tap-highlight-color: transparent;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;

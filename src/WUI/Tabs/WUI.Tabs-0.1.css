@@ -17,6 +17,7 @@
 	cursor: pointer;
 	background-color: var(--wui-tabs-tab-bgcolor-out);
 	color: var(--wui-tabs-tab-textcolor-out);
+	-webkit-tap-highlight-color: transparent;
 }
 .wui-tabs > .bar > .tab > .icon {
 	width: 24px;

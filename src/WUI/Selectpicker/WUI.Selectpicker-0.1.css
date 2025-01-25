@@ -123,6 +123,7 @@
 	padding: 0 10px;
 	align-items: center;
 	gap: 10px;
+	-webkit-tap-highlight-color: transparent;
 }
 .wui-selectpicker > .box > .options > .option:not(.disabled):is(:hover, :focus, :focus-within, .focus) {
 	border-color: var(--wui-selectpicker-box-option-bordercolor-over);

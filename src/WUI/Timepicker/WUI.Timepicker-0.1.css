@@ -219,6 +219,7 @@
 		width: 36px;
 		height: 36px;
 		font-size: 15px;
+		-webkit-tap-highlight-color: transparent;
 	}
 	.wui-timepicker > .box > .footer {
 		height: 40px;

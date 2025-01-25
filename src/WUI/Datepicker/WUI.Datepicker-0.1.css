@@ -189,6 +189,7 @@
 	text-transform: uppercase;
 	font-size: 10px;
 	color: var(--wui-datepicker-box-month-textcolor-out);
+	-webkit-tap-highlight-color: transparent;
 }
 .wui-datepicker > .box > .months > div:not(:nth-child(13n+1)):hover > div {
 	background-color: var(--wui-datepicker-box-month-bgcolor-over);
@@ -225,6 +226,7 @@
 	border-radius: 50%;
 	font-size: 12px;
 	color: var(--wui-datepicker-box-day-textcolor-out);
+	-webkit-tap-highlight-color: transparent;
 }
 .wui-datepicker > .box > .days > div:hover > div {
 	background-color: var(--wui-datepicker-box-day-bgcolor-over);
@@ -269,6 +271,7 @@
 	text-transform: lowercase;
 	font-size: 14px;
 	color: var(--wui-datepicker-box-button-textcolor-out);
+	-webkit-tap-highlight-color: transparent;
 }
 .wui-datepicker > .box > .footer > button:hover {
 	color: var(--wui-datepicker-box-button-textcolor-over);

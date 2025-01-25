@@ -28,6 +28,7 @@
 	gap: 5px;
 	white-space: nowrap;
 	font-size: var(--wui-button-default-textsize);
+	-webkit-tap-highlight-color: transparent;
 	-webkit-transition: var(--button-transition);
 	-moz-transition: var(--button-transition);
 	transition: var(--button-transition);
