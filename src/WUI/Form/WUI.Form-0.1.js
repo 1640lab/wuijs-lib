@@ -201,6 +201,17 @@ class WUIForm {
 		}
 	}
 	init() {
+		const debounce = (fn) => {
+			let frame;
+			return (...params) => {
+				if (frame) {
+					cancelAnimationFrame(frame);
+				}
+				frame = requestAnimationFrame(() => {
+					fn(...params);
+				});
+			}
+		};
 		this._form.addEventListener("submit", event => {
 			if (!this._submit) {
 				event.preventDefault();
@@ -209,6 +220,17 @@ class WUIForm {
 				this._onSubmit();
 			}
 		});
+		if (this._element != null && this._body != null) {
+			this._element.dataset.scrollBody = 0;
+			if (this._body.classList.contains("scroll")) {
+				["scroll", "touchmove"].forEach(type => {
+					this._body.addEventListener(type, debounce(() => {
+						const top = this._body.scrollTop;
+						this._element.dataset.scrollBody = top >= 0 ? top : 0;
+					}), {passive: true});
+				});
+			}
+		}
 		this._element.querySelectorAll(".field > label").forEach(label => {
 			label.addEventListener("click", () => {
 				const field = label.parentNode;

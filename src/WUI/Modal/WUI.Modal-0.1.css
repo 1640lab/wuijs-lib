@@ -316,9 +316,9 @@
 .wui-modal.page > .box {
 	width: var(--wui-modal-page-box-width);
 	height: var(--wui-modal-page-box-height);
-	-webkit-border-radius: var(--wui-modal-page-box-radius);
-	-moz-border-radius: var(--wui-modal-page-box-radius);
-	border-radius: var(--wui-modal-page-box-radius);
+	-webkit-border-radius: var(--wui-modal-box-radius);
+	-moz-border-radius: var(--wui-modal-box-radius);
+	border-radius: var(--wui-modal-box-radius);
 	background-color: var(--wui-modal-page-box-bgcolor);
 }
 .wui-modal.page > .box > .header {
@@ -336,6 +336,9 @@
 	top: var(--wui-modal-slidepage-box-margin);
 	bottom: var(--wui-modal-slidepage-box-margin);
 	height: auto;
+	-webkit-border-radius: var(--wui-modal-page-box-radius);
+	-moz-border-radius: var(--wui-modal-page-box-radius);
+	border-radius: var(--wui-modal-page-box-radius);
 }
 .wui-modal.page.small > .box {
 	width: var(--wui-modal-smallpage-box-width);

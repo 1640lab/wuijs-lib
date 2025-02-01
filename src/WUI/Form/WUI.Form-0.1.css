@@ -42,8 +42,7 @@
 	flex-wrap: nowrap;
 }
 .wui-form > .body.scroll {
-	overflow-y: auto;
-	overflow-x: hidden;
+	overflow: auto !important;
 }
 .wui-form > .footer {
 	flex-basis: 80px;
