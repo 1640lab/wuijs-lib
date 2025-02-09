@@ -136,6 +136,18 @@ class WUICheckbox {
 				}
 			});
 		});
+		this._element.addEventListener("click", event => {
+			if (event.target.classList.contains("wui-checkbox")) {
+				setTimeout(() => {
+					const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
+					if (!mobile && this._direction == null) {
+						const event = new Event("change");
+						this.checked = !this.checked;
+						this._input.dispatchEvent(event);
+					}
+				}, 10);
+			}
+		});
 		this._input.addEventListener("change", event => {
 			this.#setStyle();
 			if (typeof(this._onChange) == "function") {

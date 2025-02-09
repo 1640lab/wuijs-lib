@@ -117,3 +117,4 @@
 	border-color: var(--wui-checkbox-button-bordercolor-disabled);
 	background-color: var(--wui-checkbox-button-bgcolor-disabled);
 }
+@media screen and (max-width: 767px) {}
