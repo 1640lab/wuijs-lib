@@ -136,6 +136,7 @@
 	padding-right: 10px;
 	justify-content: center;
 	text-align: left;
+	font-size: 15px;
 	color: var(--wui-form-input-textcolor-out);
 }
 .wui-form fieldset > .field > :is(input, select, textarea):is(:-webkit-autofill, :autofill)
@@ -556,13 +557,17 @@
 	.wui-form fieldset {
 		gap: 24px;
 	}
-	.wui-form fieldset > .field > :is(label, input, select, textarea, data),
+	.wui-form fieldset > .field > label,
 	.wui-form fieldset :is(.text, .message) {
 		font-size: 15px;
 	}
 	.wui-form fieldset > .field > label,
 	.wui-form fieldset > .field:not(.textarea) {
 		height: var(--wui-form-input-responsive-height);
+	}
+	.wui-form fieldset > .field > input:not([type="color"]):not([type="range"]):not([type="checkbox"]):not([type="button"]),
+	.wui-form fieldset > .field > :is(select, textarea, data) {
+		font-size: 17px;
 	}
 	.wui-form a.link {
 		font-size: 15px;
@@ -762,7 +767,6 @@
 		margin-left: 0px;
 		padding: 0 10px 0 0;
 		flex-grow: 0;
-		font-size: 15px;
 	}
 	.wui-form.mobile fieldset > .field > label.notempty {
 		color: var(--wui-form-mobile-label-textcolor);
