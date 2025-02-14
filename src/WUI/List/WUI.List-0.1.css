@@ -71,11 +71,22 @@
 .wui-list > .row > .strip > .cell.right {
 	justify-content: flex-end;
 }
-.wui-list > .row > .strip > .cell .text-overflow {
+/*.wui-list > .row > .<strip > .cell .text-overflow {
 	width: 100%;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+}*/
+.wui-list > .row > .strip > .cell .text-overflow {
+	display: -webkit-box;
+	display: -moz-box;
+	width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+	line-clamp: 1;
+    -webkit-box-orient: vertical;
+	box-orient: vertical;
 }
 .wui-list > .row:not(:last-child) > .strip > .cell:not(:first-child) {
 	border-bottom: var(--wui-list-row-borderwidth) solid var(--wui-list-row-bordercolor-out);

@@ -274,16 +274,18 @@ Number.prototype.wuiToString = function(options = {}) {
 	Object.keys(this.wuiDefaults).forEach(key => {
 		options[key] = typeof(options) != "undefined" && key in options ? options[key] : this.wuiDefaults[key];
 	});
-	const number = parseFloat(this),
+	let
+		number = parseFloat(this),
+		decLen = options.decimalLength;
+	const
 		prefix = options.numberPrefix,
 		symbol = number < 0 ? "-" : "",
-		decLen = options.decimalLength,
 		decSep = options.decimalSeparator,
 		thoSep = options.thousandsSeparator,
 		sufix = options.numberSufix;
 	let i, j;
 	if (decLen.toString().match(/auto/i)) {
-		decLen = number.toString().match(/\./) ?  number.toString().replace(/^-*\d+\./, "").length : 0;
+		decLen = number.toString().match(/\./) ? number.toString().replace(/^-*\d+\./, "").length : 0;
 	}
 	i = parseInt(number = Math.abs(+number || 0).toFixed(decLen)) + "";
 	j = (j = i.length) > 3 ? j % 3 : 0;
