@@ -224,14 +224,69 @@ class WUISelectpicker {
 			this._element.classList.remove("disabled");
 		}
 	}
-	addOption(option) {
+	addOption(opt) {
+		this.#addSelectOption(opt);
+		this.#addHTMLOption(opt);
+	}
+	#addSelectOption(opt) {
 		if (typeof(this._input) != "undefined") {
-			const selected = typeof(option.selected) == "boolean" ? option.selected : false;
-			const element = new Option(option.text || "", option.value || "", selected);
-			if (typeof(option.className) == "string") {
-				element.className = option.className;
+			const selected = typeof(opt.selected) == "boolean" ? opt.selected : false;
+			const option = new Option(opt.text || "", opt.value || "", selected);
+			if (typeof(opt.className) == "string") {
+				option.className = opt.className;
 			}
-			this._input.appendChild(element);
+			this._input.appendChild(option);
+		}
+	}
+	#addHTMLOption(opt) {
+		if (typeof(this._options) != "undefined") {
+			const option = document.createElement("div");
+			const icon = document.createElement("div");
+			const text = document.createElement("div");
+			const selected = Boolean(opt.selected);
+			const customIcon = Boolean(typeof(opt.icon) == "string" && opt.icon != "");
+			icon.className = "icon "+(customIcon ? opt.icon : "check");
+			icon.style.maskImage = !customIcon ? this.#getSRCIcon("box-option-check", selected ? "selected focus" : "out") : "url()";
+			text.className = "text "+(opt.value == "" ? "empty" : this._selecteableText ? "selecteable" : "");
+			text.innerHTML = opt.value == "" ? (this.texts.empty != "" ? this.texts.empty : lang in WUISelectpicker.#texts ? WUISelectpicker.#texts[lang].empty : "") : opt.text;
+			(opt.classList || []).forEach(key => {
+				text.classList.add(key);
+			});
+			Object.keys(opt.dataset || []).forEach(key => {
+				text.dataset[key] = opt.dataset[key];
+			});
+			option.className = "option"+(selected ? " selected" : "");	
+			option.dataset.value = opt.value;
+			option.appendChild(icon);
+			option.appendChild(text);
+			option.addEventListener("mouseover", () => {option.classList.add("focus");});
+			option.addEventListener("mouseout", () => {option.classList.remove("focus");});
+			option.addEventListener("click", () => {
+				const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
+				const selected = !Boolean(option.classList.contains("selected"));
+				const targetValue = option.dataset.value || "";
+				const value = selected ? targetValue : "";
+				this._options.scrollTop = option.offsetTop - parseInt(this._options.clientHeight/2);
+				this._options.querySelectorAll(".option").forEach(option => {
+					if (typeof(option.dataset.value) != "undefined" && option.dataset.value != targetValue) {
+						option.classList.remove("selected", "focus");
+					}
+				});
+				option.classList.toggle("selected", "focus");
+				this._targetValue = value;
+				this.#setValue(value);
+				this.#setView(value);
+				if (!mobile) {
+					this.close();
+				}
+			});
+			this._options.appendChild(option);
+		}
+	}
+	clearOptions() {
+		if (typeof(this._input) != "undefined") {
+			this._input.innerHTML = "";
+			this._options.innerHTML = "";
 		}
 	}
 	init() {
@@ -267,47 +322,7 @@ class WUISelectpicker {
 			}
 		});
 		Array.from(this._input.options).forEach(opt => {
-			const option = document.createElement("div");
-			const icon = document.createElement("div");
-			const text = document.createElement("div");
-			const selected = Boolean(opt.selected);
-			const customIcon = Boolean(typeof(opt.icon) == "string" && opt.icon != "");
-			icon.className = "icon "+(customIcon ? opt.icon : "check");
-			icon.style.maskImage = !customIcon ? this.#getSRCIcon("box-option-check", selected ? "selected focus" : "out") : "url()";
-			text.className = "text "+(opt.value == "" ? "empty" : this._selecteableText ? "selecteable" : "");
-			text.innerHTML = opt.value == "" ? (this.texts.empty != "" ? this.texts.empty : lang in WUISelectpicker.#texts ? WUISelectpicker.#texts[lang].empty : "") : opt.text;
-			opt.classList.forEach(key => {
-				text.classList.add(key);
-			});
-			Object.keys(opt.dataset).forEach(key => {
-				text.dataset[key] = opt.dataset[key];
-			});
-			option.className = "option"+(selected ? " selected" : "");	
-			option.dataset.value = opt.value;
-			option.appendChild(icon);
-			option.appendChild(text);
-			option.addEventListener("mouseover", () => {option.classList.add("focus");});
-			option.addEventListener("mouseout", () => {option.classList.remove("focus");});
-			option.addEventListener("click", () => {
-				const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
-				const selected = !Boolean(option.classList.contains("selected"));
-				const targetValue = option.dataset.value || "";
-				const value = selected ? targetValue : "";
-				this._options.scrollTop = option.offsetTop - parseInt(this._options.clientHeight/2);
-				this._options.querySelectorAll(".option").forEach(option => {
-					if (typeof(option.dataset.value) != "undefined" && option.dataset.value != targetValue) {
-						option.classList.remove("selected", "focus");
-					}
-				});
-				option.classList.toggle("selected", "focus");
-				this._targetValue = value;
-				this.#setValue(value);
-				this.#setView(value);
-				if (!mobile) {
-					this.close();
-				}
-			});
-			this._options.appendChild(option);
+			this.#addHTMLOption(opt);
 		});
 		this._inputText.type = "text";
 		this._inputText.name = this._input.name+"Text";
@@ -376,6 +391,12 @@ class WUISelectpicker {
 					option.classList.remove("selected", "focus");
 				}
 			}
+		});
+	}
+	loadOptions(options) {
+		this.clearOptions();
+		options.forEach(opt => {
+			this.addOption(opt);
 		});
 	}
 	open() {
