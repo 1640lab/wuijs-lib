@@ -505,12 +505,12 @@ HTML page struture:
 	<div class="box">
 		<div class="header">
 			<div class="back">
-				<div class="icon wui-svgicon arrowhead-left-line"></div>
+				<div class="icon wui-icon arrowhead-left-line"></div>
 				<div class="text"></div>
 			</div>
 			<div class="topbar"></div>
 			<div class="title"></div>
-			<div class="close wui-svgicon close-lg-line"></div>
+			<div class="close wui-icon close-lg-line"></div>
 		</div>
 		<div class="body"></div>
 		<div class="footer"></div>

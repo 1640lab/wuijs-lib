@@ -251,7 +251,7 @@ class WUIModalSelect extends WUIModal {
 				/*const checker = this.multiple ? document.createElement("div") : null;*/
 				const enabled = typeof(opt.enabled) == "boolean" && !opt.enabled ? false : true;
 				const selected = Boolean(opt.selected);
-				icon.className = "icon "+(typeof(opt.icon) == "string" && opt.icon != "" ? opt.icon : "wui-svgicon check-line");
+				icon.className = "icon "+(typeof(opt.icon) == "string" && opt.icon != "" ? opt.icon : "wui-icon check-line");
 				text.className = "text "+(this._selecteableText ? "selecteable" : "");
 				text.innerHTML = opt.value == "" ? "<i class='empty'>"+this._emptyText+"</i>" : opt.text;
 				option.className = "option"+(selected ? " selected" : "");

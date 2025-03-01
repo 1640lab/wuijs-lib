@@ -51,9 +51,7 @@
 	background-color: var(--wui-button-default-bgcolor-out);
 	color: var(--wui-button-default-textcolor-out);
 }
-.wui-button:not(.disabled):hover,
-.wui-button:not(.disabled):focus,
-.wui-button:not(.disabled):focus-within {
+.wui-button:not(.disabled):is(:hover, :focus, :focus-within) {
 	border-color: var(--wui-button-default-bordercolor-over);
 	background-color: var(--wui-button-default-bgcolor-over);
 	color: var(--wui-button-default-textcolor-over);
@@ -83,9 +81,7 @@
 	background-color: var(--wui-button-submit-bgcolor-out);
 	color: var(--wui-button-submit-textcolor-out);
 }
-.wui-button.submit:not(.disabled):hover,
-.wui-button.submit:not(.disabled):focus,
-.wui-button.submit:not(.disabled):focus-within {
+.wui-button.submit:not(.disabled):is(:hover, :focus, :focus-within) {
 	border-color: var(--wui-button-submit-bordercolor-over);
 	background-color: var(--wui-button-submit-bgcolor-over);
 	color: var(--wui-button-submit-textcolor-over);
@@ -110,9 +106,7 @@
 	background-color: var(--wui-button-warning-bgcolor-out);
 	color: var(--wui-button-warning-textcolor-out);
 }
-.wui-button.warning:not(.disabled):hover,
-.wui-button.warning:not(.disabled):focus,
-.wui-button.warning:not(.disabled):focus-within {
+.wui-button.warning:not(.disabled):is(:hover, :focus, :focus-within) {
 	border-color: var(--wui-button-warning-bordercolor-over);
 	background-color: var(--wui-button-warning-bgcolor-over);
 	color: var(--wui-button-warning-textcolor-over);
@@ -131,54 +125,56 @@
 	box-shadow: none;
 }
 
-/* wui-svgicon */
+/* wui-icon */
 
-.wui-button > .wui-svgicon {
+.wui-button > .wui-icon {
 	-khtml-opacity: 1;
 	-moz-opacity: 1;
 	opacity: 1;
 	width: 24px;
 	height: 24px;
 }
-.wui-button:not(.disabled) > .wui-svgicon {
+.wui-button:not(.disabled) > .wui-icon {
 	background-color: var(--wui-button-default-textcolor-out);
 }
-.wui-button:not(.disabled):hover > .wui-svgicon,
-.wui-button:not(.disabled):focus > .wui-svgicon,
-.wui-button:not(.disabled):focus-within > .wui-svgicon {
+.wui-button:not(.disabled):is(:hover, :focus, :focus-within) > .wui-icon {
 	background-color: var(--wui-button-default-textcolor-over);
 }
-.wui-button.submit:not(.disabled) > .wui-svgicon {
+.wui-button.disabled > .wui-icon {
+	background-color: var(--wui-button-default-textcolor-disabled);
+}
+.wui-button.submit:not(.disabled) > .wui-icon {
 	background-color: var(--wui-button-submit-textcolor-out);
 }
-.wui-button.submit:not(.disabled):hover > .wui-svgicon,
-.wui-button.submit:not(.disabled):focus > .wui-svgicon,
-.wui-button.submit:not(.disabled):focus-within > .wui-svgicon {
+.wui-button.submit:not(.disabled):is(:hover, :focus, :focus-within) > .wui-icon {
 	background-color: var(--wui-button-submit-textcolor-over);
 }
-.wui-button.warning:not(.disabled) > .wui-svgicon {
+.wui-button.submit.disabled > .wui-icon {
+	background-color: var(--wui-button-submit-textcolor-disabled);
+}
+.wui-button.warning:not(.disabled) > .wui-icon {
 	background-color: var(--wui-button-warning-textcolor-out);
 }
-.wui-button.warning:not(.disabled):hover > .wui-svgicon,
-.wui-button.warning:not(.disabled):focus > .wui-svgicon,
-.wui-button.warning:not(.disabled):focus-within > .wui-svgicon {
+.wui-button.warning:not(.disabled):is(:hover, :focus, :focus-within) > .wui-icon {
 	background-color: var(--wui-button-warning-textcolor-over);
 }
-.wui-button > .wui-svgicon.float-left,
-.wui-button > .wui-svgicon.float-right {
+.wui-button.warning.disabled > .wui-icon {
+	background-color: var(--wui-button-warning-textcolor-disabled);
+}
+.wui-button > .wui-icon:is(.float-left, .float-right) {
 	position: absolute;
 }
-.wui-button > .wui-svgicon.float-left {
+.wui-button > .wui-icon.float-left {
 	left: var(--wui-button-icon-float-padding);
 }
-.wui-button > .wui-svgicon.float-right {
+.wui-button > .wui-icon.float-right {
 	right: var(--wui-button-icon-float-padding);
 }
 @media screen and (max-width: 767px) {
-	.wui-button > .wui-svgicon.float-left {
+	.wui-button > .wui-icon.float-left {
 		left: var(--wui-button-icon-float-responsive-padding);
 	}
-	.wui-button > .wui-svgicon.float-right {
+	.wui-button > .wui-icon.float-right {
 		right: var(--wui-button-icon-float-responsive-padding);
 	}
 }

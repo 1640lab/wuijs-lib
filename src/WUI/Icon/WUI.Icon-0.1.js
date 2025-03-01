@@ -3,7 +3,7 @@
 class WUISVGIcon {
 	static version = "0.1";
 	static #defaults = {
-		selector: ".wui-svgicon",
+		selector: ".wui-icon",
 		dataURL: "url"
 	};
 	constructor (properties) {

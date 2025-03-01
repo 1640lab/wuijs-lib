@@ -89,15 +89,15 @@ Generated HTML code:
 	</div>
 	<div class="bar">
 		<div class="tab">
-			<div class="icon wui-svgicon"></div>
+			<div class="icon wui-icon"></div>
 			<div class="text"></div>
 		</div>
 		<div class="tab">
-			<div class="icon wui-svgicon"></div>
+			<div class="icon wui-icon"></div>
 			<div class="text"></div>
 		</div>
 		<div class="tab">
-			<div class="icon wui-svgicon"></div>
+			<div class="icon wui-icon"></div>
 			<div class="text"></div>
 		</div>
 	</div>

@@ -190,21 +190,21 @@
 	}
 }
 
-/* wui-svgicon */
+/* wui-icon */
 
-.wui-list > .row > .buttons > .button > .wui-svgicon {
-	--wui-svgicon-bgcolor-out: rgba(255, 255, 255, .9);
-	--wui-svgicon-bgcolor-over: rgba(255, 255, 255, 1);
+.wui-list > .row > .buttons > .button > .wui-icon {
+	--wui-icon-bgcolor-out: rgba(255, 255, 255, .9);
+	--wui-icon-bgcolor-over: rgba(255, 255, 255, 1);
 	width: 20px;
 	height: 20px;
 }
-.wui-list > .row > .buttons > .button.disabled > .wui-svgicon {
-	--wui-svgicon-bgcolor-out: rgba(255, 255, 255, .9);
-	--wui-svgicon-bgcolor-over: rgba(255, 255, 255, 1);
+.wui-list > .row > .buttons > .button.disabled > .wui-icon {
+	--wui-icon-bgcolor-out: rgba(255, 255, 255, .9);
+	--wui-icon-bgcolor-over: rgba(255, 255, 255, 1);
 }
-.wui-list > .message > .wui-svgicon {
-	--wui-svgicon-bgcolor-out: #eee;
-	--wui-svgicon-bgcolor-over: #eee;
+.wui-list > .message > .wui-icon {
+	--wui-icon-bgcolor-out: #eee;
+	--wui-icon-bgcolor-over: #eee;
 	width: 24px;
 	height: 24px;
 }

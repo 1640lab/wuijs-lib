@@ -810,23 +810,23 @@
 	}
 }
 
-/* wui-svgicon */
+/* wui-icon */
 
-.wui-form fieldset > .field:is(.icon, .icon-left, .icon-right) > .wui-svgicon {
+.wui-form fieldset > .field:is(.icon, .icon-left, .icon-right) > .wui-icon {
 	width: 20px;
 	height: 20px;
 }
-.wui-form:not(.grid) fieldset > .field:is(.icon, .icon-left, .icon-right) > .wui-svgicon {
+.wui-form:not(.grid) fieldset > .field:is(.icon, .icon-left, .icon-right) > .wui-icon {
 	position: absolute;
 	top: 50%;
 	margin-top: -10px;
 }
-.wui-form:not(.grid) fieldset > .field.icon > .wui-svgicon.icon-left,
-.wui-form:not(.grid) fieldset > .field.icon-left > .wui-svgicon:first-child {
+.wui-form:not(.grid) fieldset > .field.icon > .wui-icon.icon-left,
+.wui-form:not(.grid) fieldset > .field.icon-left > .wui-icon:first-child {
 	left: 5px;
 }
-.wui-form:not(.grid) fieldset > .field.icon > .wui-svgicon.icon-right,
-.wui-form:not(.grid) fieldset > .field.icon-right > .wui-svgicon:last-child {
+.wui-form:not(.grid) fieldset > .field.icon > .wui-icon.icon-right,
+.wui-form:not(.grid) fieldset > .field.icon-right > .wui-icon:last-child {
 	right: 5px;
 }
 .wui-form:not(.grid) fieldset > .field.icon-left > :is(label, input, select, textarea, data) {
@@ -837,11 +837,11 @@
 	padding-right: 40px !important;
 }
 @media screen and (max-width: 767px) {
-	.wui-form fieldset > .field:is(.icon, .icon-left, .icon-right) > .wui-svgicon {
+	.wui-form fieldset > .field:is(.icon, .icon-left, .icon-right) > .wui-icon {
 		width: 24px;
 		height: 24px;
 	}
-	.wui-form:not(.grid) fieldset > .field:is(.icon, .icon-left, .icon-right) > .wui-svgicon {
+	.wui-form:not(.grid) fieldset > .field:is(.icon, .icon-left, .icon-right) > .wui-icon {
 		margin-top: -12px;
 	}
 }
