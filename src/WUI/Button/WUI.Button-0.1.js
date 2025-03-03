@@ -5,6 +5,7 @@ class WUIButton {
 	static #defaults = {
 		selector: "",
 		text: "",
+		selectable: false,
 		locked: false,
 		enabled: true,
 		onClick: null
@@ -19,6 +20,9 @@ class WUIButton {
 	}
 	get text() {
 		return this._text;
+	}
+	get selectable() {
+		return this._selectable;
 	}
 	get locked() {
 		return this._locked;
@@ -39,6 +43,11 @@ class WUIButton {
 		if (typeof(value) == "string" && value != "") {
 			this._text = value;
 			this._element.innerHTML = value;
+		}
+	}
+	set selectable(value) {
+		if (typeof(value) == "boolean") {
+			this._selectable = value;
 		}
 	}
 	set locked(value) {
@@ -74,6 +83,9 @@ class WUIButton {
 	init() {
 		this._element.addEventListener("click", event => {
 			this.#setStyle();
+			if (this._selectable && this._enabled) {
+				this._element.classList.toggle("selected");
+			}
 			if (!this._locked && this._enabled && typeof(this._onClick) == "function") {
 				this._onClick(event);
 			}

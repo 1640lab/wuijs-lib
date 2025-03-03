@@ -140,9 +140,6 @@
 .wui-button:not(.disabled):is(:hover, :focus, :focus-within) > .wui-icon {
 	background-color: var(--wui-button-default-textcolor-over);
 }
-.wui-button.disabled > .wui-icon {
-	background-color: var(--wui-button-default-textcolor-disabled);
-}
 .wui-button.submit:not(.disabled) > .wui-icon {
 	background-color: var(--wui-button-submit-textcolor-out);
 }
@@ -160,6 +157,18 @@
 }
 .wui-button.warning.disabled > .wui-icon {
 	background-color: var(--wui-button-warning-textcolor-disabled);
+}
+.wui-button.selected:not(.disabled) > .wui-icon {
+	background-color: var(--wui-button-selected-textcolor-out);
+}
+.wui-button.selected:not(.disabled):is(:hover, :focus, :focus-within) > .wui-icon {
+	background-color: var(--wui-button-selected-textcolor-over);
+}
+.wui-button.selected.disabled > .wui-icon {
+	background-color: var(--wui-button-selected-textcolor-disabled);
+}
+.wui-button.disabled > .wui-icon {
+	background-color: var(--wui-button-default-textcolor-disabled);
 }
 .wui-button > .wui-icon:is(.float-left, .float-right) {
 	position: absolute;
