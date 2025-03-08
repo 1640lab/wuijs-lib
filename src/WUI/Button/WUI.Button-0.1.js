@@ -94,6 +94,22 @@ class WUIButton {
 	getElement() {
 		return this._element;
 	}
+	select() {
+		if (this._selectable && this._enabled) {
+			this._element.classList.add("selected");
+		}
+	}
+	unselect() {
+		if (this._selectable && this._enabled) {
+			this._element.classList.remove("selected");
+		}
+	}
+	isSelected() {
+		if (this._selectable && this._enabled) {
+			return this._element.classList.contains("selected");
+		}
+		return false;
+	}
 	focus() {
 		this._element.focus();
 	}

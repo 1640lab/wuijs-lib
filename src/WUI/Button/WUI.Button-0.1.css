@@ -43,8 +43,8 @@
 }
 @media screen and (max-width: 767px) {
 	.wui-button {
-		--button-radius: calc(var(--wui-button-default-responsive-height) / 2);
-		height: var(--wui-button-default-responsive-height);
+		--button-radius: calc(var(--wui-button-mobile-default-height) / 2);
+		height: var(--wui-button-mobile-default-height);
 		font-size: 17px;
 	}
 }
@@ -56,7 +56,7 @@
 	background-color: var(--wui-button-default-bgcolor-out);
 	color: var(--wui-button-default-textcolor-out);
 }
-.wui-button:not(.disabled):is(:hover, :focus, :focus-within) {
+.wui-button:not(.selected, .disabled):is(:hover, :focus, :focus-within) {
 	border-color: var(--wui-button-default-bordercolor-over);
 	background-color: var(--wui-button-default-bgcolor-over);
 	color: var(--wui-button-default-textcolor-over);
@@ -91,7 +91,7 @@
 	background-color: var(--wui-button-submit-bgcolor-out);
 	color: var(--wui-button-submit-textcolor-out);
 }
-.wui-button.submit:not(.disabled):is(:hover, :focus, :focus-within) {
+.wui-button.submit:not(.selected, .disabled):is(:hover, :focus, :focus-within) {
 	border-color: var(--wui-button-submit-bordercolor-over);
 	background-color: var(--wui-button-submit-bgcolor-over);
 	color: var(--wui-button-submit-textcolor-over);
@@ -108,8 +108,8 @@
 }
 @media screen and (max-width: 767px) {
 	.wui-button.submit {
-		--button-radius: calc(var(--wui-button-submit-responsive-height) / 2);
-		height: var(--wui-button-submit-responsive-height);
+		--button-radius: calc(var(--wui-button-mobile-submit-height) / 2);
+		height: var(--wui-button-mobile-submit-height);
 		font-size: 17px;
 	}
 }
@@ -121,7 +121,7 @@
 	background-color: var(--wui-button-warning-bgcolor-out);
 	color: var(--wui-button-warning-textcolor-out);
 }
-.wui-button.warning:not(.disabled):is(:hover, :focus, :focus-within) {
+.wui-button.warning:not(.selected, .disabled):is(:hover, :focus, :focus-within) {
 	border-color: var(--wui-button-warning-bordercolor-over);
 	background-color: var(--wui-button-warning-bgcolor-over);
 	color: var(--wui-button-warning-textcolor-over);
@@ -149,7 +149,7 @@
 .wui-button:not(.selected, .disabled) > .wui-icon {
 	background-color: var(--wui-button-default-textcolor-out);
 }
-.wui-button:not(.disabled):is(:hover, :focus, :focus-within) > .wui-icon {
+.wui-button:not(.selected, .disabled):is(:hover, :focus, :focus-within) > .wui-icon {
 	background-color: var(--wui-button-default-textcolor-over);
 }
 .wui-button.selected > .wui-icon {
@@ -161,7 +161,7 @@
 .wui-button.submit:not(.selected, .disabled) > .wui-icon {
 	background-color: var(--wui-button-submit-textcolor-out);
 }
-.wui-button.submit:not(.disabled):is(:hover, :focus, :focus-within) > .wui-icon {
+.wui-button.submit:not(.selected, .disabled):is(:hover, :focus, :focus-within) > .wui-icon {
 	background-color: var(--wui-button-submit-textcolor-over);
 }
 .wui-button.submit.selected > .wui-icon {
@@ -173,7 +173,7 @@
 .wui-button.warning:not(.selected, .disabled) > .wui-icon {
 	background-color: var(--wui-button-warning-textcolor-out);
 }
-.wui-button.warning:not(.disabled):is(:hover, :focus, :focus-within) > .wui-icon {
+.wui-button.warning:not(.selected, .disabled):is(:hover, :focus, :focus-within) > .wui-icon {
 	background-color: var(--wui-button-warning-textcolor-over);
 }
 .wui-button.warning.selected > .wui-icon {
@@ -193,9 +193,9 @@
 }
 @media screen and (max-width: 767px) {
 	.wui-button > .wui-icon.float-left {
-		left: var(--wui-button-icon-float-responsive-padding);
+		left: var(--wui-button-mobile-icon-float-padding);
 	}
 	.wui-button > .wui-icon.float-right {
-		right: var(--wui-button-icon-float-responsive-padding);
+		right: var(--wui-button-mobile-icon-float-padding);
 	}
 }
