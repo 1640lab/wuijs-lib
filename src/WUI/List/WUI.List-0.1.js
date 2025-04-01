@@ -94,7 +94,7 @@ class WUIList {
 				if (id != null) {
 					row.dataset.id = id;
 				}
-				row.className = "row";
+				row.className = "row"+(this._buttons.length > 0 ? " slider" : "");
 				row.append(strip);
 				strip.className = "strip";
 				this._columns.forEach((colOptions, j) => {

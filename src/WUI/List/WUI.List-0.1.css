@@ -27,7 +27,7 @@
 }
 .wui-list > .row {
 	--row-shadow: rgba(48, 77, 99, .04) 0px 4px 12px;
-	z-index: 2;
+	
 	width: 100%;
 	height: var(--wui-list-row-height);
 	overflow: hidden;
@@ -41,7 +41,6 @@
 	--strip-transition: margin-right .4s cubic-bezier(0, 0, .05, 1);
 	position: relative;
 	cursor: pointer;
-	z-index: 2;
 	height: 100%;
 	margin-right: 0px;
 	/*border-bottom: var(--wui-list-row-borderwidth) solid var(--wui-list-row-bordercolor-out);*/
@@ -91,16 +90,6 @@
 .wui-list > .row:not(:last-child) > .strip > .cell:not(:first-child) {
 	border-bottom: var(--wui-list-row-borderwidth) solid var(--wui-list-row-bordercolor-out);
 }
-.wui-list > .row > .buttons {
-	position: absolute;
-	z-index: 1;
-	top: 0;
-	right: 0;
-	height: 100%;
-	background-color: var(--wui-list-buttons-bgcolor);
-	align-items: center;
-	justify-content: stretch;
-}
 .wui-list > .row:first-child {
 	-webkit-border-top-left-radius: var(--wui-list-radius);
 	-webkit-border-top-right-radius: var(--wui-list-radius);
@@ -122,13 +111,27 @@
 .wui-list > .row:last-child > .strip {
 	border-bottom: 0;
 }
-.wui-list > .row > .buttons > .button {
+.wui-list > .row.slider,
+.wui-list > .row.slider > .strip {
+	z-index: 2;
+}
+.wui-list > .row.slider > .buttons {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	height: 100%;
+	background-color: var(--wui-list-buttons-bgcolor);
+	align-items: center;
+	justify-content: stretch;
+}
+.wui-list > .row.slider > .buttons > .button {
 	cursor: pointer;
 	width: var(--wui-list-button-size);
 	align-items: center;
 	justify-content: center;
 }
-.wui-list > .row > .buttons > .button.round {
+.wui-list > .row.slider > .buttons > .button.round {
 	height: var(--wui-list-button-size);
 	margin-left: var(--wui-list-button-hmargin);
 	-webkit-border-radius: var(--wui-list-button-radius);
@@ -136,21 +139,21 @@
 	border-radius: var(--wui-list-button-radius);
 	background-color: var(--wui-list-button-bgcolor-enabled);
 }
-.wui-list > .row > .buttons > .button.stretch {
+.wui-list > .row.slider > .buttons > .button.stretch {
 	height: 100%;
 }
-.wui-list > .row:first-child > .buttons > .button.stretch:last-child {
+.wui-list > .row.slider:first-child > .buttons > .button.stretch:last-child {
 	-webkit-border-top-right-radius: var(--wui-list-radius);
 	-moz-border-radius-topright: var(--wui-list-radius);
 	border-top-right-radius: var(--wui-list-radius);
 }
-.wui-list > .row:last-child > .buttons > .button.stretch:last-child {
+.wui-list > .row.slider:last-child > .buttons > .button.stretch:last-child {
 	-webkit-border-bottom-right-radius: var(--wui-list-radius);
 	-moz-border-radius-bottomright: var(--wui-list-radius);
 	border-bottom-right-radius: var(--wui-list-radius);
 }
-.wui-list > .row > .strip > .cell,
-.wui-list > .row > .buttons > .button {
+.wui-list > .row.slider > .strip > .cell,
+.wui-list > .row.slider > .buttons > .button {
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;

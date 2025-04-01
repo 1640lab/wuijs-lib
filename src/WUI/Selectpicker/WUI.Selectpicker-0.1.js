@@ -125,9 +125,12 @@ class WUISelectpicker {
 		}
 	}
 	set value(value) {
-		if (typeof(value).toString().match(/string|number/) && this._enabled) {
-			this.#setValue(typeof(value) == "string" ? value.trim() : value);
-			this.#prepare();
+		if (typeof(value).toString().match(/string|number/)) {
+			this._value = value;
+			if (this._enabled) {
+				this.#setValue(typeof(value) == "string" ? value.trim() : value);
+				this.#prepare();
+			}
 		}
 	}
 	set lang(value) {
@@ -316,6 +319,7 @@ class WUISelectpicker {
 		if (this._input.getAttribute("style") != null) {
 			this._input.removeAttributeNode(this._input.getAttributeNode("style"));
 		}
+		this._input.value = this._value || "";
 		this._input.addEventListener("change", () => {
 			if (typeof(this._onChange) == "function") {
 				this._onChange(this._input.value);
