@@ -178,6 +178,7 @@ class WUITimepicker {
 		} else {
 			this._element.classList.remove("disabled");
 		}
+		this._element.style.backgroundImage = this.#getSRCIcon("open", disabled ? "disabled" : "out");
 	}
 	init() {
 		this._inputs = document.createElement("div");
@@ -196,13 +197,13 @@ class WUITimepicker {
 		this._element.appendChild(this._box);
 		this._element.style.backgroundImage = this.#getSRCIcon("open", this._input.disabled ? "disabled" : "out");
 		this._element.addEventListener("click", event => {
-			if (event.target.classList.contains("wui-timepicker") && this._element.offsetWidth - event.offsetX < 30) {
+			if (this._enabled && event.target.classList.contains("wui-timepicker") && this._element.offsetWidth - event.offsetX < 30) {
 				this.toggle();
 			}
 		});
 		["mouseover", "mouseout", "focus", "blur"].forEach(type => {
-			const event = this._input.disabled ? "disabled" : type == "blur" ? "out" : type.replace(/mouse/, "");
 			this._element.addEventListener(type, () => {
+				const event = this._input.disabled ? "disabled" : type == "blur" ? "out" : type.replace(/mouse/, "");
 				this._element.style.backgroundImage = this.#getSRCIcon("open", event);
 			});
 		});

@@ -166,7 +166,7 @@ Generated HTML code:
 </div>
 DOM form field  struture:
 <div class="field checkbox">
-	<label for="wuiCheckbox""></label>
+	<label for="wuiCheckbox"></label>
 	<div class="wui-checkbox">
 		<input type="checkbox" name="wuiCheckbox" value="1">
 	</div>

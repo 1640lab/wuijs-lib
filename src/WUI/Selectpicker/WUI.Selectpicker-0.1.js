@@ -158,6 +158,7 @@ class WUISelectpicker {
 			this._filterable = value;
 			if (typeof(this._inputText) != "undefined") {
 				this._inputText.readOnly = !value;
+				this._inputText.style.cursor = value ? "default" : "pointer";
 				if (value) {
 					this._inputText.removeAttribute("readonly");
 				} else {
@@ -226,6 +227,7 @@ class WUISelectpicker {
 		} else {
 			this._element.classList.remove("disabled");
 		}
+		this._element.style.backgroundImage = this.#getSRCIcon("open", disabled ? "disabled" : "out");
 	}
 	addOption(opt) {
 		this.#addSelectOption(opt);
@@ -303,16 +305,16 @@ class WUISelectpicker {
 		this._element.appendChild(this._inputText);
 		this._element.appendChild(this._background);
 		this._element.appendChild(this._box);
-		this._element.style.backgroundImage = this.#getSRCIcon("open", this._input.disabled ? "disabled" : "out");
+		this._element.style.backgroundImage = this.#getSRCIcon("open", !this._enabled ? "disabled" : "out");
 		this._element.addEventListener("click", event => {
 			const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
-			if (event.target.classList.contains("wui-selectpicker") && (!(!mobile && this._filterable) || (this._element.offsetWidth - event.offsetX < 30))) {
+			if (this._enabled && event.target.classList.contains("wui-selectpicker") && (!(!mobile && this._filterable) || (this._element.offsetWidth - event.offsetX < 30))) {
 				this.toggle();
 			}
 		});
 		["mouseover", "mouseout", "focus", "blur"].forEach(type => {
-			const event = this._input.disabled ? "disabled" : type == "blur" ? "out" : type.replace(/mouse/, "");
 			this._element.addEventListener(type, () => {
+				const event = !this._enabled ? "disabled" : type == "blur" ? "out" : type.replace(/mouse/, "");
 				this._element.style.backgroundImage = this.#getSRCIcon("open", event);
 			});
 		});
@@ -331,14 +333,17 @@ class WUISelectpicker {
 		this._inputText.type = "text";
 		this._inputText.name = this._input.name+"Text";
 		this._inputText.readOnly = !this._filterable;
+		this._inputText.style.cursor = this._filterable ? "default" : "pointer";
 		this._inputText.addEventListener("click", () => {
-			const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
-			if (!mobile && this._filterable) {
-				if (!this.isOpen()) {
-					this.open();
+			if (this._enabled) {
+				const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
+				if (!mobile && this._filterable) {
+					if (!this.isOpen()) {
+						this.open();
+					}
+				} else {
+					this.toggle();
 				}
-			} else {
-				this.toggle();
 			}
 		});
 		this._inputText.addEventListener("keyup", (event) => {

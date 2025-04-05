@@ -439,6 +439,7 @@ class WUIColorpicker {
 		} else {
 			this._element.classList.remove("disabled");
 		}
+		this._element.style.backgroundImage = this.#getSRCIcon("open", disabled ? "disabled" : "out");
 	}
 	init() {
 		const optionOnClick = (option, mode) => {
@@ -475,13 +476,13 @@ class WUIColorpicker {
 		this._element.appendChild(this._box);
 		this._element.style.backgroundImage = this.#getSRCIcon("open", this._input.disabled ? "disabled" : "out");
 		this._element.addEventListener("click", event => {
-			if (event.target.classList.contains("button") || (event.target.classList.contains("color") && event.target.parentNode.classList.contains("button"))) {
+			if (this._enabled && event.target.classList.contains("button") || (event.target.classList.contains("color") && event.target.parentNode.classList.contains("button"))) {
 				this.toggle();
 			}
 		});
 		["mouseover", "mouseout", "focus", "blur"].forEach(type => {
-			const event = this._input.disabled ? "disabled" : type == "blur" ? "out" : type.replace(/mouse/, "");
 			this._element.addEventListener(type, () => {
+				const event = this._input.disabled ? "disabled" : type == "blur" ? "out" : type.replace(/mouse/, "");
 				this._element.style.backgroundImage = this.#getSRCIcon("open", event);
 			});
 		});
