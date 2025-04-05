@@ -125,7 +125,7 @@ class WUISelectpicker {
 		}
 	}
 	set value(value) {
-		if (typeof(value).toString().match(/string|number/)) {
+		if (typeof(value).toString().match(/string|number/) && (typeof(this._enabled) == "undefined" || this._enabled)) {
 			this._value = value;
 			if (this._enabled) {
 				this.#setValue(typeof(value) == "string" ? value.trim() : value);

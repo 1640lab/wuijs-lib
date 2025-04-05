@@ -40,12 +40,12 @@ class WUICheckbox {
 		}
 	}
 	set value(value) {
-		if (typeof(value).match(/(string|number)/) && this._enabled) {
+		if (typeof(value).match(/(string|number)/) && (typeof(this._enabled) == "undefined" || this._enabled)) {
 			this._input.value = value;
 		}
 	}
 	set checked(value) {
-		if (typeof(value) == "boolean" && this._enabled) {
+		if (typeof(value) == "boolean" && (typeof(this._enabled) == "undefined" || this._enabled)) {
 			this._checked = value;
 			this._input.checked = value;
 			if (value) {

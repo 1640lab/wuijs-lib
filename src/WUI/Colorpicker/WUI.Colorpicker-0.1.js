@@ -330,7 +330,7 @@ class WUIColorpicker {
 		}
 	}
 	set value(value) {
-		if (typeof(value) == "string" && (value.match(/^#([0-9A-F]{3}){1,2}$/i) || Object.values(WUIColorpicker.#colors.list).map(x => x.toLowerCase()).indexOf(value.toLowerCase()) > 0) && this._enabled) {
+		if (typeof(value) == "string" && (value.match(/^#([0-9A-F]{3}){1,2}$/i) || Object.values(WUIColorpicker.#colors.list).map(x => x.toLowerCase()).indexOf(value.toLowerCase()) > 0) && (typeof(this._enabled) == "undefined" || this._enabled)) {
 			this.#setValue(value.trim().toLowerCase());
 			this.#prepare();
 		}

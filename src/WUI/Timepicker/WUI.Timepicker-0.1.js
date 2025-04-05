@@ -80,7 +80,7 @@ class WUITimepicker {
 		}
 	}
 	set value(value) {
-		if (typeof(value) == "string" && value.match(/^(\d{2}:\d{2})?$/) && this._enabled) {
+		if (typeof(value) == "string" && value.match(/^(\d{2}:\d{2})?$/) && (typeof(this._enabled) == "undefined" || this._enabled)) {
 			this.#setValue(value);
 			this.#prepare();
 		}
