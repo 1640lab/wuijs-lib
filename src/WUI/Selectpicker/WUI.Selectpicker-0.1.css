@@ -100,7 +100,7 @@
 	flex-shrink: 0;
 }
 .wui-selectpicker > .box > .options {
-	min-height: calc(calc(2 * 30px) + 10px - 1px);
+	min-height: calc(calc(1 * 30px) + 10px - 1px);
 	max-height: calc(calc(11 * 30px) + 10px - 1px);
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -164,6 +164,11 @@
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	color: var(--wui-selectpicker-box-option-textcolor-out);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
 }
 .wui-selectpicker > .box > .options > .option > .text.empty {
 	font-style: italic;
@@ -229,6 +234,7 @@
 		left: 50%;
 		bottom: auto;
 		width: var(--wui-selectpicker-mobile-box-width);
+		margin: auto !important;
 		overflow: hidden;
 		-webkit-border-radius: var(--wui-selectpicker-mobile-box-radius);
 		-moz-border-radius: var(--wui-selectpicker-mobile-box-radius);

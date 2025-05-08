@@ -24,7 +24,7 @@
 	width: 64px;
 	height: 64px;
 	margin: 8px;
-	border: 8px solid var(--wui-loader-color);
+	border: 2px solid var(--wui-loader-color);
 	border-color: var(--wui-loader-color) transparent transparent transparent;
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;

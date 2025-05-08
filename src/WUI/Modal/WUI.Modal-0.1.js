@@ -8,6 +8,7 @@ class WUIModal {
 		onStartOpen: null,
 		onOpen: null,
 		onMaximize: null,
+		onScrolling: null,
 		onStartClose: null,
 		onClose: null,
 		onBack: null
@@ -66,6 +67,9 @@ class WUIModal {
 	get onMaximize() {
 		return this._onMaximize;
 	}
+	get onScrolling() {
+		return this._onScrolling;
+	}
 	get onStartClose() {
 		return this._onStartClose;
 	}
@@ -107,6 +111,11 @@ class WUIModal {
 	set onMaximize(value) {
 		if (typeof(value) == "function") {
 			this._onMaximize = value;
+		}
+	}
+	set onScrolling(value) {
+		if (typeof(value) == "function") {
+			this._onScrolling = value;
 		}
 	}
 	set onStartClose(value) {
@@ -250,8 +259,14 @@ class WUIModal {
 			if (this._body.classList.contains("scroll")) {
 				["scroll", "touchmove"].forEach(type => {
 					this._body.addEventListener(type, debounce(() => {
-						const top = this._body.scrollTop;
-						this._box.dataset.scrollBody = top >= 0 ? top : 0;
+						let top = this._body.scrollTop;
+						if (top < 0) {
+							top = 0;
+						}
+						this._box.dataset.scrollBody = top;
+						if (typeof(this._onScrolling) == "function") {
+							this._onScrolling(top);
+						}
 					}), {passive: true});
 				});
 			}

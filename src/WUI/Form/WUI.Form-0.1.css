@@ -880,11 +880,15 @@
 /* wui-datepicker */
 /* wui-timepicker */
 
-.wui-form fieldset > .field.icon-left > :is(.wui-selectpicker, .wui-datepicker, .wui-timepicker) {
+.wui-form:is(.line, .border) fieldset > .field > :is(.wui-selectpicker, .wui-datepicker, .wui-timepicker) {
+	left: 0;
+	padding-left: 10px;
+}
+.wui-form:is(.line, .border) fieldset > .field.icon-left > :is(.wui-selectpicker, .wui-datepicker, .wui-timepicker) {
 	left: 0;
 	padding-left: 40px !important;
 }
-.wui-form fieldset > .field.icon-right > :is(.wui-selectpicker, .wui-datepicker, .wui-timepicker) {
+.wui-form:is(.line, .border) fieldset > .field.icon-right > :is(.wui-selectpicker, .wui-datepicker, .wui-timepicker) {
 	padding-right: 40px !important;
 }
 .wui-form.border fieldset > .field > .wui-selectpicker > input[type="text"]{

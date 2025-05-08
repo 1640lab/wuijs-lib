@@ -82,6 +82,17 @@ class WUIList {
 	addButton(options) {
 		this._buttons.push(options);
 	}
+	enabledRow(index, enabled = true) {
+		this._rows[index].enabled = enabled;
+		if (this._element.innerHTML != "") {
+			const row = this._element.querySelector(".row:nth-of-type("+(index+1)+")");
+			if (!enabled) {
+				row.classList.add("disabled");
+			} else {
+				row.classList.remove("disabled");
+			}
+		}
+	}
 	print() {
 		this._strips = [];
 		if (this._element != null) {
@@ -90,11 +101,12 @@ class WUIList {
 				const row = document.createElement("div");
 				const strip = document.createElement("div");
 				const id = "id" in rowOptions ? rowOptions.id : null;
+				const enabled = "enabled" in rowOptions ? rowOptions.enabled : true;
 				row.dataset.index = i;
 				if (id != null) {
 					row.dataset.id = id;
 				}
-				row.className = "row"+(this._buttons.length > 0 ? " slider" : "");
+				row.className = "row"+(this._buttons.length > 0 ? " slider" : "")+(!enabled ? " disabled" : "");
 				row.append(strip);
 				strip.className = "strip";
 				this._columns.forEach((colOptions, j) => {
@@ -112,7 +124,7 @@ class WUIList {
 				});
 				strip.addEventListener("click", event => {
 					if (this._buttons.length == 0 || this._strips[i].direction == null) {
-						if (typeof(this._onClick) == "function") {
+						if (!row.classList.contains("disabled") && typeof(this._onClick) == "function") {
 							this._onClick(i, id, event, rowOptions);
 						}
 						this._strips.forEach((str, s) => {
@@ -163,7 +175,7 @@ class WUIList {
 						buttons.append(button);
 						["touchstart", "mousedown"].forEach(type => {
 							strip.addEventListener(type, event => {
-								if (!this._strips[i].drag) {
+								if (!row.classList.contains("disabled") && !this._strips[i].drag) {
 									const initX = (event.type == "touchstart" ? event.touches[0].clientX : event.clientX || event.clientX) - event.target.offsetParent.offsetLeft;
 									this._strips[i].drag = true;
 									this._strips[i].initX = initX;
@@ -213,6 +225,12 @@ class WUIList {
 					row.append(buttons);
 				}
 				this._element.append(row);
+				if ("innerRow" in rowOptions) {
+					const innerRow = document.createElement("div");
+					innerRow.className = "inner-row hidden";
+					innerRow.innerHTML = rowOptions.innerRow;
+					this._element.append(innerRow);
+				}
 			});
 		}
 	}
@@ -240,6 +258,9 @@ Generated HTML code:
 			<div class="button delete"></div>
 			...
 		</div>
+	</div>
+	<div class="inner-row hidden">
+		...
 	</div>
 	...
 </div>

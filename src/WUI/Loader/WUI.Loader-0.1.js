@@ -5,7 +5,7 @@ class WUILoader {
 	static #defaults = {
 		selector: ".wui-loader",
 		style: "ring",
-		size: 80,
+		size: 60,
 		dataStyle: "style",
 		dataSize: "size"
 	};
@@ -101,3 +101,14 @@ class WUILoader {
 		});
 	}
 }
+/*
+HTML code:
+<div class="wui-loader [ring|dualring|spinner|roller|ellipsis|grid]"></div>
+
+JS code:
+const loader = new WUILoader({
+	selector: ".wui-loader",
+	size: 60
+});
+loader.init();
+*/

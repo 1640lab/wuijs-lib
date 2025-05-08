@@ -5,7 +5,8 @@ class WUIForm {
 	static #defaults = {
 		selector: "",
 		submit: true,
-		onSubmit: true
+		onScrolling: null,
+		onSubmit: null
 	};
 	static #icons = {
 		"date-open": ""
@@ -32,6 +33,9 @@ class WUIForm {
 	get submit() {
 		return this._submit;
 	}
+	get onScrolling() {
+		return this._onScrolling;
+	}
 	get onSubmit() {
 		return this._onSubmit;
 	}
@@ -48,6 +52,11 @@ class WUIForm {
 	set submit(value) {
 		if (typeof(value) == "boolean") {
 			this._submit = value;
+		}
+	}
+	set onScrolling(value) {
+		if (typeof(value) == "function") {
+			this._onScrolling = value;
 		}
 	}
 	set onSubmit(value) {
@@ -69,6 +78,9 @@ class WUIForm {
 	}
 	getForm() {
 		return this._form;
+	}
+	getFormData() {
+		return new FormData(this._form);
 	}
 	getNode(name, type) {
 		let node = this._element.querySelector("data."+name) || this._form[name] || null;
@@ -225,8 +237,14 @@ class WUIForm {
 			if (this._body.classList.contains("scroll")) {
 				["scroll", "touchmove"].forEach(type => {
 					this._body.addEventListener(type, debounce(() => {
-						const top = this._body.scrollTop;
-						this._element.dataset.scrollBody = top >= 0 ? top : 0;
+						let top = this._body.scrollTop;
+						if (top < 0) {
+							top = 0;
+						}
+						this._element.dataset.scrollBody = top;
+						if (typeof(this._onScrolling) == "function") {
+							this._onScrolling(top);
+						}
 					}), {passive: true});
 				});
 			}

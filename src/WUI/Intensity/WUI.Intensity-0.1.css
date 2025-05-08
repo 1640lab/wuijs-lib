@@ -47,17 +47,17 @@
 	background-color: var(--wui-intensity-bgcolor-none);
 }
 [data-value="low"].wui-intensity {
-	background-color: mediumaquamarine;
+	background-color: var(--wui-intensity-bgcolor-low);
 }
 [data-value="low"].wui-intensity > input[type="range"] {
 	right: 16px;
 }
 [data-value="half"].wui-intensity {
-	background-color: darkorange;
+	background-color: var(--wui-intensity-bgcolor-half);
 }
 [data-value="half"].wui-intensity > input[type="range"] {
 	right: 6px;
 }
 [data-value="high"].wui-intensity {
-	background-color: orangered;
+	background-color: var(--wui-intensity-bgcolor-high);
 }

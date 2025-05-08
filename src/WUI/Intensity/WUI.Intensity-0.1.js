@@ -92,6 +92,50 @@ class WUIIntensity {
 		this._input.min = 0;
 		this._input.max = 3;
 		this._input.step = 1;
+		this._drag = false;
+		this._initX = null;
+		this._diffX = 0;
+		["touchstart", "mousedown"].forEach(type => {
+			this._element.addEventListener(type, event => {
+				if (!this._drag) {
+					const initX = (event.type == "touchstart" ? event.touches[0].clientX : event.clientX || event.pageX) - event.target.offsetParent.offsetLeft;
+					this._initX = initX;
+					this._drag = true;
+				}
+			});
+		});
+		["touchmove", "mousemove"].forEach(type => {
+			this._element.addEventListener(type, event => {
+				if (this._drag) {
+					const initX = parseFloat(this._initX);
+					const moveX = (event.type == "touchmove" ? event.touches[0].clientX : event.clientX || event.pageX) - event.target.offsetParent.offsetLeft;
+					this._diffX = moveX -initX;
+				}
+			});
+		});
+		["touchend", "mouseup"].forEach(type => {
+			document.addEventListener(type, () => {
+				if (this._drag) {
+					this._drag = false;
+					this._initX = null;
+					if (Math.abs(this._diffX) > 10) {
+						const iniValue = parseInt(this._input.value);
+						const event = new Event("input");
+						let endValue = iniValue + parseInt(this._diffX/40);
+						if (endValue < 0) {
+							endValue = 0;
+						} else if (endValue > 3) {
+							endValue = 3;
+						}
+						this.value = endValue;
+						this._input.dispatchEvent(event);
+						setTimeout(() => {
+							this._diffX = 0;
+						}, 400);
+					}
+				}
+			});
+		});
 		this._input.addEventListener("input", event => {
 			const value = parseInt(event.target.value);
 			this._element.dataset.value = 

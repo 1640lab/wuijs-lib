@@ -12,12 +12,13 @@
 .wui-list > .row > .strip > .cell,
 .wui-list > .row > .buttons,
 .wui-list > .row > .buttons > .button,
+.wui-list > .inner-row,
 .wui-list > .footer {
 	display: flex;
 }
 .wui-list {
 	width: 100%;
-	max-height: 100%;
+	max-height: none;
 	flex-direction: column;
 	font-size: 14px;
 }
@@ -27,15 +28,12 @@
 }
 .wui-list > .row {
 	--row-shadow: rgba(48, 77, 99, .04) 0px 4px 12px;
-	
 	width: 100%;
 	height: var(--wui-list-row-height);
 	overflow: hidden;
 	-webkit-box-shadow: var(--row-shadow);
 	-moz-box-shadow: var(--row-shadow);
 	box-shadow: var(--row-shadow);
-	/*border-left: var(--wui-list-borderwidth) solid var(--wui-list-bordercolor-out);
-	border-right: var(--wui-list-borderwidth) solid var(--wui-list-bordercolor-out);*/
 }
 .wui-list > .row > .strip {
 	--strip-transition: margin-right .4s cubic-bezier(0, 0, .05, 1);
@@ -43,7 +41,6 @@
 	cursor: pointer;
 	height: 100%;
 	margin-right: 0px;
-	/*border-bottom: var(--wui-list-row-borderwidth) solid var(--wui-list-row-bordercolor-out);*/
 	background-color: var(--wui-list-row-bgcolor-out);
 	flex-wrap: wrap;
 	justify-content: space-between;
@@ -52,10 +49,13 @@
 	-moz-transition: var(--strip-transition);
 	transition: var(--strip-transition);
 }
-.wui-list > .row > .strip:is(:hover, :focus, :focus-within) {
+.wui-list > .row:not(.disabled) > .strip:is(:hover, :focus, :focus-within) {
 	border-color: var(--wui-list-row-bordercolor-over);
 	background-color: var(--wui-list-row-bgcolor-over);
 	color: var(--wui-list-row-textcolor-over);
+}
+.wui-list > .row.disabled > .strip {
+	color: var(--wui-list-row-textcolor-disabled);
 }
 .wui-list > .row > .strip > .cell {
 	overflow: hidden;
@@ -70,7 +70,7 @@
 .wui-list > .row > .strip > .cell.right {
 	justify-content: flex-end;
 }
-/*.wui-list > .row > .<strip > .cell .text-overflow {
+/*.wui-list > .row > .strip > .cell .text-overflow {
 	width: 100%;
 	overflow: hidden;
 	white-space: nowrap;
@@ -97,7 +97,6 @@
 	-moz-border-radius-topright: var(--wui-list-radius);
 	border-top-left-radius: var(--wui-list-radius);
 	border-top-right-radius: var(--wui-list-radius);
-	/*border-top: var(--wui-list-borderwidth) solid var(--wui-list-bordercolor-out);*/
 }
 .wui-list > .row:last-child {
 	-webkit-border-bottom-left-radius: var(--wui-list-radius);
@@ -106,7 +105,6 @@
 	-moz-border-radius-bottomright: var(--wui-list-radius);
 	border-bottom-left-radius: var(--wui-list-radius);
 	border-bottom-right-radius: var(--wui-list-radius);
-	/*border-bottom: var(--wui-list-borderwidth) solid var(--wui-list-bordercolor-out);*/
 }
 .wui-list > .row:last-child > .strip {
 	border-bottom: 0;
@@ -163,8 +161,23 @@
 .wui-list > .row > .buttons > .button.disabled {
 	background-color: var(--wui-list-button-bgcolor-disabled);
 }
+.wui-list > .inner-row {
+	width: 100%;
+	min-height: var(--wui-list-row-height);
+	background-color: var(--wui-list-innerrow-bgcolor);
+	flex-wrap: wrap;
+	justify-content: space-between;
+	color: var(--wui-list-innerrow-textcolor);
+}
+.wui-list > .inner-row.hidden {
+	display: none;
+}
 .wui-list.scroll {
-	overflow: auto;
+	max-height: 100%;
+	overflow-y: auto;
+}
+.wui-list.scroll > .row {
+	flex-shrink: 0;
 }
 @media screen and (max-width: 767px) {
 	.wui-list {
@@ -195,12 +208,17 @@
 
 /* wui-icon */
 
+.wui-list > .row.disabled > .strip .wui-icon {
+	--wui-icon-bgcolor-out: var(--wui-list-row-textcolor-disabled);
+	--wui-icon-bgcolor-over: var(--wui-list-row-textcolor-disabled);
+}
 .wui-list > .row > .buttons > .button > .wui-icon {
 	--wui-icon-bgcolor-out: rgba(255, 255, 255, .9);
 	--wui-icon-bgcolor-over: rgba(255, 255, 255, 1);
 	width: 20px;
 	height: 20px;
 }
+.wui-list > .row.disabled > .buttons > .button > .wui-icon,
 .wui-list > .row > .buttons > .button.disabled > .wui-icon {
 	--wui-icon-bgcolor-out: rgba(255, 255, 255, .9);
 	--wui-icon-bgcolor-over: rgba(255, 255, 255, 1);

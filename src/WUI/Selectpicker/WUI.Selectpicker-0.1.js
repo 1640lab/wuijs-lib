@@ -8,6 +8,9 @@ class WUISelectpicker {
 		lang: "en",
 		texts: {},
 		openDirection: "down",
+		multiple: false,
+		separatorValue: ",",
+		separatorText: ", ",
 		filterable: true,
 		enabled: true,
 		onOpen: null,
@@ -105,6 +108,15 @@ class WUISelectpicker {
 	get openDirection() {
 		return this._openDirection;
 	}
+	get multiple() {
+		return this._multiple;
+	}
+	get separatorValue() {
+		return this._separatorValue;
+	}
+	get separatorText() {
+		return this._separatorText;
+	}
 	get filterable() {
 		return this._filterable;
 	}
@@ -126,9 +138,11 @@ class WUISelectpicker {
 	}
 	set value(value) {
 		if (typeof(value).toString().match(/string|number/) && (typeof(this._enabled) == "undefined" || this._enabled)) {
+			value = value.toString().trim();
 			this._value = value;
 			if (this._enabled) {
-				this.#setValue(typeof(value) == "string" ? value.trim() : value);
+				this.#setValue(value);
+				this.#setView(value);
 				this.#prepare();
 			}
 		}
@@ -151,6 +165,28 @@ class WUISelectpicker {
 	set openDirection(value) {
 		if (typeof(value) == "string" && value.match(/^(up|down)$/i)) {
 			this._openDirection = value.toLowerCase();
+		}
+	}
+	set multiple(value) {
+		if (typeof(value) == "boolean") {
+			this._multiple = value;
+			if (typeof(this._input) != "undefined") {
+				if (value) {
+					this._input.setAttribute("multiple", "true");
+				} else {
+					this._input.removeAttribute("multiple");
+				}
+			}
+		}
+	}
+	set separatorValue(value) {
+		if (typeof(value) == "string") {
+			this._separatorValue = value;
+		}
+	}
+	set separatorText(value) {
+		if (typeof(value) == "string") {
+			this._separatorText = value;
 		}
 	}
 	set filterable(value) {
@@ -195,11 +231,23 @@ class WUISelectpicker {
 	getElement() {
 		return this._element;
 	}
+	getBox() {
+		return this._box;
+	}
 	getFocusableElements() {
 		return [this._inputText];
 	}
 	getInput() {
 		return this._input;
+	}
+	#getSelectedOptions() {
+		return !this._multiple ? [this._input.value] : Array.from(this._input.options).filter(opt => opt.selected);
+	}
+	getValue() {
+		return this.#getSelectedOptions().map(opt => opt.value).join(this._separatorValue) || "";
+	}
+	getText() {
+		return this.#getSelectedOptions().map(opt => opt.text).join(this._separatorText) || "";
 	}
 	#getSRCIcon(name, event) {
 		const rgb2Hex = (rgba) => "#"+rgba.map((x, i) => {return ("0"+parseInt(i == 3 ? 255*x : x).toString(16)).slice(-2);}).join("");
@@ -213,11 +261,23 @@ class WUISelectpicker {
 		return src != "" && !src.match(/^(none|url\(\))$/) ? src : "url(\"data:image/svg+xml,"+WUISelectpicker.#icons[name].replace(/currentColor/g, hexColor)+"\")";
 	}
 	#setValue(value) {
-		this._input.value = value;
+		const valores = value.split(this._separatorValue);
+		if (!this._multiple) {
+			this._input.value = value;
+		}
+		Array.from(this._input.options).forEach(opt => {
+			const selected = valores.includes(opt.value);
+			opt.selected = selected;
+			if (selected) {
+				opt.setAttribute("selected", "true");
+			} else {
+				opt.removeAttribute("selected");
+			}
+		});
 		this._input.dispatchEvent(new Event("change"));
 	}
 	#setView(value) {
-		const text = Array.from(this._input.options).filter(opt => opt.value == value).map(opt => opt.text)[0] || "";
+		const text = !this._multiple ? Array.from(this._input.options).filter(opt => opt.value == value).map(opt => opt.text)[0] || "" : this.getText();
 		this._inputText.value = text;
 	}
 	#setStyle() {
@@ -270,18 +330,27 @@ class WUISelectpicker {
 				const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
 				const selected = !Boolean(option.classList.contains("selected"));
 				const targetValue = option.dataset.value || "";
-				const value = selected ? targetValue : "";
+				const values = [];
+				let value = "";
+				option.classList.toggle("selected");
 				this._options.scrollTop = option.offsetTop - parseInt(this._options.clientHeight/2);
 				this._options.querySelectorAll(".option").forEach(option => {
-					if (typeof(option.dataset.value) != "undefined" && option.dataset.value != targetValue) {
-						option.classList.remove("selected", "focus");
+					if (typeof(option.dataset.value) != "undefined") {
+						option.classList.remove("focus");
+						if (!this._multiple && option.dataset.value != targetValue) {
+							option.classList.remove("selected");
+						}
+						if (this._multiple && option.classList.contains("selected")) {
+							values.push(option.dataset.value);
+						}
 					}
 				});
-				option.classList.toggle("selected", "focus");
+				value = this._multiple ? values.join(this._separatorValue) : selected ? targetValue : "";
+				option.classList.add("focus");
 				this._targetValue = value;
 				this.#setValue(value);
 				this.#setView(value);
-				if (!mobile) {
+				if (!this._multiple && !mobile) {
 					this.close();
 				}
 			});
@@ -390,12 +459,12 @@ class WUISelectpicker {
 		this.#setView(this._targetValue);
 	}
 	#loadBox() {
-		const value = this._targetValue;
-		this._options.querySelectorAll(".option").forEach(option => {
+		Array.from(this._input.options).forEach((opt, i) => {
+			const option = this._options.querySelector(".option:nth-child("+(i +1)+")");
 			if (typeof(option.dataset.value) != "undefined") {
-				if (option.dataset.value == value) {
+				if (opt.selected) {
 					this._options.scrollTop = option.offsetTop - parseInt((this._options.clientHeight - option.clientHeight)/2);
-					option.classList.add("selected", "focus");
+					option.classList.add("selected");
 				} else {
 					option.classList.remove("selected", "focus");
 				}
@@ -416,7 +485,7 @@ class WUISelectpicker {
 		this.#prepare();
 		this.#loadBox();
 		if (typeof(this._onOpen) == "function") {
-			this._onOpen(this._input.value);
+			this._onOpen(this.getValue());
 		}
 		WUISelectpicker.#active = this;
 	}
