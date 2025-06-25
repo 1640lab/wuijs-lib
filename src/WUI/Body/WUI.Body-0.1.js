@@ -48,7 +48,7 @@ class WUIBody {
 			this._debug = value;
 		}
 	}
-	#checkPath = (url) => {
+	#checkPath(url) {
 		const http = new XMLHttpRequest();
 		try {
 			http.open("HEAD", url, false);
@@ -57,12 +57,13 @@ class WUIBody {
 		return http.status != 404;
 	}
 	prepaare() {
+		const inputsSelector = "input[type=text], input[type=password], input[type=file], input[type=email], input[type=number], input[type=tel], textarea";
 		if (this.environment == "android") {
 			document.body.querySelectorAll("a[target=_new], a[target=_blank]").forEach(a => {
 				a.setAttribute("href", "javascript:WUIBody.urlOpen('"+a.getAttribute("href")+"', '"+(a.getAttribute("download") || "")+"');");
 				a.removeAttribute("target");
 			});
-			document.body.querySelectorAll("input[type=text], input[type=password], input[type=file], input[type=email], input[type=number], input[type=tel], textarea").forEach(input => {
+			document.body.querySelectorAll(inputsSelector).forEach(input => {
 				input.addEventListener("keyup", event => {
 					const maxlength = input.getAttribute("maxlength");
 					if (typeof(maxlength) != "undefined" && input.value.length > parseInt(maxlength)) {
@@ -71,7 +72,7 @@ class WUIBody {
 				});
 			});
 		} else if (this.environment == "ios") {
-			document.body.querySelectorAll("input[type=text], input[type=password], input[type=file], input[type=email], input[type=number], input[type=tel], textarea").forEach(input => {
+			document.body.querySelectorAll(inputsSelector).forEach(input => {
 				input.addEventListener("keypress", event => {
 					const maxlength = input.getAttribute("maxlength");
 					if (typeof(maxlength) != "undefined" && input.value.length >= parseInt(maxlength)) {
@@ -80,12 +81,12 @@ class WUIBody {
 				});
 			});
 		}
-		document.body.querySelectorAll("input[type=text], input[type=password], input[type=file], input[type=email], input[type=number], input[type=tel], select, textarea").forEach(input => {
+		document.body.querySelectorAll(inputsSelector+", select").forEach(input => {
 			input.addEventListener("blur", () => {
 				document.activeElement.blur();
 			});
 		});
-	};
+	}
 	urlOpen(url, download = "") {
 		const link = document.createElement("a");
 		link.setAttribute("href", url);
@@ -155,12 +156,12 @@ class WUIBody {
 			});
 			this.#parts++;
 		}
-	};
+	}
 	init(onCompleted) {
 		if (typeof(onCompleted) == "function") {
 			this._onCompleted = onCompleted;
 		}
-	};
+	}
 }
 /*
 DOM import struture:

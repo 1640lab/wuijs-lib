@@ -47,40 +47,46 @@ class WUISelectpicker {
 	static _initClass() {
 		document.addEventListener("keydown", event => {
 			const active = WUISelectpicker.#active;
-			if (active != null && active.enabled && active.isOpen()) {
-				const keys = {
-					up: Boolean(event.key == "ArrowUp"),
-					down: Boolean(event.key == "ArrowDown"),
-					intro: Boolean(event.key == "Enter"),
-					esc: Boolean(event.key == "Escape")
-				};
-				const focusOption = active._options.querySelector(".option.focus");
-				if (keys.up || keys.down) {
-					const options = Array.from(active._options.querySelectorAll(".option")).filter(option => !option.classList.contains("hidden"));
-					const focusIndex = options.indexOf(focusOption);
-					const nextIndex =
-						options.length == 0 ? null :
-						keys.up && focusOption == null ? options.length -1 :
-						keys.up && focusOption != null ? focusIndex -1 :
-						keys.down && focusOption == null ? 0 :
-						keys.down && focusOption != null ? focusIndex +1 :
-						null;
-					const nextOption = nextIndex != null ? options[nextIndex] : null;
-					if (focusOption != null) {
-						focusOption.classList.remove("focus");
+			const keys = {
+				up: Boolean(event.key == "ArrowUp"),
+				down: Boolean(event.key == "ArrowDown"),
+				intro: Boolean(event.key == "Enter"),
+				esc: Boolean(event.key == "Escape")
+			};
+			if (active != null && active.enabled) {
+				if (!active.isOpen()) {
+					if (keys.down) {
+						active.open();
 					}
-					if (nextOption != null) {
-						active._options.scrollTop = nextOption.offsetTop - parseInt(active._options.clientHeight/2);
-						nextOption.classList.add("focus");
-					}
-				} else if (keys.intro) {
-					if (focusOption != null) {
-						const value = focusOption.dataset.value;
-						active.value = value;
+				} else {
+					const focusOption = active._options.querySelector(".option.focus");
+					if (keys.up || keys.down) {
+						const options = Array.from(active._options.querySelectorAll(".option")).filter(option => !option.classList.contains("hidden"));
+						const focusIndex = options.indexOf(focusOption);
+						const nextIndex =
+							options.length == 0 ? null :
+							keys.up && focusOption == null ? options.length -1 :
+							keys.up && focusOption != null ? focusIndex -1 :
+							keys.down && focusOption == null ? 0 :
+							keys.down && focusOption != null ? focusIndex +1 :
+							null;
+						const nextOption = nextIndex != null ? options[nextIndex] : null;
+						if (focusOption != null) {
+							focusOption.classList.remove("focus");
+						}
+						if (nextOption != null) {
+							active._options.scrollTop = nextOption.offsetTop - parseInt(active._options.clientHeight/2);
+							nextOption.classList.add("focus");
+						}
+					} else if (keys.intro) {
+						if (focusOption != null) {
+							const value = focusOption.dataset.value;
+							active.value = value;
+							active.close();
+						}
+					} else if (keys.esc) {
 						active.close();
 					}
-				} else if (keys.esc) {
-					active.close();
 				}
 			}
 		});
@@ -403,6 +409,18 @@ class WUISelectpicker {
 		this._inputText.name = this._input.name+"Text";
 		this._inputText.readOnly = !this._filterable;
 		this._inputText.style.cursor = this._filterable ? "default" : "pointer";
+		this._inputText.addEventListener("focus", () => {
+			if (this._enabled) {
+				setTimeout(() => {
+					WUISelectpicker.#active = this;
+				}, 10)
+			}
+		});
+		this._inputText.addEventListener("blur", () => {
+			if (this._enabled) {
+				WUISelectpicker.#active = null;
+			}
+		});
 		this._inputText.addEventListener("click", () => {
 			if (this._enabled) {
 				const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);

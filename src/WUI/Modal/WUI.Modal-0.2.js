@@ -1,7 +1,7 @@
-/* WUIModal v0.1 */
+/* WUIModal v0.2 */
 
 class WUIModal {
-	static version = "0.1";
+	static version = "0.2";
 	static #defaults = {
 		selector: "",
 		openDelay: 200,

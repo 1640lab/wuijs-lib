@@ -937,7 +937,8 @@
 .wui-form:is(.line, .border) fieldset > .field.button > .wui-button {
 	position: absolute;
 	right: 0;
-	width: auto;
+	min-width: var(--wui-button-form-default-minwidth);
+	height: var(--wui-form-input-height);
 }
 .wui-form > .footer .wui-button {
 	margin-left: 15px;

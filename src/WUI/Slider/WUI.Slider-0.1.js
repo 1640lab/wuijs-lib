@@ -53,8 +53,9 @@ class WUISlider {
 				this._data[i] = {
 					slide: slide,
 					dot: document.createElement("div"),
-					initX: null,
 					drag: false,
+					initX: null,
+					direction: null,
 					lock: false
 				};
 			});
@@ -79,17 +80,10 @@ class WUISlider {
 					this._data[i].slide.addEventListener(type, event => {
 						if (this._data[i].drag && !this._data[i].lock) {
 							const initX = parseFloat(this._data[i].initX);
-							const moveY = (event.type == "touchmove" ? event.touches[0].clientX : event.clientX || event.pageX) - event.target.offsetParent.offsetLeft;
-							const diffX = moveY -initX;
+							const moveX = (event.type == "touchmove" ? event.touches[0].clientX : event.clientX || event.pageX) - event.target.offsetParent.offsetLeft;
+							const diffX = moveX - initX;
 							const direction = diffX > 10 ? "prev" : diffX < -10 ? "next" : null;
-							let step = 0;
-							if (direction == "next" && i < this._data.length -1) {
-								this.next();
-								this._data[i].lock = true;
-							} else if (direction == "prev" && i > 0) {
-								this.prev();
-								this._data[i].lock = true;
-							}
+							this._direction = direction;
 						}
 					});
 				});
@@ -98,7 +92,11 @@ class WUISlider {
 						if (typeof(this._data[i]) == "object" && this._data[i].drag) {
 							this._data[i].initX = null;
 							this._data[i].drag = false;
-							this._data[i].lock = false;
+							if (direction == "next" && i < this._data.length -1) {
+								this.next();
+							} else if (direction == "prev" && i > 0) {
+								this.prev();
+							}
 						}
 					});
 				});
@@ -109,10 +107,11 @@ class WUISlider {
 		}
 	}
 	prev() {
+		const delay = 200;
 		let index = this._index;
 		let step = 0;
-		if (index > 0) {
-			const delay = 200;
+		if (index > 0 && !this._data[index].lock) {
+			this._data[index].lock = true;
 			const interval = setInterval(() => {
 				if (step >= 1) {
 					clearInterval(interval);
@@ -129,16 +128,18 @@ class WUISlider {
 					if (typeof(this._onChange) == "function") {
 						this._onChange(this._index);
 					}
+					this._data[index].lock = false;
 				}
 				step += .1;
 			}, delay/10);
 		}
 	}
 	next() {
+		const delay = 200;
 		let index = this._index;
 		let step = 0;
-		if (index < this._data.length -1) {
-			const delay = 200;
+		if (index < this._data.length -1 && !this._data[index].lock) {
+			this._data[index].lock = true;
 			const interval = setInterval(() => {
 				if (step >= 1) {
 					clearInterval(interval);
@@ -155,6 +156,7 @@ class WUISlider {
 					if (typeof(this._onChange) == "function") {
 						this._onChange(this._index);
 					}
+					this._data[index].lock = false;
 				}
 				step += .1;
 			}, delay/10);

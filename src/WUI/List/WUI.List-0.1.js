@@ -177,8 +177,8 @@ class WUIList {
 							strip.addEventListener(type, event => {
 								if (!row.classList.contains("disabled") && !this._strips[i].drag) {
 									const initX = (event.type == "touchstart" ? event.touches[0].clientX : event.clientX || event.clientX) - event.target.offsetParent.offsetLeft;
-									this._strips[i].drag = true;
 									this._strips[i].initX = initX;
+									this._strips[i].drag = true;
 								}
 							});
 						});
@@ -187,10 +187,10 @@ class WUIList {
 								if (this._strips[i].drag) {
 									const initX = parseFloat(this._strips[i].initX);
 									const moveX = (event.type == "touchmove" ? event.touches[0].clientX : event.clientX || event.clientX) - event.target.offsetParent.offsetLeft;
-									const diffX = moveX -initX;
+									const diffX = moveX - initX;
 									const direction = diffX > 10 ? "right" : diffX < -10 ? "left" : null;
 									if (direction == "left") {
-										this._strips.forEach((str, s) => {
+										this._strips.forEach((_, s) => {
 											if (this._strips[s].open && s != i) {
 												this._element.querySelector(".row:nth-of-type("+(s+1)+") > .strip").style.marginRight = "0px";
 												this._strips[s].open = false;
@@ -225,11 +225,13 @@ class WUIList {
 					row.append(buttons);
 				}
 				this._element.append(row);
-				if ("innerRow" in rowOptions) {
-					const innerRow = document.createElement("div");
-					innerRow.className = "inner-row hidden";
-					innerRow.innerHTML = rowOptions.innerRow;
-					this._element.append(innerRow);
+				if ("inner" in rowOptions && typeof(rowOptions.inner) == "string" && rowOptions.inner.trim() != "") {
+					const inner = document.createElement("div");
+					const opened = Boolean("opened" in rowOptions && rowOptions.opened);
+					inner.dataset.index = i;
+					inner.className = "inner-row"+(!opened ? " hidden" : "");
+					inner.innerHTML = rowOptions.inner;
+					this._element.append(inner);
 				}
 			});
 		}

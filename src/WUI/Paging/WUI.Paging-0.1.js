@@ -147,6 +147,7 @@ class WUIPaging {
 			this.getPages().forEach((page, i) => {
 				if (i == index) {
 					page.classList.add("selected");
+					this._target = page.dataset[this._dataTarget];
 				} else if (i < index) {
 					page.classList.add("left");
 				} else if (i > index) {
