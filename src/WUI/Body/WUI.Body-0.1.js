@@ -5,10 +5,12 @@ class WUIBody {
 	static #defaults = {
 		environment: "",
 		importDirectory: "",
+		importMode: "fetch",
 		onCompleted: null,
 		debug: false
 	};
 	#htmlCount = 0;
+	#cssCount = 0;
 	#jsCount = 0;
 	#parts = 0;
 	constructor (properties) {
@@ -21,6 +23,9 @@ class WUIBody {
 	}
 	get importDirectory() {
 		return this._importDirectory;
+	}
+	get importMode() {
+		return this._importMode;
 	}
 	get onCompleted() {
 		return this._onCompleted;
@@ -38,6 +43,11 @@ class WUIBody {
 			this._importDirectory = value;
 		}
 	}
+	set importMode(value) {
+		if (typeof(value) == "string" && value.match(/^(fetch|xhr)?$/i)) {
+			this._importMode = value;
+		}
+	}
 	set onCompleted(value) {
 		if (typeof(value) == "function") {
 			this._onCompleted = value;
@@ -47,14 +57,6 @@ class WUIBody {
 		if (typeof(value) == "boolean") {
 			this._debug = value;
 		}
-	}
-	#checkPath(url) {
-		const http = new XMLHttpRequest();
-		try {
-			http.open("HEAD", url, false);
-			http.send();
-		} catch(e) {}
-		return http.status != 404;
 	}
 	prepaare() {
 		const inputsSelector = "input[type=text], input[type=password], input[type=file], input[type=email], input[type=number], input[type=tel], textarea";
@@ -103,57 +105,109 @@ class WUIBody {
 		const cssPath = this._importDirectory+path+".css?_="+token;
 		const htmlPath = this._importDirectory+path+".htm?_="+token;
 		const jsPath = this._importDirectory+path+".js?_="+token;
-		if (this.#checkPath(htmlPath)) {
-			fetch(htmlPath).then(response => {
-				return response.text();
-			}).then(html => {
-				if (html) {
-					let section = document.getElementById(id);
-					section.outerHTML = html;
-					section = document.getElementById(id);
-					if (this.debug) {
-						console.log("ui import htm:", id, section);
-					}
-					if (this.#checkPath(cssPath)) {
+		const checkPath = (url) => {
+			const xhr = new XMLHttpRequest();
+			try {
+				xhr.open("HEAD", url, false);
+				xhr.send();
+			} catch(e) {}
+			return xhr.status != 404;
+		}
+		const checkStatus = () => {
+			if (2 * this.#parts == this.#htmlCount + this.#jsCount && typeof(this._onCompleted) == "function") {
+				this._onCompleted();
+			}
+		}
+		const loadHTML = (html) => {
+			if (html) {
+				let section = document.getElementById(id);
+				section.outerHTML = html;
+				section = document.getElementById(id);
+				if (this.debug) {
+					console.log("ui import htm:", id, section);
+				}
+			}
+			this.#htmlCount++;
+		}
+		const loadCSS = (css) => {
+			if (css) {
+				const section = document.getElementById(id);
+				const style = document.createElement("style");
+				style.textContent = css;
+				section.insertAdjacentElement("beforebegin", style);
+				if (this.debug) {
+					console.log("ui import css:", id, style);
+				}
+			}
+			this.#cssCount++;
+		}
+		const loadJS = (js) => {
+			if (js) {
+				const section = document.getElementById(id);
+				const script = document.createElement("script");
+				script.textContent = js;
+				section.insertAdjacentElement("afterend", script);
+				if (this.debug) {
+					console.log("ui import js:", id, script);
+				}
+			}
+			this.#jsCount++;
+			if (typeof(done) == "function") {
+				done();
+			}
+			checkStatus();
+		}
+		const xhrRequest = (url, onload) => {
+			const xhr = new XMLHttpRequest();
+			xhr.overrideMimeType("text/plain");
+			xhr.onload = function() {
+				if (xhr.status == 200 || xhr.status == 0) {
+					onload(xhr.responseText);
+				}
+			}
+			xhr.open("GET", url, true);
+			xhr.send();
+		}
+		if (checkPath(htmlPath)) {
+			if (this._importMode == "fetch") {
+				fetch(htmlPath).then(response => {
+					return response.text();
+				}).then(html => {
+					loadHTML(html);
+					if (checkPath(cssPath)) {
 						fetch(cssPath).then(response => {
 							return response.text();
 						}).then(css => {
-							if (css) {
-								const style = document.createElement("style");
-								style.textContent = css;
-								section.insertAdjacentElement("beforebegin", style);
-								if (this.debug) {
-									console.log("ui import css:", id, style);
-								}
-							}
+							loadCSS(css);
 						});
 					}
-					if (this.#checkPath(jsPath)) {
+					if (checkPath(jsPath)) {
 						fetch(jsPath).then(response => {
 							return response.text();
 						}).then(js => {
-							if (js) {
-								const script = document.createElement("script");
-								script.textContent = js;
-								section.insertAdjacentElement("afterend", script);
-								if (this.debug) {
-									console.log("ui import js:", id, script);
-								}
-							}
-							this.#jsCount++;
-							if (typeof(done) == "function") {
-								done();
-							}
-							if (2*this.#parts == this.#htmlCount + this.#jsCount && typeof(this._onCompleted) == "function") {
-								this._onCompleted();
-							}
+							loadJS(js);
 						});
 					} else {
 						this.#jsCount++;
 					}
-				}
-				this.#htmlCount++;
-			});
+				});
+			} else if (this._importMode == "xhr") {
+				xhrRequest(htmlPath, html => {
+					loadHTML(html);
+					if (checkPath(cssPath)) {
+						xhrRequest(cssPath, css => {
+							loadCSS(css);
+						});
+					}
+					if (checkPath(jsPath)) {
+						xhrRequest(jsPath, js => {
+							loadJS(js);
+						});
+					} else {
+						this.#jsCount++;
+					}
+				});
+			}
 			this.#parts++;
 		}
 	}

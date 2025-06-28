@@ -562,6 +562,25 @@
 .wui-form .link.highlight > .icon {
 	background-color: var(--wui-form-text-linkcolor-highlight);
 }
+@media screen and (min-width: 768px) {
+	.wui-form > .body.scroll {
+		scrollbar-color: var(--wui-form-body-scroll-bgcolor-out) transparent;
+	}
+	.wui-form > .body.scroll::-webkit-scrollbar {
+		width: 4px;
+		background-color: transparent;
+	}
+	.wui-form > .body.scroll::-webkit-scrollbar-thumb {
+		border-radius: 2px;
+		background-color: var(--wui-form-body-scroll-bgcolor-out);
+	}
+	.wui-form > .body.scroll::-webkit-scrollbar-thumb:is(:hover, :active) {
+		background-color: var(--wui-form-body-scroll-bgcolor-over);
+	}
+	.wui-form > .body.scroll::-webkit-scrollbar-track {
+		background-color: transparent;
+	}
+}
 @media screen and (max-width: 767px) {
 	.wui-form {
 		padding-top: 0;
