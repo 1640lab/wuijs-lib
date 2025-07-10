@@ -1,6 +1,6 @@
-/* WUIBody v0.1 */
+/* WUIPage v0.1 */
 
-class WUIBody {
+class WUIPage {
 	static version = "0.1";
 	static #defaults = {
 		environment: "",
@@ -14,8 +14,8 @@ class WUIBody {
 	#jsCount = 0;
 	#parts = 0;
 	constructor (properties) {
-		Object.keys(WUIBody.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUIBody.#defaults ? WUIBody.#defaults[prop] : null;
+		Object.keys(WUIPage.#defaults).forEach(prop => {
+			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUIPage.#defaults ? WUIPage.#defaults[prop] : null;
 		});
 	}
 	get environment() {
@@ -62,7 +62,7 @@ class WUIBody {
 		const inputsSelector = "input[type=text], input[type=password], input[type=file], input[type=email], input[type=number], input[type=tel], textarea";
 		if (this.environment == "android") {
 			document.body.querySelectorAll("a[target=_new], a[target=_blank]").forEach(a => {
-				a.setAttribute("href", "javascript:WUIBody.urlOpen('"+a.getAttribute("href")+"', '"+(a.getAttribute("download") || "")+"');");
+				a.setAttribute("href", "javascript:WUIPage.urlOpen('"+a.getAttribute("href")+"', '"+(a.getAttribute("download") || "")+"');");
 				a.removeAttribute("target");
 			});
 			document.body.querySelectorAll(inputsSelector).forEach(input => {
@@ -88,17 +88,6 @@ class WUIBody {
 				document.activeElement.blur();
 			});
 		});
-	}
-	urlOpen(url, download = "") {
-		const link = document.createElement("a");
-		link.setAttribute("href", url);
-		link.style.display = "none";
-		if (download != "") {
-			link.setAttribute("download", download);
-		}
-		document.body.appendChild(link);
-		link.click();
-		document.body.removeChild(link);
 	}
 	import(id, path, done) {
 		const token = Date.now();
@@ -215,6 +204,17 @@ class WUIBody {
 		if (typeof(onCompleted) == "function") {
 			this._onCompleted = onCompleted;
 		}
+	}
+	openURL(url, download = "") {
+		const link = document.createElement("a");
+		link.href = url;
+		link.style.display = "none";
+		if (download != "") {
+			link.download = download;
+		}
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
 	}
 }
 /*
