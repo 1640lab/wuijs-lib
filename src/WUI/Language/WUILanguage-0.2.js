@@ -172,7 +172,11 @@ class WUILanguage {
 					xhr.overrideMimeType("application/json");
 					xhr.onload = function() {
 						if (xhr.status == 200 || xhr.status == 0) {
-							languages[lang] = JSON.parse(req.responseText);
+							try {
+								languages[lang] = JSON.parse(req.responseText);
+							} catch (error) {
+								console.error(`error parse JSON file '${url}': ${error}`);
+							}
 							onLoad(set);
 						}
 					}
