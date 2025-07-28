@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<!-- 
+WUIIcon - v0.1
+Developed by: Sergio E. Belmar (sbelmar@1640lab.com)
+Distributed by: 1640 Lab S.p.A. (https://1640lab.com)
+Copyright (c) Sergio E. Belmar (sbelmar@1640lab.com)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>WUI Icon demo</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<script type="text/javascript" src="WUI.Icon-0.1.js"></script>
+		<link type="text/css" rel="stylesheet" href="WUI.Icon-0.1.css">
+	</head>
+	<body>
+		<style>
+			:root {
+				--wui-icon-bgcolor-out: rgb(48, 77, 99, .7);
+				--wui-icon-bgcolor-over: rgb(48, 77, 99, 1);
+			}
+			* {
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+			html, body {
+				height: 100%;
+			}
+			body {
+				display: flex;
+				align-items: center;
+				flex-direction: column;
+			}
+			body > div {
+				display: flex;
+				max-width: 1000px;
+				align-items: stretch;
+				flex-direction: column;
+				font-family: "Open Sans", "Sans-Serif";
+			}
+			.type {
+				display: flex;
+				width: 100%;
+				flex-direction: column;
+				flex-wrap: wrap;
+				margin-bottom: 10px;
+				border-bottom: 1px solid #ccc;
+				align-items: flex-start;
+			}
+			.title {
+				padding: 10px;
+				text-transform: capitalize;
+				font-size: 22px;
+				color: #304d63;
+				color: dodgerblue;
+			}
+			.icons {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+			}
+			.icon {
+				display: flex;
+				width: 240px;
+				height: auto;
+				margin: 5px;
+				align-items: center;
+				flex-direction: row;
+				flex-wrap: wrap;
+			}
+			.wui-icon {
+				width: 24px;
+				height: 24px;
+			}
+			.name {
+				margin-left: 10px;
+				font-size: 14px;
+			}
+		</style>
+		<div>
+			<div class="type">
+				<div class="title">signal icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon plus-line"></div><div class="name">plus-line</div></div>
+					<div class="icon"><div class="wui-icon plus-lg-line"></div><div class="name">plus-lg-line</div></div>
+					<div class="icon"><div class="wui-icon plus-circle-line"></div><div class="name">plus-circle-line</div></div>
+					<div class="icon"><div class="wui-icon plus-circle-fill"></div><div class="name">plus-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon dash-line"></div><div class="name">dash-line</div></div>
+					<div class="icon"><div class="wui-icon dash-lg-line"></div><div class="name">dash-lg-line</div></div>
+					<div class="icon"><div class="wui-icon dash-circle-line"></div><div class="name">dash-circle-line</div></div>
+					<div class="icon"><div class="wui-icon dash-circle-fill"></div><div class="name">dash-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon check-line"></div><div class="name">check-line</div></div>
+					<div class="icon"><div class="wui-icon check-lg-line"></div><div class="name">check-lg-line</div></div>
+					<div class="icon"><div class="wui-icon check-circle-line"></div><div class="name">check-circle-line</div></div>
+					<div class="icon"><div class="wui-icon check-circle-fill"></div><div class="name">check-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon info-line"></div><div class="name">info-line</div></div>
+					<div class="icon"><div class="wui-icon info-lg-line"></div><div class="name">info-lg-line</div></div>
+					<div class="icon"><div class="wui-icon info-circle-line"></div><div class="name">info-circle-line</div></div>
+					<div class="icon"><div class="wui-icon info-circle-fill"></div><div class="name">info-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon question-line"></div><div class="name">question-line</div></div>
+					<div class="icon"><div class="wui-icon question-lg-line"></div><div class="name">question-lg-line</div></div>
+					<div class="icon"><div class="wui-icon question-circle-line"></div><div class="name">question-circle-line</div></div>
+					<div class="icon"><div class="wui-icon question-circle-fill"></div><div class="name">question-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon slash-line"></div><div class="name">slash-line</div></div>
+					<div class="icon"><div class="wui-icon slash-lg-line"></div><div class="name">slash-lg-line</div></div>
+					<div class="icon"><div class="wui-icon slash-circle-line"></div><div class="name">slash-circle-line</div></div>
+					<div class="icon"><div class="wui-icon slash-circle-fill"></div><div class="name">slash-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon x-line"></div><div class="name">x-line</div></div>
+					<div class="icon"><div class="wui-icon x-lg-line"></div><div class="name">x-lg-line</div></div>
+					<div class="icon"><div class="wui-icon x-circle-line"></div><div class="name">x-circle-line</div></div>
+					<div class="icon"><div class="wui-icon x-circle-fill"></div><div class="name">x-circle-fill</div></div>
+					<div class="icon"></div>
+					<div class="icon"></div>
+					<div class="icon"><div class="wui-icon x-octagon-line"></div><div class="name">x-octagon-line</div></div>
+					<div class="icon"><div class="wui-icon x-octagon-fill"></div><div class="name">x-octagon-fill</div></div>
+				</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon excamation-line"></div><div class="name">excamation-line</div></div>
+					<div class="icon"><div class="wui-icon excamation-lg-line"></div><div class="name">excamation-lg-line</div></div>
+					<div class="icon"><div class="wui-icon excamation-circle-line"></div><div class="name">excamation-circle-line</div></div>
+					<div class="icon"><div class="wui-icon excamation-circle-fill"></div><div class="name">excamation-circle-fill</div></div>
+					<div class="icon"></div>
+					<div class="icon"></div>
+					<div class="icon"><div class="wui-icon excamation-triangle-line"></div><div class="name">excamation-triangle-line</div></div>
+					<div class="icon"><div class="wui-icon excamation-triangle-fill"></div><div class="name">excamation-triangle-fill</div></div>
+				</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon close-line"></div><div class="name">close-line</div></div>
+					<div class="icon"><div class="wui-icon close-lg-line"></div><div class="name">close-lg-line</div></div>
+					<div class="icon"><div class="wui-icon close-circle-line"></div><div class="name">close-circle-line</div></div>
+					<div class="icon"><div class="wui-icon close-circle-fill"></div><div class="name">close-circle-fill</div></div>
+					<div class="icon"></div>
+					<div class="icon"></div>
+					<div class="icon"><div class="wui-icon close-octagon-line"></div><div class="name">close-octagon-line</div></div>
+					<div class="icon"><div class="wui-icon close-octagon-fill"></div><div class="name">close-octagon-fill</div></div>
+				</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon error-line"></div><div class="name">error-line</div></div>
+					<div class="icon"><div class="wui-icon error-lg-line"></div><div class="name">error-lg-line</div></div>
+					<div class="icon"><div class="wui-icon error-circle-line"></div><div class="name">error-circle-line</div></div>
+					<div class="icon"><div class="wui-icon error-circle-fill"></div><div class="name">error-circle-fill</div></div>
+					<div class="icon"></div>
+					<div class="icon"></div>
+					<div class="icon"><div class="wui-icon error-octagon-line"></div><div class="name">error-octagon-line</div></div>
+					<div class="icon"><div class="wui-icon error-octagon-fill"></div><div class="name">error-octagon-fill</div></div>
+				</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon filter-line"></div><div class="name">filter-line</div></div>
+					<div class="icon"><div class="wui-icon filter-lg-line"></div><div class="name">filter-lg-line</div></div>
+					<div class="icon"><div class="wui-icon filter-circle-line"></div><div class="name">filter-circle-line</div></div>
+					<div class="icon"><div class="wui-icon filter-circle-fill"></div><div class="name">filter-circle-fill</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">arrow icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon arrow-up-line"></div><div class="name">arrow-up-line</div></div>
+					<div class="icon"><div class="wui-icon arrow-up-lg-line"></div><div class="name">arrow-up-lg-line</div></div>
+					<div class="icon"><div class="wui-icon arrow-up-circle-line"></div><div class="name">arrow-up-circle-line</div></div>
+					<div class="icon"><div class="wui-icon arrow-up-circle-fill"></div><div class="name">arrow-up-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon arrow-left-line"></div><div class="name">arrow-left-line</div></div>
+					<div class="icon"><div class="wui-icon arrow-left-lg-line"></div><div class="name">arrow-left-lg-line</div></div>
+					<div class="icon"><div class="wui-icon arrow-left-circle-line"></div><div class="name">arrow-left-circle-line</div></div>
+					<div class="icon"><div class="wui-icon arrow-left-circle-fill"></div><div class="name">arrow-left-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon arrow-right-line"></div><div class="name">arrow-right-line</div></div>
+					<div class="icon"><div class="wui-icon arrow-right-lg-line"></div><div class="name">arrow-right-lg-line</div></div>
+					<div class="icon"><div class="wui-icon arrow-right-circle-line"></div><div class="name">arrow-right-circle-line</div></div>
+					<div class="icon"><div class="wui-icon arrow-right-circle-fill"></div><div class="name">arrow-right-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon arrow-down-line"></div><div class="name">arrow-down-line</div></div>
+					<div class="icon"><div class="wui-icon arrow-down-lg-line"></div><div class="name">arrow-down-lg-line</div></div>
+					<div class="icon"><div class="wui-icon arrow-down-circle-line"></div><div class="name">arrow-down-circle-line</div></div>
+					<div class="icon"><div class="wui-icon arrow-down-circle-fill"></div><div class="name">arrow-down-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon arrow-upleft-line"></div><div class="name">arrow-upleft-line *</div></div>
+					<div class="icon"><div class="wui-icon arrow-upleft-lg-line"></div><div class="name">arrow-upleft-lg-line</div></div>
+					<div class="icon"><div class="wui-icon arrow-upleft-circle-line"></div><div class="name">arrow-upleft-circle-line</div></div>
+					<div class="icon"><div class="wui-icon arrow-upleft-circle-fill"></div><div class="name">arrow-upleft-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon arrow-downleft-line"></div><div class="name">arrow-downleft-line *</div></div>
+					<div class="icon"><div class="wui-icon arrow-downleft-lg-line"></div><div class="name">arrow-downleft-lg-line</div></div>
+					<div class="icon"><div class="wui-icon arrow-downleft-circle-line"></div><div class="name">arrow-downleft-circle-line</div></div>
+					<div class="icon"><div class="wui-icon arrow-downleft-circle-fill"></div><div class="name">arrow-downleft-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon arrow-upright-line"></div><div class="name">arrow-upright-line *</div></div>
+					<div class="icon"><div class="wui-icon arrow-upright-lg-line"></div><div class="name">arrow-upright-lg-line</div></div>
+					<div class="icon"><div class="wui-icon arrow-upright-circle-line"></div><div class="name">arrow-upright-circle-line</div></div>
+					<div class="icon"><div class="wui-icon arrow-upright-circle-fill"></div><div class="name">arrow-upright-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon arrow-downright-line"></div><div class="name">arrow-downright-line *</div></div>
+					<div class="icon"><div class="wui-icon arrow-downright-lg-line"></div><div class="name">arrow-downright-lg-line</div></div>
+					<div class="icon"><div class="wui-icon arrow-downright-circle-line"></div><div class="name">arrow-downright-circle-line</div></div>
+					<div class="icon"><div class="wui-icon arrow-downright-circle-fill"></div><div class="name">arrow-downright-circle-fill</div></div>
+				</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon arrowhead-up-line"></div><div class="name">arrowhead-up-line</div></div>
+					<div class="icon"><div class="wui-icon arrowhead-up-lg-line"></div><div class="name">arrowhead-up-lg-line</div></div>
+					<div class="icon"><div class="wui-icon arrowhead-up-stg-line"></div><div class="name">arrowhead-up-stg-line</div></div>
+					<div class="icon"><div class="wui-icon arrowhead-up-fill"></div><div class="name">arrowhead-up-fill</div></div>
+				</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon arrowhead-left-line"></div><div class="name">arrowhead-left-line</div></div>
+					<div class="icon"><div class="wui-icon arrowhead-left-lg-line"></div><div class="name">arrowhead-left-lg-line</div></div>
+					<div class="icon"><div class="wui-icon arrowhead-left-stg-line"></div><div class="name">arrowhead-left-stg-line</div></div>
+					<div class="icon"><div class="wui-icon arrowhead-left-fill"></div><div class="name">arrowhead-left-fill</div></div>
+				</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon arrowhead-right-line"></div><div class="name">arrowhead-right-line</div></div>
+					<div class="icon"><div class="wui-icon arrowhead-right-lg-line"></div><div class="name">arrowhead-right-lg-line</div></div>
+					<div class="icon"><div class="wui-icon arrowhead-right-stg-line"></div><div class="name">arrowhead-right-stg-line</div></div>
+					<div class="icon"><div class="wui-icon arrowhead-right-fill"></div><div class="name">arrowhead-right-fill</div></div>
+				</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon arrowhead-down-line"></div><div class="name">arrowhead-down-line</div></div>
+					<div class="icon"><div class="wui-icon arrowhead-down-lg-line"></div><div class="name">arrowhead-down-lg-line</div></div>
+					<div class="icon"><div class="wui-icon arrowhead-down-stg-line"></div><div class="name">arrowhead-down-stg-line</div></div>
+					<div class="icon"><div class="wui-icon arrowhead-down-fill"></div><div class="name">arrowhead-down-fill</div></div>
+				</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon arrowbar-up-line"></div><div class="name">arrowbar-up-line</div></div>
+					<div class="icon"><div class="wui-icon arrowbar-left-line"></div><div class="name">arrowbar-left-line</div></div>
+					<div class="icon"><div class="wui-icon arrowbar-right-line"></div><div class="name">arrowbar-right-line</div></div>
+					<div class="icon"><div class="wui-icon arrowbar-down-line"></div><div class="name">arrowbar-down-line</div></div>
+				</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon arrowbox-in-up-line"></div><div class="name">arrowbox-in-up-line</div></div>
+					<div class="icon"><div class="wui-icon arrowbox-in-upright-line"></div><div class="name">arrowbox-in-upright-line</div></div>
+					<div class="icon"><div class="wui-icon arrowbox-in-right-line"></div><div class="name">arrowbox-in-right-line</div></div>
+					<div class="icon"><div class="wui-icon arrowbox-in-downright-line"></div><div class="name">arrowbox-in-downright-line</div></div>
+					<div class="icon"><div class="wui-icon arrowbox-in-down-line"></div><div class="name">arrowbox-in-down-line</div></div>
+					<div class="icon"><div class="wui-icon arrowbox-in-downleft-line"></div><div class="name">arrowbox-in-downleft-line</div></div>
+					<div class="icon"><div class="wui-icon arrowbox-in-left-line"></div><div class="name">arrowbox-in-left-line</div></div>
+					<div class="icon"><div class="wui-icon arrowbox-in-upleft-line"></div><div class="name">arrowbox-in-upleft-line</div></div>
+				</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon arrowbox-out-up-line"></div><div class="name">arrowbox-out-up-line</div></div>
+					<div class="icon"><div class="wui-icon arrowbox-out-upright-line"></div><div class="name">arrowbox-out-upright-line</div></div>
+					<div class="icon"><div class="wui-icon arrowbox-out-right-line"></div><div class="name">arrowbox-out-right-line</div></div>
+					<div class="icon"><div class="wui-icon arrowbox-out-downright-line"></div><div class="name">arrowbox-out-downright-line</div></div>
+					<div class="icon"><div class="wui-icon arrowbox-out-down-line"></div><div class="name">arrowbox-out-down-line</div></div>
+					<div class="icon"><div class="wui-icon arrowbox-out-downleft-line"></div><div class="name">arrowbox-out-downleft-line</div></div>
+					<div class="icon"><div class="wui-icon arrowbox-out-left-line"></div><div class="name">arrowbox-out-left-line</div></div>
+					<div class="icon"><div class="wui-icon arrowbox-out-upleft-line"></div><div class="name">arrowbox-out-upleft-line</div></div>
+				</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon arrows-horizontal-line"></div><div class="name">arrows-expand-horizontal-line</div></div>
+					<div class="icon"><div class="wui-icon arrows-vertical-line"></div><div class="name">arrows-expand-vertical-line</div></div>
+					<div class="icon"><div class="wui-icon arrows-expand-diagonal-line"></div><div class="name">arrows-expand-diagonal-line</div></div>
+					<div class="icon"><div class="wui-icon arrows-collapse-diagonal-line"></div><div class="name">arrows-collapse-diagonal-line</div></div>
+				</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon arrows-expand-horizontal-line"></div><div class="name">arrows-expand-horizontal-line</div></div>
+					<div class="icon"><div class="wui-icon arrows-expand-vertical-line"></div><div class="name">arrows-expand-vertical-line</div></div>
+					<div class="icon"><div class="wui-icon arrows-collapse-horizontal-line"></div><div class="name">arrows-collapse-horizontal-line</div></div>
+					<div class="icon"><div class="wui-icon arrows-collapse-vertical-line"></div><div class="name">arrows-collapse-vertical-line</div></div>
+				</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon rotate-line"></div><div class="name">rotate-line</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">number icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon num0-circle-line"></div><div class="name">num0-circle-line</div></div>
+					<div class="icon"><div class="wui-icon num0-circle-fill"></div><div class="name">num0-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon num1-circle-line"></div><div class="name">num1-circle-line</div></div>
+					<div class="icon"><div class="wui-icon num1-circle-fill"></div><div class="name">num1-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon num2-circle-line"></div><div class="name">num2-circle-line</div></div>
+					<div class="icon"><div class="wui-icon num2-circle-fill"></div><div class="name">num2-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon num3-circle-line"></div><div class="name">num3-circle-line</div></div>
+					<div class="icon"><div class="wui-icon num3-circle-fill"></div><div class="name">num3-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon num4-circle-line"></div><div class="name">num4-circle-line</div></div>
+					<div class="icon"><div class="wui-icon num4-circle-fill"></div><div class="name">num4-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon num5-circle-line"></div><div class="name">num5-circle-line</div></div>
+					<div class="icon"><div class="wui-icon num5-circle-fill"></div><div class="name">num5-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon num6-circle-line"></div><div class="name">num6-circle-line</div></div>
+					<div class="icon"><div class="wui-icon num6-circle-fill"></div><div class="name">num6-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon num7-circle-line"></div><div class="name">num7-circle-line</div></div>
+					<div class="icon"><div class="wui-icon num7-circle-fill"></div><div class="name">num7-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon num8-circle-line"></div><div class="name">num8-circle-line</div></div>
+					<div class="icon"><div class="wui-icon num8-circle-fill"></div><div class="name">num8-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon num9-circle-line"></div><div class="name">num9-circle-line</div></div>
+					<div class="icon"><div class="wui-icon num9-circle-fill"></div><div class="name">num9-circle-fill</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">people icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon man-fill"></div><div class="name">man-fill</div></div>
+					<div class="icon"><div class="wui-icon woman-fill"></div><div class="name">woman-fill</div></div>
+					<div class="icon"><div class="wui-icon person-line"></div><div class="name">person-line</div></div>
+					<div class="icon"><div class="wui-icon person-fill"></div><div class="name">person-fill</div></div>
+					<div class="icon"><div class="wui-icon person-plus-line"></div><div class="name">person-plus-line</div></div>
+					<div class="icon"><div class="wui-icon person-plus-fill"></div><div class="name">person-plus-fill</div></div>
+					<div class="icon"><div class="wui-icon person-dash-line"></div><div class="name">person-dash-line</div></div>
+					<div class="icon"><div class="wui-icon person-dash-fill"></div><div class="name">person-dash-fill</div></div>
+					<div class="icon"><div class="wui-icon person-check-line"></div><div class="name">person-check-line</div></div>
+					<div class="icon"><div class="wui-icon person-check-fill"></div><div class="name">person-check-fill</div></div>
+					<div class="icon"><div class="wui-icon person-x-line"></div><div class="name">person-x-line</div></div>
+					<div class="icon"><div class="wui-icon person-x-fill"></div><div class="name">person-x-fill</div></div>
+					<div class="icon"><div class="wui-icon people-line"></div><div class="name">people-line</div></div>
+					<div class="icon"><div class="wui-icon people-fill"></div><div class="name">people-fill</div></div>
+					<div class="icon"><div class="wui-icon person-names-fill"></div><div class="name">person-names-fill</div></div>
+					<div class="icon"><div class="wui-icon person-circle-fill"></div><div class="name">person-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon person-card-line"></div><div class="name">person-card-line</div></div>
+					<div class="icon"><div class="wui-icon person-card-fill"></div><div class="name">person-card-fill</div></div>
+					<div class="icon"><div class="wui-icon person-contact-line"></div><div class="name">person-contact-line</div></div>
+					<div class="icon"><div class="wui-icon person-contact-fill"></div><div class="name">person-contact-fill</div></div>
+					<div class="icon"><div class="wui-icon user-line"></div><div class="name">user-line</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">file icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon folder-close-line"></div><div class="name">folder-close-line</div></div>
+					<div class="icon"><div class="wui-icon folder-close-fill"></div><div class="name">folder-close-fill</div></div>
+					<div class="icon"><div class="wui-icon folder-open-line"></div><div class="name">folder-open-line</div></div>
+					<div class="icon"><div class="wui-icon folder-open-fill"></div><div class="name">folder-open-fill</div></div>
+					<div class="icon"><div class="wui-icon file-line"></div><div class="name">file-line</div></div>
+					<div class="icon"><div class="wui-icon file-fill"></div><div class="name">file-fill</div></div>
+					<div class="icon"><div class="wui-icon file-barchart-line"></div><div class="name">file-barchart-line</div></div>
+					<div class="icon"><div class="wui-icon file-barchart-fill"></div><div class="name">file-barchart-fill</div></div>
+					<div class="icon"><div class="wui-icon file-check-line"></div><div class="name">file-check-line</div></div>
+					<div class="icon"><div class="wui-icon file-check-fill"></div><div class="name">file-check-fill</div></div>
+					<div class="icon"><div class="wui-icon file-text-line"></div><div class="name">file-text-line</div></div>
+					<div class="icon"><div class="wui-icon file-text-fill"></div><div class="name">file-text-fill</div></div>
+					<div class="icon"><div class="wui-icon file-upload-line"></div><div class="name">file-upload-line</div></div>
+					<div class="icon"><div class="wui-icon file-upload-fill"></div><div class="name">file-upload-fill</div></div>
+					<div class="icon"><div class="wui-icon file-image-line"></div><div class="name">file-image-line</div></div>
+					<div class="icon"><div class="wui-icon file-image-fill"></div><div class="name">file-image-fill</div></div>
+					<div class="icon"><div class="wui-icon file-pdf-line"></div><div class="name">file-pdf-line</div></div>
+					<div class="icon"><div class="wui-icon file-pdf-fill"></div><div class="name">file-pdf-fill</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">calendar icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon calendar-line"></div><div class="name">calendar-line</div></div>
+					<div class="icon"><div class="wui-icon calendar-fill"></div><div class="name">calendar-fill</div></div>
+					<div class="icon"><div class="wui-icon calendar-day-line"></div><div class="name">calendar-day-line</div></div>
+					<div class="icon"><div class="wui-icon calendar-day-fill"></div><div class="name">calendar-day-fill</div></div>
+					<div class="icon"><div class="wui-icon calendar-week-line"></div><div class="name">calendar-week-line</div></div>
+					<div class="icon"><div class="wui-icon calendar-week-fill"></div><div class="name">calendar-week-fill</div></div>
+					<div class="icon"><div class="wui-icon calendar-range-line"></div><div class="name">calendar-range-line</div></div>
+					<div class="icon"><div class="wui-icon calendar-range-fill"></div><div class="name">calendar-range-fill</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">bookmark icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon bookmark-line"></div><div class="name">bookmark-line</div></div>
+					<div class="icon"><div class="wui-icon bookmark-fill"></div><div class="name">bookmark-fill</div></div>
+					<div class="icon"><div class="wui-icon bookmarks-line"></div><div class="name">bookmarks-line</div></div>
+					<div class="icon"><div class="wui-icon bookmarks-fill"></div><div class="name">bookmarks-fill</div></div>
+					<div class="icon"><div class="wui-icon bookmark-check-line"></div><div class="name">bookmark-check-line</div></div>
+					<div class="icon"><div class="wui-icon bookmark-check-fill"></div><div class="name">bookmark-check-linefill</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">clipboard icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon clipboard-check-line"></div><div class="name">clipboard-check-line</div></div>
+					<div class="icon"><div class="wui-icon clipboard-check-fill"></div><div class="name">clipboard-check-fill</div></div>
+					<div class="icon"><div class="wui-icon clipboard-data-line"></div><div class="name">clipboard-data-line</div></div>
+					<div class="icon"><div class="wui-icon clipboard-data-fill"></div><div class="name">clipboard-data-fill</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">mail icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon mail-close-line"></div><div class="name">mail-close-line</div></div>
+					<div class="icon"><div class="wui-icon mail-close-fill"></div><div class="name">mail-close-fill</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">phone icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon phone-line"></div><div class="name">phone-line</div></div>
+					<div class="icon"><div class="wui-icon phone-fill"></div><div class="name">phone-fill</div></div>
+					<div class="icon"><div class="wui-icon phonebook-line"></div><div class="name">phonebook-line</div></div>
+					<div class="icon"><div class="wui-icon phonebook-fill"></div><div class="name">phonebook-fill</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">chat icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon chat-dots-line"></div><div class="name">chat-dots-line</div></div>
+					<div class="icon"><div class="wui-icon chat-dots-fill"></div><div class="name">chat-dots-fill</div></div>
+					<div class="icon"><div class="wui-icon chat-left-quote-line"></div><div class="name">chat-left-quote-line</div></div>
+					<div class="icon"><div class="wui-icon chat-left-quote-fill"></div><div class="name">chat-left-quote-fill</div></div>
+					<div class="icon"><div class="wui-icon chat-left-text-line"></div><div class="name">chat-left-text-line</div></div>
+					<div class="icon"><div class="wui-icon chat-left-text-fill"></div><div class="name">chat-left-text-fill</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">emoji icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon emoji-neutral-line"></div><div class="name">emoji-neutral-line</div></div>
+					<div class="icon"><div class="wui-icon emoji-neutral-fill"></div><div class="name">emoji-neutral-fill</div></div>
+					<div class="icon"><div class="wui-icon emoji-smile-line"></div><div class="name">emoji-smile-line</div></div>
+					<div class="icon"><div class="wui-icon emoji-smile-fill"></div><div class="name">emoji-smile-fill</div></div>
+					<div class="icon"><div class="wui-icon emoji-frown-line"></div><div class="name">emoji-frown-line</div></div>
+					<div class="icon"><div class="wui-icon emoji-frown-fill"></div><div class="name">emoji-frown-fill</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">patch icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon patch-check-line"></div><div class="name">patch-check-line</div></div>
+					<div class="icon"><div class="wui-icon patch-check-fill"></div><div class="name">patch-check-fill</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">shield icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon shield-check-line"></div><div class="name">shield-check-line</div></div>
+					<div class="icon"><div class="wui-icon shield-check-fill"></div><div class="name">shield-check-fill</div></div>
+					<div class="icon"><div class="wui-icon shield-lock-line"></div><div class="name">shield-lock-line</div></div>
+					<div class="icon"><div class="wui-icon shield-lock-fill"></div><div class="name">shield-lock-fill</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">cloud icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon cloud-upload-line"></div><div class="name">cloud-upload-line</div></div>
+					<div class="icon"><div class="wui-icon cloud-upload-fill"></div><div class="name">cloud-upload-fill</div></div>
+					<div class="icon"><div class="wui-icon cloud-download-line"></div><div class="name">cloud-download-line</div></div>
+					<div class="icon"><div class="wui-icon cloud-download-fill"></div><div class="name">cloud-download-fill</div></div>
+					<div class="icon"><div class="wui-icon cloud-slash-line"></div><div class="name">cloud-slash-line</div></div>
+					<div class="icon"><div class="wui-icon cloud-slash-fill"></div><div class="name">cloud-slash-fill</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">map icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon map-line"></div><div class="name">map-line</div></div>
+					<div class="icon"><div class="wui-icon map-fill"></div><div class="name">map-fill</div></div>
+					<div class="icon"><div class="wui-icon map-alt-fill"></div><div class="name">map-alt-fill</div></div>
+				</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon mapmarker-line"></div><div class="name">mapmarker-line</div></div>
+					<div class="icon"><div class="wui-icon mapmarker-fill"></div><div class="name">mapmarker-fill</div></div>
+					<div class="icon"><div class="wui-icon mapmarker-color"></div><div class="name">mapmarker-color</div></div>
+				</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon mappin-line"></div><div class="name">mappin-line</div></div>
+					<div class="icon"><div class="wui-icon mappin-fill"></div><div class="name">mappin-fill</div></div>
+					<div class="icon"><div class="wui-icon mappin-color"></div><div class="name">mappin-color</div></div>
+				</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon mappointer-line"></div><div class="name">mappointer-line</div></div>
+					<div class="icon"><div class="wui-icon mappointer-fill"></div><div class="name">mappointer-fill</div></div>
+					<div class="icon"><div class="wui-icon globe-line"></div><div class="name">globe-line</div></div>
+					<div class="icon"><div class="wui-icon globe-alt-line"></div><div class="name">globe-alt-line</div></div>
+				</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon globe-america-fill"></div><div class="name">globe-america-fill</div></div>
+					<div class="icon"><div class="wui-icon globe-africa-fill"></div><div class="name">globe-africa-fill</div></div>
+					<div class="icon"><div class="wui-icon globe-asia-fill"></div><div class="name">globe-asia-fill</div></div>
+					<div class="icon"><div class="wui-icon globe-australia-fill"></div><div class="name">globe-australia-fill</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">road icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon highway-66-fill"></div><div class="name">highway-66-fill</div></div>
+					<div class="icon"><div class="wui-icon highway-75-fill"></div><div class="name">highway-75-fill</div></div>
+					<div class="icon"><div class="wui-icon highway-94-fill"></div><div class="name">highway-94-fill</div></div>
+				</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon h-circle-line"></div><div class="name">h-circle-line</div></div>
+					<div class="icon"><div class="wui-icon h-circle-fill"></div><div class="name">h-circle-fill</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">device icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon camera-fill"></div><div class="name">camera-fill</div></div>
+					<div class="icon"><div class="wui-icon devices-line"></div><div class="name">devices-line</div></div>
+					<div class="icon"><div class="wui-icon laptop-line"></div><div class="name">laptop-line</div></div>
+					<div class="icon"><div class="wui-icon mobile-line"></div><div class="name">mobile-line</div></div>
+					<div class="icon"><div class="wui-icon mobile-alt-line"></div><div class="name">mobile-alt-line</div></div>
+					<div class="icon"><div class="wui-icon mobile-apps-line"></div><div class="name">mobile-apps-line</div></div>
+					<div class="icon"><div class="wui-icon mobile-apps-fill"></div><div class="name">mobile-apps-fill</div></div>
+					<div class="icon"><div class="wui-icon computer-line"></div><div class="name">computer-line</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">connectivity icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon bluetooth-line"></div><div class="name">bluetooth-line</div></div>
+					<div class="icon"><div class="wui-icon bluetooth-fill"></div><div class="name">bluetooth-fill</div></div>
+					<div class="icon"><div class="wui-icon sim-line"></div><div class="name">sim-line</div></div>
+					<div class="icon"><div class="wui-icon sim-fill"></div><div class="name">sim-fill</div></div>
+					<div class="icon"><div class="wui-icon wifi-line"></div><div class="name">wifi-line</div></div>
+					<div class="icon"><div class="wui-icon wifi-off-line"></div><div class="name">wifi-off-line</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">apps icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon app-line"></div><div class="name">app-line</div></div>
+					<div class="icon"><div class="wui-icon app-notification-line"></div><div class="name">app-notification-line</div></div>
+			<!--	<div class="icon"><div class="wui-icon appgallery-fill"></div><div class="name">appgallery-fill</div></div>
+					<div class="icon"><div class="wui-icon appgallery-line"></div><div class="name">appgallery-line</div></div> -->
+					<div class="icon"><div class="wui-icon applemail-fill"></div><div class="name">applemail-fill</div></div>
+					<div class="icon"><div class="wui-icon applemail-color"></div><div class="name">applemail-color</div></div>
+					<div class="icon"><div class="wui-icon appstore-fill"></div><div class="name">appstore-fill</div></div>
+					<div class="icon"><div class="wui-icon appstore-color"></div><div class="name">appstore-color</div></div>
+					<div class="icon"><div class="wui-icon appstore-alt-fill"></div><div class="name">appstore-alt-fill</div></div>
+					<div class="icon"><div class="wui-icon appstore-alt-color"></div><div class="name">appstore-alt-color</div></div>
+					<div class="icon"><div class="wui-icon bcardy-fill"></div><div class="name">bcardy-fill</div></div>
+					<div class="icon"><div class="wui-icon bcardy-color"></div><div class="name">bcardy-color</div></div>
+					<div class="icon"><div class="wui-icon behance-fill"></div><div class="name">behance-fill</div></div>
+					<div class="icon"><div class="wui-icon behance-color"></div><div class="name">behance-color</div></div>
+					<div class="icon"><div class="wui-icon facebook-fill"></div><div class="name">facebook-fill</div></div>
+					<div class="icon"><div class="wui-icon facebook-color"></div><div class="name">facebook-color</div></div>
+					<div class="icon"><div class="wui-icon facebook-alt-fill"></div><div class="name">facebook-alt-fill</div></div>
+					<div class="icon"><div class="wui-icon facebook-alt-color"></div><div class="name">facebook-alt-color</div></div>
+					<div class="icon"><div class="wui-icon github-fill"></div><div class="name">github-fill</div></div>
+					<div class="icon"><div class="wui-icon github-color"></div><div class="name">github-color</div></div>
+					<div class="icon"><div class="wui-icon gmail-fill"></div><div class="name">gmail-fill</div></div>
+					<div class="icon"><div class="wui-icon gmail-color"></div><div class="name">gmail-color</div></div>
+					<div class="icon"><div class="wui-icon googlemaps-fill"></div><div class="name">googlemaps-fill</div></div>
+					<div class="icon"><div class="wui-icon googlemaps-color"></div><div class="name">googlemaps-color</div></div>
+					<div class="icon"><div class="wui-icon googleplay-fill"></div><div class="name">googleplay-fill</div></div>
+					<div class="icon"><div class="wui-icon googleplay-color"></div><div class="name">googleplay-color</div></div>
+					<div class="icon"><div class="wui-icon instagram-fill"></div><div class="name">instagram-fill</div></div>
+					<div class="icon"><div class="wui-icon instagram-color"></div><div class="name">instagram-color</div></div>
+					<div class="icon"><div class="wui-icon instagram-alt-fill"></div><div class="name">instagram-alt-fill</div></div>
+					<div class="icon"><div class="wui-icon instagram-alt-color"></div><div class="name">instagram-alt-color</div></div>
+					<div class="icon"><div class="wui-icon line-fill"></div><div class="name">line-fill</div></div>
+					<div class="icon"><div class="wui-icon line-color"></div><div class="name">line-color</div></div>
+					<div class="icon"><div class="wui-icon line-alt-fill"></div><div class="name">line-alt-fill</div></div>
+					<div class="icon"><div class="wui-icon line-alt-color"></div><div class="name">line-alt-color</div></div>
+					<div class="icon"><div class="wui-icon linkedin-fill"></div><div class="name">linkedin-fill</div></div>
+					<div class="icon"><div class="wui-icon linkedin-color"></div><div class="name">linkedin-color</div></div>
+					<div class="icon"><div class="wui-icon linkedin-alt-fill"></div><div class="name">linkedin-alt-line</div></div>
+					<div class="icon"><div class="wui-icon linkedin-alt-color"></div><div class="name">linkedin-alt-color</div></div>
+					<div class="icon"><div class="wui-icon messenger-fill"></div><div class="name">messenger-fill</div></div>
+					<div class="icon"><div class="wui-icon messenger-color"></div><div class="name">messenger-color</div></div>
+					<div class="icon"><div class="wui-icon outlook-fill"></div><div class="name">outlook-fill</div></div>
+					<div class="icon"><div class="wui-icon outlook-color"></div><div class="name">outlook-color</div></div>
+					<div class="icon"><div class="wui-icon pdf-fill"></div><div class="name">pdf-fill *</div></div>
+					<div class="icon"><div class="wui-icon pdf-color"></div><div class="name">pdf-color</div></div>
+					<div class="icon"><div class="wui-icon samsungemail-fill"></div><div class="name">samsungemail-fill</div></div>
+					<div class="icon"><div class="wui-icon samsungemail-color"></div><div class="name">samsungemail-color</div></div>
+					<div class="icon"><div class="wui-icon skype-fill"></div><div class="name">skype-fill</div></div>
+					<div class="icon"><div class="wui-icon skype-color"></div><div class="name">skype-color</div></div>
+					<div class="icon"><div class="wui-icon telegram-fill"></div><div class="name">telegram-fill</div></div>
+					<div class="icon"><div class="wui-icon telegram-color"></div><div class="name">telegram-color</div></div>
+					<div class="icon"><div class="wui-icon telegram-alt-fill"></div><div class="name">telegram-alt-fill</div></div>
+					<div class="icon"><div class="wui-icon telegram-alt-color"></div><div class="name">telegram-alt-color</div></div>
+					<div class="icon"><div class="wui-icon tiktok-fill"></div><div class="name">tiktok-fill</div></div>
+					<div class="icon"><div class="wui-icon tiktok-color"></div><div class="name">tiktok-color</div></div>
+					<div class="icon"><div class="wui-icon twitter-fill"></div><div class="name">twitter-fill</div></div>
+					<div class="icon"><div class="wui-icon twitter-color"></div><div class="name">twitter-color</div></div>
+					<div class="icon"><div class="wui-icon twitter-alt-fill"></div><div class="name">twitter-alt-fill</div></div>
+					<div class="icon"><div class="wui-icon twitter-alt-color"></div><div class="name">twitter-alt-color</div></div>
+					<div class="icon"><div class="wui-icon twitter-x-fill"></div><div class="name">twitter-x-fill</div></div>
+					<div class="icon"><div class="wui-icon twitter-x-color"></div><div class="name">twitter-x-color</div></div>
+					<div class="icon"><div class="wui-icon vimeo-fill"></div><div class="name">vimeo-fill</div></div>
+					<div class="icon"><div class="wui-icon vimeo-color"></div><div class="name">vimeo-color</div></div>
+					<div class="icon"><div class="wui-icon vimeo-alt-fill"></div><div class="name">vimeo-alt-fill</div></div>
+					<div class="icon"><div class="wui-icon vimeo-alt-color"></div><div class="name">vimeo-alt-color</div></div>
+					<div class="icon"><div class="wui-icon yahoo-fill"></div><div class="name">yahoo-fill</div></div>
+					<div class="icon"><div class="wui-icon yahoo-color"></div><div class="name">yahoo-color</div></div>
+					<div class="icon"><div class="wui-icon yahoo-alt-fill"></div><div class="name">yahoo-alt-fill *</div></div>
+					<div class="icon"><div class="wui-icon yahoo-alt-color"></div><div class="name">yahoo-alt-color</div></div>
+					<div class="icon"><div class="wui-icon youtube-fill"></div><div class="name">youtube-fill</div></div>
+					<div class="icon"><div class="wui-icon youtube-color"></div><div class="name">youtube-color</div></div>
+					<div class="icon"><div class="wui-icon whatsapp-fill"></div><div class="name">whatsapp-fill</div></div>
+					<div class="icon"><div class="wui-icon whatsapp-color"></div><div class="name">whatsapp-color</div></div>
+					<div class="icon"><div class="wui-icon whatsapp-alt-fill"></div><div class="name">whatsapp-alt-fill</div></div>
+					<div class="icon"><div class="wui-icon whatsapp-alt-color"></div><div class="name">whatsapp-alt-color</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">brand icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon android-fill"></div><div class="name">android-fill</div></div>
+					<div class="icon"><div class="wui-icon apple-fill"></div><div class="name">apple-fill</div></div>
+					<div class="icon"><div class="wui-icon huawei-fill"></div><div class="name">huawei-fill</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">option icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon award-line"></div><div class="name">award-line</div></div>
+					<div class="icon"><div class="wui-icon award-fill"></div><div class="name">award-fill</div></div>
+					<div class="icon"><div class="wui-icon basket-line"></div><div class="name">basket-line</div></div>
+					<div class="icon"><div class="wui-icon basket-fill"></div><div class="name">basket-fill</div></div>
+					<div class="icon"><div class="wui-icon bell-line"></div><div class="name">bell-line</div></div>
+					<div class="icon"><div class="wui-icon bell-fill"></div><div class="name">bell-fill</div></div>
+					<div class="icon"><div class="wui-icon bug-line"></div><div class="name">bug-line</div></div>
+					<div class="icon"><div class="wui-icon bug-fill"></div><div class="name">bug-fill</div></div>
+					<div class="icon"><div class="wui-icon cash-line"></div><div class="name">cash-line</div></div>
+					<div class="icon"><div class="wui-icon cash-alt-fill"></div><div class="name">cash-alt-fill</div></div>
+					<div class="icon"><div class="wui-icon circle-line"></div><div class="name">circle-line</div></div>
+					<div class="icon"><div class="wui-icon circle-fill"></div><div class="name">circle-fill</div></div>
+					<div class="icon"><div class="wui-icon contacts-line"></div><div class="name">contacts-line</div></div>
+					<div class="icon"><div class="wui-icon contacts-fill"></div><div class="name">contacts-fill</div></div>
+					<div class="icon"><div class="wui-icon copy-link-line"></div><div class="name">copy-link-line</div></div>
+					<div class="icon"><div class="wui-icon copy-link-fill"></div><div class="name">copy-link-fill</div></div>
+					<div class="icon"><div class="wui-icon easel-line"></div><div class="name">easel-line</div></div>
+					<div class="icon"><div class="wui-icon easel-fill"></div><div class="name">easel-fill</div></div>
+					<div class="icon"><div class="wui-icon eye-line"></div><div class="name">eye-line</div></div>
+					<div class="icon"><div class="wui-icon eye-fill"></div><div class="name">eye-fill</div></div>
+					<div class="icon"><div class="wui-icon eye-slash-line"></div><div class="name">eye-slash-line</div></div>
+					<div class="icon"><div class="wui-icon eye-slash-fill"></div><div class="name">eye-slash-fill</div></div>
+					<div class="icon"><div class="wui-icon flag-line"></div><div class="name">flag-line</div></div>
+					<div class="icon"><div class="wui-icon flag-fill"></div><div class="name">flag-fill</div></div>
+					<div class="icon"><div class="wui-icon floppy-line"></div><div class="name">floppy-line</div></div>
+					<div class="icon"><div class="wui-icon floppy-fill"></div><div class="name">floppy-fill</div></div>
+					<div class="icon"><div class="wui-icon gear-line"></div><div class="name">gear-line</div></div>
+					<div class="icon"><div class="wui-icon gear-fill"></div><div class="name">gear-fill</div></div>
+					<div class="icon"><div class="wui-icon gears-line"></div><div class="name">gears-line</div></div>
+					<div class="icon"><div class="wui-icon gears-fill"></div><div class="name">gears-fill</div></div>
+					<div class="icon"><div class="wui-icon grid3x2-line"></div><div class="name">grid3x2-line</div></div>
+					<div class="icon"><div class="wui-icon grid3x3-line"></div><div class="name">grid3x3-line</div></div>
+					<div class="icon"><div class="wui-icon home-line"></div><div class="name">home-line</div></div>
+					<div class="icon"><div class="wui-icon home-fill"></div><div class="name">home-fill</div></div>
+					<div class="icon"><div class="wui-icon image-line"></div><div class="name">image-line</div></div>
+					<div class="icon"><div class="wui-icon image-fill"></div><div class="name">image-fill</div></div>
+					<div class="icon"><div class="wui-icon image-alt-line"></div><div class="name">image-alt-line</div></div>
+					<div class="icon"><div class="wui-icon images-line"></div><div class="name">images-line</div></div>
+					<div class="icon"><div class="wui-icon key-line"></div><div class="name">key-line</div></div>
+					<div class="icon"><div class="wui-icon key-fill"></div><div class="name">key-fill</div></div>
+					<div class="icon"><div class="wui-icon keyboard-line"></div><div class="name">keyboard-line</div></div>
+					<div class="icon"><div class="wui-icon keyboard-fill"></div><div class="name">keyboard-fill</div></div>
+					<div class="icon"><div class="wui-icon layers-line"></div><div class="name">layers-line</div></div>
+					<div class="icon"><div class="wui-icon layers-fill"></div><div class="name">layers-fill</div></div>
+					<div class="icon"><div class="wui-icon lightbulb-line"></div><div class="name">lightbulb-line</div></div>
+					<div class="icon"><div class="wui-icon lightbulb-fill"></div><div class="name">lightbulb-fill</div></div>
+					<div class="icon"><div class="wui-icon lock-line"></div><div class="name">lock-line</div></div>
+					<div class="icon"><div class="wui-icon lock-fill"></div><div class="name">lock-fill</div></div>
+					<div class="icon"><div class="wui-icon mailbox-line"></div><div class="name">mailbox-line</div></div>
+					<div class="icon"><div class="wui-icon mailbox-fill"></div><div class="name">mailbox-fill</div></div>
+					<div class="icon"><div class="wui-icon mortarboard-line"></div><div class="name">mortarboard-line</div></div>
+					<div class="icon"><div class="wui-icon mortarboard-fill"></div><div class="name">mortarboard-fill</div></div>
+					<div class="icon"><div class="wui-icon piechart-line"></div><div class="name">piechart-line</div></div>
+					<div class="icon"><div class="wui-icon piechart-fill"></div><div class="name">piechart-fill</div></div>
+					<div class="icon"><div class="wui-icon palette-line"></div><div class="name">palette-line</div></div>
+					<div class="icon"><div class="wui-icon palette-fill"></div><div class="name">palette-fill</div></div>
+					<div class="icon"><div class="wui-icon pen-line"></div><div class="name">pen-line</div></div>
+					<div class="icon"><div class="wui-icon pen-fill"></div><div class="name">pen-fill</div></div>
+					<div class="icon"><div class="wui-icon pencil-line"></div><div class="name">pencil-line</div></div>
+					<div class="icon"><div class="wui-icon pencil-fill"></div><div class="name">pencil-fill</div></div>
+					<div class="icon"><div class="wui-icon pin-line"></div><div class="name">pin-line</div></div>
+					<div class="icon"><div class="wui-icon pin-fill"></div><div class="name">pin-fill</div></div>
+					<div class="icon"><div class="wui-icon plant-line"></div><div class="name">plant-line</div></div>
+					<div class="icon"><div class="wui-icon plant-fill"></div><div class="name">plant-fill</div></div>
+					<div class="icon"><div class="wui-icon play-line"></div><div class="name">play-line</div></div>
+					<div class="icon"><div class="wui-icon play-fill"></div><div class="name">play-fill</div></div>
+					<div class="icon"><div class="wui-icon play-circle-line"></div><div class="name">play-circle-line</div></div>
+					<div class="icon"><div class="wui-icon play-circle-fill"></div><div class="name">play-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon send-line"></div><div class="name">send-line</div></div>
+					<div class="icon"><div class="wui-icon send-fill"></div><div class="name">send-fill</div></div>
+					<div class="icon"><div class="wui-icon separationh-line"></div><div class="name">separationh-line</div></div>
+					<div class="icon"><div class="wui-icon separationv-line"></div><div class="name">separationv-line</div></div>
+					<div class="icon"><div class="wui-icon share-line"></div><div class="name">share-line</div></div>
+					<div class="icon"><div class="wui-icon share-fill"></div><div class="name">share-fill</div></div>
+					<div class="icon"><div class="wui-icon shop-line"></div><div class="name">shop-line</div></div>
+					<div class="icon"><div class="wui-icon shop-alt-fill"></div><div class="name">shop-alt-fill</div></div>
+					<div class="icon"><div class="wui-icon signpost-line"></div><div class="name">signpost-line</div></div>
+					<div class="icon"><div class="wui-icon signpost-fill"></div><div class="name">signpost-fill</div></div>
+					<div class="icon"><div class="wui-icon star-line"></div><div class="name">star-line</div></div>
+					<div class="icon"><div class="wui-icon star-fill"></div><div class="name">star-fill</div></div>
+					<div class="icon"><div class="wui-icon star-circle-line"></div><div class="name">star-circle-line</div></div>
+					<div class="icon"><div class="wui-icon star-circle-fill"></div><div class="name">star-circle-fill</div></div>
+					<div class="icon"><div class="wui-icon stoplights-line"></div><div class="name">stoplights-line</div></div>
+					<div class="icon"><div class="wui-icon stoplights-fill"></div><div class="name">stoplights-fill</div></div>
+					<div class="icon"><div class="wui-icon time-line"></div><div class="name">time-line</div></div>
+					<div class="icon"><div class="wui-icon time-fill"></div><div class="name">time-fill</div></div>
+					<div class="icon"><div class="wui-icon trash-line"></div><div class="name">trash-line</div></div>
+					<div class="icon"><div class="wui-icon trash-fill"></div><div class="name">trash-fill</div></div>
+					<div class="icon"><div class="wui-icon trophy-line"></div><div class="name">trophy-line</div></div>
+					<div class="icon"><div class="wui-icon trophy-fill"></div><div class="name">trophy-fill</div></div>
+					<div class="icon"><div class="wui-icon unlock-line"></div><div class="name">unlock-line</div></div>
+					<div class="icon"><div class="wui-icon unlock-fill"></div><div class="name">unlock-fill</div></div>
+					<div class="icon"><div class="wui-icon wallet-line"></div><div class="name">wallet-line</div></div>
+					<div class="icon"><div class="wui-icon wallet-fill"></div><div class="name">wallet-fill</div></div>
+					<div class="icon"><div class="wui-icon wifi-on-line"></div><div class="name">wifi-on-line</div></div>
+					<div class="icon"><div class="wui-icon wifi-off-line"></div><div class="name">wifi-off-line</div></div>
+					<div class="icon"><div class="wui-icon window-app-line"></div><div class="name">window-app-line</div></div>
+					<div class="icon"><div class="wui-icon window-app-fill"></div><div class="name">window-app-fill</div></div>
+					<div class="icon"><div class="wui-icon zoomin-line"></div><div class="name">zoomin-line</div></div>
+					<div class="icon"><div class="wui-icon zoomout-line"></div><div class="name">zoomout-line</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">punctuation icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon doublequotes-left-fill"></div><div class="name">doublequotes-left-fill</div></div>
+					<div class="icon"><div class="wui-icon doublequotes-right-fill"></div><div class="name">doublequotes-right-fill</div></div>
+					<div class="icon"><div class="wui-icon indent-left-line"></div><div class="name">indent-left-line</div></div>
+					<div class="icon"><div class="wui-icon indent-right-line"></div><div class="name">indent-right-line</div></div>
+					<div class="icon"><div class="wui-icon list-check-line"></div><div class="name">list-check-line</div></div>
+					<div class="icon"><div class="wui-icon list-number-line"></div><div class="name">list-number-line</div></div>
+					<div class="icon"><div class="wui-icon list-unorderd-line"></div><div class="name">list-unorderd-line</div></div>
+					<div class="icon"><div class="wui-icon textleft-line"></div><div class="name">textleft-line</div></div>
+					<div class="icon"><div class="wui-icon textright-line"></div><div class="name">textright-line</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">others icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon at-line"></div><div class="name">at-line</div></div>
+					<div class="icon"><div class="wui-icon at-lg-line"></div><div class="name">at-lg-line</div></div>
+					<div class="icon"><div class="wui-icon ai-fill"></div><div class="name">ai-fill</div></div>
+					<div class="icon"><div class="wui-icon bullseye-line"></div><div class="name">bullseye-line</div></div>
+					<div class="icon"><div class="wui-icon columnsgap-line"></div><div class="name">columnsgap-line</div></div>
+					<div class="icon"><div class="wui-icon dart-fill"></div><div class="name">dart-fill</div></div>
+					<div class="icon"><div class="wui-icon datasheet-line"></div><div class="name">datasheet-line</div></div>
+					<div class="icon"><div class="wui-icon datasheet-health-line"></div><div class="name">datasheet-health-line</div></div>
+					<div class="icon"><div class="wui-icon hash-line"></div><div class="name">hash-line</div></div>
+					<div class="icon"><div class="wui-icon headphones-line"></div><div class="name">headphones-line</div></div>
+					<div class="icon"><div class="wui-icon headset-line"></div><div class="name">headset-line</div></div>
+					<div class="icon"><div class="wui-icon health-fill"></div><div class="name">health-fill</div></div>
+					<div class="icon"><div class="wui-icon health-lg-fill"></div><div class="name">health-lg-fill</div></div>
+					<div class="icon"><div class="wui-icon link-line"></div><div class="name">link-line</div></div>
+					<div class="icon"><div class="wui-icon link-alt-line"></div><div class="name">link-alt-line</div></div>
+					<div class="icon"><div class="wui-icon logout-line"></div><div class="name">logout-line</div></div>
+					<div class="icon"><div class="wui-icon medal-line"></div><div class="name">medal-line</div></div>
+					<div class="icon"><div class="wui-icon menu-line"></div><div class="name">menu-line</div></div>
+					<div class="icon"><div class="wui-icon pencil-square-fill"></div><div class="name">pencil-square-fill</div></div>
+					<div class="icon"><div class="wui-icon polygon-editable-line"></div><div class="name">polygon-editable-line</div></div>
+					<div class="icon"><div class="wui-icon qr-line"></div><div class="name">qr-line</div></div>
+					<div class="icon"><div class="wui-icon qr-scan-line"></div><div class="name">qr-scan-line</div></div>
+					<div class="icon"><div class="wui-icon quote-fill"></div><div class="name">quote-fill</div></div>
+					<div class="icon"><div class="wui-icon search-line"></div><div class="name">search-line</div></div>
+					<div class="icon"><div class="wui-icon speedometer-line"></div><div class="name">speedometer-line</div></div>
+					<div class="icon"><div class="wui-icon translate-fill"></div><div class="name">translate-fill</div></div>
+					<div class="icon"><div class="wui-icon web-line"></div><div class="name">web-line</div></div>
+					<div class="icon"><div class="wui-icon universal-line"></div><div class="name">universal-line</div></div>
+					<div class="icon"><div class="wui-icon universal-circle-line"></div><div class="name">universal-circle-line</div></div>
+				</div>
+			</div>
+			<div class="type">
+				<div class="title">loader animation icons</div>
+				<div class="icons">
+					<div class="icon"><div class="wui-icon animation-loarder-comet"></div><div class="name">animation-loarder-comet</div></div>
+					<div class="icon"><div class="wui-icon animation-loarder-ring"></div><div class="name">animation-loarder-ring</div></div>
+					<div class="icon"><div class="wui-icon animation-loarder-ringpath"></div><div class="name">animation-loarder-ringpath</div></div>
+				</div>
+			</div>	
+		</div>
+	</body>
+</html>

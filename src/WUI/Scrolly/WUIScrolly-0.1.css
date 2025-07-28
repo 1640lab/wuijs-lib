@@ -1,0 +1,168 @@
+/*
+ * WUIScrolly - v0.1
+ * Developed by: Sergio E. Belmar (sbelmar@1640lab.com)
+ * Distributed by: 1640 Lab S.p.A. (https://1640lab.com)
+ * Copyright (c) Sergio E. Belmar (sbelmar@1640lab.com)
+ */
+
+.wui-scrolly,
+.wui-scrolly > .section,
+.wui-scrolly > .section *,
+.wui-scrolly > .section *::before,
+.wui-scrolly > .section *::after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.wui-scrolly {
+	position: relative;
+}
+.wui-scrolly > .section {
+	display: flex;
+	position: relative;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+}
+.wui-scrolly > .section > .scene {
+	display: flex;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: auto;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+.wui-scrolly > .section > .scene.rows {
+	flex-direction: row;
+}
+.wui-scrolly > .section > .scene.columns {
+	flex-direction: column;
+}
+.wui-scrolly > .section > .scene.fixed {
+	position: fixed;
+	top: 0;
+}
+.wui-scrolly > .section > .scene.shadow {
+	--scene-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+	-webkit-box-shadow: var(--scene-shadow);
+	-moz-box-shadow: var(--scene-shadow);
+	box-shadow: var(--scene-shadow);
+}
+.wui-scrolly > .section > .scene.shadow-inset {
+	--scene-shadow: rgb(0, 0, 0, 0.25) 0px -50px 50px -30px inset, rgb(0, 0, 0, 0.06) 0px -15px 15px -15px inset;
+	-webkit-box-shadow: var(--scene-shadow);
+	-moz-box-shadow: var(--scene-shadow);
+	box-shadow: var(--scene-shadow);
+}
+.wui-scrolly > .section > .paging {
+	--paging-transition: .4s;
+	display: flex;
+	-khtml-opacity: 0;
+	-moz-opacity: 0;
+	opacity: 0;
+	position: absolute;
+	top: auto;
+	left: 0;
+	right: 0;
+	bottom: 40px;
+	height: 10px;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	-webkit-transition: -khtml-opacity var(--paging-transition);
+	-moz-transition: -moz-opacity var(--paging-transition);
+	transition: opacity var(--paging-transition);
+}
+.wui-scrolly > .section > .paging.fixed {
+	-khtml-opacity: 1;
+	-moz-opacity: 1;
+	opacity: 1;
+	position: fixed;
+}
+.wui-scrolly > .section > .paging > div {
+	-khtml-opacity: .5;
+	-moz-opacity: .5;
+	opacity: .5;
+	margin: 0 5px;
+	background-color: var(--wui-scrolly-paging-bgcolor);
+}
+.wui-scrolly > .section > .paging > div.selected {
+	-khtml-opacity: .9;
+	-moz-opacity: .9;
+	opacity: .9;
+}
+.wui-scrolly > .section > .paging.dots > div {
+	width: 10px;
+	height: 10px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+}
+.wui-scrolly > .section > .paging.lines > div {
+	width: 40px;
+	height: 4px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+.wui-scrolly > .section.static {
+	bottom: auto;
+	height: auto;
+}
+.wui-scrolly > .section.static > .scene {
+	position: relative;
+	height: auto;
+}
+@media screen and (max-width: 999px) {
+	.wui-scrolly > .section > .scene {
+		flex-direction: column;
+	}
+}
+
+/* wui-scrolly-load */
+
+.wui-scrolly-load.fadein,
+.wui-scrolly-load.fadein-up,
+.wui-scrolly-load.fadein-left,
+.wui-scrolly-load.fadein-right {
+	-khtml-opacity: 0;
+	-moz-opacity: 0;
+	opacity: 0;
+}
+.wui-scrolly-load.fadein.loaded,
+.wui-scrolly-load.fadein-up.loaded,
+.wui-scrolly-load.fadein-left.loaded,
+.wui-scrolly-load.fadein-right.loaded {
+	-khtml-opacity: 1;
+	-moz-opacity: 1;
+	opacity: 1;
+	top: 0;
+	left: 0;
+}
+.wui-scrolly-load.fadein,
+.wui-scrolly-load.fadein-up,
+.wui-scrolly-load.fadein-left,
+.wui-scrolly-load.fadein-right {
+	--fadein-transition: all .8s;
+	-webkit-transition: var(--fadein-transition);
+	-moz-transition: var(--fadein-transition);
+	transition: var(--fadein-transition);
+}
+.wui-scrolly-load.fadein-up {
+	top: 56px;
+}
+.wui-scrolly-load.fadein-left {
+	left: 56px;
+}
+.wui-scrolly-load.fadein-right {
+	left: -56px;
+}

@@ -1,25 +1,26 @@
 # wuijs-lib
 
-WUI, an acronym for *Web User Interface JavaScript library*, is an open source
-JavaScript library for the rapid implementation of Web user interfaces composed
-of 25 classes, which can be used independently or together.
+WUI, acrónimo del inglés *Web User Interface JavaScript library*, es una
+biblioteca JS de código abierto orientada a la implementación rápida de
+intetfaces de usuario Web compuesta por 25 clases, las que pueden ser
+utilizadas de manera independiente o conjunta.
 
-## Global Version
+## Versión Global
 
 0.1
 
-## Licence
+## Licencia
 
-Apache License 2.0
+Licencia Apache 2.0
 
-## Classes
+## Clases
 
-| Class            | Version | Description |
+| Class            | Version | Descripción |
 | ---------------- | -------:| ----------- |
-| WUICookie        | 0.1     | Cookie manager. |
-| WUIHead          | 0.1     | HTML header manager. |
-| WUIBody          | 0.1     | HTML body manager. Allows the import of CSS/JS/HTML sections and facilitates implementation in native mobile environments. |
-| WUILanguage      | 0.1     | Language manager. Allows the import of interfaces that dynamically change languages based on JSON objects. |
+| WUICookie        | 0.1     | Administrador de cookies. |
+| WUIHead          | 0.1     | Administrador de cabecera HTML. |
+| WUIBody          | 0.1     | Administrador de cuerpo HTML. Permite la importación de secciones CSS/JS/HTML y facilita la implementación en entornos nativos móviles. |
+| WUILanguage      | 0.1     | Administrador de idioma. Permite la importación de interfaces que cambian dinámicamente de idioma en base a objetos JSON. |
 | WUIScrolly       | 0.1     | 
 | WUIIcon          | 0.1     | 
 | WUIFade          | 0.1     | 
@@ -42,11 +43,11 @@ Apache License 2.0
 | WUIIntensity     | 0.1     | 
 | WUIButton        | 0.1     | 
 
-## Implementation
+## Implementación
 
-1. Enable CSS and JS dependencies for the classes to be used. Assuming the 
-library is installed in the `/Libraries/WUI` path, the HTML header looks like 
-this:
+1. Habilitar las dependencias CSS y JS de las clases que se van a utilizar.
+Suponiendo que la librería está instalada en la ruta `/Libraries/WUI`, la
+cabecera HTML queda de la forma:
 
 ```html
 <!doctype html>
@@ -79,8 +80,8 @@ this:
 		<script type="text/javascript" src="/Libraries/WUI/Cookie/WUICookie-0.1.js"></script>
 		<script type="text/javascript" src="/Libraries/WUI/Head/WUIHead-0.1.js"></script>
 		<script type="text/javascript" src="/Libraries/WUI/Body/WUIBody-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Language/WUILanguage-0.1.js"></script>
 		<script type="text/javascript" src="/Libraries/WUI/Scrolly/WUIScrolly-0.1.js"></script>
+		<script type="text/javascript" src="/Libraries/WUI/Language/WUILanguage-0.1.js"></script>
 		<script type="text/javascript" src="/Libraries/WUI/Icon/WUIIcon-0.1.js"></script>
 		<script type="text/javascript" src="/Libraries/WUI/Fade/WUIFade-0.1.js"></script>
 		<script type="text/javascript" src="/Libraries/WUI/Tooltip/WUITooltip-0.1.js"></script>
