@@ -10,7 +10,7 @@ class WUICookie {
 	static version = "0.1";
 	static #defaults = {
 		domain: location.hostname,
-		path: "/",
+		path: "",
 		minutes: 365*24*60,
 		overssl: false
 	};
@@ -68,7 +68,7 @@ class WUICookie {
 		const overssl = typeof(options.overssl) == "boolean" ? options.overssl : this.overssl;
 		const cookie = encodeURIComponent(name)+"="+encodeURIComponent(value)
 			+(domain != "" ? "; domain="+domain : "")
-			+"; path="+path;
+			+(path != "" && path != "./" ? "; path="+path : "")
 			+"; max-age="+(60*minutes)
 			+(overssl ? " secure" : "")
 		if (navigator.cookieEnabled) {

@@ -1,13 +1,11 @@
 # wuijs-lib
 
+Versión Global: `0.2`
+
 WUI, acrónimo del inglés *Web User Interface JavaScript library*, es una
 biblioteca JS de código abierto orientada a la implementación rápida de
 intetfaces de usuario Web compuesta por 25 clases, las que pueden ser
 utilizadas de manera independiente o conjunta.
-
-## Versión Global
-
-0.1
 
 ## Licencia
 
@@ -17,37 +15,39 @@ Licencia Apache 2.0
 
 | Class            | Version | Descripción |
 | ---------------- | -------:| ----------- |
-| WUICookie        | 0.1     | Administrador de cookies. |
-| WUIHead          | 0.1     | Administrador de cabecera HTML. |
-| WUIBody          | 0.1     | Administrador de cuerpo HTML. Permite la importación de secciones CSS/JS/HTML y facilita la implementación en entornos nativos móviles. |
-| WUILanguage      | 0.1     | Administrador de idioma. Permite la importación de interfaces que cambian dinámicamente de idioma en base a objetos JSON. |
-| WUIScrolly       | 0.1     | 
-| WUIIcon          | 0.1     | 
-| WUIFade          | 0.1     | 
-| WUITooltip       | 0.1     | 
-| WUILoader        | 0.1     | 
-| WUIModal         | 0.1     | 
-| WUIModalSelector | 0.1     | 
-| WUISlider        | 0.1     | 
-| WUIPaging        | 0.1     | 
-| WUITabs          | 0.1     | 
-| WUIList          | 0.1     | 
-| WUITable         | 0.1     | 
-| WUIForm          | 0.1     | 
-| WUIFormat        | 0.1     | 
-| WUISelectpicker  | 0.1     | 
-| WUIDatepicker    | 0.1     | 
-| WUITimepicker    | 0.1     | 
-| WUIColorpicker   | 0.1     | 
-| WUICheckbox      | 0.1     | 
-| WUIIntensity     | 0.1     | 
-| WUIButton        | 0.1     | 
+| WUICookie        | `0.1`   | Administrador de cookies. |
+| WUIHead          | `0.1`   | Administrador de cabecera HTML. |
+| WUIBody          | `0.1`   | Administrador de cuerpo HTML. Permite la importación de secciones CSS/JS/HTML y facilita la implementación en entornos nativos móviles. |
+| WUILanguage      | `0.2`   | Administrador de idioma. Permite la importación de interfaces que cambian dinámicamente de idioma en base a objetos JSON. |
+| WUIScrolly       | `0.1`   | 
+| WUIIcon          | `0.1`   | 
+| WUIFade          | `0.1`   | 
+| WUITooltip       | `0.1`   | 
+| WUILoader        | `0.1`   | 
+| WUIModal         | `0.1`   | 
+| WUIModalSelector | `0.1`   | 
+| WUISlider        | `0.1`   | 
+| WUIPaging        | `0.1`   | 
+| WUITabs          | `0.1`   | 
+| WUIList          | `0.1`   | 
+| WUITable         | `0.1`   | 
+| WUIForm          | `0.1`   | 
+| WUIFormat        | `0.1`   | 
+| WUISelectpicker  | `0.1`   | 
+| WUIDatepicker    | `0.1`   | 
+| WUITimepicker    | `0.1`   | 
+| WUIColorpicker   | `0.1`   | 
+| WUICheckbox      | `0.1`   | 
+| WUIIntensity     | `0.1`   | 
+| WUIButton        | `0.1`   | 
 
-## Implementación
+## Implementación Global
 
-1. Habilitar las dependencias CSS y JS de las clases que se van a utilizar.
+Habilitar las dependencias CSS y JS de las clases que se van a utilizar.
 Suponiendo que la librería está instalada en la ruta `/Libraries/WUI`, la
 cabecera HTML queda de la forma:
+
+Código HTML:
 
 ```html
 <!doctype html>
@@ -106,4 +106,43 @@ cabecera HTML queda de la forma:
 	<body>
 	</body>
 </html>
+```
+
+## Clase WUICookie
+
+Versión: `0.1`
+
+Administrador de cookies.
+
+### Propiedades
+
+| Propiedad | Tipo    | Valor por omisión   | Descripción |
+| --------- | ------- | ------------------- | ----------- |
+| domain    | string  | `location.hostname` | Define el dominio desde el que se puede acceder a la cookie. Por defecto, es el host actual. Al configurarlo como un dominio principal (p. ej., ejemplo.com para sub.ejemplo.com), los subdominios pueden acceder a él. |
+| path      | string  | `"./"`              | Especifica la ruta válida para la cookie. El valor predeterminado es la ruta actual siendo el valor vacío equivalente a este. Al establecer "/", la cookie es accesible en todo el dominio. |
+| minutes   | integer | `525600`            | 
+| overssl   | boolean | `false`             | 
+
+### Métodos
+
+| Método    | Tipo retorno | Descripción |
+| --------- | ------------ | ----------- |
+| set       | void         | 
+| get       | string       | 
+
+### Implementación
+
+Código JS:
+
+```js
+const cookie = new WUICookie({
+	domain: location.hostname,
+	path: "./",
+	minutes: 365*24*60,
+	overssl: false
+});
+
+cookie.set("test", "value");
+
+console.log(cookie.get("test"));
 ```

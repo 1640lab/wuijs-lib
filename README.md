@@ -1,12 +1,10 @@
 # wuijs-lib
 
+Global Version: `0.2`
+
 WUI, an acronym for *Web User Interface JavaScript library*, is an open source
 JavaScript library for the rapid implementation of Web user interfaces composed
 of 25 classes, which can be used independently or together.
-
-## Global Version
-
-0.1
 
 ## Licence
 
@@ -16,37 +14,38 @@ Apache License 2.0
 
 | Class            | Version | Description |
 | ---------------- | -------:| ----------- |
-| WUICookie        | 0.1     | Cookie manager. |
-| WUIHead          | 0.1     | HTML header manager. |
-| WUIBody          | 0.1     | HTML body manager. Allows the import of CSS/JS/HTML sections and facilitates implementation in native mobile environments. |
-| WUILanguage      | 0.1     | Language manager. Allows the import of interfaces that dynamically change languages based on JSON objects. |
-| WUIScrolly       | 0.1     | 
-| WUIIcon          | 0.1     | 
-| WUIFade          | 0.1     | 
-| WUITooltip       | 0.1     | 
-| WUILoader        | 0.1     | 
-| WUIModal         | 0.1     | 
-| WUIModalSelector | 0.1     | 
-| WUISlider        | 0.1     | 
-| WUIPaging        | 0.1     | 
-| WUITabs          | 0.1     | 
-| WUIList          | 0.1     | 
-| WUITable         | 0.1     | 
-| WUIForm          | 0.1     | 
-| WUIFormat        | 0.1     | 
-| WUISelectpicker  | 0.1     | 
-| WUIDatepicker    | 0.1     | 
-| WUITimepicker    | 0.1     | 
-| WUIColorpicker   | 0.1     | 
-| WUICheckbox      | 0.1     | 
-| WUIIntensity     | 0.1     | 
-| WUIButton        | 0.1     | 
+| WUICookie        | `0.1`   | Cookie manager. |
+| WUIHead          | `0.1`   | HTML header manager. |
+| WUIBody          | `0.1`   | HTML body manager. Allows the import of CSS/JS/HTML sections and facilitates implementation in native mobile environments. |
+| WUILanguage      | `0.2`   | Language manager. Allows the import of interfaces that dynamically change languages based on JSON objects. |
+| WUIScrolly       | `0.1`   | 
+| WUIIcon          | `0.1`   | 
+| WUIFade          | `0.1`   | 
+| WUITooltip       | `0.1`   | 
+| WUILoader        | `0.1`   | 
+| WUIModal         | `0.1`   | 
+| WUIModalSelector | `0.1`   | 
+| WUISlider        | `0.1`   | 
+| WUIPaging        | `0.1`   | 
+| WUITabs          | `0.1`   | 
+| WUIList          | `0.1`   | 
+| WUITable         | `0.1`   | 
+| WUIForm          | `0.1`   | 
+| WUIFormat        | `0.1`   | 
+| WUISelectpicker  | `0.1`   | 
+| WUIDatepicker    | `0.1`   | 
+| WUITimepicker    | `0.1`   | 
+| WUIColorpicker   | `0.1`   | 
+| WUICheckbox      | `0.1`   | 
+| WUIIntensity     | `0.1`   | 
+| WUIButton        | `0.1`   | 
 
-## Implementation
+## Global Implementation
 
-1. Enable CSS and JS dependencies for the classes to be used. Assuming the 
-library is installed in the `/Libraries/WUI` path, the HTML header looks like 
-this:
+Enable CSS and JS dependencies for the classes to be used. Assuming the library
+is installed in the `/Libraries/WUI` path, the HTML header looks like this:
+
+HTML code:
 
 ```html
 <!doctype html>
@@ -105,4 +104,43 @@ this:
 	<body>
 	</body>
 </html>
+```
+
+## Class WUICookie
+
+Version: `0.1`
+
+Cookie manager.
+
+### Properties
+
+| Property | Type    | Default value.      | Description |
+| -------- | ------- | ------------------- | ----------- |
+| domain   | string  | `location.hostname` | Defines the domain for which the cookie is accessible. By default, it's the current host. Setting it to a parent domain (e.g., example.com for sub.example.com) makes it accessible to subdomains. |
+| path     | string  | `"./"`              | Specifies the path for which the cookie is valid. The default value is the current path, with an empty value being equivalent to this. Setting "/" makes the cookie accessible across the entire domain. |
+| minutes  | integer | `525600`            | 
+| overssl  | boolean | `false`             | 
+
+### Methods
+
+| Method    | Return type | Description |
+| --------- | ----------- | ----------- |
+| set       | void        | 
+| get       | string      | 
+
+### Implementation
+
+JS code:
+
+```js
+const cookie = new WUICookie({
+	domain: location.hostname,
+	path: "./",
+	minutes: 365*24*60,
+	overssl: false
+});
+
+cookie.set("test", "value");
+
+console.log(cookie.get("test"));
 ```

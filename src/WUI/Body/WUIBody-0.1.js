@@ -84,9 +84,9 @@ class WUIBody {
 
 	import(id, path, done) {
 		const token = Date.now();
-		const cssPath = this._importDirectory+path+".css?_="+token;
-		const htmlPath = this._importDirectory+path+".htm?_="+token;
-		const jsPath = this._importDirectory+path+".js?_="+token;
+		const cssPath = `${this._importDirectory}${path}.css?_=${token}`;
+		const htmlPath = `${this._importDirectory}${path}.htm?_=${token}`;
+		const jsPath = `${this._importDirectory}${path}.js?_=${token}`;
 		const checkPath = (url) => {
 			const xhr = new XMLHttpRequest();
 			try {
