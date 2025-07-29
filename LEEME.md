@@ -1,17 +1,29 @@
 # wuijs-lib
 
+## Tabla de Contenidos
+
+*   [Description General](#overview)
+	*   [Tabla de Clases](#classes-table)
+	*   [Implementación Global](#global-implementation)
+*   [Clases](#classes)
+	*   [Clase WUICookie](#class-wuiCookie)
+
+<a name="overview"></a>
+
+## Description General
+
 Versión Global: `0.2`
+
+Licencia: `Licencia Apache 2.0`
 
 WUI, acrónimo del inglés *Web User Interface JavaScript library*, es una
 biblioteca JS de código abierto orientada a la implementación rápida de
 intetfaces de usuario Web compuesta por 25 clases, las que pueden ser
 utilizadas de manera independiente o conjunta.
 
-## Licencia
+<a name="classes-table"></a>
 
-Licencia Apache 2.0
-
-## Clases
+### Tabla de Clases
 
 | Class            | Version | Descripción |
 | ---------------- | -------:| ----------- |
@@ -19,8 +31,8 @@ Licencia Apache 2.0
 | WUIHead          | `0.1`   | Administrador de cabecera HTML. |
 | WUIBody          | `0.1`   | Administrador de cuerpo HTML. Permite la importación de secciones CSS/JS/HTML y facilita la implementación en entornos nativos móviles. |
 | WUILanguage      | `0.2`   | Administrador de idioma. Permite la importación de interfaces que cambian dinámicamente de idioma en base a objetos JSON. |
-| WUIScrolly       | `0.1`   | 
-| WUIIcon          | `0.1`   | 
+| WUIScrolly       | `0.1`   | Herramienta para animación de elementos HTML mediante el evento "on scroll" de cuerpo de la página HTML. |
+| WUIIcon          | `0.1`   | Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces. |
 | WUIFade          | `0.1`   | 
 | WUITooltip       | `0.1`   | 
 | WUILoader        | `0.1`   | 
@@ -41,7 +53,7 @@ Licencia Apache 2.0
 | WUIIntensity     | `0.1`   | 
 | WUIButton        | `0.1`   | 
 
-## Implementación Global
+### Implementación Global
 
 Habilitar las dependencias CSS y JS de las clases que se van a utilizar.
 Suponiendo que la librería está instalada en la ruta `/Libraries/WUI`, la
@@ -108,13 +120,15 @@ Código HTML:
 </html>
 ```
 
-## Clase WUICookie
+## Clases
+
+### Clase WUICookie
 
 Versión: `0.1`
 
 Administrador de cookies.
 
-### Propiedades
+#### Propiedades
 
 | Propiedad | Tipo    | Valor por omisión   | Descripción |
 | --------- | ------- | ------------------- | ----------- |
@@ -123,14 +137,14 @@ Administrador de cookies.
 | minutes   | integer | `525600`            | 
 | overssl   | boolean | `false`             | 
 
-### Métodos
+#### Métodos
 
 | Método    | Tipo retorno | Descripción |
 | --------- | ------------ | ----------- |
 | set       | void         | 
 | get       | string       | 
 
-### Implementación
+#### Implementación
 
 Código JS:
 

@@ -1,16 +1,28 @@
 # wuijs-lib
 
+## Contents Table
+
+*   [Overview](#overview)
+	*   [Classes Table](#classes-table)
+	*   [Global Implementation](#global-implementation)
+*   [Classes](#classes)
+    *   [WUICookie Class](#class-wuiCookie)
+
+<a name="overview"></a>
+
+## Overview
+
 Global Version: `0.2`
+
+Licence: `Apache License 2.0`
 
 WUI, an acronym for *Web User Interface JavaScript library*, is an open source
 JavaScript library for the rapid implementation of Web user interfaces composed
 of 25 classes, which can be used independently or together.
 
-## Licence
+<a name="classes-table"></a>
 
-Apache License 2.0
-
-## Classes
+### Classes Table
 
 | Class            | Version | Description |
 | ---------------- | -------:| ----------- |
@@ -18,8 +30,8 @@ Apache License 2.0
 | WUIHead          | `0.1`   | HTML header manager. |
 | WUIBody          | `0.1`   | HTML body manager. Allows the import of CSS/JS/HTML sections and facilitates implementation in native mobile environments. |
 | WUILanguage      | `0.2`   | Language manager. Allows the import of interfaces that dynamically change languages based on JSON objects. |
-| WUIScrolly       | `0.1`   | 
-| WUIIcon          | `0.1`   | 
+| WUIScrolly       | `0.1`   | Tool for animating HTML elements using the "on scroll" event of the HTML page body.
+| WUIIcon          | `0.1`   | Set of pre-designed icons loaded via CSS, for use in interfaces.
 | WUIFade          | `0.1`   | 
 | WUITooltip       | `0.1`   | 
 | WUILoader        | `0.1`   | 
@@ -40,7 +52,9 @@ Apache License 2.0
 | WUIIntensity     | `0.1`   | 
 | WUIButton        | `0.1`   | 
 
-## Global Implementation
+<a name="global-implementation"></a>
+
+### Global Implementation
 
 Enable CSS and JS dependencies for the classes to be used. Assuming the library
 is installed in the `/Libraries/WUI` path, the HTML header looks like this:
@@ -106,13 +120,19 @@ HTML code:
 </html>
 ```
 
-## Class WUICookie
+<a name="classes"></a>
+
+## Classes
+
+<a name="class-wuiCookie"></a>
+
+### WUICookie Class
 
 Version: `0.1`
 
 Cookie manager.
 
-### Properties
+#### Properties
 
 | Property | Type    | Default value.      | Description |
 | -------- | ------- | ------------------- | ----------- |
@@ -121,14 +141,14 @@ Cookie manager.
 | minutes  | integer | `525600`            | 
 | overssl  | boolean | `false`             | 
 
-### Methods
+#### Methods
 
 | Method    | Return type | Description |
 | --------- | ----------- | ----------- |
 | set       | void        | 
 | get       | string      | 
 
-### Implementation
+#### Implementation
 
 JS code:
 
