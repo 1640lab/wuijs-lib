@@ -32,12 +32,12 @@ of 25 classes, which can be used independently or together.
 | WUILanguage      | `0.2`   | Language manager. Allows the import of interfaces that dynamically change languages based on JSON objects. |
 | WUIScrolly       | `0.1`   | Tool for animating HTML elements using the "on scroll" event of the HTML page body.
 | WUIIcon          | `0.1`   | Set of pre-designed icons loaded via CSS, for use in interfaces.
-| WUIFade          | `0.1`   | 
-| WUITooltip       | `0.1`   | 
-| WUILoader        | `0.1`   | 
-| WUIModal         | `0.1`   | 
-| WUIModalSelector | `0.1`   | 
-| WUISlider        | `0.1`   | 
+| WUIFade          | `0.1`   | Tool for fading out and fading in HTML elements with opacity. |
+| WUITooltip       | `0.1`   | Simple element for hover text. |
+| WUILoader        | `0.1`   | Simple element for loading animation. |
+| WUIModal         | `0.1`   | Composite element for implementing dialog boxes (type `message`) and pop-up windows (type `page`). |
+| WUIModalSelector | `0.1`   | Extension of `WUIModal` for implementing selection lists based on arrays or data inputs of type `<select>`. |
+| WUISlider        | `0.1`   | Composite element for implementing mouse-controlled and/or event-controlled blinds. |
 | WUIPaging        | `0.1`   | 
 | WUITabs          | `0.1`   | 
 | WUIList          | `0.1`   | 

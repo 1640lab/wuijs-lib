@@ -33,12 +33,12 @@ utilizadas de manera independiente o conjunta.
 | WUILanguage      | `0.2`   | Administrador de idioma. Permite la importación de interfaces que cambian dinámicamente de idioma en base a objetos JSON. |
 | WUIScrolly       | `0.1`   | Herramienta para animación de elementos HTML mediante el evento "on scroll" de cuerpo de la página HTML. |
 | WUIIcon          | `0.1`   | Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces. |
-| WUIFade          | `0.1`   | 
-| WUITooltip       | `0.1`   | 
-| WUILoader        | `0.1`   | 
-| WUIModal         | `0.1`   | 
-| WUIModalSelector | `0.1`   | 
-| WUISlider        | `0.1`   | 
+| WUIFade          | `0.1`   | Herramienta para salida y entrada con opacidad (fade-out y fade-in respectivamente) de elementos HTML. |
+| WUITooltip       | `0.1`   | Elemento simple para texto emergente. |
+| WUILoader        | `0.1`   | Elemento simple para animación de carga. |
+| WUIModal         | `0.1`   | Elemento compuesto para implementación de cuadros de diálogo (tipo `message`) y ventanas emergentes (tipo `page`). |
+| WUIModalSelector | `0.1`   | Extensión de `WUIModal` para la implementación de listas de selección en base a arreglos o a entradas de datos de tipo `<select>`. |
+| WUISlider        | `0.1`   | Elemento compuesto para implementación de persianas controladas por ratón y/o por evento. |
 | WUIPaging        | `0.1`   | 
 | WUITabs          | `0.1`   | 
 | WUIList          | `0.1`   | 
