@@ -9,6 +9,10 @@ class WUIFormat {
 
 	static version = "0.1";
 
+	static _initClass() {
+		Date.prototype.wuiLoadNames();
+	}
+
 	static getOS() {
 		if (navigator.platform.indexOf("Mac") > -1) {
 			return "OSX";
@@ -348,7 +352,7 @@ Date.prototype.wuiDefaults = {
 }
 
 Date.prototype.wuiLoadNames = function() {
-	if (this.wuiConstants.locales.indexOf(this.wuiDefaults.locales.toLowerCase()) > -1) {
+	if (this.wuiConstants.locales.toLowerCase().indexOf(this.wuiDefaults.locales.toLowerCase()) > -1) {
 		let i;
 		for (i=0; i<7; i++) {
 			const name = new Date(2023, 0, i+1).toLocaleString(this.wuiDefaults.locales, {weekday: "long"}); // 2023-01-01: sunday
@@ -449,4 +453,4 @@ Date.prototype.wuiToString = function(format = "default", options = {}) {
 	return string;
 }
 
-Date.prototype.wuiLoadNames();
+WUIFormat._initClass();

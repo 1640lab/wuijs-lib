@@ -1,77 +1,3 @@
-# wuijs-lib
-
-## Contents Table
-
-*   [Overview](#overview)
-	*   [Classes Table](#classes-table)
-	*   [Global Implementation](#global-implementation)
-*   [Classes](#classes)
-    *   [WUICookie Class](#class-wuiCookie)
-
-<a name="overview"></a>
-
-## Overview
-
-Global Version: `0.2`
-
-Licence: `Apache License 2.0`
-
-WUI, an acronym for *Web User Interface JavaScript library*, is an open source
-JavaScript library for the rapid implementation of Web user interfaces composed
-of 25 classes, which can be used independently or together.
-
-<a name="classes-table"></a>
-
-### Classes Table
-
-| Class            | Version | Description |
-| ---------------- | -------:| ----------- |
-| WUICookie        | `0.1`   | Cookie manager. |
-| WUIHead          | `0.1`   | HTML header manager. |
-| WUIBody          | `0.1`   | HTML body manager. Allows the import of CSS/JS/HTML sections and facilitates implementation in native mobile environments. |
-| WUILanguage      | `0.2`   | Language manager. Allows the import of interfaces that dynamically change languages based on JSON objects. |
-| WUIScrolly       | `0.1`   | Tool for animating HTML elements using the "on scroll" event of the HTML page body.
-| WUIIcon          | `0.1`   | Set of pre-designed icons loaded via CSS, for use in interfaces.
-| WUIFade          | `0.1`   | Tool for fading out and fading in HTML elements with opacity. |
-| WUITooltip       | `0.1`   | Simple element for hover text. |
-| WUILoader        | `0.1`   | Simple element for loading animation. |
-| WUIModal         | `0.1`   | Composite element for implementing dialog boxes (type `message`) and pop-up windows (type `page`). |
-| WUIModalSelector | `0.1`   | Extension of `WUIModal` for implementing selection lists based on arrays or data inputs of type `<select>`. |
-| WUISlider        | `0.1`   | Composite element for implementing mouse-controlled and/or event-controlled blinds. |
-| WUIPaging        | `0.1`   | 
-| WUITabs          | `0.1`   | 
-| WUIList          | `0.1`   | 
-| WUITable         | `0.1`   | 
-| WUIForm          | `0.1`   | 
-| WUIFormat        | `0.1`   | 
-| WUISelectpicker  | `0.1`   | 
-| WUIDatepicker    | `0.1`   | 
-| WUITimepicker    | `0.1`   | 
-| WUIColorpicker   | `0.1`   | 
-| WUICheckbox      | `0.1`   | 
-| WUIIntensity     | `0.1`   | 
-| WUIButton        | `0.1`   | 
-
-<a name="global-implementation"></a>
-
-### Global Implementation
-
-To enable all classes, the library's CSS and JS dependencies must be
-implemented in the HTML header of the web page along with the styles
-configuration file.
-
-CSS code in the `examples/Global/WUI.css` file:
-
-```css
-```
-
-Assuming the CSS configuration file is installed in the relative path
-`./Settings/WUI.css` and the libraries are installed in the relative path
-`./Libraries/WUI`, the HTML header looks like this:
-
-HTML code for the `examples/Global/Global.html` file:
-
-```html
 <!doctype html>
 <html>
 	<head>
@@ -103,8 +29,8 @@ HTML code for the `examples/Global/Global.html` file:
 		<script type="text/javascript" src="./Libraries/WUI/Cookie/WUICookie-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Head/WUIHead-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Body/WUIBody-0.1.js"></script>
-		<script type="text/javascript" src="./Libraries/WUI/Language/WUILanguage-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Scrolly/WUIScrolly-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Language/WUILanguage-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Icon/WUIIcon-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Fade/WUIFade-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Tooltip/WUITooltip-0.1.js"></script>
@@ -129,49 +55,3 @@ HTML code for the `examples/Global/Global.html` file:
 	<body>
 	</body>
 </html>
-```
-
-<a name="classes"></a>
-
-## Classes
-
-<a name="class-wuiCookie"></a>
-
-### WUICookie Class
-
-Version: `0.1`
-
-Cookie manager.
-
-#### Properties
-
-| Property | Type    | Default value.      | Description |
-| -------- | ------- | ------------------- | ----------- |
-| domain   | string  | `location.hostname` | Defines the domain for which the cookie is accessible. By default, it's the current host. Setting it to a parent domain (e.g., example.com for sub.example.com) makes it accessible to subdomains. |
-| path     | string  | `"./"`              | Specifies the path for which the cookie is valid. The default value is the current path, with an empty value being equivalent to this. Setting "/" makes the cookie accessible across the entire domain. |
-| minutes  | integer | `525600`            | 
-| overssl  | boolean | `false`             | 
-
-#### Methods
-
-| Method    | Return type | Description |
-| --------- | ----------- | ----------- |
-| set       | void        | 
-| get       | string      | 
-
-#### Implementation
-
-JS code:
-
-```js
-const cookie = new WUICookie({
-	domain: location.hostname,
-	path: "./",
-	minutes: 365*24*60,
-	overssl: false
-});
-
-cookie.set("test", "value");
-
-console.log(cookie.get("test"));
-```

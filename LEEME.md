@@ -55,11 +55,20 @@ utilizadas de manera independiente o conjunta.
 
 ### Implementación Global
 
-Habilitar las dependencias CSS y JS de las clases que se van a utilizar.
-Suponiendo que la librería está instalada en la ruta `/Libraries/WUI`, la
-cabecera HTML queda de la forma:
+Para habilitar todas las clases se deben implementar las dependencias CSS y JS
+de las librerías en la cabecera HTML de la página web conjuntamente con el
+archivo de configuración de estilos.
 
-Código HTML:
+Código CSS archivo `examples/Global/WUI.css`:
+
+```css
+```
+
+Suponiendo que el archivo de configuración de estilos CSS es instalado en la
+ruta relativa `./Settings/WUI.css` y las librerías están instaladas en la ruta
+relativa `./Libraries/WUI`, la cabecera HTML queda de la forma:
+
+Código HTML archivo `examples/Global/Global.html`:
 
 ```html
 <!doctype html>
@@ -70,50 +79,51 @@ Código HTML:
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 		<meta name="application-name" content="">
 		<meta name="theme-color" content="">
-		<link type="text/css" rel="stylesheet" href="/Libraries/WUI/Scrolly/WUIScrolly-0.1.css">
-		<link type="text/css" rel="stylesheet" href="/Libraries/WUI/Icon/WUIIcon-0.1.css">
-		<link type="text/css" rel="stylesheet" href="/Libraries/WUI/Tooltip/WUITooltip-0.1.css">
-		<link type="text/css" rel="stylesheet" href="/Libraries/WUI/Loader/WUILoader-0.1.css">
-		<link type="text/css" rel="stylesheet" href="/Libraries/WUI/Modal/WUIModal-0.1.css">
-		<link type="text/css" rel="stylesheet" href="/Libraries/WUI/Modal/WUIModalSelect-0.1.css">
-		<link type="text/css" rel="stylesheet" href="/Libraries/WUI/Slider/WUISlider-0.1.css">
-		<link type="text/css" rel="stylesheet" href="/Libraries/WUI/Paging/WUIPaging-0.1.css">
-		<link type="text/css" rel="stylesheet" href="/Libraries/WUI/Tabs/WUITabs-0.1.css">
-		<link type="text/css" rel="stylesheet" href="/Libraries/WUI/List/WUIList-0.1.css">
-		<link type="text/css" rel="stylesheet" href="/Libraries/WUI/Table/WUITable-0.1.css">
-		<link type="text/css" rel="stylesheet" href="/Libraries/WUI/Form/WUIForm-0.1.css">
-		<link type="text/css" rel="stylesheet" href="/Libraries/WUI/Selectpicker/WUISelectpicker-0.1.css">
-		<link type="text/css" rel="stylesheet" href="/Libraries/WUI/Datepicker/WUIDatepicker-0.1.css">
-		<link type="text/css" rel="stylesheet" href="/Libraries/WUI/Timepicker/WUITimepicker-0.1.css">
-		<link type="text/css" rel="stylesheet" href="/Libraries/WUI/Colorpicker/WUIColorpicker-0.1.css">
-		<link type="text/css" rel="stylesheet" href="/Libraries/WUI/Checkbox/WUICheckbox-0.1.css">
-		<link type="text/css" rel="stylesheet" href="/Libraries/WUI/Intensity/WUIIntensity-0.1.css">
-		<link type="text/css" rel="stylesheet" href="/Libraries/WUI/Button/WUIButton-0.1.css">
-		<script type="text/javascript" src="/Libraries/WUI/Cookie/WUICookie-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Head/WUIHead-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Body/WUIBody-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Scrolly/WUIScrolly-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Language/WUILanguage-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Icon/WUIIcon-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Fade/WUIFade-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Tooltip/WUITooltip-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Loader/WUILoader-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Modal/WUIModal-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Modal/WUIModalSelect-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Slider/WUISlider-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Paging/WUIPaging-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Tabs/WUITabs-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/List/WUIList-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Table/WUITable-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Form/WUIForm-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Format/WUIFormat-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Selectpicker/WUISelectpicker-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Datepicker/WUIDatepicker-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Timepicker/WUITimepicker-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Colorpicker/WUIColorpicker-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Checkbox/WUICheckbox-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Intensity/WUIIntensity-0.1.js"></script>
-		<script type="text/javascript" src="/Libraries/WUI/Button/WUIButton-0.1.js"></script>
+		<link type="text/css" rel="stylesheet" href="./Settings/WUI.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Scrolly/WUIScrolly-0.1.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Icon/WUIIcon-0.1.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Tooltip/WUITooltip-0.1.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Loader/WUILoader-0.1.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Modal/WUIModal-0.1.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Modal/WUIModalSelect-0.1.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Slider/WUISlider-0.1.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Paging/WUIPaging-0.1.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Tabs/WUITabs-0.1.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/List/WUIList-0.1.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Table/WUITable-0.1.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Form/WUIForm-0.1.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Selectpicker/WUISelectpicker-0.1.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Datepicker/WUIDatepicker-0.1.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Timepicker/WUITimepicker-0.1.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Colorpicker/WUIColorpicker-0.1.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Checkbox/WUICheckbox-0.1.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Intensity/WUIIntensity-0.1.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Button/WUIButton-0.1.css">
+		<script type="text/javascript" src="./Libraries/WUI/Cookie/WUICookie-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Head/WUIHead-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Body/WUIBody-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Scrolly/WUIScrolly-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Language/WUILanguage-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Icon/WUIIcon-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Fade/WUIFade-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Tooltip/WUITooltip-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Loader/WUILoader-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Modal/WUIModal-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Modal/WUIModalSelect-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Slider/WUISlider-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Paging/WUIPaging-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Tabs/WUITabs-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/List/WUIList-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Table/WUITable-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Form/WUIForm-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Format/WUIFormat-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Selectpicker/WUISelectpicker-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Datepicker/WUIDatepicker-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Timepicker/WUITimepicker-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Colorpicker/WUIColorpicker-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Checkbox/WUICheckbox-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Intensity/WUIIntensity-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Button/WUIButton-0.1.js"></script>
 	</head>
 	<body>
 	</body>
