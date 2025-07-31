@@ -41,11 +41,11 @@ utilizadas de manera independiente o conjunta.
 | WUISlider        | `0.1`   | Objeto compuesto para implementación de persianas controladas por ratón y/o por evento. |
 | WUIPaging        | `0.1`   | Objeto compuesto para implementación de vistas accesibles paginadamente. |
 | WUITabs          | `0.1`   | Objeto compuesto para implementación de vistas accesibles mediante selección por pestaña. |
-| WUIList          | `0.1`   | 
-| WUITable         | `0.1`   | 
-| WUIForm          | `0.1`   | 
-| WUIFormat        | `0.1`   | 
-| WUISelectpicker  | `0.1`   | 
+| WUIList          | `0.1`   | Objeto compuesto para implementación de listas de datos y botoneras para cada fila de manera opciona. |
+| WUITable         | `0.1`   | Objeto compuesto para implementación de tablas de datos. A diferencia del objeto `WUIList`, el objeto `WUITable` incluye una cabecera de columnas. |
+| WUIForm          | `0.1`   | Objeto compuesto para implementación de formularios de datos. Este objeto permite la implementación de elementos HTML de entrada de datos tales como `<input>`, `<select>` y `<textarea>` y objetos de la librería WUI como `WUISelectpicker`, `WUIDatepicker`, `WUITimepicker`, `WUIColorpicker`, `WUICheckbox`, `WUIIntensity` y `WUIButton`. |
+| WUIFormat        | `0.1`   | Herramienta para manejo y validación de formatos de datos de tipo `String`, `Number` y `Date`. |
+| WUISelectpicker  | `0.1`   | Objeto compuesto para implementación de entradas de datos de selección múltiple o excluyente en base a listas en base a elementos HTML `<select>`. |
 | WUIDatepicker    | `0.1`   | 
 | WUITimepicker    | `0.1`   | 
 | WUIColorpicker   | `0.1`   | 

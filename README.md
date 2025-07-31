@@ -40,11 +40,11 @@ of 25 classes, which can be used independently or together.
 | WUISlider        | `0.1`   | Composite object for implementing mouse-controlled and/or event-controlled blinds. |
 | WUIPaging        | `0.1`   | Composite object for implementing paginated views. |
 | WUITabs          | `0.1`   | Composite object for implementing views accessible by tab selection. |
-| WUIList          | `0.1`   | 
-| WUITable         | `0.1`   | 
-| WUIForm          | `0.1`   | 
-| WUIFormat        | `0.1`   | 
-| WUISelectpicker  | `0.1`   | 
+| WUIList          | `0.1`   | Composite object for implementing data lists and buttons for each row optionally. |
+| WUITable         | `0.1`   | Composite object for implementing data tables. Unlike the `WUIList` object, the `WUITable` object includes a column header. |
+| WUIForm          | `0.1`   | Composite object for implementing data forms. This object allows the implementation of HTML data input elements such as `<input>`, `<select>`, and `<textarea>`, and WUI library objects such as `WUISelectpicker`, `WUIDatepicker`, `WUITimepicker`, `WUIColorpicker`, `WUICheckbox`, `WUIIntensity`, and `WUIButton`. |
+| WUIFormat        | `0.1`   | Tool for managing and validating `String`, `Number` and `Date` data formats. |
+| WUISelectpicker  | `0.1`   | Composite object for implementing multiple-select or exclusive data entries based on lists based on HTML `<select>` elements. |
 | WUIDatepicker    | `0.1`   | 
 | WUITimepicker    | `0.1`   | 
 | WUIColorpicker   | `0.1`   | 
