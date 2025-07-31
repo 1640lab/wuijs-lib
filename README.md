@@ -626,21 +626,27 @@ Version: `0.1`
 
 Cookie manager.
 
+#### Constructor
+
+| Type      | Description |
+| --------- | ----------- |
+| WUICookie | `WUICookie([properties])`<br><br>Arguments:<br><br>**• properties:** `Object` |
+
 #### Properties
 
-| Property | Type    | Default value.      | Description |
-| -------- | ------- | ------------------- | ----------- |
-| domain   | string  | `location.hostname` | Defines the domain for which the cookie is accessible. By default, it's the current host. Setting it to a parent domain (e.g., example.com for sub.example.com) makes it accessible to subdomains. |
-| path     | string  | `"./"`              | Specifies the path for which the cookie is valid. The default value is the current path, with an empty value being equivalent to this. Setting "/" makes the cookie accessible across the entire domain. |
-| minutes  | integer | `525600`            | Specifies the duration, measured in minutes, for the cookie to remain active. The default value is 365 days or one year.
-| overssl  | boolean | `false`             | If set to `true`, the cookie will only be sent over HTTPS connections. |
+| Property | Type      | Default value.      | Description |
+| -------- | --------- | ------------------- | ----------- |
+| domain   | `String`  | `location.hostname` | Defines the domain for which the cookie is accessible. By default, it's the current host. Setting it to a parent domain (e.g., example.com for sub.example.com) makes it accessible to subdomains. |
+| path     | `String`  | `"./"`              | Specifies the path for which the cookie is valid. The default value is the current path, with an empty value being equivalent to this. Setting "/" makes the cookie accessible across the entire domain. |
+| minutes  | `Number`  | `525600`            | Specifies the duration, measured in minutes, for the cookie to remain active. The default value is 365 days or one year.
+| overssl  | `Boolean` | `false`             | If set to `true`, the cookie will only be sent over HTTPS connections. |
 
 #### Methods
 
 | Method    | Return type | Description |
 | --------- | ----------- | ----------- |
-| set       | void        | `set(name, value[, options])`<br><br>Arguments:<br><br>**name** <br>**value** <br>**options** |
-| get       | string      | `get(name)`<br><br>Arguments:<br><br>**name** |
+| set       | `Void`      | `set(name, value[, options])`<br><br>Arguments:<br><br>**• name:** `String` <br>**• value:** `String` <br>**• options:** `Object` *optional* |
+| get       | `String`    | `get(name)`<br><br>Arguments:<br><br>**• name:** `String` |
 
 #### Implementation
 

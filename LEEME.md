@@ -621,21 +621,27 @@ Versión: `0.1`
 
 Administrador de cookies.
 
+#### Constructor
+
+| Tipo      | Descripción |
+| --------- | ----------- |
+| WUICookie | `WUICookie([properties])`<br><br>Parámetros:<br><br>**• properties:** `Object` |
+
 #### Propiedades
 
-| Propiedad | Tipo    | Valor por omisión   | Descripción |
-| --------- | ------- | ------------------- | ----------- |
-| domain    | string  | `location.hostname` | Define el dominio desde el que se puede acceder a la cookie. Por defecto, es el host actual. Al configurarlo como un dominio principal (p. ej., ejemplo.com para sub.ejemplo.com), los subdominios pueden acceder a él. |
-| path      | string  | `"./"`              | Especifica la ruta válida para la cookie. El valor predeterminado es la ruta actual siendo el valor vacío equivalente a este. Al establecer "/", la cookie es accesible en todo el dominio. |
-| minutes   | integer | `525600`            | Especifica la duración medida en minutos que tendrá la cookie. El valor predeterminado es equivalente a 365 días o un año. |
-| overssl   | boolean | `false`             | Si se establece como `true`, la cookie solo se enviará a través de conexiones HTTPS. |
+| Propiedad | Tipo      | Valor por omisión   | Descripción |
+| --------- | --------- | ------------------- | ----------- |
+| domain    | `String`  | `location.hostname` | Define el dominio desde el que se puede acceder a la cookie. Por defecto, es el host actual. Al configurarlo como un dominio principal (p. ej., ejemplo.com para sub.ejemplo.com), los subdominios pueden acceder a él. |
+| path      | `String`  | `"./"`              | Especifica la ruta válida para la cookie. El valor predeterminado es la ruta actual siendo el valor vacío equivalente a este. Al establecer "/", la cookie es accesible en todo el dominio. |
+| minutes   | `Number`  | `525600`            | Especifica la duración medida en minutos que tendrá la cookie. El valor predeterminado es equivalente a 365 días o un año. |
+| overssl   | `Boolean` | `false`             | Si se establece como `true`, la cookie solo se enviará a través de conexiones HTTPS. |
 
 #### Métodos
 
 | Método    | Tipo retorno | Descripción |
 | --------- | ------------ | ----------- |
-| set       | void        | `set(name, value[, options])`<br><br>Parámetros:<br><br>**name** <br>**value** <br>**options** |
-| get       | string      | `get(name)`<br><br>Parámetros:<br><br>**name** |
+| set       | `Void`       | `set(name, value[, options])`<br><br>Parámetros:<br><br>**• name:** `String` <br>**• value:** `String` <br>**• options:** `Object` *optional* |
+| get       | `String`     | `get(name)`<br><br>Parámetros:<br><br>**• name:** `String` |
 
 #### Implementación
 
