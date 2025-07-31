@@ -1,19 +1,6 @@
 /* WUI settings */
 
 :root {
-	--app-light1color: #f6f6fa;
-	--app-light2color: #fdfdfe;
-	--app-dark1color: #3b404a;
-	--app-dark2color: #353a40;
-	--app-dark3color: #1f2429;
-	--app-dark4color: #3c4d5a;
-	--app-dark5color: #2f3c48;
-	--app-primarycolor: #f4a261;
-	--app-hightlightcolor: #1e90ff;
-	--app-warningcolor: #f44343;
-	--app-disabledcolor: #d5dce3;
-	--app-softcolor: #353a401a;
-	--app-titlefont: "SanFrancisco";
 
 	/* wui-loader */
 
@@ -469,7 +456,7 @@
 	--wui-button-form-default-minwidth: 100px;
 }
 
-/* WUI dark settings */
+/* WUI dark mode settings */
 
 .wui-darkmode {
 

@@ -34,12 +34,12 @@ utilizadas de manera independiente o conjunta.
 | WUIScrolly       | `0.1`   | Herramienta para animación de elementos HTML mediante el evento "on scroll" de cuerpo de la página HTML. |
 | WUIIcon          | `0.1`   | Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces. |
 | WUIFade          | `0.1`   | Herramienta para salida y entrada con opacidad (fade-out y fade-in respectivamente) de elementos HTML. |
-| WUITooltip       | `0.1`   | Elemento simple para texto emergente. |
-| WUILoader        | `0.1`   | Elemento simple para animación de carga. |
-| WUIModal         | `0.1`   | Elemento compuesto para implementación de cuadros de diálogo (tipo `message`) y ventanas emergentes (tipo `page`). |
-| WUIModalSelector | `0.1`   | Extensión de `WUIModal` para la implementación de listas de selección en base a arreglos o a entradas de datos de tipo `<select>`. |
-| WUISlider        | `0.1`   | Elemento compuesto para implementación de persianas controladas por ratón y/o por evento. |
-| WUIPaging        | `0.1`   | 
+| WUITooltip       | `0.1`   | Objeto simple para texto emergente. |
+| WUILoader        | `0.1`   | Objeto simple para animación de carga. |
+| WUIModal         | `0.1`   | Objeto compuesto para implementación de cuadros de diálogo (tipo `message`) y ventanas emergentes (tipo `page`). |
+| WUIModalSelector | `0.1`   | Objeto extendido de `WUIModal` para la implementación de listas de selección en base a arreglos o a entradas de datos de tipo `<select>`. |
+| WUISlider        | `0.1`   | Objeto compuesto para implementación de persianas controladas por ratón y/o por evento. |
+| WUIPaging        | `0.1`   | Objeto compuesto para implementación de vistas accesibles paginadamente dentro de un elementos HTML. |
 | WUITabs          | `0.1`   | 
 | WUIList          | `0.1`   | 
 | WUITable         | `0.1`   | 
@@ -56,13 +56,13 @@ utilizadas de manera independiente o conjunta.
 ### Implementación Global
 
 Para habilitar todas las clases se deben implementar las dependencias CSS y JS
-de las librerías en la cabecera HTML de la página web conjuntamente con el
-archivo de configuración de estilos.
+de las librerías en la cabecera HTML de la página web conjuntamente con los
+archivos de configuración de estilos `Settings.css` y `WUI.css`.
 
-Código CSS archivo `/examples/Global/WUI.css`:
+Código CSS archivo `/examples/Global/Settings.css`:
 
 ```css
-/* WUI settings */
+/* Main settings */
 
 :root {
 	--app-light1color: #f6f6fa;
@@ -78,6 +78,15 @@ Código CSS archivo `/examples/Global/WUI.css`:
 	--app-disabledcolor: #d5dce3;
 	--app-softcolor: #353a401a;
 	--app-titlefont: "SanFrancisco";
+}
+```
+
+Código CSS archivo `/examples/Global/WUI.css`:
+
+```css
+/* WUI settings */
+
+:root {
 
 	/* wui-loader */
 
@@ -532,82 +541,6 @@ Código CSS archivo `/examples/Global/WUI.css`:
 	--wui-button-mobile-icon-float-padding: 10px;
 	--wui-button-form-default-minwidth: 100px;
 }
-
-/* WUI dark settings */
-
-.wui-darkmode {
-
-	/* wui-icon */
-
-	--wui-icon-bgcolor-out: rgba(255, 255, 255, .6);
-	--wui-icon-bgcolor-over: rgba(255, 255, 255, .6);
-
-	/* wui-list */
-	
-	--wui-list-row-bordercolor-out: rgb(from var(--app-light1color) r g b / 5%);
-	--wui-list-row-bordercolor-over: rgb(from var(--app-light1color) r g b / 5%);
-	--wui-list-row-bgcolor-out: var(--app-dark2color);
-	--wui-list-row-bgcolor-over: var(--app-primarycolor);
-	--wui-list-row-textcolor-out: whitesmoke;
-	--wui-list-row-textcolor-over: #002a33;
-
-	/* wui-table */
-	
-	--wui-table-column-bordercolor-out: rgb(from var(--app-hightlightcolor) r g b / 10%);
-	--wui-table-column-bordercolor-over: rgba(255, 255, 255, .8);
-	--wui-table-column-bordercolor-selected: rgba(255, 255, 255, .8);
-	--wui-table-column-bgcolor-out: transparent;
-	--wui-table-column-bgcolor-over: transparent;
-	--wui-table-column-bgcolor-selectd: var(--app-hightlightcolor);
-	--wui-table-column-textcolor-out: whitesmoke;
-	--wui-table-column-textcolor-over: #fff;
-	--wui-table-column-textcolor-disabled: rgb(245, 245, 245, .4);
-	--wui-table-row-bordercolor-out: rgb(from var(--app-hightlightcolor) r g b / 10%);
-	--wui-table-row-bordercolor-over: rgb(from var(--app-hightlightcolor) r g b / 10%);
-	--wui-table-row-bordercolor-selected: rgba(255, 255, 255, .8);
-	--wui-table-row-bgcolor-out: transparent;
-	--wui-table-row-bgcolor-over: var(--app-dark1color);
-	--wui-table-row-bgcolor-selectd: var(--app-hightlightcolor);
-	--wui-table-row-textcolor-out: rgb(245, 245, 245, .8); /* whitesmoke */
-	--wui-table-row-textcolor-over: #fff;
-	--wui-table-row-textcolor-disabled: var(--app-disabledcolor);
-	--wui-table-row-textcolor-selected: #fff;
-
-	/* wui-form */
-
-	--wui-form-label-textcolor-out: rgba(255, 255, 255, .6);
-	--wui-form-label-textcolor-focus: rgba(255, 255, 255, .6);
-	--wui-form-label-textcolor-notempty: rgba(255, 255, 255, .4);
-	--wui-form-input-textcolor-out: #fff;
-	--wui-form-text-textcolor-out: rgba(255, 255, 255, .6);
-	--wui-form-text-linkcolor-highlight: var(--app-hightlightcolor);
-
-	/* wui-selectpicker */
-
-	--wui-selectpicker-input-textcolor-out: #fff !important;
-	--wui-selectpicker-opencolor-out: rgba(255, 255, 255, .6);
-
-	/* wui-checkbox*/
-
-	--wui-checkbox-default-button-bgcolor-out: #adb0b5;
-}
-@media screen and (min-width: 768px) {
-	.wui-darkmode {
-
-		/* wui-selectpicker */
-
-		--wui-selectpicker-box-bgcolor: rgb(from var(--app-dark3color) r g b / 80%);
-		--wui-selectpicker-box-option-bordercolor-out: rgb(from var(--app-light1color) r g b / 10%);
-		--wui-selectpicker-box-option-bordercolor-over: rgb(from var(--app-light1color) r g b / 10%);
-		--wui-selectpicker-box-option-bgcolor-over: rgb(from var(--app-light1color) r g b / 4%);
-		--wui-selectpicker-box-option-textcolor-out: rgba(255, 255, 255, .6);
-		--wui-selectpicker-box-option-textcolor-over: #fff;
-		--wui-selectpicker-box-button-bordercolor: rgb(from var(--app-light1color) r g b / 10%);
-	}
-	.wui-darkmode :is(.wui-selectpicker, .wui-datepicker, .wui-timepicker, .wui-colorpicker) > .box {
-		--box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 16px;
-	}	
-}
 ```
 
 Suponiendo que el archivo de configuración de estilos CSS es instalado en la
@@ -625,6 +558,7 @@ Código HTML archivo `/examples/Global/Global.html`:
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 		<meta name="application-name" content="">
 		<meta name="theme-color" content="">
+		<link type="text/css" rel="stylesheet" href="./Settings/Main.css">
 		<link type="text/css" rel="stylesheet" href="./Settings/WUI.css">
 		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Scrolly/WUIScrolly-0.1.css">
 		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Icon/WUIIcon-0.1.css">
