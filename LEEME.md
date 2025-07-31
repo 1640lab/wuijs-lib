@@ -7,6 +7,7 @@
 	*   [Implementación Global](#global-implementation)
 *   [Clases](#classes)
 	*   [Clase WUICookie](#class-wuiCookie)
+	*   [Clase WUIHead](#class-wuiHead)
 
 <a name="overview"></a>
 
@@ -613,7 +614,11 @@ Código HTML archivo `/examples/Global/Global.html`:
 Este método de implementación permite la estandarización del diseño de la
 interfaz de usuario de una aplicación, por medio del archivo `WUI.css`.
 
+<a name="classes"></a>
+
 ## Clases
+
+<a name="class-wuiCookie"></a>
 
 ### Clase WUICookie
 
@@ -659,3 +664,23 @@ cookie.set("test", "value");
 
 console.log(cookie.get("test"));
 ```
+
+<a name="class-wuiHead"></a>
+
+### Clase WUIHead
+
+Versión: `0.1`
+
+Administrador de cabecera HTML.
+
+#### Constructor
+
+| Tipo    | Descripción |
+| ------- | ----------- |
+| WUIHead | `WUIHead([properties])`<br><br>Parámetros:<br><br>**• properties:** `Object` |
+
+#### Propiedades
+
+#### Métodos
+
+#### Implementación

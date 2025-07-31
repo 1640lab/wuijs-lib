@@ -7,6 +7,7 @@
 	*   [Global Implementation](#global-implementation)
 *   [Classes](#classes)
     *   [WUICookie Class](#class-wuiCookie)
+	*   [WUIHead Class](#class-wuiHead)
 
 <a name="overview"></a>
 
@@ -664,3 +665,23 @@ cookie.set("test", "value");
 
 console.log(cookie.get("test"));
 ```
+
+<a name="class-wuiHead"></a>
+
+### WUIHead Class
+
+Version: `0.1`
+
+HTML header manager.
+
+#### Constructor
+
+| Tipo    | Descripción |
+| ------- | ----------- |
+| WUIHead | `WUIHead([properties])`<br><br>Arguments:<br><br>**• properties:** `Object` |
+
+#### Properties
+
+#### Methods
+
+#### Implementation
