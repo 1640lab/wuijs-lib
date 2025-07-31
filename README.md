@@ -639,8 +639,8 @@ Cookie manager.
 
 | Method    | Return type | Description |
 | --------- | ----------- | ----------- |
-| set       | void        | `set(name, value[, options])`<br><br>Arguments:<br><br> * `name` <br> * `value` <br> * `options` |
-| get       | string      | `get(name)`<br><br>Arguments:<br><br> * `name` |
+| set       | void        | `set(name, value[, options])`<br><br>Arguments:<br><br>**name** <br>**value** <br>**options** |
+| get       | string      | `get(name)`<br><br>Arguments:<br><br>**name** |
 
 #### Implementation
 

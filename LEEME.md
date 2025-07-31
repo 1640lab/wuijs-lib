@@ -634,8 +634,8 @@ Administrador de cookies.
 
 | Método    | Tipo retorno | Descripción |
 | --------- | ------------ | ----------- |
-| set       | void        | `set(name, value[, options])`<br><br>Parámetros:<br><br> * `name` <br> * `value` <br> * `options` |
-| get       | string      | `get(name)`<br><br>Parámetros:<br><br> * `name` |
+| set       | void        | `set(name, value[, options])`<br><br>Parámetros:<br><br>**name** <br>**value** <br>**options** |
+| get       | string      | `get(name)`<br><br>Parámetros:<br><br>**name** |
 
 #### Implementación
 
