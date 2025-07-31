@@ -45,12 +45,12 @@ of 25 classes, which can be used independently or together.
 | WUIForm          | `0.1`   | Composite object for implementing data forms. This object allows the implementation of HTML data input elements such as `<input>`, `<select>`, and `<textarea>`, and WUI library objects such as `WUISelectpicker`, `WUIDatepicker`, `WUITimepicker`, `WUIColorpicker`, `WUICheckbox`, `WUIIntensity`, and `WUIButton`. |
 | WUIFormat        | `0.1`   | Tool for managing and validating `String`, `Number` and `Date` data formats. |
 | WUISelectpicker  | `0.1`   | Composite object for implementing multiple-select or exclusive data entries based on lists based on HTML `<select>` elements. |
-| WUIDatepicker    | `0.1`   | 
-| WUITimepicker    | `0.1`   | 
-| WUIColorpicker   | `0.1`   | 
-| WUICheckbox      | `0.1`   | 
-| WUIIntensity     | `0.1`   | 
-| WUIButton        | `0.1`   | 
+| WUIDatepicker    | `0.1`   | Composite object for implementing date type data input. |
+| WUITimepicker    | `0.1`   | Composite object for implementing time type data inputs. |
+| WUIColorpicker   | `0.1`   | Composite object for implementing color picker type data inputs. |
+| WUICheckbox      | `0.1`   | Composite object for implementing checkbox type data inputs. |
+| WUIIntensity     | `0.1`   | Composite object for implementing 4-level intensity selector type data inputs: none, low, half, and high. |
+| WUIButton        | `0.1`   | Composite object for button implementation. |
 
 <a name="global-implementation"></a>
 
@@ -632,15 +632,15 @@ Cookie manager.
 | -------- | ------- | ------------------- | ----------- |
 | domain   | string  | `location.hostname` | Defines the domain for which the cookie is accessible. By default, it's the current host. Setting it to a parent domain (e.g., example.com for sub.example.com) makes it accessible to subdomains. |
 | path     | string  | `"./"`              | Specifies the path for which the cookie is valid. The default value is the current path, with an empty value being equivalent to this. Setting "/" makes the cookie accessible across the entire domain. |
-| minutes  | integer | `525600`            | 
-| overssl  | boolean | `false`             | 
+| minutes  | integer | `525600`            | Specifies the duration, measured in minutes, for the cookie to remain active. The default value is 365 days or one year.
+| overssl  | boolean | `false`             | If set to `true`, the cookie will only be sent over HTTPS connections. |
 
 #### Methods
 
 | Method    | Return type | Description |
 | --------- | ----------- | ----------- |
-| set       | void        | 
-| get       | string      | 
+| set       | void        | `set(name, value[, options])`<br><br>Arguments:<br><br> * `name` <br> * `value` <br> * `options` |
+| get       | string      | `get(name)`<br><br>Arguments:<br><br> * `name` |
 
 #### Implementation
 

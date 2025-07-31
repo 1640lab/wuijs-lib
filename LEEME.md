@@ -46,12 +46,12 @@ utilizadas de manera independiente o conjunta.
 | WUIForm          | `0.1`   | Objeto compuesto para implementación de formularios de datos. Este objeto permite la implementación de elementos HTML de entrada de datos tales como `<input>`, `<select>` y `<textarea>` y objetos de la librería WUI como `WUISelectpicker`, `WUIDatepicker`, `WUITimepicker`, `WUIColorpicker`, `WUICheckbox`, `WUIIntensity` y `WUIButton`. |
 | WUIFormat        | `0.1`   | Herramienta para manejo y validación de formatos de datos de tipo `String`, `Number` y `Date`. |
 | WUISelectpicker  | `0.1`   | Objeto compuesto para implementación de entradas de datos de selección múltiple o excluyente en base a listas en base a elementos HTML `<select>`. |
-| WUIDatepicker    | `0.1`   | 
-| WUITimepicker    | `0.1`   | 
-| WUIColorpicker   | `0.1`   | 
-| WUICheckbox      | `0.1`   | 
-| WUIIntensity     | `0.1`   | 
-| WUIButton        | `0.1`   | 
+| WUIDatepicker    | `0.1`   | Objeto compuesto para implementación de entradas de datos de tipo fecha. |
+| WUITimepicker    | `0.1`   | Objeto compuesto para implementación de entradas de datos de tipo hora. |
+| WUIColorpicker   | `0.1`   | Objeto compuesto para implementación de entradas de datos de tipo selector de color. |
+| WUICheckbox      | `0.1`   | Objeto compuesto para implementación de entradas de datos de tipo casilla de verificación. |
+| WUIIntensity     | `0.1`   | Objeto compuesto para implementación de entradas de datos de tipo selector de intensidad de 4 niveles: nada, bajo, medio y alto. |
+| WUIButton        | `0.1`   | Objeto compuesto para implementación de botones. |
 
 ### Implementación Global
 
@@ -627,15 +627,15 @@ Administrador de cookies.
 | --------- | ------- | ------------------- | ----------- |
 | domain    | string  | `location.hostname` | Define el dominio desde el que se puede acceder a la cookie. Por defecto, es el host actual. Al configurarlo como un dominio principal (p. ej., ejemplo.com para sub.ejemplo.com), los subdominios pueden acceder a él. |
 | path      | string  | `"./"`              | Especifica la ruta válida para la cookie. El valor predeterminado es la ruta actual siendo el valor vacío equivalente a este. Al establecer "/", la cookie es accesible en todo el dominio. |
-| minutes   | integer | `525600`            | 
-| overssl   | boolean | `false`             | 
+| minutes   | integer | `525600`            | Especifica la duración medida en minutos que tendrá la cookie. El valor predeterminado es equivalente a 365 días o un año. |
+| overssl   | boolean | `false`             | Si se establece como `true`, la cookie solo se enviará a través de conexiones HTTPS. |
 
 #### Métodos
 
 | Método    | Tipo retorno | Descripción |
 | --------- | ------------ | ----------- |
-| set       | void         | 
-| get       | string       | 
+| set       | void        | `set(name, value[, options])`<br><br>Parámetros:<br><br> * `name` <br> * `value` <br> * `options` |
+| get       | string      | `get(name)`<br><br>Parámetros:<br><br> * `name` |
 
 #### Implementación
 
