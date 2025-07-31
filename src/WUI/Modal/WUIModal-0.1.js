@@ -340,6 +340,7 @@ class WUIModal {
 		this._element.style.zIndex = 103 +pages;
 		this._element.style.visibility = "hidden";
 		this._element.style.opacity = 0;
+		this._element.style.visibility = "visible";
 		this._element.classList.remove("maximized");
 		this._element.classList.remove("closed");
 		this._element.classList.add("opened");
@@ -356,6 +357,16 @@ class WUIModal {
 			document.body.style.overflowX = "hidden";
 			document.body.style.paddingRight = scrollbarWidth+"px";
 			document.body.style.paddingBottom = scrollbarHeight+"px";
+			if (page) {
+				this._box.style.top = mobile ? "100%" : slide ? slideMargin+"px" : "auto";
+				this._box.style.left = mobile ? "0px" : "auto";
+				this._box.style.right = mobile ? "0px" : "auto";
+				this._box.style.bottom = mobile ? "0px" : slide ? slideMargin+"px" : "auto";
+				this._box.style.width = mobile ? "auto" : "var(--wui-modal-"+(small ? "small" : "")+"page-box-width)";
+				this._box.style.height = mobile || slide ? "auto" :  "var(--wui-modal-"+(small ? "small" : "")+"page-box-height)";
+				this._boxWidth = this._box.clientWidth;
+				this._boxHeight = this._box.clientHeight;
+			}
 			if (page && mobile) {
 				document.body.style.backgroundImage = "none";
 				document.body.style.backgroundColor = boxStyle.backgroundColor;
@@ -370,19 +381,6 @@ class WUIModal {
 			if (ease >= 1) {
 				clearInterval(interval);
 				ease = 1;
-			}
-			if (ease == 0) {
-				if (this._box != null && page) {
-					this._box.style.top = mobile ? "100%" : slide ? slideMargin+"px" : "auto";
-					this._box.style.left = mobile ? "0px" : "auto";
-					this._box.style.right = mobile ? "0px" : "auto";
-					this._box.style.bottom = mobile ? "0px" : slide ? slideMargin+"px" : "auto";
-					this._box.style.width = mobile ? "auto" : "var(--wui-modal-"+(small ? "small" : "")+"page-box-width)";
-					this._box.style.height = mobile || slide ? "auto" :  "var(--wui-modal-"+(small ? "small" : "")+"page-box-height)";
-					this._boxWidth = this._box.clientWidth;
-					this._boxHeight = this._box.clientHeight;
-				}
-				this._element.style.visibility = "visible";
 			}
 			this._element.style.opacity = ease == 1 ? null : ease;
 			if (this._box != null && page) {
