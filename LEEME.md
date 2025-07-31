@@ -39,8 +39,8 @@ utilizadas de manera independiente o conjunta.
 | WUIModal         | `0.1`   | Objeto compuesto para implementación de cuadros de diálogo (tipo `message`) y ventanas emergentes (tipo `page`). |
 | WUIModalSelector | `0.1`   | Objeto extendido de `WUIModal` para la implementación de listas de selección en base a arreglos o a entradas de datos de tipo `<select>`. |
 | WUISlider        | `0.1`   | Objeto compuesto para implementación de persianas controladas por ratón y/o por evento. |
-| WUIPaging        | `0.1`   | Objeto compuesto para implementación de vistas accesibles paginadamente dentro de un elementos HTML. |
-| WUITabs          | `0.1`   | 
+| WUIPaging        | `0.1`   | Objeto compuesto para implementación de vistas accesibles paginadamente. |
+| WUITabs          | `0.1`   | Objeto compuesto para implementación de vistas accesibles mediante selección por pestaña. |
 | WUIList          | `0.1`   | 
 | WUITable         | `0.1`   | 
 | WUIForm          | `0.1`   | 

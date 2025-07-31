@@ -38,8 +38,8 @@ of 25 classes, which can be used independently or together.
 | WUIModal         | `0.1`   | Composite object for implementing dialog boxes (type `message`) and pop-up windows (type `page`). |
 | WUIModalSelector | `0.1`   | Extended object of `WUIModal` for implementing selection lists based on arrays or data inputs of type `<select>`. |
 | WUISlider        | `0.1`   | Composite object for implementing mouse-controlled and/or event-controlled blinds. |
-| WUIPaging        | `0.1`   | Composite object for implementing paginated views within HTML elements. |
-| WUITabs          | `0.1`   | 
+| WUIPaging        | `0.1`   | Composite object for implementing paginated views. |
+| WUITabs          | `0.1`   | Composite object for implementing views accessible by tab selection. |
 | WUIList          | `0.1`   | 
 | WUITable         | `0.1`   | 
 | WUIForm          | `0.1`   | 
