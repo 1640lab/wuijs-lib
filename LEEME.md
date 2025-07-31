@@ -688,8 +688,8 @@ Clase sin propiedades.
 | Método              | Tipo retorno | Descripción |
 | ------------------- | ------------ | ----------- |
 | setTitle            | `Void`       | `setTitle(name)`<br><br>Parámetros:<br><br>**• name:** `String` |
-| setMetaContent      | `Void`       | `setMetaContent(name, content)`<br><br>Parámetros:<br><br>**• name:** `String` <br>**• content:** `String` |
-| setAapplicationName | `Void`       | `setAapplicationName(content)`<br>Alias de `setMetaContent("application-name", content)`<br><br>Parámetros:<br><br>**• content:** `String`<br><br>Revisar especificaciones en [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name). |
+| setMetaContent      | `Void`       | `setMetaContent(name, content)`<br><br>Parámetros:<br><br>**• name:** `String` <br>**• content:** `String`<br><br>Revisar especificaciones y compatibilidad en [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name). |
+| setAapplicationName | `Void`       | `setAapplicationName(content)`<br>Alias de `setMetaContent("application-name", content)`<br><br>Parámetros:<br><br>**• content:** `String` |
 | setThemeColor       | `Void`       | `setThemeColor(content)`<br>Alias de `setMetaContent("theme-color", content)`<br><br>Parámetros:<br><br>**• content:** `String`<br><br>Revisar especificaciones y compatibilidad en [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/theme-color). |
 
 #### Implementación
