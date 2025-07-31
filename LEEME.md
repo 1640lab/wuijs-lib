@@ -677,10 +677,31 @@ Administrador de cabecera HTML.
 
 | Tipo    | Descripción |
 | ------- | ----------- |
-| WUIHead | `WUIHead([properties])`<br><br>Parámetros:<br><br>**• properties:** `Object` |
+| WUIHead | `WUIHead()` |
 
 #### Propiedades
 
+Clase sin propiedades.
+
 #### Métodos
 
+| Método              | Tipo retorno | Descripción |
+| ------------------- | ------------ | ----------- |
+| setTitle            | `Void`       | `setTitle(name)`<br><br>Parámetros:<br><br>**• name:** `String` |
+| setMetaContent      | `Void`       | `setMetaContent(name, content)`<br><br>Parámetros:<br><br>**• name:** `String` <br>**• content:** `String` |
+| setAapplicationName | `Void`       | `setAapplicationName(content)`<br>Alias de `setMetaContent("application-name", content)`<br><br>Parámetros:<br><br>**• content:** `String` |
+| setThemeColor       | `Void`       | `setThemeColor(content)`<br>Alias de `setMetaContent("theme-color", content)`<br><br>Parámetros:<br><br>**• content:** `String`<br><br>Revisar compatibilidad en [MDN Web Docs](https://developer-mozilla-org.translate.goog/en-US/docs/Web/HTML/Reference/Elements/meta/name/theme-color?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc) |
+
 #### Implementación
+
+Código JS:
+
+```js
+const head = new WUIHead();
+
+head.setTitle("Title de prueba");
+
+head.setAapplicationName("Aplicación de prueba");
+
+head.setThemeColor("#1e90ff");
+```
