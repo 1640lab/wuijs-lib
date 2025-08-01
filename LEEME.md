@@ -8,6 +8,7 @@
 *   [Clases](#classes)
 	*   [Clase WUICookie](#class-wuiCookie)
 	*   [Clase WUIHead](#class-wuiHead)
+	*   [Clase WUIBody](#class-wuiBody)
 
 <a name="overview"></a>
 
@@ -30,7 +31,7 @@ utilizadas de manera independiente o conjunta.
 | ---------------- | -------:| ----------- |
 | WUICookie        | `0.1`   | Administrador de cookies. |
 | WUIHead          | `0.1`   | Administrador de cabecera HTML. |
-| WUIBody          | `0.1`   | Administrador de cuerpo HTML. Permite la importación de secciones CSS/JS/HTML y facilita la implementación en entornos nativos móviles. |
+| WUIBody          | `0.1`   | Administrador de cuerpo HTML. Permite la importación de contenido CSS/JS/HTML y facilita la implementación en entornos nativos móviles. |
 | WUILanguage      | `0.2`   | Administrador de idioma. Permite la importación de interfaces que cambian dinámicamente de idioma en base a objetos JSON. |
 | WUIScrolly       | `0.1`   | Herramienta para animación de elementos HTML mediante el evento "on scroll" de cuerpo de la página HTML. |
 | WUIIcon          | `0.1`   | Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces. |
@@ -45,7 +46,7 @@ utilizadas de manera independiente o conjunta.
 | WUIList          | `0.1`   | Objeto compuesto para implementación de listas de datos y botoneras para cada fila de manera opciona. |
 | WUITable         | `0.1`   | Objeto compuesto para implementación de tablas de datos. A diferencia del objeto `WUIList`, el objeto `WUITable` incluye una cabecera de columnas. |
 | WUIForm          | `0.1`   | Objeto compuesto para implementación de formularios de datos. Este objeto permite la implementación de elementos HTML de entrada de datos tales como `<input>`, `<select>` y `<textarea>` y objetos de la librería WUI como `WUISelectpicker`, `WUIDatepicker`, `WUITimepicker`, `WUIColorpicker`, `WUICheckbox`, `WUIIntensity` y `WUIButton`. |
-| WUIFormat        | `0.1`   | Herramienta para manejo y validación de formatos de datos de tipo `String`, `Number` y `Date`. |
+| WUIFormat        | `0.1`   | Herramienta para manejo y validación de formatos de datos de tipo `string`, `number` y `Date`. |
 | WUISelectpicker  | `0.1`   | Objeto compuesto para implementación de entradas de datos de selección múltiple o excluyente en base a listas en base a elementos HTML `<select>`. |
 | WUIDatepicker    | `0.1`   | Objeto compuesto para implementación de entradas de datos de tipo fecha. |
 | WUITimepicker    | `0.1`   | Objeto compuesto para implementación de entradas de datos de tipo hora. |
@@ -630,23 +631,23 @@ Administrador de cookies.
 
 | Tipo      | Descripción |
 | --------- | ----------- |
-| WUICookie | `WUICookie([properties])`<br><br>Parámetros:<br><br>**• properties:** `Object` |
+| WUICookie | `WUICookie([properties])`<br><br>Parámetros:<br><br>**• properties:** `object` |
 
 #### Propiedades
 
 | Propiedad | Tipo      | Valor por omisión   | Descripción |
 | --------- | --------- | ------------------- | ----------- |
-| domain    | `String`  | `location.hostname` | Define el dominio desde el que se puede acceder a la cookie. Por defecto, es el host actual. Al configurarlo como un dominio principal (p. ej., ejemplo.com para sub.ejemplo.com), los subdominios pueden acceder a él. |
-| path      | `String`  | `"./"`              | Especifica la ruta válida para la cookie. El valor predeterminado es la ruta actual siendo el valor vacío equivalente a este. Al establecer "/", la cookie es accesible en todo el dominio. |
-| minutes   | `Number`  | `525600`            | Especifica la duración medida en minutos que tendrá la cookie. El valor predeterminado es equivalente a 365 días o un año. |
-| overssl   | `Boolean` | `false`             | Si se establece como `true`, la cookie solo se enviará a través de conexiones HTTPS. |
+| domain    | `string`  | `location.hostname` | Define el dominio desde el que se puede acceder a la cookie. Por defecto, es el host actual. Al configurarlo como un dominio principal (p. ej., ejemplo.com para sub.ejemplo.com), los subdominios pueden acceder a él. |
+| path      | `string`  | `"./"`              | Especifica la ruta válida para la cookie. El valor predeterminado es la ruta actual siendo el valor vacío equivalente a este. Al establecer "/", la cookie es accesible en todo el dominio. |
+| minutes   | `number`  | `525600`            | Especifica la duración medida en minutos que tendrá la cookie. El valor predeterminado es equivalente a 365 días o un año. |
+| overssl   | `boolean` | `false`             | Si se establece como `true`, la cookie solo se enviará a través de conexiones HTTPS. |
 
 #### Métodos
 
 | Método    | Tipo retorno | Descripción |
 | --------- | ------------ | ----------- |
-| set       | `Void`       | `set(name, value[, options])`<br><br>Parámetros:<br><br>**• name:** `String` <br>**• value:** `String` <br>**• options:** `Object` *optional* |
-| get       | `String`     | `get(name)`<br><br>Parámetros:<br><br>**• name:** `String` |
+| set       | `void`       | `set(name, value[, options])`<br><br>Parámetros:<br><br>**• name:** `string` <br>**• value:** `string` <br>**• options:** `object` *optional* |
+| get       | `string`     | `get(name)`<br><br>Parámetros:<br><br>**• name:** `string` |
 
 #### Implementación
 
@@ -687,10 +688,10 @@ Clase sin propiedades.
 
 | Método              | Tipo retorno | Descripción |
 | ------------------- | ------------ | ----------- |
-| setTitle            | `Void`       | `setTitle(name)`<br><br>Parámetros:<br><br>**• name:** `String` |
-| setMetaContent      | `Void`       | `setMetaContent(name, content)`<br><br>Parámetros:<br><br>**• name:** `String` <br>**• content:** `String`<br><br>Revisar especificaciones y compatibilidad en [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name). |
-| setAapplicationName | `Void`       | `setAapplicationName(content)`<br>Alias de `setMetaContent("application-name", content)`<br><br>Parámetros:<br><br>**• content:** `String` |
-| setThemeColor       | `Void`       | `setThemeColor(content)`<br>Alias de `setMetaContent("theme-color", content)`<br><br>Parámetros:<br><br>**• content:** `String`<br><br>Revisar especificaciones y compatibilidad en [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/theme-color). |
+| setTitle            | `void`       | `setTitle(name)`<br><br>Parámetros:<br><br>**• name:** `string` |
+| setMetaContent      | `void`       | `setMetaContent(name, content)`<br><br>Parámetros:<br><br>**• name:** `string` <br>**• content:** `string`<br><br>Revisar especificaciones y compatibilidad en [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name). |
+| setAapplicationName | `void`       | `setAapplicationName(content)`<br>Alias de `setMetaContent("application-name", content)`<br><br>Parámetros:<br><br>**• content:** `string` |
+| setThemeColor       | `void`       | `setThemeColor(content)`<br>Alias de `setMetaContent("theme-color", content)`<br><br>Parámetros:<br><br>**• content:** `string`<br><br>Revisar especificaciones y compatibilidad en [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/theme-color). |
 
 #### Implementación
 
@@ -705,3 +706,34 @@ head.setAapplicationName("Aplicación de prueba");
 
 head.setThemeColor("#1e90ff");
 ```
+
+<a name="class-wuiBody"></a>
+
+### Clase WUIBody
+
+Versión: `0.1`
+
+Administrador de cuerpo HTML. Permite la importación de contenido CSS/JS/HTML y facilita la implementación en entornos nativos móviles.
+
+#### Constructor
+
+| Tipo    | Descripción |
+| ------- | ----------- |
+| WUIBody | `WUIBody([properties])`<br><br>Parámetros:<br><br>**• properties:** `object` |
+
+#### Propiedades
+
+| Propiedad       | Tipo       | Valor por omisión | Descripción |
+| --------------- | ---------- | ----------------- | ----------- |
+| environment     | `string`   | `"web"`           | Entorno de despliegue de la interfaz web. Este puede tener los valores:<br><br>• `"web"`<br>• `"native.android"`<br>• `"native.ios"` |
+| importDirectory | `string`   | `""`              | Ruta relativa del directorio donde se alojan los subdirectorio para importación de contenido. |
+| importMode      | `string`   | `"fetch"`         | Método de recuperación de contenido para carga. Este puede tener los valores:<br><br>• `"fetch"`<br>• `"xhr"`<br><br>Cuando el despliegue se realiza en ambientes nativos mediante WebView para Android o WebKit para iOS, se recomienda utilizar `"xhr"`. |
+| onCompleted     | `function` | `null`            | Función que se ejecuta cuando todos los contenidos son importados y cargados en el cuerpo de la página HTML. |
+| debug           | `boolean`  | `false`           | Modo de testeo. Imprime en consola los contenidos importados cuando el valor de la propiedad es `true`. |
+
+#### Métodos
+
+| Método              | Tipo retorno | Descripción |
+| ------------------- | ------------ | ----------- |
+
+#### Implementación

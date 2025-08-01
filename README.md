@@ -8,6 +8,7 @@
 *   [Classes](#classes)
     *   [WUICookie Class](#class-wuiCookie)
 	*   [WUIHead Class](#class-wuiHead)
+	*   [WUIBody Class](#class-wuiBody)
 
 <a name="overview"></a>
 
@@ -29,7 +30,7 @@ of 25 classes, which can be used independently or together.
 | ---------------- | -------:| ----------- |
 | WUICookie        | `0.1`   | Cookie manager. |
 | WUIHead          | `0.1`   | HTML header manager. |
-| WUIBody          | `0.1`   | HTML body manager. Allows the import of CSS/JS/HTML sections and facilitates implementation in native mobile environments. |
+| WUIBody          | `0.1`   | HTML body manager. Allows the import of CSS/JS/HTML content and facilitates implementation in native mobile environments. |
 | WUILanguage      | `0.2`   | Language manager. Allows the import of interfaces that dynamically change languages based on JSON objects. |
 | WUIScrolly       | `0.1`   | Tool for animating HTML elements using the "on scroll" event of the HTML page body.
 | WUIIcon          | `0.1`   | Set of pre-designed icons loaded via CSS, for use in interfaces.
@@ -44,7 +45,7 @@ of 25 classes, which can be used independently or together.
 | WUIList          | `0.1`   | Composite object for implementing data lists and buttons for each row optionally. |
 | WUITable         | `0.1`   | Composite object for implementing data tables. Unlike the `WUIList` object, the `WUITable` object includes a column header. |
 | WUIForm          | `0.1`   | Composite object for implementing data forms. This object allows the implementation of HTML data input elements such as `<input>`, `<select>`, and `<textarea>`, and WUI library objects such as `WUISelectpicker`, `WUIDatepicker`, `WUITimepicker`, `WUIColorpicker`, `WUICheckbox`, `WUIIntensity`, and `WUIButton`. |
-| WUIFormat        | `0.1`   | Tool for managing and validating `String`, `Number` and `Date` data formats. |
+| WUIFormat        | `0.1`   | Tool for managing and validating `string`, `number` and `Date` data formats. |
 | WUISelectpicker  | `0.1`   | Composite object for implementing multiple-select or exclusive data entries based on lists based on HTML `<select>` elements. |
 | WUIDatepicker    | `0.1`   | Composite object for implementing date type data input. |
 | WUITimepicker    | `0.1`   | Composite object for implementing time type data inputs. |
@@ -631,23 +632,23 @@ Cookie manager.
 
 | Type      | Description |
 | --------- | ----------- |
-| WUICookie | `WUICookie([properties])`<br><br>Arguments:<br><br>**• properties:** `Object` |
+| WUICookie | `WUICookie([properties])`<br><br>Arguments:<br><br>**• properties:** `object` |
 
 #### Properties
 
-| Property | Type      | Default value.      | Description |
+| Property | Type      | Default value       | Description |
 | -------- | --------- | ------------------- | ----------- |
-| domain   | `String`  | `location.hostname` | Defines the domain for which the cookie is accessible. By default, it's the current host. Setting it to a parent domain (e.g., example.com for sub.example.com) makes it accessible to subdomains. |
-| path     | `String`  | `"./"`              | Specifies the path for which the cookie is valid. The default value is the current path, with an empty value being equivalent to this. Setting "/" makes the cookie accessible across the entire domain. |
-| minutes  | `Number`  | `525600`            | Specifies the duration, measured in minutes, for the cookie to remain active. The default value is 365 days or one year.
-| overssl  | `Boolean` | `false`             | If set to `true`, the cookie will only be sent over HTTPS connections. |
+| domain   | `string`  | `location.hostname` | Defines the domain for which the cookie is accessible. By default, it's the current host. Setting it to a parent domain (e.g., example.com for sub.example.com) makes it accessible to subdomains. |
+| path     | `string`  | `"./"`              | Specifies the path for which the cookie is valid. The default value is the current path, with an empty value being equivalent to this. Setting "/" makes the cookie accessible across the entire domain. |
+| minutes  | `number`  | `525600`            | Specifies the duration, measured in minutes, for the cookie to remain active. The default value is 365 days or one year.
+| overssl  | `boolean` | `false`             | If set to `true`, the cookie will only be sent over HTTPS connections. |
 
 #### Methods
 
 | Method    | Return type | Description |
 | --------- | ----------- | ----------- |
-| set       | `Void`      | `set(name, value[, options])`<br><br>Arguments:<br><br>**• name:** `String` <br>**• value:** `String` <br>**• options:** `Object` *optional* |
-| get       | `String`    | `get(name)`<br><br>Arguments:<br><br>**• name:** `String` |
+| set       | `void`      | `set(name, value[, options])`<br><br>Arguments:<br><br>**• name:** `string` <br>**• value:** `string` <br>**• options:** `object` *optional* |
+| get       | `string`    | `get(name)`<br><br>Arguments:<br><br>**• name:** `string` |
 
 #### Implementation
 
@@ -676,7 +677,7 @@ HTML header manager.
 
 #### Constructor
 
-| Tipo    | Descripción |
+| Type    | Description |
 | ------- | ----------- |
 | WUIHead | `WUIHead()` |
 
@@ -688,10 +689,10 @@ Class without properties.
 
 | Method              | Return type | Description |
 | ------------------- | ----------- | ----------- |
-| setTitle            | `Void`      | `setTitle(name)`<br><br>Arguments:<br><br>**• name:** `String` |
-| setMetaContent      | `Void`      | `setMetaContent(name, content)`<br><br>Arguments:<br><br>**• name:** `String` <br>**• content:** `String`<br><br>Check specifications and compatibility in [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name). |
-| setAapplicationName | `Void`      | `setAapplicationName(content)`<br>Alias of `setMetaContent("application-name", content)`<br><br>Arguments:<br><br>**• content:** `String` |
-| setThemeColor       | `Void`      | `setThemeColor(content)`<br>Alias of `setMetaContent("theme-color", content)`<br><br>Arguments:<br><br>**• content:** `String`<br><br>Check specifications and compatibility in [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/theme-color). |
+| setTitle            | `void`      | `setTitle(name)`<br><br>Arguments:<br><br>**• name:** `string` |
+| setMetaContent      | `void`      | `setMetaContent(name, content)`<br><br>Arguments:<br><br>**• name:** `string` <br>**• content:** `string`<br><br>Check specifications and compatibility in [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name). |
+| setAapplicationName | `void`      | `setAapplicationName(content)`<br>Alias of `setMetaContent("application-name", content)`<br><br>Arguments:<br><br>**• content:** `string` |
+| setThemeColor       | `void`      | `setThemeColor(content)`<br>Alias of `setMetaContent("theme-color", content)`<br><br>Arguments:<br><br>**• content:** `string`<br><br>Check specifications and compatibility in [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/theme-color). |
 
 #### Implementation
 
@@ -706,3 +707,34 @@ head.setAapplicationName("Test app");
 
 head.setThemeColor("#1e90ff");
 ```
+
+<a name="class-wuiBody"></a>
+
+### WUIBody Class
+
+Version: `0.1`
+
+HTML body manager. Allows the import of CSS/JS/HTML content and facilitates implementation in native mobile environments.
+
+#### Constructor
+
+| Type    | Description |
+| ------- | ----------- |
+| WUIBody | `WUIBody([properties])`<br><br>Arguments:<br><br>**• properties:** `object` |
+
+#### Properties
+
+| Property        | Type       | Default value | Description |
+| --------------- | ---------- | ------------- | ----------- |
+| environment     | `string`   | `"web"`       | Web interface deployment environment. This can have the following values:<br><br>• `"web"`<br>• `"native.android"`<br>• `"native.ios"` |
+| importDirectory | `string`   | `""`          | Relative path of the directory where the subdirectories for content import are hosted. |
+| importMode      | `string`   | `"fetch"`     | Content retrieval method for upload. This can have the following values:<br><br>• `"fetch"`<br>• `"xhr"`<br><br>When deploying to native environments using WebView for Android or WebKit for iOS, it is recommended to use `"xhr"`. |
+| onCompleted     | `function` | `null`        | Function that is executed when all content is imported and loaded into the body of the HTML page. |
+| debug           | `boolean`  | `false`       | Test mode. Prints imported content to the console when the property value is `true`. |
+
+#### Methods
+
+| Method              | Return type | Description |
+| ------------------- | ----------- | ----------- |
+
+#### Implementation
