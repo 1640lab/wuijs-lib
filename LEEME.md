@@ -5,7 +5,7 @@
 *   [Description General](#overview)
 	*   [Tabla de Clases](#classes-table)
 *   [Instalación](#install)
-*   [Implementación Global](#implementation)
+*   [Implementación](#implementation)
 *   [Clases](#classes)
 	*   [Clase WUICookie](#wuiCookie)
 	*   [Clase WUIHead](#wuiHead)
