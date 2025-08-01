@@ -63,7 +63,7 @@ To install the WUI library, you must clone it from the official distribution rep
 ```
 cd ./downloads
 git clone https://git@github.com/1640lab/wuijs-lib.git
-cp ./wuijs-lib/src/WDS ../src/Libraries/
+cp -r ./wuijs-lib/src/WDS ../src/Libraries/
 ```
 
 <a name="implementation"></a>
