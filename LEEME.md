@@ -62,7 +62,7 @@ Para habilitar todas las clases se deben implementar las dependencias CSS y JS
 de las librerías en la cabecera HTML de la página web conjuntamente con los
 archivos de configuración de estilos `Settings.css` y `WUI.css`.
 
-Código CSS archivo `/examples/Global/Settings.css`:
+Código CSS archivo `Settings.css`:
 
 ```css
 /* Main settings */
@@ -84,7 +84,7 @@ Código CSS archivo `/examples/Global/Settings.css`:
 }
 ```
 
-Código CSS archivo `/examples/Global/WUI.css`:
+Código CSS archivo `WUI.css`:
 
 ```css
 /* WUI settings */
@@ -546,11 +546,11 @@ Código CSS archivo `/examples/Global/WUI.css`:
 }
 ```
 
-Suponiendo que el archivo de configuración de estilos CSS es instalado en la
-ruta relativa `./Settings/WUI.css` y las librerías están instaladas en la ruta
-relativa `./Libraries/WUI`, la cabecera HTML queda de la forma:
+Suponiendo que los archivos de configuración de estilos CSS son instalados en
+el directorio `./Settings/` y las librería en `./Libraries/`, la cabecera HTML
+queda de la forma:
 
-Código HTML archivo `/examples/Global/Global.html`:
+Código HTML:
 
 ```html
 <!doctype html>
@@ -822,6 +822,32 @@ Administrador de idioma para interfaces web. Permite cargar archivos de idioma e
 | load   | `void`       | `load([lang[, sets]])`<br><br>Parámetros:<br>**• lang:** `string` *opcional* (valor por defecto el idioma actual)<br>**• sets:** `array` *opcional* (valor por defecto el conjunto actual expresado como arreglo)<br><br>Carga los archivos de idioma indicados por idioma y conjunto y, actualiza los elementos HTML marcados con el selector CSS. |
 
 #### Implementación
+
+Código JS archivo `main-en.js`:
+
+```js
+languages.en = {
+	titles: {
+		test: "Test title"
+	},
+	texts: {
+		test: "Test text"
+	}
+};
+```
+
+Código JSON archivo `main-en.json`:
+
+```json
+{
+	"titles": {
+		"test": "Test title"
+	},
+	"texts": {
+		"test": "Test text"
+	}
+}
+```
 
 Código HTML:
 

@@ -63,7 +63,7 @@ To enable all classes, the CSS and JS dependencies of the libraries must be
 implemented in the HTML header of the web page together with the
 `Settings.css` and `WUI.css` style configuration files.
 
-Código CSS archivo `/examples/Global/Settings.css`:
+Código CSS archivo `Settings.css`:
 
 ```css
 /* Main settings */
@@ -85,7 +85,7 @@ Código CSS archivo `/examples/Global/Settings.css`:
 }
 ```
 
-CSS code in the `/examples/Global/WUI.css` file:
+CSS code in the `WUI.css` file:
 
 ```css
 /* WUI settings */
@@ -547,11 +547,11 @@ CSS code in the `/examples/Global/WUI.css` file:
 }
 ```
 
-Assuming the CSS configuration file is installed in the relative path
+Assuming the CSS configuration file is installed in the relative path 
 `./Settings/WUI.css` and the libraries are installed in the relative path
 `./Libraries/WUI`, the HTML header looks like this:
 
-HTML code for the `/examples/Global/Global.html` file:
+HTML code:
 
 ```html
 <!doctype html>
@@ -824,6 +824,32 @@ Language manager for web interfaces. Allows you to load language files in JS or 
 
 #### Implementation
 
+JS code file `main-es.js`:
+
+```js
+languages.es = {
+	titles: {
+		test: "Titulo prueba"
+	},
+	texts: {
+		test: "Texto prueba"
+	}
+};
+```
+
+JSON code file `main-es.json`:
+
+```json
+{
+	"titles": {
+		"test": "Titulo prueba"
+	},
+	"texts": {
+		"test": "Texto prueba"
+	}
+}
+```
+
 HTML code:
 
 ```html
@@ -838,7 +864,7 @@ const language = new WUILanguage({
     selector: ".wui-language",
     directory: "Languages/",
     set: "main",
-    lang: "en",
+    lang: "es",
     mode: "js",
     dataKey: "key",
     dataOutput: "text",
