@@ -4,12 +4,13 @@
 
 *   [Description General](#overview)
 	*   [Tabla de Clases](#classes-table)
-	*   [Implementación Global](#global-implementation)
+*   [Instalación](#install)
+*   [Implementación Global](#implementation)
 *   [Clases](#classes)
-	*   [Clase WUICookie](#class-wuiCookie)
-	*   [Clase WUIHead](#class-wuiHead)
-	*   [Clase WUIBody](#class-wuiBody)
-	*   [Clase WUILanguage](#class-wuiLanguage)
+	*   [Clase WUICookie](#wuiCookie)
+	*   [Clase WUIHead](#wuiHead)
+	*   [Clase WUIBody](#wuiBody)
+	*   [Clase WUILanguage](#wuiLanguage)
 
 <a name="overview"></a>
 
@@ -53,7 +54,21 @@ WUI, acrónimo del inglés *Web User Interface JavaScript library*, es una bibli
 | WUIIntensity     | `0.1`   | Objeto compuesto para implementación de entradas de datos de tipo selector de intensidad de 4 niveles: nada, bajo, medio y alto. |
 | WUIButton        | `0.1`   | Objeto compuesto para implementación de botones. |
 
-### Implementación Global
+<a name="install"></a>
+
+## Instalación
+
+To install the WUI library, you must clone it from the official distribution repositories on GitHib (`1640lab/wuijs-lib` or `sbelmar/wuijs-lib`). Assuming the project where it will be deployed has a download directory: `./downloads`, a `./src` source directory, and within that, a `./src/Libraries` library directory, you must type the following in the terminal:
+
+```
+cd ./downloads
+git clone https://git@github.com:1640lab/wuijs-lib.git
+cp ./wuijs-lib/src/WDS ../src/Libraries/
+```
+
+<a name="implementation"></a>
+
+## Implementación
 
 Para habilitar todas las clases se deben implementar las dependencias CSS y JS de las librerías en la cabecera HTML de la página web conjuntamente con los archivos de configuración de estilos `Settings.css` y `WUI.css`.
 
@@ -615,7 +630,7 @@ Este método de implementación permite la estandarización del diseño de la in
 
 ## Clases
 
-<a name="class-wuiCookie"></a>
+<a name="wuiCookie"></a>
 
 ### Clase WUICookie
 
@@ -662,7 +677,7 @@ cookie.set("test", "value");
 console.log(cookie.get("test"));
 ```
 
-<a name="class-wuiHead"></a>
+<a name="wuiHead"></a>
 
 ### Clase WUIHead
 
@@ -703,7 +718,7 @@ head.setAapplicationName("Aplicación de prueba");
 head.setThemeColor("#1e90ff");
 ```
 
-<a name="class-wuiBody"></a>
+<a name="wuiBody"></a>
 
 ### Clase WUIBody
 
@@ -783,7 +798,7 @@ body.import("testContent", "./Import/test-content", () => {
 });
 ```
 
-<a name="class-wuiLanguage"></a>
+<a name="wuiLanguage"></a>
 
 ### Clase WUILanguage
 
