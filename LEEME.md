@@ -19,10 +19,7 @@ Versión Global: `0.2`
 
 Licencia: `Licencia Apache 2.0`
 
-WUI, acrónimo del inglés *Web User Interface JavaScript library*, es una
-biblioteca JS de código abierto orientada a la implementación rápida de
-intetfaces de usuario Web compuesta por 25 clases, las que pueden ser
-utilizadas de manera independiente o conjunta.
+WUI, acrónimo del inglés *Web User Interface JavaScript library*, es una biblioteca JS de código abierto orientada a la implementación rápida de intetfaces de usuario Web compuesta por 25 clases, las que pueden ser utilizadas de manera independiente o conjunta.
 
 <a name="classes-table"></a>
 
@@ -58,9 +55,7 @@ utilizadas de manera independiente o conjunta.
 
 ### Implementación Global
 
-Para habilitar todas las clases se deben implementar las dependencias CSS y JS
-de las librerías en la cabecera HTML de la página web conjuntamente con los
-archivos de configuración de estilos `Settings.css` y `WUI.css`.
+Para habilitar todas las clases se deben implementar las dependencias CSS y JS de las librerías en la cabecera HTML de la página web conjuntamente con los archivos de configuración de estilos `Settings.css` y `WUI.css`.
 
 Código CSS archivo `Settings.css`:
 
@@ -546,9 +541,7 @@ Código CSS archivo `WUI.css`:
 }
 ```
 
-Suponiendo que los archivos de configuración de estilos CSS son instalados en
-el directorio `./Settings/` y las librería en `./Libraries/`, la cabecera HTML
-queda de la forma:
+Suponiendo que los archivos de configuración de estilos CSS son instalados en el directorio `./Settings/` y las librería en `./Libraries/`, la cabecera HTML queda de la forma:
 
 Código HTML:
 
@@ -613,8 +606,10 @@ Código HTML:
 </html>
 ```
 
-Este método de implementación permite la estandarización del diseño de la
-interfaz de usuario de una aplicación, por medio del archivo `WUI.css`.
+Este método de implementación permite la estandarización del diseño de la interfaz de usuario de una aplicación, por medio del archivo `WUI.css`.
+
+> [!IMPORTANT]
+> Los archivos de de configuración de estilos deben estar en la ruta `./Settings/Main.css` y `./Settings/WUI.css`.
 
 <a name="classes"></a>
 
@@ -861,9 +856,9 @@ Código JS:
 ```js
 const language = new WUILanguage({
     selector: ".wui-language",
-    directory: "Languages/",
+    directory: "./Languages/",
     set: "main",
-    lang: "en",
+    lang: "es",
     mode: "js",
     dataKey: "key",
     dataOutput: "text",
@@ -875,4 +870,5 @@ const language = new WUILanguage({
 language.load("en", ["main"]);
 ```
 
-> El archivo de idioma debe estar en la ruta `Languages/main-en.js` o `Languages/main-en.json` según el modo que se emplee
+> [!IMPORTANT]
+> El archivo de idioma debe estar en la ruta `./Languages/main-es.js` o `./Languages/main-es.json` según el modo que se emplee.

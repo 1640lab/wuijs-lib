@@ -19,9 +19,7 @@ Global Version: `0.2`
 
 Licence: `Apache License 2.0`
 
-WUI, an acronym for *Web User Interface JavaScript library*, is an open source
-JavaScript library for the rapid implementation of Web user interfaces composed
-of 25 classes, which can be used independently or together.
+WUI, an acronym for *Web User Interface JavaScript library*, is an open source JavaScript library for the rapid implementation of Web user interfaces composed of 25 classes, which can be used independently or together.
 
 <a name="classes-table"></a>
 
@@ -59,9 +57,7 @@ of 25 classes, which can be used independently or together.
 
 ### Global Implementation
 
-To enable all classes, the CSS and JS dependencies of the libraries must be
-implemented in the HTML header of the web page together with the
-`Settings.css` and `WUI.css` style configuration files.
+To enable all classes, the CSS and JS dependencies of the libraries must be implemented in the HTML header of the web page together with the `Settings.css` and `WUI.css` style configuration files.
 
 Código CSS archivo `Settings.css`:
 
@@ -547,9 +543,7 @@ CSS code in the `WUI.css` file:
 }
 ```
 
-Assuming the CSS configuration file is installed in the relative path 
-`./Settings/WUI.css` and the libraries are installed in the relative path
-`./Libraries/WUI`, the HTML header looks like this:
+Assuming the CSS configuration file is installed in the relative path `./Settings/WUI.css` and the libraries are installed in the relative path `./Libraries/WUI`, the HTML header looks like this:
 
 HTML code:
 
@@ -614,8 +608,10 @@ HTML code:
 </html>
 ```
 
-This implementation method allows for standardization of an application's user
-interface design, using the `WUI.css` file.
+This implementation method allows for standardization of an application's user interface design, using the `WUI.css` file.
+
+> [!IMPORTANT]
+> The style configuration files must be in the paths `./Settings/Main.css` and `./Settings/WUI.css`.
 
 <a name="classes"></a>
 
@@ -862,9 +858,9 @@ JS code:
 ```js
 const language = new WUILanguage({
     selector: ".wui-language",
-    directory: "Languages/",
+    directory: "./Languages/",
     set: "main",
-    lang: "es",
+    lang: "en",
     mode: "js",
     dataKey: "key",
     dataOutput: "text",
@@ -876,4 +872,5 @@ const language = new WUILanguage({
 language.load("en", ["main"]);
 ```
 
-> The language file must be in the path `Languages/main-en.js` or `Languages/main-en.json` depending on the mode used
+> [!IMPORTANT]
+> The language file must be in the path `./Languages/main-en.js` or `./Languages/main-en.json` depending on the mode used.
