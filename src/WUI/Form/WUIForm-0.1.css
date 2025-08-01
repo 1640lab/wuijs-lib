@@ -920,6 +920,12 @@
 	padding-right: 10px;
 }
 
+/* wui-selectpicker */
+
+.wui-form:is(.line, .border) fieldset > .field.invalid > .wui-selectpicker {
+	background-image: none !important;
+}
+
 /* wui-colorpicker */
 /* wui-checkbox */
 
