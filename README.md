@@ -752,7 +752,7 @@ HTML body manager. Allows the import of CSS/JS/HTML content and facilitates impl
 
 #### Implementation
 
-CSS code for the `/examples/Import/test-content.css` file:
+CSS code for the `./Import/test-content.css` file:
 
 ```css
 .test a, .test a:visited {
@@ -762,7 +762,7 @@ CSS code for the `/examples/Import/test-content.css` file:
 }
 ```
 
-HTML code for the `/examples/Import/test-content.htm` file:
+HTML code for the `./Import/test-content.htm` file:
 
 ```html
 <section id="testContent" class="test">
@@ -770,7 +770,7 @@ HTML code for the `/examples/Import/test-content.htm` file:
 </section>
 ```
 
-JS code for the `/examples/Import/test-content.js` file:
+JS code for the `./Import/test-content.js` file:
 
 ```js
 const testContentLog = (content) => {
