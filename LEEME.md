@@ -752,7 +752,7 @@ Administrador de cuerpo HTML. Permite la importación de contenido CSS/JS/HTML y
 
 #### Implementación
 
-Código CSS archivo `./Import/test-content.css`:
+Código CSS archivo `./Imports/test-content.css`:
 
 ```css
 .test a, .test a:visited {
@@ -762,7 +762,7 @@ Código CSS archivo `./Import/test-content.css`:
 }
 ```
 
-Código HTML archivo `./Import/test-content.htm`:
+Código HTML archivo `./Imports/test-content.htm`:
 
 ```html
 <section id="testContent" class="test">
@@ -770,7 +770,7 @@ Código HTML archivo `./Import/test-content.htm`:
 </section>
 ```
 
-Código JS archivo `./Import/test-content.js`:
+Código JS archivo `./Imports/test-content.js`:
 
 ```js
 const testContentLog = (content) => {
@@ -793,7 +793,7 @@ body.onCompleted = () => {
 	body.prepare();
 };
 
-body.import("testContent", "./Import/test-content", () => {
+body.import("testContent", "./Imports/test-content", () => {
 	testContentLog("contenido de prueba cargado");
 });
 ```
