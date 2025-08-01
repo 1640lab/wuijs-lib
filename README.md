@@ -9,6 +9,7 @@
     *   [WUICookie Class](#class-wuiCookie)
 	*   [WUIHead Class](#class-wuiHead)
 	*   [WUIBody Class](#class-wuiBody)
+	*   [WUILanguage Class](#class-wuiLanguage)
 
 <a name="overview"></a>
 
@@ -31,7 +32,7 @@ of 25 classes, which can be used independently or together.
 | WUICookie        | `0.1`   | Cookie manager. |
 | WUIHead          | `0.1`   | HTML header manager. |
 | WUIBody          | `0.1`   | HTML body manager. Allows the import of CSS/JS/HTML content and facilitates implementation in native mobile environments. |
-| WUILanguage      | `0.2`   | Language manager. Allows the import of interfaces that dynamically change languages based on JSON objects. |
+| WUILanguage      | `0.2`   | Language manager for web interfaces. Allows you to load language files in JS or JSON format and dynamically update the content of HTML elements based on the language. |
 | WUIScrolly       | `0.1`   | Tool for animating HTML elements using the "on scroll" event of the HTML page body.
 | WUIIcon          | `0.1`   | Set of pre-designed icons loaded via CSS, for use in interfaces.
 | WUIFade          | `0.1`   | Tool for fading out and fading in HTML elements with opacity. |
@@ -632,7 +633,7 @@ Cookie manager.
 
 | Type      | Description |
 | --------- | ----------- |
-| WUICookie | `WUICookie([properties])`<br><br>Arguments:<br><br>**• properties:** `object` |
+| WUICookie | `WUICookie([properties])`<br><br>Arguments:<br>**• properties:** `object` |
 
 #### Properties
 
@@ -647,8 +648,8 @@ Cookie manager.
 
 | Method    | Return type | Description |
 | --------- | ----------- | ----------- |
-| set       | `void`      | `set(name, value[, options])`<br><br>Arguments:<br><br>**• name:** `string` <br>**• value:** `string` <br>**• options:** `object` *optional*<br><br>Add or modify a cookie. |
-| get       | `string`    | `get(name)`<br><br>Arguments:<br><br>**• name:** `string`<br><br>Reads the contents of a cookie by its name. |
+| set       | `void`      | `set(name, value[, options])`<br><br>Arguments:<br>**• name:** `string` <br>**• value:** `string` <br>**• options:** `object` *optional*<br><br>Add or modify a cookie. |
+| get       | `string`    | `get(name)`<br><br>Arguments:<br>**• name:** `string`<br><br>Reads the contents of a cookie by its name. |
 
 #### Implementation
 
@@ -689,10 +690,10 @@ Class without properties.
 
 | Method              | Return type | Description |
 | ------------------- | ----------- | ----------- |
-| setTitle            | `void`      | `setTitle(name)`<br><br>Arguments:<br><br>**• name:** `string`<br><br>Sets the name of the HTML document using the `<title>` tag. |
-| setMetaContent      | `void`      | `setMetaContent(name, content)`<br><br>Arguments:<br><br>**• name:** `string` <br>**• content:** `string`<br><br>Sets a meta value in the header of the HTML document using the `<meta>` tag.<br>Check specifications and compatibility in [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name). |
-| setAapplicationName | `void`      | `setAapplicationName(content)`<br>Alias of `setMetaContent("application-name", content)`<br><br>Arguments:<br><br>**• content:** `string`<br><br>Sets the `application-name` meta value in the header of the HTML document. |
-| setThemeColor       | `void`      | `setThemeColor(content)`<br>Alias of `setMetaContent("theme-color", content)`<br><br>Arguments:<br><br>**• content:** `string`<br><br>Sets the `theme-color` meta value in the header of the HTML document.<br>Check specifications and compatibility in [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/theme-color). |
+| setTitle            | `void`      | `setTitle(name)`<br><br>Arguments:<br>**• name:** `string`<br><br>Sets the name of the HTML document using the `<title>` tag. |
+| setMetaContent      | `void`      | `setMetaContent(name, content)`<br><br>Arguments:<br>**• name:** `string` <br>**• content:** `string`<br><br>Sets a meta value in the header of the HTML document using the `<meta>` tag.<br>Check specifications and compatibility in [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name). |
+| setAapplicationName | `void`      | `setAapplicationName(content)`<br>Alias of `setMetaContent("application-name", content)`<br><br>Arguments:<br>**• content:** `string`<br><br>Sets the `application-name` meta value in the header of the HTML document. |
+| setThemeColor       | `void`      | `setThemeColor(content)`<br>Alias of `setMetaContent("theme-color", content)`<br><br>Arguments:<br>**• content:** `string`<br><br>Sets the `theme-color` meta value in the header of the HTML document.<br>Check specifications and compatibility in [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/theme-color). |
 
 #### Implementation
 
@@ -720,15 +721,15 @@ HTML body manager. Allows the import of CSS/JS/HTML content and facilitates impl
 
 | Type    | Description |
 | ------- | ----------- |
-| WUIBody | `WUIBody([properties])`<br><br>Arguments:<br><br>**• properties:** `object` |
+| WUIBody | `WUIBody([properties])`<br><br>Arguments:<br>**• properties:** `object` |
 
 #### Properties
 
 | Property        | Type       | Default value | Description |
 | --------------- | ---------- | ------------- | ----------- |
-| environment     | `string`   | `"web"`       | Web interface deployment environment. This can have the following values:<br><br>• `"web"`<br>• `"native.android"`<br>• `"native.ios"` |
+| environment     | `string`   | `"web"`       | Web interface deployment environment.<br><br>Values:<br>• `"web"`<br>• `"native.android"`<br>• `"native.ios"` |
 | importDirectory | `string`   | `""`          | Relative path of the directory where the subdirectories for content import are hosted. |
-| importMode      | `string`   | `"fetch"`     | Content retrieval method for upload. This can have the following values:<br><br>• `"fetch"`<br>• `"xhr"`<br><br>When deploying to native environments using WebView for Android or WebKit for iOS, it is recommended to use `"xhr"`. |
+| importMode      | `string`   | `"fetch"`     | Content retrieval method for upload.<br><br>Values:<br>• `"fetch"`<br>• `"xhr"`<br><br>When deploying to native environments using WebView for Android or WebKit for iOS, it is recommended to use `"xhr"`. |
 | onCompleted     | `function` | `null`        | Function that is executed when all content is imported and loaded into the body of the HTML page. |
 | debug           | `boolean`  | `false`       | Test mode. Prints imported content to the console when the property value is `true`. |
 
@@ -736,9 +737,9 @@ HTML body manager. Allows the import of CSS/JS/HTML content and facilitates impl
 
 | Method   | Return type | Description |
 | -------- | ----------- | ----------- |
-| import   | `void`      | `import(id, path[, done])`<br><br>Arguments:<br><br>**• id:** `string`, specifies the id of the HTML element where the content is to be loaded.<br>**• path:** `string`, specifies the subdirectory path and filename of the files with extension `.css`, `.htm` and `.js` that will be imported and loaded.<br>**• done:** `function` *optional*, this function is executed when the content loading has finished.<br><br>Imports CSS/JS/HTML content referenced to an HTML element by its `id`. |
+| import   | `void`      | `import(id, path[, done])`<br><br>Arguments:<br>**• id:** `string`, specifies the id of the HTML element where the content is to be loaded.<br>**• path:** `string`, specifies the subdirectory path and filename of the files with extension `.css`, `.htm` and `.js` that will be imported and loaded.<br>**• done:** `function` *optional*, this function is executed when the content loading has finished.<br><br>Imports CSS/JS/HTML content referenced to an HTML element by its `id`. |
 | prepaare | `void`      | `prepaare()`<br><br>Depending on the value of the `environment` parameter, modifies the HTML elements `a`, `input`, and `select` in the HTML document body to adapt them to native environments. |
-| openURL  | `void`      | `openURL(url[, download])`<br><br>Parameters:<br><br>**• id:** `string`, specifies the URL that is required to be opened or downloaded.<br>**• download:** `string` *optional*, specifies the name of the file that will be used to download the content referenced by the URL.<br><br>Open or download content using a URL. This method is required in native environments since WebView on Android or WebKit on iOS aren't always supported. |
+| openURL  | `void`      | `openURL(url[, download])`<br><br>Arguments:<br><br>**• id:** `string`, specifies the URL that is required to be opened or downloaded.<br>**• download:** `string` *optional*, specifies the name of the file that will be used to download the content referenced by the URL.<br><br>Open or download content using a URL. This method is required in native environments since WebView on Android or WebKit on iOS aren't always supported. |
 
 #### Implementation
 
@@ -786,3 +787,67 @@ body.onCompleted = () => {
 body.import("testContent", "./Import/test-content", () => {
 	testContentLog("test content loaded");
 });
+```
+
+<a name="class-wuiLanguage"></a>
+
+### WUILanguage Class
+
+Version: `0.2`
+
+Language manager for web interfaces. Allows you to load language files in JS or JSON format and dynamically update the content of HTML elements based on the language.
+
+#### Constructor
+
+| Type        | Description |
+| ----------- | ----------- |
+| WUILanguage | `WUILanguage([properties])`<br><br>Arguments:<br>**• properties:** `object` *optional* |
+
+#### Properties
+
+| Property   | Type       | Default value.    | Description |
+| ---------- | ---------- | ----------------- | ----------- |
+| selector   | `string`   | `".wui-language"` | CSS selector for HTML elements to be loaded. This can be applied to the `content` attribute of the `meta` element, to the `innerHTML` property of the elements: `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `div`, `span`, `p`, `i`, `li`, `a`, `legend`, `label`, `option`, `data`, `button`, and to the `placeholder` attribute of the `input` and `textarea` elements. |
+| directory  | `string`   | `"Languages/"`    | Path to the directory where the language files are located. |
+| set        | `string`   | `"main"`          | Name of the language set to load. |
+| lang       | `string`   | `"es"`            | Language code in ISO 639-1 format. |
+| mode       | `string`   | `"js"`            | Language file format.<br><br>Values:<br>• `"js"`<br>• `"json"` |
+| dataKey    | `string`   | `"key"`           | Name of the `data-*` attribute that contains the text key in HTML elements. |
+| dataOutput | `string`   | `"text"`          | Name of the `data-*` attribute where the loaded text can be placed. |
+| onLoad     | `function` | `null`            | Function that is executed when the language loading has finished. |
+
+#### Methods
+
+| Method | Return type | Description |
+| ------ | ----------- | ----------- |
+| load   | `void`      | `load([lang[, sets]])`<br><br>Arguments:<br>**• lang:** `string` *optional* (default value the current language)<br>**• sets:** `array` *optional* (default value the current set expressed as an array)<br><br>Loads the language files indicated by language and set, and updates the HTML elements marked with the CSS selector. |
+
+#### Implementation
+
+HTML code:
+
+```html
+<h1 class="wui-language" data-key="titles.test"></h1>
+<div class="wui-language" data-key="texts.test"></div>
+```
+
+JS code:
+
+```js
+const language = new WUILanguage({
+    selector: ".wui-language",
+    directory: "Languages/",
+    set: "main",
+    lang: "en",
+    mode: "js",
+    dataKey: "key",
+    dataOutput: "text",
+    onLoad: (lang) => {
+        console.log("Language loaded:", lang);
+    }
+});
+
+language.load("en", ["main"]);
+```
+
+> The language file must be in the path `Languages/main-en.js` or `Languages/main-en.json` depending on the mode used

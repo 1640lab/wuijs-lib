@@ -9,6 +9,7 @@
 	*   [Clase WUICookie](#class-wuiCookie)
 	*   [Clase WUIHead](#class-wuiHead)
 	*   [Clase WUIBody](#class-wuiBody)
+	*   [Clase WUILanguage](#class-wuiLanguage)
 
 <a name="overview"></a>
 
@@ -32,7 +33,7 @@ utilizadas de manera independiente o conjunta.
 | WUICookie        | `0.1`   | Administrador de cookies. |
 | WUIHead          | `0.1`   | Administrador de cabecera HTML. |
 | WUIBody          | `0.1`   | Administrador de cuerpo HTML. Permite la importación de contenido CSS/JS/HTML y facilita la implementación en entornos nativos móviles. |
-| WUILanguage      | `0.2`   | Administrador de idioma. Permite la importación de interfaces que cambian dinámicamente de idioma en base a objetos JSON. |
+| WUILanguage      | `0.2`   | Administrador de idioma para interfaces web. Permite cargar archivos de idioma en formato JS o JSON y actualizar dinámicamente el contenido de los elementos HTML según el idioma. |
 | WUIScrolly       | `0.1`   | Herramienta para animación de elementos HTML mediante el evento "on scroll" de cuerpo de la página HTML. |
 | WUIIcon          | `0.1`   | Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces. |
 | WUIFade          | `0.1`   | Herramienta para salida y entrada con opacidad (fade-out y fade-in respectivamente) de elementos HTML. |
@@ -631,7 +632,7 @@ Administrador de cookies.
 
 | Tipo      | Descripción |
 | --------- | ----------- |
-| WUICookie | `WUICookie([properties])`<br><br>Parámetros:<br><br>**• properties:** `object` |
+| WUICookie | `WUICookie([properties])`<br><br>Parámetros:<br>**• properties:** `object` |
 
 #### Propiedades
 
@@ -646,8 +647,8 @@ Administrador de cookies.
 
 | Método    | Tipo retorno | Descripción |
 | --------- | ------------ | ----------- |
-| set       | `void`       | `set(name, value[, options])`<br><br>Parámetros:<br><br>**• name:** `string` <br>**• value:** `string` <br>**• options:** `object` *opcional*<br><br>Agrega o modifica una cookie. |
-| get       | `string`     | `get(name)`<br><br>Parámetros:<br><br>**• name:** `string`<br><br>Lee el contenido de una cookie mediante su nombre. |
+| set       | `void`       | `set(name, value[, options])`<br><br>Parámetros:<br>**• name:** `string` <br>**• value:** `string` <br>**• options:** `object` *opcional*<br><br>Agrega o modifica una cookie. |
+| get       | `string`     | `get(name)`<br><br>Parámetros:<br>**• name:** `string`<br><br>Lee el contenido de una cookie mediante su nombre. |
 
 #### Implementación
 
@@ -688,10 +689,10 @@ Clase sin propiedades.
 
 | Método              | Tipo retorno | Descripción |
 | ------------------- | ------------ | ----------- |
-| setTitle            | `void`       | `setTitle(name)`<br><br>Parámetros:<br><br>**• name:** `string`<br><br>Establece el nombre del documento HTML mediante la etiqueta `<title>`. |
-| setMetaContent      | `void`       | `setMetaContent(name, content)`<br><br>Parámetros:<br><br>**• name:** `string` <br>**• content:** `string`<br><br>Establece un meta valor en la cabecera del documento HTML mediante la etiqueta `<meta>`.<br>Revisar especificaciones y compatibilidad en [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name). |
-| setAapplicationName | `void`       | `setAapplicationName(content)`<br>Alias de `setMetaContent("application-name", content)`<br><br>Parámetros:<br><br>**• content:** `string`<br><br>Establece el meta valor `application-name` en la cabecera del documento HTML. |
-| setThemeColor       | `void`       | `setThemeColor(content)`<br>Alias de `setMetaContent("theme-color", content)`<br><br>Parámetros:<br><br>**• content:** `string`<br><br>Establece el meta valor `theme-color` en la cabecera del documento HTML.<br>Revisar especificaciones y compatibilidad en [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/theme-color). |
+| setTitle            | `void`       | `setTitle(name)`<br><br>Parámetros:<br>**• name:** `string`<br><br>Establece el nombre del documento HTML mediante la etiqueta `<title>`. |
+| setMetaContent      | `void`       | `setMetaContent(name, content)`<br><br>Parámetros:<br>**• name:** `string` <br>**• content:** `string`<br><br>Establece un meta valor en la cabecera del documento HTML mediante la etiqueta `<meta>`.<br>Revisar especificaciones y compatibilidad en [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name). |
+| setAapplicationName | `void`       | `setAapplicationName(content)`<br>Alias de `setMetaContent("application-name", content)`<br><br>Parámetros:<br>**• content:** `string`<br><br>Establece el meta valor `application-name` en la cabecera del documento HTML. |
+| setThemeColor       | `void`       | `setThemeColor(content)`<br>Alias de `setMetaContent("theme-color", content)`<br><br>Parámetros:<br>**• content:** `string`<br><br>Establece el meta valor `theme-color` en la cabecera del documento HTML.<br>Revisar especificaciones y compatibilidad en [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/theme-color). |
 
 #### Implementación
 
@@ -719,15 +720,15 @@ Administrador de cuerpo HTML. Permite la importación de contenido CSS/JS/HTML y
 
 | Tipo    | Descripción |
 | ------- | ----------- |
-| WUIBody | `WUIBody([properties])`<br><br>Parámetros:<br><br>**• properties:** `object` |
+| WUIBody | `WUIBody([properties])`<br><br>Parámetros:<br>**• properties:** `object` |
 
 #### Propiedades
 
 | Propiedad       | Tipo       | Valor por omisión | Descripción |
 | --------------- | ---------- | ----------------- | ----------- |
-| environment     | `string`   | `"web"`           | Entorno de despliegue de la interfaz web. Este puede tener los valores:<br><br>• `"web"`<br>• `"native.android"`<br>• `"native.ios"` |
+| environment     | `string`   | `"web"`           | Entorno de despliegue de la interfaz web.<br><br>Valores:<br>• `"web"`<br>• `"native.android"`<br>• `"native.ios"` |
 | importDirectory | `string`   | `""`              | Ruta relativa del directorio donde se alojan los subdirectorio para importación de contenido. |
-| importMode      | `string`   | `"fetch"`         | Método de recuperación de contenido para carga. Este puede tener los valores:<br><br>• `"fetch"`<br>• `"xhr"`<br><br>Cuando el despliegue se realiza en ambientes nativos mediante WebView para Android o WebKit para iOS, se recomienda utilizar `"xhr"`. |
+| importMode      | `string`   | `"fetch"`         | Método de recuperación de contenido para carga.<br><br>Valores:<br>• `"fetch"`<br>• `"xhr"`<br><br>Cuando el despliegue se realiza en ambientes nativos mediante WebView para Android o WebKit para iOS, se recomienda utilizar `"xhr"`. |
 | onCompleted     | `function` | `null`            | Función que se ejecuta cuando todos los contenidos son importados y cargados en el cuerpo de la página HTML. |
 | debug           | `boolean`  | `false`           | Modo de testeo. Imprime en consola los contenidos importados cuando el valor de la propiedad es `true`. |
 
@@ -735,9 +736,9 @@ Administrador de cuerpo HTML. Permite la importación de contenido CSS/JS/HTML y
 
 | Método   | Tipo retorno | Descripción |
 | -------- | ------------ | ----------- |
-| import   | `void`       | `import(id, path[, done])`<br><br>Parámetros:<br><br>**• id:** `string`, especifica el id del elemento HTML donde se va a cargar el contenido.<br>**• path:** `string`, especifica la ruta del subdirectorio y el nombre de los archivos con extensión `.css`, `.htm` y `.js` que serán importados y cargados.<br>**• done:** `function` *opcional*, esta función que es ejecutada cuando la carga del contenido ha concluido.<br><br>Importa contenido CSS/JS/HTML referenciado a un elemento HTML por medio de su `id`. |
+| import   | `void`       | `import(id, path[, done])`<br><br>Parámetros:<br>**• id:** `string`, especifica el id del elemento HTML donde se va a cargar el contenido.<br>**• path:** `string`, especifica la ruta del subdirectorio y el nombre de los archivos con extensión `.css`, `.htm` y `.js` que serán importados y cargados.<br>**• done:** `function` *opcional*, esta función que es ejecutada cuando la carga del contenido ha concluido.<br><br>Importa contenido CSS/JS/HTML referenciado a un elemento HTML por medio de su `id`. |
 | prepaare | `void`       | `prepaare()`<br><br>En función del valor del parámetro `environment`, modifica los elementos HTML de etiqueta `a`, `input` y `select` del cuerpo del documento HTML para adaptarlos a entornos nativos. |
-| openURL  | `void`       | `openURL(url[, download])`<br><br>Parámetros:<br><br>**• id:** `string`, especifica la dirección URL que se requiere abrir o descargar.<br>**• download:** `string` *opcional*, especifica el nombre del archivo con que se descargará el contenido referido mediante la URL.<br><br>Abre o descarga un contenido mediante una dirección URL. Este método es requerido en entornos nativos ya que no se siempre se cuenta con soporte mediante WebView sobre Android o WebKit sobre iOS. |
+| openURL  | `void`       | `openURL(url[, download])`<br><br>Parámetros:<br>**• id:** `string`, especifica la dirección URL que se requiere abrir o descargar.<br>**• download:** `string` *opcional*, especifica el nombre del archivo con que se descargará el contenido referido mediante la URL.<br><br>Abre o descarga un contenido mediante una dirección URL. Este método es requerido en entornos nativos ya que no se siempre se cuenta con soporte mediante WebView sobre Android o WebKit sobre iOS. |
 
 #### Implementación
 
@@ -786,3 +787,66 @@ body.import("testContent", "./Import/test-content", () => {
 	testContentLog("contenido de prueba cargado");
 });
 ```
+
+<a name="class-wuiLanguage"></a>
+
+### Clase WUILanguage
+
+Versión: `0.2`
+
+Administrador de idioma para interfaces web. Permite cargar archivos de idioma en formato JS o JSON y actualizar dinámicamente el contenido de los elementos HTML según el idioma seleccionado.
+
+#### Constructor
+
+| Tipo        | Descripción |
+| ----------- | ----------- |
+| WUILanguage | `WUILanguage([properties])`<br><br>Parámetros:<br>**• properties:** `object` *opcional* |
+
+#### Propiedades
+
+| Propiedad  | Tipo       | Valor por omisión | Descripción |
+| ---------- | ---------- | ----------------- | ----------- |
+| selector   | `string`   | `".wui-language"` | Selector CSS para los elementos HTML que serán cargados. Este puede ser aplicado al atributo `content` del elemento `meta`, a la propiedad `innerHTML` de los elementos: `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `div`, `span`, `p`, `i`, `li`, `a`, `legend`, `label`, `option`, `data`, `button` y al atributo `placeholder` de los elementos `input` y `textarea`. |
+| directory  | `string`   | `"Languages/"`    | Ruta del directorio donde se encuentran los archivos de idioma. |
+| set        | `string`   | `"main"`          | Nombre del conjunto del idioma a cargar. |
+| lang       | `string`   | `"es"`            | Código de idioma en formato ISO 639-1. |
+| mode       | `string`   | `"js"`            | Formato de los archivos de idioma.<br><br>Valores:<br>• `"js"`<br>• `"json"` |
+| dataKey    | `string`   | `"key"`           | Nombre del atributo `data-*` que contiene la clave de texto en los elementos HTML. |
+| dataOutput | `string`   | `"text"`          | Nombre del atributo `data-*` donde se puede colocar el texto cargado. |
+| onLoad     | `function` | `null`            | Función que se ejecuta cuando la carga de idioma ha finalizado. |
+
+#### Métodos
+
+| Método | Tipo retorno | Descripción |
+| ------ | ------------ | ----------- |
+| load   | `void`       | `load([lang[, sets]])`<br><br>Parámetros:<br>**• lang:** `string` *opcional* (valor por defecto el idioma actual)<br>**• sets:** `array` *opcional* (valor por defecto el conjunto actual expresado como arreglo)<br><br>Carga los archivos de idioma indicados por idioma y conjunto y, actualiza los elementos HTML marcados con el selector CSS. |
+
+#### Implementación
+
+Código HTML:
+
+```html
+<h1 class="wui-language" data-key="titles.test"></h1>
+<div class="wui-language" data-key="texts.test"></div>
+```
+
+Código JS:
+
+```js
+const language = new WUILanguage({
+    selector: ".wui-language",
+    directory: "Languages/",
+    set: "main",
+    lang: "en",
+    mode: "js",
+    dataKey: "key",
+    dataOutput: "text",
+    onLoad: (lang) => {
+        console.log("Idioma cargado:", lang);
+    }
+});
+
+language.load("en", ["main"]);
+```
+
+> El archivo de idioma debe estar en la ruta `Languages/main-en.js` o `Languages/main-en.json` según el modo que se emplee
