@@ -43,7 +43,7 @@ utilizadas de manera independiente o conjunta.
 | WUISlider        | `0.1`   | Objeto compuesto para implementación de persianas controladas por ratón y/o por evento. |
 | WUIPaging        | `0.1`   | Objeto compuesto para implementación de vistas accesibles paginadamente. |
 | WUITabs          | `0.1`   | Objeto compuesto para implementación de vistas accesibles mediante selección por pestaña. |
-| WUIList          | `0.1`   | Objeto compuesto para implementación de listas de datos y botoneras para cada fila de manera opciona. |
+| WUIList          | `0.1`   | Objeto compuesto para implementación de listas de datos y botoneras para cada fila de manera opcional. |
 | WUITable         | `0.1`   | Objeto compuesto para implementación de tablas de datos. A diferencia del objeto `WUIList`, el objeto `WUITable` incluye una cabecera de columnas. |
 | WUIForm          | `0.1`   | Objeto compuesto para implementación de formularios de datos. Este objeto permite la implementación de elementos HTML de entrada de datos tales como `<input>`, `<select>` y `<textarea>` y objetos de la librería WUI como `WUISelectpicker`, `WUIDatepicker`, `WUITimepicker`, `WUIColorpicker`, `WUICheckbox`, `WUIIntensity` y `WUIButton`. |
 | WUIFormat        | `0.1`   | Herramienta para manejo y validación de formatos de datos de tipo `string`, `number` y `Date`. |
@@ -646,8 +646,8 @@ Administrador de cookies.
 
 | Método    | Tipo retorno | Descripción |
 | --------- | ------------ | ----------- |
-| set       | `void`       | `set(name, value[, options])`<br><br>Parámetros:<br><br>**• name:** `string` <br>**• value:** `string` <br>**• options:** `object` *optional* |
-| get       | `string`     | `get(name)`<br><br>Parámetros:<br><br>**• name:** `string` |
+| set       | `void`       | `set(name, value[, options])`<br><br>Parámetros:<br><br>**• name:** `string` <br>**• value:** `string` <br>**• options:** `object` *opcional*<br><br>Agrega o modifica una cookie. |
+| get       | `string`     | `get(name)`<br><br>Parámetros:<br><br>**• name:** `string`<br><br>Lee el contenido de una cookie mediante su nombre. |
 
 #### Implementación
 
@@ -688,10 +688,10 @@ Clase sin propiedades.
 
 | Método              | Tipo retorno | Descripción |
 | ------------------- | ------------ | ----------- |
-| setTitle            | `void`       | `setTitle(name)`<br><br>Parámetros:<br><br>**• name:** `string` |
-| setMetaContent      | `void`       | `setMetaContent(name, content)`<br><br>Parámetros:<br><br>**• name:** `string` <br>**• content:** `string`<br><br>Revisar especificaciones y compatibilidad en [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name). |
-| setAapplicationName | `void`       | `setAapplicationName(content)`<br>Alias de `setMetaContent("application-name", content)`<br><br>Parámetros:<br><br>**• content:** `string` |
-| setThemeColor       | `void`       | `setThemeColor(content)`<br>Alias de `setMetaContent("theme-color", content)`<br><br>Parámetros:<br><br>**• content:** `string`<br><br>Revisar especificaciones y compatibilidad en [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/theme-color). |
+| setTitle            | `void`       | `setTitle(name)`<br><br>Parámetros:<br><br>**• name:** `string`<br><br>Establece el nombre del documento HTML mediante la etiqueta `<title>`. |
+| setMetaContent      | `void`       | `setMetaContent(name, content)`<br><br>Parámetros:<br><br>**• name:** `string` <br>**• content:** `string`<br><br>Establece un meta valor en la cabecera del documento HTML mediante la etiqueta `<meta>`.<br>Revisar especificaciones y compatibilidad en [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name). |
+| setAapplicationName | `void`       | `setAapplicationName(content)`<br>Alias de `setMetaContent("application-name", content)`<br><br>Parámetros:<br><br>**• content:** `string`<br><br>Establece el meta valor `application-name` en la cabecera del documento HTML. |
+| setThemeColor       | `void`       | `setThemeColor(content)`<br>Alias de `setMetaContent("theme-color", content)`<br><br>Parámetros:<br><br>**• content:** `string`<br><br>Establece el meta valor `theme-color` en la cabecera del documento HTML.<br>Revisar especificaciones y compatibilidad en [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/theme-color). |
 
 #### Implementación
 
@@ -733,7 +733,48 @@ Administrador de cuerpo HTML. Permite la importación de contenido CSS/JS/HTML y
 
 #### Métodos
 
-| Método              | Tipo retorno | Descripción |
-| ------------------- | ------------ | ----------- |
+| Método   | Tipo retorno | Descripción |
+| -------- | ------------ | ----------- |
+| import   | `void`       | `import(id, path[, done])`<br><br>Parámetros:<br><br>**• id:** `string`, especifica el id del elemento HTML donde se va a cargar el contenido.<br>**• path:** `string`, especifica la ruta del subdirectorio y el nombre de los archivos con extensión `.css`, `.htm` y `.js` que serán importados y cargados.<br>**• done:** `function` *opcional*, esta función que es ejecutada cuando la carga del contenido ha concluido.<br><br>Importa contenido CSS/JS/HTML referenciado a un elemento HTML por medio de su `id`. |
+| prepaare | `void`       | `prepaare()`<br><br>En función del valor del parámetro `environment`, modifica los elementos HTML de etiqueta `a`, `input` y `select` del cuerpo del documento HTML para adaptarlos a entornos nativos. |
+| openURL  | `void`       | `openURL(url[, download])`<br><br>Parámetros:<br><br>**• id:** `string`, especifica la dirección URL que se requiere abrir o descargar.<br>**• download:** `string` *opcional*, especifica el nombre del archivo con que se descargará el contenido referido mediante la URL.<br><br>Abre o descarga un contenido mediante una dirección URL. Este método es requerido en entornos nativos ya que no se siempre se cuenta con soporte mediante WebView sobre Android o WebKit sobre iOS. |
 
 #### Implementación
+
+Código CSS archivo `/examples/Import/test-content.css`:
+
+```css
+```
+
+Código HTML archivo `/examples/Import/test-content.htm`:
+
+```html
+<section id="testContent" class="test">
+	<p>TEST</p>
+</section>
+```
+
+Código JS archivo `/examples/Import/test-content.js`:
+
+```js
+```
+
+Código HTML:
+
+```html
+<section id="testContent"></section>
+```
+
+Código JS:
+
+```js
+const body = new WUIBody();
+
+body.onCompleted = () => {
+	body.prepare();
+};
+
+body.import("testContent", "./Import/test-content", () => {
+	console.log("contenido de prueba cargado");
+});
+```

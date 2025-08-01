@@ -20,6 +20,18 @@ class WUIBody {
 	static #jsCount = 0;
 	static #partCount = 0;
 
+	static openURL(url, download = "") {
+		const link = document.createElement("a");
+		link.href = url;
+		link.style.display = "none";
+		if (download != "") {
+			link.download = download;
+		}
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
+	}
+
 	constructor (properties) {
 		Object.keys(WUIBody.#defaults).forEach(prop => {
 			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUIBody.#defaults ? WUIBody.#defaults[prop] : null;
@@ -73,12 +85,6 @@ class WUIBody {
 	set debug(value) {
 		if (typeof(value) == "boolean") {
 			this._debug = value;
-		}
-	}
-
-	init(onCompleted) {
-		if (typeof(onCompleted) == "function") {
-			this._onCompleted = onCompleted;
 		}
 	}
 
@@ -198,7 +204,7 @@ class WUIBody {
 		const inputsSelector = "input[type=text], input[type=password], input[type=file], input[type=email], input[type=number], input[type=tel], textarea";
 		if (this.environment == "native.android") {
 			document.body.querySelectorAll("a[target=_new], a[target=_blank]").forEach(a => {
-				a.setAttribute("href", "javascript:WUIBody.urlOpen('"+a.getAttribute("href")+"', '"+(a.getAttribute("download") || "")+"');");
+				a.setAttribute("href", "javascript:WUIBody.openURL('"+a.getAttribute("href")+"', '"+(a.getAttribute("download") || "")+"');");
 				a.removeAttribute("target");
 			});
 			document.body.querySelectorAll(inputsSelector).forEach(input => {
@@ -227,15 +233,7 @@ class WUIBody {
 	}
 
 	openURL(url, download = "") {
-		const link = document.createElement("a");
-		link.href = url;
-		link.style.display = "none";
-		if (download != "") {
-			link.download = download;
-		}
-		document.body.appendChild(link);
-		link.click();
-		document.body.removeChild(link);
+		WUIBody._openURL(...arguments);
 	}
 }
 

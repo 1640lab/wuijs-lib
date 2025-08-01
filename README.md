@@ -647,8 +647,8 @@ Cookie manager.
 
 | Method    | Return type | Description |
 | --------- | ----------- | ----------- |
-| set       | `void`      | `set(name, value[, options])`<br><br>Arguments:<br><br>**• name:** `string` <br>**• value:** `string` <br>**• options:** `object` *optional* |
-| get       | `string`    | `get(name)`<br><br>Arguments:<br><br>**• name:** `string` |
+| set       | `void`      | `set(name, value[, options])`<br><br>Arguments:<br><br>**• name:** `string` <br>**• value:** `string` <br>**• options:** `object` *optional*<br><br>Add or modify a cookie. |
+| get       | `string`    | `get(name)`<br><br>Arguments:<br><br>**• name:** `string`<br><br>Reads the contents of a cookie by its name. |
 
 #### Implementation
 
@@ -689,10 +689,10 @@ Class without properties.
 
 | Method              | Return type | Description |
 | ------------------- | ----------- | ----------- |
-| setTitle            | `void`      | `setTitle(name)`<br><br>Arguments:<br><br>**• name:** `string` |
-| setMetaContent      | `void`      | `setMetaContent(name, content)`<br><br>Arguments:<br><br>**• name:** `string` <br>**• content:** `string`<br><br>Check specifications and compatibility in [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name). |
-| setAapplicationName | `void`      | `setAapplicationName(content)`<br>Alias of `setMetaContent("application-name", content)`<br><br>Arguments:<br><br>**• content:** `string` |
-| setThemeColor       | `void`      | `setThemeColor(content)`<br>Alias of `setMetaContent("theme-color", content)`<br><br>Arguments:<br><br>**• content:** `string`<br><br>Check specifications and compatibility in [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/theme-color). |
+| setTitle            | `void`      | `setTitle(name)`<br><br>Arguments:<br><br>**• name:** `string`<br><br>Sets the name of the HTML document using the `<title>` tag. |
+| setMetaContent      | `void`      | `setMetaContent(name, content)`<br><br>Arguments:<br><br>**• name:** `string` <br>**• content:** `string`<br><br>Sets a meta value in the header of the HTML document using the `<meta>` tag.<br>Check specifications and compatibility in [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name). |
+| setAapplicationName | `void`      | `setAapplicationName(content)`<br>Alias of `setMetaContent("application-name", content)`<br><br>Arguments:<br><br>**• content:** `string`<br><br>Sets the `application-name` meta value in the header of the HTML document. |
+| setThemeColor       | `void`      | `setThemeColor(content)`<br>Alias of `setMetaContent("theme-color", content)`<br><br>Arguments:<br><br>**• content:** `string`<br><br>Sets the `theme-color` meta value in the header of the HTML document.<br>Check specifications and compatibility in [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/theme-color). |
 
 #### Implementation
 
@@ -734,7 +734,47 @@ HTML body manager. Allows the import of CSS/JS/HTML content and facilitates impl
 
 #### Methods
 
-| Method              | Return type | Description |
-| ------------------- | ----------- | ----------- |
+| Method   | Return type | Description |
+| -------- | ----------- | ----------- |
+| import   | `void`      | `import(id, path[, done])`<br><br>Arguments:<br><br>**• id:** `string`, specifies the id of the HTML element where the content is to be loaded.<br>**• path:** `string`, specifies the subdirectory path and filename of the files with extension `.css`, `.htm` and `.js` that will be imported and loaded.<br>**• done:** `function` *optional*, this function is executed when the content loading has finished.<br><br>Imports CSS/JS/HTML content referenced to an HTML element by its `id`. |
+| prepaare | `void`      | `prepaare()`<br><br>Depending on the value of the `environment` parameter, modifies the HTML elements `a`, `input`, and `select` in the HTML document body to adapt them to native environments. |
+| openURL  | `void`      | `openURL(url[, download])`<br><br>Parameters:<br><br>**• id:** `string`, specifies the URL that is required to be opened or downloaded.<br>**• download:** `string` *optional*, specifies the name of the file that will be used to download the content referenced by the URL.<br><br>Open or download content using a URL. This method is required in native environments since WebView on Android or WebKit on iOS aren't always supported. |
 
 #### Implementation
+
+CSS code for the `/examples/Import/test-content.css` file:
+
+```css
+```
+
+HTML code for the `/examples/Import/test-content.htm` file:
+
+```html
+<section id="testContent" class="test">
+	<p>TEST</p>
+</section>
+```
+
+JS code for the `/examples/Import/test-content.js` file:
+
+```js
+```
+
+HTML code:
+
+```html
+<section id="testContent"></section>
+```
+
+JS code:
+
+```js
+const body = new WUIBody();
+
+body.onCompleted = () => {
+	body.prepare();
+};
+
+body.import("testContent", "./Import/test-content", () => {
+	console.log("test content loaded");
+});
