@@ -745,19 +745,27 @@ HTML body manager. Allows the import of CSS/JS/HTML content and facilitates impl
 CSS code for the `/examples/Import/test-content.css` file:
 
 ```css
+.test a, .test a:visited {
+	text-decoration: none;
+	font-size: 20px;
+	color: blue;
+}
 ```
 
 HTML code for the `/examples/Import/test-content.htm` file:
 
 ```html
 <section id="testContent" class="test">
-	<p>TEST</p>
+	<a href="https://www.google.com">Google!</a>
 </section>
 ```
 
 JS code for the `/examples/Import/test-content.js` file:
 
 ```js
+const testContentLog = (content) => {
+	console.log(content);
+}
 ```
 
 HTML code:
@@ -776,5 +784,5 @@ body.onCompleted = () => {
 };
 
 body.import("testContent", "./Import/test-content", () => {
-	console.log("test content loaded");
+	testContentLog("test content loaded");
 });

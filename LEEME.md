@@ -744,19 +744,27 @@ Administrador de cuerpo HTML. Permite la importación de contenido CSS/JS/HTML y
 Código CSS archivo `/examples/Import/test-content.css`:
 
 ```css
+.test a, .test a:visited {
+	text-decoration: none;
+	font-size: 20px;
+	color: blue;
+}
 ```
 
 Código HTML archivo `/examples/Import/test-content.htm`:
 
 ```html
 <section id="testContent" class="test">
-	<p>TEST</p>
+	<a href="https://www.google.com">Google!</a>
 </section>
 ```
 
 Código JS archivo `/examples/Import/test-content.js`:
 
 ```js
+const testContentLog = (content) => {
+	console.log(content);
+}
 ```
 
 Código HTML:
@@ -775,6 +783,6 @@ body.onCompleted = () => {
 };
 
 body.import("testContent", "./Import/test-content", () => {
-	console.log("contenido de prueba cargado");
+	testContentLog("contenido de prueba cargado");
 });
 ```

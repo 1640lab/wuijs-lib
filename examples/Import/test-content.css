@@ -1,0 +1,5 @@
+.test a, .test a:visited {
+	text-decoration: none;
+	font-size: 20px;
+	color: blue;
+}
