@@ -7,10 +7,10 @@
 *   [Instalación](#install)
 *   [Implementación](#implementation)
 *   [Clases](#classes)
-	*   [Clase WUICookie](#wuiCookie)
-	*   [Clase WUIHead](#wuiHead)
-	*   [Clase WUIBody](#wuiBody)
-	*   [Clase WUILanguage](#wuiLanguage)
+	*   [WUICookie](#wuiCookie)
+	*   [WUIHead](#wuiHead)
+	*   [WUIBody](#wuiBody)
+	*   [WUILanguage](#wuiLanguage)
 
 <a name="overview"></a>
 
@@ -632,7 +632,7 @@ Este método de implementación permite la estandarización del diseño de la in
 
 <a name="wuiCookie"></a>
 
-### Clase WUICookie
+### WUICookie
 
 Versión: `0.1`
 
@@ -679,7 +679,7 @@ console.log(cookie.get("test"));
 
 <a name="wuiHead"></a>
 
-### Clase WUIHead
+### WUIHead
 
 Versión: `0.1`
 
@@ -720,7 +720,7 @@ head.setThemeColor("#1e90ff");
 
 <a name="wuiBody"></a>
 
-### Clase WUIBody
+### WUIBody
 
 Versión: `0.1`
 
@@ -800,7 +800,7 @@ body.import("testContent", "./Imports/test-content", () => {
 
 <a name="wuiLanguage"></a>
 
-### Clase WUILanguage
+### WUILanguage
 
 Versión: `0.2`
 

@@ -7,10 +7,10 @@
 *   [Install](#install)
 *   [Implementation](#implementation)
 *   [Classes](#classes)
-    *   [WUICookie Class](#wuiCookie)
-	*   [WUIHead Class](#wuiHead)
-	*   [WUIBody Class](#wuiBody)
-	*   [WUILanguage Class](#wuiLanguage)
+    *   [WUICookie](#wuiCookie)
+	*   [WUIHead](#wuiHead)
+	*   [WUIBody](#wuiBody)
+	*   [WUILanguage](#wuiLanguage)
 
 <a name="overview"></a>
 
@@ -632,7 +632,7 @@ This implementation method allows for standardization of an application's user i
 
 <a name="wuiCookie"></a>
 
-### WUICookie Class
+### WUICookie
 
 Version: `0.1`
 
@@ -679,7 +679,7 @@ console.log(cookie.get("test"));
 
 <a name="wuiHead"></a>
 
-### WUIHead Class
+### WUIHead
 
 Version: `0.1`
 
@@ -720,7 +720,7 @@ head.setThemeColor("#1e90ff");
 
 <a name="wuiBody"></a>
 
-### WUIBody Class
+### WUIBody
 
 Version: `0.1`
 
@@ -800,7 +800,7 @@ body.import("testContent", "./Imports/test-content", () => {
 
 <a name="wuiLanguage"></a>
 
-### WUILanguage Class
+### WUILanguage
 
 Version: `0.2`
 
