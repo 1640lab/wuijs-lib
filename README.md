@@ -886,4 +886,7 @@ language.load("en", ["main"]);
 ```
 
 > [!IMPORTANT]
+> The global variable `languages` is a variable reserved for use by this library.
+
+> [!IMPORTANT]
 > The language file must be in the path `./Languages/main-en.js` or `./Languages/main-en.json` depending on the mode used.

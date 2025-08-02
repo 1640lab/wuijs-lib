@@ -886,4 +886,7 @@ language.load("en", ["main"]);
 ```
 
 > [!IMPORTANT]
+> La variable global `languages` es una variable reservada para el uso de esta librería.
+
+> [!IMPORTANT]
 > El archivo de idioma debe estar en la ruta `./Languages/main-es.js` o `./Languages/main-es.json` según el modo que se emplee.
