@@ -248,6 +248,24 @@ class WUIPaging {
 		}
 	}
 
+	setHistory(history = []) {
+		if (Array.isArray(history)) {
+			this._history = [];
+			history.forEach(item => {
+				let index = 0;
+				let target = "";
+				if (typeof(item) == "number") {
+					index = item;
+					target = this.#index2target(item);
+				} else if (typeof(item) == "string") {
+					index = this.#target2index(item);
+					target = item;
+				}
+				this._history.push({index, target});
+			});
+		}
+	}
+
 	back(onBack = this._onBack) {
 		if (this._history.length > 0) {
 			const back = this._history.pop();
