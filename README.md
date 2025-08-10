@@ -818,7 +818,7 @@ Language manager for web interfaces. Allows you to load language files in JS or 
 | ---------- | ---------- | ----------------- | ----------- |
 | selector   | `string`   | `".wui-language"` | CSS selector for HTML elements to be loaded. This can be applied to the `content` attribute of the `meta` element, to the `innerHTML` property of the elements: `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `div`, `span`, `p`, `i`, `li`, `a`, `legend`, `label`, `option`, `data`, `button`, and to the `placeholder` attribute of the `input` and `textarea` elements. |
 | directory  | `string`   | `"Languages/"`    | Path to the directory where the language files are located. |
-| set        | `string`   | `"main"`          | Name of the language set to load. |
+| sets       | `array`    | `["main"]`        | List of language set names to load. |
 | lang       | `string`   | `"es"`            | Language code in ISO 639-1 format. |
 | mode       | `string`   | `"js"`            | Language file format.<br><br>Values:<br>• `"js"`<br>• `"json"` |
 | dataKey    | `string`   | `"key"`           | Name of the `data-*` attribute that contains the text key in HTML elements. |
@@ -836,7 +836,7 @@ Language manager for web interfaces. Allows you to load language files in JS or 
 JS code file `main-es.js`:
 
 ```js
-languages.es = {
+return {
 	titles: {
 		test: "Titulo prueba"
 	},
@@ -872,21 +872,27 @@ JS code:
 const language = new WUILanguage({
     selector: ".wui-language",
     directory: "./Languages/",
-    set: "main",
+    sets: ["main"],
     lang: "en",
     mode: "js",
     dataKey: "key",
     dataOutput: "text",
-    onLoad: (lang) => {
-        console.log("Language loaded:", lang);
+    onLoad: (lang, languages) => {
+		window.lang = lang;
+		window.languages = languages;
+        console.log("Language loaded:", lang, languages);
     }
 });
+let lang = language.lang;
+let languages = {};
 
-language.load("en", ["main"]);
+language.load();
+language.load("en"); // equivalent
+language.load("en", ["main"]); // equivalent
 ```
 
 > [!IMPORTANT]
-> The global variable `languages` is a variable reserved for use by this library.
+> The language file must be in the path `./Languages/main-en.js` or `./Languages/main-en.json` depending on the set, language and mode used. It is important that language files are in the form `{set}-{lang}.{mode}`, otherwise the file cannot be imported.
 
-> [!IMPORTANT]
-> The language file must be in the path `./Languages/main-en.js` or `./Languages/main-en.json` depending on the mode used.
+> [! TIP]
+> If you want to add dynamic content within a text, it is better to use `mode: "js"` and add the text using the string interpolation method, also known as template literals, i.e. ``mykey: `My ${var} text` ``.

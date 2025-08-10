@@ -818,7 +818,7 @@ Administrador de idioma para interfaces web. Permite cargar archivos de idioma e
 | ---------- | ---------- | ----------------- | ----------- |
 | selector   | `string`   | `".wui-language"` | Selector CSS para los elementos HTML que serán cargados. Este puede ser aplicado al atributo `content` del elemento `meta`, a la propiedad `innerHTML` de los elementos: `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `div`, `span`, `p`, `i`, `li`, `a`, `legend`, `label`, `option`, `data`, `button` y al atributo `placeholder` de los elementos `input` y `textarea`. |
 | directory  | `string`   | `"Languages/"`    | Ruta del directorio donde se encuentran los archivos de idioma. |
-| set        | `string`   | `"main"`          | Nombre del conjunto del idioma a cargar. |
+| sets       | `array`    | `["main"]`        | Lista de nombres del conjuntos del idioma a cargar. |
 | lang       | `string`   | `"es"`            | Código de idioma en formato ISO 639-1. |
 | mode       | `string`   | `"js"`            | Formato de los archivos de idioma.<br><br>Valores:<br>• `"js"`<br>• `"json"` |
 | dataKey    | `string`   | `"key"`           | Nombre del atributo `data-*` que contiene la clave de texto en los elementos HTML. |
@@ -836,7 +836,7 @@ Administrador de idioma para interfaces web. Permite cargar archivos de idioma e
 Código JS archivo `main-en.js`:
 
 ```js
-languages.en = {
+return {
 	titles: {
 		test: "Test title"
 	},
@@ -872,21 +872,27 @@ Código JS:
 const language = new WUILanguage({
     selector: ".wui-language",
     directory: "./Languages/",
-    set: "main",
+    sets: ["main"],
     lang: "es",
     mode: "js",
     dataKey: "key",
     dataOutput: "text",
-    onLoad: (lang) => {
-        console.log("Idioma cargado:", lang);
+    onLoad: (lang, languages) => {
+		window.lang = lang;
+		window.languages = languages;
+        console.log("Idioma cargado:", lang, languages);
     }
 });
+let lang = language.lang;
+let languages = {};
 
-language.load("en", ["main"]);
+language.load();
+language.load("es"); // equivalente
+language.load("es", ["main"]); // equivalente
 ```
 
 > [!IMPORTANT]
-> La variable global `languages` es una variable reservada para el uso de esta librería.
+> El archivo de idioma debe estar en la ruta `./Languages/main-es.js` o `./Languages/main-es.json` según el set, idioma y modo que se emplee. Es importante que los archivos de idioma tengan la forma `{set}-{lang}.{mode}`, en caso contratio, el archivo no podrá ser importado.
 
-> [!IMPORTANT]
-> El archivo de idioma debe estar en la ruta `./Languages/main-es.js` o `./Languages/main-es.json` según el modo que se emplee.
+> [! TIP]
+> Si se desea agregar contenido dinámico dentro de un texto, es mejor utilizar `mode: "js"` y agregar el texto mediante el método de interpolación de cadenas, conosido también como literales de plantilla, por ejemplo, ``mykey: `My ${var} text` ``.
