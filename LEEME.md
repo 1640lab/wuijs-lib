@@ -1,5 +1,7 @@
 # wuijs-lib
 
+Versión documentación: `0.2`
+
 ## Tabla de Contenidos
 
 *   [Description General](#overview)
@@ -898,7 +900,10 @@ language.load("es", ["main"]); // equivalente
 > El archivo de idioma debe estar en la ruta `./Languages/main-es.js` o `./Languages/main-es.json` según el set, idioma y modo que se emplee. Es importante que los archivos de idioma tengan la forma `{set}-{lang}.{mode}`, en caso contratio, el archivo no podrá ser importado.
 
 > [! TIP]
-> Si se desea agregar contenido dinámico dentro de un texto, es mejor utilizar `mode: "js"` y agregar el texto mediante el método de interpolación de cadenas, conosido también como literales de plantilla, por ejemplo, ``mykey: `My ${var} text` ``.
+> Si se desea agregar contenido dinámico dentro de un texto, se recomienda utilizar formato de los archivos de idioma `js` (`mode: "js"`) y agregar el texto mediante el método de interpolación de cadenas, conosido también como literales de plantilla. Por ejemplo, ``mykey: `My ${var} text` ``.
+
+> [! TIP]
+> Si se utiliza el formato de los archivos de idioma `js`, el archivo de idioma debe ser inicializado por la palabra reservada `return` seguido  de un objeto `{}`.
 
 <a name="wuiScrolly"></a>
 
