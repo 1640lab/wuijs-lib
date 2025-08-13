@@ -11,6 +11,9 @@
 	*   [WUIHead](#wuiHead)
 	*   [WUIBody](#wuiBody)
 	*   [WUILanguage](#wuiLanguage)
+	*   [WUIScrolly](#wuiScrolly)
+	*   [WUIIcon](#wuiIcon)
+	*   [WUIFade](#wuiFade)
 
 <a name="overview"></a>
 
@@ -32,7 +35,7 @@ WUI, acrónimo del inglés *Web User Interface JavaScript library*, es una bibli
 | WUIHead          | `0.1`   | Administrador de cabecera HTML. |
 | WUIBody          | `0.1`   | Administrador de cuerpo HTML. Permite la importación de contenido CSS/JS/HTML y facilita la implementación en entornos nativos móviles. |
 | WUILanguage      | `0.2`   | Administrador de idioma para interfaces web. Permite cargar archivos de idioma en formato JS o JSON y actualizar dinámicamente el contenido de los elementos HTML según el idioma. |
-| WUIScrolly       | `0.1`   | Herramienta para animación de elementos HTML mediante el evento "on scroll" de cuerpo de la página HTML. |
+| WUIScrolly       | `0.1`   | Herramienta para animación de elementos HTML mediante el evento "onscroll" del cuerpo de la página HTML. |
 | WUIIcon          | `0.1`   | Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces. |
 | WUIFade          | `0.1`   | Herramienta para salida y entrada con opacidad (fade-out y fade-in respectivamente) de elementos HTML. |
 | WUITooltip       | `0.1`   | Objeto simple para texto emergente. |
@@ -896,3 +899,66 @@ language.load("es", ["main"]); // equivalente
 
 > [! TIP]
 > Si se desea agregar contenido dinámico dentro de un texto, es mejor utilizar `mode: "js"` y agregar el texto mediante el método de interpolación de cadenas, conosido también como literales de plantilla, por ejemplo, ``mykey: `My ${var} text` ``.
+
+<a name="wuiScrolly"></a>
+
+### WUIScrolly
+
+Versión: `0.1`
+
+Herramienta para animación de elementos HTML mediante el evento "onscroll" del cuerpo de la página HTML.
+
+#### Constructor
+
+| Tipo       | Descripción |
+| ---------- | ----------- |
+| WUIScrolly | `WUIScrolly([properties])`<br><br>Parámetros:<br>**• properties:** `object` *opcional* |
+
+#### Propiedades
+
+#### Métodos
+
+#### Implementación
+
+<a name="wuiWUIIcon"></a>
+
+### WUIIcon
+
+Versión: `0.1`
+
+Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
+
+#### Constructor
+
+| Tipo    | Descripción |
+| ------- | ----------- |
+| WUIIcon | `WUIIcon([properties])`<br><br>Parámetros:<br>**• properties:** `object` *opcional* |
+
+> [! TIP]
+> No es necesario implementar los objetos HTML WUIIcon mediante el constructor JavaScript, estos pueden ser utilizados directamente mediante el estilo CSS `wui-icon`.
+
+#### Propiedades
+
+#### Métodos
+
+#### Implementación
+
+<a name="wuiWUIFade"></a>
+
+### WUIFade
+
+Versión: `0.1`
+
+Herramienta para salida y entrada con opacidad (fade-out y fade-in respectivamente) de elementos HTML.
+
+#### Constructor
+
+| Tipo    | Descripción |
+| ------- | ----------- |
+| WUIFade | `WUIFade([properties])`<br><br>Parámetros:<br>**• properties:** `object` *opcional* |
+
+#### Propiedades
+
+#### Métodos
+
+#### Implementación

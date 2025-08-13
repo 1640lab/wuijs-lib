@@ -11,6 +11,9 @@
 	*   [WUIHead](#wuiHead)
 	*   [WUIBody](#wuiBody)
 	*   [WUILanguage](#wuiLanguage)
+	*   [WUIScrolly](#wuiScrolly)
+	*   [WUIIcon](#wuiIcon)
+	*   [WUIFade](#wuiFade)
 
 <a name="overview"></a>
 
@@ -32,8 +35,8 @@ WUI, an acronym for *Web User Interface JavaScript library*, is an open source J
 | WUIHead          | `0.1`   | HTML header manager. |
 | WUIBody          | `0.1`   | HTML body manager. Allows the import of CSS/JS/HTML content and facilitates implementation in native mobile environments. |
 | WUILanguage      | `0.2`   | Language manager for web interfaces. Allows you to load language files in JS or JSON format and dynamically update the content of HTML elements based on the language. |
-| WUIScrolly       | `0.1`   | Tool for animating HTML elements using the "on scroll" event of the HTML page body.
-| WUIIcon          | `0.1`   | Set of pre-designed icons loaded via CSS, for use in interfaces.
+| WUIScrolly       | `0.1`   | Tool for animating HTML elements using the "onscroll" event of the HTML page body. |
+| WUIIcon          | `0.1`   | Set of pre-designed icons loaded via CSS, for use in interfaces. |
 | WUIFade          | `0.1`   | Tool for fading out and fading in HTML elements with opacity. |
 | WUITooltip       | `0.1`   | Simple object for hover text. |
 | WUILoader        | `0.1`   | Simple object for loading animation. |
@@ -896,3 +899,66 @@ language.load("en", ["main"]); // equivalent
 
 > [! TIP]
 > If you want to add dynamic content within a text, it is better to use `mode: "js"` and add the text using the string interpolation method, also known as template literals, i.e. ``mykey: `My ${var} text` ``.
+
+<a name="wuiScrolly"></a>
+
+### WUIScrolly
+
+Versión: `0.1`
+
+Tool for animating HTML elements using the "onscroll" event of the HTML page body.
+
+#### Constructor
+
+| Type       | Description |
+| ---------- | ----------- |
+| WUIScrolly | `WUIScrolly([properties])`<br><br>Arguments:<br>**• properties:** `object` *optional* |
+
+#### Properties
+
+#### Methods
+
+#### Implementation
+
+<a name="wuiIcon"></a>
+
+### WUIIcon
+
+Versión: `0.1`
+
+Set of pre-designed icons loaded via CSS, for use in interfaces.
+
+#### Constructor
+
+| Type    | Description |
+| ------- | ----------- |
+| WUIIcon | `WUIIcon([properties])`<br><br>Arguments:<br>**• properties:** `object` *optional* |
+
+> [! TIP]
+> It is not necessary to implement the WUIIcon HTML objects using the JavaScript constructor, they can be used directly using the `wui-icon` CSS style.
+
+#### Properties
+
+#### Methods
+
+#### Implementation
+
+<a name="wuiFade"></a>
+
+### WUIFade
+
+Versión: `0.1`
+
+Tool for animating HTML elements using the "onscroll" event of the HTML page body.
+
+#### Constructor
+
+| Type    | Description |
+| ------- | ----------- |
+| WUIFade | `WUIFade([properties])`<br><br>Arguments:<br>**• properties:** `object` *optional* |
+
+#### Properties
+
+#### Methods
+
+#### Implementation
