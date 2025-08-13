@@ -1,6 +1,6 @@
 # wuijs-lib
 
-Document Version: `0.2`
+Document version: `0.2`
 
 ## Contents Table
 
@@ -21,7 +21,7 @@ Document Version: `0.2`
 
 ## Overview
 
-Global Version: `0.2`
+Global version: `0.2`
 
 Licence: `Apache License 2.0`
 
