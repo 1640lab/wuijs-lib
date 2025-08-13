@@ -21,7 +21,7 @@ Versión documentación: `0.2`
 
 ## Description General
 
-Versión global: `0.2`
+Versión global: `0.2.0`
 
 Licencia: `Licencia Apache 2.0`
 

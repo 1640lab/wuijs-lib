@@ -21,7 +21,7 @@ Document version: `0.2`
 
 ## Overview
 
-Global version: `0.2`
+Global version: `0.2.0`
 
 Licence: `Apache License 2.0`
 
