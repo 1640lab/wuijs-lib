@@ -21,7 +21,7 @@ class WUILanguage {
 	static #log = [];
 	#languages = {};
 
-	constructor(properties) {
+	constructor (properties) {
 		Object.keys(WUILanguage.#defaults).forEach(prop => {
 			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUILanguage.#defaults ? WUILanguage.#defaults[prop] : null;
 		});

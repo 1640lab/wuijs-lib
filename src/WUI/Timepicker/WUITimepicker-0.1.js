@@ -41,7 +41,7 @@ class WUITimepicker {
 		}
 	};
 
-	constructor(properties) {
+	constructor (properties) {
 		Object.keys(WUITimepicker.#defaults).forEach(prop => {
 			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUITimepicker.#defaults ? WUITimepicker.#defaults[prop] : null;
 		});

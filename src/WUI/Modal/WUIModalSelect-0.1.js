@@ -9,7 +9,7 @@ class WUIModalSelect extends WUIModal {
 
 	static version = "0.1";
 
-	constructor(properties) {
+	constructor (properties) {
 		super(properties);
 		this._input = null;
 		this._value = "";

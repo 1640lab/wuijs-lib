@@ -16,7 +16,7 @@ class WUICheckbox {
 		onChange: null
 	};
 
-	constructor(properties) {
+	constructor (properties) {
 		Object.keys(WUICheckbox.#defaults).forEach(prop => {
 			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUICheckbox.#defaults ? WUICheckbox.#defaults[prop] : null;
 		});

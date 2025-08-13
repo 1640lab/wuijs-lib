@@ -59,7 +59,7 @@ class WUIModal {
 		});
 	}
 
-	constructor(properties) {
+	constructor (properties) {
 		this.setProperties(properties);
 		WUIModal.#instances.push(this);
 	}

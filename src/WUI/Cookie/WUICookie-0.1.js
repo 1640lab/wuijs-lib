@@ -55,7 +55,7 @@ class WUICookie {
 		}
 	}
 
-	constructor(properties) {
+	constructor (properties) {
 		Object.keys(WUICookie.#defaults).forEach(prop => {
 			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUICookie.#defaults ? WUICookie.#defaults[prop] : null;
 		});

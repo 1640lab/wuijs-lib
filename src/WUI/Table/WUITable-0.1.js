@@ -34,7 +34,7 @@ class WUITable {
 			+"</svg>"
 	};
 
-	constructor(properties) {
+	constructor (properties) {
 		Object.keys(WUITable.#defaults).forEach(prop => {
 			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUITable.#defaults ? WUITable.#defaults[prop] : null;
 		});

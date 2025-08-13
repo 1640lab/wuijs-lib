@@ -29,7 +29,7 @@ class WUIForm {
 			+"</svg>"
 	};
 
-	constructor(properties) {
+	constructor (properties) {
 		Object.keys(WUIForm.#defaults).forEach(prop => {
 			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUIForm.#defaults ? WUIForm.#defaults[prop] : null;
 		});

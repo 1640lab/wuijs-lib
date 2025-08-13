@@ -13,7 +13,7 @@ class WUISlider {
 		onChange: null
 	};
 
-	constructor(properties) {
+	constructor (properties) {
 		Object.keys(WUISlider.#defaults).forEach(prop => {
 			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUISlider.#defaults ? WUISlider.#defaults[prop] : null;
 		});

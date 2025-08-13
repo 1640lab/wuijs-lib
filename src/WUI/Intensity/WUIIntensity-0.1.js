@@ -15,7 +15,7 @@ class WUIIntensity {
 		onChange: null
 	};
 
-	constructor(properties) {
+	constructor (properties) {
 		Object.keys(WUIIntensity.#defaults).forEach(prop => {
 			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUIIntensity.#defaults ? WUIIntensity.#defaults[prop] : null;
 		});

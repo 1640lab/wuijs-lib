@@ -13,7 +13,7 @@ class WUIIcon {
 		dataURL: "url"
 	};
 
-	constructor(properties) {
+	constructor (properties) {
 		Object.keys(WUIIcon.#defaults).forEach(prop => {
 			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUIIcon.#defaults ? WUIIcon.#defaults[prop] : null;
 		});

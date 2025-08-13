@@ -32,7 +32,7 @@ class WUIBody {
 		document.body.removeChild(link);
 	}
 
-	constructor(properties) {
+	constructor (properties) {
 		Object.keys(WUIBody.#defaults).forEach(prop => {
 			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUIBody.#defaults ? WUIBody.#defaults[prop] : null;
 		});
