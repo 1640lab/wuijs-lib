@@ -899,10 +899,10 @@ language.load("en", ["main"]); // equivalent
 > [!IMPORTANT]
 > The language file must be in the path `./Languages/main-en.js` or `./Languages/main-en.json` depending on the set, language and mode used. It is important that language files are in the form `{set}-{lang}.{mode}`, otherwise the file cannot be imported.
 
-> [! TIP]
+> [!TIP]
 > If you want to add dynamic content within a text, It is recommended to use the `js` language file format (`mode: "js"`) and add the text using the string interpolation method, also known as template literals. I.e. ``mykey: `My ${var} text` ``.
 
-> [! TIP]
+> [!TIP]
 > If the `js` language file format is used, the language file must be initialized by the `return` keyword followed by a `{}` object.
 
 <a name="wuiScrolly"></a>
@@ -939,7 +939,7 @@ Set of pre-designed icons loaded via CSS, for use in interfaces.
 | ------- | ----------- |
 | WUIIcon | `WUIIcon([properties])`<br><br>Arguments:<br>**• properties:** `object` *optional* |
 
-> [! TIP]
+> [!TIP]
 > It is not necessary to implement the WUIIcon HTML objects using the JavaScript constructor, they can be used directly using the `wui-icon` CSS style.
 
 #### Properties

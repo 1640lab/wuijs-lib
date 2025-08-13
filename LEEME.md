@@ -899,10 +899,10 @@ language.load("es", ["main"]); // equivalente
 > [!IMPORTANT]
 > El archivo de idioma debe estar en la ruta `./Languages/main-es.js` o `./Languages/main-es.json` según el set, idioma y modo que se emplee. Es importante que los archivos de idioma tengan la forma `{set}-{lang}.{mode}`, en caso contratio, el archivo no podrá ser importado.
 
-> [! TIP]
+> [!TIP]
 > Si se desea agregar contenido dinámico dentro de un texto, se recomienda utilizar formato de los archivos de idioma `js` (`mode: "js"`) y agregar el texto mediante el método de interpolación de cadenas, conosido también como literales de plantilla. Por ejemplo, ``mykey: `My ${var} text` ``.
 
-> [! TIP]
+> [!TIP]
 > Si se utiliza el formato de los archivos de idioma `js`, el archivo de idioma debe ser inicializado por la palabra reservada `return` seguido  de un objeto `{}`.
 
 <a name="wuiScrolly"></a>
@@ -939,7 +939,7 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 | ------- | ----------- |
 | WUIIcon | `WUIIcon([properties])`<br><br>Parámetros:<br>**• properties:** `object` *opcional* |
 
-> [! TIP]
+> [!TIP]
 > No es necesario implementar los objetos HTML WUIIcon mediante el constructor JavaScript, estos pueden ser utilizados directamente mediante el estilo CSS `wui-icon`.
 
 #### Propiedades
