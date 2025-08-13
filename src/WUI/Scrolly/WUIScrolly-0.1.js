@@ -33,7 +33,7 @@ class WUIScrolly {
 		return Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
 	}
 
-	constructor (properties) {
+	constructor(properties) {
 		Object.keys(WUIScrolly.#defaults).forEach(prop => {
 			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUIScrolly.#defaults ? WUIScrolly.#defaults[prop] : null;
 		});

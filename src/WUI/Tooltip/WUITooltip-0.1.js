@@ -19,7 +19,7 @@ class WUITooltip {
 		".wui-tooltip-bottom"
 	].join(",");
 
-	constructor (properties) {
+	constructor(properties) {
 		Object.keys(WUITooltip.#defaults).forEach(prop => {
 			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUITooltip.#defaults ? WUITooltip.#defaults[prop] : null;
 		});

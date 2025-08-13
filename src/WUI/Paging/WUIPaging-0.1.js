@@ -18,7 +18,7 @@ class WUIPaging {
 		onScrolling: null
 	};
 
-	constructor (properties) {
+	constructor(properties) {
 		this._target = null;
 		this._history = [];
 		Object.keys(WUIPaging.#defaults).forEach(prop => {

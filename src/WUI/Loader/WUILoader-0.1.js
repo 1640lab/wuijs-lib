@@ -17,7 +17,7 @@ class WUILoader {
 	};
 	static #styles = ["ring", "dualring", "spinner", "roller", "ellipsis", "grid"];
 
-	constructor (properties) {
+	constructor(properties) {
 		Object.keys(WUILoader.#defaults).forEach(prop => {
 			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUILoader.#defaults ? WUILoader.#defaults[prop] : null;
 		});
