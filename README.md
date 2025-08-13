@@ -885,9 +885,8 @@ const language = new WUILanguage({
     mode: "js",
     dataKey: "key",
     dataOutput: "text",
-    onLoad: (lang, languages) => {
-		window.lang = lang;
-		window.languages = languages;
+    onLoad: (...args) => {
+		[lang, languages] = args;
         console.log("Language loaded:", lang, languages);
     }
 });
