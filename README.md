@@ -851,6 +851,9 @@ return {
 };
 ```
 
+> [!IMPORTANT]
+> If the `js` language file format is used, the language file must be initialized by the `return` keyword followed by a `{}` object.
+
 JSON code file `main-es.json`:
 
 ```json
@@ -898,9 +901,6 @@ language.load("en", ["main"]); // equivalent
 
 > [!IMPORTANT]
 > The language file must be in the path `./Languages/main-en.js` or `./Languages/main-en.json` depending on the set, language and mode used. It is important that language files are in the form `{set}-{lang}.{mode}`, otherwise the file cannot be imported.
-
-> [!IMPORTANT]
-> If the `js` language file format is used, the language file must be initialized by the `return` keyword followed by a `{}` object.
 
 > [!TIP]
 > If you want to add dynamic content within a text, It is recommended to use the `js` language file format (`mode: "js"`) and add the text using the string interpolation method, also known as template literals. I.e. ``mykey: `My ${var} text` ``.

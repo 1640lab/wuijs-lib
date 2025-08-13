@@ -851,6 +851,9 @@ return {
 };
 ```
 
+> [!IMPORTNT]
+> Si se utiliza el formato de los archivos de idioma `js`, el archivo de idioma debe ser inicializado por la palabra reservada `return` seguido  de un objeto `{}`.
+
 Código JSON archivo `main-en.json`:
 
 ```json
@@ -898,9 +901,6 @@ language.load("es", ["main"]); // equivalente
 
 > [!IMPORTANT]
 > El archivo de idioma debe estar en la ruta `./Languages/main-es.js` o `./Languages/main-es.json` según el set, idioma y modo que se emplee. Es importante que los archivos de idioma tengan la forma `{set}-{lang}.{mode}`, en caso contratio, el archivo no podrá ser importado.
-
-> [!IMPORTNT]
-> Si se utiliza el formato de los archivos de idioma `js`, el archivo de idioma debe ser inicializado por la palabra reservada `return` seguido  de un objeto `{}`.
 
 > [!TIP]
 > Si se desea agregar contenido dinámico dentro de un texto, se recomienda utilizar formato de los archivos de idioma `js` (`mode: "js"`) y agregar el texto mediante el método de interpolación de cadenas, conosido también como literales de plantilla. Por ejemplo, ``mykey: `My ${var} text` ``.
