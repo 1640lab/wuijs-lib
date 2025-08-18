@@ -853,7 +853,7 @@ return {
 ```
 
 > [!IMPORTANT]
-> If the `js` language file format is used, the language file must be initialized by the `return` keyword followed by a `{}` object.
+> If `js` is used as the format for language files, the language file must be initialized by the `return` keyword followed by a `{}` object.
 
 JSON code file `main-en.json`:
 
