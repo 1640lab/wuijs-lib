@@ -839,15 +839,15 @@ Language manager for web interfaces. Allows you to load language files in JS or 
 
 #### Implementation
 
-JS code file `main-es.js`:
+JS code file `main-en.js`:
 
 ```js
 return {
 	titles: {
-		test: "Titulo prueba"
+		test: "Test title"
 	},
 	texts: {
-		test: "Texto prueba"
+		test: "Test text"
 	}
 };
 ```
@@ -855,15 +855,15 @@ return {
 > [!IMPORTANT]
 > If the `js` language file format is used, the language file must be initialized by the `return` keyword followed by a `{}` object.
 
-JSON code file `main-es.json`:
+JSON code file `main-en.json`:
 
 ```json
 {
 	"titles": {
-		"test": "Titulo prueba"
+		"test": "Test title"
 	},
 	"texts": {
-		"test": "Texto prueba"
+		"test": "Test text"
 	}
 }
 ```

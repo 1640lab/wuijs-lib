@@ -839,15 +839,15 @@ Administrador de idioma para interfaces web. Permite cargar archivos de idioma e
 
 #### Implementación
 
-Código JS archivo `main-en.js`:
+Código JS archivo `main-es.js`:
 
 ```js
 return {
 	titles: {
-		test: "Test title"
+		test: "Titulo prueba"
 	},
 	texts: {
-		test: "Test text"
+		test: "Texto prueba"
 	}
 };
 ```
@@ -855,15 +855,15 @@ return {
 > [!IMPORTNT]
 > Si se utiliza el formato de los archivos de idioma `js`, el archivo de idioma debe ser inicializado por la palabra reservada `return` seguido  de un objeto `{}`.
 
-Código JSON archivo `main-en.json`:
+Código JSON archivo `main-es.json`:
 
 ```json
 {
 	"titles": {
-		"test": "Test title"
+		"test": "Titulo prueba"
 	},
 	"texts": {
-		"test": "Test text"
+		"test": "Texto prueba"
 	}
 }
 ```
