@@ -940,7 +940,8 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 | WUIIcon | `WUIIcon([properties])`<br><br>Parámetros:<br>**• properties:** `object` *opcional* |
 
 > [!TIP]
-> No es necesario implementar los objetos HTML WUIIcon mediante el constructor JavaScript, estos pueden ser utilizados directamente mediante el estilo CSS `wui-icon`.
+> No es necesario implementar los objetos HTML WUIIcon mediante el constructor JavaScript, estos pueden ser utilizados directamente mediante el estilo CSS `wui-icon`.<br>
+> El constructor JavaScript es utilizado para agregar fuentes adicionales en formato SVG mediante estructura URL a los íconos que coincidan con el selector parametrizado.
 
 #### Propiedades
 
