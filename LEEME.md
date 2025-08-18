@@ -853,7 +853,7 @@ return {
 ```
 
 > [!IMPORTANT]
-> Si se utiliza `js` como formato de los archivos de idioma, el archivo de idioma debe ser inicializado por la palabra reservada `return` seguido  de un objeto `{}`.
+> Si se utiliza `js` como formato de los archivos de idioma, dicho archivo debe ser inicializado por la palabra reservada `return` seguido  de un objeto `{}`.
 
 Código JSON archivo `main-es.json`:
 
