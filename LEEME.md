@@ -1,3 +1,5 @@
+<link type="text/css" rel="stylesheet" href="./src/WUI/Icon/WUIIcon-0.1.css">
+
 # wuijs-lib
 
 Versión documentación: `0.2.1`
@@ -933,19 +935,18 @@ Versión: `0.1`
 
 Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 
-#### Constructor
+#### Icon Table
 
-| Tipo    | Descripción |
+<style>
+	.wui-icon {
+		width: 24px;
+		height: 24px;
+	}
+</style>
+
+| Icon    | Style |
 | ------- | ----------- |
-| WUIIcon | `WUIIcon([properties])`<br><br>Parámetros:<br>**• properties:** `object` *opcional* |
-
-> [!TIP]
-> No es necesario implementar los objetos HTML WUIIcon mediante el constructor JavaScript, estos pueden ser utilizados directamente mediante el estilo CSS `wui-icon`.<br>
-> El constructor JavaScript es utilizado para agregar fuentes adicionales en formato SVG mediante estructura URL a los íconos que coincidan con el selector parametrizado.
-
-#### Propiedades
-
-#### Métodos
+| <div class="wui-icon plus-line"></div> | .plus-line |
 
 #### Implementación
 

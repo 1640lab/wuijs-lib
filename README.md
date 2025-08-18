@@ -933,19 +933,11 @@ Versión: `0.1`
 
 Set of pre-designed icons loaded via CSS, for use in interfaces.
 
-#### Constructor
+#### Icon Table
 
-| Type    | Description |
+| Icon    | Style |
 | ------- | ----------- |
-| WUIIcon | `WUIIcon([properties])`<br><br>Arguments:<br>**• properties:** `object` *optional* |
 
-> [!TIP]
-> It is not necessary to implement the WUIIcon HTML objects using the JavaScript constructor, they can be used directly using the `wui-icon` CSS style.<br>
-> The JavaScript constructor is used to add additional SVG fonts via URL structure to icons that match the parameterized selector.
-
-#### Properties
-
-#### Methods
 
 #### Implementation
 
