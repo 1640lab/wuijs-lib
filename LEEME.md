@@ -939,7 +939,7 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 
 | Icono | Estilo | Icono | Estilo |
 | :---: | :----- | :---: | :----- |
-| ![.plus-line](./src/WUI/Icon/Icons/plus-line.svg) | .plus-line | ![.plus-lg-line](./src/WUI/Icon/Icons/plus-lg-line.svg) | .plus-lg-line |
+| ![](./src/WUI/Icon/Icons/plus-line.svg) | .plus-line | ![](./src/WUI/Icon/Icons/plus-lg-line.svg) | .plus-lg-line |
 
 <table>
 	<tr>
