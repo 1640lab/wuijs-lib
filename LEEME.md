@@ -937,9 +937,9 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 
 #### Tabla de Íconos de Señale
 
-| Icono | Estilo | Icono | Estilo |
-| :---: | :----- | :---: | :----- |
-| ![](./src/WUI/Icon/Icons/plus-line.svg) | .plus-line | ![](./src/WUI/Icon/Icons/plus-lg-line.svg) | .plus-lg-line |
+| Icono | Estilo | Icono | Estilo | Icono | Estilo | Icono | Estilo |
+| :---: | :----- | :---: | :----- | :---: | :----- | :---: | :----- |
+| ![](./src/WUI/Icon/Icons/plus-line.svg) | .plus-line | ![](./src/WUI/Icon/Icons/plus-lg-line.svg) | .plus-lg-line | ![](./src/WUI/Icon/Icons/dash-line.svg) | .dash-line | ![](./src/WUI/Icon/Icons/dash-lg-line.svg) | .dash-lg-line |
 
 <table>
 	<tr>
