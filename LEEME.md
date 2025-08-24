@@ -939,7 +939,7 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 
 <table>
 	<tr>
-		<td><img src="https://github.com/1640lab/wuijs-lib/blob/main/src/WUI/Icon/Icons/plus-line.svg" width="24" height="24"></td>
+		<td><div style="width:24px; height:24px; background-color:#aaa; mask-image:url((./src/WUI/Icon/Icons/plus-line.svg));"></div></td>
 		<td>.plus-line</td>
 		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z'/></svg></div></td>
 		<td>.plus-lg-line</td>
