@@ -939,13 +939,13 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 
 <table>
 	<tr>
-		<td><div style="width:24px; height:24px; background-color:#bbb; mask-image:url(https://github.com/1640lab/wuijs-lib/blob/main/src/WUI/Icon/Icons/plus-line.svg);"></div></td>
+		<td><div style="width:24px; height:24px; background-color:#bbb; -webkit-mask-image: url(https://github.com/1640lab/wuijs-lib/blob/main/src/WUI/Icon/Icons/plus-line.svg); mask-image:url(https://github.com/1640lab/wuijs-lib/blob/main/src/WUI/Icon/Icons/plus-line.svg);"></div></td>
 		<td>.plus-line</td>
-		<td><div style="width:24px; height:24px; background-color:#bbb; mask-image:url(https://github.com/1640lab/wuijs-lib/blob/main/src/WUI/Icon/Icons/plus-lg-line.svg);"></div></td>
+		<td><div style="width:24px; height:24px; background-color:#bbb; -webkit-mask-image: url(https://github.com/1640lab/wuijs-lib/blob/main/src/WUI/Icon/Icons/plus-lg-line.svg); mask-image:url(https://github.com/1640lab/wuijs-lib/blob/main/src/WUI/Icon/Icons/plus-lg-line.svg);"></div></td>
 		<td>.plus-lg-line</td>
-		<td><div style="width:24px; height:24px; background-color:#bbb; mask-image:url(https://github.com/1640lab/wuijs-lib/blob/main/src/WUI/Icon/Icons/dash-line.svg);"></div></td>
+		<td><div style="width:24px; height:24px; background-color:#bbb; -webkit-mask-image: url(https://github.com/1640lab/wuijs-lib/blob/main/src/WUI/Icon/Icons/dash-line.svg); mask-image:url(https://github.com/1640lab/wuijs-lib/blob/main/src/WUI/Icon/Icons/dash-line.svg);"></div></td>
 		<td>.dash-line</td>
-		<td><div style="width:24px; height:24px; background-color:#bbb; mask-image:url(https://github.com/1640lab/wuijs-lib/blob/main/src/WUI/Icon/Icons/dash-lg-line.svg);"></div></td>
+		<td><div style="width:24px; height:24px; background-color:#bbb; -webkit-mask-image: url(https://github.com/1640lab/wuijs-lib/blob/main/src/WUI/Icon/Icons/dash-lg-line.svg); mask-image:url(https://github.com/1640lab/wuijs-lib/blob/main/src/WUI/Icon/Icons/dash-lg-line.svg);"></div></td>
 		<td>.dash-lg-line</td>
 	</tr>
 	<tr>
