@@ -939,13 +939,13 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 
 <table>
 	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z'/></svg></div></td>
+		<td><div style="width:24px; height:24px; background-color:#bbb; mask-image:url(./src/WUI/Icon/Icons/plus-line.svg);"></div></td>
 		<td>.plus-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z'/></svg></div></td>
+		<td><div style="width:24px; height:24px; background-color:#bbb; mask-image:url(./src/WUI/Icon/Icons/plus-lg-line.svg);"></div></td>
 		<td>.plus-lg-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z'/></svg></div></td>
+		<td><div style="width:24px; height:24px; background-color:#bbb; mask-image:url(./src/WUI/Icon/Icons/dash-line.svg);"></div></td>
 		<td>.dash-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z'/></svg></div></td>
+		<td><div style="width:24px; height:24px; background-color:#bbb; mask-image:url(./src/WUI/Icon/Icons/dash-lg-line.svg);"></div></td>
 		<td>.dash-lg-line</td>
 	</tr>
 	<tr>
