@@ -939,60 +939,13 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 
 | Icono | Estilo | Icono | Estilo | Icono | Estilo | Icono | Estilo |
 | :---: | :----- | :---: | :----- | :---: | :----- | :---: | :----- |
-| ![](./src/WUI/Icon/Preview/plus-line.svg)  | .plus-line                      | ![](./src/WUI/Icon/Preview/plus-lg-line.svg)  | .plus-lg-line                         | ![](./src/WUI/Icon/Preview/dash-line.svg) | .dash-line | ![](./src/WUI/Icon/Preview/dash-lg-line.svg) | .dash-lg-line |
-| ![](./src/WUI/Icon/Preview/check-line.svg) | .check-line<br>.successful-line | ![](./src/WUI/Icon/Preview/check-lg-line.svg) | .check-lg-line<br>.successful-lg-line | ![](./src/WUI/Icon/Preview/info-line.svg) | .info-line | ![](./src/WUI/Icon/Preview/info-lg-line.svg) | .info-lg-line |
+| ![](./src/WUI/Icon/Preview/plus-line.svg)     | .plus-line                      | ![](./src/WUI/Icon/Preview/plus-lg-line.svg)     | .plus-lg-line                         | ![](./src/WUI/Icon/Preview/dash-line.svg)        | .dash-line                            | ![](./src/WUI/Icon/Preview/dash-lg-line.svg)       | .dash-lg-line                                  |
+| ![](./src/WUI/Icon/Preview/check-line.svg)    | .check-line<br>.successful-line | ![](./src/WUI/Icon/Preview/check-lg-line.svg)    | .check-lg-line<br>.successful-lg-line | ![](./src/WUI/Icon/Preview/info-line.svg)        | .info-line                            | ![](./src/WUI/Icon/Preview/info-lg-line.svg)       | .info-lg-line                                  |
+| ![](./src/WUI/Icon/Preview/question-line.svg) | .question-line                  | ![](./src/WUI/Icon/Preview/question-lg-line.svg) | .question-lg-line                     | ![](./src/WUI/Icon/Preview/excamation-line.svg)  | .excamation-line<br>.warning-line     | ![](./src/WUI/Icon/Preview/excamation-lg-line.svg) | .excamation-lg-line<br>.warning-lg-line        |
+| ![](./src/WUI/Icon/Preview/slash-line.svg)    | .slash-line                     | ![](./src/WUI/Icon/Preview/slash-lg-line.svg)    | .slash-lg-line                        | ![](./src/WUI/Icon/Preview/x-line.svg)           | .x-line<br>.close-line<br>.error-line | ![](./src/WUI/Icon/Preview/x-lg-line.svg)          | .x-lg-line<br>.close-lg-line<br>.error-lg-line |
+| ![](./src/WUI/Icon/Preview/filter-line.svg)   | .filter-line                    | ![](./src/WUI/Icon/Preview/filter-lg-line.svg)   | .filter-lg-line                       | ![](./src/WUI/Icon/Preview/plus-circle-line.svg) | .plus-circle-line                     | ![](./src/WUI/Icon/Preview/plus-circle-fill.svg)   | .plus-circle-fill                              |
 
 <table>
-	<tr>
-		<td>![.plus-line](./src/WUI/Icon/Icons/plus-line.svg)</td>
-		<td>.plus-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z'/></svg></div></td>
-		<td>.plus-lg-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z'/></svg></div></td>
-		<td>.dash-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z'/></svg></div></td>
-		<td>.dash-lg-line</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z'/></svg></div></td>
-		<td>.check-line<br>.successful-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z'/></svg></div></td>
-		<td>.check-lg-line<br>.successful-lg-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z'/></svg></div></td>
-		<td>.info-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='m9.708 6.075-3.024.379-.108.502.595.108c.387.093.464.232.38.619l-.975 4.577c-.255 1.183.14 1.74 1.067 1.74.72 0 1.554-.332 1.933-.789l.116-.549c-.263.232-.65.325-.905.325-.363 0-.494-.255-.402-.704l1.323-6.208Zm.091-2.755a1.32 1.32 0 1 1-2.64 0 1.32 1.32 0 0 1 2.64 0Z'/></svg></div></td>
-		<td>.info-lg-line</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z'/></svg></div></td>
-		<td>.question-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215 0 1.344-.665 2.288-1.79 2.973-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712 1.03-.632 1.397-1.135 1.397-2.028 0-.979-.758-1.698-1.926-1.698-1.009 0-1.71.529-1.938 1.402-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09 0-.618-.473-1.092-1.095-1.092-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z'/></svg></div></td>
-		<td>.question-lg-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.553.553 0 0 1-1.1 0L7.1 4.995z'/></svg></div></td>
-		<td>.excamation-line<br>.warning-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0L7.005 3.1ZM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z'/></svg></div></td>
-		<td>.excamation-lg-line<br>.warning-lg-line</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M11.354 4.646a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708l6-6a.5.5 0 0 1 .708 0z'/></svg></div></td>
-		<td>.slash-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z'/></svg></div></td>
-		<td>.slash-lg-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z'/></svg></div></td>
-		<td>.x-line<br>.close-line<br>.error-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z'/></svg></div></td>
-		<td>.x-lg-line<br>.close-lg-line<br>.error-lg-line</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M7 11.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5'/></svg></div></td>
-		<td>.filter-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5'/></svg></div></td>
-		<td>.filter-lg-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path stroke-linejoin='round' stroke-linecap='round' d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/><path d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z'/></svg></div></td>
-		<td>.plus-circle-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path stroke-linejoin='round' stroke-linecap='round' d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z'/></svg></div></td>
-		<td>.plus-circle-fill</td>
-	</tr>
 	<tr>
 		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path stroke-linejoin='round' stroke-linecap='round' d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/><path d='M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z'/></svg></div></td>
 		<td>.dash-circle-line</td>
