@@ -939,7 +939,8 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 
 | Icono | Estilo | Icono | Estilo | Icono | Estilo | Icono | Estilo |
 | :---: | :----- | :---: | :----- | :---: | :----- | :---: | :----- |
-| ![](./src/WUI/Icon/Preview/plus-line.svg) | .plus-line | ![](./src/WUI/Icon/Preview/plus-lg-line.svg) | .plus-lg-line | ![](./src/WUI/Icon/Preview/dash-line.svg) | .dash-line | ![](./src/WUI/Icon/Preview/dash-lg-line.svg) | .dash-lg-line |
+| ![](./src/WUI/Icon/Preview/plus-line.svg)  | .plus-line                      | ![](./src/WUI/Icon/Preview/plus-lg-line.svg)  | .plus-lg-line                         | ![](./src/WUI/Icon/Preview/dash-line.svg) | .dash-line | ![](./src/WUI/Icon/Preview/dash-lg-line.svg) | .dash-lg-line |
+| ![](./src/WUI/Icon/Preview/check-line.svg) | .check-line<br>.successful-line | ![](./src/WUI/Icon/Preview/check-lg-line.svg) | .check-lg-line<br>.successful-lg-line | ![](./src/WUI/Icon/Preview/info-line.svg) | .info-line | ![](./src/WUI/Icon/Preview/info-lg-line.svg) | .info-lg-line |
 
 <table>
 	<tr>
