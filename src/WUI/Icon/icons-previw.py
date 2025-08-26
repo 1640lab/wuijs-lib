@@ -5,8 +5,8 @@ import urllib.parse
 # Configuración
 css_path = "./WUIIcon-0.1.css"
 icons_dir = "./Preview/"
-icon_color = "#aaa"      # reemplaza "currentColor" por este color (None para desactivar)
-icon_size = 24           # tamaño de íconos en px
+icon_color = "#a2a9b6"  # reemplaza "currentColor" por este color (None para desactivar)
+icon_size = 24            # tamaño de íconos en px
 
 # Crear directorio de salida si no existe
 os.makedirs(icons_dir, exist_ok=True)
@@ -19,8 +19,8 @@ for filename in os.listdir(icons_dir):
 # Expresiones regulares
 rule_regex = re.compile(r"([^{}]+)\{(.*?)\}", re.DOTALL | re.MULTILINE)
 mask_regex = re.compile(r"--icon-mask\s*:\s*url\(['\"]?(.*?)['\"]?\)\s*;", re.IGNORECASE)
-bg_regex   = re.compile(r"background-image\s*:\s*url\(['\"]?(.*?)['\"]?\)\s*;", re.IGNORECASE)
-comment_regex = re.compile(r"/\*.*?\*/", re.DOTALL)  # para eliminar comentarios
+bg_regex = re.compile(r"background-image\s*:\s*url\(['\"]?(.*?)['\"]?\)\s*;", re.IGNORECASE)
+comment_regex = re.compile(r"/\*.*?\*/", re.DOTALL)  # eliminar comentarios
 
 # Tabla de resultados
 icon_table = []
@@ -33,6 +33,8 @@ css_content = re.sub(comment_regex, "", css_content)
 
 # Buscar reglas CSS
 for selectors_block, body in rule_regex.findall(css_content):
+    selectors_block = selectors_block.strip()
+    body = body.strip()
     selectors = [s.strip() for s in selectors_block.split(",") if s.strip().startswith(".wui-icon.")]
     if not selectors:
         continue
@@ -41,13 +43,13 @@ for selectors_block, body in rule_regex.findall(css_content):
 
     # Buscar --icon-mask
     mask_match = mask_regex.search(body)
-    if mask_match:
+    if mask_match and mask_match.group().lower() != "none":
         svg_data = mask_match.group(1)
 
     # Si no hay --icon-mask, probar con background-image
     if not svg_data:
         bg_match = bg_regex.search(body)
-        if bg_match and "none" not in bg_match.group(1).lower():
+        if bg_match and bg_match.group().lower() != "none":
             svg_data = bg_match.group(1)
 
     if svg_data and svg_data.startswith("data:image/svg+xml"):
@@ -61,7 +63,7 @@ for selectors_block, body in rule_regex.findall(css_content):
         match_svg = re.search(r"(<svg.*?</svg>)", svg_data, re.DOTALL | re.IGNORECASE)
         if not match_svg:
             continue
-        svg_data = match_svg.group(1)
+        svg_data = match_svg.group(0)
 
         # Reemplazo de currentColor
         if icon_color:
@@ -79,7 +81,7 @@ for selectors_block, body in rule_regex.findall(css_content):
         for selector in selectors:
             style_name = selector.replace(".wui-icon.", "")
             icon_table.append((style_name, svg_data))
-            print(f"Estilo encontrado {style_name} : {svg_data[:120]}")
+            print(f"Estilo encontrado {style_name}")
 
 # Ordenar tabla por nombre de estilo
 icon_table.sort(key=lambda x: x[0].lower())

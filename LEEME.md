@@ -937,251 +937,41 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 
 #### Tabla de Íconos de Señale
 
-| Icono | Estilo | Icono | Estilo | Icono | Estilo | Icono | Estilo |
-| :---: | :----- | :---: | :----- | :---: | :----- | :---: | :----- |
-| ![](./src/WUI/Icon/Preview/plus-line.svg)     | .plus-line                      | ![](./src/WUI/Icon/Preview/plus-lg-line.svg)     | .plus-lg-line                         | ![](./src/WUI/Icon/Preview/dash-line.svg)        | .dash-line                            | ![](./src/WUI/Icon/Preview/dash-lg-line.svg)       | .dash-lg-line                                  |
-| ![](./src/WUI/Icon/Preview/check-line.svg)    | .check-line<br>.successful-line | ![](./src/WUI/Icon/Preview/check-lg-line.svg)    | .check-lg-line<br>.successful-lg-line | ![](./src/WUI/Icon/Preview/info-line.svg)        | .info-line                            | ![](./src/WUI/Icon/Preview/info-lg-line.svg)       | .info-lg-line                                  |
-| ![](./src/WUI/Icon/Preview/question-line.svg) | .question-line                  | ![](./src/WUI/Icon/Preview/question-lg-line.svg) | .question-lg-line                     | ![](./src/WUI/Icon/Preview/excamation-line.svg)  | .excamation-line<br>.warning-line     | ![](./src/WUI/Icon/Preview/excamation-lg-line.svg) | .excamation-lg-line<br>.warning-lg-line        |
-| ![](./src/WUI/Icon/Preview/slash-line.svg)    | .slash-line                     | ![](./src/WUI/Icon/Preview/slash-lg-line.svg)    | .slash-lg-line                        | ![](./src/WUI/Icon/Preview/x-line.svg)           | .x-line<br>.close-line<br>.error-line | ![](./src/WUI/Icon/Preview/x-lg-line.svg)          | .x-lg-line<br>.close-lg-line<br>.error-lg-line |
-| ![](./src/WUI/Icon/Preview/filter-line.svg)   | .filter-line                    | ![](./src/WUI/Icon/Preview/filter-lg-line.svg)   | .filter-lg-line                       | ![](./src/WUI/Icon/Preview/plus-circle-line.svg) | .plus-circle-line                     | ![](./src/WUI/Icon/Preview/plus-circle-fill.svg)   | .plus-circle-fill                              |
-
-<table>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path stroke-linejoin='round' stroke-linecap='round' d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/><path d='M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z'/></svg></div></td>
-		<td>.dash-circle-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path stroke-linejoin='round' stroke-linecap='round' d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7z'/></svg></div></td>
-		<td>.dash-circle-fill</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/><path d='M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z'/></svg></div></td>
-		<td>.check-circle-line<br>.successful-circle-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z'/></svg></div></td>
-		<td>.check-circle-fill<br>.successful-circle-fill</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/><path d='m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z'/></svg></div></td>
-		<td>.info-circle-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z'/></svg></div></td>
-		<td>.info-circle-fill</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/><path d='M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z'/></svg></div></td>
-		<td>.question-circle-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z'/></svg></div></td>
-		<td>.question-circle-fill</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/><path d='M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z'/></svg></div></td>
-		<td>.excamation-circle-line<br>.warning-circle-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z'/></svg></div></td>
-		<td>.excamation-circle-fill<br>.warning-circle-fill</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/><path d='M11.354 4.646a.5.5 0 0 0-.708 0l-6 6a.5.5 0 0 0 .708.708l6-6a.5.5 0 0 0 0-.708z'/></svg></div></td>
-		<td>.slash-circle-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.646-2.646a.5.5 0 0 0-.708-.708l-6 6a.5.5 0 0 0 .708.708l6-6z'/></svg></div></td>
-		<td>.slash-circle-fill</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/><path d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z'/></svg></div></td>
-		<td>.x-circle-line<br>.close-circle-line<br>.error-circle-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z'/></svg></div></td>
-		<td>.x-circle-fill<br>.close-circle-fill<br>.error-circle-fill</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16'/><path d='M7 11.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5'/></svg></div></td>
-		<td>.filter-circle-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M3.5 5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1M5 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m2 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5'/></svg></div></td>
-		<td>.filter-circle-fill</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z'/><path d='M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z'/></svg></div></td>
-		<td>.excamation-triangle-line<br>.warning-triangle-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z'/></svg></div></td>
-		<td>.excamation-triangle-fill<br>.warning-triangle-fill</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146zM5.1 1 1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1H5.1z'/><path d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z'/></svg></div></td>
-		<td>.x-octagon-line<br>.close-octagon-line<br>.error-octagon-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z'/></svg></div></td>
-		<td>.x-octagon-fill<br>.close-octagon-fill<br>.error-octagon-fill</td>
-	</tr>
-</table>
+| Icono                                                    | Estilo                                                    | Icono                                                    | Estilo                                                    | Icono                                                | Estilo                                                        | Icono                                                | Estilo                                                         |
+| :---:                                                    | :-----                                                    | :---:                                                    | :-----                                                    | :---:                                                | :-----                                                        | :---:                                                | :-----                                                         |
+| ![](./src/WUI/Icon/Preview/plus-line.svg)                | .plus-line                                                | ![](./src/WUI/Icon/Preview/plus-lg-line.svg)             | .plus-lg-line                                             | ![](./src/WUI/Icon/Preview/dash-line.svg)            | .dash-line                                                    | ![](./src/WUI/Icon/Preview/dash-lg-line.svg)         | .dash-lg-line                                                  |
+| ![](./src/WUI/Icon/Preview/check-line.svg)               | .check-line<br>.successful-line                           | ![](./src/WUI/Icon/Preview/check-lg-line.svg)            | .check-lg-line<br>.successful-lg-line                     | ![](./src/WUI/Icon/Preview/info-line.svg)            | .info-line                                                    | ![](./src/WUI/Icon/Preview/info-lg-line.svg)         | .info-lg-line                                                  |
+| ![](./src/WUI/Icon/Preview/question-line.svg)            | .question-line                                            | ![](./src/WUI/Icon/Preview/question-lg-line.svg)         | .question-lg-line                                         | ![](./src/WUI/Icon/Preview/excamation-line.svg)      | .excamation-line<br>.warning-line                             | ![](./src/WUI/Icon/Preview/excamation-lg-line.svg)   | .excamation-lg-line<br>.warning-lg-line                        |
+| ![](./src/WUI/Icon/Preview/slash-line.svg)               | .slash-line                                               | ![](./src/WUI/Icon/Preview/slash-lg-line.svg)            | .slash-lg-line                                            | ![](./src/WUI/Icon/Preview/x-line.svg)               | .x-line<br>.close-line<br>.error-line                         | ![](./src/WUI/Icon/Preview/x-lg-line.svg)            | .x-lg-line<br>.close-lg-line<br>.error-lg-line                 |
+| ![](./src/WUI/Icon/Preview/filter-line.svg)              | .filter-line                                              | ![](./src/WUI/Icon/Preview/filter-lg-line.svg)           | .filter-lg-line                                           | ![](./src/WUI/Icon/Preview/plus-circle-line.svg)     | .plus-circle-line                                             | ![](./src/WUI/Icon/Preview/plus-circle-fill.svg)     | .plus-circle-fill                                              |
+| ![](./src/WUI/Icon/Preview/dash-circle-line.svg)         | .dash-circle-line                                         | ![](./src/WUI/Icon/Preview/dash-circle-fill.svg)         | .dash-circle-fill                                         | ![](./src/WUI/Icon/Preview/check-circle-line.svg)    | .check-circle-line<br>.successful-circle-line                 | ![](./src/WUI/Icon/Preview/check-circle-fill.svg)    | .check-circle-fill<br>.successful-circle-fill                  |
+| ![](./src/WUI/Icon/Preview/info-circle-line.svg)         | .info-circle-line                                         | ![](./src/WUI/Icon/Preview/info-circle-fill.svg)         | .info-circle-fill                                         | ![](./src/WUI/Icon/Preview/question-circle-line.svg) | .question-circle-line                                         | ![](./src/WUI/Icon/Preview/question-circle-fill.svg) | .question-circle-fill                                          |
+| ![](./src/WUI/Icon/Preview/excamation-circle-line.svg)   | .excamation-circle-line<br>.warning-circle-line           | ![](./src/WUI/Icon/Preview/excamation-circle-fill.svg)   | .excamation-circle-fill<br>.warning-circle-fill           | ![](./src/WUI/Icon/Preview/slash-circle-line.svg)    | .slash-circle-line                                            | ![](./src/WUI/Icon/Preview/slash-circle-fill.svg)    | .slash-circle-fill                                             |
+| ![](./src/WUI/Icon/Preview/x-circle-line.svg)            | .x-circle-line<br>.close-circle-line<br>error-circle-line | ![](./src/WUI/Icon/Preview/x-circle-fill.svg)            | .x-circle-fill<br>.close-circle-fill<br>error-circle-fill | ![](./src/WUI/Icon/Preview/filter-circle-line.svg)   | .filter-circle-line                                           | ![](./src/WUI/Icon/Preview/filter-circle-fill.svg)   | .filter-circle-fill                                            |
+| ![](./src/WUI/Icon/Preview/excamation-triangle-line.svg) | .excamation-triangle-line<br>.warning-triangle-line       | ![](./src/WUI/Icon/Preview/excamation-triangle-fill.svg) | .excamation-triangle-fill<br>.warning-triangle-fill       | ![](./src/WUI/Icon/Preview/x-octagon-line.svg)       | .x-octagon-line<br>.close-octagon-line<br>.error-octagon-line | ![](./src/WUI/Icon/Preview/x-octagon-fill.svg)       | ..x-octagon-fill<br>.close-octagon-fill<br>.error-octagon-fill |
 
 #### Tabla de Íconos de Flecha
 
-<table>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z'/></svg></div></td>
-		<td>.arrow-up-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z'/></svg></div></td>
-		<td>.arrow-left-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z'/></svg></div></td>
-		<td>.arrow-right-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z'/></svg></div></td>
-		<td>.arrow-down-line</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z'/></svg></div></td>
-		<td>.arrow-up-lg-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z'/></svg></div></td>
-		<td>.arrow-left-lg-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z'/></svg></div></td>
-		<td>.arrow-right-lg-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z'/></svg></div></td>
-		<td>.arrow-down-lg-line</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M2 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1H3.707l10.147 10.146a.5.5 0 0 1-.708.708L3 3.707V8.5a.5.5 0 0 1-1 0z'/></svg></div></td>
-		<td>.arrow-upleft-lg-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z'/></svg></div></td>
-		<td>.arrow-upright-lg-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M2 13.5a.5.5 0 0 0 .5.5h6a.5.5 0 0 0 0-1H3.707L13.854 2.854a.5.5 0 0 0-.708-.708L3 12.293V7.5a.5.5 0 0 0-1 0z'/></svg></div></td>
-		<td>.arrow-downleft-lg-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M14 13.5a.5.5 0 0 1-.5.5h-6a.5.5 0 0 1 0-1h4.793L2.146 2.854a.5.5 0 1 1 .708-.708L13 12.293V7.5a.5.5 0 0 1 1 0v6z'/></svg></div></td>
-		<td>.arrow-downright-lg-line</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M8.12 14.71L12 10.83l3.88 3.88a.996.996 0 1 0 1.41-1.41L12.7 8.71a.996.996 0 0 0-1.41 0L6.7 13.3a.996.996 0 0 0 0 1.41c.39.38 1.03.39 1.42 0z'/></svg></div></td>
-		<td>.arrowhead-up-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M14.71 15.88L10.83 12l3.88-3.88a.996.996 0 1 0-1.41-1.41L8.71 11.3a.996.996 0 0 0 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0c.38-.39.39-1.03 0-1.42z'/></svg></div></td>
-		<td>.arrowhead-left-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M9.29 15.88L13.17 12L9.29 8.12a.996.996 0 1 1 1.41-1.41l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3a.996.996 0 0 1-1.41 0c-.38-.39-.39-1.03 0-1.42z'/></svg></div></td>
-		<td>.arrowhead-right-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0z'/></svg></div></td>
-		<td>.arrowhead-down-line</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z'/></svg></div></td>
-		<td>.arrowhead-up-lg-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/></svg></div></td>
-		<td>.arrowhead-left-lg-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/></svg></div></td>
-		<td>.arrowhead-right-lg-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg></div></td>
-		<td>.arrowhead-down-lg-line</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='currentColor'><path transform='translate(0,96)' d='m5.9 270.28 43.07 43.07c7.86 7.86 20.73 7.84 28.56 0l178.48-178.48L434.5 313.35c7.86 7.86 20.74 7.82 28.56 0l43.07-43.07c7.83-7.84 7.83-20.72 0-28.56L313.72 49.32l-.36-.37-43.07-43.07c-7.83-7.82-20.7-7.86-28.56 0l-43.07 43.07-.36.37L5.9 241.72c-7.87 7.86-7.87 20.7 0 28.56z'/></svg></div></td>
-		<td>.arrowhead-up-stg-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='currentColor'><path transform='translate(96)' d='m270.08 5.89 43.04 43.04c7.85 7.86 7.83 20.72 0 28.54L134.77 255.82l178.35 178.35c7.85 7.86 7.8 20.73 0 28.54l-43.04 43.04c-7.83 7.82-20.71 7.82-28.54 0L49.29 313.49l-.37-.36-43.04-43.04c-7.82-7.83-7.86-20.68 0-28.54l43.04-43.04.37-.36L241.54 5.89c7.85-7.85 20.68-7.85 28.54 0z'/></svg></div></td>
-		<td>.arrowhead-left-stg-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='currentColor'><path transform='translate(96)' d='M48.92 505.72 5.88 462.68c-7.85-7.85-7.83-20.72 0-28.54l178.35-178.35L5.88 77.44c-7.85-7.85-7.8-20.73 0-28.54L48.92 5.87c7.83-7.82 20.71-7.82 28.54 0l192.25 192.26.37.36 43.04 43.03c7.82 7.84 7.86 20.69 0 28.54l-43.04 43.04-.37.36L77.46 505.72c-7.85 7.86-20.68 7.86-28.54 0z'/></svg></div></td>
-		<td>.arrowhead-right-stg-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='currentColor'><path transform='translate(0,96)' d='M5.9 48.96 48.97 5.89c7.86-7.86 20.73-7.84 28.56 0l178.48 178.48L434.5 5.89c7.86-7.86 20.74-7.82 28.56 0l43.07 43.07c7.83 7.84 7.83 20.72 0 28.56l-192.41 192.4-.36.37-43.07 43.07c-7.83 7.82-20.7 7.86-28.56 0l-43.07-43.07-.36-.37L5.9 77.52c-7.87-7.86-7.87-20.7 0-28.56z'/></svg></div></td>
-		<td>.arrowhead-down-stg-line</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M3 19h18a1.002 1.002 0 0 0 .823-1.569l-9-13c-.373-.539-1.271-.539-1.645 0l-9 13A.999.999 0 0 0 3 19z'/></svg></div></td>
-		<td>.arrowhead-up-fill</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M4.431 12.822l13 9A1 1 0 0 0 19 21V3a1 1 0 0 0-1.569-.823l-13 9a1.003 1.003 0 0 0 0 1.645z'/></svg></div></td>
-		<td>.arrowhead-left-fill</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M5.536 21.886a1.004 1.004 0 0 0 1.033-.064l13-9a1 1 0 0 0 0-1.644l-13-9A1 1 0 0 0 5 3v18a1 1 0 0 0 .536.886z'/></svg></div></td>
-		<td>.arrowhead-right-fill</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M11.178 19.569a.998.998 0 0 0 1.644 0l9-13A.999.999 0 0 0 21 5H3a1.002 1.002 0 0 0-.822 1.569l9 13z'/></svg></div></td>
-		<td>.arrowhead-down-fill</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z'/></svg></div></td>
-		<td>.arrow-up-circle-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z'/></svg></div></td>
-		<td>.arrow-left-circle-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z'/></svg></div></td>
-		<td>.arrow-right-circle-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z'/></svg></div></td>
-		<td>.arrow-down-circle-line</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-5.904 2.803a.5.5 0 1 0 .707-.707L6.707 6h2.768a.5.5 0 1 0 0-1H5.5a.5.5 0 0 0-.5.5v3.975a.5.5 0 0 0 1 0V6.707z'/></svg></div></td>
-		<td>.arrow-upleft-circle-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.854 10.803a.5.5 0 1 1-.708-.707L9.243 6H6.475a.5.5 0 1 1 0-1h3.975a.5.5 0 0 1 .5.5v3.975a.5.5 0 1 1-1 0V6.707l-4.096 4.096z'/></svg></div></td>
-		<td>.arrow-upright-circle-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-5.904-2.854a.5.5 0 1 1 .707.708L6.707 9.95h2.768a.5.5 0 1 1 0 1H5.5a.5.5 0 0 1-.5-.5V6.475a.5.5 0 1 1 1 0v2.768z'/></svg></div></td>
-		<td>.arrow-downleft-circle-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.854 5.146a.5.5 0 1 0-.708.708L9.243 9.95H6.475a.5.5 0 1 0 0 1h3.975a.5.5 0 0 0 .5-.5V6.475a.5.5 0 1 0-1 0v2.768L5.854 5.146z'/></svg></div></td>
-		<td>.arrow-downright-circle-line</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z'/></svg></div></td>
-		<td>.arrow-up-circle-fill</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z'/></svg></div></td>
-		<td>.arrow-left-circle-fill</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z'/></svg></div></td>
-		<td>.arrow-right-circle-fill</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z'/></svg></div></td>
-		<td>.arrow-down-circle-fill</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-5.904 2.803a.5.5 0 1 0 .707-.707L6.707 6h2.768a.5.5 0 1 0 0-1H5.5a.5.5 0 0 0-.5.5v3.975a.5.5 0 0 0 1 0V6.707z'/></svg></div></td>
-		<td>.arrow-upleft-circle-fill</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M0 8a8 8 0 1 0 16 0A8 8 0 0 0 0 8zm5.904 2.803a.5.5 0 1 1-.707-.707L9.293 6H6.525a.5.5 0 1 1 0-1H10.5a.5.5 0 0 1 .5.5v3.975a.5.5 0 0 1-1 0V6.707l-4.096 4.096z'/></svg></div></td>
-		<td>.arrow-upright-circle-fill</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0m-5.904-2.803a.5.5 0 1 1 .707.707L6.707 10h2.768a.5.5 0 0 1 0 1H5.5a.5.5 0 0 1-.5-.5V6.525a.5.5 0 0 1 1 0v2.768z'/></svg></div></td>
-		<td>.arrow-downleft-circle-fill</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm5.904-2.803a.5.5 0 1 0-.707.707L9.293 10H6.525a.5.5 0 0 0 0 1H10.5a.5.5 0 0 0 .5-.5V6.525a.5.5 0 0 0-1 0v2.768L5.904 5.197z'/></svg></div></td>
-		<td>.arrow-downright-circle-fill</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5m-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5'/></svg></div></td>
-		<td>.arrowbar-up-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5M10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5'/></svg></div></td>
-		<td>.arrowbar-left-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8m-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5'/></svg></div></td>
-		<td>.arrowbar-right-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5M8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6'/></svg></div></td>
-		<td>.arrowbar-down-line</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M8 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5M.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8'/></svg></div></td>
-		<td>.arrows-expand-horizontal-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10'/></svg></div></td>
-		<td>.arrows-expand-vertical-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M8 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5M0 8a.5.5 0 0 1 .5-.5h3.793L3.146 6.354a.5.5 0 1 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L4.293 8.5H.5A.5.5 0 0 1 0 8m11.707.5 1.147 1.146a.5.5 0 0 1-.708.708l-2-2a.5.5 0 0 1 0-.708l2-2a.5.5 0 0 1 .708.708L11.707 7.5H15.5a.5.5 0 0 1 0 1z'/></svg></div></td>
-		<td>.arrows-collapse-horizontal-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8m7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0m-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0z'/></svg></div></td>
-		<td>.arrows-collapse-vertical-line</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M1.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L2.707 7.5h10.586l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L13.293 8.5H2.707l1.147 1.146a.5.5 0 0 1-.708.708z'/></svg></div></td>
-		<td>.arrows-horizontal-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path d='M8.354 14.854a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 13.293V2.707L6.354 3.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 2.707v10.586l1.146-1.147a.5.5 0 0 1 .708.708z'/></svg></div></td>
-		<td>.arrows-vertical-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707'/></svg></div></td>
-		<td>.arrows-expand-diagonal-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M.172 15.828a.5.5 0 0 0 .707 0l4.096-4.096V14.5a.5.5 0 1 0 1 0v-3.975a.5.5 0 0 0-.5-.5H1.5a.5.5 0 0 0 0 1h2.768L.172 15.121a.5.5 0 0 0 0 .707M15.828.172a.5.5 0 0 0-.707 0l-4.096 4.096V1.5a.5.5 0 1 0-1 0v3.975a.5.5 0 0 0 .5.5H14.5a.5.5 0 0 0 0-1h-2.768L15.828.879a.5.5 0 0 0 0-.707'/></svg></div></td>
-		<td>.arrows-collapse-diagonal-line</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1h-2z'/><path fill-rule='evenodd' d='M7.646.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 1.707V10.5a.5.5 0 0 1-1 0V1.707L5.354 3.854a.5.5 0 1 1-.708-.708l3-3z'/></svg></div></td>
-		<td>.arrowbox-out-up-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z'/><path fill-rule='evenodd' d='M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z'/></svg></div></td>
-		<td>.arrowbox-out-left-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z'/><path fill-rule='evenodd' d='M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z'/></svg></div></td>
-		<td>.arrowbox-out-right-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1h-2z'/><path fill-rule='evenodd' d='M7.646 15.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 14.293V5.5a.5.5 0 0 0-1 0v8.793l-2.146-2.147a.5.5 0 0 0-.708.708l3 3z'/></svg></div></td>
-		<td>.arrowbox-out-down-line</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M7.364 3.5a.5.5 0 0 1 .5-.5H14.5A1.5 1.5 0 0 1 16 4.5v10a1.5 1.5 0 0 1-1.5 1.5h-10A1.5 1.5 0 0 1 3 14.5V7.864a.5.5 0 1 1 1 0V14.5a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5v-10a.5.5 0 0 0-.5-.5H7.864a.5.5 0 0 1-.5-.5z'/><path fill-rule='evenodd' d='M0 .5A.5.5 0 0 1 .5 0h5a.5.5 0 0 1 0 1H1.707l8.147 8.146a.5.5 0 0 1-.708.708L1 1.707V5.5a.5.5 0 0 1-1 0v-5z'/></svg></div></td>
-		<td>.arrowbox-out-upleft-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z'/><path fill-rule='evenodd' d='M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z'/></svg></div></td>
-		<td>.arrowbox-out-upright-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M7.364 12.5a.5.5 0 0 0 .5.5H14.5a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 14.5 0h-10A1.5 1.5 0 0 0 3 1.5v6.636a.5.5 0 1 0 1 0V1.5a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5H7.864a.5.5 0 0 0-.5.5z'/><path fill-rule='evenodd' d='M0 15.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1H1.707l8.147-8.146a.5.5 0 0 0-.708-.708L1 14.293V10.5a.5.5 0 0 0-1 0v5z'/></svg></div></td>
-		<td>.arrowbox-out-downleft-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M8.636 12.5a.5.5 0 0 1-.5.5H1.5A1.5 1.5 0 0 1 0 11.5v-10A1.5 1.5 0 0 1 1.5 0h10A1.5 1.5 0 0 1 13 1.5v6.636a.5.5 0 0 1-1 0V1.5a.5.5 0 0 0-.5-.5h-10a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h6.636a.5.5 0 0 1 .5.5z'/><path fill-rule='evenodd' d='M16 15.5a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1 0-1h3.793L6.146 6.854a.5.5 0 1 1 .708-.708L15 14.293V10.5a.5.5 0 0 1 1 0v5z'/></svg></div></td>
-		<td>.arrowbox-out-downright-line</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1z'/><path fill-rule='evenodd' d='M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z'/></svg></div></td>
-		<td>.arrowbox-in-up-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z'/><path fill-rule='evenodd' d='M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z'/></svg></div></td>
-		<td>.arrowbox-in-left-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0z'/><path fill-rule='evenodd' d='M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708z'/></svg></div></td>
-		<td>.arrowbox-in-right-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1z'/><path fill-rule='evenodd' d='M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708z'/></svg></div></td>
-		<td>.arrowbox-in-down-line</td>
-	</tr>
-	<tr>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M6.364 2.5a.5.5 0 0 1 .5-.5H13.5A1.5 1.5 0 0 1 15 3.5v10a1.5 1.5 0 0 1-1.5 1.5h-10A1.5 1.5 0 0 1 2 13.5V6.864a.5.5 0 1 1 1 0V13.5a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5v-10a.5.5 0 0 0-.5-.5H6.864a.5.5 0 0 1-.5-.5'/><path fill-rule='evenodd' d='M11 10.5a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1 0-1h3.793L1.146 1.854a.5.5 0 1 1 .708-.708L10 9.293V5.5a.5.5 0 0 1 1 0z'/></svg></div></td>
-		<td>.arrowbox-in-upleft-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M9.636 2.5a.5.5 0 0 0-.5-.5H2.5A1.5 1.5 0 0 0 1 3.5v10A1.5 1.5 0 0 0 2.5 15h10a1.5 1.5 0 0 0 1.5-1.5V6.864a.5.5 0 0 0-1 0V13.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5'/><path fill-rule='evenodd' d='M5 10.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1H6.707l8.147-8.146a.5.5 0 0 0-.708-.708L6 9.293V5.5a.5.5 0 0 0-1 0z'/></svg></div></td>
-		<td>.arrowbox-in-upright-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M6.364 13.5a.5.5 0 0 0 .5.5H13.5a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 13.5 1h-10A1.5 1.5 0 0 0 2 2.5v6.636a.5.5 0 1 0 1 0V2.5a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5H6.864a.5.5 0 0 0-.5.5'/><path fill-rule='evenodd' d='M11 5.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793l-8.147 8.146a.5.5 0 0 0 .708.708L10 6.707V10.5a.5.5 0 0 0 1 0z'/></svg></div></td>
-		<td>.arrowbox-in-downleft-line</td>
-		<td><div style="width:24px; height:24px;"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M9.636 13.5a.5.5 0 0 1-.5.5H2.5A1.5 1.5 0 0 1 1 12.5v-10A1.5 1.5 0 0 1 2.5 1h10A1.5 1.5 0 0 1 14 2.5v6.636a.5.5 0 0 1-1 0V2.5a.5.5 0 0 0-.5-.5h-10a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h6.636a.5.5 0 0 1 .5.5'/><path fill-rule='evenodd' d='M5 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1H6.707l8.147 8.146a.5.5 0 0 1-.708.708L6 6.707V10.5a.5.5 0 0 1-1 0z'/></svg></div></td>
-		<td>.arrowbox-in-downright-line</td>
-	</tr>
-</table>
+| Icon                                                          | Style                          | Icon                                                        | Style                        | Icon                                                            | Style                            | Icon                                                          | Style                          |
+| :--:                                                          | :----                          | :--:                                                        | :----                        | :--:                                                            | :----                            | :--:                                                          | :----                          |
+| ![](./src/WUI/Icon/Preview/arrow-up-line.svg)                 | .arrow-up-line                 | ![](./src/WUI/Icon/Preview/arrow-left-line.svg)             | .arrow-left-line             | ![](./src/WUI/Icon/Preview/arrow-right-line.svg)                | .arrow-right-line                | ![](./src/WUI/Icon/Preview/arrow-down-line.svg)               | .arrow-down-line               |
+| ![](./src/WUI/Icon/Preview/arrow-up-lg-line.svg)              | .arrow-up-lg-line              | ![](./src/WUI/Icon/Preview/arrow-left-lg-line.svg)          | .arrow-left-lg-line          | ![](./src/WUI/Icon/Preview/arrow-right-lg-line.svg)             | .arrow-right-lg-line             | ![](./src/WUI/Icon/Preview/arrow-down-lg-line.svg)            | .arrow-down-lg-line            |
+| ![](./src/WUI/Icon/Preview/arrow-upleft-lg-line.svg)          | .arrow-upleft-lg-line          | ![](./src/WUI/Icon/Preview/arrow-upright-lg-line.svg)       | .arrow-upright-lg-line       | ![](./src/WUI/Icon/Preview/arrow-downleft-lg-line.svg)          | .arrow-downleft-lg-line          | ![](./src/WUI/Icon/Preview/arrow-downright-lg-line.svg)       | .arrow-downright-lg-line       |
+| ![](./src/WUI/Icon/Preview/arrowhead-up-line.svg)             | .arrowhead-up-line             | ![](./src/WUI/Icon/Preview/arrowhead-left-line.svg)         | .arrowhead-left-line         | ![](./src/WUI/Icon/Preview/arrowhead-right-line.svg)            | .arrowhead-right-line            | ![](./src/WUI/Icon/Preview/arrowhead-down-line.svg)           | .arrowhead-down-line           |
+| ![](./src/WUI/Icon/Preview/arrowhead-up-lg-line.svg)          | .arrowhead-up-lg-line          | ![](./src/WUI/Icon/Preview/arrowhead-left-lg-line.svg)      | .arrowhead-left-lg-line      | ![](./src/WUI/Icon/Preview/arrowhead-right-lg-line.svg)         | .arrowhead-right-lg-line         | ![](./src/WUI/Icon/Preview/arrowhead-down-lg-line.svg)        | .arrowhead-down-lg-line        |
+| ![](./src/WUI/Icon/Preview/arrowhead-up-stg-line.svg)         | .arrowhead-up-stg-line         | ![](./src/WUI/Icon/Preview/arrowhead-left-stg-line.svg)     | .arrowhead-left-stg-line     | ![](./src/WUI/Icon/Preview/arrowhead-right-stg-line.svg)        | .arrowhead-right-stg-line        | ![](./src/WUI/Icon/Preview/arrowhead-down-stg-line.svg)       | .arrowhead-down-stg-line       |
+| ![](./src/WUI/Icon/Preview/arrowhead-up-fill.svg)             | .arrowhead-up-fill             | ![](./src/WUI/Icon/Preview/arrowhead-left-fill.svg)         | .arrowhead-left-fill         | ![](./src/WUI/Icon/Preview/arrowhead-right-fill.svg)            | .arrowhead-right-fill            | ![](./src/WUI/Icon/Preview/arrowhead-down-fill.svg)           | .arrowhead-down-fill           |
+| ![](./src/WUI/Icon/Preview/arrow-up-circle-line.svg)          | .arrow-up-circle-line          | ![](./src/WUI/Icon/Preview/arrow-left-circle-line.svg)      | .arrow-left-circle-line      | ![](./src/WUI/Icon/Preview/arrow-right-circle-line.svg)         | .arrow-right-circle-line         | ![](./src/WUI/Icon/Preview/arrow-down-circle-line.svg)        | .arrow-down-circle-line        |
+| ![](./src/WUI/Icon/Preview/arrow-upleft-circle-line.svg)      | .arrow-upleft-circle-line      | ![](./src/WUI/Icon/Preview/arrow-upright-circle-line.svg)   | .arrow-upright-circle-line   | ![](./src/WUI/Icon/Preview/arrow-downleft-circle-line.svg)      | .arrow-downleft-circle-line      | ![](./src/WUI/Icon/Preview/arrow-downright-circle-line.svg)   | .arrow-downright-circle-line   |
+| ![](./src/WUI/Icon/Preview/arrow-up-circle-fill.svg)          | .arrow-up-circle-fill          | ![](./src/WUI/Icon/Preview/arrow-left-circle-fill.svg)      | .arrow-left-circle-fill      | ![](./src/WUI/Icon/Preview/arrow-right-circle-fill.svg)         | .arrow-right-circle-fill         | ![](./src/WUI/Icon/Preview/arrow-down-circle-fill.svg)        | .arrow-down-circle-fill        |
+| ![](./src/WUI/Icon/Preview/arrow-upleft-circle-fill.svg)      | .arrow-upleft-circle-fill      | ![](./src/WUI/Icon/Preview/arrow-upright-circle-fill.svg)   | .arrow-upright-circle-fill   | ![](./src/WUI/Icon/Preview/arrow-downleft-circle-fill.svg)      | .arrow-downleft-circle-fill      | ![](./src/WUI/Icon/Preview/arrow-downright-circle-fill.svg)   | .arrow-downright-circle-fill   |
+| ![](./src/WUI/Icon/Preview/arrowbar-up-line.svg)              | .arrowbar-up-line              | ![](./src/WUI/Icon/Preview/arrowbar-left-line.svg)          | .arrowbar-left-line          | ![](./src/WUI/Icon/Preview/arrowbar-right-line.svg)             | .arrowbar-right-line             | ![](./src/WUI/Icon/Preview/arrowbar-down-line.svg)            | .arrowbar-down-line            |
+| ![](./src/WUI/Icon/Preview/arrows-expand-horizontal-line.svg) | .arrows-expand-horizontal-line | ![](./src/WUI/Icon/Preview/arrows-expand-vertical-line.svg) | .arrows-expand-vertical-line | ![](./src/WUI/Icon/Preview/arrows-collapse-horizontal-line.svg) | .arrows-collapse-horizontal-line | ![](./src/WUI/Icon/Preview/arrows-collapse-vertical-line.svg) | .arrows-collapse-vertical-line |
+| ![](./src/WUI/Icon/Preview/arrows-horizontal-line.svg)        | .arrows-horizontal-line        | ![](./src/WUI/Icon/Preview/arrows-vertical-line.svg)        | .arrows-vertical-line        | ![](./src/WUI/Icon/Preview/arrows-expand-diagonal-line.svg)     | .arrows-expand-diagonal-line     | ![](./src/WUI/Icon/Preview/arrows-collapse-diagonal-line.svg) | .arrows-collapse-diagonal-line |
+| ![](./src/WUI/Icon/Preview/arrowbox-out-up-line.svg)          | .arrowbox-out-up-line          | ![](./src/WUI/Icon/Preview/arrowbox-out-left-line.svg)      | .arrowbox-out-left-line      | ![](./src/WUI/Icon/Preview/arrowbox-out-right-line.svg)         | .arrowbox-out-right-line         | ![](./src/WUI/Icon/Preview/arrowbox-out-down-line.svg)        | .arrowbox-out-down-line        |
+| ![](./src/WUI/Icon/Preview/arrowbox-out-upleft-line.svg)      | .arrowbox-out-upleft-line      | ![](./src/WUI/Icon/Preview/arrowbox-out-upright-line.svg)   | .arrowbox-out-upright-line   | ![](./src/WUI/Icon/Preview/arrowbox-out-downleft-line.svg)      | .arrowbox-out-downleft-line      | ![](./src/WUI/Icon/Preview/arrowbox-out-downright-line.svg)   | .arrowbox-out-downright-line   |
+| ![](./src/WUI/Icon/Preview/arrowbox-in-up-line.svg)           | .arrowbox-in-up-line           | ![](./src/WUI/Icon/Preview/arrowbox-in-left-line.svg)       | .arrowbox-in-left-line       | ![](./src/WUI/Icon/Preview/arrowbox-in-right-line.svg)          | .arrowbox-in-right-line          | ![](./src/WUI/Icon/Preview/arrowbox-in-down-line.svg)         | .arrowbox-in-down-line         |
+| ![](./src/WUI/Icon/Preview/arrowbox-in-upleft-line.svg)       | .arrowbox-in-upleft-line       | ![](./src/WUI/Icon/Preview/arrowbox-in-upright-line.svg)    | .arrowbox-in-upright-line    | ![](./src/WUI/Icon/Preview/arrowbox-in-downleft-line.svg)       | .arrowbox-in-downleft-line       | ![](./src/WUI/Icon/Preview/arrowbox-in-downright-line.svg)    | .arrowbox-in-downright-line    |
 
 #### Tabla de Íconos de Número
 
