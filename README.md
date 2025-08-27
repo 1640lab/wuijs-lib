@@ -1171,16 +1171,79 @@ HTML code:
 
 Versión: `0.1`
 
-Tool for animating HTML elements using the "onscroll" event of the HTML page body.
+Tool for fading out and fading in HTML elements with opacity.
 
 #### Constructor
 
-| Type    | Description |
-| ------- | ----------- |
-| WUIFade | `WUIFade([properties])`<br><br>Arguments:<br>**• properties:** `object` *optional* |
+Static class that does not have a constructor.
 
 #### Properties
 
+Static class that has no properties.
+
 #### Methods
 
+##### Static methods of the `WUIFade` class:
+
+One way to use the library is by calling static methods directly on the `WUIFade` class:
+
+| Method | Return type | Description |
+| -------| ----------- | ----------- |
+| in     | `void`      | `in(target[, options])`<br><br>Arguments:<br>**• target:** `HTMLElement` <br>**• options:** `object` *opcional*<br><br>Execute the fadein transition. |
+| out    | `void`      | `out(target[, options])`<br><br>Arguments:<br>**• target:** `HTMLElement` <br>**• options:** `object` *opcional*<br><br>Execute the fadeout transition. |
+
+##### Extended methods of the `HTMLElement` class:
+
+Another alternative way is through extended methods of the `HTMLElement` class through its prototype:
+
+| Method.    | Return type | Description |
+| -----------| ----------- | ----------- |
+| wuiFadein  | `void`      | `wuiFadein([options])`<br><br>Arguments:<br>**• options:** `object` *opcional*<br><br>Execute the fadein transition. |
+| wuiFadeout | `void`      | `wuiFadeout([options])`<br><br>Arguments:<br>**• options:** `object` *opcional*<br><br>Execute the fadeout transition. |
+
+> [!IMPORTANT]
+> Note that each method call mode is made on different types of classes, the first is signaled on `WUIFade`, while the second on `HTMLElement`.
+
+##### Options
+
+| Option  | Type      | Default value | Description |
+| ------- | --------- | ------------- | ----------- |
+| delay   | `number`  | `400`         | Defines the time it will take for the transition effect  in and out, measured in milliseconds. |
+| display | `string`  | `"block"`     | Sets the value of the CSS `display` property of the HTML element on which the transition effect is executed, once the incoming transition ends. |
+| force   | `boolean` | `false`       | Both the entrance and exit effects are executed as long as the CSS `display` property is different from `options.display` and `none`, respectively. The `force` option ignores this validation. |
+
 #### Implementation
+
+CSS code:
+
+```CSS
+.element {
+	display: none;
+	width: 24px;
+	height: 24px;
+	margin: 10px;
+	backgroind-color: red;
+}
+```
+
+HTML code:
+
+```html
+<div id="myElement1" class="element"></div>
+<div id="myElement2" class="element"></div>
+```
+
+JS code:
+```js
+// Options
+const options = {
+	display: "block",
+	delay: 200
+};
+
+// WUIFade mode
+WUIFade.in(document.getElementById("myElement1"), options);
+
+// HTMLElement mode
+document.getElementById("myElement2").wuiFadein(options);
+```

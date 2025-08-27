@@ -2,7 +2,7 @@
 
 Versión librería: `0.2.0`
 
-Versión documentación: `0.2.0-1`
+Versión documentación: `0.2.0-1e`
 
 Licencia: `Licencia Apache 2.0`
 
@@ -1175,12 +1175,75 @@ Herramienta para salida y entrada con opacidad (fade-out y fade-in respectivamen
 
 #### Constructor
 
-| Tipo    | Descripción |
-| ------- | ----------- |
-| WUIFade | `WUIFade([properties])`<br><br>Parámetros:<br>**• properties:** `object` *opcional* |
+Clase estática que no posee constructor.
 
 #### Propiedades
 
+Clase estática que no posee propiedades.
+
 #### Métodos
 
+##### Metodos estáticos de la clase `WUIFade`:
+
+Un modo de utilizar la librería es mediante el llamado de los métodos estáticos directamente sobre la clase `WUIFade`:
+
+| Método | Tipo retorno | Descripción |
+| ------ | ------------ | ----------- |
+| in     | `void`       | `in(target[, options])`<br><br>Parámetros:<br>**• target:** `HTMLElement` <br>**• options:** `object` *opcional*<br><br>Ejecuta la transición de entrada. |
+| out    | `void`       | `out(target[, options])`<br><br>Parámetros:<br>**• target:** `HTMLElement` <br>**• options:** `object` *opcional*<br><br>Ejecuta la transición de salida. |
+
+##### Metodos extendidos de la clase `HTMLElement`:
+
+Otro modo alternativo es mediante métodos extendidos de la clase `HTMLElement` por medio de su prototipo:
+
+| Método.    | Tipo retorno | Descripción |
+| ---------- | ------------ | ----------- |
+| wuiFadein  | `void`       | `wuiFadein([options])`<br><br>Parámetros:<br>**• options:** `object` *opcional*<br><br>Ejecuta la transición de entrada. |
+| wuiFadeout | `void`       | `wuiFadeout([options])`<br><br>Parámetros:<br>**• options:** `object` *opcional*<br><br>Ejecuta la transición de salida. |
+
+> [!IMPORTANT]
+> Notar que cada modo de llamado de métodos se hace sobre distintos tipos de clases, la primera se sealiza sobre `WUIFade`, mientras que la segunda sobre `HTMLElement`.
+
+##### Opciones
+
+| Opción  | Tipo      | Valor por omisión | Descripción |
+| ------- | --------- | ----------------- | ----------- |
+| delay   | `number`  | `400`             | Define el tiempo que tardará la transición del efecto de entrada y de salida medido en milisegundos. |
+| display | `string`  | `"block"`         | Establece el valor de la propiedad CSS `display` del elemento HTML en el que se ejecuta el efecto de transición, una fez que la transición de entrada finaliza. |
+| force   | `boolean` | `false`           | Ambos efectos, entrada y salida, son ejecutadas siempre y cuando la propiedad CSS `display` sea distinta a `options.display` y a `"none"` respectivamente. La opción `force` ignora esta validación. |
+
 #### Implementación
+
+Código CSS:
+
+```CSS
+.element {
+	display: none;
+	width: 24px;
+	height: 24px;
+	margin: 10px;
+	backgroind-color: red;
+}
+```
+
+Código HTML:
+
+```html
+<div id="myElement1" class="element"></div>
+<div id="myElement2" class="element"></div>
+```
+
+Código JS:
+```js
+// Opciones
+const options = {
+	display: "block",
+	delay: 200
+};
+
+// Modo WUIFade
+WUIFade.in(document.getElementById("myElement1"), options);
+
+// Modo HTMLElement
+document.getElementById("myElement2").wuiFadein(options);
+```
