@@ -1189,8 +1189,8 @@ Un modo de utilizar la librería es mediante el llamado de los métodos estátic
 
 | Método | Tipo retorno | Descripción |
 | ------ | ------------ | ----------- |
-| in     | `void`       | `in(target[, options])`<br><br>Parámetros:<br>**• target:** `HTMLElement` <br>**• options:** `object` *opcional*<br><br>Ejecuta la transición de entrada. |
-| out    | `void`       | `out(target[, options])`<br><br>Parámetros:<br>**• target:** `HTMLElement` <br>**• options:** `object` *opcional*<br><br>Ejecuta la transición de salida. |
+| in     | `void`       | `in(element[, options])`<br><br>Parámetros:<br>**• element:** `HTMLElement` <br>**• options:** `object` *opcional*<br><br>Ejecuta la transición de entrada. |
+| out    | `void`       | `out(element[, options])`<br><br>Parámetros:<br>**• element:** `HTMLElement` <br>**• options:** `object` *opcional*<br><br>Ejecuta la transición de salida. |
 
 ##### Metodos extendidos de la clase `HTMLElement`:
 

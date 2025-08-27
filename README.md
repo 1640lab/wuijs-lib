@@ -1189,8 +1189,8 @@ One way to use the library is by calling static methods directly on the `WUIFade
 
 | Method | Return type | Description |
 | -------| ----------- | ----------- |
-| in     | `void`      | `in(target[, options])`<br><br>Arguments:<br>**• target:** `HTMLElement` <br>**• options:** `object` *opcional*<br><br>Execute the fadein transition. |
-| out    | `void`      | `out(target[, options])`<br><br>Arguments:<br>**• target:** `HTMLElement` <br>**• options:** `object` *opcional*<br><br>Execute the fadeout transition. |
+| in     | `void`      | `in(element[, options])`<br><br>Arguments:<br>**• element:** `HTMLElement` <br>**• options:** `object` *opcional*<br><br>Execute the fadein transition. |
+| out    | `void`      | `out(element[, options])`<br><br>Arguments:<br>**• element:** `HTMLElement` <br>**• options:** `object` *opcional*<br><br>Execute the fadeout transition. |
 
 ##### Extended methods of the `HTMLElement` class:
 
