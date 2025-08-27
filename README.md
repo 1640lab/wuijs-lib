@@ -1189,8 +1189,8 @@ One way to use the library is by calling static methods directly on the `WUIFade
 
 | Method | Return type | Description |
 | -------| ----------- | ----------- |
-| in     | `void`      | `in(element[, options])`<br><br>Arguments:<br>**• element:** `HTMLElement` <br>**• options:** `object` *opcional*<br><br>Execute the fadein transition. |
-| out    | `void`      | `out(element[, options])`<br><br>Arguments:<br>**• element:** `HTMLElement` <br>**• options:** `object` *opcional*<br><br>Execute the fadeout transition. |
+| in     | `void`      | `in(element[, options])`<br><br>Arguments:<br>**• element:** `HTMLElement` <br>**• options:** `object` *optional*<br><br>Execute the fadein transition. |
+| out    | `void`      | `out(element[, options])`<br><br>Arguments:<br>**• element:** `HTMLElement` <br>**• options:** `object` *optional*<br><br>Execute the fadeout transition. |
 
 ##### Extended methods of the `HTMLElement` class:
 
@@ -1198,8 +1198,8 @@ Another alternative way is through extended methods of the `HTMLElement` class t
 
 | Method.    | Return type | Description |
 | -----------| ----------- | ----------- |
-| wuiFadein  | `void`      | `wuiFadein([options])`<br><br>Arguments:<br>**• options:** `object` *opcional*<br><br>Execute the fadein transition. |
-| wuiFadeout | `void`      | `wuiFadeout([options])`<br><br>Arguments:<br>**• options:** `object` *opcional*<br><br>Execute the fadeout transition. |
+| wuiFadein  | `void`      | `wuiFadein([options])`<br><br>Arguments:<br>**• options:** `object` *optional*<br><br>Execute the fadein transition. |
+| wuiFadeout | `void`      | `wuiFadeout([options])`<br><br>Arguments:<br>**• options:** `object` *optional*<br><br>Execute the fadeout transition. |
 
 > [!IMPORTANT]
 > Note that each method call mode is made on different types of classes, the first is signaled on `WUIFade`, while the second on `HTMLElement`.
