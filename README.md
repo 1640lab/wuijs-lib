@@ -599,7 +599,7 @@ HTML code:
 		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Button/WUIButton-0.1.css">
 		<script type="text/javascript" src="./Libraries/WUI/Cookie/WUICookie-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Head/WUIHead-0.1.js"></script>
-		<script type="text/javascript" src="./Libraries/WUI/Language/WUILanguage-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Language/WUILanguage-0.2.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Body/WUIBody-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Scrolly/WUIScrolly-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Fade/WUIFade-0.1.js"></script>
@@ -867,7 +867,7 @@ Language manager for web interfaces. Allows you to load language files in JS or 
 HTML head:
 
 ```html
-<script type="text/javascript" src="./Libraries/WUI/Language/WUILanguage-0.1.js"></script>
+<script type="text/javascript" src="./Libraries/WUI/Language/WUILanguage-0.2.js"></script>
 ```
 
 JS code file `main-en.js`:

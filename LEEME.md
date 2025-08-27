@@ -600,7 +600,7 @@ Código HTML:
 		<script type="text/javascript" src="./Libraries/WUI/Cookie/WUICookie-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Head/WUIHead-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Body/WUIBody-0.1.js"></script>
-		<script type="text/javascript" src="./Libraries/WUI/Language/WUILanguage-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Language/WUILanguage-0.2.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Scrolly/WUIScrolly-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Fade/WUIFade-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Tooltip/WUITooltip-0.1.js"></script>
@@ -867,7 +867,7 @@ Administrador de idioma para interfaces web. Permite cargar archivos de idioma e
 Cabecera HTML
 
 ```html
-<script type="text/javascript" src="./Libraries/WUI/Language/WUILanguage-0.1.js"></script>
+<script type="text/javascript" src="./Libraries/WUI/Language/WUILanguage-0.2.js"></script>
 ```
 
 Código JS archivo `main-es.js`:
