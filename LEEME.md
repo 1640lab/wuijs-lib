@@ -1242,8 +1242,10 @@ const options = {
 };
 
 // Modo WUIFade
-WUIFade.in(document.getElementById("myElement1"), options);
+const element1 = document.getElementById("myElement1");
+WUIFade.in(element1, options);
 
 // Modo HTMLElement
-document.getElementById("myElement2").wuiFadein(options);
+const element2 = document.getElementById("myElement2");
+element2.wuiFadein(options);
 ```
