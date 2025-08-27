@@ -632,8 +632,9 @@ This implementation method allows for standardization of an application's user i
 > [!IMPORTANT]
 > The style configuration files must be in the paths `./Settings/Main.css` and `./Settings/WUI.css`.
 
-If you only want to implement part of the WUI library set, you must add calls to the JS and CSS files in the HTML header as indicated in each section.
-On the other hand, the `WUI.css` file will only require the definition of the objects you want to implement.
+> [!TIP]
+> If you only want to implement part of the WUI library set, you must add calls to the JS and CSS files in the HTML header as indicated in each section.
+> On the other hand, the `WUI.css` file will only require the definition of the objects you want to implement.
 
 <a name="classes"></a>
 

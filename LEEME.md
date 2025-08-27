@@ -632,8 +632,9 @@ Este método de implementación permite la estandarización del diseño de la in
 > [!IMPORTANT]
 > Los archivos de de configuración de estilos deben estar en la ruta `./Settings/Main.css` y `./Settings/WUI.css`.
 
-En caso que sólo se desee implementar sólo una parte del conjunto de librerías WUI, se sebe agregar en la cabecera HTML los llamados a los archivos JS y CSS según se indique en cada sección.
-Por otra parte, el archivo `WUI.css` sólo requerirá la definición de los objetos que se deseen implementar.
+> [!TIP]
+> En caso que sólo se desee implementar sólo una parte del conjunto de librerías WUI, se sebe agregar en la cabecera HTML los llamados a los archivos JS y CSS según se indique en cada sección.
+> Por otra parte, el archivo `WUI.css` sólo requerirá la definición de los objetos que se deseen implementar.
 
 <a name="classes"></a>
 
