@@ -599,10 +599,9 @@ HTML code:
 		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Button/WUIButton-0.1.css">
 		<script type="text/javascript" src="./Libraries/WUI/Cookie/WUICookie-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Head/WUIHead-0.1.js"></script>
-		<script type="text/javascript" src="./Libraries/WUI/Body/WUIBody-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Language/WUILanguage-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Body/WUIBody-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Scrolly/WUIScrolly-0.1.js"></script>
-		<script type="text/javascript" src="./Libraries/WUI/Icon/WUIIcon-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Fade/WUIFade-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Tooltip/WUITooltip-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Loader/WUILoader-0.1.js"></script>
@@ -632,6 +631,9 @@ This implementation method allows for standardization of an application's user i
 
 > [!IMPORTANT]
 > The style configuration files must be in the paths `./Settings/Main.css` and `./Settings/WUI.css`.
+
+If you only want to implement part of the WUI library set, you must add calls to the JS and CSS files in the HTML header as indicated in each section.
+On the other hand, the `WUI.css` file will only require the definition of the objects you want to implement.
 
 <a name="classes"></a>
 
@@ -668,6 +670,12 @@ Cookie manager.
 | get       | `string`    | `get(name)`<br><br>Arguments:<br>**• name:** `string`<br><br>Reads the contents of a cookie by its name. |
 
 #### Implementation
+
+HTML head:
+
+```html
+<script type="text/javascript" src="./Libraries/WUI/Cookie/WUICookie-0.1.js"></script>
+```
 
 JS code:
 
@@ -714,6 +722,15 @@ Class without properties.
 
 #### Implementation
 
+HTML head:
+
+```html
+<title></title>
+<meta name="application-name" content="">
+<meta name="theme-color" content="">
+<script type="text/javascript" src="./Libraries/WUI/Head/WUIHead-0.1.js"></script>
+```
+
 JS code:
 
 ```js
@@ -759,6 +776,12 @@ HTML body manager. Allows the import of CSS/JS/HTML content and facilitates impl
 | openURL | `void`      | `openURL(url[, download])`<br><br>Arguments:<br><br>**• id:** `string`, specifies the URL that is required to be opened or downloaded.<br>**• download:** `string` *optional*, specifies the name of the file that will be used to download the content referenced by the URL.<br><br>Open or download content using a URL. This method is required in native environments since WebView on Android or WebKit on iOS aren't always supported. |
 
 #### Implementation
+
+HTML head:
+
+```html
+<script type="text/javascript" src="./Libraries/WUI/Body/WUIBody-0.1.js"></script>
+```
 
 CSS code for the `./Imports/test-content.css` file:
 
@@ -840,6 +863,12 @@ Language manager for web interfaces. Allows you to load language files in JS or 
 | load   | `void`      | `load([lang[, sets]])`<br><br>Arguments:<br>**• lang:** `string` *optional* (default value the current language)<br>**• sets:** `array` *optional* (default value the current set expressed as an array)<br><br>Loads the language files indicated by language and set, and updates the HTML elements marked with the CSS selector. |
 
 #### Implementation
+
+HTML head:
+
+```html
+<script type="text/javascript" src="./Libraries/WUI/Language/WUILanguage-0.1.js"></script>
+```
 
 JS code file `main-en.js`:
 
@@ -1149,6 +1178,12 @@ Set of pre-designed icons loaded via CSS, for use in interfaces.
 
 #### Implementation
 
+HTML head:
+
+```html
+<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Icon/WUIIcon-0.1.css">
+```
+
 CSS code:
 
 ```css
@@ -1213,6 +1248,12 @@ Another alternative way is through extended methods of the `HTMLElement` class t
 | force   | `boolean` | `false`       | Both the entrance and exit effects are executed as long as the CSS `display` property is different from `options.display` and `none`, respectively. The `force` option ignores this validation. |
 
 #### Implementation
+
+HTML head:
+
+```html
+<script type="text/javascript" src="./Libraries/WUI/Fade/WUIFade-0.1.js"></script>
+```
 
 CSS code:
 

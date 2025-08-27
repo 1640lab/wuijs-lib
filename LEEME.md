@@ -600,9 +600,8 @@ Código HTML:
 		<script type="text/javascript" src="./Libraries/WUI/Cookie/WUICookie-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Head/WUIHead-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Body/WUIBody-0.1.js"></script>
-		<script type="text/javascript" src="./Libraries/WUI/Scrolly/WUIScrolly-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Language/WUILanguage-0.1.js"></script>
-		<script type="text/javascript" src="./Libraries/WUI/Icon/WUIIcon-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Scrolly/WUIScrolly-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Fade/WUIFade-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Tooltip/WUITooltip-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Loader/WUILoader-0.1.js"></script>
@@ -632,6 +631,9 @@ Este método de implementación permite la estandarización del diseño de la in
 
 > [!IMPORTANT]
 > Los archivos de de configuración de estilos deben estar en la ruta `./Settings/Main.css` y `./Settings/WUI.css`.
+
+En caso que sólo se desee implementar sólo una parte del conjunto de librerías WUI, se sebe agregar en la cabecera HTML los llamados a los archivos JS y CSS según se indique en cada sección.
+Por otra parte, el archivo `WUI.css` sólo requerirá la definición de los objetos que se deseen implementar.
 
 <a name="classes"></a>
 
@@ -668,6 +670,12 @@ Administrador de cookies.
 | get       | `string`     | `get(name)`<br><br>Parámetros:<br>**• name:** `string`<br><br>Lee el contenido de una cookie mediante su nombre. |
 
 #### Implementación
+
+Cabecera HTML
+
+```html
+<script type="text/javascript" src="./Libraries/WUI/Cookie/WUICookie-0.1.js"></script>
+```
 
 Código JS:
 
@@ -714,6 +722,15 @@ Clase sin propiedades.
 
 #### Implementación
 
+Cabecera HTML
+
+```html
+<title></title>
+<meta name="application-name" content="">
+<meta name="theme-color" content="">
+<script type="text/javascript" src="./Libraries/WUI/Head/WUIHead-0.1.js"></script>
+```
+
 Código JS:
 
 ```js
@@ -759,6 +776,12 @@ Administrador de cuerpo HTML. Permite la importación de contenido CSS/JS/HTML y
 | openURL  | `void`       | `openURL(url[, download])`<br><br>Parámetros:<br>**• id:** `string`, especifica la dirección URL que se requiere abrir o descargar.<br>**• download:** `string` *opcional*, especifica el nombre del archivo con que se descargará el contenido referido mediante la URL.<br><br>Abre o descarga un contenido mediante una dirección URL. Este método es requerido en entornos nativos ya que no se siempre se cuenta con soporte mediante WebView sobre Android o WebKit sobre iOS. |
 
 #### Implementación
+
+Cabecera HTML
+
+```html
+<script type="text/javascript" src="./Libraries/WUI/Body/WUIBody-0.1.js"></script>
+```
 
 Código CSS archivo `./Imports/test-content.css`:
 
@@ -840,6 +863,12 @@ Administrador de idioma para interfaces web. Permite cargar archivos de idioma e
 | load   | `void`       | `load([lang[, sets]])`<br><br>Parámetros:<br>**• lang:** `string` *opcional* (valor por defecto el idioma actual)<br>**• sets:** `array` *opcional* (valor por defecto el conjunto actual expresado como arreglo)<br><br>Carga los archivos de idioma indicados por idioma y conjunto y, actualiza los elementos HTML marcados con el selector CSS. |
 
 #### Implementación
+
+Cabecera HTML
+
+```html
+<script type="text/javascript" src="./Libraries/WUI/Language/WUILanguage-0.1.js"></script>
+```
 
 Código JS archivo `main-es.js`:
 
@@ -1149,6 +1178,12 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 
 #### Implementación
 
+Cabecera HTML
+
+```html
+<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Icon/WUIIcon-0.1.css">
+```
+
 Código CSS:
 
 ```css
@@ -1213,6 +1248,12 @@ Otro modo alternativo es mediante métodos extendidos de la clase `HTMLElement` 
 | force   | `boolean` | `false`           | Ambos efectos, entrada y salida, son ejecutadas siempre y cuando la propiedad CSS `display` sea distinta a `options.display` y a `"none"` respectivamente. La opción `force` ignora esta validación. |
 
 #### Implementación
+
+Cabecera HTML
+
+```html
+<script type="text/javascript" src="./Libraries/WUI/Fade/WUIFade-0.1.js"></script>
+```
 
 Código CSS:
 
