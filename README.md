@@ -1302,7 +1302,7 @@ HTML code:
 
 JS code:
 ```js
-// Element definition and options
+// Element and options definition
 const element = document.getElementById("myElement");
 const options = {
 	display: "block",
