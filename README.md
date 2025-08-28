@@ -1238,7 +1238,7 @@ Another alternative way is through extended methods of the `HTMLElement` class t
 | wuiFadeout | `void`      | `wuiFadeout([options])`<br><br>Arguments:<br>**• options:** `object` *optional*<br><br>Execute the fadeout transition. |
 
 > [!IMPORTANT]
-> Note that each method call mode is made on different types of classes, the first is signaled on `WUIFade`, while the second on `HTMLElement`.
+> Each method call mode is performed on different types of classes, the first is signaled on `WUIFade`, while the second on `HTMLElement`.
 
 ##### Options
 

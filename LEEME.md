@@ -1238,7 +1238,7 @@ Otro modo alternativo es mediante métodos extendidos de la clase `HTMLElement` 
 | wuiFadeout | `void`       | `wuiFadeout([options])`<br><br>Parámetros:<br>**• options:** `object` *opcional*<br><br>Ejecuta la transición de salida. |
 
 > [!IMPORTANT]
-> Notar que cada modo de llamado de métodos se hace sobre distintos tipos de clases, la primera se sealiza sobre `WUIFade`, mientras que la segunda sobre `HTMLElement`.
+> Cada modo de llamado de métodos se realiza sobre distintos tipos de clases, la primera se sealiza sobre `WUIFade`, mientras que la segunda sobre `HTMLElement`.
 
 ##### Opciones
 
