@@ -940,12 +940,25 @@ let languages = {};
 
 // Load content from the main-en.js file
 language.load(); // Option 1
-language.load("en"); // Option 2 (equivalent)
-language.load("en", ["main"]); // Option 3 (equivalent)
+language.load("en"); // Option 2 (equivalent to option 1)
+language.load("en", ["main"]); // Option 3 (equivalent to option 1)
 ```
 
 > [!IMPORTANT]
 > The language file must be in the path `./Languages/main-en.js` or `./Languages/main-en.json` depending on the set, language and mode used. It is important that language files are in the form `{set}-{lang}.{mode}`, otherwise the file cannot be imported.
+
+It is possible to combine sets of files from the same language, for example, if you have a `main-es.js` file and another `main2-es.js` file that complements the first, they can be called simultaneously using the `sets` property.
+
+JS code:
+
+```js
+// Option 1: Update the sets property and then reload.
+language.sets = ["main", "main2"];
+language.load(); 
+
+// Option 2: Reload by passing the combination of sets as a parameter.
+language.load("en", ["main", "main2"]);
+```
 
 > [!TIP]
 > If you want to add dynamic content within a text, It is recommended to use the `js` language file format (`mode: "js"`) and add the text using the string interpolation method, also known as template literals. I.e. ``mykey: `My ${var} text` ``.

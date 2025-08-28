@@ -940,12 +940,25 @@ let languages = {};
 
 // Cargar contenido del archivo main-es.js 
 language.load(); // Opción 1
-language.load("es"); // Opción 2 (equivalente)
-language.load("es", ["main"]); // Opción 3 (equivalente)
+language.load("es"); // Opción 2 (equivalente a opción 1)
+language.load("es", ["main"]); // Opción 3 (equivalente a opción 1)
 ```
 
 > [!IMPORTANT]
 > El archivo de idioma debe estar en la ruta `./Languages/main-es.js` o `./Languages/main-es.json` según el set, idioma y modo que se emplee. Es importante que los archivos de idioma tengan la forma `{set}-{lang}.{mode}`, en caso contratio, el archivo no podrá ser importado.
+
+Es posible realizar combinaciones de conjuntos de archivos de un mismo idioma, por ejemplo, si se cuenta con un archivo `main-es.js` y otro `main2-es.js` que complemente al primero, se pueden llamar simultáneamente mediante la propiedad `sets`.
+
+Código JS:
+
+```js
+// Opción 1: Actualizar la propiedad sets y posteriormente recargar.
+language.sets = ["main", "main2"];
+language.load(); 
+
+// Opción 2: Recargar pasando como parámetro ella combinación de conjuntos.
+language.load("es", ["main", "main2"]);
+```
 
 > [!TIP]
 > Si se desea agregar contenido dinámico dentro de un texto, se recomienda utilizar formato de los archivos de idioma `js` (`mode: "js"`) y agregar el texto mediante el método de interpolación de cadenas, conosido también como literales de plantilla. Por ejemplo, ``mykey: `My ${var} text` ``.
