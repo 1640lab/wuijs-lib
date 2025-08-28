@@ -8,7 +8,7 @@ Licencia: `Licencia Apache 2.0`
 
 Autor: `Sergio E. Belmar V. <sbelmar@1640lab.com>`
 
-## Tabla de Contenidos
+## Índice
 
 *   [Description General](#overview)
 	*   [Tabla de Clases](#classes-table)
