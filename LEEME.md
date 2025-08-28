@@ -1297,23 +1297,21 @@ Código CSS:
 Código HTML:
 
 ```html
-<div id="myElement1" class="element"></div>
-<div id="myElement2" class="element"></div>
+<div id="myElement" class="element"></div>
 ```
 
 Código JS:
 ```js
-// Opciones
+// Definición del elemento y opciones
+const element = document.getElementById("myElement");
 const options = {
 	display: "block",
 	delay: 200
 };
 
 // Opción 1: Modo WUIFade
-const element1 = document.getElementById("myElement1");
-WUIFade.in(element1, options);
+WUIFade.in(element, options);
 
 // Opción 2: Modo HTMLElement
-const element2 = document.getElementById("myElement2");
-element2.wuiFadein(options);
+element.wuiFadein(options);
 ```
