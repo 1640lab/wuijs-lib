@@ -1309,11 +1309,11 @@ const options = {
 	delay: 200
 };
 
-// WUIFade mode
+// Option 1: WUIFade mode
 const element1 = document.getElementById("myElement1");
 WUIFade.in(element1, options);
 
-// HTMLElement mode
+// Option 2: HTMLElement mode
 const element2 = document.getElementById("myElement2");
 element2.wuiFadein(options);
 ```
