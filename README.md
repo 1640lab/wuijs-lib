@@ -1211,11 +1211,11 @@ Tool for fading out and fading in HTML elements with opacity.
 
 #### Constructor
 
-Static class that does not have a constructor.
+Static class without constructor.
 
 #### Properties
 
-Static class that has no properties.
+Static class with no object properties.
 
 #### Methods
 

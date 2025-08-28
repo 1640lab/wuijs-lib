@@ -1211,11 +1211,11 @@ Herramienta para salida y entrada con opacidad (fade-out y fade-in respectivamen
 
 #### Constructor
 
-Clase estática que no posee constructor.
+Clase estática sin constructor.
 
 #### Propiedades
 
-Clase estática que no posee propiedades.
+Clase estática sin propiedades de objeto.
 
 #### Métodos
 
