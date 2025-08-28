@@ -681,6 +681,7 @@ HTML head:
 JS code:
 
 ```js
+// Create WUICookie object
 const cookie = new WUICookie({
 	domain: location.hostname,
 	path: "./",
@@ -688,8 +689,10 @@ const cookie = new WUICookie({
 	overssl: false
 });
 
+// Save cookie
 cookie.set("test", "value");
 
+// Read cookie
 console.log(cookie.get("test"));
 ```
 
@@ -735,12 +738,16 @@ HTML head:
 JS code:
 
 ```js
+// Create WUIHead object
 const head = new WUIHead();
 
+// Change page title
 head.setTitle("Test title");
 
+// Change application name metadata
 head.setApplicationName("Test app");
 
+// Change the metadata of the browser's top bar color
 head.setThemeColor("#1e90ff");
 ```
 
@@ -784,7 +791,7 @@ HTML head:
 <script type="text/javascript" src="./Libraries/WUI/Body/WUIBody-0.1.js"></script>
 ```
 
-CSS code for the `./Imports/test-content.css` file:
+CSS content of the `./Imports/test-content.css` file:
 
 ```css
 .test a, .test a:visited {
@@ -794,7 +801,7 @@ CSS code for the `./Imports/test-content.css` file:
 }
 ```
 
-HTML code for the `./Imports/test-content.htm` file:
+HTML content of the `./Imports/test-content.htm` file:
 
 ```html
 <section id="testContent" class="test">
@@ -802,7 +809,7 @@ HTML code for the `./Imports/test-content.htm` file:
 </section>
 ```
 
-JS code for the `./Imports/test-content.js` file:
+JS content of the `./Imports/test-content.js` file:
 
 ```js
 const testContentLog = (content) => {
@@ -819,12 +826,14 @@ HTML code:
 JS code:
 
 ```js
-const body = new WUIBody();
+// Create WUIBody object
+const body = new WUIBody({
+	onCompleted: () => {
+		body.prepare();
+	}
+});
 
-body.onCompleted = () => {
-	body.prepare();
-};
-
+// Import CSS/HTML/JS content from the ./Imports directory
 body.import("testContent", "./Imports/test-content", () => {
 	testContentLog("test content loaded");
 });
@@ -910,6 +919,7 @@ HTML code:
 JS code:
 
 ```js
+// Create WUILanguage object
 const language = new WUILanguage({
     selector: ".wui-language",
     directory: "./Languages/",
@@ -923,12 +933,15 @@ const language = new WUILanguage({
         console.log("Language loaded:", lang, languages);
     }
 });
+
+// Declaring global variables
 let lang = language.lang;
 let languages = {};
 
-language.load();
-language.load("en"); // equivalent
-language.load("en", ["main"]); // equivalent
+// Load content from the main-en.js file
+language.load(); // Option 1
+language.load("en"); // Option 2 (equivalent)
+language.load("en", ["main"]); // Option 3 (equivalent)
 ```
 
 > [!IMPORTANT]
