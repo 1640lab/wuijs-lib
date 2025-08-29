@@ -2,7 +2,7 @@
 
 Library version: `0.2.0`
 
-Document version: `0.2.0-1e`
+Document version: `0.2.0-20250829.1e`
 
 Licence: `Apache License 2.0`
 
@@ -988,9 +988,31 @@ Tool for animating HTML elements using the "onscroll" event of the HTML page bod
 | onStart     | `function` | `null`        | Function that is called when the scroll movement starts, either through the `scroll` events for the mouse or `touchmove` for the touch screen. |
 | onMove      | `function` | `null`        | Function that is called when the scroll movement is executed, either through the `scroll` events for the mouse or `touchmove` for the touch screen. |
 | onStop      | `function` | `null`        | Function that is called when the scroll movement ends, either through the `scroll` events for the mouse or `touchmove` for the touch screen. |
-| debug       | `boolean`  | `false`       | Test mode. Prints to the console the `height` values ​​of the scenes added in the startup instance, and `scrollY`, `y`, `index`, `sceneIndex`, `step`, `sceneStep`, and `progress` when they change. Enabled when the property value is `true`. |
+| debug       | `boolean`  | `false`       | Test mode. Prints to the console the `selector` and `height` values ​​of the scenes added in the startup instance, and `scrollY`, `y`, `index`, `sceneIndex`, `step`, `sceneStep`, and `progress` when they change. Enabled when the property value is `true`. |
+
+#### Section Properties
+
+| Property  | Type       | Description |
+| --------- | ---------- | ----------- |
+| selector  | `string`   | 
+| target    | `string`   |
+| type      | `string`   |
+| height    | `number`   |
+| steps     | `number`   |
+| pages     | `number`   |
+| animation | `function` |
 
 #### Methods
+
+| Method     | Return type | Description |
+| ---------- | ----------- | ----------- |
+| init       | `void`      | Initializes the object once the sections you want to animate have been added. |
+| stop       | `void`      | Interrupts the animation in its execution cycle. |
+| addSection | `void`      | Adds a new section configuration to the object's section list as defined in **Section Properties** |
+| goSection  | `void`      | 
+| selectPage | `void`      | 
+| drawCenter | `void`      | 
+| drawRuler  | `void`      | 
 
 #### Implementation
 

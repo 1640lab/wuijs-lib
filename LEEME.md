@@ -2,7 +2,7 @@
 
 Versión librería: `0.2.0`
 
-Versión documentación: `0.2.0-1e`
+Versión documentación: `0.2.0-20250829.1e`
 
 Licencia: `Licencia Apache 2.0`
 
@@ -988,9 +988,31 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 | onStart     | `function` | `null`            | Función que se llama cuando inicia el movimiento del scroll, ya sea a travéz de los eventos `scroll` para ratón o `touchmove` para pantalla táctil. |
 | onMove      | `function` | `null`            | Función que se llama cuando se ejecuta el movimiento del scroll, ya sea a travéz de los eventos `scroll` para ratón o `touchmove` para pantalla táctil. |
 | onStop      | `function` | `null`            | Función que se llama cuando termina el movimiento del scroll, ya sea a travéz de los eventos `scroll` para ratón o `touchmove` para pantalla táctil. |
-| debug       | `boolean`  | `false`           | Modo de testeo. Imprime en consola los valores `height` de las escenas agregadas en la instancia de inicio y `scrollY`, `y`, `index`, `sceneIndex`, `step`, `sceneStep` y `progress` cuando estos cambian. Se habilitac cuando el valor de la propiedad es `true`. |
+| debug       | `boolean`  | `false`           | Modo de testeo. Imprime en consola los valores `selector` y `height` de las escenas agregadas en la instancia de inicio y `scrollY`, `y`, `index`, `sceneIndex`, `step`, `sceneStep` y `progress` cuando estos cambian. Se habilitac cuando el valor de la propiedad es `true`. |
+
+#### Propiedades de Sección
+
+| Propiedad | Tipo       | Descripción |
+| ----------| ---------- | ----------- |
+| selector  | `string`   | 
+| target    | `string`   |
+| type      | `string`   |
+| height    | `number`   |
+| steps     | `number`   |
+| pages     | `number`   |
+| animation | `function` |
 
 #### Métodos
+
+| Método     | Tipo retorno | Descripción |
+| ---------- | ------------ | ----------- |
+| init       | `void`       | Inicializa el objeto una vez agregadas las secciones que se deseen animar. |
+| stop       | `void`       | Interrumpe la animación en su ciclo de ejecución. |
+| addSection | `void`       | Agrega la configuración de una nueva sección a la lista de secciones de del objeto segun la definición de **Propiedades de Sección** |
+| goSection  | `void`       | 
+| selectPage | `void`       | 
+| drawCenter | `void`       | 
+| drawRuler  | `void`       | 
 
 #### Implementación
 

@@ -309,7 +309,7 @@ class WUIScrolly {
 				}
 				this._sections[i]._element.style.height = typeof(height) == "number" ? height+"px" : height;
 				if (this._debug) {
-					console.log("ini section > selector:", section.selector, "height:", height);
+					console.log("init section > selector:", section.selector, "height:", height);
 				}
 				if (typeof(section.type) == "string" && section.type == "static") {
 					this._sections[i]._element.classList.add("static");
@@ -456,25 +456,6 @@ class WUIScrolly {
 		}
 	}
 
-	drawRuler(color = "#000") {
-		const ruler = document.createElement("div");
-		ruler.style.position = "absolute";
-		ruler.style.zIndex = 1000;
-		ruler.style.top = "0px";
-		ruler.style.left = "0px";
-		for (let h = 0; h < this._bodyHeight; h += 100) {
-			const line = document.createElement("div");
-			line.style.position = "absolute";
-			line.style.top = h+"px";
-			line.style.borderTop = "1px solid "+color;
-			line.style.opacity = 1;
-			line.style.color = color;
-			line.innerHTML = h;
-			ruler.appendChild(line);
-		}
-		document.documentElement.appendChild(ruler);
-	}
-
 	drawCenter(color = "#000") {
 		const center = document.createElement("div");
 		const body = document.body;
@@ -492,5 +473,24 @@ class WUIScrolly {
 			center.appendChild(axis);
 		});
 		body.appendChild(center);
+	}
+
+	drawRuler(color = "#000") {
+		const ruler = document.createElement("div");
+		ruler.style.position = "absolute";
+		ruler.style.zIndex = 1000;
+		ruler.style.top = "0px";
+		ruler.style.left = "0px";
+		for (let h = 0; h < this._bodyHeight; h += 100) {
+			const line = document.createElement("div");
+			line.style.position = "absolute";
+			line.style.top = h+"px";
+			line.style.borderTop = "1px solid "+color;
+			line.style.opacity = 1;
+			line.style.color = color;
+			line.innerHTML = h;
+			ruler.appendChild(line);
+		}
+		document.documentElement.appendChild(ruler);
 	}
 }
