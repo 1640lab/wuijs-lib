@@ -981,7 +981,7 @@ Tool for animating HTML elements using the "onscroll" event of the HTML page bod
 
 | Property    | Type       | Default value | Description |
 | ----------- | ---------- | ------------- | ----------- |
-| sections    | `array`    | `[]`          | List of objects with the configuration of the sections that will be incorporated into the animation. |
+| sections    | `array`    | `[]`          | List of objects with the configuration of the sections that will be incorporated into the animation, as defined in **Section Properties**. |
 | behavior    | `string`   | `"smooth"`    | Behavior for moving focus to the body of the HTML page.<br><br>Values:<br>• `"auto"`<br>• `"smooth"` |
 | dataScrollY | `string`   | `"scrollY"`   | Name of the `data-*` attribute of the main document element (`<html>` / `document.documentElement`) that contains the numeric value measured in pixels of the total vertical scrolling of the HTML page, where `0` represents the top of the document (or no movement). |
 | dataDelay   | `string`   | `"delay"`     | Name of the `data-*` attribute that determines the time, measured in milliseconds, that it takes for an HTML element to animate once it is given focus. |
@@ -1008,7 +1008,7 @@ Tool for animating HTML elements using the "onscroll" event of the HTML page bod
 | ---------- | ----------- | ----------- |
 | init       | `void`      | Initializes the object once the sections you want to animate have been added. |
 | stop       | `void`      | Interrupts the animation in its execution cycle. |
-| addSection | `void`      | Adds a new section configuration to the object's section list as defined in **Section Properties** |
+| addSection | `void`      | Adds a new section configuration to the object's section list, as defined in **Section Properties**. |
 | goSection  | `void`      | 
 | selectPage | `void`      | 
 | drawCenter | `void`      | 

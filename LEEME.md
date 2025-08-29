@@ -981,7 +981,7 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 
 | Propiedad   | Tipo       | Valor por omisión | Descripción |
 | ----------- | ---------- | ----------------- | ----------- |
-| sections    | `array`    | `[]`              | Lista de objetos con la configuración de las secciones que serán incorporadas a la animación. |
+| sections    | `array`    | `[]`              | Lista de objetos con la configuración de las secciones que serán incorporadas a la animación, segun la definición de **Propiedades de Sección**. |
 | behavior    | `string`   | `"smooth"`        | Comportamiento para desplazar el foco en el cuerpo de la página HTML.<br><br>Valores:<br>• `"auto"`<br>• `"smooth"` |
 | dataScrollY | `string`   | `"scrollY"`       | Nombre del atributo `data-*` del elemento de documento principal (`<html>` / `document.documentElement`) que contiene el valor numérico medido en píxeles del desplazamiento total del scroll vertical de la página HTML y donde `0` representa la parte superior del documento (o sin movimiento). |
 | dataDelay   | `string`   | `"delay"`         | Nombre del atributo `data-*` que determina el tiempo medido en milisegundos en que tarda en animarse un elemento HTML una vez que se le da foco. |
@@ -1008,7 +1008,7 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 | ---------- | ------------ | ----------- |
 | init       | `void`       | Inicializa el objeto una vez agregadas las secciones que se deseen animar. |
 | stop       | `void`       | Interrumpe la animación en su ciclo de ejecución. |
-| addSection | `void`       | Agrega la configuración de una nueva sección a la lista de secciones de del objeto segun la definición de **Propiedades de Sección** |
+| addSection | `void`       | Agrega la configuración de una nueva sección a la lista de secciones de del objeto, segun la definición de **Propiedades de Sección**. |
 | goSection  | `void`       | 
 | selectPage | `void`       | 
 | drawCenter | `void`       | 
