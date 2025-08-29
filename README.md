@@ -983,7 +983,7 @@ Tool for animating HTML elements using the "onscroll" event of the HTML page bod
 | ----------- | ---------- | ------------- | ----------- |
 | sections    | `array`    | `[]`          | List of objects with the configuration of the sections that will be incorporated into the animation. |
 | behavior    | `string`   | `"smooth"`    | Behavior for moving focus to the body of the HTML page.<br><br>Values:<br>• `"auto"`<br>• `"smooth"` |
-| dataScrollY | `string`   | `"scrollY"`   | Name of the `data-*` attribute of the HTML tag that contains the numeric value measured in pixels of the total vertical scrolling of the HTML page, where `0` represents the top of the document (or no movement). |
+| dataScrollY | `string`   | `"scrollY"`   | Name of the `data-*` attribute of the document element (`<html>` or `document.documentElement`) that contains the numeric value measured in pixels of the total vertical scrolling of the HTML page, where `0` represents the top of the document (or no movement). |
 | dataDelay   | `string`   | `"delay"`     | Name of the `data-*` attribute that determines the time, measured in milliseconds, that it takes for an HTML element to animate once it is given focus. |
 | onStart     | `function` | `null`        | Function that is called when the scroll movement starts, either through the `scroll` events for the mouse or `touchmove` for the touch screen. |
 | onMove      | `function` | `null`        | Function that is called when the scroll movement is executed, either through the `scroll` events for the mouse or `touchmove` for the touch screen. |
