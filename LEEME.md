@@ -992,15 +992,15 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 
 #### Propiedades de Sección
 
-| Propiedad | Tipo       | Descripción |
-| ----------| ---------- | ----------- |
-| selector  | `string`   | 
-| target    | `string`   |
-| type      | `string`   |
-| height    | `number`   |
-| steps     | `number`   |
-| pages     | `number`   |
-| animation | `function` |
+| Propiedad              | Tipo       | Valor por omisión | Descripción |
+| ---------------------- | ---------- | ----------------- | ----------- |
+| selector *oblogatorio* | `string`   | `undefined`       | Selector CSS que define el elemento HTML que serán incluido como sección. En caso de existir más de un elemento coincidente con el selector se incluirá únicamente la primera coincidencia. |
+| target                 | `string`   | `undefined`       | 
+| type                   | `string`   | `undefined`       | 
+| height                 | `number`   | `undefined`       | 
+| steps                  | `number`   | `undefined`       | 
+| pages                  | `number`   | `undefined`       | 
+| animation              | `function` | `undefined`       | 
 
 #### Métodos
 
@@ -1027,7 +1027,7 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 #### Tabla de Íconos de Señale
 
 | Icono                                                    | Estilo                                                    | Icono                                                    | Estilo                                                    | Icono                                                | Estilo                                                        | Icono                                                | Estilo                                                         |
-| :---:                                                    | :-----                                                    | :---:                                                    | :-----                                                    | :---:                                                | :-----                                                        | :---:                                                | :-----                                                         |
+| :---:                                                    | ------                                                    | :---:                                                    | ------                                                    | :---:                                                | ------                                                        | :---:                                                | ------                                                         |
 | ![](./src/WUI/Icon/Preview/plus-line.svg)                | .plus-line                                                | ![](./src/WUI/Icon/Preview/plus-lg-line.svg)             | .plus-lg-line                                             | ![](./src/WUI/Icon/Preview/dash-line.svg)            | .dash-line                                                    | ![](./src/WUI/Icon/Preview/dash-lg-line.svg)         | .dash-lg-line                                                  |
 | ![](./src/WUI/Icon/Preview/check-line.svg)               | .check-line<br>.successful-line                           | ![](./src/WUI/Icon/Preview/check-lg-line.svg)            | .check-lg-line<br>.successful-lg-line                     | ![](./src/WUI/Icon/Preview/info-line.svg)            | .info-line                                                    | ![](./src/WUI/Icon/Preview/info-lg-line.svg)         | .info-lg-line                                                  |
 | ![](./src/WUI/Icon/Preview/question-line.svg)            | .question-line                                            | ![](./src/WUI/Icon/Preview/question-lg-line.svg)         | .question-lg-line                                         | ![](./src/WUI/Icon/Preview/excamation-line.svg)      | .excamation-line<br>.warning-line                             | ![](./src/WUI/Icon/Preview/excamation-lg-line.svg)   | .excamation-lg-line<br>.warning-lg-line                        |
@@ -1042,7 +1042,7 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 #### Tabla de Íconos de Flecha
 
 | Icono                                                         | Estilo                         | Icono                                                       | Estilo                       | Icono                                                           | Estilo                           | Icono                                                         | Estilo                         |
-| :---:                                                         | :-----                         | :---:                                                       | :-----                       | :---:                                                           | :-----                           | :---:                                                         | :-----                         |
+| :---:                                                         | ------                         | :---:                                                       | ------                       | :---:                                                           | ------                           | :---:                                                         | ------                         |
 | ![](./src/WUI/Icon/Preview/arrow-up-line.svg)                 | .arrow-up-line                 | ![](./src/WUI/Icon/Preview/arrow-left-line.svg)             | .arrow-left-line             | ![](./src/WUI/Icon/Preview/arrow-right-line.svg)                | .arrow-right-line                | ![](./src/WUI/Icon/Preview/arrow-down-line.svg)               | .arrow-down-line               |
 | ![](./src/WUI/Icon/Preview/arrow-up-lg-line.svg)              | .arrow-up-lg-line              | ![](./src/WUI/Icon/Preview/arrow-left-lg-line.svg)          | .arrow-left-lg-line          | ![](./src/WUI/Icon/Preview/arrow-right-lg-line.svg)             | .arrow-right-lg-line             | ![](./src/WUI/Icon/Preview/arrow-down-lg-line.svg)            | .arrow-down-lg-line            |
 | ![](./src/WUI/Icon/Preview/arrow-upleft-lg-line.svg)          | .arrow-upleft-lg-line          | ![](./src/WUI/Icon/Preview/arrow-upright-lg-line.svg)       | .arrow-upright-lg-line       | ![](./src/WUI/Icon/Preview/arrow-downleft-lg-line.svg)          | .arrow-downleft-lg-line          | ![](./src/WUI/Icon/Preview/arrow-downright-lg-line.svg)       | .arrow-downright-lg-line       |
@@ -1065,7 +1065,7 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 #### Tabla de Íconos de Número
 
 | Icono                                            | Estilo            | Icono                                            | Estilo            | Icono                                            | Estilo            | Icono                                            | Estilo            |
-| :---:                                            | :-----            | :---:                                            | :-----            | :---:                                            | :-----            | :---:                                            | :-----            |
+| :---:                                            | ------            | :---:                                            | ------            | :---:                                            | ------            | :---:                                            | ------            |
 | ![](./src/WUI/Icon/Preview/num0-circle-line.svg) | .num0-circle-line | ![](./src/WUI/Icon/Preview/num0-circle-fill.svg) | .num0-circle-fill | ![](./src/WUI/Icon/Preview/num1-circle-line.svg) | .num1-circle-line | ![](./src/WUI/Icon/Preview/num1-circle-fill.svg) | .num1-circle-fill |
 | ![](./src/WUI/Icon/Preview/num2-circle-line.svg) | .num2-circle-line | ![](./src/WUI/Icon/Preview/num2-circle-fill.svg) | .num2-circle-fill | ![](./src/WUI/Icon/Preview/num3-circle-line.svg) | .num3-circle-line | ![](./src/WUI/Icon/Preview/num3-circle-fill.svg) | .num3-circle-fill |
 | ![](./src/WUI/Icon/Preview/num4-circle-line.svg) | .num4-circle-line | ![](./src/WUI/Icon/Preview/num4-circle-fill.svg) | .num4-circle-fill | ![](./src/WUI/Icon/Preview/num5-circle-line.svg) | .num5-circle-line | ![](./src/WUI/Icon/Preview/num5-circle-fill.svg) | .num5-circle-fill |
@@ -1075,7 +1075,7 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 #### Tabla de Íconos de Persona
 
 | Icono                                              | Estilo              | Icono                                              | Estilo              | Icono                                               | Estilo               | Icono                                               | Estilo               |
-| :---:                                              | :-----              | :---:                                              | :-----              | :---:                                               | :-----               | :---:                                               | :-----               |
+| :---:                                              | ------              | :---:                                              | ------              | :---:                                               | ------               | :---:                                               | ------               |
 | ![](./src/WUI/Icon/Preview/man-fill.svg)           | .man-fill           | ![](./src/WUI/Icon/Preview/woman-fill.svg)         | .woman-fill         | ![](./src/WUI/Icon/Preview/person-line.svg)         | .person-line         | ![](./src/WUI/Icon/Preview/person-fill.svg)         | .person-fill         |
 | ![](./src/WUI/Icon/Preview/person-plus-line.svg)   | .person-plus-line   | ![](./src/WUI/Icon/Preview/person-plus-fill.svg)   | .person-plus-fill   | ![](./src/WUI/Icon/Preview/person-dash-line.svg)    | .person-dash-line    | ![](./src/WUI/Icon/Preview/person-dash-fill.svg)    | .person-dash-fill    |
 | ![](./src/WUI/Icon/Preview/person-check-line.svg)  | .person-check-line  | ![](./src/WUI/Icon/Preview/person-check-fill.svg)  | .person-check-fill  | ![](./src/WUI/Icon/Preview/person-x-line.svg)       | .person-x-line       | ![](./src/WUI/Icon/Preview/person-x-fill.svg)       | .person-x-fill       |
@@ -1086,7 +1086,7 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 #### Tabla de Íconos de Archivo
 
 | Icono                                             | Estilo             | Icono                                             | Estilo             | Icono                                              | Estilo              | Icono                                              | Estilo              |
-| :---:                                             | :-----             | :---:                                             | :-----             | :---:                                              | :-----              | :---:                                              | :-----              |
+| :---:                                             | ------             | :---:                                             | ------             | :---:                                              | ------              | :---:                                              | ------              |
 | ![](./src/WUI/Icon/Preview/folder-close-line.svg) | .folder-close-line | ![](./src/WUI/Icon/Preview/folder-close-fill.svg) | .folder-close-fill | ![](./src/WUI/Icon/Preview/folder-open-line.svg)   | .folder-open-line   | ![](./src/WUI/Icon/Preview/folder-open-fill.svg)   | .folder-open-fill   |
 | ![](./src/WUI/Icon/Preview/file-line.svg)         | .file-line         | ![](./src/WUI/Icon/Preview/file-fill.svg)         | .file-fill         | ![](./src/WUI/Icon/Preview/file-barchart-line.svg) | .file-barchart-line | ![](./src/WUI/Icon/Preview/file-barchart-fill.svg) | .file-barchart-fill |
 | ![](./src/WUI/Icon/Preview/file-check-line.svg)   | .file-check-line   | ![](./src/WUI/Icon/Preview/file-check-fill.svg)   | .file-check-fill   | ![](./src/WUI/Icon/Preview/file-pdf-line.svg)      | .file-pdf-line      | ![](./src/WUI/Icon/Preview/file-pdf-fill.svg)      | .file-pdf-fill      |
@@ -1096,7 +1096,7 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 #### Tabla de Íconos de Control
 
 | Icono                                                | Estilo                | Icono                                                | Estilo                | Icono                                               | Estilo               | Icono                                               | Estilo               |
-| :---:                                                | :-----                | :---:                                                | :-----                | :---:                                               | :-----               | :---:                                               | :-----               |
+| :---:                                                | ------                | :---:                                                | ------                | :---:                                               | ------               | :---:                                               | ------               |
 | ![](./src/WUI/Icon/Preview/calendar-line.svg)        | .calendar-line        | ![](./src/WUI/Icon/Preview/calendar-fill.svg)        | .calendar-fill        | ![](./src/WUI/Icon/Preview/calendar-day-line.svg)   | .calendar-day-line   | ![](./src/WUI/Icon/Preview/calendar-day-fill.svg)   | .calendar-day-fill   |
 | ![](./src/WUI/Icon/Preview/calendar-week-line.svg)   | .calendar-week-line   | ![](./src/WUI/Icon/Preview/calendar-week-fill.svg)   | .calendar-week-fill   | ![](./src/WUI/Icon/Preview/calendar-range-line.svg) | .calendar-range-line | ![](./src/WUI/Icon/Preview/calendar-range-fill.svg) | .calendar-range-fill |
 | ![](./src/WUI/Icon/Preview/clipboard-check-line.svg) | .clipboard-check-line | ![](./src/WUI/Icon/Preview/clipboard-check-fill.svg) | .clipboard-check-fill | ![](./src/WUI/Icon/Preview/clipboard-data-line.svg) | .clipboard-data-line | ![](./src/WUI/Icon/Preview/clipboard-data-fill.svg) | .clipboard-data-fill |
@@ -1106,14 +1106,14 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 #### Tabla de Íconos de Protección
 
 | Icono                                               | Estilo             | Icono                                             | Estilo             | Icono                                               | Estilo               | Icono                                               | Estilo               |
-| :---:                                               | :-----             | :---:                                             | :-----             | :---:                                               | :-----               | :---:                                               | :-----               |
+| :---:                                               | ------             | :---:                                             | ------             | :---:                                               | ------               | :---:                                               | ------               |
 | ![](./src/WUI/Icon/Preview/shield-check-line.svg)   | .shield-check-line | ![](./src/WUI/Icon/Preview/shield-check-fill.svg) | .shield-check-fill | ![](./src/WUI/Icon/Preview/shield-lock-line.svg)    | .shield-lock-line    | ![](./src/WUI/Icon/Preview/shield-lock-fill.svg)    | .shield-lock-fill    |
 | ![](./src/WUI/Icon/Preview/patch-check-line.svg)    | .patch-check-line  | ![](./src/WUI/Icon/Preview/patch-check-fill.svg)  | .patch-check-fill  | ![](./src/WUI/Icon/Preview/patch-question-line.svg) | .patch-question-line | ![](./src/WUI/Icon/Preview/patch-question-fill.svg) | .patch-question-fill |
 
 #### Tabla de Íconos de Comunicación
 
 | Icono                                                | Estilo                | Icono                                                | Estilo                | Icono                                               | Estilo               | Icono                                               | Estilo               |
-| :---:                                                | :-----                | :---:                                                | :-----                | :---:                                               | :-----               | :---:                                               | :-----               |
+| :---:                                                | ------                | :---:                                                | ------                | :---:                                               | ------               | :---:                                               | ------               |
 | ![](./src/WUI/Icon/Preview/phone-line.svg)           | .phone-line           | ![](./src/WUI/Icon/Preview/phone-fill.svg)           | .phone-fill           | ![](./src/WUI/Icon/Preview/phonebook-line.svg)      | .phonebook-line      | ![](./src/WUI/Icon/Preview/phonebook-fill.svg)      | .phonebook-fill      |
 | ![](./src/WUI/Icon/Preview/mail-close-line.svg)      | .mail-close-line      | ![](./src/WUI/Icon/Preview/mail-close-fill.svg)      | .mail-close-fill      | ![](./src/WUI/Icon/Preview/chat-dots-line.svg)      | .chat-dots-line      | ![](./src/WUI/Icon/Preview/chat-dots-fill.svg)      | .chat-dots-fill      |
 | ![](./src/WUI/Icon/Preview/chat-left-quote-line.svg) | .chat-left-quote-line | ![](./src/WUI/Icon/Preview/chat-left-quote-fill.svg) | .chat-left-quote-fill | ![](./src/WUI/Icon/Preview/chat-left-text-line.svg) | .chat-left-text-line | ![](./src/WUI/Icon/Preview/chat-left-text-fill.svg) | .chat-left-text-fill |
@@ -1123,14 +1123,14 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 #### Tabla de Íconos de Nube
 
 | Icono                                             | Estilo             | Icono                                             | Estilo             | Icono                                               | Estilo               | Icono                                               | Estilo               |
-| :---:                                             | :-----             | :---:                                             | :-----             | :---:                                               | :-----               | :---:                                               | :-----               |
+| :---:                                             | ------             | :---:                                             | ------             | :---:                                               | ------               | :---:                                               | ------               |
 | ![](./src/WUI/Icon/Preview/cloud-line.svg)        | .cloud-line        | ![](./src/WUI/Icon/Preview/cloud-fill.svg)        | .cloud-fill        | ![](./src/WUI/Icon/Preview/cloud-slash-line.svg)    | .cloud-slash-line    | ![](./src/WUI/Icon/Preview/cloud-slash-fill.svg)    | .cloud-slash-fill    |
 | ![](./src/WUI/Icon/Preview/cloud-upload-line.svg) | .cloud-upload-line | ![](./src/WUI/Icon/Preview/cloud-upload-fill.svg) | .cloud-upload-fill | ![](./src/WUI/Icon/Preview/cloud-download-line.svg) | .cloud-download-line | ![](./src/WUI/Icon/Preview/cloud-download-fill.svg) | .cloud-download-fill |
 
 #### Tabla de Íconos de Mapa
 
 | Icono                                              | Estilo              | Icono                                                | Estilo                | Icono                                           | Estilo           |
-| :---:                                              | :-----              | :---:                                                | :-----                | :---:                                           | :-----           |
+| :---:                                              | ------              | :---:                                                | ------                | :---:                                           | ------           |
 | ![](./src/WUI/Icon/Preview/map-line.svg)           | .map-line           | ![](./src/WUI/Icon/Preview/map-fill.svg)             | .map-fill             |                                                 |                  |
 | ![](./src/WUI/Icon/Preview/map-alt-line.svg)       | .map-alt-line       | ![](./src/WUI/Icon/Preview/map-alt-fill.svg)         | .map-alt-fill         |                                                 |                  |
 | ![](./src/WUI/Icon/Preview/mapmarker-line.svg)     | .mapmarker-line     | ![](./src/WUI/Icon/Preview/mapmarker-fill.svg)       | .mapmarker-fill       | ![](./src/WUI/Icon/Preview/mapmarker-color.svg) | .mapmarker-color |
@@ -1146,20 +1146,20 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 #### Tabla de Íconos de Dispositivo
 
 | Icono                                            | Estilo            | Icono                                            | Estilo            | Icono                                         | Estilo         | Icono                                           | Estilo           |
-| :---:                                            | :-----            | :---:                                            | :-----            | :---:                                         | :-----         | :---:                                           | :-----           |
+| :---:                                            | ------            | :---:                                            | ------            | :---:                                         | ------         | :---:                                           | ------           |
 | ![](./src/WUI/Icon/Preview/devices-line.svg)     | .devices-line     | ![](./src/WUI/Icon/Preview/laptop-line.svg)      | .laptop-line      | ![](./src/WUI/Icon/Preview/mobile-line.svg)   | .mobile-line   | ![](./src/WUI/Icon/Preview/mobile-alt-line.svg) | .mobile-alt-line |
 | ![](./src/WUI/Icon/Preview/mobile-apps-line.svg) | .mobile-apps-line | ![](./src/WUI/Icon/Preview/mobile-apps-fill.svg) | .mobile-apps-fill | ![](./src/WUI/Icon/Preview/computer-line.svg) | .computer-line | ![](./src/WUI/Icon/Preview/camera-fill.svg)     | .camera-fill     |
 
 #### Tabla de Íconos de Marca
 
 | Icono                                        | Estilo        | Icono                                      | Estilo      | Icono                                       | Estilo       |
-| :---:                                        | :-----        | :---:                                      | :-----      | :---:                                       | :-----       |
+| :---:                                        | ------        | :---:                                      | ------      | :---:                                       | ------       |
 | ![](./src/WUI/Icon/Preview/android-fill.svg) | .android-fill | ![](./src/WUI/Icon/Preview/apple-fill.svg) | .apple-fill | ![](./src/WUI/Icon/Preview/huawei-fill.svg) | .huawei-fill |
 
 #### Tabla de Íconos de Aplicaciones
 
 | Icono                                              | Estilo              | Icono                                                 | Estilo                 | Icono                                             | Estilo             | Icono                                              | Estilo              |
-| :---:                                              | :-----              | :---:                                                 | :-----                 | :---:                                             | :-----             | :---:                                              | :-----              |
+| :---:                                              | ------              | :---:                                                 | ------                 | :---:                                             | ------             | :---:                                              | ------              |
 | ![](./src/WUI/Icon/Preview/app-line.svg)           | .app-line           | ![](./src/WUI/Icon/Preview/app-notification-line.svg) | .app-notification-line | ![](./src/WUI/Icon/Preview/acrobat-fill.svg)      | .acrobat-fill      | ![](./src/WUI/Icon/Preview/acrobat-color.svg)      | .acrobat-color      |      
 | ![](./src/WUI/Icon/Preview/applemail-fill.svg)     | .applemail-fill     | ![](./src/WUI/Icon/Preview/applemail-color.svg)       | .applemail-color       | ![](./src/WUI/Icon/Preview/appstore-fill.svg)     | .appstore-fill     | ![](./src/WUI/Icon/Preview/appstore-color.svg)     | .appstore-color     |  
 | ![](./src/WUI/Icon/Preview/appstore-alt-fill.svg)  | .appstore-alt-fill  | ![](./src/WUI/Icon/Preview/appstore-alt-color.svg)    | .appstore-alt-color    | ![](./src/WUI/Icon/Preview/bcardy-fill.svg)       | .bcardy-fill       | ![](./src/WUI/Icon/Preview/bcardy-color.svg)       | .bcardy-color       |  
@@ -1182,7 +1182,7 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 #### Tabla de Íconos de Opciones
 
 | Icono                                            | Estilo            | Icono                                            | Estilo            | Icono                                           | Estilo           | Icono                                           | Estilo           |
-| :---:                                            | :-----            | :---:                                            | :-----            | :---:                                           | :-----           | :---:                                           | :-----           |
+| :---:                                            | ------            | :---:                                            | ------            | :---:                                           | ------           | :---:                                           | ------           |
 | ![](./src/WUI/Icon/Preview/at-line.svg)          | .at-line          | ![](./src/WUI/Icon/Preview/at-lg-line.svg)       | .at-lg-line       | ![](./src/WUI/Icon/Preview/award-line.svg)      | .award-line      | ![](./src/WUI/Icon/Preview/award-fill.svg)      | .award-fill      |
 | ![](./src/WUI/Icon/Preview/basket-line.svg)      | .basket-line      | ![](./src/WUI/Icon/Preview/basket-fill.svg)      | .basket-fill      | ![](./src/WUI/Icon/Preview/bell-line.svg)       | .bell-line       | ![](./src/WUI/Icon/Preview/bell-fill.svg)       | .bell-fill       |
 | ![](./src/WUI/Icon/Preview/bluetooth-line.svg)   | .bluetooth-line   | ![](./src/WUI/Icon/Preview/bluetooth-fill.svg)   | .bluetooth-fill   | ![](./src/WUI/Icon/Preview/bug-line.svg)        | .bug-line        | ![](./src/WUI/Icon/Preview/bug-fill.svg)        | .bug-fill        |
@@ -1214,7 +1214,7 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 #### Tabla de Íconos de Compositor
 
 | Icono                                                  | Estilo                  | Icono                                                   | Estilo                   | Icono                                            | Estilo            | Icono                                             | Estilo             |
-| :---:                                                  | :-----                  | :---:                                                   | :-----                   | :---:                                            | :-----            | :---:                                             | :-----             |
+| :---:                                                  | ------                  | :---:                                                   | ------                   | :---:                                            | ------            | :---:                                             | ------             |
 | ![](./src/WUI/Icon/Preview/doublequotes-left-fill.svg) | .doublequotes-left-fill | ![](./src/WUI/Icon/Preview/doublequotes-right-fill.svg) | .doublequotes-right-fill | ![](./src/WUI/Icon/Preview/indent-left-line.svg) | .indent-left-line | ![](./src/WUI/Icon/Preview/indent-right-line.svg) | .indent-right-line |
 | ![](./src/WUI/Icon/Preview/link-line.svg)              | .link-line              | ![](./src/WUI/Icon/Preview/link-alt-line.svg)           | .link-alt-line           | ![](./src/WUI/Icon/Preview/list-check-line.svg)  | .list-check-line  | ![](./src/WUI/Icon/Preview/list-number-line.svg)  | .list-number-line  |
 | ![](./src/WUI/Icon/Preview/list-stars-line.svg)        | .list-stars-line        | ![](./src/WUI/Icon/Preview/list-unorderd-line.svg)      | .list-unorderd-line      | ![](./src/WUI/Icon/Preview/textleft-line.svg)    | .textleft-line    | ![](./src/WUI/Icon/Preview/textright-line.svg)    | .textright-line    |
@@ -1222,7 +1222,7 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 #### Tabla de Otros Íconos
 
 | Icono                                              | Estilo              | Icono                                                 | Estilo                 | Icono                                           | Estilo           | Icono                                                 | Estilo                 |
-| :---:                                              | :-----              | :---:                                                 | :-----                 | :---:                                           | :-----           | :---:                                                 | :-----                 |
+| :---:                                              | ------              | :---:                                                 | ------                 | :---:                                           | ------           | :---:                                                 | ------                 |
 | ![](./src/WUI/Icon/Preview/ai-fill.svg)            | .ai-fill            | ![](./src/WUI/Icon/Preview/bullseye-line.svg)         | .bullseye-line         | ![](./src/WUI/Icon/Preview/columnsgap-line.svg) | .columnsgap-line | ![](./src/WUI/Icon/Preview/dart-fill.svg)             | .dart-fill             |
 | ![](./src/WUI/Icon/Preview/datasheet-line.svg)     | .datasheet-line     | ![](./src/WUI/Icon/Preview/datasheet-health-line.svg) | .datasheet-health-line | ![](./src/WUI/Icon/Preview/hash-line.svg)       | .hash-line       | ![](./src/WUI/Icon/Preview/headphones-line.svg)       | .headphones-line       |
 | ![](./src/WUI/Icon/Preview/headset-line.svg)       | .headset-line       | ![](./src/WUI/Icon/Preview/logout-line.svg)           | .logout-line           | ![](./src/WUI/Icon/Preview/medal-line.svg)      | .medal-line      | ![](./src/WUI/Icon/Preview/menu-line.svg)             | .menu-line             |
@@ -1233,7 +1233,7 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 #### Tabla de Íconos Animados
 
 | Icono                                                   | Estilo                   | Icono                                                  | Estilo                  | Icono                                                      | Estilo                      |
-| :---:                                                   | :-----                   | :---:                                                  | :-----                  | :---:                                                      | :-----                      |
+| :---:                                                   | ------                   | :---:                                                  | ------                  | :---:                                                      | ------                      |
 | ![](./src/WUI/Icon/Preview/animation-loarder-comet.svg) | .animation-loarder-comet | ![](./src/WUI/Icon/Preview/animation-loarder-ring.svg) | .animation-loarder-ring | ![](./src/WUI/Icon/Preview/animation-loarder-ringpath.svg) | .animation-loarder-ringpath |
 
 #### Implementación
