@@ -2,7 +2,7 @@
 
 Versión librería: `0.2.0`
 
-Versión documentación: `0.2.0-20250829.1e`
+Versión documentación: `0.2.0.20250829.1e`
 
 Licencia: `Licencia Apache 2.0`
 
