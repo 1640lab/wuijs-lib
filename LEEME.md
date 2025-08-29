@@ -772,7 +772,7 @@ Administrador de cuerpo HTML. Permite la importación de contenido CSS/JS/HTML y
 | environment     | `string`   | `"web"`           | Entorno de despliegue de la interfaz web.<br><br>Valores:<br>• `"web"`<br>• `"native.android"`<br>• `"native.ios"` |
 | importDirectory | `string`   | `""`              | Ruta relativa del directorio donde se alojan los subdirectorio para importación de contenido. |
 | importMode      | `string`   | `"fetch"`         | Método de recuperación de contenido para carga.<br><br>Valores:<br>• `"fetch"`<br>• `"xhr"`<br><br>Cuando el despliegue se realiza en ambientes nativos mediante WebView para Android o WebKit para iOS, se recomienda utilizar `"xhr"`. |
-| onCompleted     | `function` | `null`            | Función que se ejecuta cuando todos los contenidos son importados y cargados en el cuerpo de la página HTML. |
+| onCompleted     | `function` | `null`            | Función que se llama cuando todos los contenidos son importados y cargados en el cuerpo de la página HTML. |
 | debug           | `boolean`  | `false`           | Modo de testeo. Imprime en consola los contenidos importados cuando el valor de la propiedad es `true`. |
 
 #### Métodos
@@ -864,7 +864,7 @@ Administrador de idioma para interfaces web. Permite cargar archivos de idioma e
 | mode       | `string`   | `"js"`            | Formato de los archivos de idioma.<br><br>Valores:<br>• `"js"`<br>• `"json"` |
 | dataKey    | `string`   | `"key"`           | Nombre del atributo `data-*` que contiene la clave de texto en los elementos HTML. |
 | dataOutput | `string`   | `"text"`          | Nombre del atributo `data-*` donde se puede colocar el texto cargado. |
-| onLoad     | `function` | `null`            | Función que se ejecuta cuando la carga de idioma ha finalizado. |
+| onLoad     | `function` | `null`            | Función que se llama cuando la carga de idioma ha finalizado. |
 
 #### Métodos
 
@@ -978,6 +978,17 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 | WUIScrolly | `WUIScrolly([properties])`<br><br>Parámetros:<br>**• properties:** `object` *opcional* |
 
 #### Propiedades
+
+| Propiedad   | Tipo       | Valor por omisión | Descripción |
+| ----------- | ---------- | ----------------- | ----------- |
+| sections    | `array`    | `[]`              | Lista de objetos con la configuración de las secciones que serán incorporadas a la animación. |
+| behavior    | `string`   | `"smooth"`        | Comportamiento para desplazar el foco en el cuerpo de la página HTML.<br><br>Valores:<br>• `"auto"`<br>• `"smooth"`. |
+| dataScrollY | `string`   | `"scrollY"`       | Nombre del atributo `data-*` de la etiqueta HTML que contiene el valor numérico medido en píxeles del desplazamiento total del scroll vertical de la página HTML y donde `0` representa la parte superior del documento (o sin movimiento). |
+| dataDelay   | `string`   | `"delay"`         | Nombre del atributo `data-*` que determina el tiempo medido en milisegundos en que tarda en animarse un elemento HTML una vez que se le da foco. |
+| onStart     | `function` | `null`            | Función que se llama cuando inicia el movimiento del scroll, ya sea a travéz de los eventos `scroll` para ratón o `touchmove` para pantalla táctil. |
+| onMove      | `function` | `null`            | Función que se llama cuando se ejecuta el movimiento del scroll, ya sea a travéz de los eventos `scroll` para ratón o `touchmove` para pantalla táctil. |
+| onStop      | `function` | `null`            | Función que se llama cuando termina el movimiento del scroll, ya sea a travéz de los eventos `scroll` para ratón o `touchmove` para pantalla táctil. |
+| debug       | `boolean`  | `false`           | Modo de testeo. Imprime en consola los valores `height` de las escenas agregadas en la instancia de inicio y `scrollY`, `y`, `index`, `sceneIndex`, `step`, `sceneStep` y `progress` cuando estos cambian. Se habilitac cuando el valor de la propiedad es `true`. |
 
 #### Métodos
 

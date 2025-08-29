@@ -722,7 +722,7 @@ Class without properties.
 | setMetaContent     | `void`      | `setMetaContent(name, content)`<br><br>Arguments:<br>**• name:** `string` <br>**• content:** `string`<br><br>Sets a meta value in the header of the HTML document using the `<meta>` tag.<br>Check specifications and compatibility in [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name). |
 | setApplicationName | `void`      | `setApplicationName(content)`<br>Alias of `setMetaContent("application-name", content)`<br><br>Arguments:<br>**• content:** `string`<br><br>Sets the `application-name` meta value in the header of the HTML document. |
 | setThemeColor      | `void`      | `setThemeColor(content)`<br>Alias of `setMetaContent("theme-color", content)`<br><br>Arguments:<br>**• content:** `string`<br><br>Sets the `theme-color` meta value in the header of the HTML document.<br>Check specifications and compatibility in [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/theme-color). |
-| refresh            | `void`       | `refresh()`<br><br>Reloads JS and CSS files called from the `<head>` section of the HTML document, by appending a dynamic get parameter. |
+| refresh            | `void`      | `refresh()`<br><br>Reloads JS and CSS files called from the `<head>` section of the HTML document, by appending a dynamic get parameter. |
 
 #### Implementation
 
@@ -772,7 +772,7 @@ HTML body manager. Allows the import of CSS/JS/HTML content and facilitates impl
 | environment     | `string`   | `"web"`       | Web interface deployment environment.<br><br>Values:<br>• `"web"`<br>• `"native.android"`<br>• `"native.ios"` |
 | importDirectory | `string`   | `""`          | Relative path of the directory where the subdirectories for content import are hosted. |
 | importMode      | `string`   | `"fetch"`     | Content retrieval method for upload.<br><br>Values:<br>• `"fetch"`<br>• `"xhr"`<br><br>When deploying to native environments using WebView for Android or WebKit for iOS, it is recommended to use `"xhr"`. |
-| onCompleted     | `function` | `null`        | Function that is executed when all content is imported and loaded into the body of the HTML page. |
+| onCompleted     | `function` | `null`        | Function that is called when all content is imported and loaded into the body of the HTML page. |
 | debug           | `boolean`  | `false`       | Test mode. Prints imported content to the console when the property value is `true`. |
 
 #### Methods
@@ -855,7 +855,7 @@ Language manager for web interfaces. Allows you to load language files in JS or 
 
 #### Properties
 
-| Property   | Type       | Default value.    | Description |
+| Property   | Type       | Default value     | Description |
 | ---------- | ---------- | ----------------- | ----------- |
 | selector   | `string`   | `".wui-language"` | CSS selector for HTML elements to be loaded. This can be applied to the `content` attribute of the `meta` element, to the `innerHTML` property of the elements: `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `div`, `span`, `p`, `i`, `li`, `a`, `legend`, `label`, `option`, `data`, `button`, and to the `placeholder` attribute of the `input` and `textarea` elements. |
 | directory  | `string`   | `"Languages/"`    | Path to the directory where the language files are located. |
@@ -864,7 +864,7 @@ Language manager for web interfaces. Allows you to load language files in JS or 
 | mode       | `string`   | `"js"`            | Language file format.<br><br>Values:<br>• `"js"`<br>• `"json"` |
 | dataKey    | `string`   | `"key"`           | Name of the `data-*` attribute that contains the text key in HTML elements. |
 | dataOutput | `string`   | `"text"`          | Name of the `data-*` attribute where the loaded text can be placed. |
-| onLoad     | `function` | `null`            | Function that is executed when the language loading has finished. |
+| onLoad     | `function` | `null`            | Function that is called when the language loading has finished. |
 
 #### Methods
 
@@ -978,6 +978,17 @@ Tool for animating HTML elements using the "onscroll" event of the HTML page bod
 | WUIScrolly | `WUIScrolly([properties])`<br><br>Arguments:<br>**• properties:** `object` *optional* |
 
 #### Properties
+
+| Property    | Type       | Default value | Description |
+| ----------- | ---------- | ------------- | ----------- |
+| sections    | `array`    | `[]`          | List of objects with the configuration of the sections that will be incorporated into the animation. |
+| behavior    | `string`   | `"smooth"`    | Behavior for moving focus to the body of the HTML page.<br><br>Values:<br>• `"auto"`<br>• `"smooth"`. |
+| dataScrollY | `string`   | `"scrollY"`   | Name of the `data-*` attribute of the HTML tag that contains the numeric value measured in pixels of the total vertical scrolling of the HTML page, where `0` represents the top of the document (or no movement). |
+| dataDelay   | `string`   | `"delay"`     | Name of the `data-*` attribute that determines the time, measured in milliseconds, that it takes for an HTML element to animate once it is given focus. |
+| onStart     | `function` | `null`        | Function that is called when the scroll movement starts, either through the `scroll` events for the mouse or `touchmove` for the touch screen. |
+| onMove      | `function` | `null`        | Function that is called when the scroll movement is executed, either through the `scroll` events for the mouse or `touchmove` for the touch screen. |
+| onStop      | `function` | `null`        | Function that is called when the scroll movement ends, either through the `scroll` events for the mouse or `touchmove` for the touch screen. |
+| debug       | `boolean`  | `false`       | Test mode. Prints to the console the `height` values ​​of the scenes added in the startup instance, and `scrollY`, `y`, `index`, `sceneIndex`, `step`, `sceneStep`, and `progress` when they change. Enabled when the property value is `true`. |
 
 #### Methods
 
