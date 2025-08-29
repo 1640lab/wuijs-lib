@@ -982,7 +982,7 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 | Propiedad   | Tipo       | Valor por omisión | Descripción |
 | ----------- | ---------- | ----------------- | ----------- |
 | sections    | `array`    | `[]`              | Lista de objetos con la configuración de las secciones que serán incorporadas a la animación. |
-| behavior    | `string`   | `"smooth"`        | Comportamiento para desplazar el foco en el cuerpo de la página HTML.<br><br>Valores:<br>• `"auto"`<br>• `"smooth"`. |
+| behavior    | `string`   | `"smooth"`        | Comportamiento para desplazar el foco en el cuerpo de la página HTML.<br><br>Valores:<br>• `"auto"`<br>• `"smooth"` |
 | dataScrollY | `string`   | `"scrollY"`       | Nombre del atributo `data-*` de la etiqueta HTML que contiene el valor numérico medido en píxeles del desplazamiento total del scroll vertical de la página HTML y donde `0` representa la parte superior del documento (o sin movimiento). |
 | dataDelay   | `string`   | `"delay"`         | Nombre del atributo `data-*` que determina el tiempo medido en milisegundos en que tarda en animarse un elemento HTML una vez que se le da foco. |
 | onStart     | `function` | `null`            | Función que se llama cuando inicia el movimiento del scroll, ya sea a travéz de los eventos `scroll` para ratón o `touchmove` para pantalla táctil. |
