@@ -992,15 +992,15 @@ Tool for animating HTML elements using the "onscroll" event of the HTML page bod
 
 #### Section Properties
 
-| Property              | Type       | Default value | Description |
-| --------------------- | ---------- | ------------- | ----------- |
-| selector *oblogatory* | `string`   | `undefined`   | CSS selector that defines the HTML element to be included as a section. If more than one element matches the selector, only the first match will be included. |
-| target                | `string`   | `undefined`   | 
-| type                  | `string`   | `undefined`   | 
-| height                | `number`   | `undefined`   | 
-| steps                 | `number`   | `undefined`   | 
-| pages                 | `number`   | `undefined`   | 
-| animation             | `function` | `undefined`   | 
+| Property  | Type       | Default value | Description |
+| --------- | ---------- | ------------- | ----------- |
+| selector  | `string`   | `undefined`   | CSS selector that defines the HTML element to be included as a section. If more than one element matches the selector, only the first match will be included. *oblogatory* |
+| target    | `string`   | `undefined`   | 
+| type      | `string`   | `undefined`   | 
+| height    | `number`   | `undefined`   | 
+| steps     | `number`   | `undefined`   | 
+| pages     | `number`   | `undefined`   | 
+| animation | `function` | `undefined`   | 
 
 #### Methods
 

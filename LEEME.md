@@ -992,15 +992,15 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 
 #### Propiedades de Sección
 
-| Propiedad              | Tipo       | Valor por omisión | Descripción |
-| ---------------------- | ---------- | ----------------- | ----------- |
-| selector *oblogatorio* | `string`   | `undefined`       | Selector CSS que define el elemento HTML que serán incluido como sección. En caso de existir más de un elemento coincidente con el selector se incluirá únicamente la primera coincidencia. |
-| target                 | `string`   | `undefined`       | 
-| type                   | `string`   | `undefined`       | 
-| height                 | `number`   | `undefined`       | 
-| steps                  | `number`   | `undefined`       | 
-| pages                  | `number`   | `undefined`       | 
-| animation              | `function` | `undefined`       | 
+| Propiedad | Tipo       | Valor por omisión | Descripción |
+| --------- | ---------- | ----------------- | ----------- |
+| selector  | `string`   | `undefined`       | Selector CSS que define el elemento HTML que serán incluido como sección. En caso de existir más de un elemento coincidente con el selector se incluirá únicamente la primera coincidencia. *oblogatorio* |
+| target    | `string`   | `undefined`       | 
+| type      | `string`   | `undefined`       | 
+| height    | `number`   | `undefined`       | 
+| steps     | `number`   | `undefined`       | 
+| pages     | `number`   | `undefined`       | 
+| animation | `function` | `undefined`       | 
 
 #### Métodos
 
