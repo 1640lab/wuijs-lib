@@ -2,7 +2,7 @@
 
 Versión librería: `0.2.0`
 
-Versión documentación: `0.2.0.20250829.1e`
+Versión documentación: `0.2.0.20250830-1e`
 
 Licencia: `Licencia Apache 2.0`
 
@@ -1405,7 +1405,7 @@ Cabecera HTML
 Código CSS:
 
 ```CSS
-.element {
+.my-element {
 	display: none;
 	width: 24px;
 	height: 24px;
@@ -1417,7 +1417,7 @@ Código CSS:
 Código HTML:
 
 ```html
-<div id="myElement" class="element"></div>
+<div id="myElement" class="my-element"></div>
 ```
 
 Código JS:

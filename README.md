@@ -2,7 +2,7 @@
 
 Library version: `0.2.0`
 
-Document version: `0.2.0.20250829.1e`
+Document version: `0.2.0.20250830-1e`
 
 Licence: `Apache License 2.0`
 
@@ -1405,7 +1405,7 @@ HTML head:
 CSS code:
 
 ```CSS
-.element {
+.my-element {
 	display: none;
 	width: 24px;
 	height: 24px;
@@ -1417,7 +1417,7 @@ CSS code:
 HTML code:
 
 ```html
-<div id="myElement" class="element"></div>
+<div id="myElement" class="my-element"></div>
 ```
 
 JS code:
