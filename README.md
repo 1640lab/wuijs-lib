@@ -1056,8 +1056,8 @@ HTML code:
 <!-- CSS animation -->
 <section id="section1" class="my-section">
 	<div class="my-element fadein-left"></div>
-	<div class="my-element fadein-top"></div>
-	<div class="my-element fadein-right"></div>
+	<div class="my-element fadein-top" data-delay="200"></div>
+	<div class="my-element fadein-right" data-delay="400"></div>
 </section>
 
 <!-- JS animation -->
