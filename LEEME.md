@@ -1016,12 +1016,12 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 
 #### Estilos CSS para Animación
 
-| Estilo       | Descripción |
-| ------------ | ----------- |
-| fadein       | Entra y sale con opacidad sin movimiento. |
-| fadein-up    | Entra y sale con opacidad desde arriba. |
-| fadein-left  | Entra y sale con opacidad desde la izquierda. |
-| fadein-right | Entra y sale con opacidad desde la derecha. |
+| Estilo        | Descripción |
+| ------------- | ----------- |
+| .fadein       | Entra y sale con opacidad sin movimiento. |
+| .fadein-up    | Entra y sale con opacidad desde arriba. |
+| .fadein-left  | Entra y sale con opacidad desde la izquierda. |
+| .fadein-right | Entra y sale con opacidad desde la derecha. |
 
 #### Implementación
 
