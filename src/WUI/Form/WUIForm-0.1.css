@@ -15,7 +15,7 @@
 
 }
 .wui-form,
-.wui-form :is(.request, .response),
+.wui-form :is(.request, .response):not(button),
 .wui-form > :is(.header, .body, .footer) {
 	display: flex;
 	position: relative;
@@ -27,7 +27,7 @@
 	height: 100%;
 	flex-wrap: nowrap;
 }
-.wui-form :is(.request, .response),
+.wui-form :is(.request, .response):not(button),
 .wui-form > .body {
 	flex-grow: 1;
 	align-items: stretch;
@@ -590,12 +590,10 @@
 	.wui-form {
 		padding-top: 0;
 	}
-	.wui-form .request,
-	.wui-form .response {
+	.wui-form :is(.request, .response):not(button) {
 		align-items: unset;
 	}
-	.wui-form .request,
-	.wui-form .response,
+	.wui-form :is(.request, .response):not(button),
 	.wui-form fieldset {
 		flex-direction: column;
 		flex-wrap: nowrap;
