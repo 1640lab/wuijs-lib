@@ -2,7 +2,7 @@
 
 Library version: `0.2.0`
 
-Document version: `0.2.0.20250830.1-e` (e: in edition, c: complete)
+Document version: `0.2.0.20250830.2-e` (e: in edition, c: complete)
 
 Licence: `Apache License 2.0`
 
@@ -95,7 +95,7 @@ cp -r ./wuijs-lib/src/WDS ../src/Libraries/
 
 ## Implementation
 
-To enable all classes, the CSS and JS dependencies of the libraries must be implemented in the HTML header of the web page together with the `Settings.css` and `WUI.css` style configuration files.
+To enable all classes, the CSS and JS dependencies of the libraries must be implemented in the HTML header of the web page together with the `Settings.css` and `WUI.css` style settings files.
 
 CSS code in the `Settings.css` file:
 
@@ -581,7 +581,7 @@ CSS code in the `WUI.css` file:
 }
 ```
 
-Assuming the CSS configuration file is installed in the relative path `./Settings/WUI.css` and the libraries are installed in the relative path `./Libraries/WUI`, the HTML header looks like this:
+Assuming the CSS settings file is installed in the relative path `./Settings/WUI.css` and the libraries are installed in the relative path `./Libraries/WUI`, the HTML header looks like this:
 
 HTML code:
 
@@ -648,7 +648,7 @@ HTML code:
 This implementation method allows for standardization of an application's user interface design, using the `WUI.css` file.
 
 > [!IMPORTANT]
-> The style configuration files must be in the paths `./Settings/Main.css` and `./Settings/WUI.css`.
+> The style settings files must be in the paths `./Settings/Main.css` and `./Settings/WUI.css`.
 
 > [!TIP]
 > If you only want to implement part of the WUI library set, you must add calls to the JS and CSS files in the HTML header as indicated in each section.
@@ -999,7 +999,7 @@ Tool for animating HTML elements using the "onscroll" event of the HTML page bod
 
 | Property    | Type       | Default value | Description |
 | ----------- | ---------- | ------------- | ----------- |
-| sections    | `array`    | `[]`          | List of objects with the configuration of the sections that will be incorporated into the animation, as defined in **Section Properties**. |
+| sections    | `array`    | `[]`          | List of objects with the settings of the sections that will be incorporated into the animation, as defined in **Section Properties**. |
 | behavior    | `string`   | `"smooth"`    | Behavior for moving focus to the body of the HTML page.<br><br>Values:<br>• `"auto"`<br>• `"smooth"` |
 | dataScrollY | `string`   | `"scrollY"`   | Name of the `data-*` attribute of the main document element (`<html>` / `document.documentElement`) that contains the numeric value measured in pixels of the total vertical scrolling of the HTML page, where `0` represents the top of the document (or no movement). |
 | dataDelay   | `string`   | `"delay"`     | Name of the `data-*` attribute that determines the time, measured in milliseconds, that it takes for an HTML element animated using CSS styles to animate once it is given focus. |
@@ -1024,9 +1024,9 @@ Tool for animating HTML elements using the "onscroll" event of the HTML page bod
 
 | Method     | Return type | Description |
 | ---------- | ----------- | ----------- |
-| init       | `void`      | `init()`<br><br>Initializes the object once the sections you want to animate have been added. |
+| init       | `void`      | `init()`<br><br>Initializes the object once the sections that make up the HTML page have been added. |
 | stop       | `void`      | `stop()`<br><br>Interrupts the animation in its execution cycle. |
-| addSection | `void`      | `addSection({section_properties})`<br><br>Adds a new section configuration to the object's section list, as defined in **Section Properties:**. |
+| addSection | `void`      | `addSection({section_properties})`<br><br>Adds a new animated section settings to the object's section list, as defined in **Section Properties:**. |
 | goSection  | `void`      | `goSection(target[, done[, behavior]])`<br><br>Arguments:<br>**• target:** `string` <br>**• done:** `function` <br>**• behavior:** `string` <br><br>Moves the focus of the HTML page to the section specified by the `target` parameter. |
 | selectPage | `void`      | `selectPage(sectionIndex, pageIndex)`<br><br>Arguments:<br>**• sectionIndex:** `number`, values ​​from `0` <br>**• pageIndex:** `number`, value between `0` and `pages - 1` <br><br>Moves the focus of the HTML page to the section specified by the `sectionIndex` parameter and advances to the `pageIndex` page in that section. |
 | drawCenter | `void`      | `drawCenter()`<br><br>Draws the center of the visible part of the HTML page in the browser. |
@@ -1043,7 +1043,7 @@ Tool for animating HTML elements using the "onscroll" event of the HTML page bod
 
 #### Implementation
 
-There are two ways to implement the animation library, the simplest is through CSS animation tags, the second is through programming JS animation functions that are loaded in specific sections of the HTML page.
+There are two ways to implement the animation library, the simplest is through CSS animation tags, the second is through programming JS animation functions that are loaded through section settings.
 
 HTML head:
 
@@ -1108,12 +1108,32 @@ const scrolly = new WUIScrolly({
 	debug: true
 });
 
-// Add sections with JS animation
+// Add sections
 scrolly.addSection({
-	selector: "#section2"
+	selector: "#section1",
+	target: "css-animation",
+	type: "static",
+	height: "100%"
 });
 scrolly.addSection({
-	selector: "#section3"
+	selector: "#section2",
+	target: "js-animation",
+	type: "static",
+	height: 400,
+	animation: (step = 0, progress = 0) => {
+		// ...
+	}
+});
+scrolly.addSection({
+	selector: "#section3",
+	target: "js-animation-paging",
+	type: "static",
+	height: 480,
+	steps: 8,
+	pages: 3,
+	animation: (step = 0, progress = 0) => {
+		// ...
+	}
 });
 
 // Initialize object
@@ -1454,21 +1474,21 @@ WUIFade.in(element, options);
 element.wuiFadein(options);
 ```
 
-<a name="WUITooltip"></a>
-<a name="WUILoader"></a>
-<a name="WUIModal"></a>
-<a name="WUIModalSelector"></a>
-<a name="WUISlider"></a>
-<a name="WUIPaging"></a>
-<a name="WUITabs"></a>
-<a name="WUIList"></a>
-<a name="WUITable"></a>
-<a name="WUIForm"></a>
-<a name="WUIFormat"></a>
-<a name="WUISelectpicker"></a>
-<a name="WUIDatepicker"></a>
-<a name="WUITimepicker"></a>
-<a name="WUIColorpicker"></a>
-<a name="WUICheckbox"></a>
-<a name="WUIIntensity"></a>
-<a name="WUIButton"></a>
+<a name="wuiTooltip"></a>
+<a name="wuiLoader"></a>
+<a name="wuiModal"></a>
+<a name="wuiModalSelector"></a>
+<a name="wuiSlider"></a>
+<a name="wuiPaging"></a>
+<a name="wuiTabs"></a>
+<a name="wuiList"></a>
+<a name="wuiTable"></a>
+<a name="wuiForm"></a>
+<a name="wuiFormat"></a>
+<a name="wuiSelectpicker"></a>
+<a name="wuiDatepicker"></a>
+<a name="wuiTimepicker"></a>
+<a name="wuiColorpicker"></a>
+<a name="wuiCheckbox"></a>
+<a name="wuiIntensity"></a>
+<a name="wuiButton"></a>

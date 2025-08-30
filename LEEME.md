@@ -2,7 +2,7 @@
 
 Versión librería: `0.2.0`
 
-Versión documentación: `0.2.0.20250830.1-e` (e: en edición, c: completa)
+Versión documentación: `0.2.0.20250830.2-e` (e: en edición, c: completa)
 
 Licencia: `Licencia Apache 2.0`
 
@@ -1024,9 +1024,9 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 
 | Método     | Tipo retorno | Descripción |
 | ---------- | ------------ | ----------- |
-| init       | `void`       | `init()`<br><br>Inicializa el objeto una vez agregadas las secciones que se deseen animar. |
+| init       | `void`       | `init()`<br><br>Inicializa el objeto una vez agregadas las secciones que componen la página HTML. |
 | stop       | `void`       | `stop()`<br><br>Interrumpe la animación en su ciclo de ejecución. |
-| addSection | `void`       | `addSection({section_properties})`<br><br>Agrega la configuración de una nueva sección a la lista de secciones de del objeto, segun la definición de **Propiedades de Sección**. |
+| addSection | `void`       | `addSection({section_properties})`<br><br>Agrega la configuración de una nueva sección animada a la lista de secciones del objeto, segun la definición de **Propiedades de Sección**. |
 | goSection  | `void`       | `goSection(target[, done[, behavior]])`<br><br>Parámetros:<br>**• target:** `string` <br>**• done:** `function` <br>**• behavior:** `string` <br><br>Mueve el foco de la página HTML hasta la sección especificada por del parámetro `target`. |
 | selectPage | `void`       | `selectPage(sectionIndex, pageIndex)`<br><br>Parámetros:<br>**• sectionIndex:** `number`, valores desde `0` <br>**• pageIndex:** `number`, valor entre `0` y `pages - 1` <br><br>Mueve el foco de la página HTML hasta la sección especificada por del parámetro `sectionIndex` y avanza hasta la página `pageIndex` de dicha sección. |
 | drawCenter | `void`       | `drawCenter()`<br><br>Dibuja el centro de la parte visible de la página HTML en el navegador. |
@@ -1043,7 +1043,7 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 
 #### Implementación
 
-Existen dos modos de implementación de la librería de animación, la más sencilla es por medio de etiquetas de animación CSS, la segunda es mediante la programación de funciones JS de animación que se cargan en secciones específicas de la página HTML.
+Existen dos modos de implementación de la librería de animación, la más sencilla es por medio de etiquetas de animación CSS, la segunda es mediante la programación de funciones JS de animación que se cargan mediante la configuración de secciones.
 
 Cabecera HTML
 
@@ -1108,12 +1108,32 @@ const scrolly = new WUIScrolly({
 	debug: true
 });
 
-// Agregar secciones con animación JS
+// Agregar secciones
 scrolly.addSection({
-	selector: "#section2"
+	selector: "#section1",
+	target: "css-animation",
+	type: "static",
+	height: "100%"
 });
 scrolly.addSection({
-	selector: "#section3"
+	selector: "#section2",
+	target: "js-animation",
+	type: "static",
+	height: 400,
+	animation: (step = 0, progress = 0) => {
+		// ...
+	}
+});
+scrolly.addSection({
+	selector: "#section3",
+	target: "js-animation-paging",
+	type: "static",
+	height: 480,
+	steps: 8,
+	pages: 3,
+	animation: (step = 0, progress = 0) => {
+		// ...
+	}
 });
 
 // Inicializar objeto
@@ -1454,21 +1474,21 @@ WUIFade.in(element, options);
 element.wuiFadein(options);
 ```
 
-<a name="WUITooltip"></a>
-<a name="WUILoader"></a>
-<a name="WUIModal"></a>
-<a name="WUIModalSelector"></a>
-<a name="WUISlider"></a>
-<a name="WUIPaging"></a>
-<a name="WUITabs"></a>
-<a name="WUIList"></a>
-<a name="WUITable"></a>
-<a name="WUIForm"></a>
-<a name="WUIFormat"></a>
-<a name="WUISelectpicker"></a>
-<a name="WUIDatepicker"></a>
-<a name="WUITimepicker"></a>
-<a name="WUIColorpicker"></a>
-<a name="WUICheckbox"></a>
-<a name="WUIIntensity"></a>
-<a name="WUIButton"></a>
+<a name="wuiTooltip"></a>
+<a name="wuiLoader"></a>
+<a name="wuiModal"></a>
+<a name="wuiModalSelector"></a>
+<a name="wuiSlider"></a>
+<a name="wuiPaging"></a>
+<a name="wuiTabs"></a>
+<a name="wuiList"></a>
+<a name="wuiTable"></a>
+<a name="wuiForm"></a>
+<a name="wuiFormat"></a>
+<a name="wuiSelectpicker"></a>
+<a name="wuiDatepicker"></a>
+<a name="wuiTimepicker"></a>
+<a name="wuiColorpicker"></a>
+<a name="wuiCheckbox"></a>
+<a name="wuiIntensity"></a>
+<a name="wuiButton"></a>
