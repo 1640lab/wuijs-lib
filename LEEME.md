@@ -1039,6 +1039,8 @@ Código CSS:
 ```css
 .section {
 	width: 100%;
+	margin: 10px 0;
+	background-color: lightgray;
 }
 .my-element {
 	width: 50px;
