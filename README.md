@@ -677,9 +677,9 @@ Cookie manager.
 | Property | Type      | Default value       | Description |
 | -------- | --------- | ------------------- | ----------- |
 | domain   | `string`  | `location.hostname` | (get/set)<br><br>Defines the domain for which the cookie is accessible. By default, it's the current host. Setting it to a parent domain (e.g., example.com for sub.example.com) makes it accessible to subdomains. |
-| path     | `string`  | `"./"`              | Specifies the path for which the cookie is valid. The default value is the current path, with an empty value being equivalent to this. Setting "/" makes the cookie accessible across the entire domain. |
-| minutes  | `number`  | `525600`            | Specifies the duration, measured in minutes, for the cookie to remain active. The default value is 365 days or one year.
-| overssl  | `boolean` | `false`             | If set to `true`, the cookie will only be sent over HTTPS connections. |
+| path     | `string`  | `"./"`              | (get/set)<br><br>Specifies the path for which the cookie is valid. The default value is the current path, with an empty value being equivalent to this. Setting "/" makes the cookie accessible across the entire domain. |
+| minutes  | `number`  | `525600`            | (get/set)<br><br>Specifies the duration, measured in minutes, for the cookie to remain active. The default value is 365 days or one year.
+| overssl  | `boolean` | `false`             | (get/set)<br><br>If set to `true`, the cookie will only be sent over HTTPS connections. |
 
 #### Methods
 
@@ -787,11 +787,11 @@ HTML body manager. Allows the import of CSS/JS/HTML content and facilitates impl
 
 | Property        | Type       | Default value | Description |
 | --------------- | ---------- | ------------- | ----------- |
-| environment     | `string`   | `"web"`       | Web interface deployment environment.<br><br>Values:<br>• `"web"`<br>• `"native.android"`<br>• `"native.ios"` |
-| importDirectory | `string`   | `""`          | Relative path of the directory where the subdirectories for content import are hosted. |
-| importMode      | `string`   | `"fetch"`     | Content retrieval method for upload.<br><br>Values:<br>• `"fetch"`<br>• `"xhr"`<br><br>When deploying to native environments using WebView for Android or WebKit for iOS, it is recommended to use `"xhr"`. |
-| onCompleted     | `function` | `null`        | Function that is called when all content is imported and loaded into the body of the HTML page. |
-| debug           | `boolean`  | `false`       | Test mode. Prints imported content to the console when the property value is `true`. |
+| environment     | `string`   | `"web"`       | (get/set)<br><br>Web interface deployment environment.<br><br>Values:<br>• `"web"`<br>• `"native.android"`<br>• `"native.ios"` |
+| importDirectory | `string`   | `""`          | (get/set)<br><br>Relative path of the directory where the subdirectories for content import are hosted. |
+| importMode      | `string`   | `"fetch"`     | (get/set)<br><br>Content retrieval method for upload.<br><br>Values:<br>• `"fetch"`<br>• `"xhr"`<br><br>When deploying to native environments using WebView for Android or WebKit for iOS, it is recommended to use `"xhr"`. |
+| onCompleted     | `function` | `null`        | (get/set)<br><br>Function that is called when all content is imported and loaded into the body of the HTML page. |
+| debug           | `boolean`  | `false`       | (get/set)<br><br>Test mode. Prints imported content to the console when the property value is `true`. |
 
 #### Methods
 
@@ -846,13 +846,17 @@ JS code:
 ```js
 // Create object
 const body = new WUIBody({
+	environment: "web",             // Default value, property can be omitted
+	importDirectory: "./Imports/",
+	importMode: "fetch",            // Default value, property can be omitted
 	onCompleted: () => {
 		body.prepare();
-	}
+	},
+	debug: true
 });
 
 // Import CSS/HTML/JS content from the ./Imports directory
-body.import("testContent", "./Imports/test-content", () => {
+body.import("testContent", "test-content", () => {
 	testContentLog("test content loaded");
 });
 ```
@@ -875,14 +879,14 @@ Language manager for web interfaces. Allows you to load language files in JS or 
 
 | Property   | Type       | Default value     | Description |
 | ---------- | ---------- | ----------------- | ----------- |
-| selector   | `string`   | `".wui-language"` | CSS selector for HTML elements to be loaded. This can be applied to the `content` attribute of the `meta` element, to the `innerHTML` property of the elements: `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `div`, `span`, `p`, `i`, `li`, `a`, `legend`, `label`, `option`, `data`, `button`, and to the `placeholder` attribute of the `input` and `textarea` elements. |
-| directory  | `string`   | `"Languages/"`    | Path to the directory where the language files are located. |
-| sets       | `array`    | `["main"]`        | List of language set names to load. |
-| lang       | `string`   | `"en"`            | Language code in ISO 639-1 format. |
-| mode       | `string`   | `"js"`            | Language file format.<br><br>Values:<br>• `"js"`<br>• `"json"` |
-| dataKey    | `string`   | `"key"`           | Name of the `data-*` attribute that contains the text key in HTML elements. |
-| dataOutput | `string`   | `"text"`          | Name of the `data-*` attribute where the loaded text can be placed. |
-| onLoad     | `function` | `null`            | Function that is called when the language loading has finished. |
+| selector   | `string`   | `".wui-language"` | (get/set)<br><br>CSS selector for HTML elements to be loaded. This can be applied to the `content` attribute of the `meta` element, to the `innerHTML` property of the elements: `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `div`, `span`, `p`, `i`, `li`, `a`, `legend`, `label`, `option`, `data`, `button`, and to the `placeholder` attribute of the `input` and `textarea` elements. |
+| directory  | `string`   | `"Languages/"`    | (get/set)<br><br>Path to the directory where the language files are located. |
+| sets       | `array`    | `["main"]`        | (get/set)<br><br>List of language set names to load. |
+| lang       | `string`   | `"en"`            | (get/set)<br><br>Language code in ISO 639-1 format. |
+| mode       | `string`   | `"js"`            | (get/set)<br><br>Language file format.<br><br>Values:<br>• `"js"`<br>• `"json"` |
+| dataKey    | `string`   | `"key"`           | (get/set)<br><br>Name of the `data-*` attribute that contains the text key in HTML elements. |
+| dataOutput | `string`   | `"text"`          | (get/set)<br><br>Name of the `data-*` attribute where the loaded text can be placed. |
+| onLoad     | `function` | `null`            | (get/set)<br><br>Function that is called when the language loading has finished. |
 
 #### Methods
 
@@ -999,14 +1003,14 @@ Tool for animating HTML elements using the "onscroll" event of the HTML page bod
 
 | Property    | Type       | Default value | Description |
 | ----------- | ---------- | ------------- | ----------- |
-| sections    | `array`    | `[]`          | List of objects with the settings of the sections that will be incorporated into the animation, as defined in **Section Properties**. |
-| behavior    | `string`   | `"smooth"`    | Behavior for moving focus to the body of the HTML page.<br><br>Values:<br>• `"auto"`<br>• `"smooth"` |
-| dataScrollY | `string`   | `"scrollY"`   | Name of the `data-*` attribute of the main document element (`<html>` / `document.documentElement`) that contains the numeric value measured in pixels of the total vertical scrolling of the HTML page, where `0` represents the top of the document (or no movement). |
-| dataDelay   | `string`   | `"delay"`     | Name of the `data-*` attribute that determines the time, measured in milliseconds, that it takes for an HTML element animated using CSS styles to animate once it is given focus. |
-| onStart     | `function` | `null`        | Function that is called when the scroll movement starts, either through the `scroll` events for the mouse or `touchmove` for the touch screen. |
-| onMove      | `function` | `null`        | Function that is called when the scroll movement is executed, either through the `scroll` events for the mouse or `touchmove` for the touch screen. |
-| onStop      | `function` | `null`        | Function that is called when the scroll movement ends, either through the `scroll` events for the mouse or `touchmove` for the touch screen. |
-| debug       | `boolean`  | `false`       | Test mode. Prints to the console the `selector` and `height` values ​​of the scenes added in the startup instance, and `scrollY`, `y`, `index`, `sceneIndex`, `step`, `sceneStep`, and `progress` when they change. Enabled when the property value is `true`. |
+| sections    | `array`    | `[]`          | (get/set)<br><br>List of objects with the settings of the sections that will be incorporated into the animation, as defined in **Section Properties**. These can be defined directly on this property or using the `addSection()` method. |
+| behavior    | `string`   | `"smooth"`    | (get/set)<br><br>Behavior for moving focus to the body of the HTML page.<br><br>Values:<br>• `"auto"`<br>• `"smooth"` |
+| dataScrollY | `string`   | `"scrollY"`   | (get/set)<br><br>Name of the `data-*` attribute of the main document element (`<html>` / `document.documentElement`) that contains the numeric value measured in pixels of the total vertical scrolling of the HTML page, where `0` represents the top of the document (or no movement). |
+| dataDelay   | `string`   | `"delay"`     | (get/set)<br><br>Name of the `data-*` attribute that determines the time, measured in milliseconds, that it takes for an HTML element animated using CSS styles to animate once it is given focus. |
+| onStart     | `function` | `null`        | (get/set)<br><br>Function that is called when the scroll movement starts, either through the `scroll` events for the mouse or `touchmove` for the touch screen. |
+| onMove      | `function` | `null`        | (get/set)<br><br>Function that is called when the scroll movement is executed, either through the `scroll` events for the mouse or `touchmove` for the touch screen. |
+| onStop      | `function` | `null`        | (get/set)<br><br>Function that is called when the scroll movement ends, either through the `scroll` events for the mouse or `touchmove` for the touch screen. |
+| debug       | `boolean`  | `false`       | (get/set)<br><br>Test mode. Prints to the console the `selector` and `height` values ​​of the scenes added in the startup instance, and `scrollY`, `y`, `index`, `sceneIndex`, `step`, `sceneStep`, and `progress` when they change. Enabled when the property value is `true`. |
 
 #### Section Properties
 
@@ -1099,6 +1103,7 @@ JS code:
 ```js
 // Create object
 const scrolly = new WUIScrolly({
+	sections: [],            // Default value, property can be omitted
 	behavior: "smooth",      // Default value, property can be omitted
 	dataScrollY: "scrollY",  // Default value, property can be omitted
 	dataDelay: "delay",      // Default value, property can be omitted
@@ -1393,13 +1398,7 @@ Versión: `0.1`
 
 Tool for fading out and fading in HTML elements with opacity.
 
-#### Constructor
-
-Static class without constructor.
-
-#### Properties
-
-Static class with no object properties.
+It is a static class that does not have a constructor or properties.
 
 #### Methods
 

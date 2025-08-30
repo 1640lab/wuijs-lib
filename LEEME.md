@@ -676,10 +676,10 @@ Administrador de cookies.
 
 | Propiedad | Tipo      | Valor por defecto   | Descripción |
 | --------- | --------- | ------------------- | ----------- |
-| domain    | `string`  | `location.hostname` | Define el dominio desde el que se puede acceder a la cookie. Por defecto, es el host actual. Al configurarlo como un dominio principal (p. ej., ejemplo.com para sub.ejemplo.com), los subdominios pueden acceder a él. |
-| path      | `string`  | `"./"`              | Especifica la ruta válida para la cookie. El valor predeterminado es la ruta actual siendo el valor vacío equivalente a este. Al establecer "/", la cookie es accesible en todo el dominio. |
-| minutes   | `number`  | `525600`            | Especifica la duración medida en minutos que tendrá la cookie. El valor predeterminado es equivalente a 365 días o un año. |
-| overssl   | `boolean` | `false`             | Si se establece como `true`, la cookie solo se enviará a través de conexiones HTTPS. |
+| domain    | `string`  | `location.hostname` | (get/set)<br><br>Define el dominio desde el que se puede acceder a la cookie. Por defecto, es el host actual. Al configurarlo como un dominio principal (p. ej., ejemplo.com para sub.ejemplo.com), los subdominios pueden acceder a él. |
+| path      | `string`  | `"./"`              | (get/set)<br><br>Especifica la ruta válida para la cookie. El valor predeterminado es la ruta actual siendo el valor vacío equivalente a este. Al establecer "/", la cookie es accesible en todo el dominio. |
+| minutes   | `number`  | `525600`            | (get/set)<br><br>Especifica la duración medida en minutos que tendrá la cookie. El valor predeterminado es equivalente a 365 días o un año. |
+| overssl   | `boolean` | `false`             | (get/set)<br><br>Si se establece como `true`, la cookie solo se enviará a través de conexiones HTTPS. |
 
 #### Métodos
 
@@ -787,11 +787,11 @@ Administrador de cuerpo HTML. Permite la importación de contenido CSS/JS/HTML y
 
 | Propiedad       | Tipo       | Valor por defecto | Descripción |
 | --------------- | ---------- | ----------------- | ----------- |
-| environment     | `string`   | `"web"`           | Entorno de despliegue de la interfaz web.<br><br>Valores:<br>• `"web"`<br>• `"native.android"`<br>• `"native.ios"` |
-| importDirectory | `string`   | `""`              | Ruta relativa del directorio donde se alojan los subdirectorio para importación de contenido. |
-| importMode      | `string`   | `"fetch"`         | Método de recuperación de contenido para carga.<br><br>Valores:<br>• `"fetch"`<br>• `"xhr"`<br><br>Cuando el despliegue se realiza en ambientes nativos mediante WebView para Android o WebKit para iOS, se recomienda utilizar `"xhr"`. |
-| onCompleted     | `function` | `null`            | Función que se llama cuando todos los contenidos son importados y cargados en el cuerpo de la página HTML. |
-| debug           | `boolean`  | `false`           | Modo de testeo. Imprime en consola los contenidos importados cuando el valor de la propiedad es `true`. |
+| environment     | `string`   | `"web"`           | (get/set)<br><br>Entorno de despliegue de la interfaz web.<br><br>Valores:<br>• `"web"`<br>• `"native.android"`<br>• `"native.ios"` |
+| importDirectory | `string`   | `""`              | (get/set)<br><br>Ruta relativa del directorio donde se alojan los subdirectorio para importación de contenido. |
+| importMode      | `string`   | `"fetch"`         | (get/set)<br><br>Método de recuperación de contenido para carga.<br><br>Valores:<br>• `"fetch"`<br>• `"xhr"`<br><br>Cuando el despliegue se realiza en ambientes nativos mediante WebView para Android o WebKit para iOS, se recomienda utilizar `"xhr"`. |
+| onCompleted     | `function` | `null`            | (get/set)<br><br>Función que se llama cuando todos los contenidos son importados y cargados en el cuerpo de la página HTML. |
+| debug           | `boolean`  | `false`           | (get/set)<br><br>Modo de testeo. Imprime en consola los contenidos importados cuando el valor de la propiedad es `true`. |
 
 #### Métodos
 
@@ -846,13 +846,17 @@ Código JS:
 ```js
 // Crear objeto
 const body = new WUIBody({
+	environment: "web",             // Valor por defecto, propiedad puede ser omitida
+	importDirectory: "./Imports/",
+	importMode: "fetch",            // Valor por defecto, propiedad puede ser omitida
 	onCompleted: () => {
 		body.prepare();
-	}
+	},
+	debug: true
 });
 
 // Importar contenido CSS/HTML/JS del directorio ./Imports
-body.import("testContent", "./Imports/test-content", () => {
+body.import("testContent", "test-content", () => {
 	testContentLog("contenido de prueba cargado");
 });
 ```
@@ -875,14 +879,14 @@ Administrador de idioma para interfaces web. Permite cargar archivos de idioma e
 
 | Propiedad  | Tipo       | Valor por defecto | Descripción |
 | ---------- | ---------- | ----------------- | ----------- |
-| selector   | `string`   | `".wui-language"` | Selector CSS para los elementos HTML que serán cargados. Este puede ser aplicado al atributo `content` del elemento `meta`, a la propiedad `innerHTML` de los elementos: `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `div`, `span`, `p`, `i`, `li`, `a`, `legend`, `label`, `option`, `data`, `button` y al atributo `placeholder` de los elementos `input` y `textarea`. |
-| directory  | `string`   | `"Languages/"`    | Ruta del directorio donde se encuentran los archivos de idioma. |
-| sets       | `array`    | `["main"]`        | Lista de nombres del conjuntos del idioma a cargar. |
-| lang       | `string`   | `"en"`            | Código de idioma en formato ISO 639-1. |
-| mode       | `string`   | `"js"`            | Formato de los archivos de idioma.<br><br>Valores:<br>• `"js"`<br>• `"json"` |
-| dataKey    | `string`   | `"key"`           | Nombre del atributo `data-*` que contiene la clave de texto en los elementos HTML. |
-| dataOutput | `string`   | `"text"`          | Nombre del atributo `data-*` donde se puede colocar el texto cargado. |
-| onLoad     | `function` | `null`            | Función que se llama cuando la carga de idioma ha finalizado. |
+| selector   | `string`   | `".wui-language"` | (get/set)<br><br>Selector CSS para los elementos HTML que serán cargados. Este puede ser aplicado al atributo `content` del elemento `meta`, a la propiedad `innerHTML` de los elementos: `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `div`, `span`, `p`, `i`, `li`, `a`, `legend`, `label`, `option`, `data`, `button` y al atributo `placeholder` de los elementos `input` y `textarea`. |
+| directory  | `string`   | `"Languages/"`    | (get/set)<br><br>Ruta del directorio donde se encuentran los archivos de idioma. |
+| sets       | `array`    | `["main"]`        | (get/set)<br><br>Lista de nombres del conjuntos del idioma a cargar. |
+| lang       | `string`   | `"en"`            | (get/set)<br><br>Código de idioma en formato ISO 639-1. |
+| mode       | `string`   | `"js"`            | (get/set)<br><br>Formato de los archivos de idioma.<br><br>Valores:<br>• `"js"`<br>• `"json"` |
+| dataKey    | `string`   | `"key"`           | (get/set)<br><br>Nombre del atributo `data-*` que contiene la clave de texto en los elementos HTML. |
+| dataOutput | `string`   | `"text"`          | (get/set)<br><br>Nombre del atributo `data-*` donde se puede colocar el texto cargado. |
+| onLoad     | `function` | `null`            | (get/set)<br><br>Función que se llama cuando la carga de idioma ha finalizado. |
 
 #### Métodos
 
@@ -999,14 +1003,14 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 
 | Propiedad   | Tipo       | Valor por defecto | Descripción |
 | ----------- | ---------- | ----------------- | ----------- |
-| sections    | `array`    | `[]`              | Lista de objetos con la configuración de las secciones que serán incorporadas a la animación, segun la definición de **Propiedades de Sección**. |
-| behavior    | `string`   | `"smooth"`        | Comportamiento para desplazar el foco en el cuerpo de la página HTML.<br><br>Valores:<br>• `"auto"`<br>• `"smooth"` |
-| dataScrollY | `string`   | `"scrollY"`       | Nombre del atributo `data-*` del elemento de documento principal (`<html>` / `document.documentElement`) que contiene el valor numérico medido en píxeles del desplazamiento total del scroll vertical de la página HTML y donde `0` representa la parte superior del documento (o sin movimiento). |
-| dataDelay   | `string`   | `"delay"`         | Nombre del atributo `data-*` que determina el tiempo medido en milisegundos en que tarda en animarse un elemento HTML animados mediante estilos CSS una vez que se le da foco. |
-| onStart     | `function` | `null`            | Función que se llama cuando inicia el movimiento del scroll, ya sea a travéz de los eventos `scroll` para ratón o `touchmove` para pantalla táctil. |
-| onMove      | `function` | `null`            | Función que se llama cuando se ejecuta el movimiento del scroll, ya sea a travéz de los eventos `scroll` para ratón o `touchmove` para pantalla táctil. |
-| onStop      | `function` | `null`            | Función que se llama cuando termina el movimiento del scroll, ya sea a travéz de los eventos `scroll` para ratón o `touchmove` para pantalla táctil. |
-| debug       | `boolean`  | `false`           | Modo de testeo. Imprime en consola los valores `selector` y `height` de las escenas agregadas en la instancia de inicio y `scrollY`, `y`, `index`, `sceneIndex`, `step`, `sceneStep` y `progress` cuando estos cambian. Se habilitac cuando el valor de la propiedad es `true`. |
+| sections    | `array`    | `[]`              | (get/set)<br><br>Lista de objetos con la configuración de las secciones que serán incorporadas a la animación, segun la definición de **Propiedades de Sección**. Estas pueden ser definidas directamente sobre esta propiedad o mediante el método `addSection()`. |
+| behavior    | `string`   | `"smooth"`        | (get/set)<br><br>Comportamiento para desplazar el foco en el cuerpo de la página HTML.<br><br>Valores:<br>• `"auto"`<br>• `"smooth"` |
+| dataScrollY | `string`   | `"scrollY"`       | (get/set)<br><br>Nombre del atributo `data-*` del elemento de documento principal (`<html>` / `document.documentElement`) que contiene el valor numérico medido en píxeles del desplazamiento total del scroll vertical de la página HTML y donde `0` representa la parte superior del documento (o sin movimiento). |
+| dataDelay   | `string`   | `"delay"`         | (get/set)<br><br>Nombre del atributo `data-*` que determina el tiempo medido en milisegundos en que tarda en animarse un elemento HTML animados mediante estilos CSS una vez que se le da foco. |
+| onStart     | `function` | `null`            | (get/set)<br><br>Función que se llama cuando inicia el movimiento del scroll, ya sea a travéz de los eventos `scroll` para ratón o `touchmove` para pantalla táctil. |
+| onMove      | `function` | `null`            | (get/set)<br><br>Función que se llama cuando se ejecuta el movimiento del scroll, ya sea a travéz de los eventos `scroll` para ratón o `touchmove` para pantalla táctil. |
+| onStop      | `function` | `null`            | (get/set)<br><br>Función que se llama cuando termina el movimiento del scroll, ya sea a travéz de los eventos `scroll` para ratón o `touchmove` para pantalla táctil. |
+| debug       | `boolean`  | `false`           | (get/set)<br><br>Modo de testeo. Imprime en consola los valores `selector` y `height` de las escenas agregadas en la instancia de inicio y `scrollY`, `y`, `index`, `sceneIndex`, `step`, `sceneStep` y `progress` cuando estos cambian. Se habilitac cuando el valor de la propiedad es `true`. |
 
 #### Propiedades de Sección
 
@@ -1099,6 +1103,7 @@ Código JS
 ```js
 // Crear objeto
 const scrolly = new WUIScrolly({
+	sections: [],            // Valor por defecto, propiedad puede ser omitida
 	behavior: "smooth",      // Valor por defecto, propiedad puede ser omitida
 	dataScrollY: "scrollY",  // Valor por defecto, propiedad puede ser omitida
 	dataDelay: "delay",      // Valor por defecto, propiedad puede ser omitida
@@ -1393,13 +1398,7 @@ Versión: `0.1`
 
 Herramienta para salida y entrada con opacidad (fade-out y fade-in respectivamente) de elementos HTML.
 
-#### Constructor
-
-Clase estática sin constructor.
-
-#### Propiedades
-
-Clase estática sin propiedades de objeto.
+Es una clase estática que no posee un constructor ni propiedades.
 
 #### Métodos
 
