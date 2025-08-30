@@ -1085,7 +1085,7 @@ Código HTML:
 	</div>
 </section>
 
-<!-- Animación JS con paginado -->
+<!-- Animación JS con paginación -->
 <section id="section3" class="my-section">
 	<div class="scene">
 		<div class="animation"></div>
