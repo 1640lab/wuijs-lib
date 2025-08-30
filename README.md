@@ -1037,6 +1037,9 @@ HTML head:
 CSS code:
 
 ```css
+.section {
+	width: 100%;
+}
 .my-element {
 	width: 50px;
 	height: 50px;
@@ -1074,6 +1077,27 @@ HTML code:
 JS code:
 
 ```js
+// Create WUIScrolly object
+const scrolly = new WUIScrolly({
+	behavior: "smooth",
+	dataScrollY: "scrollY",
+	dataDelay: "delay",
+	onStart: null,
+	onMove: null,
+	onStop: null,
+	debug: true
+});
+
+// Add sections with JS animation
+scrolly.addSection({
+	selector: "#section2"
+});
+scrolly.addSection({
+	selector: "#section3"
+});
+
+// Initialize object
+scrolly.init();
 ```
 
 <a name="wuiIcon"></a>

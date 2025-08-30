@@ -1037,6 +1037,9 @@ Cabecera HTML
 Código CSS:
 
 ```css
+.section {
+	width: 100%;
+}
 .my-element {
 	width: 50px;
 	height: 50px;
@@ -1049,21 +1052,21 @@ Código HTML:
 
 ```html
 <!-- Animación CSS -->
-<section id="section1">
+<section id="section1" class="section">
 	<div class="my-element fadein-left"></div>
 	<div class="my-element fadein-top" data-delay="200"></div>
 	<div class="my-element fadein-right" data-delay="400"></div>
 </section>
 
 <!-- Animación JS -->
-<section id="section2">
+<section id="section2" class="section">
 	<div class="scene">
 		<div class="animation"></div>
 	</div>
 </section>
 
 <!-- Animación JS con paginado -->
-<section id="section3">
+<section id="section3" class="section">
 	<div class="scene">
 		<div class="animation"></div>
 	</div>
@@ -1074,6 +1077,27 @@ Código HTML:
 Código JS
 
 ```js
+// Crear objeto WUIScrolly
+const scrolly = new WUIScrolly({
+	behavior: "smooth",
+	dataScrollY: "scrollY",
+	dataDelay: "delay",
+	onStart: null,
+	onMove: null,
+	onStop: null,
+	debug: true
+});
+
+// Agregar secciones con animación JS
+scrolly.addSection({
+	selector: "#section2"
+});
+scrolly.addSection({
+	selector: "#section3"
+});
+
+// Inicializar objeto
+scrolly.init();
 ```
 
 <a name="wuiWUIIcon"></a>
