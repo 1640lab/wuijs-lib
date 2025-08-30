@@ -984,7 +984,7 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 | sections    | `array`    | `[]`              | Lista de objetos con la configuración de las secciones que serán incorporadas a la animación, segun la definición de **Propiedades de Sección**. |
 | behavior    | `string`   | `"smooth"`        | Comportamiento para desplazar el foco en el cuerpo de la página HTML.<br><br>Valores:<br>• `"auto"`<br>• `"smooth"` |
 | dataScrollY | `string`   | `"scrollY"`       | Nombre del atributo `data-*` del elemento de documento principal (`<html>` / `document.documentElement`) que contiene el valor numérico medido en píxeles del desplazamiento total del scroll vertical de la página HTML y donde `0` representa la parte superior del documento (o sin movimiento). |
-| dataDelay   | `string`   | `"delay"`         | Nombre del atributo `data-*` que determina el tiempo medido en milisegundos en que tarda en animarse un elemento HTML una vez que se le da foco. |
+| dataDelay   | `string`   | `"delay"`         | Nombre del atributo `data-*` que determina el tiempo medido en milisegundos en que tarda en animarse un elemento HTML animados mediante estilos CSS una vez que se le da foco. |
 | onStart     | `function` | `null`            | Función que se llama cuando inicia el movimiento del scroll, ya sea a travéz de los eventos `scroll` para ratón o `touchmove` para pantalla táctil. |
 | onMove      | `function` | `null`            | Función que se llama cuando se ejecuta el movimiento del scroll, ya sea a travéz de los eventos `scroll` para ratón o `touchmove` para pantalla táctil. |
 | onStop      | `function` | `null`            | Función que se llama cuando termina el movimiento del scroll, ya sea a travéz de los eventos `scroll` para ratón o `touchmove` para pantalla táctil. |
@@ -1014,6 +1014,15 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 | drawCenter | `void`       | `drawCenter()`<br><br>Dibuja el centro de la parte visible de la página HTML en el navegador. |
 | drawRuler  | `void`       | `drawRuler()`<br><br>Dibuja una regla vertical con medidas en píxeles, en el lado izquierdo de la página HTML. |
 
+#### Estilos CSS para Animación
+
+| Estilo       | Descripción |
+| ------------ | ----------- |
+| fadein       | Entra y sale con opacidad sin movimiento. |
+| fadein-up    | Entra y sale con opacidad desde arriba. |
+| fadein-left  | Entra y sale con opacidad desde la izquierda. |
+| fadein-right | Entra y sale con opacidad desde la derecha. |
+
 #### Implementación
 
 Cabecera HTML
@@ -1023,11 +1032,46 @@ Cabecera HTML
 <script type="text/javascript" src="./Libraries/WUI/Scrolly/WUIScrolly-0.1.js"></script>
 ```
 
+Código CSS:
+
+```css
+.my-element {
+	width: 50px;
+	height: 50px;
+	pargin: 20px;
+	background-color: dodgerblue;
+}
+```
+
 Código HTML:
 
 ```html
-<div class="element-1"></div>
-<div class="element-2"></div>
+<!-- Animación CSS -->
+<section id="section1">
+	<div class="my-element fadein-left"></div>
+	<div class="my-element fadein-top"></div>
+	<div class="my-element fadein-right"></div>
+</section>
+
+<!-- Animación JS -->
+<section id="section2">
+	<div class="scene">
+		<div class="animation"></div>
+	</div>
+</section>
+
+<!-- JS animation with pagination -->
+<section id="section3">
+	<div class="scene">
+		<div class="animation"></div>
+	</div>
+	<div class="paging dots"></div>
+</section>
+```
+
+Código JS
+
+```js
 ```
 
 <a name="wuiWUIIcon"></a>
@@ -1264,6 +1308,7 @@ Código CSS:
 .my-icon {
 	width: 24px;
 	height: 24px;
+	pargin: 20px;
 	background-color: dodgerblue;
 }
 ```

@@ -984,7 +984,7 @@ Tool for animating HTML elements using the "onscroll" event of the HTML page bod
 | sections    | `array`    | `[]`          | List of objects with the configuration of the sections that will be incorporated into the animation, as defined in **Section Properties**. |
 | behavior    | `string`   | `"smooth"`    | Behavior for moving focus to the body of the HTML page.<br><br>Values:<br>• `"auto"`<br>• `"smooth"` |
 | dataScrollY | `string`   | `"scrollY"`   | Name of the `data-*` attribute of the main document element (`<html>` / `document.documentElement`) that contains the numeric value measured in pixels of the total vertical scrolling of the HTML page, where `0` represents the top of the document (or no movement). |
-| dataDelay   | `string`   | `"delay"`     | Name of the `data-*` attribute that determines the time, measured in milliseconds, that it takes for an HTML element to animate once it is given focus. |
+| dataDelay   | `string`   | `"delay"`     | Name of the `data-*` attribute that determines the time, measured in milliseconds, that it takes for an HTML element animated using CSS styles to animate once it is given focus. |
 | onStart     | `function` | `null`        | Function that is called when the scroll movement starts, either through the `scroll` events for the mouse or `touchmove` for the touch screen. |
 | onMove      | `function` | `null`        | Function that is called when the scroll movement is executed, either through the `scroll` events for the mouse or `touchmove` for the touch screen. |
 | onStop      | `function` | `null`        | Function that is called when the scroll movement ends, either through the `scroll` events for the mouse or `touchmove` for the touch screen. |
@@ -1014,7 +1014,27 @@ Tool for animating HTML elements using the "onscroll" event of the HTML page bod
 | drawCenter | `void`      | `drawCenter()`<br><br>Draws the center of the visible part of the HTML page in the browser. |
 | drawRuler  | `void`      | `drawRuler()`<br><br>Draws a vertical ruler with pixel measurements, on the left side of the HTML page. |
 
+#### Estilos CSS para Animación
+
+| Style        | Description |
+| ------------ | ----------- |
+| fadein       | Enter and exits with opacity without movement. |
+| fadein-up    | Enter and exits with opacity from above. |
+| fadein-left  | Enter and exit with opacity from the left. |
+| fadein-right | Enter and exit with opacity from the right. |
+
 #### Implementation
+
+CSS code:
+
+```css
+.my-element {
+	width: 50px;
+	height: 50px;
+	pargin: 20px;
+	background-color: dodgerblue;
+}
+```
 
 HTML head:
 
@@ -1026,8 +1046,32 @@ HTML head:
 HTML code:
 
 ```html
-<div class="element-1"></div>
-<div class="element-2"></div>
+<!-- CSS animation -->
+<section id="section1">
+	<div class="my-element fadein-left"></div>
+	<div class="my-element fadein-top"></div>
+	<div class="my-element fadein-right"></div>
+</section>
+
+<!-- JS animation -->
+<section id="section2">
+	<div class="scene">
+		<div class="animation"></div>
+	</div>
+</section>
+
+<!-- JS animation -->
+<section id="section3">
+	<div class="scene">
+		<div class="animation"></div>
+	</div>
+	<div class="paging dots"></div>
+</section>
+```
+
+JS code:
+
+```js
 ```
 
 <a name="wuiIcon"></a>
@@ -1264,6 +1308,7 @@ CSS code:
 .my-icon {
 	width: 24px;
 	height: 24px;
+	pargin: 20px;
 	background-color: dodgerblue;
 }
 ```
