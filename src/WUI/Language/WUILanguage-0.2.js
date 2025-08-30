@@ -1,6 +1,6 @@
 /*
  * WUILanguage - v0.2
- * Developed by: Sergio E. Belmar (sbelmar@1640lab.com)
+ * Author: Sergio E. Belmar (sbelmar@1640lab.com)
  * Distributed by: 1640 Lab S.p.A. (https://1640lab.com)
  * Copyright (c) Sergio E. Belmar (sbelmar@1640lab.com)
  */
@@ -12,7 +12,7 @@ class WUILanguage {
 		selector: ".wui-language",
 		directory: "Languages/",
 		sets: ["main"],
-		lang: "es",
+		lang: "en",
 		mode: "js",
 		dataKey: "key",
 		dataOutput: "text",

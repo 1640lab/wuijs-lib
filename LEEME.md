@@ -674,7 +674,7 @@ Administrador de cookies.
 
 #### Propiedades
 
-| Propiedad | Tipo      | Valor por omisión   | Descripción |
+| Propiedad | Tipo      | Valor por defecto   | Descripción |
 | --------- | --------- | ------------------- | ----------- |
 | domain    | `string`  | `location.hostname` | Define el dominio desde el que se puede acceder a la cookie. Por defecto, es el host actual. Al configurarlo como un dominio principal (p. ej., ejemplo.com para sub.ejemplo.com), los subdominios pueden acceder a él. |
 | path      | `string`  | `"./"`              | Especifica la ruta válida para la cookie. El valor predeterminado es la ruta actual siendo el valor vacío equivalente a este. Al establecer "/", la cookie es accesible en todo el dominio. |
@@ -701,10 +701,10 @@ Código JS:
 ```js
 // Crear objeto
 const cookie = new WUICookie({
-	domain: location.hostname,
-	path: "./",
-	minutes: 365*24*60,
-	overssl: false
+	domain: location.hostname,  // Valor por defecto, propiedad puede ser omitida
+	path: "./",                 // Valor por defecto, propiedad puede ser omitida
+	minutes: 365*24*60,         // Valor por defecto, propiedad puede ser omitida
+	overssl: false              // Valor por defecto, propiedad puede ser omitida
 });
 
 // Guardar cookie
@@ -785,7 +785,7 @@ Administrador de cuerpo HTML. Permite la importación de contenido CSS/JS/HTML y
 
 #### Propiedades
 
-| Propiedad       | Tipo       | Valor por omisión | Descripción |
+| Propiedad       | Tipo       | Valor por defecto | Descripción |
 | --------------- | ---------- | ----------------- | ----------- |
 | environment     | `string`   | `"web"`           | Entorno de despliegue de la interfaz web.<br><br>Valores:<br>• `"web"`<br>• `"native.android"`<br>• `"native.ios"` |
 | importDirectory | `string`   | `""`              | Ruta relativa del directorio donde se alojan los subdirectorio para importación de contenido. |
@@ -873,12 +873,12 @@ Administrador de idioma para interfaces web. Permite cargar archivos de idioma e
 
 #### Propiedades
 
-| Propiedad  | Tipo       | Valor por omisión | Descripción |
+| Propiedad  | Tipo       | Valor por defecto | Descripción |
 | ---------- | ---------- | ----------------- | ----------- |
 | selector   | `string`   | `".wui-language"` | Selector CSS para los elementos HTML que serán cargados. Este puede ser aplicado al atributo `content` del elemento `meta`, a la propiedad `innerHTML` de los elementos: `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `div`, `span`, `p`, `i`, `li`, `a`, `legend`, `label`, `option`, `data`, `button` y al atributo `placeholder` de los elementos `input` y `textarea`. |
 | directory  | `string`   | `"Languages/"`    | Ruta del directorio donde se encuentran los archivos de idioma. |
 | sets       | `array`    | `["main"]`        | Lista de nombres del conjuntos del idioma a cargar. |
-| lang       | `string`   | `"es"`            | Código de idioma en formato ISO 639-1. |
+| lang       | `string`   | `"en"`            | Código de idioma en formato ISO 639-1. |
 | mode       | `string`   | `"js"`            | Formato de los archivos de idioma.<br><br>Valores:<br>• `"js"`<br>• `"json"` |
 | dataKey    | `string`   | `"key"`           | Nombre del atributo `data-*` que contiene la clave de texto en los elementos HTML. |
 | dataOutput | `string`   | `"text"`          | Nombre del atributo `data-*` donde se puede colocar el texto cargado. |
@@ -939,13 +939,13 @@ Código JS:
 ```js
 // Crear objeto
 const language = new WUILanguage({
-    selector: ".wui-language",
-    directory: "./Languages/",
-    sets: ["main"],
+    selector: ".wui-language",  // Valor por defecto, propiedad puede ser omitida
+    directory: "./Languages/",  // Valor por defecto, propiedad puede ser omitida
+    sets: ["main"],             // Valor por defecto, propiedad puede ser omitida
     lang: "es",
-    mode: "js",
-    dataKey: "key",
-    dataOutput: "text",
+    mode: "js",                 // Valor por defecto, propiedad puede ser omitida
+    dataKey: "key",             // Valor por defecto, propiedad puede ser omitida
+    dataOutput: "text",         // Valor por defecto, propiedad puede ser omitida
     onLoad: (...args) => {
 		[lang, languages] = args;
         console.log("Idioma cargado:", lang, languages);
@@ -957,9 +957,9 @@ let lang = language.lang;
 let languages = {};
 
 // Cargar contenido del archivo main-es.js 
-language.load(); // Opción 1
-language.load("es"); // Opción 2 (equivalente a opción 1)
-language.load("es", ["main"]); // Opción 3 (equivalente a opción 1)
+language.load();                // Opción 1
+language.load("es");            // Opción 2 equivalente a opción 1
+language.load("es", ["main"]);  // Opción 3 equivalente a opción 1
 ```
 
 > [!IMPORTANT]
@@ -997,7 +997,7 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 
 #### Propiedades
 
-| Propiedad   | Tipo       | Valor por omisión | Descripción |
+| Propiedad   | Tipo       | Valor por defecto | Descripción |
 | ----------- | ---------- | ----------------- | ----------- |
 | sections    | `array`    | `[]`              | Lista de objetos con la configuración de las secciones que serán incorporadas a la animación, segun la definición de **Propiedades de Sección**. |
 | behavior    | `string`   | `"smooth"`        | Comportamiento para desplazar el foco en el cuerpo de la página HTML.<br><br>Valores:<br>• `"auto"`<br>• `"smooth"` |
@@ -1010,7 +1010,7 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 
 #### Propiedades de Sección
 
-| Propiedad | Tipo       | Valor por omisión | Descripción |
+| Propiedad | Tipo       | Valor por defecto | Descripción |
 | --------- | ---------- | ----------------- | ----------- |
 | selector  | `string`   | `undefined`       | Selector CSS que define el elemento HTML que serán incluido como sección. En caso de existir más de un elemento coincidente con el selector se incluirá únicamente la primera coincidencia. *oblogatorio* |
 | target    | `string`   | `undefined`       | Nombre auxiliar para referenciar la sección. Utilizado en el método `goSection()`. |
@@ -1099,12 +1099,12 @@ Código JS
 ```js
 // Crear objeto
 const scrolly = new WUIScrolly({
-	behavior: "smooth",
-	dataScrollY: "scrollY",
-	dataDelay: "delay",
-	onStart: null,
-	onMove: null,
-	onStop: null,
+	behavior: "smooth",      // Valor por defecto, propiedad puede ser omitida
+	dataScrollY: "scrollY",  // Valor por defecto, propiedad puede ser omitida
+	dataDelay: "delay",      // Valor por defecto, propiedad puede ser omitida
+	onStart: () => {},
+	onMove: () => {},
+	onStop: () => {},
 	debug: true
 });
 
@@ -1426,7 +1426,7 @@ Otro modo alternativo es mediante métodos extendidos de la clase `HTMLElement` 
 
 ##### Opciones
 
-| Opción  | Tipo      | Valor por omisión | Descripción |
+| Opción  | Tipo      | Valor por defecto | Descripción |
 | ------- | --------- | ----------------- | ----------- |
 | delay   | `number`  | `400`             | Define el tiempo que tardará la transición del efecto de entrada y de salida medido en milisegundos. |
 | display | `string`  | `"block"`         | Establece el valor de la propiedad CSS `display` del elemento HTML en el que se ejecuta el efecto de transición, una fez que la transición de entrada finaliza. |

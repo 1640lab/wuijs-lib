@@ -1,6 +1,6 @@
 /*
  * WUICheckbox - v0.1
- * Developed by: Sergio E. Belmar (sbelmar@1640lab.com)
+ * Author: Sergio E. Belmar (sbelmar@1640lab.com)
  * Distributed by: 1640 Lab S.p.A. (https://1640lab.com)
  * Copyright (c) Sergio E. Belmar (sbelmar@1640lab.com)
  */

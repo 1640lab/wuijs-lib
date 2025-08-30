@@ -676,7 +676,7 @@ Cookie manager.
 
 | Property | Type      | Default value       | Description |
 | -------- | --------- | ------------------- | ----------- |
-| domain   | `string`  | `location.hostname` | Defines the domain for which the cookie is accessible. By default, it's the current host. Setting it to a parent domain (e.g., example.com for sub.example.com) makes it accessible to subdomains. |
+| domain   | `string`  | `location.hostname` | (get/set)<br><br>Defines the domain for which the cookie is accessible. By default, it's the current host. Setting it to a parent domain (e.g., example.com for sub.example.com) makes it accessible to subdomains. |
 | path     | `string`  | `"./"`              | Specifies the path for which the cookie is valid. The default value is the current path, with an empty value being equivalent to this. Setting "/" makes the cookie accessible across the entire domain. |
 | minutes  | `number`  | `525600`            | Specifies the duration, measured in minutes, for the cookie to remain active. The default value is 365 days or one year.
 | overssl  | `boolean` | `false`             | If set to `true`, the cookie will only be sent over HTTPS connections. |
@@ -701,10 +701,10 @@ JS code:
 ```js
 // Create object
 const cookie = new WUICookie({
-	domain: location.hostname,
-	path: "./",
-	minutes: 365*24*60,
-	overssl: false
+	domain: location.hostname,  // Default value, property can be omitted
+	path: "./",                 // Default value, property can be omitted
+	minutes: 365*24*60,         // Default value, property can be omitted
+	overssl: false              // Default value, property can be omitted
 });
 
 // Save cookie
@@ -878,7 +878,7 @@ Language manager for web interfaces. Allows you to load language files in JS or 
 | selector   | `string`   | `".wui-language"` | CSS selector for HTML elements to be loaded. This can be applied to the `content` attribute of the `meta` element, to the `innerHTML` property of the elements: `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `div`, `span`, `p`, `i`, `li`, `a`, `legend`, `label`, `option`, `data`, `button`, and to the `placeholder` attribute of the `input` and `textarea` elements. |
 | directory  | `string`   | `"Languages/"`    | Path to the directory where the language files are located. |
 | sets       | `array`    | `["main"]`        | List of language set names to load. |
-| lang       | `string`   | `"es"`            | Language code in ISO 639-1 format. |
+| lang       | `string`   | `"en"`            | Language code in ISO 639-1 format. |
 | mode       | `string`   | `"js"`            | Language file format.<br><br>Values:<br>• `"js"`<br>• `"json"` |
 | dataKey    | `string`   | `"key"`           | Name of the `data-*` attribute that contains the text key in HTML elements. |
 | dataOutput | `string`   | `"text"`          | Name of the `data-*` attribute where the loaded text can be placed. |
@@ -939,13 +939,13 @@ JS code:
 ```js
 // Create object
 const language = new WUILanguage({
-    selector: ".wui-language",
-    directory: "./Languages/",
-    sets: ["main"],
-    lang: "en",
-    mode: "js",
-    dataKey: "key",
-    dataOutput: "text",
+    selector: ".wui-language",  // Valor por defecto, propiedad puede ser omitida
+    directory: "./Languages/",  // Valor por defecto, propiedad puede ser omitida
+    sets: ["main"],             // Valor por defecto, propiedad puede ser omitida
+    lang: "en",                 // Valor por defecto, propiedad puede ser omitida
+    mode: "js",                 // Valor por defecto, propiedad puede ser omitida
+    dataKey: "key",             // Valor por defecto, propiedad puede ser omitida
+    dataOutput: "text",         // Valor por defecto, propiedad puede ser omitida
     onLoad: (...args) => {
 		[lang, languages] = args;
         console.log("Language loaded:", lang, languages);
@@ -957,9 +957,9 @@ let lang = language.lang;
 let languages = {};
 
 // Load content from the main-en.js file
-language.load(); // Option 1
-language.load("en"); // Option 2 (equivalent to option 1)
-language.load("en", ["main"]); // Option 3 (equivalent to option 1)
+language.load();                // Option 1
+language.load("en");            // Option 2 equivalent to option 1
+language.load("en", ["main"]);  // Option 3 equivalent to option 1
 ```
 
 > [!IMPORTANT]
@@ -1099,12 +1099,12 @@ JS code:
 ```js
 // Create object
 const scrolly = new WUIScrolly({
-	behavior: "smooth",
-	dataScrollY: "scrollY",
-	dataDelay: "delay",
-	onStart: null,
-	onMove: null,
-	onStop: null,
+	behavior: "smooth",      // Default value, property can be omitted
+	dataScrollY: "scrollY",  // Default value, property can be omitted
+	dataDelay: "delay",      // Default value, property can be omitted
+	onStart: () => {},
+	onMove: () => {},
+	onStop: () => {},
 	debug: true
 });
 
