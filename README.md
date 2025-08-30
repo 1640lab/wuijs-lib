@@ -1000,7 +1000,7 @@ Tool for animating HTML elements using the "onscroll" event of the HTML page bod
 | height    | `number`   | `undefined`   | Defines the height of the section, this can be expressed as a number associated with pixels or in a CSS compatible format. |
 | steps     | `number`   | `undefined`   | Total number of steps defined in the `animation` animation function. |
 | pages     | `number`   | `undefined`   | Total number of pages defined in the `animation` animation function. |
-| animation | `function` | `undefined`   | Function that is called when the scroll movement is executed in a section.<br><br>`function(step, progress)`<br><br>Arguments:<br>**• step:** `number`, value between `0` and `pages - 1` <br>**• progress:** `number`, value between `0` and `1` |
+| animation | `function` | `undefined`   | `function(step, progress)`<br><br>Arguments:<br>**• step:** `number`, value between `0` and `pages - 1` <br>**• progress:** `number`, value between `0` and `1` <br><br>Function that is called when the scroll movement is executed in a section. |
 
 #### Methods
 
@@ -1009,7 +1009,7 @@ Tool for animating HTML elements using the "onscroll" event of the HTML page bod
 | init       | `void`      | `init()`<br><br>Initializes the object once the sections you want to animate have been added. |
 | stop       | `void`      | `stop()`<br><br>Interrupts the animation in its execution cycle. |
 | addSection | `void`      | `addSection({section_properties})`<br><br>Adds a new section configuration to the object's section list, as defined in **Section Properties:**. |
-| goSection  | `void`      | `goSection(target[, done[, behavior]])`<br><br>Moves the focus of the HTML page to the section specified by the `target` parameter.<br><br>Arguments:<br>**• target:** `string` <br>**• done:** `function` <br>**• behavior:** `string` |
+| goSection  | `void`      | `goSection(target[, done[, behavior]])`<br><br>Arguments:<br>**• target:** `string` <br>**• done:** `function` <br>**• behavior:** `string` <br><br>Moves the focus of the HTML page to the section specified by the `target` parameter. |
 | selectPage | `void`      | 
 | drawCenter | `void`      | 
 | drawRuler  | `void`      | 
