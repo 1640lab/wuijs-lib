@@ -1,32 +1,44 @@
 import os
 import re
 import urllib.parse
+import argparse
 
-# Settings
-css_path = "./WUIIcon-0.1.css"
-icons_dir = "../../../imgs/Icons/"
-icon_color = "#a2a9b6"  # replace "currentColor" with this color (None to disable)
-icon_size = 24            # icon size in px
+# Default arguments
+css_path = "../src/WUI/Icon/WUIIcon-0.1.css"
+out_dir = "../imgs/Icons/"
+icon_color = "#a2a9b6"
+icon_size = 24
+
+# Get arguments
+parser = argparse.ArgumentParser(
+    description="Extract SVG icons from WUIIcon CSS file.",
+    formatter_class=argparse.ArgumentDefaultsHelpFormatter
+)
+parser.add_argument("--css", type=str, help="Path to the CSS file.", default=css_path)
+parser.add_argument("--out", type=str, help="Output directory for SVG icons.", default=out_dir)
+parser.add_argument("--color", type=str, help="Color to replace 'currentColor' in SVGs.", default=icon_color)
+parser.add_argument("--size", type=int, help="Size (width and height) to set in SVGs.", default=icon_size)
+args = parser.parse_args()
 
 # Create output directory if it doesn't exist
-os.makedirs(icons_dir, exist_ok=True)
+os.makedirs(args.out, exist_ok=True)
 
 # Clean up existing .svg files in the destination directory
-for filename in os.listdir(icons_dir):
+for filename in os.listdir(args.out):
     if filename.lower().endswith(".svg"):
-        os.remove(os.path.join(icons_dir, filename))
+        os.remove(os.path.join(args.out, filename))
 
 # Regular expressions
 rule_regex = re.compile(r"([^{}]+)\{(.*?)\}", re.DOTALL | re.MULTILINE)
 mask_regex = re.compile(r"--icon-mask\s*:\s*url\(['\"]?(.*?)['\"]?\)\s*;", re.IGNORECASE)
 bg_regex = re.compile(r"background-image\s*:\s*url\(['\"]?(.*?)['\"]?\)\s*;", re.IGNORECASE)
-comment_regex = re.compile(r"/\*.*?\*/", re.DOTALL)  # eliminar comentarios
+comment_regex = re.compile(r"/\*.*?\*/", re.DOTALL)  # delete comments
 
 # Results table
 icon_table = []
 
 # Read CSS and remove comments
-with open(css_path, "r", encoding="utf-8") as f:
+with open(args.css, "r", encoding="utf-8") as f:
     css_content = f.read()
 
 css_content = re.sub(comment_regex, "", css_content)
@@ -66,13 +78,13 @@ for selectors_block, body in rule_regex.findall(css_content):
         svg_data = match_svg.group(0)
 
         # Replacing currentColor
-        if icon_color:
-            svg_data = svg_data.replace("currentColor", icon_color)
+        if args.color:
+            svg_data = svg_data.replace("currentColor", args.color)
 
         # Insert width and height after xmlns and before viewBox
         svg_data = re.sub(
             r'(<svg[^>]*\sxmlns=["\'][^"\']+["\'])',
-            rf'\1 width="{icon_size}" height="{icon_size}"',
+            rf'\1 width="{args.size}" height="{args.size}"',
             svg_data,
             count=1
         )
@@ -92,7 +104,7 @@ print(f"Total de estilos encontrados: {total}")
 
 # Save SVGs with counter
 for idx, (style_name, svg_content) in enumerate(icon_table, start=1):
-    file_path = os.path.join(icons_dir, f"{style_name}.svg")
+    file_path = os.path.join(args.out, f"{style_name}.svg")
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(svg_content)
     print(f"[{idx}/{total}] Archivo creado: {file_path}")
