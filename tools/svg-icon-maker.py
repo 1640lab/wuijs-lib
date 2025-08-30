@@ -93,18 +93,18 @@ for selectors_block, body in rule_regex.findall(css_content):
         for selector in selectors:
             style_name = selector.replace(".wui-icon.", "")
             icon_table.append((style_name, svg_data))
-            print(f"Estilo encontrado {style_name}")
+            print(f"Found style: {style_name}")
 
 # Sort table by style name
 icon_table.sort(key=lambda x: x[0].lower())
 
 # Print total
 total = len(icon_table)
-print(f"Total de estilos encontrados: {total}")
+print(f"Total styles found: {total}")
 
 # Save SVGs with counter
 for idx, (style_name, svg_content) in enumerate(icon_table, start=1):
     file_path = os.path.join(args.out, f"{style_name}.svg")
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(svg_content)
-    print(f"[{idx}/{total}] Archivo creado: {file_path}")
+    print(f"[{idx}/{total}] File created: {file_path}")
