@@ -699,7 +699,7 @@ Cabecera HTML
 Código JS:
 
 ```js
-// Crear objeto WUICookie
+// Crear objeto
 const cookie = new WUICookie({
 	domain: location.hostname,
 	path: "./",
@@ -756,7 +756,7 @@ Cabecera HTML
 Código JS:
 
 ```js
-// Crear objeto WUIHead
+// Crear objeto
 const head = new WUIHead();
 
 // Cambiar titulo de la página
@@ -844,7 +844,7 @@ Código HTML:
 Código JS:
 
 ```js
-// Crear objeto WUIBody
+// Crear objeto
 const body = new WUIBody({
 	onCompleted: () => {
 		body.prepare();
@@ -937,7 +937,7 @@ Código HTML:
 Código JS:
 
 ```js
-// Crear objeto WUILanguage
+// Crear objeto
 const language = new WUILanguage({
     selector: ".wui-language",
     directory: "./Languages/",
@@ -1097,7 +1097,7 @@ Código HTML:
 Código JS
 
 ```js
-// Crear objeto WUIScrolly
+// Crear objeto
 const scrolly = new WUIScrolly({
 	behavior: "smooth",
 	dataScrollY: "scrollY",
