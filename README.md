@@ -1016,6 +1016,20 @@ Tool for animating HTML elements using the "onscroll" event of the HTML page bod
 
 #### Implementation
 
+HTML head:
+
+```html
+<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Scrolly/WUIScrolly-0.1.css">
+<script type="text/javascript" src="./Libraries/WUI/Scrolly/WUIScrolly-0.1.js"></script>
+```
+
+HTML code:
+
+```html
+<div class="element-1"></div>
+<div class="element-2"></div>
+```
+
 <a name="wuiIcon"></a>
 
 ### WUIIcon
