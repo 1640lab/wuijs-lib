@@ -22,6 +22,24 @@ Author: `Sergio E. Belmar V. <sbelmar@1640lab.com>`
 	*   [WUIScrolly](#wuiScrolly)
 	*   [WUIIcon](#wuiIcon)
 	*   [WUIFade](#wuiFade)
+	*   WUITooltip
+	*   WUILoader
+	*   WUIModal
+	*   WUIModalSelector
+	*   WUISlider
+	*   WUIPaging
+	*   WUITabs
+	*   WUIList
+	*   WUITable
+	*   WUIForm
+	*   WUIFormat
+	*   WUISelectpicker
+	*   WUIDatepicker
+	*   WUITimepicker
+	*   WUIColorpicker
+	*   WUICheckbox
+	*   WUIIntensity
+	*   WUIButton
 
 <a name="overview"></a>
 
