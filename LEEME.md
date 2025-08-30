@@ -1010,9 +1010,9 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 | stop       | `void`       | `stop()`<br><br>Interrumpe la animación en su ciclo de ejecución. |
 | addSection | `void`       | `addSection({section_properties})`<br><br>Agrega la configuración de una nueva sección a la lista de secciones de del objeto, segun la definición de **Propiedades de Sección**. |
 | goSection  | `void`       | `goSection(target[, done[, behavior]])`<br><br>Parámetros:<br>**• target:** `string` <br>**• done:** `function` <br>**• behavior:** `string` <br><br>Mueve el foco de la página HTML hasta la sección especificada por del parámetro `target`. |
-| selectPage | `void`       | 
-| drawCenter | `void`       | 
-| drawRuler  | `void`       | 
+| selectPage | `void`       | `selectPage(sectionIndex, pageIndex)`<br><br>Parámetros:<br>**• sectionIndex:** `number`, valores desde `0` <br>**• pageIndex:** `number`, valor entre `0` y `pages - 1` <br><br>Mueve el foco de la página HTML hasta la sección especificada por del parámetro `sectionIndex` y avanza hasta la página `pageIndex` de dicha sección. |
+| drawCenter | `void`       | `drawCenter()`<br><br>Dibuja el centro de la parte visible de la página HTML en el navegador. |
+| drawRuler  | `void`       | `drawRuler()`<br><br>Dibuja una regla vertical con medidas en píxeles, en el lado izquierdo de la página HTML. |
 
 #### Implementación
 
