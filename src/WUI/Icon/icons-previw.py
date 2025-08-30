@@ -4,7 +4,7 @@ import urllib.parse
 
 # Configuración
 css_path = "./WUIIcon-0.1.css"
-icons_dir = "./Preview/"
+icons_dir = "../../../imgs/Preview/"
 icon_color = "#a2a9b6"  # reemplaza "currentColor" por este color (None para desactivar)
 icon_size = 24            # tamaño de íconos en px
 
