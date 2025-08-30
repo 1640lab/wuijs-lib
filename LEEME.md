@@ -1000,7 +1000,7 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 | height    | `number`   | `undefined`       | Define el alto de la sección, este puede estar expresado como número asociado a píxeles o en formato compatible CSS. |
 | steps     | `number`   | `undefined`       | Número total de pasos definidos en la función de animación `animation`. |
 | pages     | `number`   | `undefined`       | Número total de paginas definidos en la función de animación `animation`. |
-| animation | `function` | `undefined`       | Función que se llama cuando se ejecuta el movimiento del scroll en una sección.<br><br>`animation(step, progress)`<br><br>Parámetros:<br>• `"step"`: valor entre `0` y `pages - 1` <br>• `"progress"` valor entre `0` y `1` |
+| animation | `function` | `undefined`       | Función que se llama cuando se ejecuta el movimiento del scroll en una sección.<br><br>`function(step, progress)`<br><br>Parámetros:<br>• `"step"`: valor entre `0` y `pages - 1` <br>• `"progress"` valor entre `0` y `1` |
 
 #### Métodos
 
