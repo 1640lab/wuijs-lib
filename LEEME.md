@@ -1025,6 +1025,8 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 
 #### Implementación
 
+Existen dos modos de implementación de la librería de animación, la más sencilla es por medio de etiquetas de animación CSS, la segunda es mediante la programación de funciones JS de animación que se cargan en secciones específicas de la página HTML.
+
 Cabecera HTML
 
 ```html
@@ -1049,8 +1051,8 @@ Código HTML:
 <!-- Animación CSS -->
 <section id="section1">
 	<div class="my-element fadein-left"></div>
-	<div class="my-element fadein-top"></div>
-	<div class="my-element fadein-right"></div>
+	<div class="my-element fadein-top" data-delay="200"></div>
+	<div class="my-element fadein-right" data-delay="400"></div>
 </section>
 
 <!-- Animación JS -->
@@ -1060,7 +1062,7 @@ Código HTML:
 	</div>
 </section>
 
-<!-- JS animation with pagination -->
+<!-- Animación JS con paginado -->
 <section id="section3">
 	<div class="scene">
 		<div class="animation"></div>

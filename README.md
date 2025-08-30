@@ -1025,6 +1025,8 @@ Tool for animating HTML elements using the "onscroll" event of the HTML page bod
 
 #### Implementation
 
+There are two ways to implement the animation library, the simplest is through CSS animation tags, the second is through programming JS animation functions that are loaded in specific sections of the HTML page.
+
 HTML head:
 
 ```html
@@ -1060,7 +1062,7 @@ HTML code:
 	</div>
 </section>
 
-<!-- JS animation -->
+<!-- JS animation with pagination -->
 <section id="section3">
 	<div class="scene">
 		<div class="animation"></div>
