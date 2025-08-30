@@ -995,12 +995,12 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 | Propiedad | Tipo       | Valor por omisión | Descripción |
 | --------- | ---------- | ----------------- | ----------- |
 | selector  | `string`   | `undefined`       | Selector CSS que define el elemento HTML que serán incluido como sección. En caso de existir más de un elemento coincidente con el selector se incluirá únicamente la primera coincidencia. *oblogatorio* |
-| target    | `string`   | `undefined`       | 
-| type      | `string`   | `undefined`       | 
-| height    | `number`   | `undefined`       | 
-| steps     | `number`   | `undefined`       | 
-| pages     | `number`   | `undefined`       | 
-| animation | `function` | `undefined`       | 
+| target    | `string`   | `undefined`       | Nombre auxiliar para referenciar la sección. Utilizado en el método `goSection()`. |
+| type      | `string`   | `undefined`       | Define el comportamiento CSS del alto de la sección.<br><br>Valores:<br>• `"auto"`<br>• `"static"` |
+| height    | `number`   | `undefined`       | Define el alto de la sección, este puede estar expresado como número asociado a píxeles o en formato compatible CSS. |
+| steps     | `number`   | `undefined`       | Número total de pasos definidos en la función de animación `animation`. |
+| pages     | `number`   | `undefined`       | Número total de paginas definidos en la función de animación `animation`. |
+| animation | `function` | `undefined`       | Función que se llama cuando se ejecuta el movimiento del scroll en una sección.<br><br>`animation(step, progress)`<br><br>Parámetros:<br>• `"step"`: valor entre `0` y `pages - 1` <br>• `"progress"` valor entre `0` y `1` |
 
 #### Métodos
 
