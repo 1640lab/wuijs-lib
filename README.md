@@ -1037,7 +1037,7 @@ HTML head:
 CSS code:
 
 ```css
-.section {
+.my-section {
 	width: 100%;
 	margin: 10px 0;
 	background-color: lightgray;
@@ -1054,21 +1054,21 @@ HTML code:
 
 ```html
 <!-- CSS animation -->
-<section id="section1">
+<section id="section1" class="my-section">
 	<div class="my-element fadein-left"></div>
 	<div class="my-element fadein-top"></div>
 	<div class="my-element fadein-right"></div>
 </section>
 
 <!-- JS animation -->
-<section id="section2">
+<section id="section2" class="my-section">
 	<div class="scene">
 		<div class="animation"></div>
 	</div>
 </section>
 
 <!-- JS animation with pagination -->
-<section id="section3">
+<section id="section3" class="my-section">
 	<div class="scene">
 		<div class="animation"></div>
 	</div>
