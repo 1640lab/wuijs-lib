@@ -1453,3 +1453,22 @@ WUIFade.in(element, options);
 // Opción 2: Modo HTMLElement
 element.wuiFadein(options);
 ```
+
+<a name="WUITooltip"></a>
+<a name="WUILoader"></a>
+<a name="WUIModal"></a>
+<a name="WUIModalSelector"></a>
+<a name="WUISlider"></a>
+<a name="WUIPaging"></a>
+<a name="WUITabs"></a>
+<a name="WUIList"></a>
+<a name="WUITable"></a>
+<a name="WUIForm"></a>
+<a name="WUIFormat"></a>
+<a name="WUISelectpicker"></a>
+<a name="WUIDatepicker"></a>
+<a name="WUITimepicker"></a>
+<a name="WUIColorpicker"></a>
+<a name="WUICheckbox"></a>
+<a name="WUIIntensity"></a>
+<a name="WUIButton"></a>
