@@ -97,6 +97,7 @@ Opcionalmente puede ser descargada desde los mismos repositorios en formato ZIP.
 cd ./downloads
 wget https://github.com/1640lab/wuijs-lib/archive/refs/heads/main.zip
 tar -xzf main.zip
+cp -p ./wuijs-lib-main/src/WDS ../src/Libraries/
 ````
 
 <a name="implementation"></a>
