@@ -1,6 +1,6 @@
 # Registr de Cambio
 
-## [v0.1.0] - 2025-03-01
+## [v0.1.0] - 2024-05-01
 
 Características:
 
