@@ -2,7 +2,7 @@
 
 Library version: `0.2.0`
 
-Document version: `0.2.0.20250830.2-e` (e: in edition, c: complete)
+Document version: `0.2.0.20250901.2-e` (e: in edition, c: complete)
 
 Licence: `Apache License 2.0`
 

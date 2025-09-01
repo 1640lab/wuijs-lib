@@ -2,7 +2,7 @@
 
 Versión librería: `0.2.0`
 
-Versión documentación: `0.2.0.20250830.2-e` (e: en edición, c: completa)
+Versión documentación: `0.2.0.20250901.2-e` (e: en edición, c: completa)
 
 Licencia: `Licencia Apache 2.0`
 
