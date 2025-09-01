@@ -1,6 +1,6 @@
 # wuijs-lib
 
-Versión librería: `0.2.0`
+Versión librería: `0.2.0` (ver [Registro de Cambio](./REGISTRODECAMBIO.md))
 
 Versión documentación: `0.2.0.20250901.2-e` (e: en edición, c: completa)
 
