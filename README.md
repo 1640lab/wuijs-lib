@@ -1,6 +1,6 @@
 # wuijs-lib
 
-Library version: `0.2.0` (see [Change Log](./CHANGELOG.md))
+Library version: `0.2.0` ([Change Log](./CHANGELOG.md))
 
 Document version: `0.2.0.20250901.2-e` (e: in edition, c: complete)
 
