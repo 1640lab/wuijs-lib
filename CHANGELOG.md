@@ -10,8 +10,9 @@ Features:
 
 Features:
 
-1. WUILanguage version update to 0.2.
+1. WUILanguage version class update to 0.2.
 	- The default value of the `lang` property was changed to `"en"`.
 	- Support for language files in JSON format was added.
 	- Global constant `languages` were removed and replaced with a variable definition, optional and external to the class, which is assigned using the `onLoad()` property (see implementation example in [Documentation](./README.md?#wuiLanguage)).
-2. Inclusion of [Documentation](./README.md).
+2. Added WUIIntensity 0.1 class.
+3. Inclusion of [Documentation](./README.md).
