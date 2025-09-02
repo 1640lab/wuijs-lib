@@ -2,7 +2,7 @@
 
 Library version: `0.2.0` ([Change Log](./CHANGELOG.md))
 
-Document version: `0.2.0.20250901.2-e` (e: in edition, c: complete)
+Document version: `0.2.0.20250902.1-e` (e: in edition, c: complete)
 
 Licence: `Apache License 2.0`
 
@@ -62,12 +62,12 @@ WUI, an acronym for *Web User Interface JavaScript library*, is an open source J
 | WUIFade          | `0.1`   | Tool for fading out and fading in HTML elements with opacity. |
 | WUITooltip       | `0.1`   | Simple object for hover text. |
 | WUILoader        | `0.1`   | Simple object for loading animation. |
-| WUIModal         | `0.1`   | Composite object for implementing dialog boxes (type `message`) and pop-up windows (type `page`). |
+| WUIModal         | `0.2`   | Composite object for implementing dialog boxes (type `message`) and pop-up windows (type `page`). |
 | WUIModalSelector | `0.1`   | Extended object of `WUIModal` for implementing selection lists based on arrays or data inputs of type `<select>`. |
-| WUISlider        | `0.1`   | Composite object for implementing mouse-controlled and/or event-controlled blinds. |
+| WUISlider        | `0.2`   | Composite object for implementing mouse-controlled and/or event-controlled blinds. |
 | WUIPaging        | `0.1`   | Composite object for implementing paginated views. |
 | WUITabs          | `0.1`   | Composite object for implementing views accessible by tab selection. |
-| WUIList          | `0.1`   | Composite object for implementing data lists and buttons for each row optionally. |
+| WUIList          | `0.2`   | Composite object for implementing data lists and buttons for each row optionally. |
 | WUITable         | `0.1`   | Composite object for implementing data tables. Unlike the `WUIList` object, the `WUITable` object includes a column header. |
 | WUIForm          | `0.1`   | Composite object for implementing data forms. This object allows the implementation of HTML data input elements such as `<input>`, `<select>`, and `<textarea>`, and WUI library objects such as `WUISelectpicker`, `WUIDatepicker`, `WUITimepicker`, `WUIColorpicker`, `WUICheckbox`, `WUIIntensity`, and `WUIButton`. |
 | WUIFormat        | `0.1`   | Tool for managing and validating `string`, `number` and `Date` data formats. |
@@ -609,12 +609,12 @@ HTML code:
 		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Icon/WUIIcon-0.1.css">
 		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Tooltip/WUITooltip-0.1.css">
 		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Loader/WUILoader-0.1.css">
-		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Modal/WUIModal-0.1.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Modal/WUIModal-0.2.css">
 		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Modal/WUIModalSelect-0.1.css">
-		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Slider/WUISlider-0.1.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Slider/WUISlider-0.2.css">
 		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Paging/WUIPaging-0.1.css">
 		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Tabs/WUITabs-0.1.css">
-		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/List/WUIList-0.1.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/List/WUIList-0.2.css">
 		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Table/WUITable-0.1.css">
 		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Form/WUIForm-0.1.css">
 		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Selectpicker/WUISelectpicker-0.1.css">
@@ -632,12 +632,12 @@ HTML code:
 		<script type="text/javascript" src="./Libraries/WUI/Fade/WUIFade-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Tooltip/WUITooltip-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Loader/WUILoader-0.1.js"></script>
-		<script type="text/javascript" src="./Libraries/WUI/Modal/WUIModal-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Modal/WUIModal-0.2.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Modal/WUIModalSelect-0.1.js"></script>
-		<script type="text/javascript" src="./Libraries/WUI/Slider/WUISlider-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Slider/WUISlider-0.2.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Paging/WUIPaging-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Tabs/WUITabs-0.1.js"></script>
-		<script type="text/javascript" src="./Libraries/WUI/List/WUIList-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/List/WUIList-0.2.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Table/WUITable-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Form/WUIForm-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Format/WUIFormat-0.1.js"></script>
