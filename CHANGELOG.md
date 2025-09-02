@@ -21,4 +21,6 @@ Features:
 5. WUIList version class update to 0.2.
 	- Fixed dragging error when opening and closing the button panel of each row, using the `mousedown` event, enabling it only when the left button remains pressed.
 6. WUIModal version class update to 0.2.
-	- Fixed dragging issue when maximizing and closing a page-style modal using the `mousedown` event, enabling it only when the left mouse button remains pressed.
+	- Fixed dragging error when maximizing and closing a page-style modal using the `mousedown` event, enabling it only when the left mouse button remains pressed.
+7. WUICheckbox version class update to 0.2.
+	- Fixed dragging error when selecting and deselecting the checkbox using the `mousedown` event, enabling it only when the left button remains pressed.

@@ -75,7 +75,7 @@ WUI, an acronym for *Web User Interface JavaScript library*, is an open source J
 | WUIDatepicker    | `0.1`   | Composite object for implementing date type data input. |
 | WUITimepicker    | `0.1`   | Composite object for implementing time type data inputs. |
 | WUIColorpicker   | `0.1`   | Composite object for implementing color picker type data inputs. |
-| WUICheckbox      | `0.1`   | Composite object for implementing checkbox type data inputs. |
+| WUICheckbox      | `0.2`   | Composite object for implementing checkbox type data inputs. |
 | WUIIntensity     | `0.1`   | Composite object for implementing 4-level intensity selector type data inputs: none, low, half, and high. |
 | WUIButton        | `0.1`   | Composite object for button implementation. |
 
@@ -621,7 +621,7 @@ HTML code:
 		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Datepicker/WUIDatepicker-0.1.css">
 		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Timepicker/WUITimepicker-0.1.css">
 		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Colorpicker/WUIColorpicker-0.1.css">
-		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Checkbox/WUICheckbox-0.1.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Checkbox/WUICheckbox-0.2.css">
 		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Intensity/WUIIntensity-0.1.css">
 		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Button/WUIButton-0.1.css">
 		<script type="text/javascript" src="./Libraries/WUI/Cookie/WUICookie-0.1.js"></script>
@@ -645,7 +645,7 @@ HTML code:
 		<script type="text/javascript" src="./Libraries/WUI/Datepicker/WUIDatepicker-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Timepicker/WUITimepicker-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Colorpicker/WUIColorpicker-0.1.js"></script>
-		<script type="text/javascript" src="./Libraries/WUI/Checkbox/WUICheckbox-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Checkbox/WUICheckbox-0.2.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Intensity/WUIIntensity-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Button/WUIButton-0.1.js"></script>
 	</head>
