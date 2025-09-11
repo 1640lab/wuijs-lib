@@ -26,11 +26,11 @@
 .wui-form {
 	height: 100%;
 	flex-wrap: nowrap;
+	align-items: stretch;
 }
 .wui-form :is(.request, .response):not(button),
 .wui-form > .body {
 	flex-grow: 1;
-	align-items: stretch;
 }
 .wui-form > :is(.header, .footer) {
 	align-items: center;
@@ -54,6 +54,8 @@
 	margin: 0;
 	padding: 10px;
 	flex-wrap: nowrap;
+	align-items: center;
+	justify-content: flex-start;
 }
 .wui-form > .body.scroll {
 	overflow: auto !important;

@@ -1359,14 +1359,15 @@ Set of pre-designed icons loaded via CSS, for use in interfaces.
 
 #### Other Icons Table
 
-| Icon                                     | Style               | Icon                                        | Style                  | Icon                                  | Style            | Icon                                        | Style                  |
-| :--:                                     | -----               | :--:                                        | -----                  | :--:                                  | -----            | :--:                                        | -----                  |
-| ![](./imgs/Icons/ai-fill.svg)            | .ai-fill            | ![](./imgs/Icons/bullseye-line.svg)         | .bullseye-line         | ![](./imgs/Icons/columnsgap-line.svg) | .columnsgap-line | ![](./imgs/Icons/dart-fill.svg)             | .dart-fill             |
-| ![](./imgs/Icons/datasheet-line.svg)     | .datasheet-line     | ![](./imgs/Icons/datasheet-health-line.svg) | .datasheet-health-line | ![](./imgs/Icons/hash-line.svg)       | .hash-line       | ![](./imgs/Icons/headphones-line.svg)       | .headphones-line       |
-| ![](./imgs/Icons/headset-line.svg)       | .headset-line       | ![](./imgs/Icons/logout-line.svg)           | .logout-line           | ![](./imgs/Icons/medal-line.svg)      | .medal-line      | ![](./imgs/Icons/menu-line.svg)             | .menu-line             |
-| ![](./imgs/Icons/pencil-square-fill.svg) | .pencil-square-fill | ![](./imgs/Icons/polygon-editable-line.svg) | .polygon-editable-line | ![](./imgs/Icons/qr-line.svg)         | .qr-line         | ![](./imgs/Icons/qr-scan-line.svg)          | .qr-scan-line          |
-| ![](./imgs/Icons/quote-fill.svg)         | .quote-fill         | ![](./imgs/Icons/rotate-line.svg)           | .rotate-line           | ![](./imgs/Icons/search-line.svg)     | .search-line     | ![](./imgs/Icons/speedometer-line.svg)      | .speedometer-line      |
-| ![](./imgs/Icons/translate-fill.svg)     | .translate-fill     | ![](./imgs/Icons/web-line.svg)              | .web-line              | ![](./imgs/Icons/universal-line.svg)  | .universal-line  | ![](./imgs/Icons/universal-circle-line.svg) | .universal-circle-line |
+| Icon                                        | Style                  | Icon                                        | Style                  | Icon                                        | Style                  | Icon                                  | Style            |
+| :---:                                       | ------                 | :---:                                       | ------                 | :---:                                       | ------                 | :---:                                 | ------           |
+| ![](./imgs/Icons/ai-fill.svg)               | .ai-fill               | ![](./imgs/Icons/bullseye-line.svg)         | .bullseye-line         | ![](./imgs/Icons/columnsgap-line.svg)       | .columnsgap-line       | ![](./imgs/Icons/dart-fill.svg)       | .dart-fill       |
+| ![](./imgs/Icons/datasheet-line.svg)        | .datasheet-line        | ![](./imgs/Icons/datasheet-health-line.svg) | .datasheet-health-line | ![](./imgs/Icons/hash-line.svg)             | .hash-line             | ![](./imgs/Icons/headphones-line.svg) | .headphones-line |
+| ![](./imgs/Icons/headset-line.svg)          | .headset-line          | ![](./imgs/Icons/lab-fill.svg)              | .lab-fill              | ![](./imgs/Icons/logout-line.svg)           | .logout-line           | ![](./imgs/Icons/medal-line.svg)      | .medal-line      |
+| ![](./imgs/Icons/menu-line.svg)             | .menu-line             | ![](./imgs/Icons/pencil-square-fill.svg)    | .pencil-square-fill    | ![](./imgs/Icons/polygon-editable-line.svg) | .polygon-editable-line | ![](./imgs/Icons/qr-line.svg)         | .qr-line         |
+| ![](./imgs/Icons/qr-scan-line.svg)          | .qr-scan-line          | ![](./imgs/Icons/quote-fill.svg)            | .quote-fill            | ![](./imgs/Icons/rotate-line.svg)           | .rotate-line           | ![](./imgs/Icons/search-line.svg)     | .search-line     |
+| ![](./imgs/Icons/speedometer-line.svg)      | .speedometer-line      | ![](./imgs/Icons/translate-fill.svg)        | .translate-fill        | ![](./imgs/Icons/web-line.svg)              | .web-line              | ![](./imgs/Icons/universal-line.svg)  | .universal-line  |
+| ![](./imgs/Icons/universal-circle-line.svg) | .universal-circle-line |
 
 #### Animated Icons Table
 
