@@ -85,7 +85,6 @@
 	--box-filter: blur(10px);
 	position: absolute;
 	z-index: 101;
-	left: 0;
 	width: 250px;
 	height: 290px;
 	-webkit-box-shadow: var(--box-shadow);
@@ -101,6 +100,12 @@
 	backdrop-filter: var(--box-filter);
 	flex-direction: column;
 	padding: 5px;
+}
+.wui-datepicker > .box.left {
+	left: 0;
+}
+.wui-datepicker > .box.right {
+	right: 0;
 }
 .wui-datepicker > .box.down {
 	bottom: auto;

@@ -10,14 +10,15 @@ class WUIDatepicker {
 	static version = "0.1";
 	static #defaults = {
 		selector: "",
+		locales: "en-US",
+		value: "",
 		min: "",
 		max: "",
-		value: "",
-		locales: "en-US",
 		monthsNames: [],
 		weekDaysNames: [],
 		texts: {},
 		openDirection: "down",
+		boxAlign: "center",
 		enabled: true,
 		onOpen: null,
 		onChange: null
@@ -58,9 +59,9 @@ class WUIDatepicker {
 			accept: "aceptar"
 		}
 	};
-	static #localesSet = "" // https://www.techonthenet.com/js/language_tags.php 20241007
+	static #localesSet = ("" // https://www.techonthenet.com/js/language_tags.php 20241007
 		+"ar-SA bn-BD bn-IN cs-CZ da-DK de-AT de-CH de-DE el-GR en-AU en-CA en-GB en-IE en-IN en-NZ en-US en-ZA es-AR es-CL es-CO es-ES es-MX es-US fi-FI fr-BE fr-CA fr-CH fr-FR he-IL hi-IN hu-HU id-ID it-CH it-IT ja-JP ko-KR nl-BE nl-NL no-NO pl-PL pt-BR pt-PT ro-RO ru-RU sk-SK sv-SE ta-IN ta-LK th-TH tr-TR zh-CN zh-HK zh-TW"
-		+"".toLowerCase().split(/\s+/);
+		+"").toLowerCase().split(/\s+/);
 	static #firstWeekDayCountry = {
 		0: "AG AS AU BD BR BS BT BW BZ CA CN CO DM DO ET GT GU HK HN ID IL IN JM JP KE KH KR LA MH MM MO MT MX MZ NI NP PA PE PH PK PR PT PY SA SG SV TH TT TW UM US VE VI WS YE ZA ZW",
 		1: "AD AI AL AM AN AR AT AX AZ BA BE BG BM BN BY CH CL CM CR CY CZ DE DK EC EE ES FI FJ FO FR GB GE GF GP GR HR HU IE IS IT KG KZ LB LI LK LT LU LV MC MD ME MK MN MQ MY NL NO NZ PL RE RO RS RU SE SI SK SM TJ TM TR UA UY UZ VA VN XK",
@@ -94,6 +95,10 @@ class WUIDatepicker {
 		return this.constructor.name;
 	}
 
+	get locales() {
+		return this._locales;
+	}
+
 	get value() {
 		return this._input.value;
 	}
@@ -104,10 +109,6 @@ class WUIDatepicker {
 
 	get max() {
 		return this._max;
-	}
-
-	get locales() {
-		return this._locales;
 	}
 
 	get monthsNames() {
@@ -124,6 +125,10 @@ class WUIDatepicker {
 
 	get openDirection() {
 		return this._openDirection;
+	}
+
+	get boxAlign() {
+		return this._boxAlign;
 	}
 
 	get enabled() {
@@ -146,10 +151,21 @@ class WUIDatepicker {
 		}
 	}
 
+	set locales(value) {
+		if (typeof(value) == "string" && value.match(/^[a-z]{2}-[a-z]{2}$/i) && WUIDatepicker.#localesSet.indexOf(value.toLowerCase()) > -1) {
+			this._locales = value.split("-").map((x, i) => {
+				return i == 0 ? x.toLowerCase() : x.toUpperCase();
+			}).join("-");
+			if (typeof(this._inputs) != "undefined") {
+				this.#loadInputs();
+			}
+		}
+	}
+
 	set value(value) {
 		if (typeof(value) == "string" && value.match(/^(\d{4}-\d{2}-\d{2})?$/) && (typeof(this._enabled) == "undefined" || this._enabled)) {
 			this.#setValue(value);
-			this.#prepare();
+			this.#prepareValue();
 		}
 	}
 
@@ -162,17 +178,6 @@ class WUIDatepicker {
 	set max(value) {
 		if (typeof(value) == "string" && value.match(/^(\d{4}-\d{2}-\d{2})?$/)) {
 			this._max = value;
-		}
-	}
-
-	set locales(value) {
-		if (typeof(value) == "string" && value.match(/^[a-z]{2}-[a-z]{2}$/i) && WUIDatepicker.#localesSet.indexOf(value.toLowerCase()) > -1) {
-			this._locales = value.split("-").map((x, i) => {
-				return i == 0 ? x.toLowerCase() : x.toUpperCase();
-			}).join("-");
-			if (typeof(this._inputs) != "undefined") {
-				this.#loadInputs();
-			}
 		}
 	}
 
@@ -202,6 +207,12 @@ class WUIDatepicker {
 	set openDirection(value) {
 		if (typeof(value) == "string" && value.match(/^(up|down)$/i)) {
 			this._openDirection = value.toLowerCase();
+		}
+	}
+
+	set boxAlign(value) {
+		if (typeof(value) == "string" && value.match(/^(left|center|right)$/i)) {
+			this._boxAlign = value.toLowerCase();
 		}
 	}
 
@@ -352,7 +363,7 @@ class WUIDatepicker {
 		this._input.type = "hidden";
 		this._inputs.className = "inputs";
 		this._background.className = "background hidden";
-		this._box.className = "box "+this._openDirection+" hidden";
+		this._box.className = `box ${this._boxAlign} ${this._openDirection} hidden`;
 		this._box.appendChild(this._header);
 		this._box.appendChild(this._months);
 		this._box.appendChild(this._week);
@@ -391,6 +402,24 @@ class WUIDatepicker {
 	#prepare() {
 		const texts = WUIDatepicker.#texts;
 		const lang = this._locales.split("-")[0].toLowerCase();
+		this.#prepareValue();
+		this._mode = "days";
+		this._weekDaysNames = [];
+		this._monthsNames = [];
+		for (let i=0; i<7; i++) {
+			const name = new Date(2023, 0, i+1, 0, 0, 0).toLocaleString(this._locales, {weekday: "long"}); // 2023-01-01: sunday
+			this._weekDaysNames[i] = name.replace(/^\s*(\w)/, letter => letter.toUpperCase());
+		}
+		for (let i=0; i<12; i++) {
+			const name = new Date(2023, i, 1, 0, 0, 0).toLocaleString(this._locales, {month: "long"});
+			this._monthsNames[i] = name.replace(/^\s*(\w)/, letter => letter.toUpperCase());
+		}
+		this._cancelButton.textContent = typeof(this._texts) == "object" && this._texts.cancel != "" ? this._texts.cancel : lang in texts ? texts[lang].cancel : "";
+		this._acceptButton.textContent = typeof(this._texts) == "object" && this._texts.accept != "" ? this._texts.accept : lang in texts ? texts[lang].accept : "";
+		this.#setView(this._targetDate);
+	}
+
+	#prepareValue() {
 		const today = (() => {
 			const date = new Date();
 			const offset = date.getTimezoneOffset();
@@ -403,18 +432,6 @@ class WUIDatepicker {
 		this._targetDate = new Date(this._targetValue+"T00:00:00");
 		this._cancelValue = this._targetValue;
 		this._cancelDate = new Date(this._targetValue+"T00:00:00");
-		this._mode = "days";
-		for (let i=0; i<7; i++) {
-			const name = new Date(2023, 0, i+1, 0, 0, 0).toLocaleString(this._locales, {weekday: "long"}); // 2023-01-01: sunday
-			this._weekDaysNames[i] = name.replace(/^\s*(\w)/, letter => letter.toUpperCase());
-		}
-		for (let i=0; i<12; i++) {
-			const name = new Date(2023, i, 1, 0, 0, 0).toLocaleString(this._locales, {month: "long"});
-			this._monthsNames[i] = name.replace(/^\s*(\w)/, letter => letter.toUpperCase());
-		}
-		this._cancelButton.textContent = this._texts.cancel != "" ? this._texts.cancel : lang in texts ? texts[lang].cancel : "";
-		this._acceptButton.textContent = this._texts.accept != "" ? this._texts.accept : lang in texts ? texts[lang].accept : "";
-		this.#setView(this._targetDate);
 	}
 
 	#loadValue() {
