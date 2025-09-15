@@ -91,10 +91,6 @@ class WUIDatepicker {
 		return this._selector;
 	}
 
-	get type() {
-		return this.constructor.name;
-	}
-
 	get locales() {
 		return this._locales;
 	}

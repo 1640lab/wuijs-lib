@@ -175,7 +175,7 @@ class WUIList {
 						const icon = document.createElement("div");
 						const iconClass = typeof(btnOptions.iconClass) == "string" ? btnOptions.iconClass : typeof(btnOptions.iconClass) == "function" ? btnOptions.iconClass(i, id) : "";
 						const bgcolor = typeof(btnOptions.bgcolor) == "string" ? btnOptions.bgcolor : typeof(btnOptions.bgcolor) == "function" ? btnOptions.bgcolor(i, id) : "";
-						const enabled = (typeof(btnOptions.enabled) == "boolean" && btnOptions.enabled) || (typeof(btnOptions.enabled) == "function" && btnOptions.enabled(i, id)) ? true : false;
+						const enabled = typeof(btnOptions.enabled) == "undefined" || (typeof(btnOptions.enabled) == "boolean" && btnOptions.enabled) || (typeof(btnOptions.enabled) == "function" && btnOptions.enabled(i, id)) ? true : false;
 						button.className = "button "+this._buttonsStyle;
 						icon.className = "icon";
 						if (!enabled) {

@@ -135,7 +135,9 @@
 	justify-content: center;
 }
 .wui-list > .row.slider > .buttons > .button.round {
-	height: var(--wui-list-button-size);
+	--size: min(var(--wui-list-button-size), var(--wui-list-row-height));
+	width: var(--size);
+	height: var(--size);
 	margin-left: var(--wui-list-button-hmargin);
 	-webkit-border-radius: var(--wui-list-button-radius);
 	-moz-border-radius: var(--wui-list-button-radius);

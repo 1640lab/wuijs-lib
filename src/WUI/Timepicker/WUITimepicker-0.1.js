@@ -51,10 +51,6 @@ class WUITimepicker {
 		return this._selector;
 	}
 
-	get type() {
-		return this.constructor.name;
-	}
-
 	get value() {
 		return this._input.value;
 	}

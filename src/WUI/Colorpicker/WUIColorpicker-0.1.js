@@ -344,10 +344,6 @@ class WUIColorpicker {
 		return this._selector;
 	}
 
-	get type() {
-		return this.constructor.name;
-	}
-
 	get value() {
 		return this._input.value == this._emptyValue ? "" : this._input.value;
 	}
