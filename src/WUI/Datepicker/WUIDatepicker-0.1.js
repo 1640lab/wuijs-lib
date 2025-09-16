@@ -276,9 +276,11 @@ class WUIDatepicker {
 	}
 
 	#setView(date) {
-		this._inputYear.value = date instanceof Date ? ("000"+date.getFullYear()).slice(-4) : "";
-		this._inputMonth.value = date instanceof Date ? ("0"+(date.getMonth() +1)).slice(-2) : "";
-		this._inputDay.value = date instanceof Date ? ("0"+date.getDate()).slice(-2) : "";
+		if (this._inputYear && this._inputMonth && this._inputDay) {
+			this._inputYear.value = date instanceof Date ? ("000"+date.getFullYear()).slice(-4) : "";
+			this._inputMonth.value = date instanceof Date ? ("0"+(date.getMonth() +1)).slice(-2) : "";
+			this._inputDay.value = date instanceof Date ? ("0"+date.getDate()).slice(-2) : "";
+		}
 	}
 
 	#setStyle() {
@@ -354,6 +356,10 @@ class WUIDatepicker {
 				const max = part == "year" ? 3000 : part == "month" ? 12 : 31;
 				event.target.value = parseInt(value) > max ? max : parseInt(value) < min ? min : value;
 				this.#loadValue();
+				if (this.isOpen()) {
+					this.#prepare();
+					this.#loadBox();
+				}
 			});
 		});
 		this._input.type = "hidden";
@@ -412,7 +418,6 @@ class WUIDatepicker {
 		}
 		this._cancelButton.textContent = typeof(this._texts) == "object" && this._texts.cancel != "" ? this._texts.cancel : lang in texts ? texts[lang].cancel : "";
 		this._acceptButton.textContent = typeof(this._texts) == "object" && this._texts.accept != "" ? this._texts.accept : lang in texts ? texts[lang].accept : "";
-		this.#setView(this._targetDate);
 	}
 
 	#prepareValue() {
@@ -428,6 +433,7 @@ class WUIDatepicker {
 		this._targetDate = new Date(this._targetValue+"T00:00:00");
 		this._cancelValue = this._targetValue;
 		this._cancelDate = new Date(this._targetValue+"T00:00:00");
+		this.#setView(this._targetDate);
 	}
 
 	#loadValue() {
