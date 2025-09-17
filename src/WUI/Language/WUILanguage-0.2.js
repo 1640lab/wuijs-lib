@@ -109,7 +109,6 @@ class WUILanguage {
 	}
 
 	load(lang = this._lang, sets = this._sets) {
-		const $this = this;
 		const temp = {};
 		const onLoad = (set) => {
 			temp[set] = Object.assign(set in temp ? temp[set] : {}, this.#languages[lang]);
@@ -167,29 +166,29 @@ class WUILanguage {
 					xhr.responseType = "json";
 					xhr.overrideMimeType("application/json");
 				}
-				xhr.onload = function() {
+				xhr.onload = () => {
 					if (xhr.status == 200 || xhr.status == 0) {
 						const content = xhr.responseText;
-						if ($this._mode == "js") {
+						if (this._mode == "js") {
 							if (content.trim().replace(/[\n\r]+/g, " ").match(/^return\s*\{.+\}\s*;?$/)) {
 								try {
 									let jsObject = {};
 									const jsCode = "jsObject = (() => {"+content+"})()";
-									$this.#languages[lang] = JSON.parse(JSON.stringify(eval(jsCode)));
+									this.#languages[lang] = JSON.parse(JSON.stringify(eval(jsCode)));
 								} catch (error) {
 									console.error(`error stringify-parse JS file '${url}': ${error}`);
 								}
 							}
-						} else if ($this._mode == "json") {
+						} else if (this._mode == "json") {
 							try {
-								$this.#languages[lang] = JSON.parse(content);
+								this.#languages[lang] = JSON.parse(content);
 							} catch (error) {
 								console.error(`error parse JSON file '${url}': ${error}`);
 							}
 						}
 						onLoad(set);
 					} else {
-						console.error(`error load ${$this._mode.toUpperCase()} file '${url}'`);
+						console.error(`error load ${this._mode.toUpperCase()} file '${url}'`);
 					}
 				}
 				xhr.open("GET", url, true);
