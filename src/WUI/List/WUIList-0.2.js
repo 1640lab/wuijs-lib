@@ -10,12 +10,15 @@ class WUIList {
 	static version = "0.2";
 	static #defaults = {
 		selector: ".wui-list",
+		paging: 0,
 		columns: [],
 		rows: [],
 		buttons: [],
 		buttonsStyle: "round",
+		onPrint: null,
 		onClick: null
 	};
+	#page = 0;
 
 	constructor (properties) {
 		Object.keys(WUIList.#defaults).forEach(prop => {
@@ -25,6 +28,10 @@ class WUIList {
 
 	get selector() {
 		return this._selector;
+	}
+
+	get paging() {
+		return this._paging;
 	}
 
 	get columns() {
@@ -43,6 +50,10 @@ class WUIList {
 		return this._buttonsStyle;
 	}
 
+	get onPrint() {
+		return this._onPrint;
+	}
+
 	get onClick() {
 		return this._onClick;
 	}
@@ -51,6 +62,12 @@ class WUIList {
 		if (typeof(value) == "string" && value != "") {
 			this._selector = value;
 			this._element = document.querySelector(value);
+		}
+	}
+
+	set paging(value) {
+		if (typeof(value) == "number" || (typeof(value) == "string" && value.match(/^\d+$/))) {
+			this._paging = parseInt(value);
 		}
 	}
 
@@ -75,6 +92,12 @@ class WUIList {
 	set buttonsStyle(value) {
 		if (typeof(value) == "string" && value.match(/^(round|stretch)$/i)) {
 			this._buttonsStyle = value.toLowerCase();
+		}
+	}
+
+	set onPrint(value) {
+		if (typeof(value) == "function") {
+			this._onPrint = value;
 		}
 	}
 
@@ -119,11 +142,15 @@ class WUIList {
 		}
 	}
 
-	print() {
-		this._strips = [];
-		if (this._element != null) {
+	print(page = this.#page) {
+		const paging = this._paging == 0 ? this._rows.length : this._paging;
+		if (this._element != null && page * paging >= 0 && page * paging < this._rows.length) {
+			const ini = page * paging;
+			const end = (page + 1) * paging > this._rows.length ? this._rows.length : (page + 1) * paging;
+			this._strips = [];
 			this._element.innerHTML = "";
-			this._rows.forEach((rowOptions, i) => {
+			for (let i=ini; i<end; i++) {
+				const rowOptions = this._rows[i];
 				const row = document.createElement("div");
 				const strip = document.createElement("div");
 				const id = "id" in rowOptions ? rowOptions.id : null;
@@ -259,8 +286,31 @@ class WUIList {
 					inner.innerHTML = rowOptions.inner;
 					this._element.append(inner);
 				}
-			});
+			}
+			
+			this.#page = page;
+			if (typeof(this._onPrint) == "function") {
+				this._onPrint(page);
+			}
 		}
+	}
+
+	prev() {
+		this.print(this.#page - 1);
+	}
+
+	next() {
+		this.print(this.#page + 1);
+	}
+
+	isPrevEnabled() {
+		const paging = this._paging == 0 ? this._rows.length : this._paging;
+		return Boolean((this.#page - 1) * paging >= 0);
+	}
+
+	isNextEnabled() {
+		const paging = this._paging == 0 ? this._rows.length : this._paging;
+		return Boolean((this.#page + 1) * paging < this._rows.length);
 	}
 }
 
