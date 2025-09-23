@@ -19,6 +19,7 @@ Características:
 4. Actualización versión clase WUISlider a 0.2.
 	- Se corrigió error de arrastre al desplazar una diapositiva usando el evento `mousedown`, habilitándo únicamente cuando el botón izquierdo permanece presionado.
 5. Actualización versión clase WUIList a 0.2.
+	- Se agregó soporte para paginado.
 	- Se corrigió error de arrastre al aperturar y cerrar la botonoera de cada fila usando el evento `mousedown`, habilitándo únicamente cuando el botón izquierdo permanece presionado.
 6. Actualización versión clase WUIModal a 0.2.
 	- Se corrigió error de arrastre al maximizar y cerrar un modal con estilo página usando el evento `mousedown`, habilitándo únicamente cuando el botón izquierdo permanece presionado.
