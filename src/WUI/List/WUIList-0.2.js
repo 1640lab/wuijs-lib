@@ -18,12 +18,12 @@ class WUIList {
 		onPrint: null,
 		onClick: null
 	};
-	#page = 0;
 
 	constructor (properties) {
 		Object.keys(WUIList.#defaults).forEach(prop => {
 			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUIList.#defaults ? WUIList.#defaults[prop] : null;
 		});
+		this._page = 0;
 	}
 
 	get selector() {
@@ -32,6 +32,10 @@ class WUIList {
 
 	get paging() {
 		return this._paging;
+	}
+
+	get page() {
+		return this._page;
 	}
 
 	get columns() {
@@ -142,7 +146,7 @@ class WUIList {
 		}
 	}
 
-	print(page = this.#page) {
+	print(page = this._page) {
 		const paging = this._paging == 0 ? this._rows.length : this._paging;
 		if (this._element != null && page * paging >= 0 && page * paging < this._rows.length) {
 			const ini = page * paging;
@@ -280,7 +284,7 @@ class WUIList {
 				this._element.append(row);
 				if ("inner" in rowOptions && typeof(rowOptions.inner) == "string" && rowOptions.inner.trim() != "") {
 					const inner = document.createElement("div");
-					const opened = Boolean("opened" in rowOptions && rowOptions.opened);
+					const opened = Boolean("innerOpened" in rowOptions && rowOptions.innerOpened);
 					inner.dataset.index = i;
 					inner.className = "inner-row"+(!opened ? " hidden" : "");
 					inner.innerHTML = rowOptions.inner;
@@ -288,7 +292,7 @@ class WUIList {
 				}
 			}
 			
-			this.#page = page;
+			this._page = page;
 			if (typeof(this._onPrint) == "function") {
 				this._onPrint(page);
 			}
@@ -296,21 +300,21 @@ class WUIList {
 	}
 
 	prev() {
-		this.print(this.#page - 1);
+		this.print(this._page - 1);
 	}
 
 	next() {
-		this.print(this.#page + 1);
+		this.print(this._page + 1);
 	}
 
 	isPrevEnabled() {
 		const paging = this._paging == 0 ? this._rows.length : this._paging;
-		return Boolean((this.#page - 1) * paging >= 0);
+		return Boolean((this._page - 1) * paging >= 0);
 	}
 
 	isNextEnabled() {
 		const paging = this._paging == 0 ? this._rows.length : this._paging;
-		return Boolean((this.#page + 1) * paging < this._rows.length);
+		return Boolean((this._page + 1) * paging < this._rows.length);
 	}
 }
 

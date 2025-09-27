@@ -338,9 +338,9 @@ class WUIScrolly {
 		this._truncated = true;
 	}
 
-	addSection(section) {
-		if (typeof(section) == "object") {
-			this._sections.push(section);
+	addSection(options) {
+		if (typeof(options) == "object") {
+			this._sections.push(options);
 		}
 	}
 

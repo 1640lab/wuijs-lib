@@ -2,7 +2,7 @@
 
 Library version: `0.2.0` ([Change Log](./CHANGELOG.md))
 
-Document version: `0.2.0.20250923.1-e` (e: in edition, c: complete)
+Document version: `0.2.0.20250927.1-e` (e: in edition, c: complete)
 
 Licence: `Apache License 2.0`
 
@@ -29,7 +29,7 @@ Author: `Sergio E. Belmar V. <sbelmar@1640lab.com>`
 	*   WUISlider
 	*   WUIPaging
 	*   WUITabs
-	*   WUIList
+	*   [WUIList](#WUIList)
 	*   WUITable
 	*   WUIForm
 	*   WUIFormat
@@ -62,22 +62,22 @@ WUI, an acronym for *Web User Interface JavaScript library*, is an open source J
 | WUIFade          | `0.1`   | Tool for fading out and fading in HTML elements with opacity. |
 | WUITooltip       | `0.1`   | Simple object for hover text. |
 | WUILoader        | `0.1`   | Simple object for loading animation. |
-| WUIModal         | `0.2`   | Composite object for implementing dialog boxes (type `message`) and pop-up windows (type `page`). |
+| WUIModal         | `0.2`   | Advanced object for implementing dialog boxes (type `message`) and pop-up windows (type `page`). |
 | WUIModalSelector | `0.1`   | Extended object of `WUIModal` for implementing selection lists based on arrays or data inputs of type `<select>`. |
-| WUISlider        | `0.2`   | Composite object for implementing mouse-controlled and/or event-controlled blinds. |
-| WUIPaging        | `0.1`   | Composite object for implementing paginated views. |
-| WUITabs          | `0.1`   | Composite object for implementing views accessible by tab selection. |
-| WUIList          | `0.2`   | Composite object for implementing data lists and buttons for each row optionally. |
-| WUITable         | `0.1`   | Composite object for implementing data tables. Unlike the `WUIList` object, the `WUITable` object includes a column header. |
-| WUIForm          | `0.1`   | Composite object for implementing data forms. This object allows the implementation of HTML data input elements such as `<input>`, `<select>`, and `<textarea>`, and WUI library objects such as `WUISelectpicker`, `WUIDatepicker`, `WUITimepicker`, `WUIColorpicker`, `WUICheckbox`, `WUIIntensity`, and `WUIButton`. |
+| WUISlider        | `0.2`   | Advanced object for implementing mouse-controlled and/or event-controlled blinds. |
+| WUIPaging        | `0.1`   | Advanced object for implementing paginated views. |
+| WUITabs          | `0.1`   | Advanced object for implementing views accessible by tab selection. |
+| WUIList          | `0.2`   | Advanced object for implementing data lists and buttons for each row optionally. |
+| WUITable         | `0.1`   | Advanced object for implementing data tables. Unlike the `WUIList` object, the `WUITable` object includes a column header. |
+| WUIForm          | `0.1`   | Advanced object for implementing data forms. This object allows the implementation of HTML data input elements such as `<input>`, `<select>`, and `<textarea>`, and WUI library objects such as `WUISelectpicker`, `WUIDatepicker`, `WUITimepicker`, `WUIColorpicker`, `WUICheckbox`, `WUIIntensity`, and `WUIButton`. |
 | WUIFormat        | `0.1`   | Tool for managing and validating `string`, `number` and `Date` data formats. |
-| WUISelectpicker  | `0.1`   | Composite object for implementing multiple-select or exclusive data entries based on lists based on HTML `<select>` elements. |
-| WUIDatepicker    | `0.1`   | Composite object for implementing date type data input. |
-| WUITimepicker    | `0.1`   | Composite object for implementing time type data inputs. |
-| WUIColorpicker   | `0.1`   | Composite object for implementing color picker type data inputs. |
-| WUICheckbox      | `0.2`   | Composite object for implementing checkbox type data inputs. |
-| WUIIntensity     | `0.1`   | Composite object for implementing 4-level intensity selector type data inputs: none, low, half, and high. |
-| WUIButton        | `0.1`   | Composite object for button implementation. |
+| WUISelectpicker  | `0.1`   | Advanced object for implementing multiple-select or exclusive data entries based on lists based on HTML `<select>` elements. |
+| WUIDatepicker    | `0.1`   | Advanced object for implementing date type data input. |
+| WUITimepicker    | `0.1`   | Advanced object for implementing time type data inputs. |
+| WUIColorpicker   | `0.1`   | Advanced object for implementing color picker type data inputs. |
+| WUICheckbox      | `0.2`   | Advanced object for implementing checkbox type data inputs. |
+| WUIIntensity     | `0.1`   | Advanced object for implementing 4-level intensity selector type data inputs: none, low, half, and high. |
+| WUIButton        | `0.1`   | Advanced object for button implementation. |
 
 <a name="install"></a>
 
@@ -1012,7 +1012,7 @@ Tool for animating HTML elements using the "onscroll" event of the HTML page bod
 
 | Property    | Type       | Default value | Description |
 | ----------- | ---------- | ------------- | ----------- |
-| sections    | `array`    | `[]`          | (get/set)<br><br>List of objects with the settings of the sections that will be incorporated into the animation, as defined in **Section Properties**. These can be defined directly on this property or using the `addSection()` method. |
+| sections    | `array`    | `[]`          | (get/set)<br><br>List of objects with the settings of the sections that will be incorporated into the animation, as defined in **Section Options**. These can be defined directly on this property or using the `addSection()` method. |
 | behavior    | `string`   | `"smooth"`    | (get/set)<br><br>Behavior for moving focus to the body of the HTML page.<br><br>Values:<br>• `"auto"`<br>• `"smooth"` |
 | dataScrollY | `string`   | `"scrollY"`   | (get/set)<br><br>Name of the `data-*` attribute of the main document element (`<html>` / `document.documentElement`) that contains the numeric value measured in pixels of the total vertical scrolling of the HTML page, where `0` represents the top of the document (or no movement). |
 | dataDelay   | `string`   | `"delay"`     | (get/set)<br><br>Name of the `data-*` attribute that determines the time, measured in milliseconds, that it takes for an HTML element animated using CSS styles to animate once it is given focus. |
@@ -1021,7 +1021,7 @@ Tool for animating HTML elements using the "onscroll" event of the HTML page bod
 | onStop      | `function` | `null`        | (get/set)<br><br>Function that is called when the scroll movement ends, either through the `scroll` events for the mouse or `touchmove` for the touch screen. |
 | debug       | `boolean`  | `false`       | (get/set)<br><br>Test mode. Prints to the console the `selector` and `height` values ​​of the scenes added in the startup instance, and `scrollY`, `y`, `index`, `sceneIndex`, `step`, `sceneStep`, and `progress` when they change. Enabled when the property value is `true`. |
 
-#### Section Properties
+#### Section Options
 
 | Property  | Type       | Default value | Description |
 | --------- | ---------- | ------------- | ----------- |
@@ -1039,7 +1039,7 @@ Tool for animating HTML elements using the "onscroll" event of the HTML page bod
 | ---------- | ----------- | ----------- |
 | init       | `void`      | `init()`<br><br>Initializes the object once the sections that make up the HTML page have been added. |
 | stop       | `void`      | `stop()`<br><br>Interrupts the animation in its execution cycle. |
-| addSection | `void`      | `addSection({section_properties})`<br><br>Adds a new animated section settings to the object's section list, as defined in **Section Properties:**. |
+| addSection | `void`      | `addSection(options)`<br><br>Adds a new animated section settings to the object's section list, as defined in **Section Options:**. |
 | goSection  | `void`      | `goSection(target[, done[, behavior]])`<br><br>Arguments:<br>**• target:** `string` <br>**• done:** `function` <br>**• behavior:** `string` <br><br>Moves the focus of the HTML page to the section specified by the `target` parameter. |
 | selectPage | `void`      | `selectPage(sectionIndex, pageIndex)`<br><br>Arguments:<br>**• sectionIndex:** `number`, values ​​from `0` <br>**• pageIndex:** `number`, value between `0` and `pages - 1` <br><br>Moves the focus of the HTML page to the section specified by the `sectionIndex` parameter and advances to the `pageIndex` page in that section. |
 | drawCenter | `void`      | `drawCenter()`<br><br>Draws the center of the visible part of the HTML page in the browser. |
@@ -1417,7 +1417,7 @@ It is a static class that does not have a constructor or properties.
 One way to use the library is by calling static methods directly on the `WUIFade` class:
 
 | Method | Return type | Description |
-| -------| ----------- | ----------- |
+| ------ | ----------- | ----------- |
 | in     | `void`      | `in(element[, options])`<br><br>Arguments:<br>**• element:** `HTMLElement` <br>**• options:** `object` *optional*<br><br>Execute the fadein transition. |
 | out    | `void`      | `out(element[, options])`<br><br>Arguments:<br>**• element:** `HTMLElement` <br>**• options:** `object` *optional*<br><br>Execute the fadeout transition. |
 
@@ -1426,7 +1426,7 @@ One way to use the library is by calling static methods directly on the `WUIFade
 Another alternative way is through extended methods of the `HTMLElement` class through its prototype:
 
 | Method.    | Return type | Description |
-| -----------| ----------- | ----------- |
+| ---------- | ----------- | ----------- |
 | wuiFadein  | `void`      | `wuiFadein([options])`<br><br>Arguments:<br>**• options:** `object` *optional*<br><br>Execute the fadein transition. |
 | wuiFadeout | `void`      | `wuiFadeout([options])`<br><br>Arguments:<br>**• options:** `object` *optional*<br><br>Execute the fadeout transition. |
 
@@ -1491,6 +1491,102 @@ element.wuiFadein(options);
 <a name="wuiPaging"></a>
 <a name="wuiTabs"></a>
 <a name="wuiList"></a>
+
+### WUIList
+
+Versión: `0.2`
+
+Advanced object for implementing data lists and buttons for each row optionally.
+
+#### Constructor
+
+| Type    | Description |
+| ------- | ----------- |
+| WUIList | `WUIList([properties])`<br><br>Arguments:<br>**• properties:** `object` *optional* |
+
+#### Properties
+
+| Property     | Type       | Default value | Description |
+| ------------ | ---------- | ------------- | ----------- |
+| selector     | `string`   | `.wui-list`   | (get/set)<br><br>CSS selector that defines the HTML element that will be converted into the advanced list object. If more than one element matches the selector, only the first match will be included. |
+| paging       | `number`   | `0`           | (get/set)<br><br>Paging, or the number of rows per page in the list. A value of `0` indicates that the pagination will be the same length as the list of rows; in other words, a value of `0` disables paging. |
+| page         | `number`   | `0`           | (get)<br><br>Current page displayed in the list. Page `0` corresponds to the first page, and the last page corresponds to the number of rows minus 1. |
+| columns      | `array`    | `[]`          | (get/set)<br><br>List of columns in the list, as defined by **Column Options**. |
+| rows         | `array`    | `[]`          | (get/set)<br><br>List of rows in the list, as defined by **Row Options**. |
+| buttons      | `array`    | `[]`          | (get/set)<br><br>List of row buttons in the list, as defined by **Row Button Options**. |
+| buttonsStyle | `string`   | `"round"`     | (get/set)<br><br>Row button style.<br><br>Values:<br>• `"round"`, circles.<br>• `"stretch"`, squares. |
+| onPrint      | `function` | `null`        | (get/set)<br><br>Function that is called when a page or the entire list is displayed. The function receives as a parameter:<br><br>**• page:** `number`, page number. |
+| onClick      | `function` | `null`        | (get/set)<br><br>Function that is called when a row is pressed. The function receives as parameter:<br><br>**• index:** `number`, row number.**• id:** `string`, row id.**• event:** `Event`, event.**• index:** `options`, row settings options. |
+
+#### Column Options
+
+| Property | Type     | Default value | Description |
+| -------- | -------- | ------------- | ----------- |
+| width    | `string` | `undefined`   | 
+| align    | `string` | `"left"`      | 
+
+#### Rows Options
+
+| Property    | Type      | Default value | Description |
+| ----------- | --------- | ------------- | ----------- |
+| id          | `string`  | `undefined`   | 
+| data        | `array`   | `[]`          | 
+| inner       | `string`  | `undefined`   | 
+| innerOpened | `boolean` | `false`       | 
+| enabled     | `boolean` | `true`        | 
+
+#### Row Button Options
+
+| Property  | Type.              | Default value | Description |
+| --------- | ------------------ | ------------- | ----------- |
+| iconClass | `string|function`  | `undefined`   | 
+| bgcolor   | `string|function`  | `undefined`   | 
+| enabled   | `boolean|function` | `true`        | 
+| onClick   | `function`         | `null`        | 
+
+#### Methods
+
+| Method        | Return type   | Description |
+| ------------- | ------------- | ----------- |
+| getElement    | `HTMLElement` | `getElement()`<br><br>Returns the HTML element containing the advanced object. |
+| init          | `void`        | `init()`<br><br>Initializes the object. |
+| addColumn     | `void`        | `addColumn(options)`<br><br>Adds a new column settings to the object's column list, as defined in **Column Options**. |
+| addRow        | `void`        | `addRow(options)`<br><br>Adds a new row settings to the object's rows list, as defined by **Row Options**. |
+| addButton     | `void`        | `addButton(options)`<br><br>Adds a new row button settings to the object's list of row buttons, as defined by **RowButtonOptions**. |
+| enabledRow    | `void`        | `enabledRow(index[, enabled])`<br><br>Arguments:<br>**• index:** `number`, row number.<br>**• enabled:** `boolean`, row enable state. The default value is `true`.<br><br>Enables or disables a row. |
+| print         | `void`        | `print([page])`<br><br>Arguments:<br>**• page:** `number`, page number. The default value corresponds to the `page` property. If a value other than the `page` property is passed as a parameter and if it is valid, the property will take that value.<br><br>Prints a list view; this view can be a page or the entire list depending on the `paging` property and the `page` parameter. |
+| prev          | `void`        | `prev()`<br><br>Displays the view of the previous page if it exists. |
+| next          | `void`        | `next()`<br><br>Displays the next page view if one exists. |
+| isPrevEnabled | `boolean`     | `isPrevEnabled()`<br><br>Returns whether a previous page exists. |
+| isNextEnabled | `boolean`     | `isNextEnabled()`<br><br>Returns whether a next page exists. |
+
+#### Implementation
+
+HTML head:
+
+```html
+<link type="text/css" rel="stylesheet" href="./Libraries/WUI/List/WUIList-0.2.css">
+<script type="text/javascript" src="./Libraries/WUI/List/WUIList-0.2.js"></script>
+```
+
+HTML code:
+
+```html
+<div class="wui-list my-list"></div>
+```
+
+JS code:
+
+```js
+// Create object
+const list = new WUIList({
+	selector: ".wui-list.my-list"
+});
+
+// Initialize object
+list.init();
+```
+
 <a name="wuiTable"></a>
 <a name="wuiForm"></a>
 <a name="wuiFormat"></a>

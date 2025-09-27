@@ -2,7 +2,7 @@
 
 Versión librería: `0.2.0` ([Registro de Cambio](./REGISTRODECAMBIO.md))
 
-Versión documentación: `0.2.0.20250923.1-e` (e: en edición, c: completa)
+Versión documentación: `0.2.0.20250927.1-e` (e: en edición, c: completa)
 
 Licencia: `Licencia Apache 2.0`
 
@@ -29,7 +29,7 @@ Autor: `Sergio E. Belmar V. <sbelmar@1640lab.com>`
 	*   WUISlider
 	*   WUIPaging
 	*   WUITabs
-	*   WUIList
+	*   [WUIList](#WUIList)
 	*   WUITable
 	*   WUIForm
 	*   WUIFormat
@@ -62,22 +62,22 @@ WUI, acrónimo del inglés *Web User Interface JavaScript library*, es una bibli
 | WUIFade          | `0.1`   | Herramienta para salida y entrada con opacidad (fade-out y fade-in respectivamente) de elementos HTML. |
 | WUITooltip       | `0.1`   | Objeto simple para texto emergente. |
 | WUILoader        | `0.1`   | Objeto simple para animación de carga. |
-| WUIModal         | `0.2`   | Objeto compuesto para implementación de cuadros de diálogo (tipo `message`) y ventanas emergentes (tipo `page`). |
+| WUIModal         | `0.2`   | Objeto avanzado para implementación de cuadros de diálogo (tipo `message`) y ventanas emergentes (tipo `page`). |
 | WUIModalSelector | `0.1`   | Objeto extendido de `WUIModal` para la implementación de listas de selección en base a arreglos o a entradas de datos de tipo `<select>`. |
-| WUISlider        | `0.2`   | Objeto compuesto para implementación de persianas controladas por ratón y/o por evento. |
-| WUIPaging        | `0.1`   | Objeto compuesto para implementación de vistas accesibles paginadamente. |
-| WUITabs          | `0.1`   | Objeto compuesto para implementación de vistas accesibles mediante selección por pestaña. |
-| WUIList          | `0.2`   | Objeto compuesto para implementación de listas de datos y botoneras para cada fila de manera opcional. |
-| WUITable         | `0.1`   | Objeto compuesto para implementación de tablas de datos. A diferencia del objeto `WUIList`, el objeto `WUITable` incluye una cabecera de columnas. |
-| WUIForm          | `0.1`   | Objeto compuesto para implementación de formularios de datos. Este objeto permite la implementación de elementos HTML de entrada de datos tales como `<input>`, `<select>` y `<textarea>` y objetos de la librería WUI como `WUISelectpicker`, `WUIDatepicker`, `WUITimepicker`, `WUIColorpicker`, `WUICheckbox`, `WUIIntensity` y `WUIButton`. |
+| WUISlider        | `0.2`   | Objeto avanzado para implementación de persianas controladas por ratón y/o por evento. |
+| WUIPaging        | `0.1`   | Objeto avanzado para implementación de vistas accesibles paginadamente. |
+| WUITabs          | `0.1`   | Objeto avanzado para implementación de vistas accesibles mediante selección por pestaña. |
+| WUIList          | `0.2`   | Objeto avanzado para implementación de listas de datos y botoneras para cada fila de manera opcional. |
+| WUITable         | `0.1`   | Objeto avanzado para implementación de tablas de datos. A diferencia del objeto `WUIList`, el objeto `WUITable` incluye una cabecera de columnas. |
+| WUIForm          | `0.1`   | Objeto avanzado para implementación de formularios de datos. Este objeto permite la implementación de elementos HTML de entrada de datos tales como `<input>`, `<select>` y `<textarea>` y objetos de la librería WUI como `WUISelectpicker`, `WUIDatepicker`, `WUITimepicker`, `WUIColorpicker`, `WUICheckbox`, `WUIIntensity` y `WUIButton`. |
 | WUIFormat        | `0.1`   | Herramienta para manejo y validación de formatos de datos de tipo `string`, `number` y `Date`. |
-| WUISelectpicker  | `0.1`   | Objeto compuesto para implementación de entradas de datos de selección múltiple o excluyente en base a listas en base a elementos HTML `<select>`. |
-| WUIDatepicker    | `0.1`   | Objeto compuesto para implementación de entradas de datos de tipo fecha. |
-| WUITimepicker    | `0.1`   | Objeto compuesto para implementación de entradas de datos de tipo hora. |
-| WUIColorpicker   | `0.1`   | Objeto compuesto para implementación de entradas de datos de tipo selector de color. |
-| WUICheckbox      | `0.2`   | Objeto compuesto para implementación de entradas de datos de tipo casilla de verificación. |
-| WUIIntensity     | `0.1`   | Objeto compuesto para implementación de entradas de datos de tipo selector de intensidad de 4 niveles: nada, bajo, medio y alto. |
-| WUIButton        | `0.1`   | Objeto compuesto para implementación de botones. |
+| WUISelectpicker  | `0.1`   | Objeto avanzado para implementación de entradas de datos de selección múltiple o excluyente en base a listas en base a elementos HTML `<select>`. |
+| WUIDatepicker    | `0.1`   | Objeto avanzado para implementación de entradas de datos de tipo fecha. |
+| WUITimepicker    | `0.1`   | Objeto avanzado para implementación de entradas de datos de tipo hora. |
+| WUIColorpicker   | `0.1`   | Objeto avanzado para implementación de entradas de datos de tipo selector de color. |
+| WUICheckbox      | `0.2`   | Objeto avanzado para implementación de entradas de datos de tipo casilla de verificación. |
+| WUIIntensity     | `0.1`   | Objeto avanzado para implementación de entradas de datos de tipo selector de intensidad de 4 niveles: nada, bajo, medio y alto. |
+| WUIButton        | `0.1`   | Objeto avanzado para implementación de botones. |
 
 <a name="install"></a>
 
@@ -1012,7 +1012,7 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 
 | Propiedad   | Tipo       | Valor por defecto | Descripción |
 | ----------- | ---------- | ----------------- | ----------- |
-| sections    | `array`    | `[]`              | (get/set)<br><br>Lista de objetos con la configuración de las secciones que serán incorporadas a la animación, segun la definición de **Propiedades de Sección**. Estas pueden ser definidas directamente sobre esta propiedad o mediante el método `addSection()`. |
+| sections    | `array`    | `[]`              | (get/set)<br><br>Lista secciones que serán incorporadas a la animación, según la definición de **Opciones de Sección**. Estas pueden ser definidas directamente sobre esta propiedad o mediante el método `addSection()`. |
 | behavior    | `string`   | `"smooth"`        | (get/set)<br><br>Comportamiento para desplazar el foco en el cuerpo de la página HTML.<br><br>Valores:<br>• `"auto"`<br>• `"smooth"` |
 | dataScrollY | `string`   | `"scrollY"`       | (get/set)<br><br>Nombre del atributo `data-*` del elemento de documento principal (`<html>` / `document.documentElement`) que contiene el valor numérico medido en píxeles del desplazamiento total del scroll vertical de la página HTML y donde `0` representa la parte superior del documento (o sin movimiento). |
 | dataDelay   | `string`   | `"delay"`         | (get/set)<br><br>Nombre del atributo `data-*` que determina el tiempo medido en milisegundos en que tarda en animarse un elemento HTML animados mediante estilos CSS una vez que se le da foco. |
@@ -1021,7 +1021,7 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 | onStop      | `function` | `null`            | (get/set)<br><br>Función que se llama cuando termina el movimiento del scroll, ya sea a travéz de los eventos `scroll` para ratón o `touchmove` para pantalla táctil. |
 | debug       | `boolean`  | `false`           | (get/set)<br><br>Modo de testeo. Imprime en consola los valores `selector` y `height` de las escenas agregadas en la instancia de inicio y `scrollY`, `y`, `index`, `sceneIndex`, `step`, `sceneStep` y `progress` cuando estos cambian. Se habilitac cuando el valor de la propiedad es `true`. |
 
-#### Propiedades de Sección
+#### Opciones de Sección
 
 | Propiedad | Tipo       | Valor por defecto | Descripción |
 | --------- | ---------- | ----------------- | ----------- |
@@ -1039,7 +1039,7 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 | ---------- | ------------ | ----------- |
 | init       | `void`       | `init()`<br><br>Inicializa el objeto una vez agregadas las secciones que componen la página HTML. |
 | stop       | `void`       | `stop()`<br><br>Interrumpe la animación en su ciclo de ejecución. |
-| addSection | `void`       | `addSection({section_properties})`<br><br>Agrega la configuración de una nueva sección animada a la lista de secciones del objeto, segun la definición de **Propiedades de Sección**. |
+| addSection | `void`       | `addSection(options)`<br><br>Agrega la configuración de una nueva sección animada a la lista de secciones del objeto, según la definición de **Opciones de Sección**. |
 | goSection  | `void`       | `goSection(target[, done[, behavior]])`<br><br>Parámetros:<br>**• target:** `string` <br>**• done:** `function` <br>**• behavior:** `string` <br><br>Mueve el foco de la página HTML hasta la sección especificada por del parámetro `target`. |
 | selectPage | `void`       | `selectPage(sectionIndex, pageIndex)`<br><br>Parámetros:<br>**• sectionIndex:** `number`, valores desde `0` <br>**• pageIndex:** `number`, valor entre `0` y `pages - 1` <br><br>Mueve el foco de la página HTML hasta la sección especificada por del parámetro `sectionIndex` y avanza hasta la página `pageIndex` de dicha sección. |
 | drawCenter | `void`       | `drawCenter()`<br><br>Dibuja el centro de la parte visible de la página HTML en el navegador. |
@@ -1491,6 +1491,102 @@ element.wuiFadein(options);
 <a name="wuiPaging"></a>
 <a name="wuiTabs"></a>
 <a name="wuiList"></a>
+
+### WUIList
+
+Versión: `0.2`
+
+Objeto avanzado para implementación de listas de datos y botoneras para cada fila de manera opcional.
+
+#### Constructor
+
+| Tipo    | Descripción |
+| ------- | ----------- |
+| WUIList | `WUIList([properties])`<br><br>Parámetros:<br>**• properties:** `object` *opcional* |
+
+#### Propiedades
+
+| Propiedad    | Tipo       | Valor por defecto | Descripción |
+| ------------ | ---------- | ----------------- | ----------- |
+| selector     | `string`   | `".wui-list"`     | (get/set)<br><br>Selector CSS que define el elemento HTML que serán convertido en el objeto avanzado tipo lista. En caso de existir más de un elemento coincidente con el selector se incluirá únicamente la primera coincidencia. |
+| paging       | `number`   | `0`               | (get/set)<br><br>Paginado o número de filas por pagina de la lista. El valor `0` indica que el paginado tendrá el mismo largo que la lista de filas, dicho de tra manera, el valor `0` desactiva el paginado. |
+| page         | `number`   | `0`               | (get)<br><br>Página actual mostrada en la lista. La página `0` corresponde a la primera página y la última al número de filas menos 1. |
+| columns      | `array`    | `[]`              | (get/set)<br><br>Lista de columnas de la lista, según la definición de **Opciones de Columna**. |
+| rows         | `array`    | `[]`              | (get/set)<br><br>Lista de filas de la lista, según la definición de **Opciones de Fila**. |
+| buttons      | `array`    | `[]`              | (get/set)<br><br>Lista de botones de filas de la lista, según la definición de **Opciones de Botón de Fila**. |
+| buttonsStyle | `string`   | `"round"`         | (get/set)<br><br>Estilo de los botones de fila.<br><br>Valores:<br>• `"round"`, circulos.<br>• `"stretch"`, cuadrados. |
+| onPrint      | `function` | `null`            | (get/set)<br><br>Función que se llama cuando se despliega una página o toda la lista. La función recibe por parámetro:<br><br>**• page:** `number`, número de página. |
+| onClick      | `function` | `null`            | (get/set)<br><br>Función que se llama cuando se presiona una fila. La función recibe por parámetro:<br><br>**• index:** `number`, número de fila.**• id:** `string`, id de fila.**• event:** `Event`, evento.**• index:** `options`, opciones configuración de la fila. |
+
+#### Opciones de Columna
+
+| Propiedad | Tipo     | Valor por defecto | Descripción |
+| --------- | -------- | ----------------- | ----------- |
+| width     | `string` | `undefined`       | 
+| align     | `string` | `"left"`          | 
+
+#### Opciones de Fila
+
+| Propiedad   | Tipo      | Valor por defecto | Descripción |
+| ----------- | --------- | ----------------- | ----------- |
+| id          | `string`  | `undefined`       | 
+| data        | `array`   | `[]`              | 
+| inner       | `string`  | `undefined`       | 
+| innerOpened | `boolean` | `false`           | 
+| enabled     | `boolean` | `true`            | 
+
+#### Opciones de Botón de Fila
+
+| Propiedad | Tipo               | Valor por defecto | Descripción |
+| --------- | ------------------ | ----------------- | ----------- |
+| iconClass | `string|function`  | `undefined`       | 
+| bgcolor   | `string|function`  | `undefined`       | 
+| enabled   | `boolean|function` | `true`            | 
+| onClick   | `function`         | `null`            | 
+
+#### Métodos
+
+| Método        | Tipo retorno  | Descripción |
+| ------------- | ------------- | ----------- |
+| getElement    | `HTMLElement` | `getElement()`<br><br>Retorna el elemento HTML contenedor del objeto avanzado. |
+| init          | `void`        | `init()`<br><br>Inicializa el objeto. |
+| addColumn     | `void`        | `addColumn(options)`<br><br>Agrega la configuración de una nueva columna a la lista de columnas del objeto, según la definición de **Opciones de Columna**. |
+| addRow        | `void`        | `addRow(options)`<br><br>Agrega la configuración de una nueva fila a la lista filas del objeto, según la definición de **Opciones de Fila**. |
+| addButton     | `void`        | `addButton(options)`<br><br>Agrega la configuración de un nuevo botón de fila a la lista de bootones de fila del objeto, según la definición de **Opciones de Botón de Fila**. |
+| enabledRow    | `void`        | `enabledRow(index[, enabled])`<br><br>Parámetros:<br>**• index:** `number`, número de fila.<br>**• enabled:** `boolean`, estado de habilitación de la fila. El valor por omisión `true`.<br><br>Hablita o deshabilita una fila. |
+| print         | `void`        | `print([page])`<br><br>Parámetros:<br>**• page:** `number`, número de página. El valor por omisión corresponde a la propiedad `page`. Si se pasa como parámetro un valor distinto al de la propiedad `page` y si es válido, la propiedad tomará dicho valor.<br><br>Imprime la vista de una lista, esta vista puede ser una página o la lista completa según la propiedad `paging` y el parámetro `page`. |
+| prev          | `void`        | `prev()`<br><br>Despliega la vista de la página previa si es que esta existe. |
+| next          | `void`        | `next()`<br><br>Despliega la vista de la página siguiente si es que esta existe. |
+| isPrevEnabled | `boolean`     | `isPrevEnabled()`<br><br>Retorna si existe una página previa. |
+| isNextEnabled | `boolean`     | `isNextEnabled()`<br><br>Retorna si existe una página siguiente. |
+
+#### Implementación
+
+Cabecera HTML
+
+```html
+<link type="text/css" rel="stylesheet" href="./Libraries/WUI/List/WUIList-0.2.css">
+<script type="text/javascript" src="./Libraries/WUI/List/WUIList-0.2.js"></script>
+```
+
+Código HTML:
+
+```html
+<div class="wui-list my-list"></div>
+```
+
+Código JS
+
+```js
+// Crear objeto
+const list = new WUIList({
+	selector: ".wui-list.my-list"
+});
+
+// Inicializar objeto
+list.init();
+```
+
 <a name="wuiTable"></a>
 <a name="wuiForm"></a>
 <a name="wuiFormat"></a>
