@@ -1514,7 +1514,7 @@ Objeto avanzado para implementación de listas de datos y botoneras para cada fi
 | columns      | `array`    | `[]`              | (get/set)<br><br>Lista de columnas de la lista, según la definición de **Opciones de Columna**. |
 | rows         | `array`    | `[]`              | (get/set)<br><br>Lista de filas de la lista, según la definición de **Opciones de Fila**. |
 | buttons      | `array`    | `[]`              | (get/set)<br><br>Lista de botones de filas de la lista, según la definición de **Opciones de Botón de Fila**. |
-| buttonsStyle | `string`   | `"round"`         | (get/set)<br><br>Estilo de los botones de fila.<br><br>Valores:<br>• `"round"`, circulos.<br>• `"stretch"`, cuadrados. |
+| buttonsStyle | `string`   | `"round"`         | (get/set)<br><br>Estilo de los botones de fila.<br><br>Valores:<br>• `"round"`, forma circular.<br>• `"stretch"`, forma cuadrada. |
 | onPrint      | `function` | `null`            | (get/set)<br><br>Función que se llama cuando se despliega una página o toda la lista. La función recibe por parámetro:<br><br>**• page:** `number`, número de página. |
 | onClick      | `function` | `null`            | (get/set)<br><br>Función que se llama cuando se presiona una fila. La función recibe por parámetro:<br><br>**• index:** `number`, número de fila.**• id:** `string`, id de fila.**• event:** `Event`, evento.**• index:** `options`, opciones configuración de la fila. |
 

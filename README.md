@@ -1514,7 +1514,7 @@ Advanced object for implementing data lists and buttons for each row optionally.
 | columns      | `array`    | `[]`          | (get/set)<br><br>List of columns in the list, as defined by **Column Options**. |
 | rows         | `array`    | `[]`          | (get/set)<br><br>List of rows in the list, as defined by **Row Options**. |
 | buttons      | `array`    | `[]`          | (get/set)<br><br>List of row buttons in the list, as defined by **Row Button Options**. |
-| buttonsStyle | `string`   | `"round"`     | (get/set)<br><br>Row button style.<br><br>Values:<br>• `"round"`, circles.<br>• `"stretch"`, squares. |
+| buttonsStyle | `string`   | `"round"`     | (get/set)<br><br>Row button style.<br><br>Values:<br>• `"round"`, circular shape.<br>• `"stretch"`, square shape. |
 | onPrint      | `function` | `null`        | (get/set)<br><br>Function that is called when a page or the entire list is displayed. The function receives as a parameter:<br><br>**• page:** `number`, page number. |
 | onClick      | `function` | `null`        | (get/set)<br><br>Function that is called when a row is pressed. The function receives as parameter:<br><br>**• index:** `number`, row number.**• id:** `string`, row id.**• event:** `Event`, event.**• index:** `options`, row settings options. |
 
