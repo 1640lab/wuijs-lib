@@ -1529,13 +1529,13 @@ Advanced object for implementing data lists and buttons for each row optionally.
 
 #### Rows Options
 
-| Property    | Type      | Default value | Description |
-| ----------- | --------- | ------------- | ----------- |
-| id          | `string`  | `undefined`   | Unique row identifier. |
-| data        | `array`   | `[]`          | Array with the contents of the cells in the row. |
-| inner       | `string`  | `undefined`   | Optional internal content displayed at the bottom of the row. |
-| innerOpened | `boolean` | `false`       | Initial opening of optional content. |
-| enabled     | `boolean` | `true`        | Row enable state. The default is `true`. |
+| Property     | Type      | Default value | Description |
+| ------------ | --------- | ------------- | ----------- |
+| id           | `string`  | `undefined`   | Unique row identifier. |
+| data         | `array`   | `[]`          | Array with the contents of the cells in the row. |
+| innerContent | `string`  | `undefined`   | Optional inner row content, displayed at the bottom of the row. |
+| innerOpened  | `boolean` | `false`       | Initial opening of optional inner row content. |
+| enabled      | `boolean` | `true`        | Row enable state. The default is `true`. |
 
 #### Row Button Options
 
@@ -1558,8 +1558,9 @@ Advanced object for implementing data lists and buttons for each row optionally.
 | addColumn     | `void`        | `addColumn(options)`<br><br>Adds a new column settings to the object's column list, as defined in **Column Options**. |
 | addRow        | `void`        | `addRow(options)`<br><br>Adds a new row settings to the object's rows list, as defined by **Row Options**. |
 | addButton     | `void`        | `addButton(options)`<br><br>Adds a new row button settings to the object's list of row buttons, as defined by **RowButtonOptions**. |
-| enabledRow    | `void`        | `enabledRow(index[, enabled])`<br><br>Arguments:<br>**• index:** `number`, row number.<br>**• enabled:** `boolean`, row enable state. The default value is `true`.<br><br>Enables or disables a row. |
 | print         | `void`        | `print([page])`<br><br>Arguments:<br>**• page:** `number`, page number. The default value corresponds to the `page` property. If a value other than the `page` property is passed as a parameter and if it is valid, the property will take that value.<br><br>Prints a list view; this view can be a page or the entire list depending on the `paging` property and the `page` parameter. |
+| enabledRow    | `void`        | `enabledRow(index[, enabled])`<br><br>Arguments:<br>**• index:** `number`, row number.<br>**• enabled:** `boolean`, row enable state. The default value is `true`.<br><br>Enables or disables a row. |
+| openInnerRow  | `void`        | `openInnerRow(index[, open])`<br><br>Arguments:<br>**• index:** `number`, row number.<br>**• open:** `boolean`, open state of the optional inner row content. The default value is `true`.<br><br>Opens or closes the optional inner row content. |
 | prev          | `void`        | `prev()`<br><br>Displays the view of the previous page if it exists. |
 | next          | `void`        | `next()`<br><br>Displays the next page view if one exists. |
 | isPrevEnabled | `boolean`     | `isPrevEnabled()`<br><br>Returns whether a previous page exists. |
@@ -1637,20 +1638,19 @@ const list = new WUIList({
 list.init();
 
 // Load dataset
-list.rows = [
-	["A1", "B1"],
-	["A2", "B2"],
-	["A3", "B3"],
-	["A4", "B4"],
-	["A5", "B5"],
-	["A6", "B6"],
-	["A7", "B7"],
-	["A8", "B8"],
-	["A9", "B9"],
-	["A10", "B10"],
-	["A11", "B11"],
-	["A12", "B12"]
-];
+list.rows = [{
+	id: "row1", data: ["A1", "B1"]}, {
+	id: "row2", data: ["A2", "B2"]}, {
+	id: "row3", data: ["A3", "B3"], inner: "Row 3.", innerOpened: true}, {
+	id: "row4", data: ["A4", "B4"]}, {
+	id: "row5", data: ["A5", "B5"]}, {
+	id: "row6", data: ["A6", "B6"]}, {
+	id: "row7", data: ["A7", "B7"]}, {
+	id: "row8", data: ["A8", "B8"]}, {
+	id: "row9", data: ["A9", "B9"]}, {
+	id: "row10", data: ["A10", "B10"]}, {
+	id: "row12", data: ["A12", "B12"]
+}];
 list.print();
 ```
 

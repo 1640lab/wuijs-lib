@@ -142,18 +142,6 @@ class WUIList {
 		this._buttons.push(options);
 	}
 
-	enabledRow(index, enabled = true) {
-		this._rows[index].enabled = enabled;
-		if (this._element.innerHTML != "") {
-			const row = this._element.querySelector(".row:nth-of-type("+(index+1)+")");
-			if (!enabled) {
-				row.classList.add("disabled");
-			} else {
-				row.classList.remove("disabled");
-			}
-		}
-	}
-
 	print(page = this._page) {
 		const paging = this._paging == 0 ? this._rows.length : this._paging;
 		if (this._element != null && page * paging >= 0 && page * paging < this._rows.length) {
@@ -290,19 +278,46 @@ class WUIList {
 					row.append(buttons);
 				}
 				this._element.append(row);
-				if ("inner" in rowOptions && typeof(rowOptions.inner) == "string" && rowOptions.inner.trim() != "") {
-					const inner = document.createElement("div");
+				if ("innerContent" in rowOptions && typeof(rowOptions.innerContent) == "string" && rowOptions.innerContent.trim() != "") {
+					const innerRow = document.createElement("div");
 					const opened = Boolean("innerOpened" in rowOptions && rowOptions.innerOpened);
-					inner.dataset.index = i;
-					inner.className = "inner-row"+(!opened ? " hidden" : "");
-					inner.innerHTML = rowOptions.inner;
-					this._element.append(inner);
+					innerRow.dataset.index = i;
+					innerRow.className = "inner-row"+(!opened ? " hidden" : "");
+					innerRow.innerHTML = rowOptions.innerContent;
+					this._element.append(innerRow);
 				}
 			}
 			
 			this._page = page;
 			if (typeof(this._onPrint) == "function") {
 				this._onPrint(page, this.pages, this.total);
+			}
+		}
+	}
+
+	enabledRow(index, enabled = true) {
+		if (index >= 0 && index < this._rows.length) {
+			const row = this._element.querySelector(".row:nth-of-type("+(index+1)+")");
+			if (row != null) {
+				if (enabled) {
+					row.classList.remove("disabled");
+				} else {
+					row.classList.add("disabled");
+				}
+			}
+			this._rows[index].enabled = enabled;
+		}
+	}
+
+	openInnerRow(index, open = true) {
+		if (index >= 0 && index < this._rows.length && "innerContent" in this._rows[index] && typeof(this._rows[index].innerContent) == "string" && this._rows[index].innerContent.trim() != "") {
+			const innerRow = this._element.querySelector(".inner-row:nth-of-type("+(index+1)+")");
+			if (innerRow != null) {
+				if (open) {
+					innerRow.classList.remove("hidden");
+				} else {
+					innerRow.classList.add("hidden");
+				}
 			}
 		}
 	}

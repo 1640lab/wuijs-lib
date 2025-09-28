@@ -1529,13 +1529,13 @@ Objeto avanzado para implementación de listas de datos y botoneras para cada fi
 
 #### Opciones de Fila
 
-| Propiedad   | Tipo      | Valor por defecto | Descripción |
-| ----------- | --------- | ----------------- | ----------- |
-| id          | `string`  | `undefined`       | Identificador único de fila. |
-| data        | `array`   | `[]`              | Arreglo con el contenido de las celdas de la fila. |
-| inner       | `string`  | `undefined`       | Contenido opcional interno desplegado en la parte inferior de la fila. |
-| innerOpened | `boolean` | `false`           | Apertura inicial del contenido opcional. |
-| enabled     | `boolean` | `true`            | Estado de habilitación de la fila. El valor por omisión `true`. |
+| Propiedad    | Tipo      | Valor por defecto | Descripción |
+| ------------ | --------- | ----------------- | ----------- |
+| id           | `string`  | `undefined`       | Identificador único de fila. |
+| data         | `array`   | `[]`              | Arreglo con el contenido de las celdas de la fila. |
+| innerContent | `string`  | `undefined`       | Contenido opcional de la fila interna, desplegado en la parte inferior de la fila. |
+| innerOpened  | `boolean` | `false`           | Apertura inicial del contenido opcional de la fila interna. |
+| enabled      | `boolean` | `true`            | Estado de habilitación de la fila. El valor por omisión `true`. |
 
 #### Opciones de Botón de Fila
 
@@ -1558,8 +1558,9 @@ Objeto avanzado para implementación de listas de datos y botoneras para cada fi
 | addColumn     | `void`        | `addColumn(options)`<br><br>Agrega la configuración de una nueva columna a la lista de columnas del objeto, según la definición de **Opciones de Columna**. |
 | addRow        | `void`        | `addRow(options)`<br><br>Agrega la configuración de una nueva fila a la lista filas del objeto, según la definición de **Opciones de Fila**. |
 | addButton     | `void`        | `addButton(options)`<br><br>Agrega la configuración de un nuevo botón de fila a la lista de bootones de fila del objeto, según la definición de **Opciones de Botón de Fila**. |
-| enabledRow    | `void`        | `enabledRow(index[, enabled])`<br><br>Parámetros:<br>**• index:** `number`, número de fila.<br>**• enabled:** `boolean`, estado de habilitación de la fila. El valor por omisión `true`.<br><br>Hablita o deshabilita una fila. |
 | print         | `void`        | `print([page])`<br><br>Parámetros:<br>**• page:** `number`, número de página. El valor por omisión corresponde a la propiedad `page`. Si se pasa como parámetro un valor distinto al de la propiedad `page` y si es válido, la propiedad tomará dicho valor.<br><br>Imprime la vista de una lista, esta vista puede ser una página o la lista completa según la propiedad `paging` y el parámetro `page`. |
+| enabledRow    | `void`        | `enabledRow(index[, enabled])`<br><br>Parámetros:<br>**• index:** `number`, número de fila.<br>**• enabled:** `boolean`, estado de habilitación de la fila. El valor por omisión `true`.<br><br>Hablita o deshabilita una fila. |
+| openInnerRow  | `void`        | `openInnerRow(index[, open])`<br><br>Parámetros:<br>**• index:** `number`, número de fila.<br>**• open:** `boolean`, estado de apertura del contenido opcional de la fila interna. El valor por omisión `true`.<br><br>Abre o cierra el contenido opcional de la fila interna. |
 | prev          | `void`        | `prev()`<br><br>Despliega la vista de la página previa si es que esta existe. |
 | next          | `void`        | `next()`<br><br>Despliega la vista de la página siguiente si es que esta existe. |
 | isPrevEnabled | `boolean`     | `isPrevEnabled()`<br><br>Retorna si existe una página previa. |
@@ -1637,20 +1638,19 @@ const list = new WUIList({
 list.init();
 
 // Cargar set de datos
-list.rows = [
-	["A1", "B1"],
-	["A2", "B2"],
-	["A3", "B3"],
-	["A4", "B4"],
-	["A5", "B5"],
-	["A6", "B6"],
-	["A7", "B7"],
-	["A8", "B8"],
-	["A9", "B9"],
-	["A10", "B10"],
-	["A11", "B11"],
-	["A12", "B12"]
-];
+list.rows = [{
+	id: "row1", data: ["A1", "B1"]}, {
+	id: "row2", data: ["A2", "B2"]}, {
+	id: "row3", data: ["A3", "B3"], innerContent: "Fila 3.", innerOpened: true}, {
+	id: "row4", data: ["A4", "B4"]}, {
+	id: "row5", data: ["A5", "B5"]}, {
+	id: "row6", data: ["A6", "B6"]}, {
+	id: "row7", data: ["A7", "B7"]}, {
+	id: "row8", data: ["A8", "B8"]}, {
+	id: "row9", data: ["A9", "B9"]}, {
+	id: "row10", data: ["A10", "B10"]}, {
+	id: "row12", data: ["A12", "B12"]
+}];
 list.print();
 ```
 
