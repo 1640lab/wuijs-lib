@@ -1647,7 +1647,7 @@ list.rows = [{
 	id: "row6", data: ["A6", "B6"]}, {
 	id: "row7", data: ["A7", "B7"]}, {
 	id: "row8", data: ["A8", "B8"]}, {
-	id: "row9", data: ["A9", "B9"]}, {
+	id: "row9", data: ["A9", "B9"], enabled: false}, {
 	id: "row10", data: ["A10", "B10"]}, {
 	id: "row12", data: ["A12", "B12"]
 }];
