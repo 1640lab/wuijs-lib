@@ -1582,12 +1582,18 @@ CSS code:
 	width: 40px;
 	text-align: center;
 }
+.my-detail {
+	display: inline;
+	font-size: 16px;
+}
 ```
 
 HTML code:
 
 ```html
-<button class="my-button prev"><</button> <button class="my-button next">></button>
+<button class="my-button prev"><</button>
+<button class="my-button next">></button>
+<div class="my-detail"></div>
 <div class="wui-list my-list"></div>
 ```
 
@@ -1597,6 +1603,7 @@ JS code:
 // Create object
 const prev = document.body.querySelector(".my-button.prev");
 const next = document.body.querySelector(".my-button.next");
+const detail = document.body.querySelector(".my-detail");
 const list = new WUIList({
 	selector: ".wui-list.my-list",
 	paging: 10,
@@ -1619,6 +1626,7 @@ const list = new WUIList({
 	onPrint: (page) => {
 		prev.disabled = !list.isPrevEnabled();
 		next.disabled = !list.isNextEnabled();
+		detail.innerHTML = `${list.page}/${list.pages} (${list.total})`;
 	},
 	onClick: (index, id, event, options) => {
 		console.log(`Row - index: ${index}, id: ${id}`);
