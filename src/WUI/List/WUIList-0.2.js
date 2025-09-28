@@ -38,6 +38,14 @@ class WUIList {
 		return this._page;
 	}
 
+	get pages() {
+		return this._paging == 0 ? 1 : Math.ceil(this._rows.length / this._paging);
+	}
+
+	get total() {
+		return this._rows.length;
+	}
+
 	get columns() {
 		return this._columns;
 	}

@@ -1511,6 +1511,8 @@ Advanced object for implementing data lists and buttons for each row optionally.
 | selector     | `string`   | `.wui-list`   | (get/set)<br><br>CSS selector that defines the HTML element that will be converted into the advanced list object. If more than one element matches the selector, only the first match will be included. |
 | paging       | `number`   | `0`           | (get/set)<br><br>Paging, or the number of rows per page in the list. A value of `0` indicates that the pagination will be the same length as the list of rows; in other words, a value of `0` disables paging. |
 | page         | `number`   | `0`           | (get)<br><br>Current page displayed in the list. Page `0` corresponds to the first page, and the last page corresponds to the number of rows minus 1. |
+| pages        | `number`   | `0`           | (get)<br><br>Total number of pages. |
+| total        | `number`   | `0`           | (get)<br><br>Total number of rows. |
 | columns      | `array`    | `[]`          | (get/set)<br><br>List of columns in the list, as defined by **Column Options**. |
 | rows         | `array`    | `[]`          | (get/set)<br><br>List of rows in the list, as defined by **Row Options**. |
 | buttons      | `array`    | `[]`          | (get/set)<br><br>List of row buttons in the list, as defined by **Row Button Options**. |

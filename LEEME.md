@@ -1511,6 +1511,8 @@ Objeto avanzado para implementación de listas de datos y botoneras para cada fi
 | selector     | `string`   | `".wui-list"`     | (get/set)<br><br>Selector CSS que define el elemento HTML que serán convertido en el objeto avanzado tipo lista. En caso de existir más de un elemento coincidente con el selector se incluirá únicamente la primera coincidencia. |
 | paging       | `number`   | `0`               | (get/set)<br><br>Paginado o número de filas por pagina de la lista. El valor `0` indica que el paginado tendrá el mismo largo que la lista de filas, dicho de tra manera, el valor `0` desactiva el paginado. |
 | page         | `number`   | `0`               | (get)<br><br>Página actual mostrada en la lista. La página `0` corresponde a la primera página y la última al número de filas menos 1. |
+| pages        | `number`   | `0`               | (get)<br><br>Número total de páginas. |
+| total        | `number`   | `0`               | (get)<br><br>Número total de filas. |
 | columns      | `array`    | `[]`              | (get/set)<br><br>Lista de columnas de la lista, según la definición de **Opciones de Columna**. |
 | rows         | `array`    | `[]`              | (get/set)<br><br>Lista de filas de la lista, según la definición de **Opciones de Fila**. |
 | buttons      | `array`    | `[]`              | (get/set)<br><br>Lista de botones de filas de la lista, según la definición de **Opciones de Botón de Fila**. |
