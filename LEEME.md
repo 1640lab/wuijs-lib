@@ -1573,10 +1573,19 @@ Cabecera HTML
 <script type="text/javascript" src="./Libraries/WUI/List/WUIList-0.2.js"></script>
 ```
 
+Código CSS:
+
+```css
+.my-button {
+	width: 40px;
+	text-align: center;
+}
+```
+
 Código HTML:
 
 ```html
-<a class="prev"><</a> <a class="next">></a>
+<button class="my-button prev"><</button> <button class="my-button next">></button>
 <div class="wui-list my-list"></div>
 ```
 
@@ -1584,8 +1593,34 @@ Código JS
 
 ```js
 // Crear objeto
+const prev = document.body.querySelector(".my-button.prev");
+const next = document.body.querySelector(".my-button.next");
 const list = new WUIList({
-	selector: ".wui-list.my-list"
+	selector: ".wui-list.my-list",
+	paging: 10,
+	columns: [{
+		width: 40,
+		align: "center"
+	}, {
+		align: "left"
+	}],
+	rows: [],  // Valor por defecto, propiedad puede ser omitida
+	buttons: [{
+		iconClass: "wui-icon trash-fill",
+		bgcolor: "#f44343",
+		onClick: (index, id) => {
+			console.log(`trash button - index: ${index}, id: ${id}`);
+		},
+		enabled: true
+	}],
+	buttonsStyle: "stretch",
+	onPrint: (page) => {
+		prev.disabled = !list.isPrevEnabled();
+		next.disabled = !list.isNextEnabled();
+	},
+	onClick: (index, id, event, options) => {
+		console.log(`row - index: ${index}, id: ${id}`);
+	}
 });
 
 // Inicializar objeto
