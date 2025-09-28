@@ -1609,7 +1609,7 @@ const list = new WUIList({
 		iconClass: "wui-icon trash-fill",
 		bgcolor: "#f44343",
 		onClick: (index, id) => {
-			console.log(`trash button - index: ${index}, id: ${id}`);
+			console.log(`Trash button - index: ${index}, id: ${id}`);
 		},
 		enabled: true
 	}],
@@ -1619,7 +1619,7 @@ const list = new WUIList({
 		next.disabled = !list.isNextEnabled();
 	},
 	onClick: (index, id, event, options) => {
-		console.log(`row - index: ${index}, id: ${id}`);
+		console.log(`Row - index: ${index}, id: ${id}`);
 	}
 });
 
