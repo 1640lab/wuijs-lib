@@ -1551,20 +1551,20 @@ Advanced object for implementing data lists and buttons for each row optionally.
 
 #### Methods
 
-| Method        | Return type   | Description |
-| ------------- | ------------- | ----------- |
-| getElement    | `HTMLElement` | `getElement()`<br><br>Returns the HTML element containing the advanced object. |
-| init          | `void`        | `init()`<br><br>Initializes the object. |
-| addColumn     | `void`        | `addColumn(options)`<br><br>Adds a new column settings to the object's column list, as defined in **Column Options**. |
-| addRow        | `void`        | `addRow(options)`<br><br>Adds a new row settings to the object's rows list, as defined by **Row Options**. |
-| addButton     | `void`        | `addButton(options)`<br><br>Adds a new row button settings to the object's list of row buttons, as defined by **RowButtonOptions**. |
-| print         | `void`        | `print([page])`<br><br>Arguments:<br>**• page:** `number`, page number. The default value corresponds to the `page` property. If a value other than the `page` property is passed as a parameter and if it is valid, the property will take that value.<br><br>Prints a list view; this view can be a page or the entire list depending on the `paging` property and the `page` parameter. |
-| enabledRow    | `void`        | `enabledRow(index[, enabled])`<br><br>Arguments:<br>**• index:** `number`, row number.<br>**• enabled:** `boolean`, row enable state. The default value is `true`.<br><br>Enables or disables a row. |
-| openInnerRow  | `void`        | `openInnerRow(index[, open])`<br><br>Arguments:<br>**• index:** `number`, row number.<br>**• open:** `boolean`, open state of the optional inner row content. The default value is `true`.<br><br>Opens or closes the optional inner row content. |
-| prev          | `void`        | `prev()`<br><br>Displays the view of the previous page if it exists. |
-| next          | `void`        | `next()`<br><br>Displays the next page view if one exists. |
-| isPrevEnabled | `boolean`     | `isPrevEnabled()`<br><br>Returns whether a previous page exists. |
-| isNextEnabled | `boolean`     | `isNextEnabled()`<br><br>Returns whether a next page exists. |
+| Method       | Return type   | Description |
+| ------------ | ------------- | ----------- |
+| getElement   | `HTMLElement` | `getElement()`<br><br>Returns the HTML element containing the advanced object. |
+| init         | `void`        | `init()`<br><br>Initializes the object. |
+| addColumn    | `void`        | `addColumn(options)`<br><br>Adds a new column settings to the object's column list, as defined in **Column Options**. |
+| addRow       | `void`        | `addRow(options)`<br><br>Adds a new row settings to the object's rows list, as defined by **Row Options**. |
+| addButton    | `void`        | `addButton(options)`<br><br>Adds a new row button settings to the object's list of row buttons, as defined by **RowButtonOptions**. |
+| print        | `void`        | `print([page])`<br><br>Arguments:<br>**• page:** `number`, page number. The default value corresponds to the `page` property. If a value other than the `page` property is passed as a parameter and if it is valid, the property will take that value.<br><br>Prints a list view; this view can be a page or the entire list depending on the `paging` property and the `page` parameter. |
+| enableRow    | `void`        | `enableRow(index[, enabled])`<br><br>Arguments:<br>**• index:** `number`, row number.<br>**• enabled:** `boolean`, row enable state. The default value is `true`.<br><br>Enables or disables a row. |
+| openInnerRow | `void`        | `openInnerRow(index[, open])`<br><br>Arguments:<br>**• index:** `number`, row number.<br>**• open:** `boolean`, open state of the optional inner row content. The default value is `true`.<br><br>Opens or closes the optional inner row content. |
+| prev         | `void`        | `prev()`<br><br>Displays the view of the previous page if it exists. |
+| next         | `void`        | `next()`<br><br>Displays the next page view if one exists. |
+| isPrevEnable | `boolean`     | `isPrevEnable()`<br><br>Returns whether a previous page exists. |
+| isNextEnable | `boolean`     | `isNextEnable()`<br><br>Returns whether a next page exists. |
 
 #### Implementation
 
@@ -1625,8 +1625,8 @@ const list = new WUIList({
 	}],
 	buttonsStyle: "stretch",
 	onPrint: (page, pages, total) => {
-		prev.disabled = !list.isPrevEnabled();
-		next.disabled = !list.isNextEnabled();
+		prev.disabled = !list.isPrevEnable();
+		next.disabled = !list.isNextEnable();
 		paging.innerHTML = `${page}/${pages} (${total})`;
 	},
 	onClick: (index, id, event, options) => {

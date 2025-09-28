@@ -1551,20 +1551,20 @@ Objeto avanzado para implementación de listas de datos y botoneras para cada fi
 
 #### Métodos
 
-| Método        | Tipo retorno  | Descripción |
-| ------------- | ------------- | ----------- |
-| getElement    | `HTMLElement` | `getElement()`<br><br>Retorna el elemento HTML contenedor del objeto avanzado. |
-| init          | `void`        | `init()`<br><br>Inicializa el objeto. |
-| addColumn     | `void`        | `addColumn(options)`<br><br>Agrega la configuración de una nueva columna a la lista de columnas del objeto, según la definición de **Opciones de Columna**. |
-| addRow        | `void`        | `addRow(options)`<br><br>Agrega la configuración de una nueva fila a la lista filas del objeto, según la definición de **Opciones de Fila**. |
-| addButton     | `void`        | `addButton(options)`<br><br>Agrega la configuración de un nuevo botón de fila a la lista de bootones de fila del objeto, según la definición de **Opciones de Botón de Fila**. |
-| print         | `void`        | `print([page])`<br><br>Parámetros:<br>**• page:** `number`, número de página. El valor por omisión corresponde a la propiedad `page`. Si se pasa como parámetro un valor distinto al de la propiedad `page` y si es válido, la propiedad tomará dicho valor.<br><br>Imprime la vista de una lista, esta vista puede ser una página o la lista completa según la propiedad `paging` y el parámetro `page`. |
-| enabledRow    | `void`        | `enabledRow(index[, enabled])`<br><br>Parámetros:<br>**• index:** `number`, número de fila.<br>**• enabled:** `boolean`, estado de habilitación de la fila. El valor por omisión `true`.<br><br>Hablita o deshabilita una fila. |
-| openInnerRow  | `void`        | `openInnerRow(index[, open])`<br><br>Parámetros:<br>**• index:** `number`, número de fila.<br>**• open:** `boolean`, estado de apertura del contenido opcional de la fila interna. El valor por omisión `true`.<br><br>Abre o cierra el contenido opcional de la fila interna. |
-| prev          | `void`        | `prev()`<br><br>Despliega la vista de la página previa si es que esta existe. |
-| next          | `void`        | `next()`<br><br>Despliega la vista de la página siguiente si es que esta existe. |
-| isPrevEnabled | `boolean`     | `isPrevEnabled()`<br><br>Retorna si existe una página previa. |
-| isNextEnabled | `boolean`     | `isNextEnabled()`<br><br>Retorna si existe una página siguiente. |
+| Método       | Tipo retorno  | Descripción |
+| ------------ | ------------- | ----------- |
+| getElement   | `HTMLElement` | `getElement()`<br><br>Retorna el elemento HTML contenedor del objeto avanzado. |
+| init         | `void`        | `init()`<br><br>Inicializa el objeto. |
+| addColumn    | `void`        | `addColumn(options)`<br><br>Agrega la configuración de una nueva columna a la lista de columnas del objeto, según la definición de **Opciones de Columna**. |
+| addRow       | `void`        | `addRow(options)`<br><br>Agrega la configuración de una nueva fila a la lista filas del objeto, según la definición de **Opciones de Fila**. |
+| addButton    | `void`        | `addButton(options)`<br><br>Agrega la configuración de un nuevo botón de fila a la lista de bootones de fila del objeto, según la definición de **Opciones de Botón de Fila**. |
+| print        | `void`        | `print([page])`<br><br>Parámetros:<br>**• page:** `number`, número de página. El valor por omisión corresponde a la propiedad `page`. Si se pasa como parámetro un valor distinto al de la propiedad `page` y si es válido, la propiedad tomará dicho valor.<br><br>Imprime la vista de una lista, esta vista puede ser una página o la lista completa según la propiedad `paging` y el parámetro `page`. |
+| enableRow    | `void`        | `enableRow(index[, enabled])`<br><br>Parámetros:<br>**• index:** `number`, número de fila.<br>**• enabled:** `boolean`, estado de habilitación de la fila. El valor por omisión `true`.<br><br>Hablita o deshabilita una fila. |
+| openInnerRow | `void`        | `openInnerRow(index[, open])`<br><br>Parámetros:<br>**• index:** `number`, número de fila.<br>**• open:** `boolean`, estado de apertura del contenido opcional de la fila interna. El valor por omisión `true`.<br><br>Abre o cierra el contenido opcional de la fila interna. |
+| prev         | `void`        | `prev()`<br><br>Despliega la vista de la página previa si es que esta existe. |
+| next         | `void`        | `next()`<br><br>Despliega la vista de la página siguiente si es que esta existe. |
+| isPrevEnable | `boolean`     | `isPrevEnable()`<br><br>Retorna si existe una página previa. |
+| isNextEnable | `boolean`     | `isNextEnable()`<br><br>Retorna si existe una página siguiente. |
 
 #### Implementación
 
@@ -1625,8 +1625,8 @@ const list = new WUIList({
 	}],
 	buttonsStyle: "stretch",
 	onPrint: (page, pages, total) => {
-		prev.disabled = !list.isPrevEnabled();
-		next.disabled = !list.isNextEnabled();
+		prev.disabled = !list.isPrevEnable();
+		next.disabled = !list.isNextEnable();
 		paging.innerHTML = `${page}/${pages} (${total})`;
 	},
 	onClick: (index, id, event, options) => {

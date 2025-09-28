@@ -295,7 +295,7 @@ class WUIList {
 		}
 	}
 
-	enabledRow(index, enabled = true) {
+	enableRow(index, enabled = true) {
 		if (index >= 0 && index < this._rows.length) {
 			const row = this._element.querySelector(".row:nth-of-type("+(index+1)+")");
 			if (row != null) {
@@ -330,12 +330,12 @@ class WUIList {
 		this.print(this._page + 1);
 	}
 
-	isPrevEnabled() {
+	isPrevEnable() {
 		const paging = this._paging == 0 ? this._rows.length : this._paging;
 		return Boolean((this._page - 1) * paging >= 0);
 	}
 
-	isNextEnabled() {
+	isNextEnable() {
 		const paging = this._paging == 0 ? this._rows.length : this._paging;
 		return Boolean((this._page + 1) * paging < this._rows.length);
 	}
