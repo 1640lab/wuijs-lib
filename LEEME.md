@@ -1623,10 +1623,10 @@ const list = new WUIList({
 		enabled: true
 	}],
 	buttonsStyle: "stretch",
-	onPrint: (page) => {
+	onPrint: (page, pages, total) => {
 		prev.disabled = !list.isPrevEnabled();
 		next.disabled = !list.isNextEnabled();
-		paging.innerHTML = `${list.page}/${list.pages} (${list.total})`;
+		paging.innerHTML = `${page}/${pages} (${total})`;
 	},
 	onClick: (index, id, event, options) => {
 		console.log(`Fila - índice: ${index}, id: ${id}`);

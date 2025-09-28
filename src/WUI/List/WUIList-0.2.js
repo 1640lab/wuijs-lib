@@ -302,7 +302,7 @@ class WUIList {
 			
 			this._page = page;
 			if (typeof(this._onPrint) == "function") {
-				this._onPrint(page);
+				this._onPrint(page, this.pages, this.total);
 			}
 		}
 	}
