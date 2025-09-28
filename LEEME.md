@@ -1027,8 +1027,8 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 | --------- | ---------- | ----------------- | ----------- |
 | selector  | `string`   | `undefined`       | Selector CSS que define el elemento HTML que serán incluido como sección. En caso de existir más de un elemento coincidente con el selector se incluirá únicamente la primera coincidencia. *oblogatorio* |
 | target    | `string`   | `undefined`       | Nombre auxiliar para referenciar la sección. Utilizado en el método `goSection()`. |
-| type      | `string`   | `"auto"`          | Define el comportamiento CSS del alto de la sección.<br><br>Valores:<br>• `"auto"`<br>• `"static"` |
-| height    | `number`   | `undefined`       | Define el alto de la sección, este puede estar expresado como número asociado a píxeles o en formato compatible CSS. |
+| type      | `string`   | `"auto"`          | Comportamiento CSS del alto de la sección.<br><br>Valores:<br>• `"auto"`<br>• `"static"` |
+| height    | `number`   | `undefined`       | Alto de la sección. Este puede estar expresado como número asociado a píxeles o en formato compatible CSS. |
 | steps     | `number`   | `undefined`       | Número total de pasos definidos en la función de animación `animation`. |
 | pages     | `number`   | `undefined`       | Número total de paginas definidos en la función de animación `animation`. |
 | animation | `function` | `undefined`       | `function(step, progress)`<br><br>Parámetros:<br>**• step:** `number`, valor entre `0` y `pages - 1` <br>**• progress:** `number`, valor entre `0` y `1` <br><br>Función que se llama cuando se ejecuta el movimiento del scroll en una sección. |
@@ -1219,7 +1219,7 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 | ![](./imgs/Icons/person-check-line.svg)  | .person-check-line  | ![](./imgs/Icons/person-check-fill.svg)  | .person-check-fill  | ![](./imgs/Icons/person-x-line.svg)       | .person-x-line       | ![](./imgs/Icons/person-x-fill.svg)       | .person-x-fill       |
 | ![](./imgs/Icons/people-line.svg)        | .people-line        | ![](./imgs/Icons/people-fill.svg)        | .people-fill        | ![](./imgs/Icons/person-contact-line.svg) | .person-contact-line | ![](./imgs/Icons/person-contact-fill.svg) | .person-contact-fill |
 | ![](./imgs/Icons/person-card-line.svg)   | .person-card-line   | ![](./imgs/Icons/person-card-fill.svg)   | .person-card-fill   | ![](./imgs/Icons/person-names-line.svg)   | .person-names-line   | ![](./imgs/Icons/person-names-fill.svg)   | .person-names-fill   |
-| ![](./imgs/Icons/person-circle-line.svg) | .person-circle-line | ![](./imgs/Icons/person-circle-fill.svg) | .person-circle-fill | ![](./imgs/Icons/user-line.svg)           | .user-line           |                                                     |                      |
+| ![](./imgs/Icons/person-circle-line.svg) | .person-circle-line | ![](./imgs/Icons/person-circle-fill.svg) | .person-circle-fill | ![](./imgs/Icons/user-line.svg)           | .user-line           |                                           |                      |
 
 #### Tabla de Íconos de Archivo
 
@@ -1269,16 +1269,16 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 
 | Icono                                    | Estilo              | Icono                                      | Estilo                | Icono                                 | Estilo           |
 | :---:                                    | ------              | :---:                                      | ------                | :---:                                 | ------           |
-| ![](./imgs/Icons/map-line.svg)           | .map-line           | ![](./imgs/Icons/map-fill.svg)             | .map-fill             |                                                 |                  |
-| ![](./imgs/Icons/map-alt-line.svg)       | .map-alt-line       | ![](./imgs/Icons/map-alt-fill.svg)         | .map-alt-fill         |                                                 |                  |
+| ![](./imgs/Icons/map-line.svg)           | .map-line           | ![](./imgs/Icons/map-fill.svg)             | .map-fill             |                                       |                  |
+| ![](./imgs/Icons/map-alt-line.svg)       | .map-alt-line       | ![](./imgs/Icons/map-alt-fill.svg)         | .map-alt-fill         |                                       |                  |
 | ![](./imgs/Icons/mapmarker-line.svg)     | .mapmarker-line     | ![](./imgs/Icons/mapmarker-fill.svg)       | .mapmarker-fill       | ![](./imgs/Icons/mapmarker-color.svg) | .mapmarker-color |
 | ![](./imgs/Icons/mappin-line.svg)        | .mappin-line        | ![](./imgs/Icons/mappin-fill.svg)          | .mappin-fill          | ![](./imgs/Icons/mappin-color.svg)    | .mappin-color    |
-| ![](./imgs/Icons/mappointer-line.svg)    | .mappointer-line    | ![](./imgs/Icons/mappointer-fill.svg)      | .mappointer-fill      |                                                 |                  |
-| ![](./imgs/Icons/mapchart-line.svg)      | .mapchart-line      | ![](./imgs/Icons/mapchart-fill.svg)        | .mapchart-fill        |                                                 |                  |
-| ![](./imgs/Icons/globe-line.svg)         | .globe-line         | ![](./imgs/Icons/globe-alt-line.svg)       | .globe-alt-line       |                                                 |                  |
-| ![](./imgs/Icons/globe-america-fill.svg) | .globe-america-fill | ![](./imgs/Icons/globe-africa-fill.svg)    | .globe-africa-fill    |                                                 |                  |
-| ![](./imgs/Icons/globe-asia-fill.svg)    | .globe-asia-fill    | ![](./imgs/Icons/globe-australia-fill.svg) | .globe-australia-fill |                                                 |                  |
-| ![](./imgs/Icons/h-circle-line.svg)      | .h-circle-line      | ![](./imgs/Icons/h-circle-fill.svg)        | .h-circle-fill        |                                                 |                  |
+| ![](./imgs/Icons/mappointer-line.svg)    | .mappointer-line    | ![](./imgs/Icons/mappointer-fill.svg)      | .mappointer-fill      |                                       |                  |
+| ![](./imgs/Icons/mapchart-line.svg)      | .mapchart-line      | ![](./imgs/Icons/mapchart-fill.svg)        | .mapchart-fill        |                                       |                  |
+| ![](./imgs/Icons/globe-line.svg)         | .globe-line         | ![](./imgs/Icons/globe-alt-line.svg)       | .globe-alt-line       |                                       |                  |
+| ![](./imgs/Icons/globe-america-fill.svg) | .globe-america-fill | ![](./imgs/Icons/globe-africa-fill.svg)    | .globe-africa-fill    |                                       |                  |
+| ![](./imgs/Icons/globe-asia-fill.svg)    | .globe-asia-fill    | ![](./imgs/Icons/globe-australia-fill.svg) | .globe-australia-fill |                                       |                  |
+| ![](./imgs/Icons/h-circle-line.svg)      | .h-circle-line      | ![](./imgs/Icons/h-circle-fill.svg)        | .h-circle-fill        |                                       |                  |
 | ![](./imgs/Icons/highway-66-fill.svg)    | .highway-66-fill    | ![](./imgs/Icons/highway-75-fill.svg)      | .highway-75-fill      | ![](./imgs/Icons/highway-94-fill.svg) | .highway-94-fill |
 
 #### Tabla de Íconos de Dispositivo
@@ -1522,27 +1522,30 @@ Objeto avanzado para implementación de listas de datos y botoneras para cada fi
 
 | Propiedad | Tipo     | Valor por defecto | Descripción |
 | --------- | -------- | ----------------- | ----------- |
-| width     | `string` | `undefined`       | 
-| align     | `string` | `"left"`          | 
+| width     | `string` | `undefined`       | Ancho de la columna. Este puede estar expresado como número asociado a píxeles o en formato compatible CSS. |
+| align     | `string` | `"left"`          | Modo de alineación de el contenido de la columna.<br><br>Valores:<br>• `"left"`<br>• `"right"`<br>• `"center"` |
 
 #### Opciones de Fila
 
 | Propiedad   | Tipo      | Valor por defecto | Descripción |
 | ----------- | --------- | ----------------- | ----------- |
-| id          | `string`  | `undefined`       | 
-| data        | `array`   | `[]`              | 
-| inner       | `string`  | `undefined`       | 
-| innerOpened | `boolean` | `false`           | 
-| enabled     | `boolean` | `true`            | 
+| id          | `string`  | `undefined`       | Identificador único de fila. |
+| data        | `array`   | `[]`              | Arreglo con el contenido de las celdas de la fila. |
+| inner       | `string`  | `undefined`       | Contenido opcional interno desplegado en la parte inferior de la fila. |
+| innerOpened | `boolean` | `false`           | Apertura inicial del contenido opcional. |
+| enabled     | `boolean` | `true`            | Estado de habilitación de la fila. El valor por omisión `true`. |
 
 #### Opciones de Botón de Fila
 
 | Propiedad | Tipo               | Valor por defecto | Descripción |
 | --------- | ------------------ | ----------------- | ----------- |
-| iconClass | `string|function`  | `undefined`       | 
-| bgcolor   | `string|function`  | `undefined`       | 
-| enabled   | `boolean|function` | `true`            | 
-| onClick   | `function`         | `null`            | 
+| iconClass | `string|function`  | `undefined`       | Estilos CSS que define el ícono del botón de fila. Esta opción puede ser utilizado opcionalmente con la librería [WUIIcon](#wuiIcon) mediante el estilo `wui-icon` conjuntamente a un estilo de ícono específico. |
+| bgcolor   | `string|function`  | `undefined`       | Color de fondo en formato compatible CSS. |
+| enabled   | `boolean|function` | `true`            | Estado de habilitación del botón. |
+| onClick   | `function`         | `null`            | Función que se llama cuando se presiona el botón. Reciven los parámetro `index`, correspondiente a la posición de la fila partiendo desde `0`; `id`, correspondiente al Identificador único de fila; y `event`, correspondiente al objeto de captura del evento. |
+
+> [!IMPORTANT]
+> Las opciones que aceptan valores opcionales de tipo función (`iconClass`, `bgcolor` y `enabled`), reciven los parámetro `index`, correspondiente a la posición de la fila partiendo desde `0`; e `id`, correspondiente al Identificador único de fila.
 
 #### Métodos
 
@@ -1565,6 +1568,7 @@ Objeto avanzado para implementación de listas de datos y botoneras para cada fi
 Cabecera HTML
 
 ```html
+<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Icon/WUIIcon-0.1.css">
 <link type="text/css" rel="stylesheet" href="./Libraries/WUI/List/WUIList-0.2.css">
 <script type="text/javascript" src="./Libraries/WUI/List/WUIList-0.2.js"></script>
 ```
@@ -1572,6 +1576,7 @@ Cabecera HTML
 Código HTML:
 
 ```html
+<a class="prev"><</a> <a class="next">></a>
 <div class="wui-list my-list"></div>
 ```
 

@@ -1027,8 +1027,8 @@ Tool for animating HTML elements using the "onscroll" event of the HTML page bod
 | --------- | ---------- | ------------- | ----------- |
 | selector  | `string`   | `undefined`   | CSS selector that defines the HTML element to be included as a section. If more than one element matches the selector, only the first match will be included. *oblogatory* |
 | target    | `string`   | `undefined`   | Auxiliary name for referencing the section. Used in the `goSection()` method. |
-| type      | `string`   | `"auto"`      | Defines the CSS behavior of the section height.<br><br>Values:<br>• `"auto"`<br>• `"static"` |
-| height    | `number`   | `undefined`   | Defines the height of the section, this can be expressed as a number associated with pixels or in a CSS compatible format. |
+| type      | `string`   | `"auto"`      | CSS behavior of the section height.<br><br>Values:<br>• `"auto"`<br>• `"static"` |
+| height    | `number`   | `undefined`   | Section height. This can be expressed as a number associated with pixels or in a CSS compatible format. |
 | steps     | `number`   | `undefined`   | Total number of steps defined in the `animation` animation function. |
 | pages     | `number`   | `undefined`   | Total number of pages defined in the `animation` animation function. |
 | animation | `function` | `undefined`   | `function(step, progress)`<br><br>Arguments:<br>**• step:** `number`, value between `0` and `pages - 1` <br>**• progress:** `number`, value between `0` and `1` <br><br>Function that is called when the scroll movement is executed in a section. |
@@ -1219,7 +1219,7 @@ Set of pre-designed icons loaded via CSS, for use in interfaces.
 | ![](./imgs/Icons/person-check-line.svg)  | .person-check-line  | ![](./imgs/Icons/person-check-fill.svg)  | .person-check-fill  | ![](./imgs/Icons/person-x-line.svg)       | .person-x-line       | ![](./imgs/Icons/person-x-fill.svg)       | .person-x-fill       |
 | ![](./imgs/Icons/people-line.svg)        | .people-line        | ![](./imgs/Icons/people-fill.svg)        | .people-fill        | ![](./imgs/Icons/person-contact-line.svg) | .person-contact-line | ![](./imgs/Icons/person-contact-fill.svg) | .person-contact-fill |
 | ![](./imgs/Icons/person-card-line.svg)   | .person-card-line   | ![](./imgs/Icons/person-card-fill.svg)   | .person-card-fill   | ![](./imgs/Icons/person-names-line.svg)   | .person-names-line   | ![](./imgs/Icons/person-names-fill.svg)   | .person-names-fill   |
-| ![](./imgs/Icons/person-circle-line.svg) | .person-circle-line | ![](./imgs/Icons/person-circle-fill.svg) | .person-circle-fill | ![](./imgs/Icons/user-line.svg)           | .user-line           |                                                     |                      |
+| ![](./imgs/Icons/person-circle-line.svg) | .person-circle-line | ![](./imgs/Icons/person-circle-fill.svg) | .person-circle-fill | ![](./imgs/Icons/user-line.svg)           | .user-line           |                                           |                      |
 
 #### File Icon Table
 
@@ -1269,16 +1269,16 @@ Set of pre-designed icons loaded via CSS, for use in interfaces.
 
 | Icon                                     | Style               | Icon                                       | Style                 | Icon                                  | Style            |
 | :--:                                     | -----               | :--:                                       | -----                 | :--:                                  | -----            |
-| ![](./imgs/Icons/map-line.svg)           | .map-line           | ![](./imgs/Icons/map-fill.svg)             | .map-fill             |                                                 |                  |
-| ![](./imgs/Icons/map-alt-line.svg)       | .map-alt-line       | ![](./imgs/Icons/map-alt-fill.svg)         | .map-alt-fill         |                                                 |                  |
+| ![](./imgs/Icons/map-line.svg)           | .map-line           | ![](./imgs/Icons/map-fill.svg)             | .map-fill             |                                       |                  |
+| ![](./imgs/Icons/map-alt-line.svg)       | .map-alt-line       | ![](./imgs/Icons/map-alt-fill.svg)         | .map-alt-fill         |                                       |                  |
 | ![](./imgs/Icons/mapmarker-line.svg)     | .mapmarker-line     | ![](./imgs/Icons/mapmarker-fill.svg)       | .mapmarker-fill       | ![](./imgs/Icons/mapmarker-color.svg) | .mapmarker-color |
 | ![](./imgs/Icons/mappin-line.svg)        | .mappin-line        | ![](./imgs/Icons/mappin-fill.svg)          | .mappin-fill          | ![](./imgs/Icons/mappin-color.svg)    | .mappin-color    |
-| ![](./imgs/Icons/mappointer-line.svg)    | .mappointer-line    | ![](./imgs/Icons/mappointer-fill.svg)      | .mappointer-fill      |                                                 |                  |
-| ![](./imgs/Icons/mapchart-line.svg)      | .mapchart-line      | ![](./imgs/Icons/mapchart-fill.svg)        | .mapchart-fill        |                                                 |                  |
-| ![](./imgs/Icons/globe-line.svg)         | .globe-line         | ![](./imgs/Icons/globe-alt-line.svg)       | .globe-alt-line       |                                                 |                  |
-| ![](./imgs/Icons/globe-america-fill.svg) | .globe-america-fill | ![](./imgs/Icons/globe-africa-fill.svg)    | .globe-africa-fill    |                                                 |                  |
-| ![](./imgs/Icons/globe-asia-fill.svg)    | .globe-asia-fill    | ![](./imgs/Icons/globe-australia-fill.svg) | .globe-australia-fill |                                                 |                  |
-| ![](./imgs/Icons/h-circle-line.svg)      | .h-circle-line      | ![](./imgs/Icons/h-circle-fill.svg)        | .h-circle-fill        |                                                 |                  |
+| ![](./imgs/Icons/mappointer-line.svg)    | .mappointer-line    | ![](./imgs/Icons/mappointer-fill.svg)      | .mappointer-fill      |                                       |                  |
+| ![](./imgs/Icons/mapchart-line.svg)      | .mapchart-line      | ![](./imgs/Icons/mapchart-fill.svg)        | .mapchart-fill        |                                       |                  |
+| ![](./imgs/Icons/globe-line.svg)         | .globe-line         | ![](./imgs/Icons/globe-alt-line.svg)       | .globe-alt-line       |                                       |                  |
+| ![](./imgs/Icons/globe-america-fill.svg) | .globe-america-fill | ![](./imgs/Icons/globe-africa-fill.svg)    | .globe-africa-fill    |                                       |                  |
+| ![](./imgs/Icons/globe-asia-fill.svg)    | .globe-asia-fill    | ![](./imgs/Icons/globe-australia-fill.svg) | .globe-australia-fill |                                       |                  |
+| ![](./imgs/Icons/h-circle-line.svg)      | .h-circle-line      | ![](./imgs/Icons/h-circle-fill.svg)        | .h-circle-fill        |                                       |                  |
 | ![](./imgs/Icons/highway-66-fill.svg)    | .highway-66-fill    | ![](./imgs/Icons/highway-75-fill.svg)      | .highway-75-fill      | ![](./imgs/Icons/highway-94-fill.svg) | .highway-94-fill |
 
 #### Device Icon Table
@@ -1522,27 +1522,30 @@ Advanced object for implementing data lists and buttons for each row optionally.
 
 | Property | Type     | Default value | Description |
 | -------- | -------- | ------------- | ----------- |
-| width    | `string` | `undefined`   | 
-| align    | `string` | `"left"`      | 
+| width    | `string` | `undefined`   | Column width. This can be expressed as a number associated with pixels or in a CSS compatible format. |
+| align    | `string` | `"left"`      | Alignment mode for column content.<br><br>Values:<br>• `"left"`<br>• `"right"`<br>• `"center"` |
 
 #### Rows Options
 
 | Property    | Type      | Default value | Description |
 | ----------- | --------- | ------------- | ----------- |
-| id          | `string`  | `undefined`   | 
-| data        | `array`   | `[]`          | 
-| inner       | `string`  | `undefined`   | 
-| innerOpened | `boolean` | `false`       | 
-| enabled     | `boolean` | `true`        | 
+| id          | `string`  | `undefined`   | Unique row identifier. |
+| data        | `array`   | `[]`          | Array with the contents of the cells in the row. |
+| inner       | `string`  | `undefined`   | Optional internal content displayed at the bottom of the row. |
+| innerOpened | `boolean` | `false`       | Initial opening of optional content. |
+| enabled     | `boolean` | `true`        | Row enable state. The default is `true`. |
 
 #### Row Button Options
 
 | Property  | Type.              | Default value | Description |
 | --------- | ------------------ | ------------- | ----------- |
-| iconClass | `string|function`  | `undefined`   | 
-| bgcolor   | `string|function`  | `undefined`   | 
-| enabled   | `boolean|function` | `true`        | 
-| onClick   | `function`         | `null`        | 
+| iconClass | `string|function`  | `undefined`   | CSS styles that define the row button icon. This option can optionally be used with the [WUIIcon](#wuiIcon) library by using the `wui-icon` style in conjunction with a specific icon style. |
+| bgcolor   | `string|function`  | `undefined`   | Background color in CSS compatible format. |
+| enabled   | `boolean|function` | `true`        | Button enable state. |
+| onClick   | `function`         | `null`        | Function called when the button is pressed. It receives the parameters `index`, corresponding to the row position starting from `0`; `id`, corresponding to the row's unique identifier; and `event`, corresponding to the event capture object. |
+
+> [!IMPORTANT]
+> Options that accept optional function values ​​(`iconClass`, `bgcolor` and `enabled`) receive the parameters `index`, corresponding to the row position starting from `0`; and `id`, corresponding to the row's unique identifier.
 
 #### Methods
 
@@ -1565,6 +1568,7 @@ Advanced object for implementing data lists and buttons for each row optionally.
 HTML head:
 
 ```html
+<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Icon/WUIIcon-0.1.css">
 <link type="text/css" rel="stylesheet" href="./Libraries/WUI/List/WUIList-0.2.css">
 <script type="text/javascript" src="./Libraries/WUI/List/WUIList-0.2.js"></script>
 ```
@@ -1572,6 +1576,7 @@ HTML head:
 HTML code:
 
 ```html
+<a class="prev"><</a> <a class="next">></a>
 <div class="wui-list my-list"></div>
 ```
 
