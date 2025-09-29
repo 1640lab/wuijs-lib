@@ -10,17 +10,17 @@ class WUITable {
 	static version = "0.1";
 	static #defaults = {
 		selector: ".wui-table",
+		paging: 0,
 		columns: [],
 		rows: [],
 		align: "left",
 		valign: "center",
-		paging: 0,
 		sortable: true,
 		resizable: true,
 		draggable: true,
 		selectable: true,
 		onClick: null,
-		onDblclick: null
+		onDblClick: null
 	};
 
 	static #icons = {
@@ -38,10 +38,27 @@ class WUITable {
 		Object.keys(WUITable.#defaults).forEach(prop => {
 			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUITable.#defaults ? WUITable.#defaults[prop] : null;
 		});
+		this._page = 0;
 	}
 
 	get selector() {
 		return this._selector;
+	}
+
+	get paging() {
+		return this._paging;
+	}
+
+	get page() {
+		return this._page;
+	}
+
+	get pages() {
+		return this._paging == 0 ? 1 : Math.ceil(this._rows.length / this._paging);
+	}
+
+	get total() {
+		return this._rows.length;
 	}
 
 	get columns() {
@@ -58,10 +75,6 @@ class WUITable {
 
 	get valign() {
 		return this._valign;
-	}
-
-	get paging() {
-		return this._paging;
 	}
 
 	get sortable() {
@@ -84,14 +97,20 @@ class WUITable {
 		return this._onClick;
 	}
 
-	get onDblclick() {
-		return this._onDblclick;
+	get onDblClick() {
+		return this._onDblClick;
 	}
 
 	set selector(value) {
 		if (typeof(value) == "string" && value != "") {
 			this._selector = value;
 			this._element = document.querySelector(value);
+		}
+	}
+
+	set paging(value) {
+		if (typeof(value) == "number" && value >= 0) {
+			this._paging = parseInt(value);
 		}
 	}
 
@@ -116,12 +135,6 @@ class WUITable {
 	set valign(value) {
 		if (typeof(value) == "string" && value.match(/^(top|center|bottom)$/i)) {
 			this._valign = value.toLowerCase();
-		}
-	}
-
-	set paging(value) {
-		if (typeof(value) == "number" && value >= 0) {
-			this._paging = parseInt(value);
 		}
 	}
 
@@ -155,9 +168,9 @@ class WUITable {
 		}
 	}
 
-	set onDblclick(value) {
+	set onDblClick(value) {
 		if (typeof(value) == "function") {
-			this._onDblclick = value;
+			this._onDblClick = value;
 		}
 	}
 
@@ -170,14 +183,6 @@ class WUITable {
 		const color = getComputedStyle(element).getPropertyValue("--wui-grid-"+name+"color-"+event).replace(/#/g, "%23").trim();
 		const src = getComputedStyle(element).getPropertyValue("--wui-grid-"+name+"icon-src").replace(/currentColor/g, color);
 		return src != "" && !src.match(/^(none|url\(\))$/) ? src : "url(\"data:image/svg+xml,"+WUITable.#icons[name].replace(/currentColor/g, color)+"\")";
-	}
-
-	addColumn(options) {
-		this._columns.push(options);
-	}
-
-	addRow(options) {
-		this._rows.push(options);
 	}
 
 	init() {
@@ -197,72 +202,108 @@ class WUITable {
 		this._thead.appendChild(this._theadRow);
 		this._tfooter.appendChild(this._tfooterRow);
 		if (this._columns.length > 0) {
-			this.printHead();
+			this.#printHead();
 		}
 		if (this._rows.length > 0) {
-			this.print();
+			this.#printBody();
 		}
 	}
 
-	printHead() {
+	addColumn(options) {
+		this._columns.push(options);
+	}
+
+	addRow(options) {
+		this._rows.push(options);
+	}
+
+	#printHead() {
 		this._style.innerHTML = "";
 		this._columns.forEach((colOptions, j) => {
 			const th = document.createElement("th");
-			const align = colOptions.align || this._align;
+			/*const align = colOptions.align || this._align;
 			const valign = colOptions.valign || this._valign;
 			this._style.innerHTML += ""
 				+this._selector+" > table :is(thead, tbody, tfoot) > tr > :is(th, td):nth-child("+(j + 1)+") {\n"
 				+(typeof(colOptions.width) == "number" ? "\twidth: "+colOptions.width+"px;\n" : "")
 				+(valign != "center" ? "\tvertical-align: "+align+";\n" : "")
 				+(align != "left" ? "\ttext-align: "+align+";\n" : "")
-				+"}\n";
+				+"}\n";*/
 			th.innerHTML = colOptions.label || "";
-			["sortable", "resizable"].forEach(prop => {
+			["sortable", "resizable", "draggable"].forEach(prop => {
 				if (this["_"+prop]) {
-					const span = document.createElement("span");
-					span.className = prop;
-					th.appendChild(span);
+					th.classList.add(prop);
 				}	
 			});
 			this._theadRow.appendChild(th);
 		});
 	}
 
-	printBody(page = 0, sort = "") {
-		const ini = page*this._paging;
-		const end = this._paging > 0 ? ini + this._paging : this._rows.length -1;
-		this._tbody.innerHTML = "";
-		for (let i=ini; i<=end; i++) {
-			const tr = document.createElement("tr");
-			const rowOptions = this._rows[i] || {};
-			const id = "id" in rowOptions ? rowOptions.id : null;
-			const align = rowOptions.align || this._align;
-			const valign = rowOptions.valign || this._valign;
-			this._columns.forEach((colOptions, j) => {
-				const td = document.createElement("td");
-				if (typeof(colOptions.target) == "string") {
-					td.dataset.target = colOptions.target;
+	#printBody(page = this._page) {
+		const paging = this._paging == 0 ? this._rows.length : this._paging;
+		if (this._element != null && page * paging >= 0 && page * paging < this._rows.length) {
+			const ini = page * paging;
+			const end = (page + 1) * paging > this._rows.length ? this._rows.length : (page + 1) * paging;
+			this._tbody.innerHTML = "";
+			for (let i=ini; i<=end; i++) {
+				const tr = document.createElement("tr");
+				const rowOptions = this._rows[i] || {};
+				const id = "id" in rowOptions ? rowOptions.id : null;
+				const align = rowOptions.align || this._align;
+				const valign = rowOptions.valign || this._valign;
+				if (id != null) {
+					tr.dataset.id = id;
 				}
-				if (typeof(align) == "string" && align != "left" && align.match(/^(left|center|right)$/i)) {
-					td.style.textAlign = align;
-				}
-				if (typeof(valign) == "string" && valign != "center" && valign.match(/^(top|center|bottom)$/i)) {
-					td.style.verticalAlign = valign;
-				}
-				td.innerHTML = rowOptions.data[j] || "";
-				tr.appendChild(td);
-			});
-			if (id != null) {
-				tr.dataset.id = id;
+				tr.dataset.index = i;
+				tr.addEventListener("click", event => {
+					if (this._selectable && typeof(this._onClick) == "function") {
+						this._onClick(i, id, event, rowOptions);
+					}
+				});
+				tr.addEventListener("dblclick", event => {
+					if (this._selectable && typeof(this._onDblClick) == "function") {
+						this._onDblClick(i, id, event, rowOptions);
+					}
+				});
+				this._columns.forEach((colOptions, j) => {
+					const td = document.createElement("td");
+					if (typeof(colOptions.target) == "string") {
+						td.dataset.target = colOptions.target;
+					}
+					if (typeof(align) == "string" && align != "left" && align.match(/^(left|center|right)$/i)) {
+						td.style.textAlign = align;
+					}
+					if (typeof(valign) == "string" && valign != "center" && valign.match(/^(top|center|bottom)$/i)) {
+						td.style.verticalAlign = valign;
+					}
+					td.innerHTML = rowOptions.data[j] || "";
+					tr.appendChild(td);
+				});
+				this._tbody.appendChild(tr);
 			}
-			tr.dataset.index = i;
-			tr.addEventListener("click", event => {
-				if (this._selectable && typeof(this._onClick) == "function") {
-					this._onClick(i, id, event, rowOptions);
-				}
-			});
-			this._tbody.appendChild(tr);
 		}
+	}
+
+	print(page = this._page) {
+		thie.#printBody(page);
+	}
+
+	prev() {
+		this.print(this._page - 1);
+	}
+
+	next() {
+		this.print(this._page + 1);
+	}
+
+	isPrevEnable() {
+		const paging = this._paging == 0 ? this._rows.length : this._paging;
+		return Boolean((this._page - 1) * paging >= 0);
+	}
+
+	isNextEnable() {
+		const paging = this._paging == 0 ? this._rows.length : this._paging;
+		return Boolean((this._page + 1) * paging < this._rows.length);
 	}
 }
 
@@ -282,12 +323,12 @@ Generated HTML code:
 	<table>
 		<thead>
 			<tr>
-				<th>column 0 <span class="sortable"></span><span class="resizable"></span></td>
+				<th class="sortable resizable"></td>
 				...
 			</tr>
 		</thead>
 		<tbody>
-			<tr data-index="0" [data-id="id-row-0"]>
+			<tr data-index="0" [data-id="row1"]>
 				<td></td>
 				...
 			</tr>
