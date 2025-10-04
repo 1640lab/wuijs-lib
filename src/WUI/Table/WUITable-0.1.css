@@ -37,6 +37,16 @@
 	-moz-user-select: none;
 	user-select: none;
 }
+.wui-table > table > thead > tr:first-child > th:first-child {
+	-webkit-border-top-left-radius: var(--wui-table-row-radius);
+	-moz-border-radius-topleft: var(--wui-table-row-radius);
+	border-top-left-radius: var(--wui-table-row-radius);
+}
+.wui-table > table > thead > tr:first-child > th:last-child {
+	-webkit-border-top-right-radius: var(--wui-table-row-radius);
+	-moz-border-radius-topright: var(--wui-table-row-radius);
+	border-top-right-radius: var(--wui-table-row-radius);
+}
 .wui-table > table > thead > tr > th:not(.disabled):is(:hover, :focus, :focus-within) {
 	border-color: var(--wui-table-column-bordercolor-over);
 	background-color: var(--wui-table-column-bgcolor-over);
@@ -55,26 +65,20 @@
 	background-color: var(--wui-table-row-bgcolor-out);
 	color: var(--wui-table-row-textcolor-out);
 }
+.wui-table > table > tbody > tr:last-child > td:first-child {
+	-webkit-border-bottom-left-radius: var(--wui-table-row-radius);
+	-moz-border-radius-bottomleft: var(--wui-table-row-radius);
+	border-bottom-left-radius: var(--wui-table-row-radius);
+}
+.wui-table > table > tbody > tr:last-child > td:last-child {
+	-webkit-border-bottom-right-radius: var(--wui-table-row-radius);
+	-moz-border-radius-bottomright: var(--wui-table-row-radius);
+	border-bottom-right-radius: var(--wui-table-row-radius);
+}
 .wui-table > table > tbody > tr:is(:hover, :focus, :focus-within) > td:not(.disabled) {
 	border-color: var(--wui-table-row-bordercolor-over);
 	background-color: var(--wui-table-row-bgcolor-over);
 	color: var(--wui-table-row-textcolor-over);
-}
-.wui-table > table > tbody > tr:is(:hover, :focus, :focus-within) > td:not(.disabled):first-child {
-	-webkit-border-top-left-radius: var(--wui-table-row-radius);
-	-webkit-border-bottom-left-radius: var(--wui-table-row-radius);
-	-moz-border-radius-topleft: var(--wui-table-row-radius);
-	-moz-border-radius-bottomleft: var(--wui-table-row-radius);
-	border-top-left-radius: var(--wui-table-row-radius);
-	border-bottom-left-radius: var(--wui-table-row-radius);
-}
-.wui-table > table > tbody > tr:is(:hover, :focus, :focus-within) > td:not(.disabled):last-child {
-	-webkit-border-top-right-radius: var(--wui-table-row-radius);
-	-webkit-border-bottom-right-radius: var(--wui-table-row-radius);
-	-moz-border-radius-topright: var(--wui-table-row-radius);
-	-moz-border-radius-bottomright: var(--wui-table-row-radius);
-	border-top-right-radius: var(--wui-table-row-radius);
-	border-bottom-right-radius: var(--wui-table-row-radius);
 }
 .wui-table > table.align-left > thead > tr > th,
 .wui-table > table.align-left > tbody > tr > td,

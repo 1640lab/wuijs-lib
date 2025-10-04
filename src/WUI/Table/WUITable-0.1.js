@@ -190,15 +190,11 @@ class WUITable {
 		this._thead = document.createElement("thead");
 		this._theadRow = document.createElement("tr");
 		this._tbody = document.createElement("tbody");
-		this._tfooter = document.createElement("tfoot");
-		this._tfooterRow = document.createElement("tr");
 		this._element.appendChild(this._table);
 		this._table.setAttribute("cellspacing", "0");
 		this._table.appendChild(this._thead);
 		this._table.appendChild(this._tbody);
-		this._table.appendChild(this._tfooter);
 		this._thead.appendChild(this._theadRow);
-		this._tfooter.appendChild(this._tfooterRow);
 		if (this._columns.length > 0) {
 			this.#printHead();
 		}
