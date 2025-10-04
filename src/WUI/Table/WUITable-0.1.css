@@ -17,9 +17,7 @@
 	width: 100%;
 	overflow-x: auto;
 	border-collapse: collapse;
-	justify-content: center;
 	text-align: left;
-	font-size: 12px;
 }
 .wui-table > table > * > tr > * {
 	cursor: pointer;
@@ -140,8 +138,13 @@
 }
 @media screen and (max-width: 767px) {
 	.wui-table {
-		font-size: 12px;
+		justify-content: flex-start;
+		font-size: 14px;
 	}
 }
 @media screen and (min-width: 768px) {
+	.wui-table {
+		justify-content: center;
+		font-size: 12px;
+	}
 }
