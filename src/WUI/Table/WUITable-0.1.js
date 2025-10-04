@@ -127,14 +127,14 @@ class WUITable {
 	}
 
 	set align(value) {
-		if (typeof(value) == "string" && value.match(/^(left|center|right)$/i)) {
-			this._align = value.toLowerCase();
+		if (value == null || typeof(value) == "string" && value.match(/^(left|center|right)$/i)) {
+			this._align = typeof(value) == "string" ? value.toLowerCase() : value;
 		}
 	}
 
 	set valign(value) {
-		if (typeof(value) == "string" && value.match(/^(top|center|bottom)$/i)) {
-			this._valign = value.toLowerCase();
+		if (value == null || typeof(value) == "string" && value.match(/^(top|center|bottom)$/i)) {
+			this._valign = typeof(value) == "string" ? value.toLowerCase() : value;
 		}
 	}
 
@@ -186,14 +186,12 @@ class WUITable {
 	}
 
 	init() {
-		this._style = document.createElement("style");
 		this._table = document.createElement("table");
 		this._thead = document.createElement("thead");
 		this._theadRow = document.createElement("tr");
 		this._tbody = document.createElement("tbody");
 		this._tfooter = document.createElement("tfoot");
 		this._tfooterRow = document.createElement("tr");
-		this._element.appendChild(this._style);
 		this._element.appendChild(this._table);
 		this._table.setAttribute("cellspacing", "0");
 		this._table.appendChild(this._thead);
@@ -218,23 +216,38 @@ class WUITable {
 	}
 
 	#printHead() {
-		this._style.innerHTML = "";
-		this._columns.forEach((colOptions, j) => {
+		const align = this._align || null;
+		const valign = this._valign || null;
+		["align-left", "align-center", "align-right", "valign-top", "valign-middle", "valign-bottom"].forEach(cls => {
+			this._table.classList.remove(cls);
+		});
+		if (align != null && align.match(/^(left|center|right)$/i)) {
+			this._table.classList.add("align-"+align);
+		}
+		if (valign != null && valign.match(/^(top|center|bottom)$/i)) {
+			this._table.classList.add("valign-"+valign);
+		}
+		this._theadRow.innerHTML = "";
+		this._columns.forEach(colOptions => {
 			const th = document.createElement("th");
-			/*const align = colOptions.align || this._align;
-			const valign = colOptions.valign || this._valign;
-			this._style.innerHTML += ""
-				+this._selector+" > table :is(thead, tbody, tfoot) > tr > :is(th, td):nth-child("+(j + 1)+") {\n"
-				+(typeof(colOptions.width) == "number" ? "\twidth: "+colOptions.width+"px;\n" : "")
-				+(valign != "center" ? "\tvertical-align: "+align+";\n" : "")
-				+(align != "left" ? "\ttext-align: "+align+";\n" : "")
-				+"}\n";*/
-			th.innerHTML = colOptions.label || "";
+			const width = typeof(colOptions.width) == "number" || (typeof(colOptions.width) == "string" && colOptions.width.match(/^[0-9]+(px|em|%)$/)) ? colOptions.width : null;
+			const align = colOptions.align || null;
+			const valign = colOptions.valign || null;
+			if (width != null) {
+				th.style.width = typeof(width) == "number" ? width+"px" : width;
+			}
 			["sortable", "resizable", "draggable"].forEach(prop => {
 				if (this["_"+prop]) {
 					th.classList.add(prop);
 				}	
 			});
+			th.innerHTML = colOptions.label || "";
+			if (align != null && align.match(/^(left|center|right)$/i)) {
+				this._theadRow.classList.add("align-"+align);
+			}
+			if (valign != null && valign.match(/^(top|center|bottom)$/i)) {
+				this._theadRow.classList.add("valign-"+valign);
+			}
 			this._theadRow.appendChild(th);
 		});
 	}
@@ -246,46 +259,53 @@ class WUITable {
 			const end = (page + 1) * paging > this._rows.length ? this._rows.length : (page + 1) * paging;
 			this._tbody.innerHTML = "";
 			for (let i=ini; i<=end; i++) {
-				const tr = document.createElement("tr");
-				const rowOptions = this._rows[i] || {};
-				const id = "id" in rowOptions ? rowOptions.id : null;
-				const align = rowOptions.align || this._align;
-				const valign = rowOptions.valign || this._valign;
-				if (id != null) {
-					tr.dataset.id = id;
+				const rowOptions = this._rows[i] || null;
+				if (rowOptions != null) {
+					const tr = document.createElement("tr");
+					const id = "id" in rowOptions ? rowOptions.id : null;
+					const align = rowOptions.align || null;
+					const valign = rowOptions.valign || null;
+					if (align != null && align.match(/^(left|center|right)$/i)) {
+						tr.classList.add("align-"+align);
+					}
+					if (valign != null && valign.match(/^(top|center|bottom)$/i)) {
+						tr.classList.add("valign-"+valign);
+					}
+					if (id != null) {
+						tr.dataset.id = id;
+					}
+					tr.dataset.index = i;
+					tr.addEventListener("click", event => {
+						if (this._selectable && typeof(this._onClick) == "function") {
+							this._onClick(i, id, event, rowOptions);
+						}
+					});
+					tr.addEventListener("dblclick", event => {
+						if (this._selectable && typeof(this._onDblClick) == "function") {
+							this._onDblClick(i, id, event, rowOptions);
+						}
+					});
+					this._columns.forEach((colOptions, j) => {
+						const td = document.createElement("td");
+						const align = typeof(colOptions.align) != "undefined" && colOptions.align != this._align ? colOptions.align : null;
+						const valign = typeof(colOptions.valign) != "undefined" && colOptions.valign != this._valign ? colOptions.valign : null;
+						td.innerHTML = rowOptions.data[j] || "";
+						if (align != null && align.match(/^(left|center|right)$/i)) {
+							td.classList.add("align-"+align);
+						}
+						if (valign != null && valign.match(/^(top|center|bottom)$/i)) {
+							td.classList.add("valign-"+valign);
+						}
+						tr.appendChild(td);
+					});
+					this._tbody.appendChild(tr);
 				}
-				tr.dataset.index = i;
-				tr.addEventListener("click", event => {
-					if (this._selectable && typeof(this._onClick) == "function") {
-						this._onClick(i, id, event, rowOptions);
-					}
-				});
-				tr.addEventListener("dblclick", event => {
-					if (this._selectable && typeof(this._onDblClick) == "function") {
-						this._onDblClick(i, id, event, rowOptions);
-					}
-				});
-				this._columns.forEach((colOptions, j) => {
-					const td = document.createElement("td");
-					if (typeof(colOptions.target) == "string") {
-						td.dataset.target = colOptions.target;
-					}
-					if (typeof(align) == "string" && align != "left" && align.match(/^(left|center|right)$/i)) {
-						td.style.textAlign = align;
-					}
-					if (typeof(valign) == "string" && valign != "center" && valign.match(/^(top|center|bottom)$/i)) {
-						td.style.verticalAlign = valign;
-					}
-					td.innerHTML = rowOptions.data[j] || "";
-					tr.appendChild(td);
-				});
-				this._tbody.appendChild(tr);
 			}
 		}
 	}
 
 	print(page = this._page) {
-		thie.#printBody(page);
+		this.#printBody(page);
 	}
 
 	prev() {

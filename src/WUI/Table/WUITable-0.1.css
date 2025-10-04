@@ -13,9 +13,11 @@
 	-webkit-tap-highlight-color: transparent;
 }
 .wui-table {
+	display: flex;
 	width: 100%;
 	overflow-x: auto;
 	border-collapse: collapse;
+	justify-content: center;
 	text-align: left;
 	font-size: 12px;
 }
@@ -73,6 +75,54 @@
 	-moz-border-radius-bottomright: var(--wui-table-row-radius);
 	border-top-right-radius: var(--wui-table-row-radius);
 	border-bottom-right-radius: var(--wui-table-row-radius);
+}
+.wui-table > table.align-left > thead > tr > th,
+.wui-table > table.align-left > tbody > tr > td,
+.wui-table > table > thead > tr.align-left > th,
+.wui-table > table > tbody > tr.align-left > td,
+.wui-table > table > thead > tr > th.align-left,
+.wui-table > table > tbody > tr > td.align-left {
+	text-align: left;
+}
+.wui-table > table.align-center > thead > tr > th,
+.wui-table > table.align-center > tbody > tr > td,
+.wui-table > table > thead > tr.align-center > th,
+.wui-table > table > tbody > tr.align-center > td,
+.wui-table > table > thead > tr > th.align-center,
+.wui-table > table > tbody > tr > td.align-center {
+	text-align: center;
+}
+.wui-table > table.align-right > thead > tr > th,
+.wui-table > table.align-right > tbody > tr > td,
+.wui-table > table > thead > tr.align-right > th,
+.wui-table > table > tbody > tr.align-right > td,
+.wui-table > table > thead > tr > th.align-right,
+.wui-table > table > tbody > tr > td.align-right {
+	text-align: right;
+}
+.wui-table > table.valign-top > thead > tr > th,
+.wui-table > table.valign-top > tbody > tr > td,
+.wui-table > table > thead > tr.valign-top > th,
+.wui-table > table > tbody > tr.valign-top > td,
+.wui-table > table > thead > tr > th.valign-top,
+.wui-table > table > tbody > tr > td.valign-top {
+	vertical-align: top;
+}
+.wui-table > table.valign-middle > thead > tr > th,
+.wui-table > table.valign-middle > tbody > tr > td,
+.wui-table > table > thead > tr.valign-middle > th,
+.wui-table > table > tbody > tr.valign-middle > td,
+.wui-table > table > thead > tr > th.valign-middle,
+.wui-table > table > tbody > tr > td.valign-middle {
+	vertical-align: middle;
+}
+.wui-table > table.valign-bottom > thead > tr > th,
+.wui-table > table.valign-bottom > tbody > tr > td,
+.wui-table > table > thead > tr.valign-bottom > th,
+.wui-table > table > tbody > tr.valign-bottom > td,
+.wui-table > table > thead > tr > th.valign-bottom,
+.wui-table > table > tbody > tr > td.valign-bottom {
+	vertical-align: bottom;
 }
 .wui-table > table > tbody > tr > td.disabled {
 	border-color: var(--wui-table-row-bordercolor-disabled) !important;

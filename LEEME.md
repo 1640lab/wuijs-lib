@@ -1539,12 +1539,12 @@ Objeto avanzado para implementación de listas de datos y botoneras para cada fi
 
 #### Opciones de Botón de Fila
 
-| Propiedad | Tipo               | Valor por defecto | Descripción |
-| --------- | ------------------ | ----------------- | ----------- |
-| iconClass | `string|function`  | `undefined`       | Estilos CSS que define el ícono del botón de fila. Esta opción puede ser utilizado opcionalmente con la librería [WUIIcon](#wuiIcon) mediante el estilo `wui-icon` conjuntamente a un estilo de ícono específico. |
-| bgcolor   | `string|function`  | `undefined`       | Color de fondo en formato compatible CSS. |
-| enabled   | `boolean|function` | `true`            | Estado de habilitación del botón. |
-| onClick   | `function`         | `null`            | Función que se llama cuando se presiona el botón. Reciven los parámetro `index`, correspondiente a la posición de la fila partiendo desde `0`; `id`, correspondiente al Identificador único de fila; y `event`, correspondiente al objeto de captura del evento. |
+| Propiedad | Tipo                | Valor por defecto | Descripción |
+| --------- | ------------------- | ----------------- | ----------- |
+| iconClass | `string\|function`  | `undefined`       | Estilos CSS que define el ícono del botón de fila. Esta opción puede ser utilizado opcionalmente con la librería [WUIIcon](#wuiIcon) mediante el estilo `wui-icon` conjuntamente a un estilo de ícono específico. |
+| bgcolor   | `string\|function`  | `undefined`       | Color de fondo en formato compatible CSS. |
+| enabled   | `boolean\|function` | `true`            | Estado de habilitación del botón. |
+| onClick   | `function`          | `null`            | Función que se llama cuando se presiona el botón. Reciven los parámetro `index`, correspondiente a la posición de la fila partiendo desde `0`; `id`, correspondiente al Identificador único de fila; y `event`, correspondiente al objeto de captura del evento. |
 
 > [!IMPORTANT]
 > Las opciones que aceptan valores opcionales de tipo función (`iconClass`, `bgcolor` y `enabled`), reciven los parámetro `index`, correspondiente a la posición de la fila partiendo desde `0`; e `id`, correspondiente al Identificador único de fila.

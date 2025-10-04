@@ -1539,12 +1539,12 @@ Advanced object for implementing data lists and buttons for each row optionally.
 
 #### Row Button Options
 
-| Property  | Type.              | Default value | Description |
-| --------- | ------------------ | ------------- | ----------- |
-| iconClass | `string|function`  | `undefined`   | CSS styles that define the row button icon. This option can optionally be used with the [WUIIcon](#wuiIcon) library by using the `wui-icon` style in conjunction with a specific icon style. |
-| bgcolor   | `string|function`  | `undefined`   | Background color in CSS compatible format. |
-| enabled   | `boolean|function` | `true`        | Button enable state. |
-| onClick   | `function`         | `null`        | Function called when the button is pressed. It receives the parameters `index`, corresponding to the row position starting from `0`; `id`, corresponding to the row's unique identifier; and `event`, corresponding to the event capture object. |
+| Property  | Type.               | Default value | Description |
+| --------- | ------------------- | ------------- | ----------- |
+| iconClass | `string\|function`  | `undefined`   | CSS styles that define the row button icon. This option can optionally be used with the [WUIIcon](#wuiIcon) library by using the `wui-icon` style in conjunction with a specific icon style. |
+| bgcolor   | `string\|function`  | `undefined`   | Background color in CSS compatible format. |
+| enabled   | `boolean\|function` | `true`        | Button enable state. |
+| onClick   | `function`          | `null`        | Function called when the button is pressed. It receives the parameters `index`, corresponding to the row position starting from `0`; `id`, corresponding to the row's unique identifier; and `event`, corresponding to the event capture object. |
 
 > [!IMPORTANT]
 > Options that accept optional function values ​​(`iconClass`, `bgcolor` and `enabled`) receive the parameters `index`, corresponding to the row position starting from `0`; and `id`, corresponding to the row's unique identifier.
