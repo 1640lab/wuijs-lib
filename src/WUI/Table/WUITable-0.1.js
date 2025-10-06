@@ -191,8 +191,8 @@ class WUITable {
 
 	#getSRCIcon(name, event) {
 		const element = this._element || document.documentElement;
-		const color = getComputedStyle(element).getPropertyValue("--wui-grid-"+name+"color-"+event).replace(/#/g, "%23").trim();
-		const src = getComputedStyle(element).getPropertyValue("--wui-grid-"+name+"icon-src").replace(/currentColor/g, color);
+		const color = getComputedStyle(element).getPropertyValue("--wui-table-"+name+"color-"+event).replace(/#/g, "%23").trim();
+		const src = getComputedStyle(element).getPropertyValue("--wui-table-"+name+"icon-src").replace(/currentColor/g, color);
 		return src != "" && !src.match(/^(none|url\(\))$/) ? src : "url(\"data:image/svg+xml,"+WUITable.#icons[name].replace(/currentColor/g, color)+"\")";
 	}
 

@@ -262,26 +262,27 @@ Código CSS archivo `WUI.css`:
 
 	--wui-table-column-bordercolor-width: 1px;
 	--wui-table-column-bordercolor-out: rgb(from var(--app-hightlightcolor) r g b / 10%);
-	--wui-table-column-bordercolor-over: rgba(255, 255, 255, .8);
-	--wui-table-column-bordercolor-selected: rgba(255, 255, 255, .8);
-	--wui-table-column-bgcolor-out: transparent;
-	--wui-table-column-bgcolor-over: transparent;
+	--wui-table-column-bordercolor-over: var(--app-hightlightcolor);
+	--wui-table-column-bordercolor-selected: var(--app-hightlightcolor);
+	--wui-table-column-bgcolor-out: var(--app-light1color);
+	--wui-table-column-bgcolor-over: var(--app-light1color);
 	--wui-table-column-bgcolor-selectd: var(--app-hightlightcolor);
 	--wui-table-column-textcolor-out: #444;
 	--wui-table-column-textcolor-over: #000;
+	--wui-table-column-textcolor-selected: var(--app-hightlightcolor);
 	--wui-table-column-textcolor-disabled: var(--app-disabledcolor);
 	--wui-table-row-radius: 10px;
 	--wui-table-row-bordercolor-width: 1px;
-	--wui-table-row-bordercolor-out: rgb(from var(--app-hightlightcolor) r g b / 10%);
-	--wui-table-row-bordercolor-over: rgba(255, 255, 255, .8);
-	--wui-table-row-bordercolor-selected: rgba(255, 255, 255, .8);
-	--wui-table-row-bgcolor-out: transparent;
-	--wui-table-row-bgcolor-over: transparent;
+	--wui-table-row-bordercolor-out: var(--app-softcolor);
+	--wui-table-row-bordercolor-over: var(--app-softcolor);
+	--wui-table-row-bordercolor-selected: var(--app-hightlightcolor);
+	--wui-table-row-bgcolor-out: var(--app-light2color);
+	--wui-table-row-bgcolor-over: var(--app-light1color);
 	--wui-table-row-bgcolor-selectd: var(--app-hightlightcolor);
-	--wui-table-row-textcolor-out: var(--app-dark1color);
-	--wui-table-row-textcolor-over: var(--app-dark3color);
+	--wui-table-row-textcolor-out: var(--app-dark4color);
+	--wui-table-row-textcolor-over: var(--app-dark4color);
 	--wui-table-row-textcolor-disabled: var(--app-disabledcolor);
-	--wui-table-row-textcolor-selected: #fff;
+	--wui-table-row-textcolor-selected: var(--app-hightlightcolor);
 
 	/* wui-slider */
 
