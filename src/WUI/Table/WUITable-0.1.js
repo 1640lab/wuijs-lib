@@ -19,6 +19,7 @@ class WUITable {
 		resizable: true,
 		draggable: true,
 		selectable: true,
+		onPrint: null,
 		onClick: null,
 		onDblClick: null
 	};
@@ -93,6 +94,10 @@ class WUITable {
 		return this._selectable;
 	}
 
+	get onPrint() {
+		return this._onPrint;
+	}
+
 	get onClick() {
 		return this._onClick;
 	}
@@ -162,6 +167,12 @@ class WUITable {
 		}
 	}
 
+	set onPrint(value) {
+		if (typeof(value) == "function") {
+			this._onPrint = value;
+		}
+	}
+
 	set onClick(value) {
 		if (typeof(value) == "function") {
 			this._onClick = value;
@@ -224,26 +235,27 @@ class WUITable {
 			this._table.classList.add("valign-"+valign);
 		}
 		this._theadRow.innerHTML = "";
-		this._columns.forEach(colOptions => {
+		this._columns.forEach((colOptions, j) => {
 			const th = document.createElement("th");
 			const width = typeof(colOptions.width) == "number" || (typeof(colOptions.width) == "string" && colOptions.width.match(/^[0-9]+(px|em|%)$/)) ? colOptions.width : null;
-			const align = colOptions.align || null;
-			const valign = colOptions.valign || null;
+			const align = colOptions.align || this._align || null;
+			const valign = colOptions.valign || this._valign || null;
+			th.innerHTML = colOptions.label || "";
 			if (width != null) {
 				th.style.width = typeof(width) == "number" ? width+"px" : width;
+			}
+			if (align != null && align.match(/^(left|center|right)$/i)) {
+				th.classList.add("align-"+align);
+			}
+			if (valign != null && valign.match(/^(top|center|bottom)$/i)) {
+				th.classList.add("valign-"+valign);
 			}
 			["sortable", "resizable", "draggable"].forEach(prop => {
 				if (this["_"+prop]) {
 					th.classList.add(prop);
 				}	
 			});
-			th.innerHTML = colOptions.label || "";
-			if (align != null && align.match(/^(left|center|right)$/i)) {
-				this._theadRow.classList.add("align-"+align);
-			}
-			if (valign != null && valign.match(/^(top|center|bottom)$/i)) {
-				this._theadRow.classList.add("valign-"+valign);
-			}
+			th.dataset.column = j;
 			this._theadRow.appendChild(th);
 		});
 	}
@@ -296,6 +308,10 @@ class WUITable {
 					});
 					this._tbody.appendChild(tr);
 				}
+			}
+			this._page = page;
+			if (typeof(this._onPrint) == "function") {
+				this._onPrint(page, this.pages, this.total);
 			}
 		}
 	}
