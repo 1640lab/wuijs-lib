@@ -407,13 +407,6 @@ class WUISelectpicker {
 		}
 	}
 
-	clearOptions() {
-		if (typeof(this._input) != "undefined") {
-			this._input.innerHTML = "";
-			this._options.innerHTML = "";
-		}
-	}
-
 	init() {
 		this._inputText = document.createElement("input");
 		this._background = document.createElement("div");
@@ -542,6 +535,13 @@ class WUISelectpicker {
 		options.forEach(opt => {
 			this.addOption(opt);
 		});
+	}
+
+	clearOptions() {
+		if (typeof(this._input) != "undefined") {
+			this._input.innerHTML = "";
+			this._options.innerHTML = "";
+		}
 	}
 
 	open() {

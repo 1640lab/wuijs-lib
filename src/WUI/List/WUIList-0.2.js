@@ -321,6 +321,15 @@ class WUIList {
 		}
 	}
 
+	first() {
+		this.print(0);
+	}
+
+	last() {
+		const page = this._paging == 0 ? 0 : Math.ceil(this._rows.length / this._paging) - 1;
+		this.print(page);
+	}
+
 	prev() {
 		this.print(this._page - 1);
 	}

@@ -266,7 +266,7 @@ class WUITable {
 			const ini = page * paging;
 			const end = (page + 1) * paging > this._rows.length ? this._rows.length : (page + 1) * paging;
 			this._tbody.innerHTML = "";
-			for (let i=ini; i<=end; i++) {
+			for (let i=ini; i<end; i++) {
 				const rowOptions = this._rows[i] || null;
 				if (rowOptions != null) {
 					const tr = document.createElement("tr");
@@ -318,6 +318,15 @@ class WUITable {
 
 	print(page = this._page) {
 		this.#printBody(page);
+	}
+
+	first() {
+		this.print(0);
+	}
+
+	last() {
+		const page = this._paging == 0 ? 0 : Math.ceil(this._rows.length / this._paging) - 1;
+		this.print(page);
 	}
 
 	prev() {

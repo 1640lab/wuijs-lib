@@ -14,7 +14,8 @@ class WUIButton {
 		selectable: false,
 		locked: false,
 		enabled: true,
-		onClick: null
+		onClick: null,
+		onDblClick: null
 	};
 
 	constructor (properties) {
@@ -45,6 +46,10 @@ class WUIButton {
 
 	get onClick() {
 		return this._onClick;
+	}
+
+	get onDblClick() {
+		return this._onDblClick;
 	}
 
 	set selector(value) {
@@ -92,6 +97,12 @@ class WUIButton {
 		}
 	}
 
+	set onDblClick(value) {
+		if (typeof(value) == "function") {
+			this._onDblClick = value;
+		}
+	}
+
 	getElement() {
 		return this._element;
 	}
@@ -106,6 +117,7 @@ class WUIButton {
 	}
 
 	init() {
+		this.#setStyle();
 		this._element.addEventListener("click", event => {
 			this.#setStyle();
 			if (this._selectable && this._enabled) {
@@ -113,6 +125,12 @@ class WUIButton {
 			}
 			if (!this._locked && this._enabled && typeof(this._onClick) == "function") {
 				this._onClick(event);
+			}
+		});
+		this._element.addEventListener("dblclick", event => {
+			this.#setStyle();
+			if (!this._locked && this._enabled && typeof(this._onDblClick) == "function") {
+				this._onDblClick(event);
 			}
 		});
 	}
