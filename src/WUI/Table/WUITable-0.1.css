@@ -20,14 +20,18 @@
 }
 .wui-table > table {
 	width: 100%;
+	border-collapse: collapse;
 }
-.wui-table > table > * > tr > * {
+.wui-table > table > :is(thead, tbody) > tr > :is(th, td) {
 	cursor: pointer;
 	position: relative;
+	overflow: hidden;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
 	padding: 5px;
 	vertical-align: center;
+	white-space: nowrap;   
+	text-overflow: ellipsis;
 }
 .wui-table > table > thead > tr > th {
 	border-color: var(--wui-table-column-bordercolor-out);
@@ -65,7 +69,7 @@
 .wui-table > table > thead > tr > th.sortable {
 	padding-right: 24px;
 }
-.wui-table > table > thead > tr > th.sortable > .sorted {
+.wui-table > table > thead > tr > th.sortable > .sorter {
 	position: absolute;
 	top: 50%;
 	right: 4px;
@@ -80,8 +84,21 @@
 	mask-image: url();
 	mask-position: center;
 	mask-repeat: no-repeat;
-	background-color: var(--wui-table-column-textcolor-out);
+	background-color: var(--wui-table-column-sorter-asccolor-out);
 	transform: translateY(-50%);
+}
+.wui-table > table > thead > tr > th.resizable > .resizer {
+	cursor: col-resize;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	width: 4px;
+	height: 100%;
+	border-right: 1px solid var(--wui-table-column-resizer-bordercolor-out);
+}
+.wui-table > table > thead > tr > th.resizable > .resizer:hover {
+	border-right: 1px solid var(--wui-table-column-resizer-bordercolor-over);
 }
 .wui-table > table > tbody {
 	overflow-y: auto;

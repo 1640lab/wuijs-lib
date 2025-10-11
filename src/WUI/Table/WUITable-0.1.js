@@ -26,11 +26,11 @@ class WUITable {
 	};
 
 	static #icons = {
-		"column-sorted-asc": ""
+		"column-sorter-asc": ""
 			+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
 			+"<path d='M8.12 14.71L12 10.83l3.88 3.88a.996.996 0 1 0 1.41-1.41L12.7 8.71a.996.996 0 0 0-1.41 0L6.7 13.3a.996.996 0 0 0 0 1.41c.39.38 1.03.39 1.42 0z'/>"
 			+"</svg>",
-		"column-sorted-desc": ""
+		"column-sorter-desc": ""
 			+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
 			+"<path d='M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0z'/>"
 			+"</svg>"
@@ -224,8 +224,9 @@ class WUITable {
 		if (this._rows.length > 0) {
 			this.#printBody();
 		}
-		this._sortIndex = null;
-		this._sortDirection = null;
+		this._sortingIndex = null;
+		this._sortingDirection = null;
+		this._resizing = false;
 	}
 
 	addColumn(options) {
@@ -256,7 +257,7 @@ class WUITable {
 			const valign = colOptions.valign || this._valign || null;
 			th.innerHTML = colOptions.label || "";
 			if (width != null) {
-				th.style.width = typeof(width) == "number" ? width+"px" : width;
+				th.style.maxWidth = typeof(width) == "number" ? width+"px" : width;
 			}
 			if (align != null && align.match(/^(left|center|right)$/i)) {
 				th.classList.add("align-"+align);
@@ -269,12 +270,36 @@ class WUITable {
 				if (value) {
 					th.classList.add(prop);
 					if (prop == "sortable") {
-						const sorted = document.createElement("div");
-						sorted.className = "sorted";
-						th.append(sorted);
+						const sorter = document.createElement("div");
+						sorter.className = "sorter";
+						th.append(sorter);
 						th.addEventListener("click", () => {
 							this.sort(j);
 						});
+					} else if (prop == "resizable") {
+						const resizer = document.createElement("div");
+						resizer.className = "resizer";
+						resizer.addEventListener("mousedown", event => {
+							const startX = event.pageX;
+							const startWidth = parseInt(document.defaultView.getComputedStyle(th).width, 10);
+							const onMouseMove = (event) => {
+								const rows = Array.from(this._tbody.querySelectorAll("tr"));
+								const width = startWidth + (event.pageX - startX);
+								th.style.maxWidth = width+"px";
+								rows.forEach(row => {
+									row.children[j].style.maxWidth = width+"px";
+								});
+							}
+							const onMouseUp = () => {
+								document.documentElement.removeEventListener("mousemove", onMouseMove);
+								document.documentElement.removeEventListener("mouseup", onMouseUp);
+								setTimeout(() => this._resizing = false, 100);
+							}
+							this._resizing = true;
+							document.documentElement.addEventListener("mousemove", onMouseMove);
+							document.documentElement.addEventListener("mouseup", onMouseUp);
+						});
+						th.append(resizer);
 					}
 				}	
 			});
@@ -343,6 +368,9 @@ class WUITable {
 	}
 
 	sort(index, direction = null) {
+		if (this._resizing) {
+			return;
+		}
 		const rows = Array.from(this._tbody.querySelectorAll("tr"));
 		const cellContent = (row, format) => {
 			let cell = "";
@@ -354,7 +382,7 @@ class WUITable {
 			return cell;
 		}
 		if (direction == null) {
-			direction = (this._sortIndex == index && this._sortDirection == "asc") ? "desc" : "asc";
+			direction = (this._sortingIndex == index && this._sortingDirection == "asc") ? "desc" : "asc";
 		}
 		rows.sort((rowA, rowB) => {
 			let cellA = cellContent(rowA, "text");
@@ -370,12 +398,12 @@ class WUITable {
 			}
 		});
 		rows.forEach(row => this._tbody.appendChild(row));
-		this._theadRow.querySelectorAll("th .sorted").forEach(sorted => {
-			sorted.style.maskImage = "url()";
+		this._theadRow.querySelectorAll("th .sorter").forEach(sorter => {
+			sorter.style.maskImage = "url()";
 		});
-		this._theadRow.children[index].querySelector(".sorted").style.maskImage = this.#getSRCIcon(`column-sorted-${direction == "asc" ? "asc" : "desc"}`, "out");
-		this._sortIndex = index;
-		this._sortDirection = direction;
+		this._theadRow.children[index].querySelector(".sorter").style.maskImage = this.#getSRCIcon(`column-sorter-${direction == "asc" ? "asc" : "desc"}`, "out");
+		this._sortingIndex = index;
+		this._sortingDirection = direction;
 	}
 
 	export() {
