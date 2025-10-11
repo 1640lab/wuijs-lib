@@ -271,6 +271,12 @@ Código CSS archivo `WUI.css`:
 	--wui-table-column-textcolor-over: #000;
 	--wui-table-column-textcolor-selected: var(--app-hightlightcolor);
 	--wui-table-column-textcolor-disabled: var(--app-disabledcolor);
+	--wui-table-column-sorted-asccolor-out: #444;
+	--wui-table-column-sorted-asccolor-over: #000;
+	--wui-table-column-sorted-asccolor-disabled: var(--app-disabledcolor);
+	--wui-table-column-sorted-desccolor-out: #444;
+	--wui-table-column-sorted-desccolor-over: #000;
+	--wui-table-column-sorted-desccolor-disabled: var(--app-disabledcolor);
 	--wui-table-row-radius: 10px;
 	--wui-table-row-bordercolor-width: 1px;
 	--wui-table-row-bordercolor-out: var(--app-softcolor);

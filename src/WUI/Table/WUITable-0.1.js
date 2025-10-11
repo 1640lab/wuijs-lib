@@ -10,6 +10,7 @@ class WUITable {
 	static version = "0.1";
 	static #defaults = {
 		selector: ".wui-table",
+		width: "auto",
 		paging: 0,
 		columns: [],
 		rows: [],
@@ -25,11 +26,11 @@ class WUITable {
 	};
 
 	static #icons = {
-		"header-column-up": ""
+		"column-sorted-asc": ""
 			+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
 			+"<path d='M8.12 14.71L12 10.83l3.88 3.88a.996.996 0 1 0 1.41-1.41L12.7 8.71a.996.996 0 0 0-1.41 0L6.7 13.3a.996.996 0 0 0 0 1.41c.39.38 1.03.39 1.42 0z'/>"
 			+"</svg>",
-		"header-column-down": ""
+		"column-sorted-desc": ""
 			+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>"
 			+"<path d='M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0z'/>"
 			+"</svg>"
@@ -44,6 +45,10 @@ class WUITable {
 
 	get selector() {
 		return this._selector;
+	}
+
+	get width() {
+		return this._width;
 	}
 
 	get paging() {
@@ -110,6 +115,12 @@ class WUITable {
 		if (typeof(value) == "string" && value != "") {
 			this._selector = value;
 			this._element = document.querySelector(value);
+		}
+	}
+
+	set width(value) {
+		if (typeof(value) == "number" || typeof(value) == "string" && (value.match(/^[0-9]+(px|em|%)$/) || value == "auto")) {
+			this._width = value;
 		}
 	}
 
@@ -201,6 +212,7 @@ class WUITable {
 		this._thead = document.createElement("thead");
 		this._theadRow = document.createElement("tr");
 		this._tbody = document.createElement("tbody");
+		this._element.style.width = typeof(this._width) == "number" ? this._width+"px" : typeof(this._width) == "string" ? this._width : "auto";
 		this._element.appendChild(this._table);
 		this._table.setAttribute("cellspacing", "0");
 		this._table.appendChild(this._thead);
@@ -212,6 +224,8 @@ class WUITable {
 		if (this._rows.length > 0) {
 			this.#printBody();
 		}
+		this._sortIndex = null;
+		this._sortDirection = null;
 	}
 
 	addColumn(options) {
@@ -251,11 +265,19 @@ class WUITable {
 				th.classList.add("valign-"+valign);
 			}
 			["sortable", "resizable", "draggable"].forEach(prop => {
-				if (this["_"+prop]) {
+				const value = prop in colOptions ? colOptions[prop] : this["_"+prop];
+				if (value) {
 					th.classList.add(prop);
+					if (prop == "sortable") {
+						const sorted = document.createElement("div");
+						sorted.className = "sorted";
+						th.append(sorted);
+						th.addEventListener("click", () => {
+							this.sort(j);
+						});
+					}
 				}	
 			});
-			th.dataset.column = j;
 			this._theadRow.appendChild(th);
 		});
 	}
@@ -318,6 +340,40 @@ class WUITable {
 
 	print(page = this._page) {
 		this.#printBody(page);
+	}
+
+	sort(index, direction = null) {
+		const rows = Array.from(this._tbody.querySelectorAll("tr"));
+		if (direction == null) {
+			direction = (this._sortIndex == index && this._sortDirection == "asc") ? "desc" : "asc";
+		}
+		rows.sort((rowA, rowB) => {
+			let cellA = rowA.children[index].textContent.trim();
+			let cellB = rowB.children[index].textContent.trim();
+			if (direction === "asc") {
+				return cellA.localeCompare(cellB, undefined, {numeric: true});
+			} else {
+				return cellB.localeCompare(cellA, undefined, {numeric: true});
+			}
+		});
+		rows.forEach(row => this._tbody.appendChild(row));
+		this._theadRow.querySelectorAll("th sorted").forEach(sorted => {
+			sorted.style.maskImage = "url()";
+		});
+		this._theadRow.querySelector(`th:nth-child(${index + 1}) > .sorted`).style.maskImage = this.#getSRCIcon(`column-sorted-${direction == "asc" ? "asc" : "desc"}`, "out");
+		this._sortIndex = index;
+		this._sortDirection = direction;
+	}
+
+	export() {
+		const textify = (cell) => {
+			return cell.textContent.replace(/\s+/g, " ").trim();
+		}
+		const escape = (value) => {
+			const string = String(value).replace(/"/g, '""');
+			return `"${string}"`;
+		}
+		// ...
 	}
 
 	first() {

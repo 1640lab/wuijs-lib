@@ -14,10 +14,12 @@
 }
 .wui-table {
 	display: flex;
-	width: 100%;
 	overflow-x: auto;
 	border-collapse: collapse;
 	text-align: left;
+}
+.wui-table > table {
+	width: 100%;
 }
 .wui-table > table > * > tr > * {
 	cursor: pointer;
@@ -59,6 +61,27 @@
 	border-color: var(--wui-table-column-bordercolor-disabled);
 	background-color: var(--wui-table-column-bgcolor-disabled);
 	color: var(--wui-table-column-textcolor-disabled);
+}
+.wui-table > table > thead > tr > th.sortable {
+	padding-right: 24px;
+}
+.wui-table > table > thead > tr > th.sortable > .sorted {
+	position: absolute;
+	top: 50%;
+	right: 4px;
+	width: 16px;
+	height: 16px;
+	-webkit-mask-image: url();
+	-webkit-mask-position: center;
+	-webkit-mask-repeat: no-repeat;
+	-moz-mask-image: url();
+	-moz-mask-position: center;
+	-moz-mask-repeat: no-repeat;
+	mask-image: url();
+	mask-position: center;
+	mask-repeat: no-repeat;
+	background-color: var(--wui-table-column-textcolor-out);
+	transform: translateY(-50%);
 }
 .wui-table > table > tbody {
 	overflow-y: auto;
