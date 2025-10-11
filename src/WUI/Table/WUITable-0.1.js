@@ -344,12 +344,25 @@ class WUITable {
 
 	sort(index, direction = null) {
 		const rows = Array.from(this._tbody.querySelectorAll("tr"));
+		const cellContent = (row, format) => {
+			let cell = "";
+			if (format == "text") {
+				cell = row.children[index].textContent.trim();
+			} else if (format == "html") {
+				cell = row.children[index].innerHTML.trim().toLowerCase();
+			}
+			return cell;
+		}
 		if (direction == null) {
 			direction = (this._sortIndex == index && this._sortDirection == "asc") ? "desc" : "asc";
 		}
 		rows.sort((rowA, rowB) => {
-			let cellA = rowA.children[index].textContent.trim();
-			let cellB = rowB.children[index].textContent.trim();
+			let cellA = cellContent(rowA, "text");
+			let cellB = cellContent(rowB, "text");
+			if (cellA == "" && cellB == "" && (rowA.textContent != "" || rowB.textContent != "")) {
+				cellA = cellContent(rowA, "html");
+				cellB = cellContent(rowB, "html");
+			}
 			if (direction === "asc") {
 				return cellA.localeCompare(cellB, undefined, {numeric: true});
 			} else {
@@ -357,10 +370,10 @@ class WUITable {
 			}
 		});
 		rows.forEach(row => this._tbody.appendChild(row));
-		this._theadRow.querySelectorAll("th sorted").forEach(sorted => {
+		this._theadRow.querySelectorAll("th .sorted").forEach(sorted => {
 			sorted.style.maskImage = "url()";
 		});
-		this._theadRow.querySelector(`th:nth-child(${index + 1}) > .sorted`).style.maskImage = this.#getSRCIcon(`column-sorted-${direction == "asc" ? "asc" : "desc"}`, "out");
+		this._theadRow.children[index].querySelector(".sorted").style.maskImage = this.#getSRCIcon(`column-sorted-${direction == "asc" ? "asc" : "desc"}`, "out");
 		this._sortIndex = index;
 		this._sortDirection = direction;
 	}
