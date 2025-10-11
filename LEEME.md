@@ -279,8 +279,8 @@ Código CSS archivo `WUI.css`:
 	--wui-table-column-sorter-desccolor-over: #000;
 	--wui-table-column-sorter-desccolor-disabled: var(--app-disabledcolor);
 	--wui-table-column-sorter-descicon-src: none;
-	--wui-table-column-resizer-bordercolor-out: rgb(from #444 r g b / 20%);
-	--wui-table-column-resizer-bordercolor-over: rgb(from #444 r g b / 20%);
+	--wui-table-column-resizer-bordercolor-out: rgb(from var(--app-hightlightcolor) r g b / 10%);
+	--wui-table-column-resizer-bordercolor-over: rgb(from var(--app-hightlightcolor) r g b / 10%);
 	--wui-table-row-radius: 10px;
 	--wui-table-row-bordercolor-width: 1px;
 	--wui-table-row-bordercolor-out: var(--app-softcolor);
