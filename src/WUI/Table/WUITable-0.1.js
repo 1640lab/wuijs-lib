@@ -255,9 +255,10 @@ class WUITable {
 			const width = typeof(colOptions.width) == "number" || (typeof(colOptions.width) == "string" && colOptions.width.match(/^[0-9]+(px|em|%)$/)) ? colOptions.width : null;
 			const align = colOptions.align || this._align || null;
 			const valign = colOptions.valign || this._valign || null;
+			const resizable = typeof(colOptions.resizable) != "undefined" ? colOptions.resizable : this._resizable;
 			th.innerHTML = colOptions.label || "";
 			if (width != null) {
-				th.style.maxWidth = typeof(width) == "number" ? width+"px" : width;
+				th.style[resizable ? "maxWidth" : "minWidth"] = typeof(width) == "number" ? width+"px" : width;
 			}
 			if (align != null && align.match(/^(left|center|right)$/i)) {
 				th.classList.add("align-"+align);
@@ -342,9 +343,14 @@ class WUITable {
 					});
 					this._columns.forEach((colOptions, j) => {
 						const td = document.createElement("td");
+						const width = typeof(colOptions.width) == "number" || (typeof(colOptions.width) == "string" && colOptions.width.match(/^[0-9]+(px|em|%)$/)) ? colOptions.width : null;
 						const align = typeof(colOptions.align) != "undefined" && colOptions.align != this._align ? colOptions.align : null;
 						const valign = typeof(colOptions.valign) != "undefined" && colOptions.valign != this._valign ? colOptions.valign : null;
+						const resizable = typeof(colOptions.resizable) != "undefined" ? colOptions.resizable : this._resizable;
 						td.innerHTML = rowOptions.data[j] || "";
+						if (width != null) {
+							td.style[resizable ? "maxWidth" : "minWidth"] = typeof(width) == "number" ? width+"px" : width;
+						}
 						if (align != null && align.match(/^(left|center|right)$/i)) {
 							td.classList.add("align-"+align);
 						}
