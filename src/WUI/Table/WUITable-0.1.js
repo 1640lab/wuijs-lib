@@ -310,10 +310,10 @@ class WUITable {
 
 	#printBody(page = this._page) {
 		const paging = this._paging == 0 ? this._rows.length : this._paging;
+		this._tbody.innerHTML = "";
 		if (this._element != null && page * paging >= 0 && page * paging < this._rows.length) {
 			const ini = page * paging;
 			const end = (page + 1) * paging > this._rows.length ? this._rows.length : (page + 1) * paging;
-			this._tbody.innerHTML = "";
 			for (let i=ini; i<end; i++) {
 				const rowOptions = this._rows[i] || null;
 				if (rowOptions != null) {

@@ -144,11 +144,11 @@ class WUIList {
 
 	print(page = this._page) {
 		const paging = this._paging == 0 ? this._rows.length : this._paging;
+		this._strips = [];
+		this._element.innerHTML = "";
 		if (this._element != null && page * paging >= 0 && page * paging < this._rows.length) {
 			const ini = page * paging;
 			const end = (page + 1) * paging > this._rows.length ? this._rows.length : (page + 1) * paging;
-			this._strips = [];
-			this._element.innerHTML = "";
 			for (let i=ini; i<end; i++) {
 				const rowOptions = this._rows[i];
 				const row = document.createElement("div");
