@@ -1085,11 +1085,9 @@ HTML head:
 CSS code:
 
 ```css
-:root {
-	/*
+/*:root {
 	--wui-scrolly-paging-bgcolor: var(--app-light1color);
-	*/
-}
+}*/
 .my-section {
 	width: 100%;
 	margin: 10px 0;
@@ -1417,14 +1415,12 @@ HTML head:
 CSS code:
 
 ```css
-:root {
-	/*
+/*:root {
 	--wui-icon-size: 24px;
 	--wui-icon-smallsize: 14px;
 	--wui-icon-bgcolor-out: rgb(from var(--app-dark5color) r g b / 70%);
 	--wui-icon-bgcolor-over: var(--app-dark5color);
-	*/
-}
+}*/
 .my-icon {
 	width: 24px;
 	height: 24px;
@@ -1650,8 +1646,11 @@ HTML head:
 CSS code:
 
 ```css
-:root {
-	/*
+/*:root {
+	--wui-icon-size: 24px;
+	--wui-icon-smallsize: 14px;
+	--wui-icon-bgcolor-out: rgb(from var(--app-dark5color) r g b / 70%);
+	--wui-icon-bgcolor-over: var(--app-dark5color);
 	--wui-list-radius: 10px;
 	--wui-list-borderwidth: 0;
 	--wui-list-bordercolor: var(--app-softcolor);
@@ -1679,8 +1678,7 @@ CSS code:
 	--wui-list-message-textcolor: var(--app-dark4color);
 	--max-list-width: 600px;
 	--max-list-mobile-width: 430px;
-	*/
-}
+}*/
 .my-button {
 	width: 40px;
 	text-align: center;
