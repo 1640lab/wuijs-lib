@@ -25,3 +25,5 @@ Características:
 	- Se corrigió error de arrastre al maximizar y cerrar un modal con estilo página usando el evento `mousedown`, habilitándo únicamente cuando el botón izquierdo permanece presionado.
 7. Actualización versión clase WUICheckbox a 0.2.
 	- Se corrigió error de arrastre al seleccionar y deseleccionar la caja de verificación usando el evento `mousedown`, habilitándo únicamente cuando el botón izquierdo permanece presionado.
+8. Actualización versión clase WUIButton a 0.2.
+	- Se agregó propiedad `onDblClick`.

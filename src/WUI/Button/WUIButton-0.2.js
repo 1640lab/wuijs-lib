@@ -1,5 +1,5 @@
 /*
- * WUIButton - v0.1
+ * WUIButton - v0.2
  * Author: Sergio E. Belmar (sbelmar@1640lab.com)
  * Distributed by: 1640 Lab S.p.A. (https://1640lab.com)
  * Copyright (c) Sergio E. Belmar (sbelmar@1640lab.com)
@@ -7,14 +7,15 @@
 
 class WUIButton {
 
-	static version = "0.1";
+	static version = "0.2";
 	static #defaults = {
 		selector: "",
 		text: "",
 		selectable: false,
 		locked: false,
 		enabled: true,
-		onClick: null
+		onClick: null,
+		onDblClick: null
 	};
 
 	constructor (properties) {
@@ -45,6 +46,10 @@ class WUIButton {
 
 	get onClick() {
 		return this._onClick;
+	}
+
+	get onDblClick() {
+		return this._onDblClick;
 	}
 
 	set selector(value) {
@@ -92,6 +97,12 @@ class WUIButton {
 		}
 	}
 
+	set onDblClick(value) {
+		if (typeof(value) == "function") {
+			this._onDblClick = value;
+		}
+	}
+
 	getElement() {
 		return this._element;
 	}
@@ -106,6 +117,7 @@ class WUIButton {
 	}
 
 	init() {
+		this.#setStyle();
 		this._element.addEventListener("click", event => {
 			this.#setStyle();
 			if (this._selectable && this._enabled) {
@@ -113,6 +125,12 @@ class WUIButton {
 			}
 			if (!this._locked && this._enabled && typeof(this._onClick) == "function") {
 				this._onClick(event);
+			}
+		});
+		this._element.addEventListener("dblclick", event => {
+			this.#setStyle();
+			if (!this._locked && this._enabled && typeof(this._onDblClick) == "function") {
+				this._onDblClick(event);
 			}
 		});
 	}

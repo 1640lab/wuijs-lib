@@ -25,3 +25,5 @@ Features:
 	- Fixed dragging error when maximizing and closing a page-style modal using the `mousedown` event, enabling it only when the left mouse button remains pressed.
 7. WUICheckbox version class update to 0.2.
 	- Fixed dragging error when selecting and deselecting the checkbox using the `mousedown` event, enabling it only when the left button remains pressed.
+7. WUIButton version class update to 0.2.
+	- Added `onDblClick` property.

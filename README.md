@@ -2,7 +2,7 @@
 
 Library version: `0.2.0` ([Change Log](./CHANGELOG.md))
 
-Document version: `0.2.0.20250927.1-e` (e: in edition, c: complete)
+Document version: `0.2.0.20251012.1-e` (e: in edition, c: complete)
 
 Licence: `Apache License 2.0`
 
@@ -77,7 +77,7 @@ WUI, an acronym for *Web User Interface JavaScript library*, is an open source J
 | WUIColorpicker   | `0.1`   | Advanced object for implementing color picker type data inputs. |
 | WUICheckbox      | `0.2`   | Advanced object for implementing checkbox type data inputs. |
 | WUIIntensity     | `0.1`   | Advanced object for implementing 4-level intensity selector type data inputs: none, low, half, and high. |
-| WUIButton        | `0.1`   | Advanced object for button implementation. |
+| WUIButton        | `0.2`   | Advanced object for button implementation. |
 
 <a name="install"></a>
 
@@ -98,7 +98,7 @@ cd ./downloads
 wget https://github.com/1640lab/wuijs-lib/archive/refs/heads/main.zip
 tar -xzf main.zip
 cp -p ./wuijs-lib-main/src/WDS ../src/Libraries/
-````
+```
 
 <a name="implementation"></a>
 
@@ -634,7 +634,7 @@ HTML code:
 		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Colorpicker/WUIColorpicker-0.1.css">
 		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Checkbox/WUICheckbox-0.2.css">
 		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Intensity/WUIIntensity-0.1.css">
-		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Button/WUIButton-0.1.css">
+		<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Button/WUIButton-0.2.css">
 		<script type="text/javascript" src="./Libraries/WUI/Cookie/WUICookie-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Head/WUIHead-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Language/WUILanguage-0.2.js"></script>
@@ -658,7 +658,7 @@ HTML code:
 		<script type="text/javascript" src="./Libraries/WUI/Colorpicker/WUIColorpicker-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Checkbox/WUICheckbox-0.2.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Intensity/WUIIntensity-0.1.js"></script>
-		<script type="text/javascript" src="./Libraries/WUI/Button/WUIButton-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Button/WUIButton-0.2.js"></script>
 	</head>
 	<body>
 	</body>
@@ -1056,7 +1056,13 @@ Tool for animating HTML elements using the "onscroll" event of the HTML page bod
 | drawCenter | `void`      | `drawCenter()`<br><br>Draws the center of the visible part of the HTML page in the browser. |
 | drawRuler  | `void`      | `drawRuler()`<br><br>Draws a vertical ruler with pixel measurements, on the left side of the HTML page. |
 
-#### Estilos CSS para Animación
+#### CSS Variables
+
+| Variable                       | Description |
+| ------------------------------ | ----------- |
+| `--wui-scrolly-paging-bgcolor` |
+
+#### CSS Styles for Animation
 
 | Style         | Description |
 | ------------- | ----------- |
@@ -1079,6 +1085,11 @@ HTML head:
 CSS code:
 
 ```css
+:root {
+	/*
+	--wui-scrolly-paging-bgcolor: var(--app-light1color);
+	*/
+}
 .my-section {
 	width: 100%;
 	margin: 10px 0;
@@ -1386,6 +1397,15 @@ Set of pre-designed icons loaded via CSS, for use in interfaces.
 | :--:                                          | -----                    | :--:                                         | -----                   | :--:                                             | -----                       |
 | ![](./imgs/Icons/animation-loarder-comet.svg) | .animation-loarder-comet | ![](./imgs/Icons/animation-loarder-ring.svg) | .animation-loarder-ring | ![](./imgs/Icons/animation-loarder-ringpath.svg) | .animation-loarder-ringpath |
 
+#### CSS Variables
+
+| Variable                  | Description |
+| ------------------------- | ----------- |
+| `--wui-icon-size`         |
+| `--wui-icon-smallsize`    |
+| `--wui-icon-bgcolor-out`  |
+| `--wui-icon-bgcolor-over` |
+
 #### Implementation
 
 HTML head:
@@ -1397,6 +1417,14 @@ HTML head:
 CSS code:
 
 ```css
+:root {
+	/*
+	--wui-icon-size: 24px;
+	--wui-icon-smallsize: 14px;
+	--wui-icon-bgcolor-out: rgb(from var(--app-dark5color) r g b / 70%);
+	--wui-icon-bgcolor-over: var(--app-dark5color);
+	*/
+}
 .my-icon {
 	width: 24px;
 	height: 24px;
@@ -1577,6 +1605,38 @@ Advanced object for implementing data lists and buttons for each row optionally.
 | isPrevEnable | `boolean`     | `isPrevEnable()`<br><br>Returns whether a previous page exists. |
 | isNextEnable | `boolean`     | `isNextEnable()`<br><br>Returns whether a next page exists. |
 
+#### CSS Variables
+
+| Variable                             | Description |
+| ------------------------------------ | ----------- |
+| `--wui-list-radius`                  |
+| `--wui-list-borderwidth`             |
+| `--wui-list-bordercolor`             |
+| `--wui-list-scroll-bgcolor-out`      |
+| `--wui-list-scroll-bgcolor-over`     |
+| `--wui-list-row-height`              |
+| `--wui-list-row-borderwidth`         |
+| `--wui-list-row-bordercolor-out`     |
+| `--wui-list-row-bordercolor-over`    |
+| `--wui-list-row-bgcolor-out`         |
+| `--wui-list-row-bgcolor-over`        |
+| `--wui-list-row-textcolor-out`       |
+| `--wui-list-row-textcolor-over`      |
+| `--wui-list-row-textcolor-disabled`  |
+| `--wui-list-innerrow-borderwidth`    |
+| `--wui-list-innerrow-bordercolor`    |
+| `--wui-list-innerrow-bgcolor`        |
+| `--wui-list-innerrow-textcolor`      |
+| `--wui-list-buttons-bgcolor`         |
+| `--wui-list-button-size`             |
+| `--wui-list-button-hmargin`          |
+| `--wui-list-button-radius`           |
+| `--wui-list-button-bgcolor-enabled`  |
+| `--wui-list-button-bgcolor-disabled` |
+| `--wui-list-message-textcolor`       |
+| `--max-list-width`                   |
+| `--max-list-mobile-width`            |
+
 #### Implementation
 
 HTML head:
@@ -1590,6 +1650,37 @@ HTML head:
 CSS code:
 
 ```css
+:root {
+	/*
+	--wui-list-radius: 10px;
+	--wui-list-borderwidth: 0;
+	--wui-list-bordercolor: var(--app-softcolor);
+	--wui-list-scroll-bgcolor-out: rgb(from var(--app-dark4color) r g b / 20%);
+	--wui-list-scroll-bgcolor-over: rgb(from var(--app-dark4color) r g b / 40%);
+	--wui-list-row-height: 44px;
+	--wui-list-row-borderwidth: 1px;
+	--wui-list-row-bordercolor-out: var(--app-softcolor);
+	--wui-list-row-bordercolor-over: var(--app-softcolor);
+	--wui-list-row-bgcolor-out: var(--app-light2color);
+	--wui-list-row-bgcolor-over: var(--app-light1color);
+	--wui-list-row-textcolor-out: var(--app-dark4color);
+	--wui-list-row-textcolor-over: var(--app-dark4color);
+	--wui-list-row-textcolor-disabled: var(--app-disabledcolor);
+	--wui-list-innerrow-borderwidth: 1px;
+	--wui-list-innerrow-bordercolor: rgb(from var(--app-dark2color) r g b / 10%);
+	--wui-list-innerrow-bgcolor: var(--app-light1color);
+	--wui-list-innerrow-textcolor: rgb(from var(--app-dark4color) r g b / 60%);
+	--wui-list-buttons-bgcolor: transparent;
+	--wui-list-button-size: 48px;
+	--wui-list-button-hmargin: 8px;
+	--wui-list-button-radius: 50%;
+	--wui-list-button-bgcolor-enabled: var(--app-hightlightcolor);
+	--wui-list-button-bgcolor-disabled: var(--app-disabledcolor);
+	--wui-list-message-textcolor: var(--app-dark4color);
+	--max-list-width: 600px;
+	--max-list-mobile-width: 430px;
+	*/
+}
 .my-button {
 	width: 40px;
 	text-align: center;
