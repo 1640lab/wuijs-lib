@@ -13,8 +13,12 @@
 	-webkit-tap-highlight-color: transparent;
 }
 .wui-table {
+	--table-shadow: rgba(48, 77, 99, .04) 0px 4px 12px;
 	display: flex;
 	overflow-x: auto;
+	-webkit-box-shadow: var(--table-shadow);
+	-moz-box-shadow: var(--table-shadow);
+	box-shadow: var(--table-shadow);
 	-webkit-border-radius: var(--wui-table-row-radius);
 	-moz-border-radius: var(--wui-table-row-radius);
 	border-radius: var(--wui-table-row-radius);
@@ -78,7 +82,7 @@
 	mask-image: url();
 	mask-position: center;
 	mask-repeat: no-repeat;
-	background-color: var(--wui-table-column-sorter-asccolor-out);
+	background-color: var(--wui-table-column-sort-asccolor-out);
 	transform: translateY(-50%);
 }
 .wui-table > table > thead > tr > th.resizable > .resizer {
@@ -89,19 +93,19 @@
 	right: 0;
 	width: 4px;
 	height: 100%;
-	border-right: 1px solid var(--wui-table-column-resizer-bordercolor-out);
+	border-right: 1px solid var(--wui-table-column-resize-bordercolor-out);
 }
 .wui-table > table > thead > tr > th.resizable > .resizer:hover {
-	border-right: 1px solid var(--wui-table-column-resizer-bordercolor-over);
+	border-right: 1px solid var(--wui-table-column-resize-bordercolor-over);
 }
 .wui-table > table > thead > tr > th.draggable.drag {
 	opacity: 0.5;
 }
 .wui-table > table > thead > tr > th.draggable.over {
-	outline: 2px dashed #666;
+	outline: 2px dashed var(--wui-table-column-drag-bordercolor-over);
 }
 .wui-table > table > thead > tr > th.draggable.drop {
-	background-color: #e6f7ff;
+	background-color: var(--wui-table-column-drag-bgcolor-drop);
 }
 .wui-table > table > tbody {
 	overflow-y: auto;
@@ -127,34 +131,34 @@
 	color: var(--wui-table-row-textcolor-over);
 }
 .wui-table > table.align-left > :is(thead, tbody) > tr > :is(th, td),
-.wui-table > table > thead > :is(thead, tbody).align-left > :is(th, td),
-.wui-table > table > thead > :is(thead, tbody) > :is(th, td).align-left {
+.wui-table > table > :is(thead, tbody).align-left > tr > :is(th, td),
+.wui-table > table > :is(thead, tbody) > tr > :is(th, td).align-left {
 	text-align: left;
 }
 .wui-table > table.align-center > :is(thead, tbody) > tr > :is(th, td),
-.wui-table > table > thead > :is(thead, tbody).align-center > :is(th, td),
-.wui-table > table > thead > :is(thead, tbody) > :is(th, td).align-center {
+.wui-table > table > :is(thead, tbody).align-center > tr > :is(th, td),
+.wui-table > table > :is(thead, tbody) > tr > :is(th, td).align-center {
 	text-align: center;
 }
 .wui-table > table.align-right > :is(thead, tbody) > tr > :is(th, td),
-.wui-table > table > thead > :is(thead, tbody).align-right > :is(th, td),
-.wui-table > table > thead > :is(thead, tbody) > :is(th, td).align-right {
+.wui-table > table > :is(thead, tbody).align-right > tr > :is(th, td),
+.wui-table > table > :is(thead, tbody) > tr > :is(th, td).align-right {
 	text-align: right;
 }
 .wui-table > table.valign-top > :is(thead, tbody) > tr > :is(th, td),
-.wui-table > table > thead > :is(thead, tbody).valign-top > :is(th, td),
-.wui-table > table > thead > :is(thead, tbody) > :is(th, td).valign-top {
+.wui-table > table > :is(thead, tbody).valign-top > tr > :is(th, td),
+.wui-table > table > :is(thead, tbody) > tr > :is(th, td).valign-top {
 	vertical-align: top;
 }
 .wui-table > table.valign-middle > :is(thead, tbody) > tr > :is(th, td),
-.wui-table > table > thead > :is(thead, tbody).valign-middle > :is(th, td),
-.wui-table > table > thead > :is(thead, tbody) > :is(th, td).valign-middle {
+.wui-table > table > :is(thead, tbody).valign-middle > tr > :is(th, td),
+.wui-table > table > :is(thead, tbody) > tr > :is(th, td).valign-middle {
 	vertical-align: bottom;
 	vertical-align: middle;
 }
 .wui-table > table.valign-bottom > :is(thead, tbody) > tr > :is(th, td),
-.wui-table > table > thead > :is(thead, tbody).valign-bottom > :is(th, td),
-.wui-table > table > thead > :is(thead, tbody) > :is(th, td).valign-bottom {
+.wui-table > table > :is(thead, tbody).valign-bottom > tr > :is(th, td),
+.wui-table > table > :is(thead, tbody) > tr > :is(th, td).valign-bottom {
 	vertical-align: bottom;
 }
 .wui-table > table > tbody > tr.selected > td:not(.disabled) {
