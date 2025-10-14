@@ -37,8 +37,9 @@ class WUITable {
 	};
 
 	constructor (properties) {
-		Object.keys(WUITable.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUITable.#defaults ? WUITable.#defaults[prop] : null;
+		const defaults = structuredClone(WUITable.#defaults);
+		Object.entries(defaults).forEach(([key, defValue]) => {
+			this[key] = key in properties ? properties[key] : defValue;
 		});
 		this._page = 0;
 	}
@@ -208,16 +209,17 @@ class WUITable {
 	}
 
 	init() {
+		if (!this._element) {
+			throw new Error("WUITable: invalid selector or element not found.");
+		}
 		this._table = document.createElement("table");
 		this._thead = document.createElement("thead");
-		this._theadRow = document.createElement("tr");
 		this._tbody = document.createElement("tbody");
 		this._element.style.width = typeof(this._width) == "number" ? this._width+"px" : typeof(this._width) == "string" ? this._width : "auto";
 		this._element.appendChild(this._table);
 		this._table.setAttribute("cellspacing", "0");
 		this._table.appendChild(this._thead);
 		this._table.appendChild(this._tbody);
-		this._thead.appendChild(this._theadRow);
 		if (this._columns.length > 0) {
 			this.#printHead();
 		}
@@ -227,6 +229,7 @@ class WUITable {
 		this._sortingIndex = null;
 		this._sortingDirection = null;
 		this._resizing = false;
+		this._draggingTarget = null;
 	}
 
 	addColumn(options) {
@@ -238,6 +241,7 @@ class WUITable {
 	}
 
 	#printHead() {
+		const tr = document.createElement("tr");
 		const align = this._align || null;
 		const valign = this._valign || null;
 		["align-left", "align-center", "align-right", "valign-top", "valign-middle", "valign-bottom"].forEach(cls => {
@@ -249,16 +253,18 @@ class WUITable {
 		if (valign != null && valign.match(/^(top|center|bottom)$/i)) {
 			this._table.classList.add("valign-"+valign);
 		}
-		this._theadRow.innerHTML = "";
+		this._thead.innerHTML = "";
+		this._thead.append(tr);
 		this._columns.forEach((colOptions, j) => {
 			const th = document.createElement("th");
 			const width = typeof(colOptions.width) == "number" || (typeof(colOptions.width) == "string" && colOptions.width.match(/^[0-9]+(px|em|%)$/)) ? colOptions.width : null;
 			const align = colOptions.align || this._align || null;
 			const valign = colOptions.valign || this._valign || null;
 			const resizable = typeof(colOptions.resizable) != "undefined" ? colOptions.resizable : this._resizable;
+			tr.appendChild(th);
 			th.innerHTML = colOptions.label || "";
 			if (width != null) {
-				th.style[resizable ? "maxWidth" : "minWidth"] = typeof(width) == "number" ? width+"px" : width;
+				th.style[resizable ? "maxWidth" : "width"] = typeof(width) == "number" ? width+"px" : width;
 			}
 			if (align != null && align.match(/^(left|center|right)$/i)) {
 				th.classList.add("align-"+align);
@@ -267,44 +273,30 @@ class WUITable {
 				th.classList.add("valign-"+valign);
 			}
 			["sortable", "resizable", "draggable"].forEach(prop => {
-				const value = prop in colOptions ? colOptions[prop] : this["_"+prop];
-				if (value) {
+				const active = prop in colOptions ? colOptions[prop] : this["_"+prop];
+				if (active) {
 					th.classList.add(prop);
 					if (prop == "sortable") {
 						const sorter = document.createElement("div");
 						sorter.className = "sorter";
 						th.append(sorter);
-						th.addEventListener("click", () => {
-							this.sort(j);
-						});
+						th.addEventListener("click", event => this.#sort(event));
 					} else if (prop == "resizable") {
 						const resizer = document.createElement("div");
 						resizer.className = "resizer";
-						resizer.addEventListener("mousedown", event => {
-							const startX = event.pageX;
-							const startWidth = parseInt(document.defaultView.getComputedStyle(th).width, 10);
-							const onMouseMove = (event) => {
-								const rows = Array.from(this._tbody.querySelectorAll("tr"));
-								const width = startWidth + (event.pageX - startX);
-								th.style.maxWidth = width+"px";
-								rows.forEach(row => {
-									row.children[j].style.maxWidth = width+"px";
-								});
-							}
-							const onMouseUp = () => {
-								document.documentElement.removeEventListener("mousemove", onMouseMove);
-								document.documentElement.removeEventListener("mouseup", onMouseUp);
-								setTimeout(() => this._resizing = false, 100);
-							}
-							this._resizing = true;
-							document.documentElement.addEventListener("mousemove", onMouseMove);
-							document.documentElement.addEventListener("mouseup", onMouseUp);
-						});
+						resizer.addEventListener("mousedown", event => this.#resize(event), {passive: false});
 						th.append(resizer);
+					} else if (prop == "draggable") {
+						th.draggable = true;
+						th.addEventListener("dragstart", event => this.#drag("start", event), {passive: false});
+						th.addEventListener("dragover", event => this.#drag("over", event), {passive: false});
+						th.addEventListener("dragenter", event => this.#drag("enter", event), {passive: false});
+						th.addEventListener("dragleave", event => this.#drag("leave", event), {passive: false});
+						th.addEventListener("dragend", event => this.#drag("end", event), {passive: false});
+						th.addEventListener("drop", event => this.#drag("drop", event), {passive: false});
 					}
 				}	
 			});
-			this._theadRow.appendChild(th);
 		});
 	}
 
@@ -349,7 +341,7 @@ class WUITable {
 						const resizable = typeof(colOptions.resizable) != "undefined" ? colOptions.resizable : this._resizable;
 						td.innerHTML = rowOptions.data[j] || "";
 						if (width != null) {
-							td.style[resizable ? "maxWidth" : "minWidth"] = typeof(width) == "number" ? width+"px" : width;
+							td.style[resizable ? "maxWidth" : "width"] = typeof(width) == "number" ? width+"px" : width;
 						}
 						if (align != null && align.match(/^(left|center|right)$/i)) {
 							td.classList.add("align-"+align);
@@ -373,43 +365,140 @@ class WUITable {
 		this.#printBody(page);
 	}
 
+	#sort(event) {
+		const thTarget = event.currentTarget;
+		const targetIndex = thTarget.cellIndex;
+		this.sort(targetIndex);
+	}
+
 	sort(index, direction = null) {
-		if (this._resizing) {
-			return;
-		}
+		if (this._resizing) return;
+		const theadRow = this._thead.rows[0];
 		const rows = Array.from(this._tbody.querySelectorAll("tr"));
-		const cellContent = (row, format) => {
-			let cell = "";
-			if (format == "text") {
-				cell = row.children[index].textContent.trim();
-			} else if (format == "html") {
-				cell = row.children[index].innerHTML.trim().toLowerCase();
-			}
-			return cell;
+		const parseValue = (value, cell) => {
+			if (!value.trim()) return {
+				value: null,
+				raw: cell.innerHTML.trim()
+			};
+			if (!isNaN(value)) return {
+				value: parseFloat(value),
+				raw: value
+			};
+			const date = Date.parse(value);
+			if (!isNaN(date)) return {
+				value: date,
+				raw: value.toLowerCase()
+			};
+			return {
+				value: value.toLowerCase(),
+				raw: value
+			};
 		}
 		if (direction == null) {
 			direction = (this._sortingIndex == index && this._sortingDirection == "asc") ? "desc" : "asc";
 		}
-		rows.sort((rowA, rowB) => {
-			let cellA = cellContent(rowA, "text");
-			let cellB = cellContent(rowB, "text");
-			if (cellA == "" && cellB == "" && (rowA.textContent != "" || rowB.textContent != "")) {
-				cellA = cellContent(rowA, "html");
-				cellB = cellContent(rowB, "html");
-			}
-			if (direction === "asc") {
-				return cellA.localeCompare(cellB, undefined, {numeric: true});
-			} else {
-				return cellB.localeCompare(cellA, undefined, {numeric: true});
-			}
-		});
-		rows.forEach(row => this._tbody.appendChild(row));
-		this._theadRow.querySelectorAll("th .sorter").forEach(sorter => {
+		theadRow.querySelectorAll("th .sorter").forEach(sorter => {
 			sorter.style.maskImage = "url()";
 		});
-		this._theadRow.children[index].querySelector(".sorter").style.maskImage = this.#getSRCIcon(`column-sorter-${direction == "asc" ? "asc" : "desc"}`, "out");
+		theadRow.children[index].querySelector(".sorter").style.maskImage = this.#getSRCIcon(`column-sorter-${direction == "asc" ? "asc" : "desc"}`, "out");
+		rows.sort((rowA, rowB) => {
+			const cellA = rowA.cells[index];
+			const cellB = rowB.cells[index];
+			const textA = cellA.textContent.trim();
+			const textB = cellB.textContent.trim();
+			const valueA = parseValue(textA, cellA);
+			const valueB = parseValue(textB, cellB);
+			if (valueA.value == null && valueB.value != null) return direction == "asc" ? -1 : 1;
+			if (valueA.value != null && valueB.value == null) return direction == "asc" ? 1 : -1;
+			if (valueA.value == null && valueB.value == null) return direction == "asc" ? valueA.raw.length - valueB.raw.length : valueB.raw.length - valueA.raw.length;
+			if (valueA.value > valueB.value) return direction == "asc" ? 1 : -1;
+			if (valueA.value < valueB.value) return direction == "asc" ? -1 : 1;
+			return 0;
+		});
+		rows.forEach(row => this._tbody.appendChild(row));
 		this._sortingIndex = index;
 		this._sortingDirection = direction;
+	}
+
+	#resize(event) {
+		const thTarget = event.target.parentElement;
+		const startX = event.pageX;
+		const startWidth = parseInt(document.defaultView.getComputedStyle(thTarget).width, 10);
+		const index = thTarget.cellIndex;
+		const draggable = thTarget.draggable;
+		const onMouseMove = (event) => {
+			const rows = Array.from(this._tbody.querySelectorAll("tr"));
+			const width = startWidth + (event.pageX - startX);
+			thTarget.style.maxWidth = width+"px";
+			rows.forEach(row => {
+				row.children[index].style.maxWidth = width+"px";
+			});
+		}
+		const onMouseUp = () => {
+			document.documentElement.removeEventListener("mousemove", onMouseMove);
+			document.documentElement.removeEventListener("mouseup", onMouseUp);
+			setTimeout(() => {
+				this._resizing = false;
+				thTarget.draggable = draggable;
+			}, 100);
+		}
+		event.preventDefault();
+		this._resizing = true;
+		thTarget.draggable = false;
+		document.documentElement.addEventListener("mousemove", onMouseMove);
+		document.documentElement.addEventListener("mouseup", onMouseUp);
+	}
+
+	#drag(type, event) {
+		if (this._resizing) return;
+		const theadCells = Array.from(this._thead.rows[0].cells);
+		const thTarget = event.currentTarget;
+		if (type === "start") {
+			theadCells.forEach(th => th.classList.remove("drop"));
+			thTarget.classList.add("drag");
+			event.dataTransfer.effectAllowed = "move";
+			event.dataTransfer.setData("text/plain", String(thTarget.cellIndex));
+			this._draggingTarget = thTarget;
+		} else if (type === "over") {
+			event.preventDefault();
+			event.dataTransfer.dropEffect = "move";
+		} else if (type === "enter") {
+			event.preventDefault();
+			thTarget.classList.add("over");
+		} else if (type === "leave") {
+			thTarget.classList.remove("over");
+		} else if (type === "end") {
+			theadCells.forEach(th => th.classList.remove("over"));
+			thTarget.classList.remove("drag");
+		} else if (type === "drop") {
+			event.preventDefault();
+			event.stopPropagation();
+			this._table.style.tableLayout = "fixed";
+			this._draggingTarget.classList.add("drop");
+			if (!thTarget.isSameNode(this._draggingTarget)) {
+				const currentTheadCells = Array.from(this._thead.rows[0].cells);
+				const targetIndex = thTarget.cellIndex;
+				const targetCell = currentTheadCells[targetIndex];
+				const sourceIndex = parseInt(event.dataTransfer.getData("text/plain"), 10);
+				const sourceCell = currentTheadCells[sourceIndex];
+				const position = targetIndex < sourceIndex ? "beforebegin" : "afterend";
+				targetCell.insertAdjacentElement(position, sourceCell);
+				Array.from(this._tbody.rows).forEach(tr => {
+					const cells = Array.from(tr.cells);
+					const sourceTd = cells[sourceIndex];
+					const targetTd = cells[targetIndex];
+					targetTd.insertAdjacentElement(position, sourceTd);
+				});
+				theadCells.forEach(th => {
+					if (!th.isSameNode(this._draggingTarget)) {
+						th.classList.remove("drag", "over", "drop");
+					}
+				});
+			}
+			setTimeout(() => {
+				this._table.style.tableLayout = "";
+			}, 50);
+		}
 	}
 
 	export() {
@@ -449,41 +538,11 @@ class WUITable {
 		const paging = this._paging == 0 ? this._rows.length : this._paging;
 		return Boolean((this._page + 1) * paging < this._rows.length);
 	}
+
+	destroy() {
+		if (this._element && this._table) {
+			this._element.innerHTML = "";
+			this._table = this._thead = this._tbody = null;
+		}
+	}
 }
-
-/*
-HTML code:
-<div class="wui-table"></div>
-
-JS code:
-const table = new WUITable({
-	selector: ".wui-table",
-	columns: []
-});
-table.init();
-
-Generated HTML code:
-<div class="wui-table">
-	<table>
-		<thead>
-			<tr>
-				<th class="sortable resizable"></td>
-				...
-			</tr>
-		</thead>
-		<tbody>
-			<tr data-index="0" [data-id="row1"]>
-				<td></td>
-				...
-			</tr>
-			...
-		</tbody>
-		<tfoot>
-			<tr>
-				[<th></th>
-				...]
-			</tr>
-		</tfoot>
-	</table>
-</div>
-*/

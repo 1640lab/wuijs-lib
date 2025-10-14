@@ -15,11 +15,15 @@
 .wui-table {
 	display: flex;
 	overflow-x: auto;
-	border-collapse: collapse;
-	text-align: left;
+	-webkit-border-radius: var(--wui-table-row-radius);
+	-moz-border-radius: var(--wui-table-row-radius);
+	border-radius: var(--wui-table-row-radius);
+	background-color: var(--wui-table-row-bgcolor-out);
+	/*padding-bottom: var(--wui-table-row-radius);*/
+	justify-content: flex-start;	
 }
 .wui-table > table {
-	width: 100%;
+	width: auto;
 	border-collapse: collapse;
 }
 .wui-table > table > :is(thead, tbody) > tr > :is(th, td) {
@@ -40,16 +44,6 @@
 	-khtml-user-select: none;
 	-moz-user-select: none;
 	user-select: none;
-}
-.wui-table > table > thead > tr:first-child > th:first-child {
-	-webkit-border-top-left-radius: var(--wui-table-row-radius);
-	-moz-border-radius-topleft: var(--wui-table-row-radius);
-	border-top-left-radius: var(--wui-table-row-radius);
-}
-.wui-table > table > thead > tr:first-child > th:last-child {
-	-webkit-border-top-right-radius: var(--wui-table-row-radius);
-	-moz-border-radius-topright: var(--wui-table-row-radius);
-	border-top-right-radius: var(--wui-table-row-radius);
 }
 .wui-table > table > thead > tr > th:not(.disabled):is(:hover, :focus, :focus-within) {
 	border-color: var(--wui-table-column-bordercolor-over);
@@ -99,6 +93,15 @@
 }
 .wui-table > table > thead > tr > th.resizable > .resizer:hover {
 	border-right: 1px solid var(--wui-table-column-resizer-bordercolor-over);
+}
+.wui-table > table > thead > tr > th.draggable.drag {
+	opacity: 0.5;
+}
+.wui-table > table > thead > tr > th.draggable.over {
+	outline: 2px dashed #666;
+}
+.wui-table > table > thead > tr > th.draggable.drop {
+	background-color: #e6f7ff;
 }
 .wui-table > table > tbody {
 	overflow-y: auto;
@@ -167,13 +170,11 @@
 }
 @media screen and (max-width: 767px) {
 	.wui-table {
-		justify-content: flex-start;
 		font-size: 14px;
 	}
 }
 @media screen and (min-width: 768px) {
 	.wui-table {
-		justify-content: center;
 		font-size: 12px;
 	}
 }

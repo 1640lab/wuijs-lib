@@ -158,8 +158,7 @@ CSS code in the `WUI.css` file:
 
 	/* wui-modal */
 
-	--max-modal-width: 380px;
-	--wui-modal-bgcolor: rgba(1, 2, 3, .2); /* rgba required */
+	--wui-modal-bgcolor: rgba(1, 2, 3, .2); /* RGBA format required */
 	--wui-modal-bgcolor-under: rgba(1, 2, 3, 0);
 	--wui-modal-box-radius: 17px;
 	--wui-modal-box-bgcolor: rgb(from var(--app-light1color) r g b / 95%);
@@ -188,6 +187,7 @@ CSS code in the `WUI.css` file:
 	--wui-modal-slidepage-box-margin: 10px;
 	--wui-modal-smallpage-box-width: 340px;
 	--wui-modal-smallpage-box-height: 280px;
+	--max-modal-width: 380px;
 	--max-modal-mobile-width: 430px;
 
 	/* wui-modal select */
