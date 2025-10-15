@@ -69,5 +69,5 @@
 	background-color: var(--wui-slider-dot-bgcolor);
 }
 .wui-slider > .dots > div.selected {
-	background-color: var(--wui-slider-dot-bgcolor-elected);
+	background-color: var(--wui-slider-dot-bgcolor-selected);
 }

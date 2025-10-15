@@ -9,9 +9,9 @@
 	width: 120px;
 	height: var(--wui-intensity-height);
 	overflow: hidden;
-	-webkit-border-radius: var(--wui-intensity-radius);
-	-moz-border-radius: var(--wui-intensity-radius);
-	border-radius: var(--wui-intensity-radius);
+	-webkit-border-radius: var(--wui-intensity-borderradius);
+	-moz-border-radius: var(--wui-intensity-borderradius);
+	border-radius: var(--wui-intensity-borderradius);
 	border: 1px solid var(--wui-intensity-bordercolor-out);
 }
 .wui-intensity > input[type="range"] {

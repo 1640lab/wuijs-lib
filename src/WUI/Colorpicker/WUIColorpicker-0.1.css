@@ -111,9 +111,9 @@
 	-webkit-box-shadow: var(--box-shadow);
 	-moz-box-shadow: var(--box-shadow);
 	box-shadow: var(--box-shadow);
-	-webkit-border-radius: var(--wui-colorpicker-box-radius);
-	-moz-border-radius: var(--wui-colorpicker-box-radius);
-	border-radius: var(--wui-colorpicker-box-radius);
+	-webkit-border-radius: var(--wui-colorpicker-box-borderradius);
+	-moz-border-radius: var(--wui-colorpicker-box-borderradius);
+	border-radius: var(--wui-colorpicker-box-borderradius);
 	border: 1px solid var(--wui-colorpicker-box-bordercolor);
 	background-color: var(--wui-colorpicker-box-bgcolor);
 	-webkit-backdrop-filter: var(--box-filter);
@@ -148,7 +148,7 @@
 	color: var(--wui-colorpicker-box-tab-textcolor-selected);
 }
 .wui-colorpicker > .box > .grid {
-	--grid-radius: calc(var(--wui-colorpicker-box-radius) - 5px);
+	--grid-radius: calc(var(--wui-colorpicker-box-borderradius) - 5px);
 	display: grid;
 	width: 100%;
 	overflow: hidden;
@@ -301,7 +301,7 @@
 @media screen and (max-width: 767px) {
 	.wui-colorpicker > .background {
 		display: block;
-		background-color: var(--wui-colorpicker-mobile-bgcolor);
+		background-color: var(--wui-colorpicker-mobile-overlay-bgcolor);
 	}
 	.wui-colorpicker > .box {
 		--box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;

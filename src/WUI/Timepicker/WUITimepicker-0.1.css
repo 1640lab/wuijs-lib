@@ -84,9 +84,9 @@
 	-webkit-box-shadow: var(--box-shadow);
 	-moz-box-shadow: var(--box-shadow);
 	box-shadow: var(--box-shadow);
-	-webkit-border-radius: var(--wui-timepicker-box-radius);
-	-moz-border-radius: var(--wui-timepicker-box-radius);
-	border-radius: var(--wui-timepicker-box-radius);
+	-webkit-border-radius: var(--wui-timepicker-box-borderradius);
+	-moz-border-radius: var(--wui-timepicker-box-borderradius);
+	border-radius: var(--wui-timepicker-box-borderradius);
 	border: 1px solid var(--wui-timepicker-box-bordercolor);
 	background-color: var(--wui-timepicker-box-bgcolor);
 	-webkit-backdrop-filter: var(--box-filter);
@@ -193,7 +193,7 @@
 	}
 	.wui-timepicker > .background {
 		display: block;
-		background-color: var(--wui-timepicker-mobile-bgcolor);
+		background-color: var(--wui-timepicker-mobile-overlay-bgcolor);
 	}
 	.wui-timepicker > .box {
 		--box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;

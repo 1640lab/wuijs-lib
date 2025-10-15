@@ -77,9 +77,9 @@
 	-webkit-box-shadow: var(--box-shadow);
 	-moz-box-shadow: var(--box-shadow);
 	box-shadow: var(--box-shadow);
-	-webkit-border-radius: var(--wui-selectpicker-box-radius);
-	-moz-border-radius: var(--wui-selectpicker-box-radius);
-	border-radius: var(--wui-selectpicker-box-radius);
+	-webkit-border-radius: var(--wui-selectpicker-box-borderradius);
+	-moz-border-radius: var(--wui-selectpicker-box-borderradius);
+	border-radius: var(--wui-selectpicker-box-borderradius);
 	border: 1px solid var(--wui-selectpicker-box-bordercolor);
 	background-color: var(--wui-selectpicker-box-bgcolor);
 	-webkit-backdrop-filter: var(--box-filter);
@@ -109,9 +109,9 @@
 	max-height: calc(calc(11 * 30px) + 10px - 1px);
 	overflow-x: hidden;
 	overflow-y: auto;
-	-webkit-border-radius: var(--wui-selectpicker-box-radius);
-	-moz-border-radius: var(--wui-selectpicker-box-radius);
-	border-radius: var(--wui-selectpicker-box-radius);
+	-webkit-border-radius: var(--wui-selectpicker-box-borderradius);
+	-moz-border-radius: var(--wui-selectpicker-box-borderradius);
+	border-radius: var(--wui-selectpicker-box-borderradius);
 	padding: 5px;
 	flex-direction: column;
 	flex-wrap: nowrap;
@@ -229,7 +229,7 @@
 	}
 	.wui-selectpicker > .background {
 		display: block;
-		background-color: var(--wui-selectpicker-mobile-bgcolor);
+		background-color: var(--wui-selectpicker-mobile-overlay-bgcolor);
 	}
 	.wui-selectpicker > .box {
 		--box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
@@ -241,9 +241,9 @@
 		width: var(--wui-selectpicker-mobile-box-width);
 		margin: auto !important;
 		overflow: hidden;
-		-webkit-border-radius: var(--wui-selectpicker-mobile-box-radius);
-		-moz-border-radius: var(--wui-selectpicker-mobile-box-radius);
-		border-radius: var(--wui-selectpicker-mobile-box-radius);
+		-webkit-border-radius: var(--wui-selectpicker-mobile-box-borderradius);
+		-moz-border-radius: var(--wui-selectpicker-mobile-box-borderradius);
+		border-radius: var(--wui-selectpicker-mobile-box-borderradius);
 		-webkit-transform: var(--box-transform);
 		-moz-transform: var(--box-transform);
 		transform: var(--box-transform);
@@ -254,16 +254,16 @@
 	.wui-selectpicker > .box > .options {
 		min-height: calc(calc(2 * 44px) - 1px);
 		max-height: calc(calc(11 * 44px) - 1px);
-		-webkit-border-top-left-radius: var(--wui-selectpicker-mobile-box-radius);
-		-webkit-border-top-right-radius: var(--wui-selectpicker-mobile-box-radius);
+		-webkit-border-top-left-radius: var(--wui-selectpicker-mobile-box-borderradius);
+		-webkit-border-top-right-radius: var(--wui-selectpicker-mobile-box-borderradius);
 		-webkit-border-bottom-left-radius: 0;
 		-webkit-border-bottom-right-radius: 0;
-		-moz-border-radius-topleft: var(--wui-selectpicker-mobile-box-radius);
-		-moz-border-radius-topright: var(--wui-selectpicker-mobile-box-radius);
+		-moz-border-radius-topleft: var(--wui-selectpicker-mobile-box-borderradius);
+		-moz-border-radius-topright: var(--wui-selectpicker-mobile-box-borderradius);
 		-moz-border-radius-bottomleft: 0;
 		-moz-border-radius-bottomright: 0;
-		border-top-left-radius: var(--wui-selectpicker-mobile-box-radius);
-		border-top-right-radius: var(--wui-selectpicker-mobile-box-radius);
+		border-top-left-radius: var(--wui-selectpicker-mobile-box-borderradius);
+		border-top-right-radius: var(--wui-selectpicker-mobile-box-borderradius);
 		border-bottom-left-radius: 0;
 		border-bottom-right-radius: 0;
 		padding: 0;

@@ -90,9 +90,9 @@
 	-webkit-box-shadow: var(--box-shadow);
 	-moz-box-shadow: var(--box-shadow);
 	box-shadow: var(--box-shadow);
-	-webkit-border-radius: var(--wui-datepicker-box-radius);
-	-moz-border-radius: var(--wui-datepicker-box-radius);
-	border-radius: var(--wui-datepicker-box-radius);
+	-webkit-border-radius: var(--wui-datepicker-box-borderradius);
+	-moz-border-radius: var(--wui-datepicker-box-borderradius);
+	border-radius: var(--wui-datepicker-box-borderradius);
 	border: 1px solid var(--wui-datepicker-box-bordercolor);
 	background-color: var(--wui-datepicker-box-bgcolor);
 	-webkit-backdrop-filter: var(--box-filter);
@@ -295,7 +295,7 @@
 	}
 	.wui-datepicker > .background {
 		display: block;
-		background-color: var(--wui-datepicker-mobile-bgcolor);
+		background-color: var(--wui-datepicker-mobile-overlay-bgcolor);
 	}
 	.wui-datepicker > .box {
 		--box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;

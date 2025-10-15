@@ -322,7 +322,7 @@ class WUIModal {
 		const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
 		const bodyHeight = document.body.offsetHeight;
 		const bodyStyle = getComputedStyle(document.body);
-		const bgcolor = getComputedStyle(this._element).getPropertyValue("--wui-modal-bgcolor").replace(/\s+/g, "").replace("rgba(", "").replace(")", "").split(",");
+		const bgcolor = getComputedStyle(this._element).getPropertyValue("--wui-modal-overlay-bgcolor").replace(/\s+/g, "").replace("rgba(", "").replace(")", "").split(",");
 		const slideMargin = parseInt(getComputedStyle(this._element).getPropertyValue("--wui-modal-slidepage-box-margin").replace(/\D+/g, "") || 0);
 		let under = null;
 		let pages = 1;
@@ -470,7 +470,7 @@ class WUIModal {
 		const slide = Boolean(this._element.classList.contains("slide"));
 		const mobile = Boolean(window.matchMedia("(max-width: 767px)").matches);
 		const bodyHeight = document.body.offsetHeight;
-		const bgcolor = getComputedStyle(this._element).getPropertyValue("--wui-modal-bgcolor").replace(/\s+/g, "").replace("rgba(", "").replace(")", "").split(",");
+		const bgcolor = getComputedStyle(this._element).getPropertyValue("--wui-modal-overlay-bgcolor").replace(/\s+/g, "").replace("rgba(", "").replace(")", "").split(",");
 		const slideMargin = parseInt(getComputedStyle(this._element).getPropertyValue("--wui-modal-slidepage-box-margin").replace(/\D+/g, "") || 0);
 		let under = null;
 		let step = delay > 0 ? 100 : 0;

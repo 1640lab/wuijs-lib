@@ -104,29 +104,7 @@ cp -p ./wuijs-lib-main/src/WDS ../src/Libraries/
 
 ## Implementation
 
-To enable all classes, the CSS and JS dependencies of the libraries must be implemented in the HTML header of the web page together with the `Settings.css` and `WUI.css` style settings files.
-
-CSS code in the `Settings.css` file:
-
-```css
-/* Main settings */
-
-:root {
-	--app-light1color: #f6f6fa;
-	--app-light2color: #fdfdfe;
-	--app-dark1color: #3b404a;
-	--app-dark2color: #353a40;
-	--app-dark3color: #1f2429;
-	--app-dark4color: #3c4d5a;
-	--app-dark5color: #2f3c48;
-	--app-primarycolor: #f4a261;
-	--app-hightlightcolor: #1e90ff;
-	--app-warningcolor: #f44343;
-	--app-disabledcolor: #d5dce3;
-	--app-softcolor: #353a401a;
-	--app-titlefont: "SanFrancisco";
-}
-```
+To enable all classes, the CSS and JS dependencies of the libraries must be implemented in the HTML header of the web page in the `WUI.css` configuration file.
 
 CSS code in the `WUI.css` file:
 
@@ -137,53 +115,53 @@ CSS code in the `WUI.css` file:
 
 	/* wui-loader */
 
-	--wui-loader-color: var(--app-light1color);
+	--wui-loader-color: #f6f6fa;
 
 	/* wui-scrolly */
 
-	--wui-scrolly-paging-bgcolor: var(--app-light1color);
+	--wui-scrolly-paging-bgcolor: #f6f6fa;
 
 	/* wui-icon */
 
 	--wui-icon-size: 24px;
 	--wui-icon-smallsize: 14px;
-	--wui-icon-bgcolor-out: rgb(from var(--app-dark5color) r g b / 70%);
-	--wui-icon-bgcolor-over: var(--app-dark5color);
+	--wui-icon-bgcolor-out: rgb(from #353a40 r g b / 70%);
+	--wui-icon-bgcolor-over: #353a40;
 
 	/* wui-tooltip */
 
 	--wui-tooltip-open-delay: .2s;
-	--wui-tooltip-bgcolor: var(--app-dark3color);
+	--wui-tooltip-bgcolor: #1f2429;
 	--wui-tooltip-textcolor: #fff;
 
 	/* wui-modal */
 
-	--wui-modal-bgcolor: rgba(1, 2, 3, .2); /* RGBA format required */
-	--wui-modal-bgcolor-under: rgba(1, 2, 3, 0);
-	--wui-modal-box-radius: 17px;
-	--wui-modal-box-bgcolor: rgb(from var(--app-light1color) r g b / 95%);
-	--wui-modal-back-textcolor: var(--app-hightlightcolor);
+	--wui-modal-overlay-bgcolor: rgba(1, 2, 3, .2); /* RGBA format required */
+	--wui-modal-overlay-bgcolor-under: rgb(from #010203 r g b / 0%);
+	--wui-modal-box-borderradius: 17px;
+	--wui-modal-box-bgcolor: rgb(from #f6f6fa r g b / 95%);
+	--wui-modal-back-textcolor: #1e90ff;
 	--wui-modal-topbar-height: 4px;
-	--wui-modal-title-textfont: var(--app-titlefont);
+	--wui-modal-title-textfont: "SanFrancisco";
 	--wui-modal-title-textcase: none;
 	--wui-modal-title-textcolor: #000;
-	--wui-modal-body-scroll-bgcolor-out: rgb(from var(--app-dark5color) r g b / 20%);
-	--wui-modal-body-scroll-bgcolor-over: rgb(from var(--app-dark5color) r g b / 40%);
+	--wui-modal-body-scroll-bgcolor-out: rgb(from #353a40 r g b / 20%);
+	--wui-modal-body-scroll-bgcolor-over: rgb(from #353a40 r g b / 40%);
 	--wui-modal-footer-bordercolor: transparent;
 	--wui-modal-message-box-width: 280px;
-	--wui-modal-message-box-bgcolor: rgba(255, 255, 255, .8);
-	--wui-modal-message-box-textcolor: var(--app-dark4color);
+	--wui-modal-message-box-bgcolor: rgb(from #fff r g b / 80%);
+	--wui-modal-message-box-textcolor: #3b404a;
 	--wui-modal-message-mobile-box-width: 280px;
-	--wui-modal-message-mobile-footer-bordercolor: var(--app-softcolor);
-	--wui-modal-message-mobile-button-bordercolor: var(--app-softcolor);
-	--wui-modal-message-linkcolor: var(--app-hightlightcolor);
+	--wui-modal-message-mobile-footer-bordercolor: #353a401a;
+	--wui-modal-message-mobile-button-bordercolor: #353a401a;
+	--wui-modal-message-linkcolor: #1e90ff;
 	--wui-modal-page-box-width: 800px;
 	--wui-modal-page-box-height: 90%;
-	--wui-modal-page-box-radius: 10px;
+	--wui-modal-page-box-borderradius: 10px;
 	--wui-modal-page-box-maxheight: 640px;
-	--wui-modal-page-box-bgcolor: rgb(from var(--app-light1color) r g b / 95%);
-	--wui-modal-page-header-topbar-bgcolor: rgb(from var(--app-dark1color) r g b / 20%);
-	--wui-modal-page-header-bordercolor: var(--app-softcolor);
+	--wui-modal-page-box-bgcolor: rgb(from #f6f6fa r g b / 95%);
+	--wui-modal-page-header-topbar-bgcolor: rgb(from #3c4d5a r g b / 20%);
+	--wui-modal-page-header-bordercolor: #353a401a;
 	--wui-modal-slidepage-box-margin: 10px;
 	--wui-modal-smallpage-box-width: 340px;
 	--wui-modal-smallpage-box-height: 280px;
@@ -193,358 +171,358 @@ CSS code in the `WUI.css` file:
 	/* wui-modal select */
 
 	--wui-modal-select-box-width: 280px;
-	--wui-modal-select-box-bgcolor: rgba(255, 255, 255, .8);
-	--wui-modal-select-option-bordercolor-out: var(--app-softcolor);
-	--wui-modal-select-option-bordercolor-over: var(--app-softcolor);
+	--wui-modal-select-box-bgcolor: rgb(from #fff r g b / 80%);
+	--wui-modal-select-option-bordercolor-out: #353a401a;
+	--wui-modal-select-option-bordercolor-over: #353a401a;
 	--wui-modal-select-option-bgcolor-out: transparent;
-	--wui-modal-select-option-bgcolor-over: rgb(from var(--app-dark1color) r g b / 4%);
-	--wui-modal-select-option-iconcolor-out: var(--app-hightlightcolor);
-	--wui-modal-select-option-iconcolor-over: var(--app-hightlightcolor);
-	--wui-modal-select-option-iconcolor-disabled: rgb(112, 128, 144, .4);
-	--wui-modal-select-option-textcolor-out: var(--app-dark4color);
-	--wui-modal-select-option-textcolor-over: var(--app-hightlightcolor);
-	--wui-modal-select-option-textcolor-selected: var(--app-hightlightcolor);
-	--wui-modal-select-option-textcolor-disabled: rgb(112, 128, 144, .4);
-	--wui-modal-select-option-checker-bordercolor-out: var(--app-hightlightcolor);
-	--wui-modal-select-option-checker-bordercolor-selected: var(--app-hightlightcolor);
+	--wui-modal-select-option-bgcolor-over: rgb(from #3c4d5a r g b / 4%);
+	--wui-modal-select-option-iconcolor-out: #1e90ff;
+	--wui-modal-select-option-iconcolor-over: #1e90ff;
+	--wui-modal-select-option-iconcolor-disabled: rgb(from #d5dce3 r g b / 40%);;
+	--wui-modal-select-option-textcolor-out: #3b404a;
+	--wui-modal-select-option-textcolor-over: #1e90ff;
+	--wui-modal-select-option-textcolor-selected: #1e90ff;
+	--wui-modal-select-option-textcolor-disabled: rgb(from #d5dce3 r g b / 40%);;
+	--wui-modal-select-option-checker-bordercolor-out: #1e90ff;
+	--wui-modal-select-option-checker-bordercolor-selected: #1e90ff;
 	--wui-modal-select-option-checker-bgcolor-out: transparent;
-	--wui-modal-select-option-checker-bgcolor-selected: var(--app-hightlightcolor);
-	--wui-modal-select-button-bordercolor: var(--app-softcolor);
+	--wui-modal-select-option-checker-bgcolor-selected: #1e90ff;
+	--wui-modal-select-button-bordercolor: #353a401a;
 
 	/* wui-slider */
 
 	--wui-slider-dots-bgcolor: transparent;
-	--wui-slider-dot-bgcolor: rgba(255, 255, 255, .6);
-	--wui-slider-dot-bgcolor-elected: rgba(255, 255, 255, .9);
+	--wui-slider-dot-bgcolor: rgb(from #fff r g b / 60%);
+	--wui-slider-dot-bgcolor-selected: rgb(from #fff r g b / 90%);
 
 	/* wui-paging */
 
 	--wui-paging-page-transition-time: .4s;
 	--wui-paging-page-bgcolor: transparent;
-	--wui-paging-page-scroll-bgcolor-out: rgb(from var(--app-dark4color) r g b / 20%);
-	--wui-paging-page-scroll-bgcolor-over: rgb(from var(--app-dark4color) r g b / 40%);
+	--wui-paging-page-scroll-bgcolor-out: rgb(from #3b404a r g b / 20%);
+	--wui-paging-page-scroll-bgcolor-over: rgb(from #3b404a r g b / 40%);
 
 	/* wui-tabs */
 
-	--wui-tabs-tab-bgcolor-out: var(--app-light2color);
-	--wui-tabs-tab-bgcolor-over: var(--app-light1color);
-	--wui-tabs-tab-iconcolor-out: var(--app-hightlightcolor);
-	--wui-tabs-tab-iconcolor-over: var(--app-hightlightcolor);
-	--wui-tabs-tab-iconcolor-mobile: var(--app-hightlightcolor);
-	--wui-tabs-tab-textcolor-out: var(--app-dark4color);
-	--wui-tabs-tab-textcolor-over: var(--app-hightlightcolor);
+	--wui-tabs-tab-bgcolor-out: #fdfdfe;
+	--wui-tabs-tab-bgcolor-over: #f6f6fa;
+	--wui-tabs-tab-iconcolor-out: #1e90ff;
+	--wui-tabs-tab-iconcolor-over: #1e90ff;
+	--wui-tabs-tab-iconcolor-mobile: #1e90ff;
+	--wui-tabs-tab-textcolor-out: #3b404a;
+	--wui-tabs-tab-textcolor-over: #1e90ff;
 
 	/* wui-list */
 
-	--wui-list-radius: 10px;
+	--wui-list-borderradius: 10px;
 	--wui-list-borderwidth: 0;
-	--wui-list-bordercolor: var(--app-softcolor);
-	--wui-list-scroll-bgcolor-out: rgb(from var(--app-dark4color) r g b / 20%);
-	--wui-list-scroll-bgcolor-over: rgb(from var(--app-dark4color) r g b / 40%);
+	--wui-list-bordercolor: #353a401a;
+	--wui-list-scroll-bgcolor-out: rgb(from #3b404a r g b / 20%);
+	--wui-list-scroll-bgcolor-over: rgb(from #3b404a r g b / 40%);
 	--wui-list-row-height: 44px;
 	--wui-list-row-borderwidth: 1px;
-	--wui-list-row-bordercolor-out: var(--app-softcolor);
-	--wui-list-row-bordercolor-over: var(--app-softcolor);
-	--wui-list-row-bgcolor-out: var(--app-light2color);
-	--wui-list-row-bgcolor-over: var(--app-light1color);
-	--wui-list-row-textcolor-out: var(--app-dark4color);
-	--wui-list-row-textcolor-over: var(--app-dark4color);
-	--wui-list-row-textcolor-disabled: var(--app-disabledcolor);
+	--wui-list-row-bordercolor-out: #353a401a;
+	--wui-list-row-bordercolor-over: #353a401a;
+	--wui-list-row-bgcolor-out: #fdfdfe;
+	--wui-list-row-bgcolor-over: #f6f6fa;
+	--wui-list-row-textcolor-out: #3b404a;
+	--wui-list-row-textcolor-over: #3b404a;
+	--wui-list-row-textcolor-disabled: #d5dce3;
 	--wui-list-innerrow-borderwidth: 1px;
-	--wui-list-innerrow-bordercolor: rgb(from var(--app-dark2color) r g b / 10%);
-	--wui-list-innerrow-bgcolor: var(--app-light1color);
-	--wui-list-innerrow-textcolor: rgb(from var(--app-dark4color) r g b / 60%);
+	--wui-list-innerrow-bordercolor: rgb(from #2f3c48 r g b / 10%);
+	--wui-list-innerrow-bgcolor: #f6f6fa;
+	--wui-list-innerrow-textcolor: rgb(from #3b404a r g b / 60%);
 	--wui-list-buttons-bgcolor: transparent;
-	--wui-list-button-size: 48px; /* 34px */
+	--wui-list-button-size: 48px;
 	--wui-list-button-hmargin: 8px;
-	--wui-list-button-radius: 50%;
-	--wui-list-button-bgcolor-enabled: var(--app-hightlightcolor);
-	--wui-list-button-bgcolor-disabled: var(--app-disabledcolor);
-	--wui-list-message-textcolor: var(--app-dark4color);
+	--wui-list-button-borderradius: 50%;
+	--wui-list-button-bgcolor-enabled: #1e90ff;
+	--wui-list-button-bgcolor-disabled: #d5dce3;
+	--wui-list-message-textcolor: #3b404a;
 	--max-list-width: 600px;
 	--max-list-mobile-width: 430px;
 
 	/* wui-table */
 
 	--wui-table-column-bordercolor-width: 1px;
-	--wui-table-column-bordercolor-out: rgb(from var(--app-hightlightcolor) r g b / 10%);
-	--wui-table-column-bordercolor-over: var(--app-hightlightcolor);
-	--wui-table-column-bordercolor-selected: var(--app-hightlightcolor);
-	--wui-table-column-bgcolor-out: var(--app-light1color);
-	--wui-table-column-bgcolor-over: var(--app-light1color);
-	--wui-table-column-bgcolor-selectd: var(--app-hightlightcolor);
+	--wui-table-column-bordercolor-out: rgb(from #1e90ff r g b / 10%);
+	--wui-table-column-bordercolor-over: #1e90ff;
+	--wui-table-column-bordercolor-selected: #1e90ff;
+	--wui-table-column-bgcolor-out: #f6f6fa;
+	--wui-table-column-bgcolor-over: #f6f6fa;
+	--wui-table-column-bgcolor-selectd: #1e90ff;
 	--wui-table-column-textcolor-out: #444;
 	--wui-table-column-textcolor-over: #000;
-	--wui-table-column-textcolor-selected: var(--app-hightlightcolor);
-	--wui-table-column-textcolor-disabled: var(--app-disabledcolor);
+	--wui-table-column-textcolor-selected: #1e90ff;
+	--wui-table-column-textcolor-disabled: #d5dce3;
 	--wui-table-column-sort-asccolor-out: #444;
 	--wui-table-column-sort-asccolor-over: #000;
-	--wui-table-column-sort-asccolor-disabled: var(--app-disabledcolor);
+	--wui-table-column-sort-asccolor-disabled: #d5dce3;
 	--wui-table-column-sort-ascicon-src: none;
 	--wui-table-column-sort-desccolor-out: #444;
 	--wui-table-column-sort-desccolor-over: #000;
-	--wui-table-column-sort-desccolor-disabled: var(--app-disabledcolor);
+	--wui-table-column-sort-desccolor-disabled: #d5dce3;
 	--wui-table-column-sort-descicon-src: none;
-	--wui-table-column-resize-bordercolor-out: rgb(from var(--app-hightlightcolor) r g b / 10%);
-	--wui-table-column-resize-bordercolor-over: rgb(from var(--app-hightlightcolor) r g b / 10%);
+	--wui-table-column-resize-bordercolor-out: rgb(from #1e90ff r g b / 10%);
+	--wui-table-column-resize-bordercolor-over: rgb(from #1e90ff r g b / 10%);
 	--wui-table-column-drag-bordercolor-over: #444;
-	--wui-table-column-drag-bgcolor-drop: rgb(from var(--app-hightlightcolor) r g b / 10%);
-	--wui-table-row-radius: 10px;
+	--wui-table-column-drag-bgcolor-drop: rgb(from #1e90ff r g b / 10%);
+	--wui-table-row-borderradius: 10px;
 	--wui-table-row-bordercolor-width: 1px;
-	--wui-table-row-bordercolor-out: var(--app-softcolor);
-	--wui-table-row-bordercolor-over: var(--app-softcolor);
-	--wui-table-row-bordercolor-selected: var(--app-hightlightcolor);
-	--wui-table-row-bgcolor-out: var(--app-light2color);
-	--wui-table-row-bgcolor-over: var(--app-light1color);
-	--wui-table-row-bgcolor-selectd: var(--app-hightlightcolor);
-	--wui-table-row-textcolor-out: var(--app-dark4color);
-	--wui-table-row-textcolor-over: var(--app-dark4color);
-	--wui-table-row-textcolor-disabled: var(--app-disabledcolor);
-	--wui-table-row-textcolor-selected: var(--app-hightlightcolor);
+	--wui-table-row-bordercolor-out: #353a401a;
+	--wui-table-row-bordercolor-over: #353a401a;
+	--wui-table-row-bordercolor-selected: #1e90ff;
+	--wui-table-row-bgcolor-out: #fdfdfe;
+	--wui-table-row-bgcolor-over: #f6f6fa;
+	--wui-table-row-bgcolor-selectd: #1e90ff;
+	--wui-table-row-textcolor-out: #3b404a;
+	--wui-table-row-textcolor-over: #3b404a;
+	--wui-table-row-textcolor-disabled: #d5dce3;
+	--wui-table-row-textcolor-selected: #1e90ff;
 
 	/* wui-form */
 
-	--wui-form-header-bordercolor: var(--app-softcolor);
-	--wui-form-body-scroll-bgcolor-out: rgb(from var(--app-dark5color) r g b / 20%);
-	--wui-form-body-scroll-bgcolor-over: rgb(from var(--app-dark5color) r g b / 40%);
-	--wui-form-line-bgcolor: rgba(204, 204, 204, .4);
+	--wui-form-header-bordercolor: #353a401a;
+	--wui-form-body-scroll-bgcolor-out: rgb(from #353a40 r g b / 20%);
+	--wui-form-body-scroll-bgcolor-over: rgb(from #353a40 r g b / 40%);
+	--wui-form-line-bgcolor: rgb(from #ccc r g b / 40%);
 	--wui-form-fieldset-bgcolor: #fff;
 	--wui-form-legend-texttransform: uppercase;
-	--wui-form-legend-textcolor: rgb(from var(--app-dark4color) r g b / 60%);
-	--wui-form-label-textcolor-out: var(--app-dark4color);
-	--wui-form-label-textcolor-focus: var(--app-hightlightcolor);
-	--wui-form-label-textcolor-notempty: rgb(from var(--app-dark4color) r g b / 40%);
-	--wui-form-label-textcolor-disabled: var(--app-disabledcolor);
+	--wui-form-legend-textcolor: rgb(from #3b404a r g b / 60%);
+	--wui-form-label-textcolor-out: #3b404a;
+	--wui-form-label-textcolor-focus: #1e90ff;
+	--wui-form-label-textcolor-notempty: rgb(from #3b404a r g b / 40%);
+	--wui-form-label-textcolor-disabled: #d5dce3;
 	--wui-form-input-height: 30px;
 	--wui-form-input-borderwidth: 1px;
 	--wui-form-input-borderradius: 15px;
-	--wui-form-input-bordercolor-out: rgb(from var(--app-hightlightcolor) r g b / 20%);
-	--wui-form-input-bordercolor-focus: var(--app-hightlightcolor);
-	--wui-form-input-bordercolor-invalid: var(--app-warningcolor);
-	--wui-form-input-bordercolor-disabled: var(--app-disabledcolor);
-	--wui-form-input-bgcolor-out: rgb(from var(--app-hightlightcolor) r g b / 4%);
-	--wui-form-input-bgcolor-focus: rgb(from var(--app-hightlightcolor) r g b / 4%);
-	--wui-form-input-bgcolor-disabled: var(--app-disabledcolor);
+	--wui-form-input-bordercolor-out: rgb(from #1e90ff r g b / 20%);
+	--wui-form-input-bordercolor-focus: #1e90ff;
+	--wui-form-input-bordercolor-invalid: #f44343;
+	--wui-form-input-bordercolor-disabled: #d5dce3;
+	--wui-form-input-bgcolor-out: rgb(from #1e90ff r g b / 4%);
+	--wui-form-input-bgcolor-focus: rgb(from #1e90ff r g b / 4%);
+	--wui-form-input-bgcolor-disabled: #d5dce3;
 	--wui-form-input-textcolor-out: #000;
-	--wui-form-input-textcolor-disabled: var(--app-disabledcolor);
+	--wui-form-input-textcolor-disabled: #d5dce3;
 	--wui-form-date-openicon-src: none;
 	--wui-form-date-openicon-size: 30px;
 	--wui-form-date-opencolor-out: #000;
-	--wui-form-date-opencolor-over: var(--app-hightlightcolor);
-	--wui-form-date-opencolor-focus: var(--app-hightlightcolor);
-	--wui-form-date-opencolor-disabled: var(--app-disabledcolor);
+	--wui-form-date-opencolor-over: #1e90ff;
+	--wui-form-date-opencolor-focus: #1e90ff;
+	--wui-form-date-opencolor-disabled: #d5dce3;
 	--wui-form-time-openicon-src: none;
 	--wui-form-time-openicon-size: 30px;
 	--wui-form-time-opencolor-out: #000;
-	--wui-form-time-opencolor-over: var(--app-hightlightcolor);
-	--wui-form-time-opencolor-focus: var(--app-hightlightcolor);
-	--wui-form-time-opencolor-disabled: var(--app-disabledcolor);
-	--wui-form-time-textcolor-out: var(--app-hightlightcolor);
-	--wui-form-time-textcolor-disabled: var(--app-disabledcolor);
+	--wui-form-time-opencolor-over: #1e90ff;
+	--wui-form-time-opencolor-focus: #1e90ff;
+	--wui-form-time-opencolor-disabled: #d5dce3;
+	--wui-form-time-textcolor-out: #1e90ff;
+	--wui-form-time-textcolor-disabled: #d5dce3;
 	--wui-form-range-thumb-size: 20px;
-	--wui-form-range-thumb-bgcolor-out: var(--app-hightlightcolor);
-	--wui-form-range-thumb-bgcolor-over: var(--app-hightlightcolor);
-	--wui-form-range-thumb-bgcolor-disabled: var(--app-disabledcolor);
+	--wui-form-range-thumb-bgcolor-out: #1e90ff;
+	--wui-form-range-thumb-bgcolor-over: #1e90ff;
+	--wui-form-range-thumb-bgcolor-disabled: #d5dce3;
 	--wui-form-range-trackbar-height: 7px;
 	--wui-form-range-trackbar-borderwidth: 1px;
-	--wui-form-range-trackbar-bordercolor: var(--app-softcolor);
-	--wui-form-range-trackbar-bgcolor-out: rgb(from var(--app-dark1color) r g b / 4%);
-	--wui-form-range-trackbar-bgcolor-over: var(--app-hightlightcolor);
-	--wui-form-range-trackbar-bgcolor-disabled: var(--app-disabledcolor);
+	--wui-form-range-trackbar-bordercolor: #353a401a;
+	--wui-form-range-trackbar-bgcolor-out: rgb(from #3c4d5a r g b / 4%);
+	--wui-form-range-trackbar-bgcolor-over: #1e90ff;
+	--wui-form-range-trackbar-bgcolor-disabled: #d5dce3;
 	--wui-form-select-openicon-src: none;
 	--wui-form-select-openicon-size: 30px;
 	--wui-form-select-opencolor-out: #000;
-	--wui-form-select-opencolor-over: var(--app-hightlightcolor);
-	--wui-form-select-opencolor-focus: var(--app-hightlightcolor);
-	--wui-form-select-opencolor-disabled: var(--app-disabledcolor);
-	--wui-form-data-textcolor-out: var(--app-hightlightcolor);
-	--wui-form-data-textcolor-disabled: var(--app-disabledcolor);
+	--wui-form-select-opencolor-over: #1e90ff;
+	--wui-form-select-opencolor-focus: #1e90ff;
+	--wui-form-select-opencolor-disabled: #d5dce3;
+	--wui-form-data-textcolor-out: #1e90ff;
+	--wui-form-data-textcolor-disabled: #d5dce3;
 	--wui-form-progress-borderwidth: 1px;
-	--wui-form-progress-bordercolor: rgb(from var(--app-hightlightcolor) r g b / 20%);
-	--wui-form-progress-valuecolor: var(--app-hightlightcolor);
-	--wui-form-progress-bgcolor: var(--app-softcolor);
+	--wui-form-progress-bordercolor: rgb(from #1e90ff r g b / 20%);
+	--wui-form-progress-valuecolor: #1e90ff;
+	--wui-form-progress-bgcolor: #353a401a;
 	--wui-form-text-textcolor-out: #888;
-	--wui-form-text-textcolor-disabled: var(--app-disabledcolor);
-	--wui-form-text-linkcolor-out: var(--app-hightlightcolor);
-	--wui-form-text-linkcolor-highlight: var(--app-hightlightcolor);
-	--wui-form-message-bgcolor: rgba(255, 255, 255, .6);
+	--wui-form-text-textcolor-disabled: #d5dce3;
+	--wui-form-text-linkcolor-out: #1e90ff;
+	--wui-form-text-linkcolor-highlight: #1e90ff;
+	--wui-form-message-bgcolor: rgb(from #fff r g b / 60%);
 	--wui-form-message-textcolor: #888;
-	--wui-form-message-highlight-bgcolor: var(--app-hightlightcolor);
+	--wui-form-message-highlight-bgcolor: #1e90ff;
 	--wui-form-message-highlight-textcolor: #fff;
-	--wui-form-mobile-field-bordercolor: rgb(from var(--app-hightlightcolor) r g b / 10%);
+	--wui-form-mobile-field-bordercolor: rgb(from #1e90ff r g b / 10%);
 	--wui-form-mobile-label-textcolor: #444;
-	--wui-form-mobile-input-height: 40px;
-	--wui-form-mobile-input-bgcolor: rgb(from var(--app-hightlightcolor) r g b / 4%);
 	--wui-form-mobile-input-height: 34px;
-	--wui-form-mobile-input-borderradius: 17px;
+	--wui-form-mobile-input-bgcolor: rgb(from #1e90ff r g b / 4%);
+	--wui-form-mobile-input-height: 34px;
+	--wui-form-mobile-input-borderradius: 15px;
 
 	/* wui-selectpicker */
 
 	--wui-selectpicker-openicon-src: none;
-	--wui-selectpicker-openicon-size: var(--wui-form-select-openicon-src);
-	--wui-selectpicker-opencolor-out: var(--wui-form-select-opencolor-out);
-	--wui-selectpicker-opencolor-over: var(--wui-form-select-opencolor-over);
-	--wui-selectpicker-opencolor-focus: var(--wui-form-select-opencolor-focus);
-	--wui-selectpicker-opencolor-disabled: var(--wui-form-select-opencolor-disabled);
-	--wui-selectpicker-input-textcolor-out: var(--wui-form-input-textcolor-out);
-	--wui-selectpicker-input-textcolor-over: var(--wui-form-input-textcolor-over);
-	--wui-selectpicker-input-textcolor-disabled: var(--wui-form-input-textcolor-disabled);
-	--wui-selectpicker-box-radius: 10px;
-	--wui-selectpicker-box-bordercolor: var(--app-softcolor);
-	--wui-selectpicker-box-bgcolor: rgba(255, 255, 255, .8);
-	--wui-selectpicker-box-option-bordercolor-out: var(--app-softcolor);
-	--wui-selectpicker-box-option-bordercolor-over: var(--app-softcolor);
+	--wui-selectpicker-openicon-size: none;
+	--wui-selectpicker-opencolor-out: #000;
+	--wui-selectpicker-opencolor-over: #1e90ff;
+	--wui-selectpicker-opencolor-focus: #1e90ff;
+	--wui-selectpicker-opencolor-disabled: #d5dce3;
+	--wui-selectpicker-input-textcolor-out: #000;
+	--wui-selectpicker-input-textcolor-over: #000;
+	--wui-selectpicker-input-textcolor-disabled: #d5dce3;
+	--wui-selectpicker-box-borderradius: 15px;
+	--wui-selectpicker-box-bordercolor: #353a401a;
+	--wui-selectpicker-box-bgcolor: rgb(from #fff r g b / 80%);
+	--wui-selectpicker-box-option-bordercolor-out: #353a401a;
+	--wui-selectpicker-box-option-bordercolor-over: #353a401a;
 	--wui-selectpicker-box-option-bgcolor-out: transparent;
-	--wui-selectpicker-box-option-bgcolor-over: rgb(from var(--app-dark4color) r g b / 4%);
+	--wui-selectpicker-box-option-bgcolor-over: rgb(from #3b404a r g b / 4%);
 	--wui-selectpicker-box-option-checkicon-src: none;
-	--wui-selectpicker-box-option-checkcolor-out: var(--app-hightlightcolor);
-	--wui-selectpicker-box-option-checkcolor-over: var(--app-hightlightcolor);
-	--wui-selectpicker-box-option-checkcolor-selected: var(--app-hightlightcolor);
-	--wui-selectpicker-box-option-checkcolor-disabled: rgb(112, 128, 144, .4);
-	--wui-selectpicker-box-option-textcolor-out: var(--app-dark4color);
-	--wui-selectpicker-box-option-textcolor-empty: rgb(from var(--app-dark4color) r g b / 60%);
-	--wui-selectpicker-box-option-textcolor-over: var(--app-dark4color);
-	--wui-selectpicker-box-option-textcolor-selected: var(--app-hightlightcolor);
-	--wui-selectpicker-box-option-textcolor-disabled: rgb(112, 128, 144, .4);
-	--wui-selectpicker-box-button-bordercolor: var(--app-softcolor);
-	--wui-selectpicker-box-button-textcolor-out: var(--app-hightlightcolor);
-	--wui-selectpicker-box-button-textcolor-over: var(--app-hightlightcolor);
-	--wui-selectpicker-mobile-bgcolor: rgba(1, 2, 3, .2);
-	--wui-selectpicker-mobile-box-width: var(--wui-modal-select-box-width);
-	--wui-selectpicker-mobile-box-radius: var(--wui-modal-box-radius);
+	--wui-selectpicker-box-option-checkcolor-out: #1e90ff;
+	--wui-selectpicker-box-option-checkcolor-over: #1e90ff;
+	--wui-selectpicker-box-option-checkcolor-selected: #1e90ff;
+	--wui-selectpicker-box-option-checkcolor-disabled: rgb(from #d5dce3 r g b / 40%);;
+	--wui-selectpicker-box-option-textcolor-out: #3b404a;
+	--wui-selectpicker-box-option-textcolor-empty: rgb(from #3b404a r g b / 60%);
+	--wui-selectpicker-box-option-textcolor-over: #3b404a;
+	--wui-selectpicker-box-option-textcolor-selected: #1e90ff;
+	--wui-selectpicker-box-option-textcolor-disabled: rgb(from #d5dce3 r g b / 40%);;
+	--wui-selectpicker-box-button-bordercolor: #353a401a;
+	--wui-selectpicker-box-button-textcolor-out: #1e90ff;
+	--wui-selectpicker-box-button-textcolor-over: #1e90ff;
+	--wui-selectpicker-mobile-overlay-bgcolor: rgb(from #010203 r g b / 20%);
+	--wui-selectpicker-mobile-box-width: 280px;
+	--wui-selectpicker-mobile-box-borderradius: 17px;
 
 	/* wui-datepicker */
 
 	--wui-datepicker-openicon-src: none;
-	--wui-datepicker-openicon-size: var(--wui-form-select-openicon-src);
-	--wui-datepicker-opencolor-out: var(--wui-form-select-opencolor-out);
-	--wui-datepicker-opencolor-over: var(--wui-form-select-opencolor-over);
-	--wui-datepicker-opencolor-focus: var(--wui-form-select-opencolor-focus);
-	--wui-datepicker-opencolor-disabled: var(--wui-form-select-opencolor-disabled);
-	--wui-datepicker-box-radius: 10px;
-	--wui-datepicker-box-bordercolor: var(--app-softcolor);
-	--wui-datepicker-box-bgcolor: rgba(255, 255, 255, .8);
+	--wui-datepicker-openicon-size: none;
+	--wui-datepicker-opencolor-out: #000;
+	--wui-datepicker-opencolor-over: #1e90ff;
+	--wui-datepicker-opencolor-focus: #1e90ff;
+	--wui-datepicker-opencolor-disabled: #d5dce3;
+	--wui-datepicker-box-borderradius: 15px;
+	--wui-datepicker-box-bordercolor: #353a401a;
+	--wui-datepicker-box-bgcolor: rgb(from #fff r g b / 80%);
 	--wui-datepicker-box-upicon-src: none;
 	--wui-datepicker-box-upcolor-out: #000;
-	--wui-datepicker-box-upcolor-over: var(--app-hightlightcolor);
-	--wui-datepicker-box-upcolor-disabled: var(--app-disabledcolor);
+	--wui-datepicker-box-upcolor-over: #1e90ff;
+	--wui-datepicker-box-upcolor-disabled: #d5dce3;
 	--wui-datepicker-box-downicon-src: none;
 	--wui-datepicker-box-downcolor-out: #000;
-	--wui-datepicker-box-downcolor-over: var(--app-hightlightcolor);
-	--wui-datepicker-box-downcolor-disabled: var(--app-disabledcolor);
+	--wui-datepicker-box-downcolor-over: #1e90ff;
+	--wui-datepicker-box-downcolor-disabled: #d5dce3;
 	--wui-datepicker-box-previcon-src: none;
-	--wui-datepicker-box-prevcolor-out: var(--app-hightlightcolor);
-	--wui-datepicker-box-prevcolor-over: var(--app-hightlightcolor);
-	--wui-datepicker-box-prevcolor-disabled: var(--app-disabledcolor);
+	--wui-datepicker-box-prevcolor-out: #1e90ff;
+	--wui-datepicker-box-prevcolor-over: #1e90ff;
+	--wui-datepicker-box-prevcolor-disabled: #d5dce3;
 	--wui-datepicker-box-nexticon-src: none;
-	--wui-datepicker-box-nextcolor-out: var(--app-hightlightcolor);
-	--wui-datepicker-box-nextcolor-over: var(--app-hightlightcolor);
-	--wui-datepicker-box-nextcolor-disabled: var(--app-disabledcolor);
+	--wui-datepicker-box-nextcolor-out: #1e90ff;
+	--wui-datepicker-box-nextcolor-over: #1e90ff;
+	--wui-datepicker-box-nextcolor-disabled: #d5dce3;
 	--wui-datepicker-box-month-titlecolor: #888;
-	--wui-datepicker-box-month-bgcolor-today: var(--app-softcolor);
-	--wui-datepicker-box-month-bgcolor-over: rgb(from var(--app-hightlightcolor) r g b / 20%);
-	--wui-datepicker-box-month-bgcolor-selected: var(--app-hightlightcolor);
+	--wui-datepicker-box-month-bgcolor-today: #353a401a;
+	--wui-datepicker-box-month-bgcolor-over: rgb(from #1e90ff r g b / 20%);
+	--wui-datepicker-box-month-bgcolor-selected: #1e90ff;
 	--wui-datepicker-box-month-textcolor-out: #000;
-	--wui-datepicker-box-month-textcolor-over: var(--app-hightlightcolor);
+	--wui-datepicker-box-month-textcolor-over: #1e90ff;
 	--wui-datepicker-box-month-textcolor-selected: #fff;
-	--wui-datepicker-box-day-bgcolor-today: var(--app-softcolor);
-	--wui-datepicker-box-day-bgcolor-over: rgb(from var(--app-hightlightcolor) r g b / 20%);
-	--wui-datepicker-box-day-bgcolor-selected: var(--app-hightlightcolor);
+	--wui-datepicker-box-day-bgcolor-today: #353a401a;
+	--wui-datepicker-box-day-bgcolor-over: rgb(from #1e90ff r g b / 20%);
+	--wui-datepicker-box-day-bgcolor-selected: #1e90ff;
 	--wui-datepicker-box-day-textcolor-out: #000;
-	--wui-datepicker-box-day-textcolor-over: var(--app-hightlightcolor);
+	--wui-datepicker-box-day-textcolor-over: #1e90ff;
 	--wui-datepicker-box-day-textcolor-selected: #fff;
-	--wui-datepicker-box-button-textcolor-out: var(--app-hightlightcolor);
-	--wui-datepicker-box-button-textcolor-over: var(--app-hightlightcolor);
-	--wui-datepicker-mobile-bgcolor: rgba(1, 2, 3, .2);
+	--wui-datepicker-box-button-textcolor-out: #1e90ff;
+	--wui-datepicker-box-button-textcolor-over: #1e90ff;
+	--wui-datepicker-mobile-overlay-bgcolor: rgb(from #010203 r g b / 20%);
 
 	/* wui-timepicker */
 
 	--wui-timepicker-openicon-src: none;
-	--wui-timepicker-openicon-size: var(--wui-form-select-openicon-src);
-	--wui-timepicker-opencolor-out: var(--wui-form-select-opencolor-out);
-	--wui-timepicker-opencolor-over: var(--wui-form-select-opencolor-over);
-	--wui-timepicker-opencolor-focus: var(--wui-form-select-opencolor-focus);
-	--wui-timepicker-opencolor-disabled: var(--wui-form-select-opencolor-disabled);
-	--wui-timepicker-box-radius: 10px;
-	--wui-timepicker-box-bordercolor: var(--app-softcolor);
-	--wui-timepicker-box-bgcolor: rgba(255, 255, 255, .8);
-	--wui-timepicker-box-option-bgcolor-now: var(--app-softcolor);
-	--wui-timepicker-box-option-bgcolor-over: rgb(from var(--app-hightlightcolor) r g b / 20%);
-	--wui-timepicker-box-option-bgcolor-selected: var(--app-hightlightcolor);
+	--wui-timepicker-openicon-size: none;
+	--wui-timepicker-opencolor-out: #000;
+	--wui-timepicker-opencolor-over: #1e90ff;
+	--wui-timepicker-opencolor-focus: #1e90ff;
+	--wui-timepicker-opencolor-disabled: #d5dce3;
+	--wui-timepicker-box-borderradius: 15px;
+	--wui-timepicker-box-bordercolor: #353a401a;
+	--wui-timepicker-box-bgcolor: rgb(from #fff r g b / 80%);
+	--wui-timepicker-box-option-bgcolor-now: #353a401a;
+	--wui-timepicker-box-option-bgcolor-over: rgb(from #1e90ff r g b / 20%);
+	--wui-timepicker-box-option-bgcolor-selected: #1e90ff;
 	--wui-timepicker-box-option-textcolor-out: #000;
-	--wui-timepicker-box-option-textcolor-over: var(--app-hightlightcolor);
+	--wui-timepicker-box-option-textcolor-over: #1e90ff;
 	--wui-timepicker-box-option-textcolor-selected: #fff;
-	--wui-timepicker-box-button-textcolor-out: var(--app-hightlightcolor);
-	--wui-timepicker-box-button-textcolor-over: var(--app-hightlightcolor);
-	--wui-timepicker-mobile-bgcolor: rgba(1, 2, 3, .2);
+	--wui-timepicker-box-button-textcolor-out: #1e90ff;
+	--wui-timepicker-box-button-textcolor-over: #1e90ff;
+	--wui-timepicker-mobile-overlay-bgcolor: rgb(from #010203 r g b / 20%);
 
 	/* wui-colorpicker */
 
 	--wui-colorpicker-button-size: 30px;
-	--wui-colorpicker-button-bordercolor-out: rgb(from var(--app-hightlightcolor) r g b / 20%);
-	--wui-colorpicker-button-bordercolor-over: var(--app-hightlightcolor);
-	--wui-colorpicker-button-bordercolor-invalid: var(--app-warningcolor);
-	--wui-colorpicker-button-bordercolor-disabled: var(--app-disabledcolor);
+	--wui-colorpicker-button-bordercolor-out: rgb(from #1e90ff r g b / 20%);
+	--wui-colorpicker-button-bordercolor-over: #1e90ff;
+	--wui-colorpicker-button-bordercolor-invalid: #f44343;
+	--wui-colorpicker-button-bordercolor-disabled: #d5dce3;
 	--wui-colorpicker-button-bgcolor-out: transparent;
 	--wui-colorpicker-button-bgcolor-over: transparent;
 	--wui-colorpicker-button-bgcolor-disabled: transparent;
 	--wui-colorpicker-viewicon-borderwidth: 1px;
-	--wui-colorpicker-viewicon-bordercolor: rgb(from var(--app-hightlightcolor) r g b / 20%);
+	--wui-colorpicker-viewicon-bordercolor: rgb(from #1e90ff r g b / 20%);
 	--wui-colorpicker-openicon-src: none;
-	--wui-colorpicker-openicon-size: var(--wui-form-select-pickericon-size);
-	--wui-colorpicker-opencolor-out: var(--wui-form-select-opencolor-out);
-	--wui-colorpicker-opencolor-over: var(--wui-form-select-opencolor-over);
-	--wui-colorpicker-opencolor-focus: var(--wui-form-select-opencolor-focus);
-	--wui-colorpicker-opencolor-disabled: var(--wui-form-select-opencolor-disabled);
+	--wui-colorpicker-openicon-size: 30px;
+	--wui-colorpicker-opencolor-out: #000;
+	--wui-colorpicker-opencolor-over: #1e90ff;
+	--wui-colorpicker-opencolor-focus: #1e90ff;
+	--wui-colorpicker-opencolor-disabled: #d5dce3;
 	--wui-colorpicker-emptyicon-src: none;
-	--wui-colorpicker-emptycolor-out: var(--app-dark1color);
-	--wui-colorpicker-box-radius: 10px;
-	--wui-colorpicker-box-bordercolor: var(--app-softcolor);
-	--wui-colorpicker-box-bgcolor: rgba(255, 255, 255, .8);
-	--wui-colorpicker-box-tab-textcolor-out: var(--app-dark1color);
-	--wui-colorpicker-box-tab-textcolor-selected: var(--app-hightlightcolor);
-	--wui-colorpicker-box-option-bordercolor-out: var(--app-softcolor);
-	--wui-colorpicker-box-option-bordercolor-over: var(--app-softcolor);
+	--wui-colorpicker-emptycolor-out: #3c4d5a;
+	--wui-colorpicker-box-borderradius: 15px;
+	--wui-colorpicker-box-bordercolor: #353a401a;
+	--wui-colorpicker-box-bgcolor: rgb(from #fff r g b / 80%);
+	--wui-colorpicker-box-tab-textcolor-out: #3c4d5a;
+	--wui-colorpicker-box-tab-textcolor-selected: #1e90ff;
+	--wui-colorpicker-box-option-bordercolor-out: #353a401a;
+	--wui-colorpicker-box-option-bordercolor-over: #353a401a;
 	--wui-colorpicker-box-option-bgcolor-out: transparent;
-	--wui-colorpicker-box-option-bgcolor-over: rgb(from var(--app-dark1color) r g b / 4%);
-	--wui-colorpicker-box-option-bgcolor-selected: var(--app-hightlightcolor);
+	--wui-colorpicker-box-option-bgcolor-over: rgb(from #3c4d5a r g b / 4%);
+	--wui-colorpicker-box-option-bgcolor-selected: #1e90ff;
 	--wui-colorpicker-box-option-textcolor-out: #000;
-	--wui-colorpicker-box-option-textcolor-over: var(--app-hightlightcolor);
+	--wui-colorpicker-box-option-textcolor-over: #1e90ff;
 	--wui-colorpicker-box-option-textcolor-selected: #fff;
 	--wui-colorpicker-box-preview-textcolor-out: #000;
-	--wui-colorpicker-box-preview-textcolor-empty: rgb(from var(--app-dark1color) r g b / 70%);
-	--wui-colorpicker-box-button-textcolor-out: var(--app-hightlightcolor);
-	--wui-colorpicker-box-button-textcolor-over: var(--app-hightlightcolor);
-	--wui-colorpicker-mobile-bgcolor: rgba(1, 2, 3, .2);
+	--wui-colorpicker-box-preview-textcolor-empty: rgb(from #3c4d5a r g b / 70%);
+	--wui-colorpicker-box-button-textcolor-out: #1e90ff;
+	--wui-colorpicker-box-button-textcolor-over: #1e90ff;
+	--wui-colorpicker-mobile-overlay-bgcolor: rgb(from #010203 r g b / 20%);
 
 	/* wui-checkbox */
 
 	--wui-checkbox-button-size: 30px;
-	--wui-checkbox-bordercolor-out: rgb(from var(--app-hightlightcolor) r g b / 20%);
-	--wui-checkbox-bordercolor-over: var(--app-hightlightcolor);
-	--wui-checkbox-bordercolor-checked: var(--app-hightlightcolor);
-	--wui-checkbox-bordercolor-invalid: var(--app-warningcolor);
-	--wui-checkbox-bordercolor-disabled: var(--app-disabledcolor);
-	--wui-checkbox-bgcolor-out: rgb(from var(--app-hightlightcolor) r g b / 4%);
-	--wui-checkbox-bgcolor-over: rgb(from var(--app-hightlightcolor) r g b / 4%);
-	--wui-checkbox-bgcolor-checked: var(--app-hightlightcolor);
-	--wui-checkbox-bgcolor-disabled: rgb(from var(--app-disabledcolor) r g b / 20%);
-	--wui-checkbox-button-bordercolor-out: rgb(from var(--app-hightlightcolor) r g b / 20%);
-	--wui-checkbox-button-bordercolor-over: var(--app-hightlightcolor);
-	--wui-checkbox-button-bordercolor-checked: var(--app-hightlightcolor);
-	--wui-checkbox-button-bordercolor-disabled: var(--app-disabledcolor);
-	--wui-checkbox-button-bgcolor-out: var(--app-light1color);
-	--wui-checkbox-button-bgcolor-over: rgb(from var(--app-hightlightcolor) r g b / 4%);
-	--wui-checkbox-button-bgcolor-checked: var(--app-light1color);
-	--wui-checkbox-button-bgcolor-disabled: var(--app-disabledcolor);
+	--wui-checkbox-bordercolor-out: rgb(from #1e90ff r g b / 20%);
+	--wui-checkbox-bordercolor-over: #1e90ff;
+	--wui-checkbox-bordercolor-checked: #1e90ff;
+	--wui-checkbox-bordercolor-invalid: #f44343;
+	--wui-checkbox-bordercolor-disabled: #d5dce3;
+	--wui-checkbox-bgcolor-out: rgb(from #1e90ff r g b / 4%);
+	--wui-checkbox-bgcolor-over: rgb(from #1e90ff r g b / 4%);
+	--wui-checkbox-bgcolor-checked: #1e90ff;
+	--wui-checkbox-bgcolor-disabled: rgb(from #d5dce3 r g b / 20%);
+	--wui-checkbox-button-bordercolor-out: rgb(from #1e90ff r g b / 20%);
+	--wui-checkbox-button-bordercolor-over: #1e90ff;
+	--wui-checkbox-button-bordercolor-checked: #1e90ff;
+	--wui-checkbox-button-bordercolor-disabled: #d5dce3;
+	--wui-checkbox-button-bgcolor-out: #f6f6fa;
+	--wui-checkbox-button-bgcolor-over: rgb(from #1e90ff r g b / 4%);
+	--wui-checkbox-button-bgcolor-checked: #f6f6fa;
+	--wui-checkbox-button-bgcolor-disabled: #d5dce3;
 
 	/* wui-intensity */
 
 	--wui-intensity-height: 30px;
-	--wui-intensity-radius: 15px;
-	--wui-intensity-bordercolor-out: rgb(from var(--app-hightlightcolor) r g b / 20%);
-	--wui-intensity-bordercolor-disabled: var(--app-disabledcolor);
-	--wui-intensity-bgcolor-none: var(--app-light2color);
+	--wui-intensity-borderradius: 15px;
+	--wui-intensity-bordercolor-out: rgb(from #1e90ff r g b / 20%);
+	--wui-intensity-bordercolor-disabled: #d5dce3;
+	--wui-intensity-bgcolor-none: #fdfdfe;
 	--wui-intensity-bgcolor-low: mediumaquamarine;
 	--wui-intensity-bgcolor-half: darkorange;
 	--wui-intensity-bgcolor-high: orangered;
@@ -553,48 +531,48 @@ CSS code in the `WUI.css` file:
 
 	--wui-button-default-minwidth: 200px;
 	--wui-button-default-height: 34px;
-	--wui-button-default-bordercolor-out: rgb(from var(--app-dark1color) r g b / 15%);
-	--wui-button-default-bordercolor-over: var(--app-hightlightcolor);
-	--wui-button-default-bordercolor-selected: var(--app-hightlightcolor);
-	--wui-button-default-bordercolor-disabled: var(--app-disabledcolor);
+	--wui-button-default-bordercolor-out: rgb(from #3c4d5a r g b / 15%);
+	--wui-button-default-bordercolor-over: #1e90ff;
+	--wui-button-default-bordercolor-selected: #1e90ff;
+	--wui-button-default-bordercolor-disabled: #d5dce3;
 	--wui-button-default-bgcolor-out: transparent;
 	--wui-button-default-bgcolor-over: transparent;
-	--wui-button-default-bgcolor-selected: var(--app-hightlightcolor);
+	--wui-button-default-bgcolor-selected: #1e90ff;
 	--wui-button-default-bgcolor-disabled: transparent;
-	--wui-button-default-textcolor-out: var(--app-hightlightcolor);
-	--wui-button-default-textcolor-over: var(--app-hightlightcolor);
+	--wui-button-default-textcolor-out: #1e90ff;
+	--wui-button-default-textcolor-over: #1e90ff;
 	--wui-button-default-textcolor-selected: #fff;
-	--wui-button-default-textcolor-disabled: var(--app-disabledcolor);
+	--wui-button-default-textcolor-disabled: #d5dce3;
 	--wui-button-default-textsize: 15px;
 	--wui-button-submit-minwidth: 200px;
 	--wui-button-submit-height: 34px;
-	--wui-button-submit-bordercolor-out: rgb(from var(--app-hightlightcolor) r g b / 20%);
-	--wui-button-submit-bordercolor-over: var(--app-hightlightcolor);
-	--wui-button-submit-bordercolor-selected: var(--app-hightlightcolor);
-	--wui-button-submit-bordercolor-disabled: var(--wui-button-default-bordercolor-disabled);
-	--wui-button-submit-bgcolor-out: var(--app-hightlightcolor);
-	--wui-button-submit-bgcolor-over: var(--app-hightlightcolor);
-	--wui-button-submit-bgcolor-selected: var(--app-hightlightcolor);
-	--wui-button-submit-bgcolor-disabled: var(--app-disabledcolor);
+	--wui-button-submit-bordercolor-out: rgb(from #1e90ff r g b / 20%);
+	--wui-button-submit-bordercolor-over: #1e90ff;
+	--wui-button-submit-bordercolor-selected: #1e90ff;
+	--wui-button-submit-bordercolor-disabled: #d5dce3;
+	--wui-button-submit-bgcolor-out: #1e90ff;
+	--wui-button-submit-bgcolor-over: #1e90ff;
+	--wui-button-submit-bgcolor-selected: #1e90ff;
+	--wui-button-submit-bgcolor-disabled: #d5dce3;
 	--wui-button-submit-textcolor-out: #fff;
 	--wui-button-submit-textcolor-over: #fff;
-	--wui-button-submit-textcolor-mobile: var(--app-hightlightcolor);
+	--wui-button-submit-textcolor-mobile: #1e90ff;
 	--wui-button-submit-textcolor-selected: #fff;
-	--wui-button-submit-textcolor-disabled: var(--wui-disabledcolor);
+	--wui-button-submit-textcolor-disabled: #d5dce3;
 	--wui-button-submit-textsize: 15px;
-	--wui-button-warning-bordercolor-out: rgb(from var(--app-warningcolor) r g b / 25%);
-	--wui-button-warning-bordercolor-over: var(--app-warningcolor);
-	--wui-button-warning-bordercolor-selected: var(--app-warningcolor);
-	--wui-button-warning-bordercolor-disabled: var(--wui-button-default-bordercolor-disabled);
-	--wui-button-warning-bgcolor-out: var(--app-warningcolor);
-	--wui-button-warning-bgcolor-over: var(--app-warningcolor);
-	--wui-button-warning-bgcolor-selected: var(--app-warningcolor);
-	--wui-button-warning-bgcolor-disabled: var(--app-disabledcolor);
+	--wui-button-warning-bordercolor-out: rgb(from #f44343 r g b / 25%);
+	--wui-button-warning-bordercolor-over: #f44343;
+	--wui-button-warning-bordercolor-selected: #f44343;
+	--wui-button-warning-bordercolor-disabled: #d5dce3;
+	--wui-button-warning-bgcolor-out: #f44343;
+	--wui-button-warning-bgcolor-over: #f44343;
+	--wui-button-warning-bgcolor-selected: #f44343;
+	--wui-button-warning-bgcolor-disabled: #d5dce3;
 	--wui-button-warning-textcolor-out: #fff;
 	--wui-button-warning-textcolor-over: #fff;
-	--wui-button-warning-textcolor-mobile: var(--app-warningcolor);
+	--wui-button-warning-textcolor-mobile: #f44343;
 	--wui-button-warning-textcolor-selected: #fff;
-	--wui-button-warning-textcolor-disabled: var(--wui-disabledcolor);
+	--wui-button-warning-textcolor-disabled: #d5dce3;
 	--wui-button-icon-float-padding: 5px;
 	--wui-button-mobile-default-height: 40px;
 	--wui-button-mobile-submit-height: 40px;
@@ -1088,7 +1066,7 @@ CSS code:
 
 ```css
 /*:root {
-	--wui-scrolly-paging-bgcolor: var(--app-light1color);
+	--wui-scrolly-paging-bgcolor: var(--app-lightcolor1);
 }*/
 .my-section {
 	width: 100%;
@@ -1417,12 +1395,13 @@ HTML head:
 CSS code:
 
 ```css
-/*:root {
+:root {
+	/* wui-icon */
 	--wui-icon-size: 24px;
 	--wui-icon-smallsize: 14px;
-	--wui-icon-bgcolor-out: rgb(from var(--app-dark5color) r g b / 70%);
-	--wui-icon-bgcolor-over: var(--app-dark5color);
-}*/
+	--wui-icon-bgcolor-out: rgb(from #353a40 r g b / 70%);
+	--wui-icon-bgcolor-over: #353a40;
+}
 .my-icon {
 	width: 24px;
 	height: 24px;
@@ -1607,7 +1586,7 @@ Advanced object for implementing data lists and buttons for each row optionally.
 
 | Variable                             | Description |
 | ------------------------------------ | ----------- |
-| `--wui-list-radius`                  |
+| `--wui-list-borderradius`            |
 | `--wui-list-borderwidth`             |
 | `--wui-list-bordercolor`             |
 | `--wui-list-scroll-bgcolor-out`      |
@@ -1628,7 +1607,7 @@ Advanced object for implementing data lists and buttons for each row optionally.
 | `--wui-list-buttons-bgcolor`         |
 | `--wui-list-button-size`             |
 | `--wui-list-button-hmargin`          |
-| `--wui-list-button-radius`           |
+| `--wui-list-button-borderradius`     |
 | `--wui-list-button-bgcolor-enabled`  |
 | `--wui-list-button-bgcolor-disabled` |
 | `--wui-list-message-textcolor`       |
@@ -1648,39 +1627,41 @@ HTML head:
 CSS code:
 
 ```css
-/*:root {
+:root {
+	/* wui-icon */
 	--wui-icon-size: 24px;
 	--wui-icon-smallsize: 14px;
-	--wui-icon-bgcolor-out: rgb(from var(--app-dark5color) r g b / 70%);
-	--wui-icon-bgcolor-over: var(--app-dark5color);
-	--wui-list-radius: 10px;
+	--wui-icon-bgcolor-out: rgb(from #353a40 r g b / 70%);
+	--wui-icon-bgcolor-over: #353a40;
+	/* wui-list */
+	--wui-list-borderradius: 10px;
 	--wui-list-borderwidth: 0;
-	--wui-list-bordercolor: var(--app-softcolor);
-	--wui-list-scroll-bgcolor-out: rgb(from var(--app-dark4color) r g b / 20%);
-	--wui-list-scroll-bgcolor-over: rgb(from var(--app-dark4color) r g b / 40%);
+	--wui-list-bordercolor: #353a401a;
+	--wui-list-scroll-bgcolor-out: rgb(from #3b404a r g b / 20%);
+	--wui-list-scroll-bgcolor-over: rgb(from #3b404a r g b / 40%);
 	--wui-list-row-height: 44px;
 	--wui-list-row-borderwidth: 1px;
-	--wui-list-row-bordercolor-out: var(--app-softcolor);
-	--wui-list-row-bordercolor-over: var(--app-softcolor);
-	--wui-list-row-bgcolor-out: var(--app-light2color);
-	--wui-list-row-bgcolor-over: var(--app-light1color);
-	--wui-list-row-textcolor-out: var(--app-dark4color);
-	--wui-list-row-textcolor-over: var(--app-dark4color);
-	--wui-list-row-textcolor-disabled: var(--app-disabledcolor);
+	--wui-list-row-bordercolor-out: #353a401a;
+	--wui-list-row-bordercolor-over: #353a401a;
+	--wui-list-row-bgcolor-out: #fdfdfe;
+	--wui-list-row-bgcolor-over: #f6f6fa;
+	--wui-list-row-textcolor-out: #3b404a;
+	--wui-list-row-textcolor-over: #3b404a;
+	--wui-list-row-textcolor-disabled: #d5dce3;
 	--wui-list-innerrow-borderwidth: 1px;
-	--wui-list-innerrow-bordercolor: rgb(from var(--app-dark2color) r g b / 10%);
-	--wui-list-innerrow-bgcolor: var(--app-light1color);
-	--wui-list-innerrow-textcolor: rgb(from var(--app-dark4color) r g b / 60%);
+	--wui-list-innerrow-bordercolor: rgb(from #2f3c48 r g b / 10%);
+	--wui-list-innerrow-bgcolor: #f6f6fa;
+	--wui-list-innerrow-textcolor: rgb(from #3b404a r g b / 60%);
 	--wui-list-buttons-bgcolor: transparent;
 	--wui-list-button-size: 48px;
 	--wui-list-button-hmargin: 8px;
-	--wui-list-button-radius: 50%;
-	--wui-list-button-bgcolor-enabled: var(--app-hightlightcolor);
-	--wui-list-button-bgcolor-disabled: var(--app-disabledcolor);
-	--wui-list-message-textcolor: var(--app-dark4color);
+	--wui-list-button-borderradius: 50%;
+	--wui-list-button-bgcolor-enabled: #1e90ff;
+	--wui-list-button-bgcolor-disabled: #d5dce3;
+	--wui-list-message-textcolor: #3b404a;
 	--max-list-width: 600px;
 	--max-list-mobile-width: 430px;
-}*/
+}
 .my-button {
 	width: 40px;
 	text-align: center;
