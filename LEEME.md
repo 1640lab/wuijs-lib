@@ -2,7 +2,7 @@
 
 Versión librería: `0.2.0` ([Registro de Cambio](./REGISTRODECAMBIO.md))
 
-Versión documentación: `0.2.0.20251012.1-e` (e: en edición, c: completa)
+Versión documentación: `0.2.0.20251015.1-e` (e: en edición, c: completa)
 
 Licencia: `Licencia Apache 2.0`
 
