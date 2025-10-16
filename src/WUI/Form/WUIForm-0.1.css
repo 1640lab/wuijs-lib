@@ -66,7 +66,7 @@
 }
 .wui-form legend,
 .wui-form fieldset,
-.wui-form fieldset > .field > :is(label, input, select, textarea, data, progress)
+.wui-form fieldset > .field > :is(label, input, select, textarea, data, progress),
 .wui-form fieldset > :is(.text, .message) {
 	margin: 0;
 	font-family: inherit;
