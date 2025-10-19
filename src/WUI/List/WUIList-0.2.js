@@ -20,8 +20,9 @@ class WUIList {
 	};
 
 	constructor (properties) {
-		Object.keys(WUIList.#defaults).forEach(prop => {
-			this[prop] = typeof(properties) != "undefined" && prop in properties ? properties[prop] : prop in WUIList.#defaults ? WUIList.#defaults[prop] : null;
+		const defaults = structuredClone(WUIList.#defaults);
+		Object.entries(defaults).forEach(([key, defValue]) => {
+			this[key] = key in properties ? properties[key] : defValue;
 		});
 		this._page = 0;
 	}

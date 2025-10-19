@@ -18,10 +18,10 @@ class WUIModalSelect extends WUIModal {
 		this._emptyText = "";
 		this._selecteableText = false;
 		this._maxScreenWidth = 768;
-		this._acceptButton = new WUIButton({selector: properties.selector+" > .box > .footer > button.submit"});
+		this._acceptButton = null;
 		this._acceptDisplay = true;
 		this._acceptOnClick = null;
-		this._cancelButton = new WUIButton({selector: properties.selector+" > .box > .footer > button.cancel"});
+		this._cancelButton = null;
 		this._cancelDisplay = true;
 		this._cancelOnClick = null;
 		this._onSelect = null;
@@ -158,7 +158,7 @@ class WUIModalSelect extends WUIModal {
 		}
 	}
 
-	build() {
+	/*build() {
 		if (this._box == null) {
 			const box = document.createElement("div");
 			const options = document.createElement("div");
@@ -177,10 +177,12 @@ class WUIModalSelect extends WUIModal {
 			cancelButton.classList.add("wui-button", "cancel", "wui-language", "flat");
 			acceptButton.classList.add("wui-button", "submit", "wui-language");
 		}
-	}
+	}*/
 
 	init() {
 		super.init();
+		this._acceptButton = new WUIButton({selector: this._selector+" > .box > .footer > button.submit"});
+		this._cancelButton = new WUIButton({selector: this._selector+" > .box > .footer > button.cancel"});
 		this._acceptButton.onClick = () => {
 			let indexes = [];
 			let values = [];

@@ -2,7 +2,7 @@
 
 Library version: `0.2.0` ([Change Log](./CHANGELOG.md))
 
-Document version: `0.2.0.20251015.1-e` (e: in edition, c: complete)
+Document version: `0.2.0.20251018.1-e` (e: in edition, c: complete)
 
 Licence: `Apache License 2.0`
 
@@ -68,13 +68,13 @@ WUI, an acronym for *Web User Interface JavaScript library*, is an open source J
 | WUIPaging        | `0.1`   | Advanced object for implementing paginated views. |
 | WUITabs          | `0.1`   | Advanced object for implementing views accessible by tab selection. |
 | WUIList          | `0.2`   | Advanced object for implementing data lists and buttons for each row optionally. |
-| WUITable         | `0.1`   | Advanced object for implementing data tables. Unlike the `WUIList` object, the `WUITable` object includes a column header. |
-| WUIForm          | `0.1`   | Advanced object for implementing data forms. This object allows the implementation of HTML data input elements such as `<input>`, `<select>`, and `<textarea>`, and WUI library objects such as `WUISelectpicker`, `WUIDatepicker`, `WUITimepicker`, `WUIColorpicker`, `WUICheckbox`, `WUIIntensity`, and `WUIButton`. |
+| WUITable         | `0.2`   | Advanced object for implementing data tables. Unlike the `WUIList` object, the `WUITable` object includes a column header. |
+| WUIForm          | `0.2`   | Advanced object for implementing data forms. This object allows the implementation of HTML data input elements such as `<input>`, `<select>`, and `<textarea>`, and WUI library objects such as `WUISelectpicker`, `WUIDatepicker`, `WUITimepicker`, `WUIColorpicker`, `WUICheckbox`, `WUIIntensity`, and `WUIButton`. |
 | WUIFormat        | `0.1`   | Tool for managing and validating `string`, `number` and `Date` data formats. |
-| WUISelectpicker  | `0.1`   | Advanced object for implementing multiple-select or exclusive data entries based on lists based on HTML `<select>` elements. |
-| WUIDatepicker    | `0.1`   | Advanced object for implementing date type data input. |
-| WUITimepicker    | `0.1`   | Advanced object for implementing time type data inputs. |
-| WUIColorpicker   | `0.1`   | Advanced object for implementing color picker type data inputs. |
+| WUISelectpicker  | `0.2`   | Advanced object for implementing multiple-select or exclusive data entries based on lists based on HTML `<select>` elements. |
+| WUIDatepicker    | `0.2`   | Advanced object for implementing date type data input. |
+| WUITimepicker    | `0.2`   | Advanced object for implementing time type data inputs. |
+| WUIColorpicker   | `0.2`   | Advanced object for implementing color picker type data inputs. |
 | WUICheckbox      | `0.2`   | Advanced object for implementing checkbox type data inputs. |
 | WUIIntensity     | `0.1`   | Advanced object for implementing 4-level intensity selector type data inputs: none, low, half, and high. |
 | WUIButton        | `0.2`   | Advanced object for button implementation. |
@@ -115,7 +115,7 @@ CSS code in the `WUI.css` file:
 
 	/* wui-loader */
 
-	--wui-loader-color: #f6f6fa;
+	--wui-loader-color: #353a40;
 
 	/* wui-scrolly */
 
@@ -142,52 +142,50 @@ CSS code in the `WUI.css` file:
 	--wui-modal-box-bgcolor: rgb(from #f6f6fa r g b / 95%);
 	--wui-modal-back-textcolor: #1e90ff;
 	--wui-modal-topbar-height: 4px;
-	--wui-modal-title-textfont: "SanFrancisco";
+	--wui-modal-title-textfont: "Arial, Helvetica, Verdana, sans-serif";
 	--wui-modal-title-textcase: none;
 	--wui-modal-title-textcolor: #000;
 	--wui-modal-body-scroll-bgcolor-out: rgb(from #353a40 r g b / 20%);
 	--wui-modal-body-scroll-bgcolor-over: rgb(from #353a40 r g b / 40%);
 	--wui-modal-footer-bordercolor: transparent;
 	--wui-modal-message-box-width: 280px;
-	--wui-modal-message-box-bgcolor: rgb(from #fff r g b / 80%);
+	--wui-modal-message-box-bgcolor: rgb(from #f6f6fa r g b / 80%);
 	--wui-modal-message-box-textcolor: #3b404a;
 	--wui-modal-message-mobile-box-width: 280px;
-	--wui-modal-message-mobile-footer-bordercolor: #353a401a;
-	--wui-modal-message-mobile-button-bordercolor: #353a401a;
+	--wui-modal-message-mobile-footer-bordercolor: #f0f0f3;
+	--wui-modal-message-mobile-button-bordercolor: #f0f0f3;
 	--wui-modal-message-linkcolor: #1e90ff;
 	--wui-modal-page-box-width: 800px;
 	--wui-modal-page-box-height: 90%;
 	--wui-modal-page-box-borderradius: 10px;
 	--wui-modal-page-box-maxheight: 640px;
 	--wui-modal-page-box-bgcolor: rgb(from #f6f6fa r g b / 95%);
-	--wui-modal-page-header-topbar-bgcolor: rgb(from #3c4d5a r g b / 20%);
-	--wui-modal-page-header-bordercolor: #353a401a;
+	--wui-modal-page-header-topbar-bgcolor: #f0f0f3;
+	--wui-modal-page-header-bordercolor: #f0f0f3;
 	--wui-modal-slidepage-box-margin: 10px;
 	--wui-modal-smallpage-box-width: 340px;
 	--wui-modal-smallpage-box-height: 280px;
-	--max-modal-width: 380px;
-	--max-modal-mobile-width: 430px;
 
 	/* wui-modal select */
 
 	--wui-modal-select-box-width: 280px;
-	--wui-modal-select-box-bgcolor: rgb(from #fff r g b / 80%);
-	--wui-modal-select-option-bordercolor-out: #353a401a;
-	--wui-modal-select-option-bordercolor-over: #353a401a;
+	--wui-modal-select-box-bgcolor: #fdfdfe;
+	--wui-modal-select-option-bordercolor-out: #f0f0f3;
+	--wui-modal-select-option-bordercolor-over: #f0f0f3;
 	--wui-modal-select-option-bgcolor-out: transparent;
-	--wui-modal-select-option-bgcolor-over: rgb(from #3c4d5a r g b / 4%);
+	--wui-modal-select-option-bgcolor-over: #f6f6fa;
 	--wui-modal-select-option-iconcolor-out: #1e90ff;
 	--wui-modal-select-option-iconcolor-over: #1e90ff;
-	--wui-modal-select-option-iconcolor-disabled: rgb(from #d5dce3 r g b / 40%);;
+	--wui-modal-select-option-iconcolor-disabled: #d5dce3;
 	--wui-modal-select-option-textcolor-out: #3b404a;
 	--wui-modal-select-option-textcolor-over: #1e90ff;
 	--wui-modal-select-option-textcolor-selected: #1e90ff;
-	--wui-modal-select-option-textcolor-disabled: rgb(from #d5dce3 r g b / 40%);;
+	--wui-modal-select-option-textcolor-disabled: #d5dce3;
 	--wui-modal-select-option-checker-bordercolor-out: #1e90ff;
 	--wui-modal-select-option-checker-bordercolor-selected: #1e90ff;
 	--wui-modal-select-option-checker-bgcolor-out: transparent;
 	--wui-modal-select-option-checker-bgcolor-selected: #1e90ff;
-	--wui-modal-select-button-bordercolor: #353a401a;
+	--wui-modal-select-button-bordercolor: #f0f0f3;
 
 	/* wui-slider */
 
@@ -199,8 +197,8 @@ CSS code in the `WUI.css` file:
 
 	--wui-paging-page-transition-time: .4s;
 	--wui-paging-page-bgcolor: transparent;
-	--wui-paging-page-scroll-bgcolor-out: rgb(from #3b404a r g b / 20%);
-	--wui-paging-page-scroll-bgcolor-over: rgb(from #3b404a r g b / 40%);
+	--wui-paging-page-scroll-bgcolor-out: rgb(from #353a40 r g b / 20%);
+	--wui-paging-page-scroll-bgcolor-over: rgb(from #353a40 r g b / 40%);
 
 	/* wui-tabs */
 
@@ -214,22 +212,23 @@ CSS code in the `WUI.css` file:
 
 	/* wui-list */
 
+	--wui-list-shadowcolor: #304d63;
 	--wui-list-borderradius: 10px;
 	--wui-list-borderwidth: 0;
-	--wui-list-bordercolor: #353a401a;
-	--wui-list-scroll-bgcolor-out: rgb(from #3b404a r g b / 20%);
-	--wui-list-scroll-bgcolor-over: rgb(from #3b404a r g b / 40%);
+	--wui-list-bordercolor: #f0f0f3;
+	--wui-list-scroll-bgcolor-out: rgb(from #353a40 r g b / 20%);
+	--wui-list-scroll-bgcolor-over: rgb(from #353a40 r g b / 40%);
 	--wui-list-row-height: 44px;
 	--wui-list-row-borderwidth: 1px;
-	--wui-list-row-bordercolor-out: #353a401a;
-	--wui-list-row-bordercolor-over: #353a401a;
+	--wui-list-row-bordercolor-out: #f0f0f3;
+	--wui-list-row-bordercolor-over: #f0f0f3;
 	--wui-list-row-bgcolor-out: #fdfdfe;
 	--wui-list-row-bgcolor-over: #f6f6fa;
 	--wui-list-row-textcolor-out: #3b404a;
 	--wui-list-row-textcolor-over: #3b404a;
 	--wui-list-row-textcolor-disabled: #d5dce3;
 	--wui-list-innerrow-borderwidth: 1px;
-	--wui-list-innerrow-bordercolor: rgb(from #2f3c48 r g b / 10%);
+	--wui-list-innerrow-bordercolor: #f0f0f3;
 	--wui-list-innerrow-bgcolor: #f6f6fa;
 	--wui-list-innerrow-textcolor: rgb(from #3b404a r g b / 60%);
 	--wui-list-buttons-bgcolor: transparent;
@@ -238,12 +237,11 @@ CSS code in the `WUI.css` file:
 	--wui-list-button-borderradius: 50%;
 	--wui-list-button-bgcolor-enabled: #1e90ff;
 	--wui-list-button-bgcolor-disabled: #d5dce3;
-	--wui-list-message-textcolor: #3b404a;
-	--max-list-width: 600px;
-	--max-list-mobile-width: 430px;
 
 	/* wui-table */
 
+	--wui-table-shadowcolor: #959da5;
+	--wui-table-borderradius: 10px;
 	--wui-table-column-bordercolor-width: 1px;
 	--wui-table-column-bordercolor-out: rgb(from #1e90ff r g b / 10%);
 	--wui-table-column-bordercolor-over: #1e90ff;
@@ -267,10 +265,9 @@ CSS code in the `WUI.css` file:
 	--wui-table-column-resize-bordercolor-over: rgb(from #1e90ff r g b / 10%);
 	--wui-table-column-drag-bordercolor-over: #444;
 	--wui-table-column-drag-bgcolor-drop: rgb(from #1e90ff r g b / 10%);
-	--wui-table-row-borderradius: 10px;
 	--wui-table-row-bordercolor-width: 1px;
-	--wui-table-row-bordercolor-out: #353a401a;
-	--wui-table-row-bordercolor-over: #353a401a;
+	--wui-table-row-bordercolor-out: #f0f0f3;
+	--wui-table-row-bordercolor-over: #f0f0f3;
 	--wui-table-row-bordercolor-selected: #1e90ff;
 	--wui-table-row-bgcolor-out: #fdfdfe;
 	--wui-table-row-bgcolor-over: #f6f6fa;
@@ -282,10 +279,11 @@ CSS code in the `WUI.css` file:
 
 	/* wui-form */
 
-	--wui-form-header-bordercolor: #353a401a;
+	--wui-form-header-bordercolor: #f0f0f3;
+	--wui-form-header-titlecolor: #000;
 	--wui-form-body-scroll-bgcolor-out: rgb(from #353a40 r g b / 20%);
 	--wui-form-body-scroll-bgcolor-over: rgb(from #353a40 r g b / 40%);
-	--wui-form-line-bgcolor: rgb(from #ccc r g b / 40%);
+	--wui-form-line-bordercolor: rgb(from #ccc r g b / 40%);
 	--wui-form-fieldset-bgcolor: #fff;
 	--wui-form-legend-texttransform: uppercase;
 	--wui-form-legend-textcolor: rgb(from #3b404a r g b / 60%);
@@ -300,8 +298,8 @@ CSS code in the `WUI.css` file:
 	--wui-form-input-bordercolor-focus: #1e90ff;
 	--wui-form-input-bordercolor-invalid: #f44343;
 	--wui-form-input-bordercolor-disabled: #d5dce3;
-	--wui-form-input-bgcolor-out: rgb(from #1e90ff r g b / 4%);
-	--wui-form-input-bgcolor-focus: rgb(from #1e90ff r g b / 4%);
+	--wui-form-input-bgcolor-out: #f6f6fa;
+	--wui-form-input-bgcolor-focus: #f6f6fa;
 	--wui-form-input-bgcolor-disabled: #d5dce3;
 	--wui-form-input-textcolor-out: #000;
 	--wui-form-input-textcolor-disabled: #d5dce3;
@@ -325,8 +323,8 @@ CSS code in the `WUI.css` file:
 	--wui-form-range-thumb-bgcolor-disabled: #d5dce3;
 	--wui-form-range-trackbar-height: 7px;
 	--wui-form-range-trackbar-borderwidth: 1px;
-	--wui-form-range-trackbar-bordercolor: #353a401a;
-	--wui-form-range-trackbar-bgcolor-out: rgb(from #3c4d5a r g b / 4%);
+	--wui-form-range-trackbar-bordercolor: #f0f0f3;
+	--wui-form-range-trackbar-bgcolor-out: #f6f6fa;
 	--wui-form-range-trackbar-bgcolor-over: #1e90ff;
 	--wui-form-range-trackbar-bgcolor-disabled: #d5dce3;
 	--wui-form-select-openicon-src: none;
@@ -338,20 +336,21 @@ CSS code in the `WUI.css` file:
 	--wui-form-data-textcolor-out: #1e90ff;
 	--wui-form-data-textcolor-disabled: #d5dce3;
 	--wui-form-progress-borderwidth: 1px;
-	--wui-form-progress-bordercolor: rgb(from #1e90ff r g b / 20%);
+	--wui-form-progress-bordercolor: #f0f0f3;
 	--wui-form-progress-valuecolor: #1e90ff;
-	--wui-form-progress-bgcolor: #353a401a;
+	--wui-form-progress-bgcolor: #f6f6fa;
 	--wui-form-text-textcolor-out: #888;
 	--wui-form-text-textcolor-disabled: #d5dce3;
 	--wui-form-text-linkcolor-out: #1e90ff;
 	--wui-form-text-linkcolor-highlight: #1e90ff;
+	--wui-form-message-shadowcolor: #304d63;
 	--wui-form-message-bgcolor: rgb(from #fff r g b / 60%);
 	--wui-form-message-textcolor: #888;
 	--wui-form-message-highlight-bgcolor: #1e90ff;
 	--wui-form-message-highlight-textcolor: #fff;
 	--wui-form-mobile-field-bordercolor: rgb(from #1e90ff r g b / 10%);
 	--wui-form-mobile-label-textcolor: #444;
-	--wui-form-mobile-input-height: 34px;
+	--wui-form-mobile-input-height: 40px;
 	--wui-form-mobile-input-bgcolor: rgb(from #1e90ff r g b / 4%);
 	--wui-form-mobile-input-height: 34px;
 	--wui-form-mobile-input-borderradius: 15px;
@@ -359,32 +358,34 @@ CSS code in the `WUI.css` file:
 	/* wui-selectpicker */
 
 	--wui-selectpicker-openicon-src: none;
-	--wui-selectpicker-openicon-size: none;
+	--wui-selectpicker-openicon-size: 30px;
 	--wui-selectpicker-opencolor-out: #000;
 	--wui-selectpicker-opencolor-over: #1e90ff;
 	--wui-selectpicker-opencolor-focus: #1e90ff;
 	--wui-selectpicker-opencolor-disabled: #d5dce3;
-	--wui-selectpicker-input-textcolor-out: #000;
-	--wui-selectpicker-input-textcolor-over: #000;
+	--wui-selectpicker-input-textcolor-out: #3b404a;
+	--wui-selectpicker-input-textcolor-over: #3b404a;
 	--wui-selectpicker-input-textcolor-disabled: #d5dce3;
+	--wui-selectpicker-box-shadowcolor: #959da5;
 	--wui-selectpicker-box-borderradius: 15px;
-	--wui-selectpicker-box-bordercolor: #353a401a;
-	--wui-selectpicker-box-bgcolor: rgb(from #fff r g b / 80%);
-	--wui-selectpicker-box-option-bordercolor-out: #353a401a;
-	--wui-selectpicker-box-option-bordercolor-over: #353a401a;
+	--wui-selectpicker-box-bordercolor: #f0f0f3;
+	--wui-selectpicker-box-bgcolor: #fdfdfe;
+	--wui-selectpicker-box-option-borderradius: 10px;
+	--wui-selectpicker-box-option-bordercolor-out: #f0f0f3;
+	--wui-selectpicker-box-option-bordercolor-over: #f0f0f3;
 	--wui-selectpicker-box-option-bgcolor-out: transparent;
-	--wui-selectpicker-box-option-bgcolor-over: rgb(from #3b404a r g b / 4%);
+	--wui-selectpicker-box-option-bgcolor-over: #f6f6fa;
 	--wui-selectpicker-box-option-checkicon-src: none;
 	--wui-selectpicker-box-option-checkcolor-out: #1e90ff;
 	--wui-selectpicker-box-option-checkcolor-over: #1e90ff;
 	--wui-selectpicker-box-option-checkcolor-selected: #1e90ff;
-	--wui-selectpicker-box-option-checkcolor-disabled: rgb(from #d5dce3 r g b / 40%);;
-	--wui-selectpicker-box-option-textcolor-out: #3b404a;
+	--wui-selectpicker-box-option-checkcolor-disabled: rgb(from #d5dce3 r g b / 40%);
 	--wui-selectpicker-box-option-textcolor-empty: rgb(from #3b404a r g b / 60%);
+	--wui-selectpicker-box-option-textcolor-out: #3b404a;
 	--wui-selectpicker-box-option-textcolor-over: #3b404a;
 	--wui-selectpicker-box-option-textcolor-selected: #1e90ff;
-	--wui-selectpicker-box-option-textcolor-disabled: rgb(from #d5dce3 r g b / 40%);;
-	--wui-selectpicker-box-button-bordercolor: #353a401a;
+	--wui-selectpicker-box-option-textcolor-disabled: rgb(from #d5dce3 r g b / 40%);
+	--wui-selectpicker-box-button-bordercolor: #f0f0f3;
 	--wui-selectpicker-box-button-textcolor-out: #1e90ff;
 	--wui-selectpicker-box-button-textcolor-over: #1e90ff;
 	--wui-selectpicker-mobile-overlay-bgcolor: rgb(from #010203 r g b / 20%);
@@ -394,13 +395,14 @@ CSS code in the `WUI.css` file:
 	/* wui-datepicker */
 
 	--wui-datepicker-openicon-src: none;
-	--wui-datepicker-openicon-size: none;
+	--wui-datepicker-openicon-size: 30px;
 	--wui-datepicker-opencolor-out: #000;
 	--wui-datepicker-opencolor-over: #1e90ff;
 	--wui-datepicker-opencolor-focus: #1e90ff;
 	--wui-datepicker-opencolor-disabled: #d5dce3;
+	--wui-datepicker-box-shadowcolor: #959da5;
 	--wui-datepicker-box-borderradius: 15px;
-	--wui-datepicker-box-bordercolor: #353a401a;
+	--wui-datepicker-box-bordercolor: #f0f0f3;
 	--wui-datepicker-box-bgcolor: rgb(from #fff r g b / 80%);
 	--wui-datepicker-box-upicon-src: none;
 	--wui-datepicker-box-upcolor-out: #000;
@@ -419,13 +421,13 @@ CSS code in the `WUI.css` file:
 	--wui-datepicker-box-nextcolor-over: #1e90ff;
 	--wui-datepicker-box-nextcolor-disabled: #d5dce3;
 	--wui-datepicker-box-month-titlecolor: #888;
-	--wui-datepicker-box-month-bgcolor-today: #353a401a;
+	--wui-datepicker-box-month-bgcolor-today: #f0f0f3;
 	--wui-datepicker-box-month-bgcolor-over: rgb(from #1e90ff r g b / 20%);
 	--wui-datepicker-box-month-bgcolor-selected: #1e90ff;
 	--wui-datepicker-box-month-textcolor-out: #000;
 	--wui-datepicker-box-month-textcolor-over: #1e90ff;
 	--wui-datepicker-box-month-textcolor-selected: #fff;
-	--wui-datepicker-box-day-bgcolor-today: #353a401a;
+	--wui-datepicker-box-day-bgcolor-today: #f0f0f3;
 	--wui-datepicker-box-day-bgcolor-over: rgb(from #1e90ff r g b / 20%);
 	--wui-datepicker-box-day-bgcolor-selected: #1e90ff;
 	--wui-datepicker-box-day-textcolor-out: #000;
@@ -438,15 +440,16 @@ CSS code in the `WUI.css` file:
 	/* wui-timepicker */
 
 	--wui-timepicker-openicon-src: none;
-	--wui-timepicker-openicon-size: none;
+	--wui-timepicker-openicon-size: 30px;
 	--wui-timepicker-opencolor-out: #000;
 	--wui-timepicker-opencolor-over: #1e90ff;
 	--wui-timepicker-opencolor-focus: #1e90ff;
 	--wui-timepicker-opencolor-disabled: #d5dce3;
+	--wui-timepicker-box-shadowcolor: #959da5;
 	--wui-timepicker-box-borderradius: 15px;
-	--wui-timepicker-box-bordercolor: #353a401a;
+	--wui-timepicker-box-bordercolor: #f0f0f3;
 	--wui-timepicker-box-bgcolor: rgb(from #fff r g b / 80%);
-	--wui-timepicker-box-option-bgcolor-now: #353a401a;
+	--wui-timepicker-box-option-bgcolor-now: #f0f0f3;
 	--wui-timepicker-box-option-bgcolor-over: rgb(from #1e90ff r g b / 20%);
 	--wui-timepicker-box-option-bgcolor-selected: #1e90ff;
 	--wui-timepicker-box-option-textcolor-out: #000;
@@ -475,22 +478,23 @@ CSS code in the `WUI.css` file:
 	--wui-colorpicker-opencolor-focus: #1e90ff;
 	--wui-colorpicker-opencolor-disabled: #d5dce3;
 	--wui-colorpicker-emptyicon-src: none;
-	--wui-colorpicker-emptycolor-out: #3c4d5a;
+	--wui-colorpicker-emptycolor-out: #f6f6fa;
+	--wui-colorpicker-box-shadowcolor: #959da5;
 	--wui-colorpicker-box-borderradius: 15px;
-	--wui-colorpicker-box-bordercolor: #353a401a;
+	--wui-colorpicker-box-bordercolor: #f0f0f3;
 	--wui-colorpicker-box-bgcolor: rgb(from #fff r g b / 80%);
-	--wui-colorpicker-box-tab-textcolor-out: #3c4d5a;
+	--wui-colorpicker-box-tab-textcolor-out: #3b404a;
 	--wui-colorpicker-box-tab-textcolor-selected: #1e90ff;
-	--wui-colorpicker-box-option-bordercolor-out: #353a401a;
-	--wui-colorpicker-box-option-bordercolor-over: #353a401a;
+	--wui-colorpicker-box-option-bordercolor-out: #f0f0f3;
+	--wui-colorpicker-box-option-bordercolor-over: #f0f0f3;
 	--wui-colorpicker-box-option-bgcolor-out: transparent;
-	--wui-colorpicker-box-option-bgcolor-over: rgb(from #3c4d5a r g b / 4%);
+	--wui-colorpicker-box-option-bgcolor-over: #f6f6fa;
 	--wui-colorpicker-box-option-bgcolor-selected: #1e90ff;
 	--wui-colorpicker-box-option-textcolor-out: #000;
 	--wui-colorpicker-box-option-textcolor-over: #1e90ff;
 	--wui-colorpicker-box-option-textcolor-selected: #fff;
 	--wui-colorpicker-box-preview-textcolor-out: #000;
-	--wui-colorpicker-box-preview-textcolor-empty: rgb(from #3c4d5a r g b / 70%);
+	--wui-colorpicker-box-preview-textcolor-empty: rgb(from #3b404a r g b / 60%);
 	--wui-colorpicker-box-button-textcolor-out: #1e90ff;
 	--wui-colorpicker-box-button-textcolor-over: #1e90ff;
 	--wui-colorpicker-mobile-overlay-bgcolor: rgb(from #010203 r g b / 20%);
@@ -522,7 +526,7 @@ CSS code in the `WUI.css` file:
 	--wui-intensity-borderradius: 15px;
 	--wui-intensity-bordercolor-out: rgb(from #1e90ff r g b / 20%);
 	--wui-intensity-bordercolor-disabled: #d5dce3;
-	--wui-intensity-bgcolor-none: #fdfdfe;
+	--wui-intensity-bgcolor-none: #f6f6fa;
 	--wui-intensity-bgcolor-low: mediumaquamarine;
 	--wui-intensity-bgcolor-half: darkorange;
 	--wui-intensity-bgcolor-high: orangered;
@@ -531,7 +535,7 @@ CSS code in the `WUI.css` file:
 
 	--wui-button-default-minwidth: 200px;
 	--wui-button-default-height: 34px;
-	--wui-button-default-bordercolor-out: rgb(from #3c4d5a r g b / 15%);
+	--wui-button-default-bordercolor-out: #f0f0f3;
 	--wui-button-default-bordercolor-over: #1e90ff;
 	--wui-button-default-bordercolor-selected: #1e90ff;
 	--wui-button-default-bordercolor-disabled: #d5dce3;
@@ -1396,7 +1400,9 @@ CSS code:
 
 ```css
 :root {
+
 	/* wui-icon */
+
 	--wui-icon-size: 24px;
 	--wui-icon-smallsize: 14px;
 	--wui-icon-bgcolor-out: rgb(from #353a40 r g b / 70%);
@@ -1611,8 +1617,6 @@ Advanced object for implementing data lists and buttons for each row optionally.
 | `--wui-list-button-bgcolor-enabled`  |
 | `--wui-list-button-bgcolor-disabled` |
 | `--wui-list-message-textcolor`       |
-| `--max-list-width`                   |
-| `--max-list-mobile-width`            |
 
 #### Implementation
 
@@ -1628,28 +1632,33 @@ CSS code:
 
 ```css
 :root {
+
 	/* wui-icon */
+
 	--wui-icon-size: 24px;
 	--wui-icon-smallsize: 14px;
 	--wui-icon-bgcolor-out: rgb(from #353a40 r g b / 70%);
 	--wui-icon-bgcolor-over: #353a40;
+
 	/* wui-list */
+
+	--wui-list-shadowcolor: #304d63;
 	--wui-list-borderradius: 10px;
 	--wui-list-borderwidth: 0;
-	--wui-list-bordercolor: #353a401a;
-	--wui-list-scroll-bgcolor-out: rgb(from #3b404a r g b / 20%);
-	--wui-list-scroll-bgcolor-over: rgb(from #3b404a r g b / 40%);
+	--wui-list-bordercolor: #f0f0f3;
+	--wui-list-scroll-bgcolor-out: rgb(from #353a40 r g b / 20%);
+	--wui-list-scroll-bgcolor-over: rgb(from #353a40 r g b / 40%);
 	--wui-list-row-height: 44px;
 	--wui-list-row-borderwidth: 1px;
-	--wui-list-row-bordercolor-out: #353a401a;
-	--wui-list-row-bordercolor-over: #353a401a;
+	--wui-list-row-bordercolor-out: #f0f0f3;
+	--wui-list-row-bordercolor-over: #f0f0f3;
 	--wui-list-row-bgcolor-out: #fdfdfe;
 	--wui-list-row-bgcolor-over: #f6f6fa;
 	--wui-list-row-textcolor-out: #3b404a;
 	--wui-list-row-textcolor-over: #3b404a;
 	--wui-list-row-textcolor-disabled: #d5dce3;
 	--wui-list-innerrow-borderwidth: 1px;
-	--wui-list-innerrow-bordercolor: rgb(from #2f3c48 r g b / 10%);
+	--wui-list-innerrow-bordercolor: #f0f0f3;
 	--wui-list-innerrow-bgcolor: #f6f6fa;
 	--wui-list-innerrow-textcolor: rgb(from #3b404a r g b / 60%);
 	--wui-list-buttons-bgcolor: transparent;
@@ -1658,9 +1667,6 @@ CSS code:
 	--wui-list-button-borderradius: 50%;
 	--wui-list-button-bgcolor-enabled: #1e90ff;
 	--wui-list-button-bgcolor-disabled: #d5dce3;
-	--wui-list-message-textcolor: #3b404a;
-	--max-list-width: 600px;
-	--max-list-mobile-width: 430px;
 }
 .my-button {
 	width: 40px;

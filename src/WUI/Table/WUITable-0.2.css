@@ -1,5 +1,5 @@
 /*
- * WUITable - v0.1
+ * WUITable - v0.2
  * Author: Sergio E. Belmar (sbelmar@1640lab.com)
  * Distributed by: 1640 Lab S.p.A. (https://1640lab.com)
  * Copyright (c) Sergio E. Belmar (sbelmar@1640lab.com)
@@ -13,7 +13,7 @@
 	-webkit-tap-highlight-color: transparent;
 }
 .wui-table {
-	--table-shadow: rgba(48, 77, 99, .04) 0px 4px 12px;
+	--table-shadow: rgb(from var(--wui-table-shadowcolor) r g b / 40%) 0px 4px 12px;
 	display: flex;
 	overflow-x: auto;
 	-webkit-box-shadow: var(--table-shadow);
