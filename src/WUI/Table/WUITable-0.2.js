@@ -209,8 +209,8 @@ class WUITable {
 			const lightdark = color.match(/light-dark\(([^,]+),\s*([^)]+)\)/);
 			if (lightdark?.[2]) {
 				const schema = getComputedStyle(element).getPropertyValue("color-scheme");
-				const isDark = schema.match(/dark/) && window.matchMedia("(prefers-color-scheme: dark)").matches;
-				color = lightdark[!isDark ? 1 : 2].trim();
+				const isDarkMode = schema.match(/dark/) && window.matchMedia("(prefers-color-scheme: dark)").matches;
+				color = lightdark[!isDarkMode ? 1 : 2].trim();
 			}
 			return (color.replace(/\s+/g, "").match(/\d+\,\d+\,\d+/) ? rgb2hex(color.replace(/\s+/g, "").replace(/^rgba?\((\d+\,\d+\,\d+)(\,[\d.]+)?\)$/, "$1$2").split(",")) : color);
 		})();

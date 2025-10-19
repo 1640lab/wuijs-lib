@@ -182,7 +182,7 @@ class WUITimepicker {
 	}
 
 	#getSRCIcon(name, event) {
-		const isDark = () => {
+		const isDarkMode = () => {
 			const shema = getComputedStyle(element).getPropertyValue("color-scheme").trim().replace(/only\s+/, "");
 			return shema == "dark" || (shema.includes("dark") && window.matchMedia("(prefers-color-scheme: dark)").matches);
 		}
@@ -192,7 +192,7 @@ class WUITimepicker {
 			let color = getComputedStyle(element).getPropertyValue("--wui-timepicker-"+name+"color-"+event).replace(/#/g, "%23").trim();
 			if (color.match(/light-dark/)) {
 				const lightdark = color.match(/light-dark\(([^,]+),\s*([^)]+)\)/);
-				color = lightdark[!isDark() ? 1 : 2].trim();
+				color = lightdark[!isDarkMode() ? 1 : 2].trim();
 			}
 			return (color.replace(/\s+/g, "").match(/\d+\,\d+\,\d+/) ? rgb2hex(color.replace(/\s+/g, "").replace(/^rgba?\((\d+\,\d+\,\d+)(\,[\d.]+)?\)$/, "$1$2").split(",")) : color);
 		})();

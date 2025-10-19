@@ -294,7 +294,7 @@ class WUISelectpicker {
 	}
 
 	#getSRCIcon(name, event) {
-		const isDark = () => {
+		const isDarkMode = () => {
 			const shema = getComputedStyle(element).getPropertyValue("color-scheme").trim().replace(/only\s+/, "");
 			return shema == "dark" || (shema.includes("dark") && window.matchMedia("(prefers-color-scheme: dark)").matches);
 		}
@@ -304,7 +304,7 @@ class WUISelectpicker {
 			let color = getComputedStyle(element).getPropertyValue("--wui-selectpicker-"+name+"color-"+event).replace(/#/g, "%23").trim();
 			if (color.match(/light-dark/)) {
 				const lightdark = color.match(/light-dark\(([^,]+),\s*([^)]+)\)/);
-				color = lightdark[!isDark() ? 1 : 2].trim();
+				color = lightdark[!isDarkMode() ? 1 : 2].trim();
 			}
 			return (color.replace(/\s+/g, "").match(/\d+\,\d+\,\d+/) ? rgb2hex(color.replace(/\s+/g, "").replace(/^rgba?\((\d+\,\d+\,\d+)(\,[\d.]+)?\)$/, "$1$2").split(",")) : color);
 		})();
@@ -512,7 +512,7 @@ class WUISelectpicker {
 		this._acceptButton.className = "accept";
 		this._acceptButton.addEventListener("click", () => {this.accept();});
 		this.#prepare();
-		window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", event => {
+		this.#darkModeListener(() => {
 			this.#setStyle();
 		});
 	}
@@ -604,6 +604,24 @@ class WUISelectpicker {
 
 	isValid() {
 		return (Array.from(this._input.options).filter(opt => opt.text == this._inputText.value).length > 0);
+	}
+
+	#darkModeListener(callback) {
+		const observer = new MutationObserver(() => {
+			const colorScheme = getComputedStyle(document.documentElement).getPropertyValue("color-scheme").trim();
+			if (this._colorScheme != colorScheme) {
+				this._colorScheme = colorScheme;
+				callback();
+			}
+		});
+		observer.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ["style", "class"],
+			subtree: false
+		});
+		window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", event => {
+			callback();
+		});
 	}
 }
 
