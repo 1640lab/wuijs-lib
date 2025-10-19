@@ -557,6 +557,7 @@ Código CSS archivo `WUI.css`:
 	--wui-button-submit-bordercolor-disabled: #d5dce3;
 	--wui-button-submit-bgcolor-out: #1e90ff;
 	--wui-button-submit-bgcolor-over: #1e90ff;
+	--wui-button-submit-bgcolor-mobile: rgb(from #959da5 r g b / 20%);
 	--wui-button-submit-bgcolor-selected: #1e90ff;
 	--wui-button-submit-bgcolor-disabled: #d5dce3;
 	--wui-button-submit-textcolor-out: #fff;

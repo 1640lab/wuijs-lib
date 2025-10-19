@@ -202,7 +202,7 @@
 	}
 	.wui-modal > .box > .footer > button:is(:hover, :focus, :focus-within) {
 		border-color: transparent;
-		background-color: rgba(204, 204, 204, 0.3);
+		background-color: var(--wui-button-submit-bgcolor-mobile);
 	}
 	.wui-modal > .box > .footer > button.submit {
 		font-weight: bold;
