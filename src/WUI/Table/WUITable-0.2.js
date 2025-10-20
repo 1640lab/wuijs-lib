@@ -42,6 +42,11 @@ class WUITable {
 			this[key] = key in properties ? properties[key] : defValue;
 		});
 		this._page = 0;
+		this._sortingIndex = null;
+		this._sortingDirection = null;
+		this._resizing = false;
+		this._draggingTarget = null;
+		this._colorScheme = null;
 	}
 
 	get selector() {
@@ -236,10 +241,14 @@ class WUITable {
 		if (this._rows.length > 0) {
 			this.#printBody();
 		}
-		this._sortingIndex = null;
-		this._sortingDirection = null;
-		this._resizing = false;
-		this._draggingTarget = null;
+		this.#darkModeListener(() => {
+			if (this._thead.querySelector(".sorter")) {
+				const theadRow = this._thead.rows[0];
+				if (theadRow.children[this._sortingIndex]) {
+					theadRow.children[this._sortingIndex].querySelector(".sorter").style.maskImage = this.#getSRCIcon(`column-sorter-${this._sortingDirection == "asc" ? "asc" : "desc"}`, "out");
+				}
+			}
+		});
 	}
 
 	addColumn(options) {
@@ -265,7 +274,7 @@ class WUITable {
 		}
 		this._thead.innerHTML = "";
 		this._thead.append(tr);
-		this._columns.forEach((colOptions, j) => {
+		this._columns.forEach(colOptions => {
 			const th = document.createElement("th");
 			const width = typeof(colOptions.width) == "number" || (typeof(colOptions.width) == "string" && colOptions.width.match(/^[0-9]+(px|em|%)$/)) ? colOptions.width : null;
 			const align = colOptions.align || this._align || null;
@@ -554,5 +563,23 @@ class WUITable {
 			this._element.innerHTML = "";
 			this._table = this._thead = this._tbody = null;
 		}
+	}
+
+	#darkModeListener(callback) {
+		const observer = new MutationObserver(() => {
+			const colorScheme = getComputedStyle(document.documentElement).getPropertyValue("color-scheme").trim();
+			if (this._colorScheme != colorScheme) {
+				this._colorScheme = colorScheme;
+				callback();
+			}
+		});
+		observer.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ["style", "class"],
+			subtree: false
+		});
+		window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", event => {
+			callback();
+		});
 	}
 }

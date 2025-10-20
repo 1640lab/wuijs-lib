@@ -339,6 +339,7 @@ class WUIColorpicker {
 		Object.entries(defaults).forEach(([key, defValue]) => {
 			this[key] = key in properties ? properties[key] : defValue;
 		});
+		this._colorScheme = null;
 	}
 
 	get selector() {
@@ -631,7 +632,7 @@ class WUIColorpicker {
 		this._acceptButton.className = "accept";
 		this._acceptButton.addEventListener("click", () => {this.accept();});
 		this.#prepare();
-		window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", event => {
+		this.#darkModeListener(() => {
 			this.#setStyle();
 		});
 	}
@@ -740,6 +741,24 @@ class WUIColorpicker {
 
 	isValid() {
 		return this._input.value.match(/^#([0-9A-F]{3}){1,2}$/i);
+	}
+
+	#darkModeListener(callback) {
+		const observer = new MutationObserver(() => {
+			const colorScheme = getComputedStyle(document.documentElement).getPropertyValue("color-scheme").trim();
+			if (this._colorScheme != colorScheme) {
+				this._colorScheme = colorScheme;
+				callback();
+			}
+		});
+		observer.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ["style", "class"],
+			subtree: false
+		});
+		window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", event => {
+			callback();
+		});
 	}
 }
 

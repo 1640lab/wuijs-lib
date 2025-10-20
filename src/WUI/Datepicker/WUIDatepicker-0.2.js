@@ -86,6 +86,7 @@ class WUIDatepicker {
 		Object.entries(defaults).forEach(([key, defValue]) => {
 			this[key] = key in properties ? properties[key] : defValue;
 		});
+		this._colorScheme = null;
 	}
 
 	get selector() {
@@ -407,7 +408,7 @@ class WUIDatepicker {
 		this._acceptButton.addEventListener("click", () => {this.accept();});
 		this.#prepare();
 		this.#loadInputs();
-		window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", event => {
+		this.#darkModeListener(() => {
 			this.#setStyle();
 		});
 	}
@@ -707,6 +708,24 @@ class WUIDatepicker {
 
 	isValid() {
 		return this._input.value.match(/^(\d{4}-\d{2}-\d{2})?$/);
+	}
+
+	#darkModeListener(callback) {
+		const observer = new MutationObserver(() => {
+			const colorScheme = getComputedStyle(document.documentElement).getPropertyValue("color-scheme").trim();
+			if (this._colorScheme != colorScheme) {
+				this._colorScheme = colorScheme;
+				callback();
+			}
+		});
+		observer.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ["style", "class"],
+			subtree: false
+		});
+		window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", event => {
+			callback();
+		});
 	}
 }
 

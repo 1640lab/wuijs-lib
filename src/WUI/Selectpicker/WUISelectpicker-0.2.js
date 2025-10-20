@@ -104,6 +104,7 @@ class WUISelectpicker {
 		Object.entries(defaults).forEach(([key, defValue]) => {
 			this[key] = key in properties ? properties[key] : defValue;
 		});
+		this._colorScheme = null;
 	}
 
 	get selector() {

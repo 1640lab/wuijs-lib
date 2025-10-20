@@ -34,6 +34,7 @@ class WUIForm {
 		Object.entries(defaults).forEach(([key, defValue]) => {
 			this[key] = key in properties ? properties[key] : defValue;
 		});
+		this._colorScheme = null;
 	}
 
 	get selector() {
@@ -355,7 +356,7 @@ class WUIForm {
 				});
 			}
 		});
-		window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", event => {
+		this.#darkModeListener(() => {
 			this._element.querySelectorAll("input, select").forEach(input => {
 				const tag = input.localName.toLowerCase();
 				const type = input.getAttribute("type") || "";
@@ -398,6 +399,24 @@ class WUIForm {
 	autosize(name) {
 		this._form[name].style.height = "auto";
 		this._form[name].style.height = this._form[name].scrollHeight+"px";
+	}
+
+	#darkModeListener(callback) {
+		const observer = new MutationObserver(() => {
+			const colorScheme = getComputedStyle(document.documentElement).getPropertyValue("color-scheme").trim();
+			if (this._colorScheme != colorScheme) {
+				this._colorScheme = colorScheme;
+				callback();
+			}
+		});
+		observer.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ["style", "class"],
+			subtree: false
+		});
+		window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", event => {
+			callback();
+		});
 	}
 }
 
