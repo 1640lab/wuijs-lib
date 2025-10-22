@@ -141,6 +141,7 @@ Código CSS archivo `WUI.css`:
 	--wui-modal-box-borderradius: 17px;
 	--wui-modal-box-bgcolor: rgb(from #efeff6 r g b / 100%);
 	--wui-modal-back-textcolor: #1e90ff;
+	--wui-modal-close-bgcolor: #353a40;
 	--wui-modal-topbar-height: 4px;
 	--wui-modal-title-textfont: "Arial, Helvetica, Verdana, sans-serif";
 	--wui-modal-title-textcase: none;
