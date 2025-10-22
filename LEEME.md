@@ -279,7 +279,7 @@ Código CSS archivo `WUI.css`:
 
 	/* wui-form */
 
-	--wui-form-header-bordercolor: #f0f0f3;
+	--wui-form-header-bordercolor: #d5dce3;
 	--wui-form-header-titlecolor: #000;
 	--wui-form-body-scroll-bgcolor-out: rgb(from #353a40 r g b / 20%);
 	--wui-form-body-scroll-bgcolor-over: rgb(from #353a40 r g b / 40%);

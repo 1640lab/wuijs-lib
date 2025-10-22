@@ -124,6 +124,7 @@
 	right: 10px;
 	width: 24px;
 	height: 24px;
+	background-color: var(--wui-modal-close-bgcolor);
 }
 .wui-modal > .box > .body {
 	display: flex;
