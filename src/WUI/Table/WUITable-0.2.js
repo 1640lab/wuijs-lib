@@ -578,7 +578,7 @@ class WUITable {
 			attributeFilter: ["style", "class"],
 			subtree: false
 		});
-		window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", event => {
+		window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
 			callback();
 		});
 	}
