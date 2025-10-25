@@ -83,11 +83,11 @@ WUI, acrónimo del inglés *Web User Interface JavaScript library*, es una bibli
 
 ## Instalación
 
-Para instalar la biblioteca WUI, debe ser clonada desde los repositorios oficiales de distribución en GitHib (`1640lab/wuijs-lib` o `sbelmar/wuijs-lib`). Suponiendo que el proyecto donde se implementará tenga un directorio de descargas: `./downloads`, un directorio de código fuente `./src` y, dentro de este, un directorio de bibliotecas `./src/Libraries`, debe escribir lo siguiente en la terminal:
+Para instalar la biblioteca WUI, debe ser clonada desde el repositorio oficial en GitHib (`sbelmar/wuijs-lib`). Suponiendo que el proyecto donde se implementará tenga un directorio de descargas: `./downloads`, un directorio de código fuente `./src` y, dentro de este, un directorio de bibliotecas `./src/Libraries`, debe escribir lo siguiente en la terminal:
 
 ```bash
 cd ./downloads
-git clone https://git@github.com/1640lab/wuijs-lib.git
+git clone https://git@github.com/sbelmar/wuijs-lib.git
 cp -r ./wuijs-lib/src/WDS ../src/Libraries/
 ```
 
@@ -95,7 +95,7 @@ Opcionalmente puede ser descargada desde los mismos repositorios en formato ZIP.
 
 ```bash
 cd ./downloads
-wget https://github.com/1640lab/wuijs-lib/archive/refs/heads/main.zip
+wget https://github.com/sbelmar/wuijs-lib/archive/refs/heads/main.zip
 tar -xzf main.zip
 cp -p ./wuijs-lib-main/src/WDS ../src/Libraries/
 ```
