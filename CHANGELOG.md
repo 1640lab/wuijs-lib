@@ -30,20 +30,23 @@ Features:
 8. WUIForm version class update to 0.2.
 	- Added support for light/dark CSS formatting.
 	- Added `--wui-form-message-shadowcolor` property.
-9. WUISelectpicker version class update to 0.2.
+9. WUIFormat version class update to 0.2.
+	- Added support for `Windows Phone` in the `getOS()` and `getMobileOS()` methods.
+	- Added error handling to the `wuiToString()` method.
+10. WUISelectpicker version class update to 0.2.
 	- Added support for light/dark CSS formatting.
 	- Added `--wui-selectpicker-box-shadowcolor` property.
 	- Fixed bug in private method `#addHTMLOption()`.
-10. WUIDatepicker version class update to 0.2.
+11. WUIDatepicker version class update to 0.2.
 	- Added support for light/dark CSS formatting.
 	- Added `--wui-datepicker-box-shadowcolor` property.
-11. WUITimepicker version class update to 0.2.
+12. WUITimepicker version class update to 0.2.
 	- Added support for light/dark CSS formatting.
 	- Added `--wui-timepicker-box-shadowcolor` property.
-12. WUIColorpicker version class update to 0.2.
+13. WUIColorpicker version class update to 0.2.
 	- Added support for light/dark CSS formatting.
 	- Added `--wui-colorpicker-box-shadowcolor` property.
-13. WUICheckbox version class update to 0.2.
+14. WUICheckbox version class update to 0.2.
 	- Fixed bug in drag event when selecting and deselecting the checkbox using the `mousedown` event, enabling it only when the left button remains pressed.
-14. WUIButton version class update to 0.2.
+15. WUIButton version class update to 0.2.
 	- Added `onDblClick` property.

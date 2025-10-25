@@ -70,7 +70,7 @@ WUI, acrónimo del inglés *Web User Interface JavaScript library*, es una bibli
 | WUIList          | `0.2`   | Objeto avanzado para implementación de listas de datos y botoneras para cada fila de manera opcional. |
 | WUITable         | `0.2`   | Objeto avanzado para implementación de tablas de datos. A diferencia del objeto `WUIList`, el objeto `WUITable` incluye una cabecera de columnas. |
 | WUIForm          | `0.2`   | Objeto avanzado para implementación de formularios de datos. Este objeto permite la implementación de elementos HTML de entrada de datos tales como `<input>`, `<select>` y `<textarea>` y objetos de la librería WUI como `WUISelectpicker`, `WUIDatepicker`, `WUITimepicker`, `WUIColorpicker`, `WUICheckbox`, `WUIIntensity` y `WUIButton`. |
-| WUIFormat        | `0.1`   | Herramienta para manejo y validación de formatos de datos de tipo `string`, `number` y `Date`. |
+| WUIFormat        | `0.2`   | Herramienta para manejo y validación de formatos de datos de tipo `string`, `number` y `Date`. |
 | WUISelectpicker  | `0.2`   | Objeto avanzado para implementación de entradas de datos de selección múltiple o excluyente en base a listas en base a elementos HTML `<select>`. |
 | WUIDatepicker    | `0.2`   | Objeto avanzado para implementación de entradas de datos de tipo fecha. |
 | WUITimepicker    | `0.2`   | Objeto avanzado para implementación de entradas de datos de tipo hora. |
@@ -638,7 +638,7 @@ Código HTML:
 		<script type="text/javascript" src="./Libraries/WUI/List/WUIList-0.2.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Table/WUITable-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Form/WUIForm-0.1.js"></script>
-		<script type="text/javascript" src="./Libraries/WUI/Format/WUIFormat-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Format/WUIFormat-0.2.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Selectpicker/WUISelectpicker-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Datepicker/WUIDatepicker-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Timepicker/WUITimepicker-0.1.js"></script>

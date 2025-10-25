@@ -70,7 +70,7 @@ WUI, an acronym for *Web User Interface JavaScript library*, is an open source J
 | WUIList          | `0.2`   | Advanced object for implementing data lists and buttons for each row optionally. |
 | WUITable         | `0.2`   | Advanced object for implementing data tables. Unlike the `WUIList` object, the `WUITable` object includes a column header. |
 | WUIForm          | `0.2`   | Advanced object for implementing data forms. This object allows the implementation of HTML data input elements such as `<input>`, `<select>`, and `<textarea>`, and WUI library objects such as `WUISelectpicker`, `WUIDatepicker`, `WUITimepicker`, `WUIColorpicker`, `WUICheckbox`, `WUIIntensity`, and `WUIButton`. |
-| WUIFormat        | `0.1`   | Tool for managing and validating `string`, `number` and `Date` data formats. |
+| WUIFormat        | `0.2`   | Tool for managing and validating `string`, `number` and `Date` data formats. |
 | WUISelectpicker  | `0.2`   | Advanced object for implementing multiple-select or exclusive data entries based on lists based on HTML `<select>` elements. |
 | WUIDatepicker    | `0.2`   | Advanced object for implementing date type data input. |
 | WUITimepicker    | `0.2`   | Advanced object for implementing time type data inputs. |
@@ -638,7 +638,7 @@ HTML code:
 		<script type="text/javascript" src="./Libraries/WUI/List/WUIList-0.2.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Table/WUITable-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Form/WUIForm-0.1.js"></script>
-		<script type="text/javascript" src="./Libraries/WUI/Format/WUIFormat-0.1.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Format/WUIFormat-0.e.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Selectpicker/WUISelectpicker-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Datepicker/WUIDatepicker-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Timepicker/WUITimepicker-0.1.js"></script>
