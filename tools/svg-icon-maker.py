@@ -92,7 +92,7 @@ for selectors_block, body in rule_regex.findall(css_content):
         # Save to table with all style names
         for selector in selectors:
             style_name = selector.replace(".wui-icon.", "")
-            icon_table.append((style_name, svg_data))
+            icon_table.append((style_name, "<?xml version='1.0' encoding='UTF-8'?>" + svg_data))
             print(f"Found style: {style_name}")
 
 # Sort table by style name
