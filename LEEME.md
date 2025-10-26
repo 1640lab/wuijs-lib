@@ -1694,6 +1694,9 @@ header {
 	margin: 0 10px;
 	text-decoration: none;
 }
+.my-link.disabled {
+	color: #ccc;
+}
 .my-paging {
 	display: inline;
 	font-size: 16px;
@@ -1723,8 +1726,10 @@ Código HTML:
 
 ```html
 <header>
+	<a href="javascript:first();" class="my-link first"><<</a>
 	<a href="javascript:prev();" class="my-link prev"><</a>
 	<a href="javascript:next();" class="my-link next">></a>
+	<a href="javascript:last();" class="my-link last">>></a>
 	<div class="my-paging"></div>
 </header>
 
@@ -1741,8 +1746,10 @@ Código JS
 
 ```js
 // Crear objeto
+const firstLink = document.body.querySelector(".my-link.first");
 const prevLink = document.body.querySelector(".my-link.prev");
 const nextLink = document.body.querySelector(".my-link.next");
+const lastLink = document.body.querySelector(".my-link.last");
 const paging = document.body.querySelector(".my-paging");
 const output = document.body.querySelector(".my-output");
 const list = new WUIList({
@@ -1770,19 +1777,37 @@ const list = new WUIList({
 	}],
 	buttonsStyle: "stretch",
 	onPrint: (page, pages, total) => {
-		prevLink.disabled = !list.isPrevEnable();
-		nextLink.disabled = !list.isNextEnable();
+		if (list.isPrevEnable()) {
+			firstLink.classList.remove("disabled");
+			prevLink.classList.remove("disabled");
+		} else {
+			firstLink.classList.add("disabled");
+			prevLink.classList.add("disabled");
+		}
+		if (list.isNextEnable()) {
+			lastLink.classList.remove("disabled");
+			nextLink.classList.remove("disabled");
+		} else {
+			lastLink.classList.add("disabled");
+			nextLink.classList.add("disabled");
+		}
 		paging.innerHTML = `${page}/${pages} (${total})`;
 	},
 	onClick: (index, id, event, options) => {
 		output.textContent = `Fila - índice: ${index}, id: ${id}`;
 	}
 });
+const first = () => {
+	list.first();
+}
 const prev = () => {
-  list.prev();  
+	list.prev();
+}
+const last = () => {
+	list.last();
 }
 const next = () => {
-  list.next();  
+	list.next();
 }
 
 // Inicializar objeto
@@ -1806,7 +1831,7 @@ list.print();
 ```
 
 > [!TIP]
-> Puede revisar este ejemplo funcional en CodePen en el enlace: [https://codepen.io/sbelmar/pen/vELrGBJ](https://codepen.io/sbelmar/pen/vELrGBJ).
+> Puede revisar este ejemplo funcional en CodePen en el enlace: [https://codepen.io/sbelmar/pen/vELrGBJ](https://codepen.io/sbelmar/pen/vELrGBJ){:target="_blank"}.
 
 <a name="wuiTable"></a>
 <a name="wuiForm"></a>
