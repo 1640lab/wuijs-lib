@@ -14,7 +14,7 @@ class WUITable {
 		columns: [],
 		rows: [],
 		align: "left",
-		valign: "center",
+		valign: "middle",
 		sortable: true,
 		resizable: true,
 		draggable: true,
@@ -154,7 +154,7 @@ class WUITable {
 	}
 
 	set valign(value) {
-		if (value == null || typeof(value) == "string" && value.match(/^(top|center|bottom)$/i)) {
+		if (value == null || typeof(value) == "string" && value.match(/^(top|middle|bottom)$/i)) {
 			this._valign = typeof(value) == "string" ? value.toLowerCase() : value;
 		}
 	}
@@ -268,7 +268,7 @@ class WUITable {
 		if (align != null && align.match(/^(left|center|right)$/i)) {
 			this._table.classList.add("align-"+align);
 		}
-		if (valign != null && valign.match(/^(top|center|bottom)$/i)) {
+		if (valign != null && valign.match(/^(top|middle|bottom)$/i)) {
 			this._table.classList.add("valign-"+valign);
 		}
 		this._thead.innerHTML = "";
@@ -287,7 +287,7 @@ class WUITable {
 			if (align != null && align.match(/^(left|center|right)$/i)) {
 				th.classList.add("align-"+align);
 			}
-			if (valign != null && valign.match(/^(top|center|bottom)$/i)) {
+			if (valign != null && valign.match(/^(top|middle|bottom)$/i)) {
 				th.classList.add("valign-"+valign);
 			}
 			["sortable", "resizable", "draggable"].forEach(prop => {
@@ -331,11 +331,15 @@ class WUITable {
 					const id = "id" in rowOptions ? rowOptions.id : null;
 					const align = rowOptions.align || null;
 					const valign = rowOptions.valign || null;
+					const enabled = "enabled" in rowOptions ? rowOptions.enabled : true;
 					if (align != null && align.match(/^(left|center|right)$/i)) {
 						tr.classList.add("align-"+align);
 					}
-					if (valign != null && valign.match(/^(top|center|bottom)$/i)) {
+					if (valign != null && valign.match(/^(top|middle|bottom)$/i)) {
 						tr.classList.add("valign-"+valign);
+					}
+					if (!enabled) {
+						tr.classList.add("disabled");
 					}
 					if (id != null) {
 						tr.dataset.id = id;
@@ -364,7 +368,7 @@ class WUITable {
 						if (align != null && align.match(/^(left|center|right)$/i)) {
 							td.classList.add("align-"+align);
 						}
-						if (valign != null && valign.match(/^(top|center|bottom)$/i)) {
+						if (valign != null && valign.match(/^(top|middle|bottom)$/i)) {
 							td.classList.add("valign-"+valign);
 						}
 						tr.appendChild(td);
@@ -530,6 +534,20 @@ class WUITable {
 		// ...
 	}
 
+	enableRow(index, enabled = true) {
+		if (index >= 0 && index < this._rows.length) {
+			const tr = this._tbody.querySelector("tr:nth-of-type("+(index+1)+")");
+			if (tr != null) {
+				if (enabled) {
+					tr.classList.remove("disabled");
+				} else {
+					tr.classList.add("disabled");
+				}
+			}
+			this._rows[index].enabled = enabled;
+		}
+	}
+
 	first() {
 		this.print(0);
 	}
@@ -557,13 +575,6 @@ class WUITable {
 		return Boolean((this._page + 1) * paging < this._rows.length);
 	}
 
-	destroy() {
-		if (this._element && this._table) {
-			this._element.innerHTML = "";
-			this._table = this._thead = this._tbody = null;
-		}
-	}
-
 	#darkModeListener(callback) {
 		const observer = new MutationObserver(() => {
 			const colorScheme = getComputedStyle(document.documentElement).getPropertyValue("color-scheme").trim();
@@ -580,5 +591,20 @@ class WUITable {
 		window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
 			callback();
 		});
+	}
+
+	destroy() {
+		if (this._element && this._table) {
+			this._element.innerHTML = "";
+			this._table = null;
+			this._thead = null;
+			this._tbody = null;
+			this._page = 0;
+			this._sortingIndex = null;
+			this._sortingDirection = null;
+			this._resizing = false;
+			this._draggingTarget = null;
+			this._colorScheme = null;
+		}
 	}
 }

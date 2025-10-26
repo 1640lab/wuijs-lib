@@ -543,6 +543,20 @@ class WUIModal {
 	isOpen() {
 		return this.getStatus().match(/opened/) ? true : false;
 	}
+
+	destroy() {
+		if (this._element) {
+			this._element.innerHTML = "";
+			this._box = null;
+			this._header = null;
+			this._back = null;
+			this._topbar = null;
+			this._title = null;
+			this._close = null;
+			this._body = null;
+			this._footer = null;
+		}
+	}
 }
 
 WUIModal._initClass();

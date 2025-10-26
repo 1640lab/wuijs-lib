@@ -15,13 +15,13 @@ Author: `Sergio E. Belmar V. <sbelmar@1640lab.com>`
 *   [Install](#install)
 *   [Implementation](#implementation)
 *   [Classes](#classes)
-    *   [WUICookie](#wuiCookie)
-	*   [WUIHead](#wuiHead)
-	*   [WUIBody](#wuiBody)
-	*   [WUILanguage](#wuiLanguage)
-	*   [WUIScrolly](#wuiScrolly)
-	*   [WUIIcon](#wuiIcon)
-	*   [WUIFade](#wuiFade)
+    *   [WUICookie](#WUICookie)
+	*   [WUIHead](#WUIHead)
+	*   [WUIBody](#WUIBody)
+	*   [WUILanguage](#WUILanguage)
+	*   [WUIScrolly](#WUIScrolly)
+	*   [WUIIcon](#WUIIcon)
+	*   [WUIFade](#WUIFade)
 	*   WUITooltip
 	*   WUILoader
 	*   WUIModal
@@ -30,7 +30,7 @@ Author: `Sergio E. Belmar V. <sbelmar@1640lab.com>`
 	*   WUIPaging
 	*   WUITabs
 	*   [WUIList](#WUIList)
-	*   WUITable
+	*   [WUITable](#WUITable)
 	*   WUIForm
 	*   WUIFormat
 	*   WUISelectpicker
@@ -665,7 +665,7 @@ This implementation method allows for standardization of an application's user i
 
 ## Classes
 
-<a name="wuiCookie"></a>
+<a name="WUICookie"></a>
 
 ### WUICookie
 
@@ -721,7 +721,7 @@ cookie.set("test", "value");
 console.log(cookie.get("test"));
 ```
 
-<a name="wuiHead"></a>
+<a name="WUIHead"></a>
 
 ### WUIHead
 
@@ -776,7 +776,7 @@ head.setApplicationName("Test app");
 head.setThemeColor("#1e90ff");
 ```
 
-<a name="wuiBody"></a>
+<a name="WUIBody"></a>
 
 ### WUIBody
 
@@ -868,7 +868,7 @@ body.import("testContent", "test-content", () => {
 });
 ```
 
-<a name="wuiLanguage"></a>
+<a name="WUILanguage"></a>
 
 ### WUILanguage
 
@@ -992,7 +992,7 @@ language.load("en", ["main", "main2"]);
 > [!TIP]
 > If you want to add dynamic content within a text, It is recommended to use the `js` language file format (`mode: "js"`) and add the text using the string interpolation method, also known as template literals. I.e. ``mykey: `My ${var} text` ``.
 
-<a name="wuiScrolly"></a>
+<a name="WUIScrolly"></a>
 
 ### WUIScrolly
 
@@ -1072,9 +1072,6 @@ CSS settings:
 
 ```css
 :root {
-
-	/* wui-scrolly */
-
 	--wui-scrolly-paging-bgcolor: #f6f6fa;
 }
 ```
@@ -1175,7 +1172,7 @@ scrolly.addSection({
 scrolly.init();
 ```
 
-<a name="wuiIcon"></a>
+<a name="WUIIcon"></a>
 
 ### WUIIcon
 
@@ -1412,9 +1409,6 @@ CSS settings:
 
 ```css
 :root {
-
-	/* wui-icon */
-
 	--wui-icon-size: 24px;
 	--wui-icon-smallsize: 14px;
 	--wui-icon-bgcolor-out: rgb(from #353a40 r g b / 70%);
@@ -1445,7 +1439,7 @@ HTML code:
 <div class="my-icon wui-icon patch-check-fill"></div>
 ```
 
-<a name="wuiFade"></a>
+<a name="WUIFade"></a>
 
 ### WUIFade
 
@@ -1528,14 +1522,14 @@ WUIFade.in(element, options);
 element.wuiFadein(options);
 ```
 
-<a name="wuiTooltip"></a>
-<a name="wuiLoader"></a>
-<a name="wuiModal"></a>
-<a name="wuiModalSelector"></a>
-<a name="wuiSlider"></a>
-<a name="wuiPaging"></a>
-<a name="wuiTabs"></a>
-<a name="wuiList"></a>
+<a name="WUITooltip"></a>
+<a name="WUILoader"></a>
+<a name="WUIModal"></a>
+<a name="WUIModalSelector"></a>
+<a name="WUISlider"></a>
+<a name="WUIPaging"></a>
+<a name="WUITabs"></a>
+<a name="WUIList"></a>
 
 ### WUIList
 
@@ -1554,7 +1548,7 @@ Advanced object for implementing data lists and buttons for each row optionally.
 | Property     | Type       | Default value | Description |
 | ------------ | ---------- | ------------- | ----------- |
 | selector     | `string`   | `.wui-list`   | (get/set)<br><br>CSS selector that defines the HTML element that will be converted into the advanced list object. If more than one element matches the selector, only the first match will be included. |
-| paging       | `number`   | `0`           | (get/set)<br><br>Paging, or the number of rows per page in the list. A value of `0` indicates that the pagination will be the same length as the list of rows; in other words, a value of `0` disables paging. |
+| paging       | `number`   | `0`           | (get/set)<br><br>Paging, or the number of rows per page in the list. A value of `0` indicates that the pagination will be the same length as rows; in other words, a value of `0` disables paging. |
 | page         | `number`   | `0`           | (get)<br><br>Current page displayed in the list, where page `0` corresponds to the first page and the last to the total number of rows minus 1. |
 | pages        | `number`   | `0`           | (get)<br><br>Total number of pages. |
 | total        | `number`   | `0`           | (get)<br><br>Total number of rows. |
@@ -1562,8 +1556,8 @@ Advanced object for implementing data lists and buttons for each row optionally.
 | rows         | `array`    | `[]`          | (get/set)<br><br>List of rows in the list, as defined by **Row Options**. |
 | buttons      | `array`    | `[]`          | (get/set)<br><br>List of row buttons in the list, as defined by **Row Button Options**. |
 | buttonsStyle | `string`   | `"round"`     | (get/set)<br><br>Row button style.<br><br>Values:<br>• `"round"`, circular shape.<br>• `"stretch"`, square shape. |
-| onPrint      | `function` | `null`        | (get/set)<br><br>Function that is called when a page or the entire list is displayed. The function receives as a parameter:<br><br>**• page:** `number`, page number. |
-| onClick      | `function` | `null`        | (get/set)<br><br>Function that is called when a row is pressed. The function receives as parameter:<br><br>**• index:** `number`, row number.**• id:** `string`, row id.**• event:** `Event`, event.**• index:** `options`, row settings options. |
+| onPrint      | `function` | `null`        | (get/set)<br><br>Function that is called when a page or the entire list is displayed. The function receives as a parameter:<br><br>**• page:** `number`, page number.<br>**• pages:** `number`, total pages.<br>**• total:** `number`, total rows. |
+| onClick      | `function` | `null`        | (get/set)<br><br>Function that is called when a row is clicked. The function receives as parameter:<br><br>**• index:** `number`, row number.<br>**• id:** `string`, row id.<br>**• event:** `Event`, event.<br>**• index:** `options`, row settings options. |
 
 #### Column Options
 
@@ -1586,10 +1580,10 @@ Advanced object for implementing data lists and buttons for each row optionally.
 
 | Property  | Type.               | Default value | Description |
 | --------- | ------------------- | ------------- | ----------- |
-| iconClass | `string\|function`  | `undefined`   | CSS styles that define the row button icon. This option can optionally be used with the [WUIIcon](#wuiIcon) library by using the `wui-icon` style in conjunction with a specific icon style. |
+| iconClass | `string\|function`  | `undefined`   | CSS styles that define the row button icon. This option can optionally be used with the [WUIIcon](#WUIIcon) library by using the `wui-icon` style in conjunction with a specific icon style. |
 | bgcolor   | `string\|function`  | `undefined`   | Background color in CSS compatible format. |
 | enabled   | `boolean\|function` | `true`        | Button enable state. |
-| onClick   | `function`          | `null`        | Function called when the button is pressed. It receives the parameters `index`, corresponding to the row position starting from `0`; `id`, corresponding to the row's unique identifier; and `event`, corresponding to the event capture object. |
+| onClick   | `function`          | `null`        | Function called when the button is clicked. It receives the parameters `index`, corresponding to the row position starting from `0`; `id`, corresponding to the row's unique identifier; and `event`, corresponding to the event capture object. |
 
 > [!IMPORTANT]
 > Options that accept optional function values ​​(`iconClass`, `bgcolor` and `enabled`) receive the parameters `index`, corresponding to the row position starting from `0`; and `id`, corresponding to the row's unique identifier.
@@ -1606,10 +1600,13 @@ Advanced object for implementing data lists and buttons for each row optionally.
 | print        | `void`        | `print([page])`<br><br>Arguments:<br>**• page:** `number`, page number. The default value corresponds to the `page` property. If a value other than the `page` property is passed as a parameter and if it is valid, the property will take that value.<br><br>Prints a list view; this view can be a page or the entire list depending on the `paging` property and the `page` parameter. |
 | enableRow    | `void`        | `enableRow(index[, enabled])`<br><br>Arguments:<br>**• index:** `number`, row number.<br>**• enabled:** `boolean`, row enable state. The default value is `true`.<br><br>Enables or disables a row. |
 | openInnerRow | `void`        | `openInnerRow(index[, open])`<br><br>Arguments:<br>**• index:** `number`, row number.<br>**• open:** `boolean`, open state of the optional inner row content. The default value is `true`.<br><br>Opens or closes the optional inner row content. |
+| first        | `void`        | `first()`<br><br>Displays the view of the first page. |
+| last         | `void`        | `last()`<br><br>Displays the view of the last page. |
 | prev         | `void`        | `prev()`<br><br>Displays the view of the previous page if it exists. |
 | next         | `void`        | `next()`<br><br>Displays the next page view if one exists. |
 | isPrevEnable | `boolean`     | `isPrevEnable()`<br><br>Returns whether a previous page exists. |
 | isNextEnable | `boolean`     | `isNextEnable()`<br><br>Returns whether a next page exists. |
+| destroy      | `destroy`     | `destroy()`<br><br>Destroyer. |
 
 #### CSS Variables
 
@@ -1833,15 +1830,246 @@ list.print();
 ```
 
 > [!TIP]
-> You can check out this working example on CodePen at the link: <a href="https://codepen.io/sbelmar/pen/vELrGBJ" target="_blank">https://codepen.io/sbelmar/pen/vELrGBJ</a>.
+> You can check out this working example on CodePen at the link: [https://codepen.io/sbelmar/pen/vELrGBJ](https://codepen.io/sbelmar/pen/vELrGBJ).
 
-<a name="wuiTable"></a>
-<a name="wuiForm"></a>
-<a name="wuiFormat"></a>
-<a name="wuiSelectpicker"></a>
-<a name="wuiDatepicker"></a>
-<a name="wuiTimepicker"></a>
-<a name="wuiColorpicker"></a>
-<a name="wuiCheckbox"></a>
-<a name="wuiIntensity"></a>
-<a name="wuiButton"></a>
+<a name="WUITable"></a>
+
+### WUITable
+
+Versión: `0.2`
+
+Advanced object for implementing data tables. Unlike the `WUIList` object, the `WUITable` object includes a column header.
+
+#### Constructor
+
+| Type     | Description |
+| -------- | ----------- |
+| WUITable | `WUITable([properties])`<br><br>Arguments:<br>**• properties:** `object` *optional* |
+
+#### Properties
+
+| Property     | Type       | Default value | Description |
+| ------------ | ---------- | ------------- | ----------- |
+| selector     | `string`   | `.wui-table`  | (get/set)<br><br>CSS selector that defines the HTML element that will be converted into the advanced table object. If more than one element matches the selector, only the first match will be included. |
+| width        | `string`   | `"auto"`      | (get/set)<br><br>Table width in CSS compatible format. |
+| paging       | `number`   | `0`           | (get/set)<br><br>Paging, or the number of rows per page in the table. A value of `0` indicates that the pagination will be the same length as rows; in other words, a value of `0` disables paging. |
+| page         | `number`   | `0`           | (get)<br><br>Current page displayed in the table, where page `0` corresponds to the first page and the last to the total number of rows minus 1. |
+| pages        | `number`   | `0`           | (get)<br><br>Total number of pages. |
+| total        | `number`   | `0`           | (get)<br><br>Total number of rows. |
+| columns      | `array`    | `[]`          | (get/set)<br><br>List of columns in the table, as defined by **Column Options**. |
+| rows         | `array`    | `[]`          | (get/set)<br><br>List of rows in the tabla, as defined by **Row Options**. |
+| align        | `string`   | `"left"`      | (get/set)<br><br>Horizontal alignment mode for table content.<br><br>Values:<br>• `"left"`<br>• `"center"`<br>• `"right"` |
+| valign       | `string`   | `"middle"`    | (get/set)<br><br>Vertical alignment mode for table content.<br><br>Values:<br>• `"top"`<br>• `"middle"`<br>• `"bottom"` |
+| sortable     | `boolean`  | `true`        | (get/set)<br><br>Defines whether rows are sortable by column. |
+| resizable    | `boolean`  | `true`        | (get/set)<br><br>Defines whether columns are resizable. |
+| draggable    | `boolean`  | `true`        | (get/set)<br><br>Defines whether columns are draggable so their position can be changed. |
+| selectable   | `boolean`  | `true`        | (get/set)<br><br>Defines whether rows are selectable. |
+| onPrint      | `function` | `null`        | (get/set)<br><br>Function that is called when a page or the entire table is displayed. The function receives as a parameter:<br><br>**• page:** `number`, page number.<br>**• pages:** `number`, total pages.<br>**• total:** `number`, total rows. |
+| onClick      | `function` | `null`        | (get/set)<br><br>Function that is called when a row is clicked. The function receives as parameter:<br><br>**• index:** `number`, row number.<br>**• id:** `string`, row id.<br>**• event:** `Event`, event.<br>**• index:** `options`, row settings options. |
+| onDblClick   | `function` | `null`        | (get/set)<br><br>Function that is called when a row is double-clicked. The function receives as parameter:<br><br>**• index:** `number`, row number.<br>**• id:** `string`, row id.<br>**• event:** `Event`, event.<br>**• index:** `options`, row settings options. |
+
+#### Column Options
+
+| Property  | Type      | Default value        | Description |
+| --------- | --------- | -------------------- | ----------- |
+| width     | `string`  | `undefined`          | Column width. This can be expressed as a number associated with pixels or in a CSS compatible format. |
+| align     | `string`  | `WUITable.align`     | Horizontal alignment mode for column content. This option takes precedence over the `align` property.<br><br>Values:<br>• `"left"`<br>• `"center"`<br>• `"right"` |
+| valign    | `string`  | `WUITable.valign`    | Vertical alignment mode for column content. This option takes precedence over the `valign` property.<br><br>Values:<br>• `"top"`<br>• `"middle"`<br>• `"bottom"` |
+| sortable  | `boolean` | `WUITable.sortable`  | Defines whether rows are sortable by column. This option takes precedence over the `sortable` property. |
+| resizable | `boolean` | `WUITable.resizable` | Defines whether the column is resizable. This option takes precedence over the `resizable` property. |
+| draggable | `boolean` | `WUITable.draggable` | Defines whether the column is draggable so its position can be changed. This option takes precedence over the `draggable` property. |
+
+#### Rows Options
+
+| Property | Type      | Default value     | Description |
+| -------- | --------- | ----------------- | ----------- |
+| id       | `string`  | `undefined`       | Unique row identifier. |
+| align    | `string`  | `WUITable.align`  | Horizontal alignment mode for row content. This option takes precedence over the `align` property.<br><br>Values:<br>• `"left"`<br>• `"center"`<br>• `"right"` |
+| valign   | `string`  | `WUITable.valign` | Vertical alignment mode for row content. This option takes precedence over the `valign` property.<br><br>Values:<br>• `"top"`<br>• `"middle"`<br>• `"bottom"` |
+| data     | `array`   | `[]`              | Array with the contents of the cells in the row. |
+| enabled  | `boolean` | `true`            | Row enable state. The default is `true`. |
+
+#### Methods
+
+| Method       | Return type   | Description |
+| ------------ | ------------- | ----------- |
+| getElement   | `HTMLElement` | `getElement()`<br><br>Returns the HTML element containing the advanced object. |
+| init         | `void`        | `init()`<br><br>Initializes the object. |
+| addColumn    | `void`        | `addColumn(options)`<br><br>Adds a new column settings to the object's column list, as defined in **Column Options**. |
+| addRow       | `void`        | `addRow(options)`<br><br>Adds a new row settings to the object's rows list, as defined by **Row Options**. |
+| print        | `void`        | `print([page])`<br><br>Arguments:<br>**• page:** `number`, page number. The default value corresponds to the `page` property. If a value other than the `page` property is passed as a parameter and if it is valid, the property will take that value.<br><br>Prints a table view; this view can be a page or the entire table depending on the `paging` property and the `page` parameter. |
+| sort         | `void`        | `first(index[, direction])`<br><br>Arguments:<br>**• index:** `number`, rcolumn number.<br>**• direction:** `string`, order direction, this can be: `"asc"` or `"desc"`. The default value is `asc`. |
+| enableRow    | `void`        | `enableRow(index[, enabled])`<br><br>Arguments:<br>**• index:** `number`, row number.<br>**• enabled:** `boolean`, row enable state. The default value is `true`.<br><br>Enables or disables a row. |
+| first        | `void`        | `first()`<br><br>Displays the view of the first page. |
+| last         | `void`        | `last()`<br><br>Displays the view of the last page. |
+| prev         | `void`        | `prev()`<br><br>Displays the view of the previous page if it exists. |
+| next         | `void`        | `next()`<br><br>Displays the next page view if one exists. |
+| isPrevEnable | `boolean`     | `isPrevEnable()`<br><br>Returns whether a previous page exists. |
+| isNextEnable | `boolean`     | `isNextEnable()`<br><br>Returns whether a next page exists. |
+| destroy      | `destroy`     | `destroy()`<br><br>Destroyer. |
+
+#### CSS Variables
+
+| Variable                                     | Description |
+| -------------------------------------------- | ----------- |
+| `--wui-table-shadowcolor`                    |
+| `--wui-table-borderradius`                   |
+| `--wui-table-column-bordercolor-width`       |
+| `--wui-table-column-bordercolor-out`         |
+| `--wui-table-column-bordercolor-over`        |
+| `--wui-table-column-bordercolor-selected`    |
+| `--wui-table-column-bgcolor-out`             |
+| `--wui-table-column-bgcolor-over`            |
+| `--wui-table-column-bgcolor-selectd`         |
+| `--wui-table-column-textcolor-out`           |
+| `--wui-table-column-textcolor-over`          |
+| `--wui-table-column-textcolor-selected`      |
+| `--wui-table-column-textcolor-disabled`      |
+| `--wui-table-column-sort-asccolor-out`       |
+| `--wui-table-column-sort-asccolor-over`      |
+| `--wui-table-column-sort-asccolor-disabled`  |
+| `--wui-table-column-sort-ascicon-src`        |
+| `--wui-table-column-sort-desccolor-out`      |
+| `--wui-table-column-sort-desccolor-over`     |
+| `--wui-table-column-sort-desccolor-disabled` |
+| `--wui-table-column-sort-descicon-src`       |
+| `--wui-table-column-resize-bordercolor-out`  |
+| `--wui-table-column-resize-bordercolor-over` |
+| `--wui-table-column-drag-bordercolor-over`   |
+| `--wui-table-column-drag-bgcolor-drop`       |
+| `--wui-table-row-bordercolor-width: 1px;`    |
+| `--wui-table-row-bordercolor-out`            |
+| `--wui-table-row-bordercolor-over`           |
+| `--wui-table-row-bordercolor-selected`       |
+| `--wui-table-row-bgcolor-out`                |
+| `--wui-table-row-bgcolor-over`               |
+| `--wui-table-row-bgcolor-selectd`            |
+| `--wui-table-row-textcolor-out`              |
+| `--wui-table-row-textcolor-over`             |
+| `--wui-table-row-textcolor-disabled`         |
+| `--wui-table-row-textcolor-selected`         |
+
+#### Implementation
+
+CSS settings:
+
+```css
+:root {
+	--wui-table-shadowcolor: #959da5;
+	--wui-table-borderradius: 10px;
+	--wui-table-column-bordercolor-width: 1px;
+	--wui-table-column-bordercolor-out: rgb(from #1e90ff r g b / 10%);
+	--wui-table-column-bordercolor-over: #1e90ff;
+	--wui-table-column-bordercolor-selected: #1e90ff;
+	--wui-table-column-bgcolor-out: #f6f6fa;
+	--wui-table-column-bgcolor-over: #f6f6fa;
+	--wui-table-column-bgcolor-selectd: #1e90ff;
+	--wui-table-column-textcolor-out: #444;
+	--wui-table-column-textcolor-over: #000;
+	--wui-table-column-textcolor-selected: #1e90ff;
+	--wui-table-column-textcolor-disabled: #d5dce3;
+	--wui-table-column-sort-asccolor-out: #444;
+	--wui-table-column-sort-asccolor-over: #000;
+	--wui-table-column-sort-asccolor-disabled: #d5dce3;
+	--wui-table-column-sort-ascicon-src: none;
+	--wui-table-column-sort-desccolor-out: #444;
+	--wui-table-column-sort-desccolor-over: #000;
+	--wui-table-column-sort-desccolor-disabled: #d5dce3;
+	--wui-table-column-sort-descicon-src: none;
+	--wui-table-column-resize-bordercolor-out: rgb(from #1e90ff r g b / 10%);
+	--wui-table-column-resize-bordercolor-over: rgb(from #1e90ff r g b / 10%);
+	--wui-table-column-drag-bordercolor-over: #444;
+	--wui-table-column-drag-bgcolor-drop: rgb(from #1e90ff r g b / 10%);
+	--wui-table-row-bordercolor-width: 1px;
+	--wui-table-row-bordercolor-out: #f0f0f3;
+	--wui-table-row-bordercolor-over: #f0f0f3;
+	--wui-table-row-bordercolor-selected: #1e90ff;
+	--wui-table-row-bgcolor-out: #fdfdfe;
+	--wui-table-row-bgcolor-over: #f6f6fa;
+	--wui-table-row-bgcolor-selectd: #1e90ff;
+	--wui-table-row-textcolor-out: #2d3a47;
+	--wui-table-row-textcolor-over: #1f2937;
+	--wui-table-row-textcolor-disabled: #d5dce3;
+	--wui-table-row-textcolor-selected: #1e90ff;
+}
+```
+
+CSS code:
+
+```css
+header {
+	max-width: 600px;
+	text-align: right;
+}
+.my-link {
+	margin: 0 10px;
+	text-decoration: none;
+}
+.my-link.disabled {
+	color: #ccc;
+}
+.my-paging {
+	display: inline;
+	font-size: 16px;
+}
+nav {
+	width: 600px;
+	margin: 10px 0;
+}
+footer {
+	max-width: 600px;
+}
+.my-output {
+	margin: 10px;
+	font-family: monospace;
+}
+```
+
+HTML head:
+
+```html
+<link type="text/css" rel="stylesheet" href="https://wuijs.dev/Libraries/WUI/Table/WUITable-0.2.css">
+<script type="text/javascript" src="https://wuijs.dev/Libraries/WUI/Table/WUITable-0.2.js"></script>
+```
+
+HTML code:
+
+```html
+<header>
+	<a href="javascript:first();" class="my-link first"><<</a>
+	<a href="javascript:prev();" class="my-link prev"><</a>
+	<a href="javascript:next();" class="my-link next">></a>
+	<a href="javascript:last();" class="my-link last">>></a>
+	<div class="my-paging"></div>
+</header>
+
+<nav>
+	<div class="wui-table my-table"></div>
+</nav>
+  
+<footer>
+	<div class="my-output"></div>
+</footer>
+```
+
+JS code:
+
+```js
+// Create object
+const firstLink = document.body.querySelector(".my-link.first");
+const prevLink = document.body.querySelector(".my-link.prev");
+const nextLink = document.body.querySelector(".my-link.next");
+const lastLink = document.body.querySelector(".my-link.last");
+const paging = document.body.querySelector(".my-paging");
+const output = document.body.querySelector(".my-output");
+```
+
+<a name="WUIForm"></a>
+<a name="WUIFormat"></a>
+<a name="WUISelectpicker"></a>
+<a name="WUIDatepicker"></a>
+<a name="WUITimepicker"></a>
+<a name="WUIColorpicker"></a>
+<a name="WUICheckbox"></a>
+<a name="WUIIntensity"></a>
+<a name="WUIButton"></a>

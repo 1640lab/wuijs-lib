@@ -17,16 +17,19 @@ Features:
 	- Added files in JSON format support.
 	- Removed global constant `languages` and replaced with a variable definition, optional and external to the class, which is assigned using the `onLoad()` property (see implementation example in [Documentation](./README.md?#wuiLanguage)).
 4. WUIModal version class update to 0.2.
+	- Added `destroy()` method.
 	- Fixed bug in drag event when maximizing and closing a page-style modal using the `mousedown` event, enabling it only when the left mouse button remains pressed.
 5. WUISlider version class update to 0.2.
 	- Fixed bug in drag event when moving a scene using the `mousedown` event, enabling it only when the left button remains pressed.
 6. WUIList version class update to 0.2.
 	- Added support for paging.
 	- Added `--wui-list-shadowcolor` property.
+	- Added `destroy()` method.
 	- Fixed bug in drag event when opening and closing the button panel of each row, using the `mousedown` event, enabling it only when the left button remains pressed.
 7. WUITable version class update to 0.2.
 	- Added support for light/dark CSS formatting.
 	- Added `--wui-table-shadowcolor` property.
+	- Added `destroy()` method.
 8. WUIForm version class update to 0.2.
 	- Added support for light/dark CSS formatting.
 	- Added `--wui-form-message-shadowcolor` property.

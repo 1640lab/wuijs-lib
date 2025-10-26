@@ -17,16 +17,19 @@ Características:
 	- Se agregó soporte para archivo de lenguaje en formato JSON.
 	- Se eliminó la constante global `languajes` y se reemplazó por una definición variable, opcional y externa a la clase, que es asignada mediante la propiedad `onLoad()` (ver ejemplo de implementación en [Documentación](./LEEME.md?#wuiLanguage)).
 4. Actualización versión clase WUIModal a 0.2.
+	- Se agregó el método `destroy()`.
 	- Se corrigió error en el evento de arrastre al maximizar y cerrar un modal con estilo página usando el evento `mousedown`, habilitándo únicamente cuando el botón izquierdo permanece presionado.
 5. Actualización versión clase WUISlider a 0.2.
 	- Se corrigió error en el evento de arrastre al desplazar una diapositiva usando el evento `mousedown`, habilitándo únicamente cuando el botón izquierdo permanece presionado.
 6. Actualización versión clase WUIList a 0.2.
 	- Se agregó soporte para paginado.
 	- Se agregó la propiedad `--wui-list-shadowcolor`.
+	- Se agregó el método `destroy()`.
 	- Se corrigió error en el evento de arrastre al aperturar y cerrar la botonoera de cada fila usando el evento `mousedown`, habilitándo únicamente cuando el botón izquierdo permanece presionado.
 7. Actualización versión clase WUITable a 0.2.
 	- Se agregó soporte para formato CSS claro/oscuro.
 	- Se agregó la propiedad `--wui-table-shadowcolor`.
+	- Se agregó el método `destroy()`.
 8. Actualización versión clase WUIForm a 0.2.
 	- Se agregó soporte para formato CSS claro/oscuro.
 	- Se agregó la propiedad `--wui-form-message-shadowcolor`.

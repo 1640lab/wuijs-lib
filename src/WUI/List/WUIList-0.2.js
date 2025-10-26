@@ -347,6 +347,15 @@ class WUIList {
 		const paging = this._paging == 0 ? this._rows.length : this._paging;
 		return Boolean((this._page + 1) * paging < this._rows.length);
 	}
+
+	destroy() {
+		if (this._element) {
+			this._element.innerHTML = "";
+			this._strips = [];
+			this._rows = [];
+			this._page = 0;
+		}
+	}
 }
 
 /*
