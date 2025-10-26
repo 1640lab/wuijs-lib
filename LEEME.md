@@ -2,7 +2,7 @@
 
 Versión librería: `0.2.0` ([Registro de Cambio](./REGISTRODECAMBIO.md))
 
-Versión documentación: `0.2.0.20251018.1-e` (e: en edición, c: completa)
+Versión documentación: `0.2.0.20251026.1-e` (e: en edición, c: completa)
 
 Licencia: `Licencia Apache 2.0`
 
@@ -655,7 +655,7 @@ Código HTML:
 Este método de implementación permite la estandarización del diseño de la interfaz de usuario de una aplicación, por medio del archivo `WUI.css`.
 
 > [!IMPORTANT]
-> Los archivos de de configuración de estilos deben estar en la ruta `./Settings/Main.css` y `./Settings/WUI.css`.
+> El archivo de configuración de estilos deben estar en la ruta `./Settings/WUI.css`.
 
 > [!TIP]
 > En caso que sólo se desee implementar sólo una parte del conjunto de librerías WUI, se sebe agregar en la cabecera HTML los llamados a los archivos JS y CSS según se indique en cada sección.
@@ -700,7 +700,7 @@ Administrador de cookies.
 Cabecera HTML
 
 ```html
-<script type="text/javascript" src="./Libraries/WUI/Cookie/WUICookie-0.1.js"></script>
+<script type="text/javascript" src="https://wuijs.dev/Libraries/WUI/Cookie/WUICookie-0.1.js"></script>
 ```
 
 Código JS:
@@ -757,7 +757,7 @@ Cabecera HTML
 <title></title>
 <meta name="application-name" content="">
 <meta name="theme-color" content="">
-<script type="text/javascript" src="./Libraries/WUI/Head/WUIHead-0.1.js"></script>
+<script type="text/javascript" src="https://wuijs.dev/Libraries/WUI/Head/WUIHead-0.1.js"></script>
 ```
 
 Código JS:
@@ -810,12 +810,6 @@ Administrador de cuerpo HTML. Permite la importación de contenido CSS/JS/HTML y
 
 #### Implementación
 
-Cabecera HTML
-
-```html
-<script type="text/javascript" src="./Libraries/WUI/Body/WUIBody-0.1.js"></script>
-```
-
 Contenido CSS del archivo `./Imports/test-content.css`:
 
 ```css
@@ -840,6 +834,12 @@ Contenido JS del archivo `./Imports/test-content.js`:
 const testContentLog = (content) => {
 	console.log(content);
 }
+```
+
+Cabecera HTML
+
+```html
+<script type="text/javascript" src="https://wuijs.dev/Libraries/WUI/Body/WUIBody-0.1.js"></script>
 ```
 
 Código HTML:
@@ -903,12 +903,6 @@ Administrador de idioma para interfaces web. Permite cargar archivos de idioma e
 
 #### Implementación
 
-Cabecera HTML
-
-```html
-<script type="text/javascript" src="./Libraries/WUI/Language/WUILanguage-0.2.js"></script>
-```
-
 Código JS archivo `main-es.js`:
 
 ```js
@@ -936,6 +930,12 @@ Código JSON archivo `main-es.json`:
 		"test": "Texto prueba"
 	}
 }
+```
+
+Cabecera HTML
+
+```html
+<script type="text/javascript" src="https://wuijs.dev/Libraries/WUI/Language/WUILanguage-0.2.js"></script>
 ```
 
 Código HTML:
@@ -1058,23 +1058,28 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 | .fadein-left  | Entra y sale con opacidad desde la izquierda. |
 | .fadein-right | Entra y sale con opacidad desde la derecha. |
 
+| Variable                       | Descripción |
+| ------------------------------ | ----------- |
+| `--wui-scrolly-paging-bgcolor` |
+
 #### Implementación
 
 Existen dos modos de implementación de la librería de animación, la más sencilla es por medio de etiquetas de animación CSS, la segunda es mediante la programación de funciones JS de animación que se cargan mediante la configuración de secciones.
 
-Cabecera HTML
+Configuración CSS
 
-```html
-<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Scrolly/WUIScrolly-0.1.css">
-<script type="text/javascript" src="./Libraries/WUI/Scrolly/WUIScrolly-0.1.js"></script>
+```css
+:root {
+
+	/* wui-scrolly */
+
+	--wui-scrolly-paging-bgcolor: #f6f6fa;
+}
 ```
 
 Código CSS:
 
 ```css
-/*:root {
-	--wui-scrolly-paging-bgcolor: var(--app-lightcolor1);
-}*/
 .my-section {
 	width: 100%;
 	margin: 10px 0;
@@ -1086,6 +1091,13 @@ Código CSS:
 	pargin: 20px;
 	background-color: dodgerblue;
 }
+```
+
+Cabecera HTML
+
+```html
+<link type="text/css" rel="stylesheet" href="https://wuijs.dev/Libraries/WUI/Scrolly/WUIScrolly-0.1.css">
+<script type="text/javascript" src="https://wuijs.dev/Libraries/WUI/Scrolly/WUIScrolly-0.1.js"></script>
 ```
 
 Código HTML:
@@ -1394,13 +1406,7 @@ Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces.
 
 #### Implementación
 
-Cabecera HTML
-
-```html
-<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Icon/WUIIcon-0.1.css">
-```
-
-Código CSS:
+Configuración CSS:
 
 ```css
 :root {
@@ -1412,12 +1418,23 @@ Código CSS:
 	--wui-icon-bgcolor-out: rgb(from #353a40 r g b / 70%);
 	--wui-icon-bgcolor-over: #353a40;
 }
+```
+
+Código CSS:
+
+```css
 .my-icon {
 	width: 24px;
 	height: 24px;
 	pargin: 20px;
 	background-color: dodgerblue;
 }
+```
+
+Cabecera HTML
+
+```html
+<link type="text/css" rel="stylesheet" href="https://wuijs.dev/Libraries/WUI/Icon/WUIIcon-0.1.css">
 ```
 
 Código HTML:
@@ -1469,12 +1486,6 @@ Otro modo alternativo es mediante métodos extendidos de la clase `HTMLElement` 
 
 #### Implementación
 
-Cabecera HTML
-
-```html
-<script type="text/javascript" src="./Libraries/WUI/Fade/WUIFade-0.1.js"></script>
-```
-
 Código CSS:
 
 ```CSS
@@ -1485,6 +1496,12 @@ Código CSS:
 	margin: 10px;
 	backgroind-color: red;
 }
+```
+
+Cabecera HTML
+
+```html
+<script type="text/javascript" src="https://wuijs.dev/Libraries/WUI/Fade/WUIFade-0.1.js"></script>
 ```
 
 Código HTML:
@@ -1624,15 +1641,7 @@ Objeto avanzado para implementación de listas de datos y botoneras para cada fi
 
 #### Implementación
 
-Cabecera HTML
-
-```html
-<link type="text/css" rel="stylesheet" href="./Libraries/WUI/Icon/WUIIcon-0.1.css">
-<link type="text/css" rel="stylesheet" href="./Libraries/WUI/List/WUIList-0.2.css">
-<script type="text/javascript" src="./Libraries/WUI/List/WUIList-0.2.js"></script>
-```
-
-Código CSS:
+Configuración CSS:
 
 ```css
 :root {
@@ -1672,80 +1681,132 @@ Código CSS:
 	--wui-list-button-bgcolor-enabled: #1e90ff;
 	--wui-list-button-bgcolor-disabled: #d5dce3;
 }
-.my-button {
-	width: 40px;
-	text-align: center;
+```
+
+Código CSS:
+
+```css
+header {
+	max-width: 600px;
+	text-align: right;
+}
+.my-link {
+	margin: 0 10px;
+	text-decoration: none;
 }
 .my-paging {
 	display: inline;
 	font-size: 16px;
 }
+nav {
+	width: 600px;
+	margin: 10px 0;
+}
+footer {
+	max-width: 600px;
+}
+.my-output {
+	margin: 10px;
+	font-family: monospace;
+}
+```
+
+Cabecera HTML
+
+```html
+<link type="text/css" rel="stylesheet" href="https://wuijs.dev/Libraries/WUI/Icon/WUIIcon-0.1.css">
+<link type="text/css" rel="stylesheet" href="https://wuijs.dev/Libraries/WUI/List/WUIList-0.2.css">
+<script type="text/javascript" src="https://wuijs.dev/Libraries/WUI/List/WUIList-0.2.js"></script>
 ```
 
 Código HTML:
 
 ```html
-<button class="my-button prev"><</button>
-<button class="my-button next">></button>
-<div class="my-paging"></div>
-<div class="wui-list my-list"></div>
+<header>
+	<a href="javascript:prev();" class="my-link prev"><</a>
+	<a href="javascript:next();" class="my-link next">></a>
+	<div class="my-paging"></div>
+</header>
+
+<nav>
+	<div class="wui-list my-list"></div>
+</nav>
+  
+<footer>
+	<div class="my-output"></div>
+</footer>
 ```
 
 Código JS
 
 ```js
 // Crear objeto
-const prev = document.body.querySelector(".my-button.prev");
-const next = document.body.querySelector(".my-button.next");
+const prevLink = document.body.querySelector(".my-link.prev");
+const nextLink = document.body.querySelector(".my-link.next");
 const paging = document.body.querySelector(".my-paging");
+const output = document.body.querySelector(".my-output");
 const list = new WUIList({
 	selector: ".wui-list.my-list",
-	paging: 10,
+	paging: 5,
 	columns: [{
+    width: 10
+  },{
 		width: 40,
 		align: "center"
 	}, {
 		align: "left"
+  },{
+		width: 40,
+		align: "center"
 	}],
 	rows: [],  // Valor por defecto, propiedad puede ser omitida
 	buttons: [{
 		iconClass: "wui-icon trash-fill",
 		bgcolor: "#f44343",
 		onClick: (index, id) => {
-			console.log(`Botón basurero - índice: ${index}, id: ${id}`);
+			output.textContent = `Botón basurero - índice: ${index}, id: ${id}`;
 		},
 		enabled: true
 	}],
 	buttonsStyle: "stretch",
 	onPrint: (page, pages, total) => {
-		prev.disabled = !list.isPrevEnable();
-		next.disabled = !list.isNextEnable();
+		prevLink.disabled = !list.isPrevEnable();
+		nextLink.disabled = !list.isNextEnable();
 		paging.innerHTML = `${page}/${pages} (${total})`;
 	},
 	onClick: (index, id, event, options) => {
-		console.log(`Fila - índice: ${index}, id: ${id}`);
+		output.textContent = `Fila - índice: ${index}, id: ${id}`;
 	}
 });
+const prev = () => {
+  list.prev();  
+}
+const next = () => {
+  list.next();  
+}
 
 // Inicializar objeto
 list.init();
 
 // Cargar set de datos
 list.rows = [{
-	id: "row1", data: ["A1", "B1"]}, {
-	id: "row2", data: ["A2", "B2"]}, {
-	id: "row3", data: ["A3", "B3"], innerContent: "Fila 3.", innerOpened: true}, {
-	id: "row4", data: ["A4", "B4"]}, {
-	id: "row5", data: ["A5", "B5"]}, {
-	id: "row6", data: ["A6", "B6"]}, {
-	id: "row7", data: ["A7", "B7"]}, {
-	id: "row8", data: ["A8", "B8"]}, {
-	id: "row9", data: ["A9", "B9"], enabled: false}, {
-	id: "row10", data: ["A10", "B10"]}, {
-	id: "row12", data: ["A12", "B12"]
+	id: "row1", data: ["", "A1", "B1", "C1"]}, {
+	id: "row2", data: ["", "A2", "B2", "C2"]}, {
+	id: "row3", data: ["", "A3", "B3", "C3"]}, {
+	id: "row4", data: ["", "A4", "B4", "C4"]}, {
+	id: "row5", data: ["", "A5", "B5", "C5"]}, {
+	id: "row6", data: ["", "A6", "B6", "C6"]}, {
+	id: "row7", data: ["", "A7", "B7", "C7"]}, {
+	id: "row8", data: ["", "A8", "B8", "C8"]}, {
+	id: "row9", data: ["", "A9", "B9", "C9"], enabled: false}, {
+	id: "row10", data: ["", "A10", "B10", "C10"]}, {
+	id: "row12", data: ["", "A12", "B12", "C11"]
 }];
 list.print();
 ```
+
+> [!TIP]
+> Puede revisar este ejemplo funcional en CodePen en el enlace: [https://codepen.io/sbelmar/pen/vELrGBJ](https://codepen.io/sbelmar/pen/vELrGBJ).
 
 <a name="wuiTable"></a>
 <a name="wuiForm"></a>
