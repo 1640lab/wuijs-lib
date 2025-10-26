@@ -1753,13 +1753,13 @@ const list = new WUIList({
 	selector: ".wui-list.my-list",
 	paging: 5,
 	columns: [{
-    width: 10
-  },{
+		width: 10
+	},{
 		width: 40,
 		align: "center"
 	}, {
 		align: "left"
-  },{
+	},{
 		width: 40,
 		align: "center"
 	}],
@@ -1768,7 +1768,7 @@ const list = new WUIList({
 		iconClass: "wui-icon trash-fill",
 		bgcolor: "#f44343",
 		onClick: (index, id) => {
-			output.textContent = `Botón basurero - índice: ${index}, id: ${id}`;
+			output.textContent = `Click botón - índice: ${index}, id: ${id}`;
 		},
 		enabled: true
 	}],
@@ -1791,7 +1791,7 @@ const list = new WUIList({
 		paging.innerHTML = `${page}/${pages} (${total})`;
 	},
 	onClick: (index, id, event, options) => {
-		output.textContent = `Fila - índice: ${index}, id: ${id}`;
+		output.textContent = `Click fila - índice: ${index}, id: ${id}`;
 	}
 });
 const first = () => {
@@ -1822,7 +1822,8 @@ list.rows = [{
 	id: "row8", data: ["", "A8", "B8", "C8"]}, {
 	id: "row9", data: ["", "A9", "B9", "C9"], enabled: false}, {
 	id: "row10", data: ["", "A10", "B10", "C10"]}, {
-	id: "row12", data: ["", "A12", "B12", "C11"]
+	id: "row11", data: ["", "A11", "B11", "C11"]}, {
+	id: "row12", data: ["", "A12", "B12", "C12"]
 }];
 list.print();
 ```
@@ -1869,6 +1870,7 @@ Objeto avanzado para implementación de tablas de datos. A diferencia del objeto
 
 | Propiedad | Tipo      | Valor por defecto    | Descripción |
 | --------- | --------- | -------------------- | ----------- |
+| label     | `string`  | `""`                 | Etiqueta de la columna. |
 | width     | `string`  | `undefined`          | Ancho de la columna. Este puede estar expresado como número asociado a píxeles o en formato compatible CSS. |
 | align     | `string`  | `WUITable.align`     | Modo de alineación horizontal del contenido de la columna. Esta opción tiene prioridad sobre la propiedad `align`.<br><br>Valores:<br>• `"left"`<br>• `"center"`<br>• `"right"` |
 | valign    | `string`  | `WUITable.valign`    | Modo de alineación vertical del contenido de la columna. Esta opción tiene prioridad sobre la propiedad `valign`.<br><br>Valores:<br>• `"top"`<br>• `"middle"`<br>• `"bottom"` |
@@ -1934,7 +1936,7 @@ Objeto avanzado para implementación de tablas de datos. A diferencia del objeto
 | `--wui-table-column-resize-bordercolor-over` |
 | `--wui-table-column-drag-bordercolor-over`   |
 | `--wui-table-column-drag-bgcolor-drop`       |
-| `--wui-table-row-bordercolor-width: 1px;`    |
+| `--wui-table-row-bordercolor-width`          |
 | `--wui-table-row-bordercolor-out`            |
 | `--wui-table-row-bordercolor-over`           |
 | `--wui-table-row-bordercolor-selected`       |
@@ -2059,6 +2061,86 @@ const nextLink = document.body.querySelector(".my-link.next");
 const lastLink = document.body.querySelector(".my-link.last");
 const paging = document.body.querySelector(".my-paging");
 const output = document.body.querySelector(".my-output");
+const table = new WUITable({
+	selector: ".wui-table.my-table",
+	width: "auto",     // Valor por defecto, propiedad puede ser omitida
+	paging: 5,
+	columns: [{
+		label: "Columna A",
+		width: 100
+	},{
+		label: "Columna B",
+		width: 100
+	}, {
+		label: "Columna C",
+		width: 100
+	},{
+		label: "Columna D",
+		width: 100
+	}],
+	rows: [],          // Valor por defecto, propiedad puede ser omitida
+	align: "center",
+	valign: "middle",  // Valor por defecto, propiedad puede ser omitida
+	sortable: true,    // Valor por defecto, propiedad puede ser omitida
+	resizable: true,   // Valor por defecto, propiedad puede ser omitida
+	draggable: true,   // Valor por defecto, propiedad puede ser omitida
+	selectable: true,  // Valor por defecto, propiedad puede ser omitida
+	onPrint: (page, pages, total) => {
+		if (table.isPrevEnable()) {
+			firstLink.classList.remove("disabled");
+			prevLink.classList.remove("disabled");
+		} else {
+			firstLink.classList.add("disabled");
+			prevLink.classList.add("disabled");
+		}
+		if (table.isNextEnable()) {
+			lastLink.classList.remove("disabled");
+			nextLink.classList.remove("disabled");
+		} else {
+			lastLink.classList.add("disabled");
+			nextLink.classList.add("disabled");
+		}
+		paging.innerHTML = `${page}/${pages} (${total})`;
+	},
+	onClick: (index, id, event, options) => {
+		output.textContent = `Click fila - índice: ${index}, id: ${id}`;
+	},
+	onDblClick: (index, id, event, options) => {
+		output.textContent = `Doble-Click fila - índice: ${index}, id: ${id}`;
+	}
+});
+const first = () => {
+	table.first();
+}
+const prev = () => {
+	table.prev();
+}
+const last = () => {
+	table.last();
+}
+const next = () => {
+	table.next();
+}
+
+// Inicializar objeto
+table.init();
+
+// Cargar set de datos
+table.rows = [{
+	id: "row1", data: ["A1", "B1", "C1", "D1"]}, {
+	id: "row2", data: ["A2", "B2", "C2", "D2"]}, {
+	id: "row3", data: ["A3", "B3", "C3", "D3"]}, {
+	id: "row4", data: ["A4", "B4", "C4", "D4"]}, {
+	id: "row5", data: ["A5", "B5", "C5", "D5"]}, {
+	id: "row6", data: ["A6", "B6", "C6", "D6"]}, {
+	id: "row7", data: ["A7", "B7", "C7", "D7"]}, {
+	id: "row8", data: ["A8", "B8", "C8", "D8"]}, {
+	id: "row9", data: ["A9", "B9", "C9", "D9"], enabled: false}, {
+	id: "row10", data: ["A10", "B10", "C10", "D10"]}, {
+	id: "row11", data: ["A11", "B11", "C11", "D11"]}, {
+	id: "row12", data: ["A12", "B12", "C12", "D12"]
+}];
+table.print();
 ```
 
 <a name="WUIForm"></a>

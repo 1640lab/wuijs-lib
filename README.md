@@ -950,13 +950,13 @@ JS code:
 ```js
 // Create object
 const language = new WUILanguage({
-    selector: ".wui-language",  // Valor por defecto, propiedad puede ser omitida
-    directory: "./Languages/",  // Valor por defecto, propiedad puede ser omitida
-    sets: ["main"],             // Valor por defecto, propiedad puede ser omitida
-    lang: "en",                 // Valor por defecto, propiedad puede ser omitida
-    mode: "js",                 // Valor por defecto, propiedad puede ser omitida
-    dataKey: "key",             // Valor por defecto, propiedad puede ser omitida
-    dataOutput: "text",         // Valor por defecto, propiedad puede ser omitida
+    selector: ".wui-language",  // Default value, property can be omitted
+    directory: "./Languages/",  // Default value, property can be omitted
+    sets: ["main"],             // Default value, property can be omitted
+    lang: "en",                 // Default value, property can be omitted
+    mode: "js",                 // Default value, property can be omitted
+    dataKey: "key",             // Default value, property can be omitted
+    dataOutput: "text",         // Default value, property can be omitted
     onLoad: (...args) => {
 		[lang, languages] = args;
         console.log("Language loaded:", lang, languages);
@@ -1755,13 +1755,13 @@ const list = new WUIList({
 	selector: ".wui-list.my-list",
 	paging: 5,
 	columns: [{
-    width: 10
-  },{
+		width: 10
+	},{
 		width: 40,
 		align: "center"
 	}, {
 		align: "left"
-  },{
+	},{
 		width: 40,
 		align: "center"
 	}],
@@ -1770,7 +1770,7 @@ const list = new WUIList({
 		iconClass: "wui-icon trash-fill",
 		bgcolor: "#f44343",
 		onClick: (index, id) => {
-			output.textContent = `Trash button - index: ${index}, id: ${id}`;
+			output.textContent = `Click button - index: ${index}, id: ${id}`;
 		},
 		enabled: true
 	}],
@@ -1793,7 +1793,7 @@ const list = new WUIList({
 		paging.innerHTML = `${page}/${pages} (${total})`;
 	},
 	onClick: (index, id, event, options) => {
-		output.textContent = `Row - index: ${index}, id: ${id}`;
+		output.textContent = `Click row - index: ${index}, id: ${id}`;
 	}
 });
 const first = () => {
@@ -1824,7 +1824,8 @@ list.rows = [{
 	id: "row8", data: ["", "A8", "B8", "C8"]}, {
 	id: "row9", data: ["", "A9", "B9", "C9"], enabled: false}, {
 	id: "row10", data: ["", "A10", "B10", "C10"]}, {
-	id: "row12", data: ["", "A12", "B12", "C11"]
+	id: "row11", data: ["", "A11", "B11", "C11"]}, {
+	id: "row12", data: ["", "A12", "B12", "C12"]
 }];
 list.print();
 ```
@@ -1872,6 +1873,7 @@ Advanced object for implementing data tables. Unlike the `WUIList` object, the `
 
 | Property  | Type      | Default value        | Description |
 | --------- | --------- | -------------------- | ----------- |
+| label     | `string`  | `""`                 | Column label. |
 | width     | `string`  | `undefined`          | Column width. This can be expressed as a number associated with pixels or in a CSS compatible format. |
 | align     | `string`  | `WUITable.align`     | Horizontal alignment mode for column content. This option takes precedence over the `align` property.<br><br>Values:<br>• `"left"`<br>• `"center"`<br>• `"right"` |
 | valign    | `string`  | `WUITable.valign`    | Vertical alignment mode for column content. This option takes precedence over the `valign` property.<br><br>Values:<br>• `"top"`<br>• `"middle"`<br>• `"bottom"` |
@@ -1937,7 +1939,7 @@ Advanced object for implementing data tables. Unlike the `WUIList` object, the `
 | `--wui-table-column-resize-bordercolor-over` |
 | `--wui-table-column-drag-bordercolor-over`   |
 | `--wui-table-column-drag-bgcolor-drop`       |
-| `--wui-table-row-bordercolor-width: 1px;`    |
+| `--wui-table-row-bordercolor-width`          |
 | `--wui-table-row-bordercolor-out`            |
 | `--wui-table-row-bordercolor-over`           |
 | `--wui-table-row-bordercolor-selected`       |
@@ -2062,6 +2064,86 @@ const nextLink = document.body.querySelector(".my-link.next");
 const lastLink = document.body.querySelector(".my-link.last");
 const paging = document.body.querySelector(".my-paging");
 const output = document.body.querySelector(".my-output");
+const table = new WUITable({
+	selector: ".wui-table.my-table",
+	width: "auto",     // Default value, property can be omitted
+	paging: 5,
+	columns: [{
+		label: "A Column",
+		width: 100
+	},{
+		label: "B Column",
+		width: 100
+	}, {
+		label: "C Column",
+		width: 100
+	},{
+		label: "D Column",
+		width: 100
+	}],
+	rows: [],          // Default value, property can be omitted
+	align: "center",
+	valign: "middle",  // Default value, property can be omitted
+	sortable: true,    // Default value, property can be omitted
+	resizable: true,   // Default value, property can be omitted
+	draggable: true,   // Default value, property can be omitted
+	selectable: true,  // Default value, property can be omitted
+	onPrint: (page, pages, total) => {
+		if (table.isPrevEnable()) {
+			firstLink.classList.remove("disabled");
+			prevLink.classList.remove("disabled");
+		} else {
+			firstLink.classList.add("disabled");
+			prevLink.classList.add("disabled");
+		}
+		if (table.isNextEnable()) {
+			lastLink.classList.remove("disabled");
+			nextLink.classList.remove("disabled");
+		} else {
+			lastLink.classList.add("disabled");
+			nextLink.classList.add("disabled");
+		}
+		paging.innerHTML = `${page}/${pages} (${total})`;
+	},
+	onClick: (index, id, event, options) => {
+		output.textContent = `Click row - index: ${index}, id: ${id}`;
+	},
+	onDblClick: (index, id, event, options) => {
+		output.textContent = `Double-Click row - index: ${index}, id: ${id}`;
+	}
+});
+const first = () => {
+	table.first();
+}
+const prev = () => {
+	table.prev();
+}
+const last = () => {
+	table.last();
+}
+const next = () => {
+	table.next();
+}
+
+// Initialize object
+table.init();
+
+// Load dataset
+table.rows = [{
+	id: "row1", data: ["A1", "B1", "C1", "D1"]}, {
+	id: "row2", data: ["A2", "B2", "C2", "D2"]}, {
+	id: "row3", data: ["A3", "B3", "C3", "D3"]}, {
+	id: "row4", data: ["A4", "B4", "C4", "D4"]}, {
+	id: "row5", data: ["A5", "B5", "C5", "D5"]}, {
+	id: "row6", data: ["A6", "B6", "C6", "D6"]}, {
+	id: "row7", data: ["A7", "B7", "C7", "D7"]}, {
+	id: "row8", data: ["A8", "B8", "C8", "D8"]}, {
+	id: "row9", data: ["A9", "B9", "C9", "D9"], enabled: false}, {
+	id: "row10", data: ["A10", "B10", "C10", "D10"]}, {
+	id: "row11", data: ["A11", "B11", "C11", "D11"]}, {
+	id: "row12", data: ["A12", "B12", "C12", "D12"]
+}];
+table.print();
 ```
 
 <a name="WUIForm"></a>
