@@ -1838,6 +1838,7 @@ list.print();
 
 > [!TIP]
 > Puede revisar este ejemplo funcional en CodePen en el enlace: [https://codepen.io/sbelmar/pen/vELrGBJ](https://codepen.io/sbelmar/pen/vELrGBJ).
+
 <a name="WUITable"></a>
 
 ### WUITable
@@ -2158,6 +2159,9 @@ table.rows = [{
 }];
 table.print();
 ```
+
+> [!TIP]
+> Puede revisar este ejemplo funcional en CodePen en el enlace: [https://codepen.io/sbelmar/pen/zxrapZe](https://codepen.io/sbelmar/pen/zxrapZe).
 
 <a name="WUIForm"></a>
 <a name="WUIFormat"></a>

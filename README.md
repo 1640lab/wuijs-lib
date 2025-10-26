@@ -2162,6 +2162,9 @@ table.rows = [{
 table.print();
 ```
 
+> [!TIP]
+> You can check out this working example on CodePen at the link: [https://codepen.io/sbelmar/pen/zxrapZe](https://codepen.io/sbelmar/pen/zxrapZe).
+
 <a name="WUIForm"></a>
 <a name="WUIFormat"></a>
 <a name="WUISelectpicker"></a>
