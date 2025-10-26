@@ -1795,16 +1795,24 @@ const list = new WUIList({
 	}
 });
 const first = () => {
-	list.first();
+	if (!firstLink.classList.contains("disabled")) {
+		list.first();
+	}
 }
 const prev = () => {
-	list.prev();
+	if (!prevLink.classList.contains("disabled")) {
+		list.prev();
+	}
 }
 const last = () => {
-	list.last();
+	if (!lastLink.classList.contains("disabled")) {
+		list.last();
+	}
 }
 const next = () => {
-	list.next();
+	if (!nextLink.classList.contains("disabled")) {
+		list.next();
+	}
 }
 
 // Inicializar objeto
@@ -2110,16 +2118,24 @@ const table = new WUITable({
 	}
 });
 const first = () => {
-	table.first();
+	if (!firstLink.classList.contains("disabled")) {
+		table.first();
+	}
 }
 const prev = () => {
-	table.prev();
+	if (!prevLink.classList.contains("disabled")) {
+		table.prev();
+	}
 }
 const last = () => {
-	table.last();
+	if (!lastLink.classList.contains("disabled")) {
+		table.last();
+	}
 }
 const next = () => {
-	table.next();
+	if (!nextLink.classList.contains("disabled")) {
+		table.next();
+	}
 }
 
 // Inicializar objeto
