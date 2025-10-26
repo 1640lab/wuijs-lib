@@ -1833,7 +1833,7 @@ list.print();
 ```
 
 > [!TIP]
-> You can check out this working example on CodePen at the link: [https://codepen.io/sbelmar/pen/vELrGBJ](https://codepen.io/sbelmar/pen/vELrGBJ).
+> You can check out this working example on CodePen at the link: <a href="https://codepen.io/sbelmar/pen/vELrGBJ" target="_blank">https://codepen.io/sbelmar/pen/vELrGBJ</a>.
 
 <a name="wuiTable"></a>
 <a name="wuiForm"></a>
