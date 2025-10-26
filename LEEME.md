@@ -1831,7 +1831,7 @@ list.print();
 ```
 
 > [!TIP]
-> Puede revisar este ejemplo funcional en CodePen en el enlace: [https://codepen.io/sbelmar/pen/vELrGBJ](https://codepen.io/sbelmar/pen/vELrGBJ){:target="_blank"}.
+> Puede revisar este ejemplo funcional en CodePen en el enlace: [https://codepen.io/sbelmar/pen/vELrGBJ](https://codepen.io/sbelmar/pen/vELrGBJ).
 
 <a name="wuiTable"></a>
 <a name="wuiForm"></a>
