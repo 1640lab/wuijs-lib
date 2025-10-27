@@ -25,6 +25,22 @@
 	/*padding-bottom: var(--wui-table-borderradius);*/
 	justify-content: flex-start;	
 }
+.wui-table::before {
+	content: "";
+	position: absolute;
+	width: var(--wui-table-width);
+	height: 27px;
+	-webkit-border-top-left-radius: var(--wui-table-borderradius);
+	-moz-border-radius-topleft: var(--wui-table-borderradius);
+	border-top-left-radius: var(--wui-table-borderradius);
+	-webkit-border-top-right-radius: var(--wui-table-borderradius);
+	-moz-border-radius-topright: var(--wui-table-borderradius);
+	border-top-right-radius: var(--wui-table-borderradius);
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: var(--wui-table-column-bordercolor-out);
+	background-color: var(--wui-table-column-bgcolor-out);
+}
 .wui-table > table {
 	width: auto;
 	border-collapse: collapse;
@@ -41,6 +57,7 @@
 	text-overflow: ellipsis;
 }
 .wui-table > table > thead > tr > th {
+	height: 26px;
 	border-color: var(--wui-table-column-bordercolor-out);
 	background-color: var(--wui-table-column-bgcolor-out);
 	color: var(--wui-table-column-textcolor-out);
@@ -160,7 +177,7 @@
 .wui-table > table > :is(thead, tbody) > tr > :is(th, td).valign-bottom {
 	vertical-align: bottom;
 }
-.wui-table > table > tbody > tr.selected > td:not(.disabled) {
+.wui-table > table > tbody > tr.selected > td {
 	border-color: var(--wui-table-row-bordercolor-selected);
 	background-color: var(--wui-table-row-bgcolor-selected);
 	color: var(--wui-table-row-textcolor-selected);

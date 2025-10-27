@@ -230,6 +230,7 @@ class WUITable {
 		this._thead = document.createElement("thead");
 		this._tbody = document.createElement("tbody");
 		this._element.style.width = typeof(this._width) == "number" ? this._width+"px" : typeof(this._width) == "string" ? this._width : "auto";
+		this._element.style.setProperty("--wui-table-width", getComputedStyle(this._element).width);
 		this._element.appendChild(this._table);
 		this._table.setAttribute("cellspacing", "0");
 		this._table.appendChild(this._thead);
