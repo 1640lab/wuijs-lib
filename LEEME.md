@@ -1821,14 +1821,14 @@ list.init();
 // Cargar set de datos
 list.rows = [{
 	id: "row1", data: ["", "A1", "B1", "C1"]}, {
-	id: "row2", data: ["", "A2", "B2", "C2"]}, {
+	id: "row2", data: ["", "A2", "B2", "C2"], enabled: false}, {
 	id: "row3", data: ["", "A3", "B3", "C3"]}, {
 	id: "row4", data: ["", "A4", "B4", "C4"]}, {
 	id: "row5", data: ["", "A5", "B5", "C5"]}, {
 	id: "row6", data: ["", "A6", "B6", "C6"]}, {
 	id: "row7", data: ["", "A7", "B7", "C7"]}, {
 	id: "row8", data: ["", "A8", "B8", "C8"]}, {
-	id: "row9", data: ["", "A9", "B9", "C9"], enabled: false}, {
+	id: "row9", data: ["", "A9", "B9", "C9"]}, {
 	id: "row10", data: ["", "A10", "B10", "C10"]}, {
 	id: "row11", data: ["", "A11", "B11", "C11"]}, {
 	id: "row12", data: ["", "A12", "B12", "C12"]
@@ -2145,14 +2145,14 @@ table.init();
 // Cargar set de datos
 table.rows = [{
 	id: "row1", data: ["A1", "B1", "C1", "D1"]}, {
-	id: "row2", data: ["A2", "B2", "C2", "D2"]}, {
+	id: "row2", data: ["A2", "B2", "C2", "D2"], enabled: false}, {
 	id: "row3", data: ["A3", "B3", "C3", "D3"]}, {
 	id: "row4", data: ["A4", "B4", "C4", "D4"]}, {
 	id: "row5", data: ["A5", "B5", "C5", "D5"]}, {
 	id: "row6", data: ["A6", "B6", "C6", "D6"]}, {
 	id: "row7", data: ["A7", "B7", "C7", "D7"]}, {
 	id: "row8", data: ["A8", "B8", "C8", "D8"]}, {
-	id: "row9", data: ["A9", "B9", "C9", "D9"], enabled: false}, {
+	id: "row9", data: ["A9", "B9", "C9", "D9"]}, {
 	id: "row10", data: ["A10", "B10", "C10", "D10"]}, {
 	id: "row11", data: ["A11", "B11", "C11", "D11"]}, {
 	id: "row12", data: ["A12", "B12", "C12", "D12"]
