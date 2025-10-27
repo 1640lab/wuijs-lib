@@ -640,7 +640,7 @@ HTML code:
 		<script type="text/javascript" src="./Libraries/WUI/List/WUIList-0.2.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Table/WUITable-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Form/WUIForm-0.1.js"></script>
-		<script type="text/javascript" src="./Libraries/WUI/Format/WUIFormat-0.e.js"></script>
+		<script type="text/javascript" src="./Libraries/WUI/Format/WUIFormat-0.2.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Selectpicker/WUISelectpicker-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Datepicker/WUIDatepicker-0.1.js"></script>
 		<script type="text/javascript" src="./Libraries/WUI/Timepicker/WUITimepicker-0.1.js"></script>
