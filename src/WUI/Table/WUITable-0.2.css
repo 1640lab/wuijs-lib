@@ -127,6 +127,12 @@
 .wui-table > table > tbody {
 	overflow-y: auto;
 }
+.wui-table > table > tbody > tr > td,
+.wui-table > table > tbody > tr > td * {
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
 .wui-table > table > tbody > tr > td {
 	border-color: var(--wui-table-row-bordercolor-out);
 	background-color: var(--wui-table-row-bgcolor-out);
