@@ -683,12 +683,12 @@ Administrador de cookies.
 
 #### Propiedades
 
-| Propiedad | Tipo      | Valor por defecto   | Descripción |
-| --------- | --------- | ------------------- | ----------- |
-| domain    | `string`  | `location.hostname` | (get/set)<br><br>Define el dominio desde el que se puede acceder a la cookie. Por defecto, es el host actual. Al configurarlo como un dominio principal (p. ej., ejemplo.com para sub.ejemplo.com), los subdominios pueden acceder a él. |
-| path      | `string`  | `"./"`              | (get/set)<br><br>Especifica la ruta válida para la cookie. El valor predeterminado es la ruta actual siendo el valor vacío equivalente a este. Al establecer "/", la cookie es accesible en todo el dominio. |
-| minutes   | `number`  | `525600`            | (get/set)<br><br>Especifica la duración medida en minutos que tendrá la cookie. El valor predeterminado equivale a 365 días. |
-| overssl   | `boolean` | `false`             | (get/set)<br><br>Si se establece como `true`, la cookie solo se enviará a través de conexiones HTTPS. |
+| Propiedad | Tipo      | Valor predeterminado | Descripción |
+| --------- | --------- | -------------------- | ----------- |
+| domain    | `string`  | `location.hostname`  | (get/set)<br><br>Define el dominio desde el que se puede acceder a la cookie. Por defecto, es el host actual. Al configurarlo como un dominio principal (p. ej., ejemplo.com para sub.ejemplo.com), los subdominios pueden acceder a él. |
+| path      | `string`  | `"./"`               | (get/set)<br><br>Especifica la ruta válida para la cookie. El valor predeterminado es la ruta actual siendo el valor vacío equivalente a este. Al establecer "/", la cookie es accesible en todo el dominio. |
+| minutes   | `number`  | `525600`             | (get/set)<br><br>Especifica la duración medida en minutos que tendrá la cookie. El valor predeterminado equivale a 365 días. |
+| overssl   | `boolean` | `false`              | (get/set)<br><br>Si se establece como `true`, la cookie solo se enviará a través de conexiones HTTPS. |
 
 #### Métodos
 
@@ -710,10 +710,10 @@ Código JS:
 ```js
 // Crear objeto
 const cookie = new WUICookie({
-	domain: location.hostname,  // Valor por defecto, propiedad puede ser omitida
-	path: "./",                 // Valor por defecto, propiedad puede ser omitida
-	minutes: 365*24*60,         // Valor por defecto, propiedad puede ser omitida
-	overssl: false              // Valor por defecto, propiedad puede ser omitida
+	domain: location.hostname,  // Valor predeterminado, propiedad puede ser omitida
+	path: "./",                 // Valor predeterminado, propiedad puede ser omitida
+	minutes: 365*24*60,         // Valor predeterminado, propiedad puede ser omitida
+	overssl: false              // Valor predeterminado, propiedad puede ser omitida
 });
 
 // Guardar cookie
@@ -794,13 +794,13 @@ Administrador de cuerpo HTML. Permite la importación de contenido CSS/JS/HTML y
 
 #### Propiedades
 
-| Propiedad       | Tipo       | Valor por defecto | Descripción |
-| --------------- | ---------- | ----------------- | ----------- |
-| environment     | `string`   | `"web"`           | (get/set)<br><br>Entorno de despliegue de la interfaz web.<br><br>Valores:<br>• `"web"`<br>• `"native.android"`<br>• `"native.ios"` |
-| importDirectory | `string`   | `""`              | (get/set)<br><br>Ruta relativa del directorio donde se alojan los subdirectorio para importación de contenido. |
-| importMode      | `string`   | `"fetch"`         | (get/set)<br><br>Método de recuperación de contenido para carga.<br><br>Valores:<br>• `"fetch"`<br>• `"xhr"`<br><br>Cuando el despliegue se realiza en ambientes nativos mediante WebView para Android o WebKit para iOS, se recomienda utilizar `"xhr"`. |
-| onCompleted     | `function` | `null`            | (get/set)<br><br>Función que se llama cuando todos los contenidos son importados y cargados en el cuerpo de la página HTML. |
-| debug           | `boolean`  | `false`           | (get/set)<br><br>Modo de testeo. Imprime en consola los contenidos importados cuando el valor de la propiedad es `true`. |
+| Propiedad       | Tipo       | Valor predeterminado | Descripción |
+| --------------- | ---------- | -------------------- | ----------- |
+| environment     | `string`   | `"web"`              | (get/set)<br><br>Entorno de despliegue de la interfaz web.<br><br>Valores:<br>• `"web"`<br>• `"native.android"`<br>• `"native.ios"` |
+| importDirectory | `string`   | `""`                 | (get/set)<br><br>Ruta relativa del directorio donde se alojan los subdirectorio para importación de contenido. |
+| importMode      | `string`   | `"fetch"`            | (get/set)<br><br>Método de recuperación de contenido para carga.<br><br>Valores:<br>• `"fetch"`<br>• `"xhr"`<br><br>Cuando el despliegue se realiza en ambientes nativos mediante WebView para Android o WebKit para iOS, se recomienda utilizar `"xhr"`. |
+| onCompleted     | `function` | `null`               | (get/set)<br><br>Función que se llama cuando todos los contenidos son importados y cargados en el cuerpo de la página HTML. |
+| debug           | `boolean`  | `false`              | (get/set)<br><br>Modo de testeo. Imprime en consola los contenidos importados cuando el valor de la propiedad es `true`. |
 
 #### Métodos
 
@@ -855,9 +855,9 @@ Código JS:
 ```js
 // Crear objeto
 const body = new WUIBody({
-	environment: "web",             // Valor por defecto, propiedad puede ser omitida
+	environment: "web",             // Valor predeterminado, propiedad puede ser omitida
 	importDirectory: "./Imports/",
-	importMode: "fetch",            // Valor por defecto, propiedad puede ser omitida
+	importMode: "fetch",            // Valor predeterminado, propiedad puede ser omitida
 	onCompleted: () => {
 		body.prepare();
 	},
@@ -886,22 +886,22 @@ Administrador de idioma para interfaces web. Permite cargar archivos de idioma e
 
 #### Propiedades
 
-| Propiedad  | Tipo       | Valor por defecto | Descripción |
-| ---------- | ---------- | ----------------- | ----------- |
-| selector   | `string`   | `".wui-language"` | (get/set)<br><br>Selector CSS para los elementos HTML que serán cargados. Este puede ser aplicado al atributo `content` del elemento `meta`, a la propiedad `innerHTML` de los elementos: `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `div`, `span`, `p`, `i`, `li`, `a`, `legend`, `label`, `option`, `data`, `button` y al atributo `placeholder` de los elementos `input` y `textarea`. |
-| directory  | `string`   | `"Languages/"`    | (get/set)<br><br>Ruta del directorio donde se encuentran los archivos de idioma. |
-| sets       | `array`    | `["main"]`        | (get/set)<br><br>Lista de nombres del conjuntos del idioma a cargar. |
-| lang       | `string`   | `"en"`            | (get/set)<br><br>Código de idioma en formato ISO 639-1. |
-| mode       | `string`   | `"js"`            | (get/set)<br><br>Formato de los archivos de idioma.<br><br>Valores:<br>• `"js"`<br>• `"json"` |
-| dataKey    | `string`   | `"key"`           | (get/set)<br><br>Nombre del atributo `data-*` que contiene la clave de texto en los elementos HTML. |
-| dataOutput | `string`   | `"text"`          | (get/set)<br><br>Nombre del atributo `data-*` donde se puede colocar el texto cargado. |
-| onLoad     | `function` | `null`            | (get/set)<br><br>Función que se llama cuando la carga de idioma ha finalizado. |
+| Propiedad  | Tipo       | Valor predeterminado | Descripción |
+| ---------- | ---------- | -------------------- | ----------- |
+| selector   | `string`   | `".wui-language"`    | (get/set)<br><br>Selector CSS para los elementos HTML que serán cargados. Este puede ser aplicado al atributo `content` del elemento `meta`, a la propiedad `innerHTML` de los elementos: `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `div`, `span`, `p`, `i`, `li`, `a`, `legend`, `label`, `option`, `data`, `button` y al atributo `placeholder` de los elementos `input` y `textarea`. |
+| directory  | `string`   | `"Languages/"`       | (get/set)<br><br>Ruta del directorio donde se encuentran los archivos de idioma. |
+| sets       | `array`    | `["main"]`           | (get/set)<br><br>Lista de nombres del conjuntos del idioma a cargar. |
+| lang       | `string`   | `"en"`               | (get/set)<br><br>Código de idioma en formato ISO 639-1. |
+| mode       | `string`   | `"js"`               | (get/set)<br><br>Formato de los archivos de idioma.<br><br>Valores:<br>• `"js"`<br>• `"json"` |
+| dataKey    | `string`   | `"key"`              | (get/set)<br><br>Nombre del atributo `data-*` que contiene la clave de texto en los elementos HTML. |
+| dataOutput | `string`   | `"text"`             | (get/set)<br><br>Nombre del atributo `data-*` donde se puede colocar el texto cargado. |
+| onLoad     | `function` | `null`               | (get/set)<br><br>Función que se llama cuando la carga de idioma ha finalizado. |
 
 #### Métodos
 
 | Método | Tipo retorno | Descripción |
 | ------ | ------------ | ----------- |
-| load   | `void`       | `load([lang[, sets]])`<br><br>Parámetros:<br>**• lang:** `string` *opcional* (valor por defecto el idioma actual)<br>**• sets:** `array` *opcional* (valor por defecto el conjunto actual expresado como arreglo)<br><br>Carga los archivos de idioma indicados por idioma y conjunto y, actualiza los elementos HTML marcados con el selector CSS. |
+| load   | `void`       | `load([lang[, sets]])`<br><br>Parámetros:<br>**• lang:** `string` *opcional* (valor predeterminado el idioma actual)<br>**• sets:** `array` *opcional* (valor predeterminado el conjunto actual expresado como arreglo)<br><br>Carga los archivos de idioma indicados por idioma y conjunto y, actualiza los elementos HTML marcados con el selector CSS. |
 
 #### Implementación
 
@@ -952,13 +952,13 @@ Código JS:
 ```js
 // Crear objeto
 const language = new WUILanguage({
-    selector: ".wui-language",  // Valor por defecto, propiedad puede ser omitida
-    directory: "./Languages/",  // Valor por defecto, propiedad puede ser omitida
-    sets: ["main"],             // Valor por defecto, propiedad puede ser omitida
+    selector: ".wui-language",  // Valor predeterminado, propiedad puede ser omitida
+    directory: "./Languages/",  // Valor predeterminado, propiedad puede ser omitida
+    sets: ["main"],             // Valor predeterminado, propiedad puede ser omitida
     lang: "es",
-    mode: "js",                 // Valor por defecto, propiedad puede ser omitida
-    dataKey: "key",             // Valor por defecto, propiedad puede ser omitida
-    dataOutput: "text",         // Valor por defecto, propiedad puede ser omitida
+    mode: "js",                 // Valor predeterminado, propiedad puede ser omitida
+    dataKey: "key",             // Valor predeterminado, propiedad puede ser omitida
+    dataOutput: "text",         // Valor predeterminado, propiedad puede ser omitida
     onLoad: (...args) => {
 		[lang, languages] = args;
         console.log("Idioma cargado:", lang, languages);
@@ -1010,28 +1010,28 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 
 #### Propiedades
 
-| Propiedad   | Tipo       | Valor por defecto | Descripción |
-| ----------- | ---------- | ----------------- | ----------- |
-| sections    | `array`    | `[]`              | (get/set)<br><br>Lista secciones que serán incorporadas a la animación, según la definición de **Opciones de Sección**. Estas pueden ser definidas directamente sobre esta propiedad o mediante el método `addSection()`. |
-| behavior    | `string`   | `"smooth"`        | (get/set)<br><br>Comportamiento para desplazar el foco en el cuerpo de la página HTML.<br><br>Valores:<br>• `"auto"`<br>• `"smooth"` |
-| dataScrollY | `string`   | `"scrollY"`       | (get/set)<br><br>Nombre del atributo `data-*` del elemento de documento principal (`<html>` / `document.documentElement`) que contiene el valor numérico medido en píxeles del desplazamiento total del scroll vertical de la página HTML y donde `0` representa la parte superior del documento (o sin movimiento). |
-| dataDelay   | `string`   | `"delay"`         | (get/set)<br><br>Nombre del atributo `data-*` que determina el tiempo medido en milisegundos en que tarda en animarse un elemento HTML animados mediante estilos CSS una vez que se le da foco. |
-| onStart     | `function` | `null`            | (get/set)<br><br>Función que se llama cuando inicia el movimiento del scroll, ya sea a travéz de los eventos `scroll` para ratón o `touchmove` para pantalla táctil. |
-| onMove      | `function` | `null`            | (get/set)<br><br>Función que se llama cuando se ejecuta el movimiento del scroll, ya sea a travéz de los eventos `scroll` para ratón o `touchmove` para pantalla táctil. |
-| onStop      | `function` | `null`            | (get/set)<br><br>Función que se llama cuando termina el movimiento del scroll, ya sea a travéz de los eventos `scroll` para ratón o `touchmove` para pantalla táctil. |
-| debug       | `boolean`  | `false`           | (get/set)<br><br>Modo de testeo. Imprime en consola los valores `selector` y `height` de las escenas agregadas en la instancia de inicio y `scrollY`, `y`, `index`, `sceneIndex`, `step`, `sceneStep` y `progress` cuando estos cambian. Se habilitac cuando el valor de la propiedad es `true`. |
+| Propiedad   | Tipo       | Valor predeterminado | Descripción |
+| ----------- | ---------- | -------------------- | ----------- |
+| sections    | `array`    | `[]`                 | (get/set)<br><br>Lista secciones que serán incorporadas a la animación, según la definición de **Opciones de Sección**. Estas pueden ser definidas directamente sobre esta propiedad o mediante el método `addSection()`. |
+| behavior    | `string`   | `"smooth"`           | (get/set)<br><br>Comportamiento para desplazar el foco en el cuerpo de la página HTML.<br><br>Valores:<br>• `"auto"`<br>• `"smooth"` |
+| dataScrollY | `string`   | `"scrollY"`          | (get/set)<br><br>Nombre del atributo `data-*` del elemento de documento principal (`<html>` / `document.documentElement`) que contiene el valor numérico medido en píxeles del desplazamiento total del scroll vertical de la página HTML y donde `0` representa la parte superior del documento (o sin movimiento). |
+| dataDelay   | `string`   | `"delay"`            | (get/set)<br><br>Nombre del atributo `data-*` que determina el tiempo medido en milisegundos en que tarda en animarse un elemento HTML animados mediante estilos CSS una vez que se le da foco. |
+| onStart     | `function` | `null`               | (get/set)<br><br>Función que se llama cuando inicia el movimiento del scroll, ya sea a travéz de los eventos `scroll` para ratón o `touchmove` para pantalla táctil. |
+| onMove      | `function` | `null`               | (get/set)<br><br>Función que se llama cuando se ejecuta el movimiento del scroll, ya sea a travéz de los eventos `scroll` para ratón o `touchmove` para pantalla táctil. |
+| onStop      | `function` | `null`               | (get/set)<br><br>Función que se llama cuando termina el movimiento del scroll, ya sea a travéz de los eventos `scroll` para ratón o `touchmove` para pantalla táctil. |
+| debug       | `boolean`  | `false`              | (get/set)<br><br>Modo de testeo. Imprime en consola los valores `selector` y `height` de las escenas agregadas en la instancia de inicio y `scrollY`, `y`, `index`, `sceneIndex`, `step`, `sceneStep` y `progress` cuando estos cambian. Se habilitac cuando el valor de la propiedad es `true`. |
 
 #### Opciones de Sección
 
-| Propiedad | Tipo       | Valor por defecto | Descripción |
-| --------- | ---------- | ----------------- | ----------- |
-| selector  | `string`   | `undefined`       | Selector CSS que define el elemento HTML que serán incluido como sección. En caso de existir más de un elemento coincidente con el selector se incluirá únicamente la primera coincidencia. *oblogatorio* |
-| target    | `string`   | `undefined`       | Nombre auxiliar para referenciar la sección. Utilizado en el método `goSection()`. |
-| type      | `string`   | `"auto"`          | Comportamiento CSS del alto de la sección.<br><br>Valores:<br>• `"auto"`<br>• `"static"` |
-| height    | `number`   | `undefined`       | Alto de la sección. Este puede estar expresado como número asociado a píxeles o en formato compatible CSS. |
-| steps     | `number`   | `undefined`       | Número total de pasos definidos en la función de animación `animation`. |
-| pages     | `number`   | `undefined`       | Número total de paginas definidos en la función de animación `animation`. |
-| animation | `function` | `undefined`       | `function(step, progress)`<br><br>Parámetros:<br>**• step:** `number`, valor entre `0` y `pages - 1` <br>**• progress:** `number`, valor entre `0` y `1` <br><br>Función que se llama cuando se ejecuta el movimiento del scroll en una sección. |
+| Propiedad | Tipo       | Valor predeterminado | Descripción |
+| --------- | ---------- | -------------------- | ----------- |
+| selector  | `string`   | `undefined`          | Selector CSS que define el elemento HTML que serán incluido como sección. En caso de existir más de un elemento coincidente con el selector se incluirá únicamente la primera coincidencia. *oblogatorio* |
+| target    | `string`   | `undefined`          | Nombre auxiliar para referenciar la sección. Utilizado en el método `goSection()`. |
+| type      | `string`   | `"auto"`             | Comportamiento CSS del alto de la sección.<br><br>Valores:<br>• `"auto"`<br>• `"static"` |
+| height    | `number`   | `undefined`          | Alto de la sección. Este puede estar expresado como número asociado a píxeles o en formato compatible CSS. |
+| steps     | `number`   | `undefined`          | Número total de pasos definidos en la función de animación `animation`. |
+| pages     | `number`   | `undefined`          | Número total de paginas definidos en la función de animación `animation`. |
+| animation | `function` | `undefined`          | `function(step, progress)`<br><br>Parámetros:<br>**• step:** `number`, valor entre `0` y `pages - 1` <br>**• progress:** `number`, valor entre `0` y `1` <br><br>Función que se llama cuando se ejecuta el movimiento del scroll en una sección. |
 
 #### Métodos
 
@@ -1130,10 +1130,10 @@ Código JS
 ```js
 // Crear objeto
 const scrolly = new WUIScrolly({
-	sections: [],            // Valor por defecto, propiedad puede ser omitida
-	behavior: "smooth",      // Valor por defecto, propiedad puede ser omitida
-	dataScrollY: "scrollY",  // Valor por defecto, propiedad puede ser omitida
-	dataDelay: "delay",      // Valor por defecto, propiedad puede ser omitida
+	sections: [],            // Valor predeterminado, propiedad puede ser omitida
+	behavior: "smooth",      // Valor predeterminado, propiedad puede ser omitida
+	dataScrollY: "scrollY",  // Valor predeterminado, propiedad puede ser omitida
+	dataDelay: "delay",      // Valor predeterminado, propiedad puede ser omitida
 	onStart: () => {},
 	onMove: () => {},
 	onStop: () => {},
@@ -1474,23 +1474,27 @@ Otro modo alternativo es mediante métodos extendidos de la clase `HTMLElement` 
 
 ##### Opciones
 
-| Opción  | Tipo      | Valor por defecto | Descripción |
-| ------- | --------- | ----------------- | ----------- |
-| delay   | `number`  | `400`             | Define el tiempo que tardará la transición del efecto de entrada y de salida medido en milisegundos. |
-| display | `string`  | `"block"`         | Establece el valor de la propiedad CSS `display` del elemento HTML en el que se ejecuta el efecto de transición, una fez que la transición de entrada finaliza. |
-| force   | `boolean` | `false`           | Ambos efectos, entrada y salida, son ejecutadas siempre y cuando la propiedad CSS `display` sea distinta a `options.display` y a `"none"` respectivamente. La opción `force` ignora esta validación. |
+| Opción  | Tipo      | Valor predeterminado | Descripción |
+| ------- | --------- | -------------------- | ----------- |
+| delay   | `number`  | `400`                | Define el tiempo que tardará la transición del efecto de entrada y de salida medido en milisegundos. |
+| display | `string`  | `"block"`            | Establece el valor de la propiedad CSS `display` del elemento HTML en el que se ejecuta el efecto de transición, una fez que la transición de entrada finaliza. |
+| force   | `boolean` | `false`              | Ambos efectos, entrada y salida, son ejecutadas siempre y cuando la propiedad CSS `display` sea distinta a `options.display` y a `"none"` respectivamente. La opción `force` ignora esta validación. |
 
 #### Implementación
 
 Código CSS:
 
 ```CSS
+.my-link {
+	margin: 0 10px;
+	text-decoration: none;
+}
 .my-element {
 	display: none;
-	width: 24px;
-	height: 24px;
+	width: 64px;
+	height: 64px;
 	margin: 10px;
-	backgroind-color: red;
+	background-color: red;
 }
 ```
 
@@ -1503,24 +1507,30 @@ Cabecera HTML
 Código HTML:
 
 ```html
+<a href="javascript:fadein();" class="my-link">fade-in</a>
+<a href="javascript:fadeout();" class="my-link">fade-out</a>
 <div id="myElement" class="my-element"></div>
 ```
 
 Código JS:
 ```js
-// Definición del elemento y opciones
 const element = document.getElementById("myElement");
 const options = {
 	display: "block",
 	delay: 200
 };
-
-// Opción 1: Modo WUIFade
-WUIFade.in(element, options);
-
-// Opción 2: Modo HTMLElement
-element.wuiFadein(options);
+const fadein = () => {
+	//WUIFade.in(element, options); 
+	element.wuiFadein(options); 
+}
+const fadeout = () => {
+	//WUIFade.out(element, options); 
+	element.wuiFadeout(options); 
+}
 ```
+
+> [!TIP]
+> Puede revisar este ejemplo funcional en CodePen en el enlace: [https://codepen.io/sbelmar/pen/KwVeEOv](https://codepen.io/sbelmar/pen/KwVeEOv).
 
 <a name="WUITooltip"></a>
 <a name="WUILoader"></a>
@@ -1545,45 +1555,45 @@ Objeto avanzado para implementación de listas de datos y botoneras para cada fi
 
 #### Propiedades
 
-| Propiedad    | Tipo       | Valor por defecto | Descripción |
-| ------------ | ---------- | ----------------- | ----------- |
-| selector     | `string`   | `".wui-list"`     | (get/set)<br><br>Selector CSS que define el elemento HTML que serán convertido en el objeto avanzado tipo lista. En caso de existir más de un elemento coincidente con el selector se incluirá únicamente la primera coincidencia. |
-| paging       | `number`   | `0`               | (get/set)<br><br>Paginado o número de filas por pagina de la lista. El valor `0` indica que el paginado tendrá el mismo largo que filas, dicho de tra manera, el valor `0` desactiva el paginado. |
-| page         | `number`   | `0`               | (get)<br><br>Página actual mostrada en la lista, donde la página `0` corresponde a la primera página y la última al número total de filas menos 1. |
-| pages        | `number`   | `0`               | (get)<br><br>Número total de páginas. |
-| total        | `number`   | `0`               | (get)<br><br>Número total de filas. |
-| columns      | `array`    | `[]`              | (get/set)<br><br>Lista de columnas de la lista, según la definición de **Opciones de Columna**. |
-| rows         | `array`    | `[]`              | (get/set)<br><br>Lista de filas de la lista, según la definición de **Opciones de Fila**. |
-| buttons      | `array`    | `[]`              | (get/set)<br><br>Lista de botones de filas de la lista, según la definición de **Opciones de Botón de Fila**. |
-| buttonsStyle | `string`   | `"round"`         | (get/set)<br><br>Estilo de los botones de fila.<br><br>Valores:<br>• `"round"`, forma circular.<br>• `"stretch"`, forma cuadrada. |
-| onPrint      | `function` | `null`            | (get/set)<br><br>Función que se llama cuando se despliega una página o la totalidad de la lista. La función recibe por parámetro:<br><br>**• page:** `number`, número de página.<br>**• pages:** `number`, total de página.<br>**• total:** `number`, total de filas. |
-| onClick      | `function` | `null`            | (get/set)<br><br>Función que se llama cuando una fila es presionada. La función recibe por parámetro:<br><br>**• index:** `number`, número de fila.<br>**• id:** `string`, id de fila.<br>**• enabled:** `boolean`, estado de habilitación de fila.<br>**• options:** `object`, opciones configuración de la fila. |
+| Propiedad    | Tipo       | Valor predeterminado | Descripción |
+| ------------ | ---------- | -------------------- | ----------- |
+| selector     | `string`   | `".wui-list"`        | (get/set)<br><br>Selector CSS que define el elemento HTML que serán convertido en el objeto avanzado tipo lista. En caso de existir más de un elemento coincidente con el selector se incluirá únicamente la primera coincidencia. |
+| paging       | `number`   | `0`                  | (get/set)<br><br>Paginado o número de filas por pagina de la lista. El valor `0` indica que el paginado tendrá el mismo largo que filas, dicho de tra manera, el valor `0` desactiva el paginado. |
+| page         | `number`   | `0`                  | (get)<br><br>Página actual mostrada en la lista, donde la página `0` corresponde a la primera página y la última al número total de filas menos 1. |
+| pages        | `number`   | `0`                  | (get)<br><br>Número total de páginas. |
+| total        | `number`   | `0`                  | (get)<br><br>Número total de filas. |
+| columns      | `array`    | `[]`                 | (get/set)<br><br>Lista de columnas de la lista, según la definición de **Opciones de Columna**. |
+| rows         | `array`    | `[]`                 | (get/set)<br><br>Lista de filas de la lista, según la definición de **Opciones de Fila**. |
+| buttons      | `array`    | `[]`                 | (get/set)<br><br>Lista de botones de filas de la lista, según la definición de **Opciones de Botón de Fila**. |
+| buttonsStyle | `string`   | `"round"`            | (get/set)<br><br>Estilo de los botones de fila.<br><br>Valores:<br>• `"round"`, forma circular.<br>• `"stretch"`, forma cuadrada. |
+| onPrint      | `function` | `null`               | (get/set)<br><br>Función que se llama cuando se despliega una página o la totalidad de la lista. La función recibe por parámetro:<br><br>**• page:** `number`, número de página.<br>**• pages:** `number`, total de página.<br>**• total:** `number`, total de filas. |
+| onClick      | `function` | `null`               | (get/set)<br><br>Función que se llama cuando una fila es presionada. La función recibe por parámetro:<br><br>**• index:** `number`, número de fila.<br>**• id:** `string`, id de fila.<br>**• enabled:** `boolean`, estado de habilitación de fila.<br>**• options:** `object`, opciones de configuración de la fila. |
 
 #### Opciones de Columna
 
-| Propiedad | Tipo     | Valor por defecto | Descripción |
-| --------- | -------- | ----------------- | ----------- |
-| width     | `string` | `undefined`       | Ancho de la columna. Este puede estar expresado como número asociado a píxeles o en formato compatible CSS. |
-| align     | `string` | `"left"`          | Modo de alineación de el contenido de la columna.<br><br>Valores:<br>• `"left"`<br>• `"right"`<br>• `"center"` |
+| Propiedad | Tipo     | Valor predeterminado | Descripción |
+| --------- | -------- | -------------------- | ----------- |
+| width     | `string` | `undefined`          | Ancho de la columna. Este puede estar expresado como número asociado a píxeles o en formato compatible CSS. |
+| align     | `string` | `"left"`             | Modo de alineación de el contenido de la columna.<br><br>Valores:<br>• `"left"`<br>• `"right"`<br>• `"center"` |
 
 #### Opciones de Fila
 
-| Propiedad    | Tipo      | Valor por defecto | Descripción |
-| ------------ | --------- | ----------------- | ----------- |
-| id           | `string`  | `undefined`       | Identificador único de fila. |
-| data         | `array`   | `[]`              | Arreglo con el contenido de las celdas de la fila. |
-| innerContent | `string`  | `undefined`       | Contenido opcional de la fila interna, desplegado en la parte inferior de la fila. |
-| innerOpened  | `boolean` | `false`           | Apertura inicial del contenido opcional de la fila interna. |
-| enabled      | `boolean` | `true`            | Estado de habilitación de la fila. El valor por omisión `true`. |
+| Propiedad    | Tipo      | Valor predeterminado | Descripción |
+| ------------ | --------- | -------------------- | ----------- |
+| id           | `string`  | `undefined`          | Identificador único de fila. |
+| data         | `array`   | `[]`                 | Arreglo con el contenido de las celdas de la fila. |
+| innerContent | `string`  | `undefined`          | Contenido opcional de la fila interna, desplegado en la parte inferior de la fila. |
+| innerOpened  | `boolean` | `false`              | Apertura inicial del contenido opcional de la fila interna. |
+| enabled      | `boolean` | `true`               | Estado de habilitación de la fila. El valor predeterminado `true`. |
 
 #### Opciones de Botón de Fila
 
-| Propiedad | Tipo                | Valor por defecto | Descripción |
-| --------- | ------------------- | ----------------- | ----------- |
-| iconClass | `string\|function`  | `undefined`       | Estilos CSS que define el ícono del botón de fila. Esta opción puede ser utilizado opcionalmente con la librería [WUIIcon](#wuiIcon) mediante el estilo `wui-icon` conjuntamente a un estilo de ícono específico. |
-| bgcolor   | `string\|function`  | `undefined`       | Color de fondo en formato compatible CSS. |
-| enabled   | `boolean\|function` | `true`            | Estado de habilitación del botón. |
-| onClick   | `function`          | `null`            | Función que se llama cuando el botón es presionado. Reciven los parámetro `index`, correspondiente a la posición de la fila partiendo desde `0`; y `id`, correspondiente al Identificador único de fila. |
+| Propiedad | Tipo                | Valor predeterminado | Descripción |
+| --------- | ------------------- | -------------------- | ----------- |
+| iconClass | `string\|function`  | `undefined`          | Estilos CSS que define el ícono del botón de fila. Esta opción puede ser utilizado opcionalmente con la librería [WUIIcon](#wuiIcon) mediante el estilo `wui-icon` conjuntamente a un estilo de ícono específico. |
+| bgcolor   | `string\|function`  | `undefined`          | Color de fondo en formato compatible CSS. |
+| enabled   | `boolean\|function` | `true`               | Estado de habilitación del botón. |
+| onClick   | `function`          | `null`               | Función que se llama cuando el botón es presionado. Reciven los parámetro `index`, correspondiente a la posición de la fila partiendo desde `0`; y `id`, correspondiente al Identificador único de fila. |
 
 > [!IMPORTANT]
 > Las opciones que aceptan valores opcionales de tipo función (`iconClass`, `bgcolor` y `enabled`), reciven los parámetro `index`, correspondiente a la posición de la fila partiendo desde `0`; e `id`, correspondiente al Identificador único de fila.
@@ -1597,9 +1607,9 @@ Objeto avanzado para implementación de listas de datos y botoneras para cada fi
 | addColumn    | `void`        | `addColumn(options)`<br><br>Agrega la configuración de una nueva columna a la lista de columnas del objeto, según la definición de **Opciones de Columna**. |
 | addRow       | `void`        | `addRow(options)`<br><br>Agrega la configuración de una nueva fila a la lista filas del objeto, según la definición de **Opciones de Fila**. |
 | addButton    | `void`        | `addButton(options)`<br><br>Agrega la configuración de un nuevo botón de fila a la lista de bootones de fila del objeto, según la definición de **Opciones de Botón de Fila**. |
-| print        | `void`        | `print([page])`<br><br>Parámetros:<br>**• page:** `number`, número de página. El valor por omisión corresponde a la propiedad `page`. Si se pasa como parámetro un valor distinto al de la propiedad `page` y si es válido, la propiedad tomará dicho valor.<br><br>Imprime la vista de una lista, esta vista puede ser una página o la lista completa según la propiedad `paging` y el parámetro `page`. |
-| enableRow    | `void`        | `enableRow(index[, enabled])`<br><br>Parámetros:<br>**• index:** `number`, número de fila.<br>**• enabled:** `boolean`, estado de habilitación de la fila. El valor por omisión `true`.<br><br>Hablita o deshabilita una fila. |
-| openInnerRow | `void`        | `openInnerRow(index[, open])`<br><br>Parámetros:<br>**• index:** `number`, número de fila.<br>**• open:** `boolean`, estado de apertura del contenido opcional de la fila interna. El valor por omisión `true`.<br><br>Abre o cierra el contenido opcional de la fila interna. |
+| print        | `void`        | `print([page])`<br><br>Parámetros:<br>**• page:** `number`, número de página. El valor predeterminado corresponde a la propiedad `page`. Si se pasa como parámetro un valor distinto al de la propiedad `page` y si es válido, la propiedad tomará dicho valor.<br><br>Imprime la vista de una lista, esta vista puede ser una página o la lista completa según la propiedad `paging` y el parámetro `page`. |
+| enableRow    | `void`        | `enableRow(index[, enabled])`<br><br>Parámetros:<br>**• index:** `number`, número de fila.<br>**• enabled:** `boolean`, estado de habilitación de la fila. El valor predeterminado `true`.<br><br>Hablita o deshabilita una fila. |
+| openInnerRow | `void`        | `openInnerRow(index[, open])`<br><br>Parámetros:<br>**• index:** `number`, número de fila.<br>**• open:** `boolean`, estado de apertura del contenido opcional de la fila interna. El valor predeterminado `true`.<br><br>Abre o cierra el contenido opcional de la fila interna. |
 | first        | `void`        | `first()`<br><br>Despliega la vista de la primera página. |
 | last         | `void`        | `last()`<br><br>Despliega la vista de la última página. |
 | prev         | `void`        | `prev()`<br><br>Despliega la vista de la página previa si es que esta existe. |
@@ -1765,7 +1775,7 @@ const list = new WUIList({
 		width: 40,
 		align: "center"
 	}],
-	rows: [],  // Valor por defecto, propiedad puede ser omitida
+	rows: [],  // Valor predeterminado, propiedad puede ser omitida
 	buttons: [{
 		iconClass: "wui-icon trash-fill",
 		bgcolor: "#f44343",
@@ -1857,30 +1867,30 @@ Objeto avanzado para implementación de tablas de datos. A diferencia del objeto
 
 #### Propiedades
 
-| Propiedad    | Tipo       | Valor por defecto | Descripción |
-| ------------ | ---------- | ----------------- | ----------- |
-| selector     | `string`   | `".wui-table"`    | (get/set)<br><br>Selector CSS que define el elemento HTML que serán convertido en el objeto avanzado tipo tabla. En caso de existir más de un elemento coincidente con el selector se incluirá únicamente la primera coincidencia. |
-| width        | `string`   | `"auto"`          | (get/set)<br><br>Ancho de la tabla en formato compatible CSS. |
-| paging       | `number`   | `0`               | (get/set)<br><br>Paginado o número de filas por pagina de la tabla. El valor `0` indica que el paginado tendrá el mismo largo que filas, dicho de tra manera, el valor `0` desactiva el paginado. |
-| page         | `number`   | `0`               | (get)<br><br>Página actual mostrada en la tabla, donde la página `0` corresponde a la primera página y la última al número total de filas menos 1. |
-| pages        | `number`   | `0`               | (get)<br><br>Número total de páginas. |
-| total        | `number`   | `0`               | (get)<br><br>Número total de filas. |
-| columns      | `array`    | `[]`              | (get/set)<br><br>Lista de columnas de la tabla, según la definición de **Opciones de Columna**. |
-| rows         | `array`    | `[]`              | (get/set)<br><br>Lista de filas de la tabla, según la definición de **Opciones de Fila**. |
-| align        | `string`   | `"left"`          | (get/set)<br><br>Modo de alineación horizontal del contenido de la tabla.<br><br>Valores:<br>• `"left"`<br>• `"center"`<br>• `"right"` |
-| valign       | `string`   | `"middle"`        | (get/set)<br><br>Modo de alineación vertical del contenido de la tabla.<br><br>Valores:<br>• `"top"`<br>• `"middle"`<br>• `"bottom"` |
-| sortable     | `boolean`  | `true`            | (get/set)<br><br>Define si las filas son ordenables por columna. |
-| resizable    | `boolean`  | `true`            | (get/set)<br><br>Define si las columnas son redimensionables. |
-| draggable    | `boolean`  | `true`            | (get/set)<br><br>Define si las columnas son arrastrables para poder cambiar su posición. |
-| selectable   | `boolean`  | `true`            | (get/set)<br><br>Define si las filas son seleccionables. |
-| onPrint      | `function` | `null`            | (get/set)<br><br>Función que se llama cuando una página o la totalidad de la tabla es despliega. La función recibe por parámetro:<br><br>**• page:** `number`, número de página.<br>**• pages:** `number`, total de página.<br>**• total:** `number`, total de filas. |
-| onClick      | `function` | `null`            | (get/set)<br><br>Función que se llama cuando una fila es presionada. Función que se llama cuando una fila es presionada. La función recibe por parámetro:<br><br>**• index:** `number`, número de fila.<br>**• id:** `string`, id de fila.<br>**• enabled:** `boolean`, estado de habilitación de fila.<br>**• options:** `object`, opciones configuración de la fila. |
-| onDblClick   | `function` | `null`            | (get/set)<br><br>Función que se llama cuando una fila es presionada dos veces. Función que se llama cuando una fila es presionada. La función recibe por parámetro:<br><br>**• index:** `number`, número de fila.<br>**• id:** `string`, id de fila.<br>**• enabled:** `boolean`, estado de habilitación de fila.<br>**• options:** `object`, opciones configuración de la fila. |
-| onSelect     | `function` | `null`            | (get/set)<br><br>Función que se llama cuando una fila es seleccionada. Función que se llama cuando una fila es presionada. La función recibe por parámetro:<br><br>**• index:** `number`, número de fila.<br>**• id:** `string`, id de fila.<br>**• enabled:** `boolean`, estado de habilitación de fila.<br>**• options:** `object`, opciones configuración de la fila. |
+| Propiedad    | Tipo       | Valor predeterminado | Descripción |
+| ------------ | ---------- | -------------------- | ----------- |
+| selector     | `string`   | `".wui-table"`       | (get/set)<br><br>Selector CSS que define el elemento HTML que serán convertido en el objeto avanzado tipo tabla. En caso de existir más de un elemento coincidente con el selector se incluirá únicamente la primera coincidencia. |
+| width        | `string`   | `"auto"`             | (get/set)<br><br>Ancho de la tabla en formato compatible CSS. |
+| paging       | `number`   | `0`                  | (get/set)<br><br>Paginado o número de filas por pagina de la tabla. El valor `0` indica que el paginado tendrá el mismo largo que filas, dicho de tra manera, el valor `0` desactiva el paginado. |
+| page         | `number`   | `0`                  | (get)<br><br>Página actual mostrada en la tabla, donde la página `0` corresponde a la primera página y la última al número total de filas menos 1. |
+| pages        | `number`   | `0`                  | (get)<br><br>Número total de páginas. |
+| total        | `number`   | `0`                  | (get)<br><br>Número total de filas. |
+| columns      | `array`    | `[]`                 | (get/set)<br><br>Lista de columnas de la tabla, según la definición de **Opciones de Columna**. |
+| rows         | `array`    | `[]`                 | (get/set)<br><br>Lista de filas de la tabla, según la definición de **Opciones de Fila**. |
+| align        | `string`   | `"left"`             | (get/set)<br><br>Modo de alineación horizontal del contenido de la tabla.<br><br>Valores:<br>• `"left"`<br>• `"center"`<br>• `"right"` |
+| valign       | `string`   | `"middle"`           | (get/set)<br><br>Modo de alineación vertical del contenido de la tabla.<br><br>Valores:<br>• `"top"`<br>• `"middle"`<br>• `"bottom"` |
+| sortable     | `boolean`  | `true`               | (get/set)<br><br>Define si las filas son ordenables por columna. |
+| resizable    | `boolean`  | `true`               | (get/set)<br><br>Define si las columnas son redimensionables. |
+| draggable    | `boolean`  | `true`               | (get/set)<br><br>Define si las columnas son arrastrables para poder cambiar su posición. |
+| selectable   | `boolean`  | `true`               | (get/set)<br><br>Define si las filas son seleccionables. |
+| onPrint      | `function` | `null`               | (get/set)<br><br>Función que se llama cuando una página o la totalidad de la tabla es despliega. La función recibe por parámetro:<br><br>**• page:** `number`, número de página.<br>**• pages:** `number`, total de página.<br>**• total:** `number`, total de filas. |
+| onClick      | `function` | `null`               | (get/set)<br><br>Función que se llama cuando una fila es presionada. Función que se llama cuando una fila es presionada. La función recibe por parámetro:<br><br>**• index:** `number`, número de fila.<br>**• id:** `string`, id de fila.<br>**• enabled:** `boolean`, estado de habilitación de fila.<br>**• options:** `object`, opciones de configuración de la fila. |
+| onDblClick   | `function` | `null`               | (get/set)<br><br>Función que se llama cuando una fila es presionada dos veces. Función que se llama cuando una fila es presionada. La función recibe por parámetro:<br><br>**• index:** `number`, número de fila.<br>**• id:** `string`, id de fila.<br>**• enabled:** `boolean`, estado de habilitación de fila.<br>**• options:** `object`, opciones de configuración de la fila. |
+| onSelect     | `function` | `null`               | (get/set)<br><br>Función que se llama cuando una fila es seleccionada. Función que se llama cuando una fila es presionada. La función recibe por parámetro:<br><br>**• index:** `number`, número de fila.<br>**• id:** `string`, id de fila.<br>**• enabled:** `boolean`, estado de habilitación de fila.<br>**• options:** `object`, opciones de configuración de la fila. |
 
 #### Opciones de Columna
 
-| Propiedad | Tipo      | Valor por defecto    | Descripción |
+| Propiedad | Tipo      | Valor predeterminado | Descripción |
 | --------- | --------- | -------------------- | ----------- |
 | label     | `string`  | `""`                 | Etiqueta de la columna. |
 | width     | `string`  | `undefined`          | Ancho de la columna. Este puede estar expresado como número asociado a píxeles o en formato compatible CSS. |
@@ -1896,14 +1906,14 @@ Objeto avanzado para implementación de tablas de datos. A diferencia del objeto
 
 #### Opciones de Fila
 
-| Propiedad | Tipo      | Valor por defecto | Descripción |
-| --------- | --------- | ----------------- | ----------- |
-| id        | `string`  | `undefined`       | Identificador único de fila. |
-| align     | `string`  | `WUITable.align`  | Modo de alineación horizontal del contenido de la fila. Esta opción tiene prioridad sobre la propiedad `align`.<br><br>Valores:<br>• `"left"`<br>• `"center"`<br>• `"right"` |
-| valign    | `string`  | `WUITable.valign` | Modo de alineación vertical del contenido de la fila. Esta opción tiene prioridad sobre la propiedad `valign`.<br><br>Valores:<br>• `"top"`<br>• `"middle"`<br>• `"bottom"` |
-| data      | `array`   | `[]`              | Arreglo con el contenido de las celdas de la fila. |
-| selected  | `boolean` | `false`           | Define si la fila está seleccionada. El valor por omisión `false`. |
-| enabled   | `boolean` | `true`            | Define si la fila está habilitada. El valor por omisión `true`. |
+| Propiedad | Tipo      | Valor predeterminado | Descripción |
+| --------- | --------- | -------------------- | ----------- |
+| id        | `string`  | `undefined`          | Identificador único de fila. |
+| align     | `string`  | `WUITable.align`     | Modo de alineación horizontal del contenido de la fila. Esta opción tiene prioridad sobre la propiedad `align`.<br><br>Valores:<br>• `"left"`<br>• `"center"`<br>• `"right"` |
+| valign    | `string`  | `WUITable.valign`    | Modo de alineación vertical del contenido de la fila. Esta opción tiene prioridad sobre la propiedad `valign`.<br><br>Valores:<br>• `"top"`<br>• `"middle"`<br>• `"bottom"` |
+| data      | `array`   | `[]`                 | Arreglo con el contenido de las celdas de la fila. |
+| selected  | `boolean` | `false`              | Define si la fila está seleccionada. El valor predeterminado `false`. |
+| enabled   | `boolean` | `true`               | Define si la fila está habilitada. El valor predeterminado `true`. |
 
 #### Métodos
 
@@ -1913,10 +1923,10 @@ Objeto avanzado para implementación de tablas de datos. A diferencia del objeto
 | init         | `void`        | `init()`<br><br>Inicializa el objeto. |
 | addColumn    | `void`        | `addColumn(options)`<br><br>Agrega la configuración de una nueva columna a la lista de columnas del objeto, según la definición de **Opciones de Columna**. |
 | addRow       | `void`        | `addRow(options)`<br><br>Agrega la configuración de una nueva fila a la lista filas del objeto, según la definición de **Opciones de Fila**. |
-| print        | `void`        | `print([page])`<br><br>Parámetros:<br>**• page:** `number`, número de página. El valor por omisión corresponde a la propiedad `page`. Si se pasa como parámetro un valor distinto al de la propiedad `page` y si es válido, la propiedad tomará dicho valor.<br><br>Imprime la vista de una tabla, esta vista puede ser una página o la tabla completa según la propiedad `paging` y el parámetro `page`. |
-| sort         | `void`        | `first(index[, direction])`<br><br>Parámetros:<br>**• index:** `number`, número de columns.<br>**• direction:** `string`, dirección de orden, esta puede ser: `"asc"` o `"desc"`. El valor por omisión `asc`. |
-| selectRow    | `void`        | `selectRow(index[, selected])`<br><br>Parámetros:<br>**• index:** `number`, número de fila.<br>**• selected:** `boolean`, estado de selección de la fila. El valor por omisión `true`.<br><br>Selecciona o desselecciona una fila. |
-| enableRow    | `void`        | `enableRow(index[, enabled])`<br><br>Parámetros:<br>**• index:** `number`, número de fila.<br>**• enabled:** `boolean`, estado de habilitación de la fila. El valor por omisión `true`.<br><br>Hablita o deshabilita una fila. |
+| print        | `void`        | `print([page])`<br><br>Parámetros:<br>**• page:** `number`, número de página. El valor predeterminado corresponde a la propiedad `page`. Si se pasa como parámetro un valor distinto al de la propiedad `page` y si es válido, la propiedad tomará dicho valor.<br><br>Imprime la vista de una tabla, esta vista puede ser una página o la tabla completa según la propiedad `paging` y el parámetro `page`. |
+| sort         | `void`        | `first(index[, direction])`<br><br>Parámetros:<br>**• index:** `number`, número de columns.<br>**• direction:** `string`, dirección de orden, esta puede ser: `"asc"` o `"desc"`. El valor predeterminado `asc`. |
+| selectRow    | `void`        | `selectRow(index[, selected])`<br><br>Parámetros:<br>**• index:** `number`, número de fila.<br>**• selected:** `boolean`, estado de selección de la fila. El valor predeterminado `true`.<br><br>Selecciona o desselecciona una fila. |
+| enableRow    | `void`        | `enableRow(index[, enabled])`<br><br>Parámetros:<br>**• index:** `number`, número de fila.<br>**• enabled:** `boolean`, estado de habilitación de la fila. El valor predeterminado `true`.<br><br>Hablita o deshabilita una fila. |
 | first        | `void`        | `first()`<br><br>Despliega la vista de la primera página. |
 | last         | `void`        | `last()`<br><br>Despliega la vista de la última página. |
 | prev         | `void`        | `prev()`<br><br>Despliega la vista de la página previa si es que esta existe. |
@@ -2085,7 +2095,7 @@ const paging = document.body.querySelector(".my-paging");
 const output = document.body.querySelector(".my-output");
 const table = new WUITable({
 	selector: ".wui-table.my-table",
-	width: "auto",     // Valor por defecto, propiedad puede ser omitida
+	width: "auto",     // Valor predeterminado, propiedad puede ser omitida
 	paging: 5,
 	columns: [{
 		label: "Columna A",
@@ -2100,13 +2110,13 @@ const table = new WUITable({
 		label: "Columna D",
 		width: 100
 	}],
-	rows: [],          // Valor por defecto, propiedad puede ser omitida
+	rows: [],          // Valor predeterminado, propiedad puede ser omitida
 	align: "center",
-	valign: "middle",  // Valor por defecto, propiedad puede ser omitida
-	sortable: true,    // Valor por defecto, propiedad puede ser omitida
-	resizable: true,   // Valor por defecto, propiedad puede ser omitida
-	draggable: true,   // Valor por defecto, propiedad puede ser omitida
-	selectable: true,  // Valor por defecto, propiedad puede ser omitida
+	valign: "middle",  // Valor predeterminado, propiedad puede ser omitida
+	sortable: true,    // Valor predeterminado, propiedad puede ser omitida
+	resizable: true,   // Valor predeterminado, propiedad puede ser omitida
+	draggable: true,   // Valor predeterminado, propiedad puede ser omitida
+	selectable: true,  // Valor predeterminado, propiedad puede ser omitida
 	onPrint: (page, pages, total) => {
 		if (table.isPrevEnable()) {
 			firstLink.classList.remove("disabled");

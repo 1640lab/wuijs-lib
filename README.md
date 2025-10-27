@@ -1487,12 +1487,16 @@ Another alternative way is through extended methods of the `HTMLElement` class t
 CSS code:
 
 ```CSS
+.my-link {
+	margin: 0 10px;
+	text-decoration: none;
+}
 .my-element {
 	display: none;
-	width: 24px;
-	height: 24px;
+	width: 64px;
+	height: 64px;
 	margin: 10px;
-	backgroind-color: red;
+	background-color: red;
 }
 ```
 
@@ -1505,24 +1509,30 @@ HTML head:
 HTML code:
 
 ```html
+<a href="javascript:fadein();" class="my-link">fade-in</a>
+<a href="javascript:fadeout();" class="my-link">fade-out</a>
 <div id="myElement" class="my-element"></div>
 ```
 
 JS code:
 ```js
-// Element and options definition
 const element = document.getElementById("myElement");
 const options = {
 	display: "block",
 	delay: 200
 };
-
-// Option 1: WUIFade mode
-WUIFade.in(element, options);
-
-// Option 2: HTMLElement mode
-element.wuiFadein(options);
+const fadein = () => {
+	//WUIFade.in(element, options); 
+	element.wuiFadein(options); 
+}
+const fadeout = () => {
+	//WUIFade.out(element, options); 
+	element.wuiFadeout(options); 
+}
 ```
+
+> [!TIP]
+> You can check out this working example on CodePen at the link: [https://codepen.io/sbelmar/pen/KwVeEOv](https://codepen.io/sbelmar/pen/KwVeEOv).
 
 <a name="WUITooltip"></a>
 <a name="WUILoader"></a>
