@@ -1557,7 +1557,7 @@ Objeto avanzado para implementación de listas de datos y botoneras para cada fi
 | buttons      | `array`    | `[]`              | (get/set)<br><br>Lista de botones de filas de la lista, según la definición de **Opciones de Botón de Fila**. |
 | buttonsStyle | `string`   | `"round"`         | (get/set)<br><br>Estilo de los botones de fila.<br><br>Valores:<br>• `"round"`, forma circular.<br>• `"stretch"`, forma cuadrada. |
 | onPrint      | `function` | `null`            | (get/set)<br><br>Función que se llama cuando se despliega una página o la totalidad de la lista. La función recibe por parámetro:<br><br>**• page:** `number`, número de página.<br>**• pages:** `number`, total de página.<br>**• total:** `number`, total de filas. |
-| onClick      | `function` | `null`            | (get/set)<br><br>Función que se llama cuando se presiona una fila. La función recibe por parámetro:<br><br>**• index:** `number`, número de fila.<br>**• id:** `string`, id de fila.<br>**• event:** `Event`, evento.<br>**• index:** `options`, opciones configuración de la fila. |
+| onClick      | `function` | `null`            | (get/set)<br><br>Función que se llama cuando una fila es presionada. La función recibe por parámetro:<br><br>**• index:** `number`, número de fila.<br>**• id:** `string`, id de fila.<br>**• enabled:** `boolean`, estado de habilitación de fila.<br>**• options:** `object`, opciones configuración de la fila. |
 
 #### Opciones de Columna
 
@@ -1583,7 +1583,7 @@ Objeto avanzado para implementación de listas de datos y botoneras para cada fi
 | iconClass | `string\|function`  | `undefined`       | Estilos CSS que define el ícono del botón de fila. Esta opción puede ser utilizado opcionalmente con la librería [WUIIcon](#wuiIcon) mediante el estilo `wui-icon` conjuntamente a un estilo de ícono específico. |
 | bgcolor   | `string\|function`  | `undefined`       | Color de fondo en formato compatible CSS. |
 | enabled   | `boolean\|function` | `true`            | Estado de habilitación del botón. |
-| onClick   | `function`          | `null`            | Función que se llama cuando se presiona el botón. Reciven los parámetro `index`, correspondiente a la posición de la fila partiendo desde `0`; `id`, correspondiente al Identificador único de fila; y `event`, correspondiente al objeto de captura del evento. |
+| onClick   | `function`          | `null`            | Función que se llama cuando el botón es presionado. Reciven los parámetro `index`, correspondiente a la posición de la fila partiendo desde `0`; y `id`, correspondiente al Identificador único de fila. |
 
 > [!IMPORTANT]
 > Las opciones que aceptan valores opcionales de tipo función (`iconClass`, `bgcolor` y `enabled`), reciven los parámetro `index`, correspondiente a la posición de la fila partiendo desde `0`; e `id`, correspondiente al Identificador único de fila.
@@ -1792,7 +1792,7 @@ const list = new WUIList({
 		}
 		paging.innerHTML = `${page}/${pages} (${total})`;
 	},
-	onClick: (index, id, event, options) => {
+	onClick: (index, id, enabled, options, event) => {
 		output.textContent = `Click fila - índice: ${index}, id: ${id}`;
 	}
 });
@@ -1873,9 +1873,10 @@ Objeto avanzado para implementación de tablas de datos. A diferencia del objeto
 | resizable    | `boolean`  | `true`            | (get/set)<br><br>Define si las columnas son redimensionables. |
 | draggable    | `boolean`  | `true`            | (get/set)<br><br>Define si las columnas son arrastrables para poder cambiar su posición. |
 | selectable   | `boolean`  | `true`            | (get/set)<br><br>Define si las filas son seleccionables. |
-| onPrint      | `function` | `null`            | (get/set)<br><br>Función que se llama cuando se despliega una página o la totalidad de la tabla. La función recibe por parámetro:<br><br>**• page:** `number`, número de página.<br>**• pages:** `number`, total de página.<br>**• total:** `number`, total de filas. |
-| onClick      | `function` | `null`            | (get/set)<br><br>Función que se llama cuando se presiona una fila. La función recibe por parámetro:<br><br>**• index:** `number`, número de fila.<br>**• id:** `string`, id de fila.<br>**• event:** `Event`, evento.<br>**• index:** `options`, opciones configuración de la fila. |
-| onDblClick   | `function` | `null`            | (get/set)<br><br>Función que se llama cuando se presiona dos veces una fila. La función recibe por parámetro:<br><br>**• index:** `number`, número de fila.<br>**• id:** `string`, id de fila.<br>**• event:** `Event`, evento.<br>**• index:** `options`, opciones configuración de la fila. |
+| onPrint      | `function` | `null`            | (get/set)<br><br>Función que se llama cuando una página o la totalidad de la tabla es despliega. La función recibe por parámetro:<br><br>**• page:** `number`, número de página.<br>**• pages:** `number`, total de página.<br>**• total:** `number`, total de filas. |
+| onClick      | `function` | `null`            | (get/set)<br><br>Función que se llama cuando una fila es presionada. Función que se llama cuando una fila es presionada. La función recibe por parámetro:<br><br>**• index:** `number`, número de fila.<br>**• id:** `string`, id de fila.<br>**• enabled:** `boolean`, estado de habilitación de fila.<br>**• options:** `object`, opciones configuración de la fila. |
+| onDblClick   | `function` | `null`            | (get/set)<br><br>Función que se llama cuando una fila es presionada dos veces. Función que se llama cuando una fila es presionada. La función recibe por parámetro:<br><br>**• index:** `number`, número de fila.<br>**• id:** `string`, id de fila.<br>**• enabled:** `boolean`, estado de habilitación de fila.<br>**• options:** `object`, opciones configuración de la fila. |
+| onSelect     | `function` | `null`            | (get/set)<br><br>Función que se llama cuando una fila es seleccionada. Función que se llama cuando una fila es presionada. La función recibe por parámetro:<br><br>**• index:** `number`, número de fila.<br>**• id:** `string`, id de fila.<br>**• enabled:** `boolean`, estado de habilitación de fila.<br>**• options:** `object`, opciones configuración de la fila. |
 
 #### Opciones de Columna
 
@@ -1888,6 +1889,10 @@ Objeto avanzado para implementación de tablas de datos. A diferencia del objeto
 | sortable  | `boolean` | `WUITable.sortable`  | Define si las filas son ordenables en base a la columna. Esta opción tiene prioridad sobre la propiedad `sortable`. |
 | resizable | `boolean` | `WUITable.resizable` | Define si la columna es redimensionables. Esta opción tiene prioridad sobre la propiedad `resizable`. |
 | draggable | `boolean` | `WUITable.draggable` | Define si la columna es arrastrables para poder cambiar su posición. Esta opción tiene prioridad sobre la propiedad `draggable`. |
+
+> [!IMPORTANT]
+> La opción de fila `width` no tomará valores mayores al ancho máximo computado entre todas las celdas pertenecientes a la comumna.
+> De esta manera, el modo `resizable` sólo podrá alcanzar dicho valor máximo en cada columna.
 
 #### Opciones de Fila
 
@@ -1930,7 +1935,7 @@ Objeto avanzado para implementación de tablas de datos. A diferencia del objeto
 | `--wui-table-column-bordercolor-selected`    |
 | `--wui-table-column-bgcolor-out`             |
 | `--wui-table-column-bgcolor-over`            |
-| `--wui-table-column-bgcolor-selected`         |
+| `--wui-table-column-bgcolor-selected`        |
 | `--wui-table-column-textcolor-out`           |
 | `--wui-table-column-textcolor-over`          |
 | `--wui-table-column-textcolor-selected`      |
@@ -1954,7 +1959,7 @@ Objeto avanzado para implementación de tablas de datos. A diferencia del objeto
 | `--wui-table-row-bordercolor-disabled`       |
 | `--wui-table-row-bgcolor-out`                |
 | `--wui-table-row-bgcolor-over`               |
-| `--wui-table-row-bgcolor-selected`            |
+| `--wui-table-row-bgcolor-selected`           |
 | `--wui-table-row-bgcolor-disabled`           |
 | `--wui-table-row-textcolor-out`              |
 | `--wui-table-row-textcolor-over`             |
@@ -2117,11 +2122,14 @@ const table = new WUITable({
 		}
 		paging.innerHTML = `${page}/${pages} (${total})`;
 	},
-	onClick: (index, id, event, options) => {
+	onClick: (index, id, enabled, options) => {
 		output.textContent = `Click fila - índice: ${index}, id: ${id}`;
 	},
-	onDblClick: (index, id, event, options) => {
+	onDblClick: (index, id, enabled, options) => {
 		output.textContent = `Doble-Click fila - índice: ${index}, id: ${id}`;
+	},
+	onSelect: (index, id, enabled, options) => {
+		output.textContent = `Selección fila - índice: ${index}, id: ${id}`;
 	}
 });
 const first = () => {

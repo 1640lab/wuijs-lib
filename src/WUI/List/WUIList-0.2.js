@@ -175,10 +175,10 @@ class WUIList {
 					cell.innerHTML = rowOptions.data[j] || "";
 					strip.append(cell);
 				});
-				strip.addEventListener("click", event => {
+				strip.addEventListener("click", () => {
 					if (this._buttons.length == 0 || this._strips[i].direction == null) {
-						if (!row.classList.contains("disabled") && typeof(this._onClick) == "function") {
-							this._onClick(i, id, event, rowOptions);
+						if (typeof(this._onClick) == "function") {
+							this._onClick(i, id, !row.classList.contains("disabled"), rowOptions);
 						}
 						this._strips.forEach((str, s) => {
 							if (str.open) {
@@ -215,10 +215,10 @@ class WUIList {
 								icon.classList.add(name);
 							});
 						}
-						button.addEventListener("click", event => {
+						button.addEventListener("click", () => {
 							const strip = this._element.querySelector(".row:nth-of-type("+(i+1)+") > .strip");
 							if (enabled && typeof(btnOptions.onClick) == "function") {
-								btnOptions.onClick(i, id, event);
+								btnOptions.onClick(i, id);
 							}
 							if (strip != null) {
 								strip.style.marginRight = "0px";

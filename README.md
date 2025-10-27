@@ -1558,8 +1558,8 @@ Advanced object for implementing data lists and buttons for each row optionally.
 | rows         | `array`    | `[]`          | (get/set)<br><br>List of rows in the list, as defined by **Row Options**. |
 | buttons      | `array`    | `[]`          | (get/set)<br><br>List of row buttons in the list, as defined by **Row Button Options**. |
 | buttonsStyle | `string`   | `"round"`     | (get/set)<br><br>Row button style.<br><br>Values:<br>• `"round"`, circular shape.<br>• `"stretch"`, square shape. |
-| onPrint      | `function` | `null`        | (get/set)<br><br>Function that is called when a page or the entire list is displayed. The function receives as a parameter:<br><br>**• page:** `number`, page number.<br>**• pages:** `number`, total pages.<br>**• total:** `number`, total rows. |
-| onClick      | `function` | `null`        | (get/set)<br><br>Function that is called when a row is clicked. The function receives as parameter:<br><br>**• index:** `number`, row number.<br>**• id:** `string`, row id.<br>**• event:** `Event`, event.<br>**• index:** `options`, row settings options. |
+| onPrint      | `function` | `null`        | (get/set)<br><br>Function that is called when a page or the entire list is displayed. The function receives as parameters:<br><br>**• page:** `number`, page number.<br>**• pages:** `number`, total pages.<br>**• total:** `number`, total rows. |
+| onClick      | `function` | `null`        | (get/set)<br><br>Function that is called when a row is clicked. The function receives as parameters:<br><br>**• index:** `number`, row number.<br>**• id:** `string`, row id.<br>**• enabled:** `boolean`, row enable state.<br>**• options:** `object`, row settings options. |
 
 #### Column Options
 
@@ -1585,7 +1585,7 @@ Advanced object for implementing data lists and buttons for each row optionally.
 | iconClass | `string\|function`  | `undefined`   | CSS styles that define the row button icon. This option can optionally be used with the [WUIIcon](#WUIIcon) library by using the `wui-icon` style in conjunction with a specific icon style. |
 | bgcolor   | `string\|function`  | `undefined`   | Background color in CSS compatible format. |
 | enabled   | `boolean\|function` | `true`        | Button enable state. |
-| onClick   | `function`          | `null`        | Function called when the button is clicked. It receives the parameters `index`, corresponding to the row position starting from `0`; `id`, corresponding to the row's unique identifier; and `event`, corresponding to the event capture object. |
+| onClick   | `function`          | `null`        | Function called when the button is clicked. It receives the parameters `index`, corresponding to the row position starting from `0`; and `id`, corresponding to the row's unique identifier. |
 
 > [!IMPORTANT]
 > Options that accept optional function values ​​(`iconClass`, `bgcolor` and `enabled`) receive the parameters `index`, corresponding to the row position starting from `0`; and `id`, corresponding to the row's unique identifier.
@@ -1794,7 +1794,7 @@ const list = new WUIList({
 		}
 		paging.innerHTML = `${page}/${pages} (${total})`;
 	},
-	onClick: (index, id, event, options) => {
+	onClick: (index, id, enabled, options) => {
 		output.textContent = `Click row - index: ${index}, id: ${id}`;
 	}
 });
@@ -1875,9 +1875,10 @@ Advanced object for implementing data tables. Unlike the `WUIList` object, the `
 | resizable    | `boolean`  | `true`        | (get/set)<br><br>Defines whether columns are resizable. |
 | draggable    | `boolean`  | `true`        | (get/set)<br><br>Defines whether columns are draggable so their position can be changed. |
 | selectable   | `boolean`  | `true`        | (get/set)<br><br>Defines whether rows are selectable. |
-| onPrint      | `function` | `null`        | (get/set)<br><br>Function that is called when a page or the entire table is displayed. The function receives as a parameter:<br><br>**• page:** `number`, page number.<br>**• pages:** `number`, total pages.<br>**• total:** `number`, total rows. |
-| onClick      | `function` | `null`        | (get/set)<br><br>Function that is called when a row is clicked. The function receives as parameter:<br><br>**• index:** `number`, row number.<br>**• id:** `string`, row id.<br>**• event:** `Event`, event.<br>**• index:** `options`, row settings options. |
-| onDblClick   | `function` | `null`        | (get/set)<br><br>Function that is called when a row is double-clicked. The function receives as parameter:<br><br>**• index:** `number`, row number.<br>**• id:** `string`, row id.<br>**• event:** `Event`, event.<br>**• index:** `options`, row settings options. |
+| onPrint      | `function` | `null`        | (get/set)<br><br>Function that is called when a page or the entire table is displayed. The function receives as parameters:<br><br>**• page:** `number`, page number.<br>**• pages:** `number`, total pages.<br>**• total:** `number`, total rows. |
+| onClick      | `function` | `null`        | (get/set)<br><br>Function that is called when a row is clicked. The function receives as parameters:<br><br>**• index:** `number`, row number.<br>**• id:** `string`, row id.<br>**• enabled:** `boolean`, row enable state.<br>**• options:** `object`, row settings options. |
+| onDblClick   | `function` | `null`        | (get/set)<br><br>Function that is called when a row is double-clicked. The function receives as parameters:<br><br>**• index:** `number`, row number.<br>**• id:** `string`, row id.<br>**• enabled:** `boolean`, row enable state.<br>**• options:** `object`, row settings options. |
+| onSelect     | `function` | `null`        | (get/set)<br><br>Function that is called when a row is selected. The function receives as parameters:<br><br>**• index:** `number`, row number.<br>**• id:** `string`, row id.<br>**• enabled:** `boolean`, row enable state.<br>**• options:** `object`, row settings options. |
 
 #### Column Options
 
@@ -1890,6 +1891,10 @@ Advanced object for implementing data tables. Unlike the `WUIList` object, the `
 | sortable  | `boolean` | `WUITable.sortable`  | Defines whether rows are sortable by column. This option takes precedence over the `sortable` property. |
 | resizable | `boolean` | `WUITable.resizable` | Defines whether the column is resizable. This option takes precedence over the `resizable` property. |
 | draggable | `boolean` | `WUITable.draggable` | Defines whether the column is draggable so its position can be changed. This option takes precedence over the `draggable` property. |
+
+> [!IMPORTANT]
+> The `width` row option will not take values ​​greater than the maximum width computed between all the cells belonging to the column.
+> In this way, the `resizable` mode will only be able to reach that maximum value in each column.
 
 #### Rows Options
 
@@ -1932,7 +1937,7 @@ Advanced object for implementing data tables. Unlike the `WUIList` object, the `
 | `--wui-table-column-bordercolor-selected`    |
 | `--wui-table-column-bgcolor-out`             |
 | `--wui-table-column-bgcolor-over`            |
-| `--wui-table-column-bgcolor-selected`         |
+| `--wui-table-column-bgcolor-selected`        |
 | `--wui-table-column-textcolor-out`           |
 | `--wui-table-column-textcolor-over`          |
 | `--wui-table-column-textcolor-selected`      |
@@ -2119,11 +2124,14 @@ const table = new WUITable({
 		}
 		paging.innerHTML = `${page}/${pages} (${total})`;
 	},
-	onClick: (index, id, event, options) => {
+	onClick: (index, id, enabled, options, event) => {
 		output.textContent = `Click row - index: ${index}, id: ${id}`;
 	},
-	onDblClick: (index, id, event, options) => {
+	onDblClick: (index, id, enabled, options, event) => {
 		output.textContent = `Double-Click row - index: ${index}, id: ${id}`;
+	},
+	onSelect: (index, id, enabled, options, event) => {
+		output.textContent = `Select row - index: ${index}, id: ${id}`;
 	}
 });
 const first = () => {

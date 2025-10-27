@@ -117,19 +117,19 @@ class WUIButton {
 
 	init() {
 		this.#setStyle();
-		this._element.addEventListener("click", event => {
+		this._element.addEventListener("click", () => {
 			this.#setStyle();
 			if (this._selectable && this._enabled) {
 				this._element.classList.toggle("selected");
 			}
 			if (!this._locked && this._enabled && typeof(this._onClick) == "function") {
-				this._onClick(event);
+				this._onClick();
 			}
 		});
-		this._element.addEventListener("dblclick", event => {
+		this._element.addEventListener("dblclick", () => {
 			this.#setStyle();
 			if (!this._locked && this._enabled && typeof(this._onDblClick) == "function") {
-				this._onDblClick(event);
+				this._onDblClick();
 			}
 		});
 	}

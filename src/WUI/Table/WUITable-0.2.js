@@ -21,7 +21,8 @@ class WUITable {
 		selectable: true,
 		onPrint: null,
 		onClick: null,
-		onDblClick: null
+		onDblClick: null,
+		onSelect: null
 	};
 
 	static #icons = {
@@ -116,6 +117,10 @@ class WUITable {
 		return this._onDblClick;
 	}
 
+	get onSelect() {
+		return this._onSelect;
+	}
+
 	set selector(value) {
 		if (typeof(value) == "string" && value != "") {
 			this._selector = value;
@@ -198,6 +203,12 @@ class WUITable {
 	set onDblClick(value) {
 		if (typeof(value) == "function") {
 			this._onDblClick = value;
+		}
+	}
+
+	set onSelect(value) {
+		if (typeof(value) == "function") {
+			this._onSelect = value;
 		}
 	}
 
@@ -346,14 +357,20 @@ class WUITable {
 						tr.dataset.id = id;
 					}
 					tr.dataset.index = i;
-					tr.addEventListener("click", event => {
-						if (this._selectable && typeof(this._onClick) == "function") {
-							this._onClick(i, id, event, rowOptions);
+					tr.addEventListener("click", () => {
+						if (typeof(this._onClick) == "function") {
+							this._onClick(i, id, !tr.classList.contains("disabled"), rowOptions);
+						}
+						if (this._selectable && typeof(this._onSelect) == "function") {
+							tr.classList.toggle("selected");
+							if (tr.classList.contains("selected")) {
+								this._onSelect(i, id, !tr.classList.contains("disabled"), rowOptions);
+							}
 						}
 					});
-					tr.addEventListener("dblclick", event => {
-						if (this._selectable && typeof(this._onDblClick) == "function") {
-							this._onDblClick(i, id, event, rowOptions);
+					tr.addEventListener("dblclick", () => {
+						if (typeof(this._onDblClick) == "function") {
+							this._onDblClick(i, id, !tr.classList.contains("disabled"), rowOptions);
 						}
 					});
 					this._columns.forEach((colOptions, j) => {
