@@ -6,7 +6,7 @@ Document version: `0.2.0.20251026.1-e` (e: in edition, c: complete)
 
 Licence: `Apache License 2.0`
 
-Author: `Sergio E. Belmar V. <sbelmar@1640lab.com>`
+Author: `Sergio E. Belmar V. <sbelmar@wuijs.dev>`
 
 ## Index
 
