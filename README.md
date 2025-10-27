@@ -249,7 +249,7 @@ CSS code in the `WUI.css` file:
 	--wui-table-column-bordercolor-selected: #1e90ff;
 	--wui-table-column-bgcolor-out: #f6f6fa;
 	--wui-table-column-bgcolor-over: #f6f6fa;
-	--wui-table-column-bgcolor-selectd: #1e90ff;
+	--wui-table-column-bgcolor-selected: #1e90ff;
 	--wui-table-column-textcolor-out: #444;
 	--wui-table-column-textcolor-over: #000;
 	--wui-table-column-textcolor-selected: #1e90ff;
@@ -270,9 +270,11 @@ CSS code in the `WUI.css` file:
 	--wui-table-row-bordercolor-out: #f0f0f3;
 	--wui-table-row-bordercolor-over: #f0f0f3;
 	--wui-table-row-bordercolor-selected: #1e90ff;
+	--wui-table-row-bordercolor-disabled: #f0f0f3;
 	--wui-table-row-bgcolor-out: #fdfdfe;
 	--wui-table-row-bgcolor-over: #f6f6fa;
-	--wui-table-row-bgcolor-selectd: #1e90ff;
+	--wui-table-row-bgcolor-selected: #1e90ff;
+	--wui-table-row-bgcolor-disabled: transparent;
 	--wui-table-row-textcolor-out: #2d3a47;
 	--wui-table-row-textcolor-over: #1f2937;
 	--wui-table-row-textcolor-disabled: #d5dce3;
@@ -1930,7 +1932,7 @@ Advanced object for implementing data tables. Unlike the `WUIList` object, the `
 | `--wui-table-column-bordercolor-selected`    |
 | `--wui-table-column-bgcolor-out`             |
 | `--wui-table-column-bgcolor-over`            |
-| `--wui-table-column-bgcolor-selectd`         |
+| `--wui-table-column-bgcolor-selected`         |
 | `--wui-table-column-textcolor-out`           |
 | `--wui-table-column-textcolor-over`          |
 | `--wui-table-column-textcolor-selected`      |
@@ -1951,9 +1953,11 @@ Advanced object for implementing data tables. Unlike the `WUIList` object, the `
 | `--wui-table-row-bordercolor-out`            |
 | `--wui-table-row-bordercolor-over`           |
 | `--wui-table-row-bordercolor-selected`       |
+| `--wui-table-row-bordercolor-disabled`       |
 | `--wui-table-row-bgcolor-out`                |
 | `--wui-table-row-bgcolor-over`               |
-| `--wui-table-row-bgcolor-selectd`            |
+| `--wui-table-row-bgcolor-selected`           |
+| `--wui-table-row-bgcolor-disabled`           |
 | `--wui-table-row-textcolor-out`              |
 | `--wui-table-row-textcolor-over`             |
 | `--wui-table-row-textcolor-disabled`         |
@@ -1973,7 +1977,7 @@ CSS settings:
 	--wui-table-column-bordercolor-selected: #1e90ff;
 	--wui-table-column-bgcolor-out: #f6f6fa;
 	--wui-table-column-bgcolor-over: #f6f6fa;
-	--wui-table-column-bgcolor-selectd: #1e90ff;
+	--wui-table-column-bgcolor-selected: #1e90ff;
 	--wui-table-column-textcolor-out: #444;
 	--wui-table-column-textcolor-over: #000;
 	--wui-table-column-textcolor-selected: #1e90ff;
@@ -1994,9 +1998,11 @@ CSS settings:
 	--wui-table-row-bordercolor-out: #f0f0f3;
 	--wui-table-row-bordercolor-over: #f0f0f3;
 	--wui-table-row-bordercolor-selected: #1e90ff;
+	--wui-table-row-bordercolor-disabled: #f0f0f3;
 	--wui-table-row-bgcolor-out: #fdfdfe;
 	--wui-table-row-bgcolor-over: #f6f6fa;
-	--wui-table-row-bgcolor-selectd: #1e90ff;
+	--wui-table-row-bgcolor-selected: #1e90ff;
+	--wui-table-row-bgcolor-disabled: transparent;
 	--wui-table-row-textcolor-out: #2d3a47;
 	--wui-table-row-textcolor-over: #1f2937;
 	--wui-table-row-textcolor-disabled: #d5dce3;

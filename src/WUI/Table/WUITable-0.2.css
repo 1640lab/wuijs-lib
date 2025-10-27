@@ -55,7 +55,7 @@
 }
 .wui-table > table > thead > tr > th.selected:not(.disabled) {
 	border-color: var(--wui-table-column-bordercolor-selected);
-	background-color: var(--wui-table-column-bgcolor-selectd);
+	background-color: var(--wui-table-column-bgcolor-selected);
 	color: var(--wui-table-column-textcolor-selected);
 }
 .wui-table > table > thead > tr > th.disabled {
@@ -161,8 +161,8 @@
 	vertical-align: bottom;
 }
 .wui-table > table > tbody > tr.selected > td:not(.disabled) {
-	border-color: var(--wui-table-row-bordercolor-selectd);
-	background-color: var(--wui-table-row-bgcolor-selectd);
+	border-color: var(--wui-table-row-bordercolor-selected);
+	background-color: var(--wui-table-row-bgcolor-selected);
 	color: var(--wui-table-row-textcolor-selected);
 }
 .wui-table > table > tbody > tr.disabled > td,
