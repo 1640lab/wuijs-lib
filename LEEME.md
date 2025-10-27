@@ -1902,7 +1902,8 @@ Objeto avanzado para implementación de tablas de datos. A diferencia del objeto
 | align     | `string`  | `WUITable.align`  | Modo de alineación horizontal del contenido de la fila. Esta opción tiene prioridad sobre la propiedad `align`.<br><br>Valores:<br>• `"left"`<br>• `"center"`<br>• `"right"` |
 | valign    | `string`  | `WUITable.valign` | Modo de alineación vertical del contenido de la fila. Esta opción tiene prioridad sobre la propiedad `valign`.<br><br>Valores:<br>• `"top"`<br>• `"middle"`<br>• `"bottom"` |
 | data      | `array`   | `[]`              | Arreglo con el contenido de las celdas de la fila. |
-| enabled   | `boolean` | `true`            | Estado de habilitación de la fila. El valor por omisión `true`. |
+| selected  | `boolean` | `false`           | Define si la fila está seleccionada. El valor por omisión `false`. |
+| enabled   | `boolean` | `true`            | Define si la fila está habilitada. El valor por omisión `true`. |
 
 #### Métodos
 
@@ -1914,6 +1915,7 @@ Objeto avanzado para implementación de tablas de datos. A diferencia del objeto
 | addRow       | `void`        | `addRow(options)`<br><br>Agrega la configuración de una nueva fila a la lista filas del objeto, según la definición de **Opciones de Fila**. |
 | print        | `void`        | `print([page])`<br><br>Parámetros:<br>**• page:** `number`, número de página. El valor por omisión corresponde a la propiedad `page`. Si se pasa como parámetro un valor distinto al de la propiedad `page` y si es válido, la propiedad tomará dicho valor.<br><br>Imprime la vista de una tabla, esta vista puede ser una página o la tabla completa según la propiedad `paging` y el parámetro `page`. |
 | sort         | `void`        | `first(index[, direction])`<br><br>Parámetros:<br>**• index:** `number`, número de columns.<br>**• direction:** `string`, dirección de orden, esta puede ser: `"asc"` o `"desc"`. El valor por omisión `asc`. |
+| selectRow    | `void`        | `selectRow(index[, selected])`<br><br>Parámetros:<br>**• index:** `number`, número de fila.<br>**• selected:** `boolean`, estado de selección de la fila. El valor por omisión `true`.<br><br>Selecciona o desselecciona una fila. |
 | enableRow    | `void`        | `enableRow(index[, enabled])`<br><br>Parámetros:<br>**• index:** `number`, número de fila.<br>**• enabled:** `boolean`, estado de habilitación de la fila. El valor por omisión `true`.<br><br>Hablita o deshabilita una fila. |
 | first        | `void`        | `first()`<br><br>Despliega la vista de la primera página. |
 | last         | `void`        | `last()`<br><br>Despliega la vista de la última página. |

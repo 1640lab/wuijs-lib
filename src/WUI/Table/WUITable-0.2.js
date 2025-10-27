@@ -343,12 +343,16 @@ class WUITable {
 					const id = "id" in rowOptions ? rowOptions.id : null;
 					const align = rowOptions.align || null;
 					const valign = rowOptions.valign || null;
+					const selected = "selected" in rowOptions ? rowOptions.selected : false;
 					const enabled = "enabled" in rowOptions ? rowOptions.enabled : true;
 					if (align != null && align.match(/^(left|center|right)$/i)) {
 						tr.classList.add("align-"+align);
 					}
 					if (valign != null && valign.match(/^(top|middle|bottom)$/i)) {
 						tr.classList.add("valign-"+valign);
+					}
+					if (selected) {
+						tr.classList.add("selected");
 					}
 					if (!enabled) {
 						tr.classList.add("disabled");
@@ -362,10 +366,12 @@ class WUITable {
 							this._onClick(i, id, !tr.classList.contains("disabled"), rowOptions);
 						}
 						if (this._selectable && typeof(this._onSelect) == "function") {
+							const selected = !tr.classList.contains("selected");
 							tr.classList.toggle("selected");
-							if (tr.classList.contains("selected")) {
+							if (selected) {
 								this._onSelect(i, id, !tr.classList.contains("disabled"), rowOptions);
 							}
+							this._rows[i].selected = selected;
 						}
 					});
 					tr.addEventListener("dblclick", () => {
@@ -550,6 +556,20 @@ class WUITable {
 			return `"${string}"`;
 		}
 		// ...
+	}
+
+	selectRow(index, selected = true) {
+		if (index >= 0 && index < this._rows.length) {
+			const tr = this._tbody.querySelector("tr:nth-of-type("+(index+1)+")");
+			if (tr != null) {
+				if (selected) {
+					tr.classList.add("selected");
+				} else {
+					tr.classList.remove("selected");
+				}
+			}
+			this._rows[index].selected = selected;
+		}
 	}
 
 	enableRow(index, enabled = true) {

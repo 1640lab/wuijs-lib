@@ -1904,7 +1904,8 @@ Advanced object for implementing data tables. Unlike the `WUIList` object, the `
 | align    | `string`  | `WUITable.align`  | Horizontal alignment mode for row content. This option takes precedence over the `align` property.<br><br>Values:<br>• `"left"`<br>• `"center"`<br>• `"right"` |
 | valign   | `string`  | `WUITable.valign` | Vertical alignment mode for row content. This option takes precedence over the `valign` property.<br><br>Values:<br>• `"top"`<br>• `"middle"`<br>• `"bottom"` |
 | data     | `array`   | `[]`              | Array with the contents of the cells in the row. |
-| enabled  | `boolean` | `true`            | Row enable state. The default is `true`. |
+| selected | `boolean` | `false`           | Defines whether the row is selected. The default is `false`. |
+| enabled  | `boolean` | `true`            | Defines whether the row is enabled. The default is `true`. |
 
 #### Methods
 
@@ -1916,6 +1917,7 @@ Advanced object for implementing data tables. Unlike the `WUIList` object, the `
 | addRow       | `void`        | `addRow(options)`<br><br>Adds a new row settings to the object's rows list, as defined by **Row Options**. |
 | print        | `void`        | `print([page])`<br><br>Arguments:<br>**• page:** `number`, page number. The default value corresponds to the `page` property. If a value other than the `page` property is passed as a parameter and if it is valid, the property will take that value.<br><br>Prints a table view; this view can be a page or the entire table depending on the `paging` property and the `page` parameter. |
 | sort         | `void`        | `first(index[, direction])`<br><br>Arguments:<br>**• index:** `number`, rcolumn number.<br>**• direction:** `string`, order direction, this can be: `"asc"` or `"desc"`. The default value is `asc`. |
+| selectRow    | `void`        | `selectRow(index[, selected])`<br><br>Arguments:<br>**• index:** `number`, row number.<br>**• selected:** `boolean`, row selection state. The default is `true`.<br><br>Selects or deselects a row. |
 | enableRow    | `void`        | `enableRow(index[, enabled])`<br><br>Arguments:<br>**• index:** `number`, row number.<br>**• enabled:** `boolean`, row enable state. The default value is `true`.<br><br>Enables or disables a row. |
 | first        | `void`        | `first()`<br><br>Displays the view of the first page. |
 | last         | `void`        | `last()`<br><br>Displays the view of the last page. |
