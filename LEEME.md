@@ -277,8 +277,8 @@ Código CSS archivo `WUI.css`:
 	--wui-table-row-bgcolor-disabled: transparent;
 	--wui-table-row-textcolor-out: #2d3a47;
 	--wui-table-row-textcolor-over: #1f2937;
+	--wui-table-row-textcolor-selected: #f6f6fa;
 	--wui-table-row-textcolor-disabled: #d5dce3;
-	--wui-table-row-textcolor-selected: #1e90ff;
 
 	/* wui-form */
 
@@ -1792,8 +1792,8 @@ const list = new WUIList({
 		}
 		paging.innerHTML = `${page}/${pages} (${total})`;
 	},
-	onClick: (index, id, enabled, options, event) => {
-		output.textContent = `Click fila - índice: ${index}, id: ${id}`;
+	onClick: (index, id, enabled, options) => {
+		output.textContent = `Click fila - índice: ${index}, id: ${id}, enabled: ${enabled}`;
 	}
 });
 const first = () => {
@@ -1963,8 +1963,8 @@ Objeto avanzado para implementación de tablas de datos. A diferencia del objeto
 | `--wui-table-row-bgcolor-disabled`           |
 | `--wui-table-row-textcolor-out`              |
 | `--wui-table-row-textcolor-over`             |
-| `--wui-table-row-textcolor-disabled`         |
 | `--wui-table-row-textcolor-selected`         |
+| `--wui-table-row-textcolor-disabled`         |
 
 #### Implementación
 
@@ -2008,8 +2008,8 @@ Configuración CSS:
 	--wui-table-row-bgcolor-disabled: transparent;
 	--wui-table-row-textcolor-out: #2d3a47;
 	--wui-table-row-textcolor-over: #1f2937;
+	--wui-table-row-textcolor-selected: #f6f6fa;
 	--wui-table-row-textcolor-disabled: #d5dce3;
-	--wui-table-row-textcolor-selected: #1e90ff;
 }
 ```
 
@@ -2123,13 +2123,13 @@ const table = new WUITable({
 		paging.innerHTML = `${page}/${pages} (${total})`;
 	},
 	onClick: (index, id, enabled, options) => {
-		output.textContent = `Click fila - índice: ${index}, id: ${id}`;
+		output.textContent = `Click fila - índice: ${index}, id: ${id}, enabled: ${enabled}`;
 	},
 	onDblClick: (index, id, enabled, options) => {
-		output.textContent = `Doble-Click fila - índice: ${index}, id: ${id}`;
+		output.textContent = `Doble-Click fila - índice: ${index}, id: ${id}, enabled: ${enabled}`;
 	},
 	onSelect: (index, id, enabled, options) => {
-		output.textContent = `Selección fila - índice: ${index}, id: ${id}`;
+		output.textContent = `Selección fila - índice: ${index}, id: ${id}, enabled: ${enabled}`;
 	}
 });
 const first = () => {

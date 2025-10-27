@@ -277,8 +277,8 @@ CSS code in the `WUI.css` file:
 	--wui-table-row-bgcolor-disabled: transparent;
 	--wui-table-row-textcolor-out: #2d3a47;
 	--wui-table-row-textcolor-over: #1f2937;
+	--wui-table-row-textcolor-selected: #f6f6fa;
 	--wui-table-row-textcolor-disabled: #d5dce3;
-	--wui-table-row-textcolor-selected: #1e90ff;
 
 	/* wui-form */
 
@@ -1795,7 +1795,7 @@ const list = new WUIList({
 		paging.innerHTML = `${page}/${pages} (${total})`;
 	},
 	onClick: (index, id, enabled, options) => {
-		output.textContent = `Click row - index: ${index}, id: ${id}`;
+		output.textContent = `Click row - index: ${index}, id: ${id}, enabled: ${enabled}`;
 	}
 });
 const first = () => {
@@ -1965,8 +1965,8 @@ Advanced object for implementing data tables. Unlike the `WUIList` object, the `
 | `--wui-table-row-bgcolor-disabled`           |
 | `--wui-table-row-textcolor-out`              |
 | `--wui-table-row-textcolor-over`             |
-| `--wui-table-row-textcolor-disabled`         |
 | `--wui-table-row-textcolor-selected`         |
+| `--wui-table-row-textcolor-disabled`         |
 
 #### Implementation
 
@@ -2010,8 +2010,8 @@ CSS settings:
 	--wui-table-row-bgcolor-disabled: transparent;
 	--wui-table-row-textcolor-out: #2d3a47;
 	--wui-table-row-textcolor-over: #1f2937;
+	--wui-table-row-textcolor-selected: #f6f6fa;
 	--wui-table-row-textcolor-disabled: #d5dce3;
-	--wui-table-row-textcolor-selected: #1e90ff;
 }
 ```
 
@@ -2124,14 +2124,14 @@ const table = new WUITable({
 		}
 		paging.innerHTML = `${page}/${pages} (${total})`;
 	},
-	onClick: (index, id, enabled, options, event) => {
-		output.textContent = `Click row - index: ${index}, id: ${id}`;
+	onClick: (index, id, enabled, options) => {
+		output.textContent = `Click row - index: ${index}, id: ${id}, enabled: ${enabled}`;
 	},
-	onDblClick: (index, id, enabled, options, event) => {
-		output.textContent = `Double-Click row - index: ${index}, id: ${id}`;
+	onDblClick: (index, id, enabled, options) => {
+		output.textContent = `Double-Click row - index: ${index}, id: ${id}, enabled: ${enabled}`;
 	},
-	onSelect: (index, id, enabled, options, event) => {
-		output.textContent = `Select row - index: ${index}, id: ${id}`;
+	onSelect: (index, id, enabled, options) => {
+		output.textContent = `Select row - index: ${index}, id: ${id}, enabled: ${enabled}`;
 	}
 });
 const first = () => {

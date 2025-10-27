@@ -71,7 +71,7 @@
 	background-color: var(--wui-table-column-bgcolor-over);
 	color: var(--wui-table-column-textcolor-over);
 }
-.wui-table > table > thead > tr > th.selected:not(.disabled) {
+.wui-table > table > thead > tr > th.selected {
 	border-color: var(--wui-table-column-bordercolor-selected);
 	background-color: var(--wui-table-column-bgcolor-selected);
 	color: var(--wui-table-column-textcolor-selected);
