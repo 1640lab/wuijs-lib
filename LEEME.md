@@ -45,7 +45,7 @@ Autor: `Sergio E. Belmar V. <sbelmar@wuijs.dev>`
 
 ## Description General
 
-WUI, acrónimo del inglés *Web User Interface JavaScript library*, es una biblioteca JS de código abierto orientada a la implementación rápida de intetfaces de usuario Web compuesta por 25 clases, las que pueden ser utilizadas de manera independiente o conjunta.
+WUI, acrónimo del inglés *Web User Interface JavaScript library*, es una biblioteca JavaScript/CSS de código abierto orientada a la implementación rápida de intetfaces de usuario Web compuesta por 25 clases, las que pueden ser utilizadas de manera independiente o conjunta.
 
 <a name="classes-table"></a>
 
