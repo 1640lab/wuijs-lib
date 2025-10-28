@@ -1,8 +1,11 @@
+> [!WARNING]
+> This document has not yet been finalized and is in a preliminary version.
+
 # wuijs-lib
 
 Library version: `0.2.0` ([Change Log](./CHANGELOG.md))
 
-Document version: `0.2.0.20251026.1-e` (e: in edition, c: complete)
+Document version: `0.2.0.20251027.1`
 
 Licence: `Apache License 2.0`
 

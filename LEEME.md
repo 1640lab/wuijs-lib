@@ -1,8 +1,11 @@
+> [!WARNING]
+> Este documento aún no ha sido terminado y esta en una versión preliminar.
+
 # wuijs-lib
 
 Versión librería: `0.2.0` ([Registro de Cambio](./REGISTRODECAMBIO.md))
 
-Versión documentación: `0.2.0.20251026.1-e` (e: en edición, c: completa)
+Versión documentación: `0.2.0.20251027.1`
 
 Licencia: `Licencia Apache 2.0`
 
