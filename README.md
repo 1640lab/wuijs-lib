@@ -720,11 +720,14 @@ const cookie = new WUICookie({
 });
 
 // Save cookie
-cookie.set("test", "value");
+cookie.set("my-cookie", "test");
 
 // Read cookie
-console.log(cookie.get("test"));
+console.log(cookie.get("my-cookie"));
 ```
+
+> [!TIP]
+> You can check out this working example on CodePen at the link: [https://codepen.io/sbelmar/pen/azdjOQp](https://codepen.io/sbelmar/pen/azdjOQp).
 
 <a name="WUIHead"></a>
 
@@ -1424,11 +1427,13 @@ CSS settings:
 CSS code:
 
 ```css
+nav {
+	display: flex;
+}
 .my-icon {
 	width: 24px;
 	height: 24px;
-	pargin: 20px;
-	background-color: dodgerblue;
+	margin: 10px;
 }
 ```
 
@@ -1441,8 +1446,18 @@ HTML head:
 HTML code:
 
 ```html
-<div class="my-icon wui-icon patch-check-fill"></div>
+<nav>
+	<div class="my-icon">
+		<div class="wui-icon patch-check-fill"></div>
+	</div>
+	<div class="my-icon">
+		<div class="wui-icon patch-question-fill"></div>
+	</div>
+</nav>
 ```
+
+> [!TIP]
+> You can check out this working example on CodePen at the link: [https://codepen.io/sbelmar/pen/KwVBpoj](https://codepen.io/sbelmar/pen/KwVBpoj).
 
 <a name="WUIFade"></a>
 

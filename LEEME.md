@@ -720,11 +720,14 @@ const cookie = new WUICookie({
 });
 
 // Guardar cookie
-cookie.set("test", "value");
+cookie.set("my-cookie", "prueba");
 
 // Leer cookie
-console.log(cookie.get("test"));
+console.log(cookie.get("my-cookie"));
 ```
+
+> [!TIP]
+> Puede revisar este ejemplo funcional en CodePen en el enlace: [https://codepen.io/sbelmar/pen/azdjOQp](https://codepen.io/sbelmar/pen/azdjOQp).
 
 <a name="WUIHead"></a>
 
@@ -1175,7 +1178,7 @@ scrolly.addSection({
 scrolly.init();
 ```
 
-<a name="WUIWUIIcon"></a>
+<a name="WUIIcon"></a>
 
 ### WUIIcon
 
@@ -1422,11 +1425,13 @@ Configuración CSS:
 Código CSS:
 
 ```css
+nav {
+	display: flex;
+}
 .my-icon {
 	width: 24px;
 	height: 24px;
-	pargin: 20px;
-	background-color: dodgerblue;
+	margin: 10px;
 }
 ```
 
@@ -1439,10 +1444,20 @@ Cabecera HTML
 Código HTML:
 
 ```html
-<div class="my-icon wui-icon patch-check-fill"></div>
+<nav>
+	<div class="my-icon">
+		<div class="wui-icon patch-check-fill"></div>
+	</div>
+	<div class="my-icon">
+		<div class="wui-icon patch-question-fill"></div>
+	</div>
+</nav>
 ```
 
-<a name="WUIWUIFade"></a>
+> [!TIP]
+> Puede revisar este ejemplo funcional en CodePen en el enlace: [https://codepen.io/sbelmar/pen/KwVBpoj](https://codepen.io/sbelmar/pen/KwVBpoj).
+
+<a name="WUIFade"></a>
 
 ### WUIFade
 
