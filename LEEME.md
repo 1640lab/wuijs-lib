@@ -720,10 +720,10 @@ const cookie = new WUICookie({
 });
 
 // Guardar cookie
-cookie.set("my-cookie", "prueba");
+cookie.set("mycookie", "prueba");
 
 // Leer cookie
-console.log(cookie.get("my-cookie"));
+console.log(cookie.get("mycookie"));
 ```
 
 > [!TIP]
