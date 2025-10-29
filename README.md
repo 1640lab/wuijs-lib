@@ -726,9 +726,6 @@ cookie.set("mycookie", "test");
 console.log(cookie.get("mycookie"));
 ```
 
-> [!TIP]
-> You can check out this working example on CodePen at the link: [https://codepen.io/sbelmar/pen/azdjOQp](https://codepen.io/sbelmar/pen/azdjOQp).
-
 <a name="WUIHead"></a>
 
 ### WUIHead
@@ -1087,6 +1084,10 @@ CSS settings:
 CSS code:
 
 ```css
+body {
+	margin: 0;
+	padding: 0;
+}
 .my-section {
 	width: 100%;
 	margin: 10px 0;
@@ -1179,6 +1180,9 @@ scrolly.addSection({
 // Initialize object
 scrolly.init();
 ```
+
+> [!TIP]
+> You can check out this working example on CodePen at the link: [https://codepen.io/sbelmar/pen/azdjOQp](https://codepen.io/sbelmar/pen/azdjOQp).
 
 <a name="WUIIcon"></a>
 
