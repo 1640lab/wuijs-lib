@@ -51,33 +51,33 @@ WUI, acrónimo del inglés *Web User Interface JavaScript library*, es una bibli
 
 ### Tabla de Clases
 
-| Class            | Version | Descripción |
-| ---------------- | -------:| ----------- |
-| WUICookie        | `0.1`   | Administrador de cookies. |
-| WUIHead          | `0.1`   | Administrador de cabecera HTML. |
-| WUIBody          | `0.1`   | Administrador de cuerpo HTML. Permite la importación de contenido CSS/JS/HTML y facilita la implementación en entornos nativos móviles. |
-| WUILanguage      | `0.2`   | Administrador de idioma para interfaces web. Permite cargar archivos de idioma en formato JS o JSON y actualizar dinámicamente el contenido de los elementos HTML según el idioma. |
-| WUIScrolly       | `0.1`   | Herramienta para animación de elementos HTML mediante el evento "onscroll" del cuerpo de la página HTML. |
-| WUIIcon          | `0.1`   | Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces. |
-| WUIFade          | `0.1`   | Herramienta para salida y entrada con opacidad (fade-out y fade-in respectivamente) de elementos HTML. |
-| WUITooltip       | `0.1`   | Objeto simple para texto emergente. |
-| WUILoader        | `0.1`   | Objeto simple para animación de carga. |
-| WUIModal         | `0.2`   | Objeto avanzado para implementación de cuadros de diálogo (tipo `message`) y ventanas emergentes (tipo `page`). |
-| WUIModalSelector | `0.1`   | Objeto extendido de `WUIModal` para la implementación de listas de selección en base a arreglos o a entradas de datos de tipo `<select>`. |
-| WUISlider        | `0.2`   | Objeto avanzado para implementación de persianas controladas por ratón y/o por evento. |
-| WUIPaging        | `0.1`   | Objeto avanzado para implementación de vistas accesibles paginadamente. |
-| WUITabs          | `0.1`   | Objeto avanzado para implementación de vistas accesibles mediante selección por pestaña. |
-| WUIList          | `0.2`   | Objeto avanzado para implementación de listas de datos y botoneras para cada fila de manera opcional. |
-| WUITable         | `0.2`   | Objeto avanzado para implementación de tablas de datos. A diferencia del objeto `WUIList`, el objeto `WUITable` incluye una cabecera de columnas. |
-| WUIForm          | `0.2`   | Objeto avanzado para implementación de formularios de datos. Este objeto permite la implementación de elementos HTML de entrada de datos tales como `<input>`, `<select>` y `<textarea>` y objetos de la librería WUI como `WUISelectpicker`, `WUIDatepicker`, `WUITimepicker`, `WUIColorpicker`, `WUICheckbox`, `WUIIntensity` y `WUIButton`. |
-| WUIFormat        | `0.2`   | Herramienta para manejo y validación de formatos de datos de tipo `string`, `number` y `Date`. |
-| WUISelectpicker  | `0.2`   | Objeto avanzado para implementación de entradas de datos de selección múltiple o excluyente en base a listas en base a elementos HTML `<select>`. |
-| WUIDatepicker    | `0.2`   | Objeto avanzado para implementación de entradas de datos de tipo fecha. |
-| WUITimepicker    | `0.2`   | Objeto avanzado para implementación de entradas de datos de tipo hora. |
-| WUIColorpicker   | `0.2`   | Objeto avanzado para implementación de entradas de datos de tipo selector de color. |
-| WUICheckbox      | `0.2`   | Objeto avanzado para implementación de entradas de datos de tipo casilla de verificación. |
-| WUIIntensity     | `0.1`   | Objeto avanzado para implementación de entradas de datos de tipo selector de intensidad de 4 niveles: nada, bajo, medio y alto. |
-| WUIButton        | `0.2`   | Objeto avanzado para implementación de botones. |
+| Class                         | Version | Descripción |
+| ----------------------------- | -------:| ----------- |
+| [WUICookie](#WUICookie)       | `0.1`   | Administrador de cookies. |
+| [WUIHead](#WUIHead)           | `0.1`   | Administrador de cabecera HTML. |
+| [WUIBody](#WUIBody)           | `0.1`   | Administrador de cuerpo HTML. Permite la importación de contenido CSS/JS/HTML y facilita la implementación en entornos nativos móviles. |
+| [WUILanguage](#WUILanguage)   | `0.2`   | Administrador de idioma para interfaces web. Permite cargar archivos de idioma en formato JS o JSON y actualizar dinámicamente el contenido de los elementos HTML según el idioma. |
+| [WUIScrolly](#WUIScrolly)     | `0.1`   | Herramienta para animación de elementos HTML mediante el evento "onscroll" del cuerpo de la página HTML. |
+| [WUIIcon](#WUIIcon)           | `0.1`   | Conjunto de íconos prediseñados y carga mediante CSS, para uso en interfaces. |
+| [WUIFade](#WUIFade)           | `0.1`   | Herramienta para salida y entrada con opacidad (fade-out y fade-in respectivamente) de elementos HTML. |
+| WUITooltip                    | `0.1`   | Objeto simple para texto emergente. |
+| WUILoader                     | `0.1`   | Objeto simple para animación de carga. |
+| WUIModal                      | `0.2`   | Objeto avanzado para implementación de cuadros de diálogo (tipo `message`) y ventanas emergentes (tipo `page`). |
+| WUIModalSelector              | `0.1`   | Objeto extendido de `WUIModal` para la implementación de listas de selección en base a arreglos o a entradas de datos de tipo `<select>`. |
+| WUISlider                     | `0.2`   | Objeto avanzado para implementación de persianas controladas por ratón y/o por evento. |
+| WUIPaging                     | `0.1`   | Objeto avanzado para implementación de vistas accesibles paginadamente. |
+| WUITabs                       | `0.1`   | Objeto avanzado para implementación de vistas accesibles mediante selección por pestaña. |
+| [WUIList](#WUIList)           | `0.2`   | Objeto avanzado para implementación de listas de datos y botoneras para cada fila de manera opcional. |
+| [WUITable](#WUITable)         | `0.2`   | Objeto avanzado para implementación de tablas de datos. A diferencia del objeto `WUIList`, el objeto `WUITable` incluye una cabecera de columnas. |
+| WUIForm                       | `0.2`   | Objeto avanzado para implementación de formularios de datos. Este objeto permite la implementación de elementos HTML de entrada de datos tales como `<input>`, `<select>` y `<textarea>` y objetos de la librería WUI como `WUISelectpicker`, `WUIDatepicker`, `WUITimepicker`, `WUIColorpicker`, `WUICheckbox`, `WUIIntensity` y `WUIButton`. |
+| WUIFormat                     | `0.2`   | Herramienta para manejo y validación de formatos de datos de tipo `string`, `number` y `Date`. |
+| WUISelectpicker               | `0.2`   | Objeto avanzado para implementación de entradas de datos de selección múltiple o excluyente en base a listas en base a elementos HTML `<select>`. |
+| WUIDatepicker                 | `0.2`   | Objeto avanzado para implementación de entradas de datos de tipo fecha. |
+| WUITimepicker                 | `0.2`   | Objeto avanzado para implementación de entradas de datos de tipo hora. |
+| WUIColorpicker                | `0.2`   | Objeto avanzado para implementación de entradas de datos de tipo selector de color. |
+| WUICheckbox                   | `0.2`   | Objeto avanzado para implementación de entradas de datos de tipo casilla de verificación. |
+| WUIIntensity                  | `0.1`   | Objeto avanzado para implementación de entradas de datos de tipo selector de intensidad de 4 niveles: nada, bajo, medio y alto. |
+| WUIButton                     | `0.2`   | Objeto avanzado para implementación de botones. |
 
 <a name="install"></a>
 

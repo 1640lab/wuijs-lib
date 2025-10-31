@@ -51,33 +51,33 @@ WUI, an acronym for *Web User Interface JavaScript library*, is an open source J
 
 ### Classes Table
 
-| Class            | Version | Description |
-| ---------------- | -------:| ----------- |
-| WUICookie        | `0.1`   | Cookie manager. |
-| WUIHead          | `0.1`   | HTML header manager. |
-| WUIBody          | `0.1`   | HTML body manager. Allows the import of CSS/JS/HTML content and facilitates implementation in native mobile environments. |
-| WUILanguage      | `0.2`   | Language manager for web interfaces. Allows you to load language files in JS or JSON format and dynamically update the content of HTML elements based on the language. |
-| WUIScrolly       | `0.1`   | Tool for animating HTML elements using the "onscroll" event of the HTML page body. |
-| WUIIcon          | `0.1`   | Set of pre-designed icons loaded via CSS, for use in interfaces. |
-| WUIFade          | `0.1`   | Tool for fading out and fading in HTML elements with opacity. |
-| WUITooltip       | `0.1`   | Simple object for hover text. |
-| WUILoader        | `0.1`   | Simple object for loading animation. |
-| WUIModal         | `0.2`   | Advanced object for implementing dialog boxes (type `message`) and pop-up windows (type `page`). |
-| WUIModalSelector | `0.1`   | Extended object of `WUIModal` for implementing selection lists based on arrays or data inputs of type `<select>`. |
-| WUISlider        | `0.2`   | Advanced object for implementing mouse-controlled and/or event-controlled blinds. |
-| WUIPaging        | `0.1`   | Advanced object for implementing paginated views. |
-| WUITabs          | `0.1`   | Advanced object for implementing views accessible by tab selection. |
-| WUIList          | `0.2`   | Advanced object for implementing data lists and buttons for each row optionally. |
-| WUITable         | `0.2`   | Advanced object for implementing data tables. Unlike the `WUIList` object, the `WUITable` object includes a column header. |
-| WUIForm          | `0.2`   | Advanced object for implementing data forms. This object allows the implementation of HTML data input elements such as `<input>`, `<select>`, and `<textarea>`, and WUI library objects such as `WUISelectpicker`, `WUIDatepicker`, `WUITimepicker`, `WUIColorpicker`, `WUICheckbox`, `WUIIntensity`, and `WUIButton`. |
-| WUIFormat        | `0.2`   | Tool for managing and validating `string`, `number` and `Date` data formats. |
-| WUISelectpicker  | `0.2`   | Advanced object for implementing multiple-select or exclusive data entries based on lists based on HTML `<select>` elements. |
-| WUIDatepicker    | `0.2`   | Advanced object for implementing date type data input. |
-| WUITimepicker    | `0.2`   | Advanced object for implementing time type data inputs. |
-| WUIColorpicker   | `0.2`   | Advanced object for implementing color picker type data inputs. |
-| WUICheckbox      | `0.2`   | Advanced object for implementing checkbox type data inputs. |
-| WUIIntensity     | `0.1`   | Advanced object for implementing 4-level intensity selector type data inputs: none, low, half, and high. |
-| WUIButton        | `0.2`   | Advanced object for button implementation. |
+| Class                         | Version | Description |
+| ----------------------------- | -------:| ----------- |
+| [WUICookie](#WUICookie)       | `0.1`   | Cookie manager. |
+| [WUIHead](#WUIHead)           | `0.1`   | HTML header manager. |
+| [WUIBody](#WUIBody)           | `0.1`   | HTML body manager. Allows the import of CSS/JS/HTML content and facilitates implementation in native mobile environments. |
+| [WUILanguage](#WUILanguage)   | `0.2`   | Language manager for web interfaces. Allows you to load language files in JS or JSON format and dynamically update the content of HTML elements based on the language. |
+| [WUIScrolly](#WUIScrolly)     | `0.1`   | Tool for animating HTML elements using the "onscroll" event of the HTML page body. |
+| [WUIIcon](#WUIIcon)           | `0.1`   | Set of pre-designed icons loaded via CSS, for use in interfaces. |
+| [WUIFade](#WUIFade)           | `0.1`   | Tool for fading out and fading in HTML elements with opacity. |
+| WUITooltip                    | `0.1`   | Simple object for hover text. |
+| WUILoader                     | `0.1`   | Simple object for loading animation. |
+| WUIModal                      | `0.2`   | Advanced object for implementing dialog boxes (type `message`) and pop-up windows (type `page`). |
+| WUIModalSelector              | `0.1`   | Extended object of `WUIModal` for implementing selection lists based on arrays or data inputs of type `<select>`. |
+| WUISlider                     | `0.2`   | Advanced object for implementing mouse-controlled and/or event-controlled blinds. |
+| WUIPaging                     | `0.1`   | Advanced object for implementing paginated views. |
+| WUITabs                       | `0.1`   | Advanced object for implementing views accessible by tab selection. |
+| [WUIList](#WUIList)           | `0.2`   | Advanced object for implementing data lists and buttons for each row optionally. |
+| [WUITable](#WUITable)         | `0.2`   | Advanced object for implementing data tables. Unlike the `WUIList` object, the `WUITable` object includes a column header. |
+| WUIForm                       | `0.2`   | Advanced object for implementing data forms. This object allows the implementation of HTML data input elements such as `<input>`, `<select>`, and `<textarea>`, and WUI library objects such as `WUISelectpicker`, `WUIDatepicker`, `WUITimepicker`, `WUIColorpicker`, `WUICheckbox`, `WUIIntensity`, and `WUIButton`. |
+| WUIFormat                     | `0.2`   | Tool for managing and validating `string`, `number` and `Date` data formats. |
+| WUISelectpicker               | `0.2`   | Advanced object for implementing multiple-select or exclusive data entries based on lists based on HTML `<select>` elements. |
+| WUIDatepicker                 | `0.2`   | Advanced object for implementing date type data input. |
+| WUITimepicker                 | `0.2`   | Advanced object for implementing time type data inputs. |
+| WUIColorpicker                | `0.2`   | Advanced object for implementing color picker type data inputs. |
+| WUICheckbox                   | `0.2`   | Advanced object for implementing checkbox type data inputs. |
+| WUIIntensity                  | `0.1`   | Advanced object for implementing 4-level intensity selector type data inputs: none, low, half, and high. |
+| WUIButton                     | `0.2`   | Advanced object for button implementation. |
 
 <a name="install"></a>
 
