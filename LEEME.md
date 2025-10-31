@@ -1080,9 +1080,17 @@ body {
 	padding: 0;
 }
 .my-section {
+	display: flex;
 	width: 100%;
+	min-height: 100px;
 	margin: 10px 0;
 	background-color: lightgray;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+}
+.my-section.section1 {
+	margin-top: 50px;
 }
 .my-element {
 	width: 50px;
@@ -1103,21 +1111,21 @@ Código HTML:
 
 ```html
 <!-- Animación CSS -->
-<section id="section1" class="my-section">
+<section class="my-section section1">
 	<div class="my-element fadein-left"></div>
 	<div class="my-element fadein-top" data-delay="200"></div>
 	<div class="my-element fadein-right" data-delay="400"></div>
 </section>
 
 <!-- Animación JS -->
-<section id="section2" class="my-section">
+<section class="my-section section2">
 	<div class="scene">
 		<div class="animation"></div>
 	</div>
 </section>
 
 <!-- Animación JS con paginación -->
-<section id="section3" class="my-section">
+<section class="my-section section3">
 	<div class="scene">
 		<div class="animation"></div>
 	</div>
@@ -1142,13 +1150,13 @@ const scrolly = new WUIScrolly({
 
 // Agregar secciones
 scrolly.addSection({
-	selector: "#section1",
+	selector: ".my-section.section1",
 	target: "css-animation",
 	type: "static",
 	height: "100%"
 });
 scrolly.addSection({
-	selector: "#section2",
+	selector: ".my-section.section2",
 	target: "js-animation",
 	type: "static",
 	height: 400,
@@ -1157,7 +1165,7 @@ scrolly.addSection({
 	}
 });
 scrolly.addSection({
-	selector: "#section3",
+	selector: ".my-section.section3",
 	target: "js-animation-paging",
 	type: "static",
 	height: 480,
