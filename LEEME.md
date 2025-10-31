@@ -1153,7 +1153,7 @@ scrolly.addSection({
 	selector: ".my-section.section1",
 	target: "css-animation",
 	type: "static",
-	height: "100%"
+	height: "auto"
 });
 scrolly.addSection({
 	selector: ".my-section.section2",
