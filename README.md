@@ -5,7 +5,7 @@
 
 Library version: `0.2.0` ([Change Log](./CHANGELOG.md))
 
-Document version: `0.2.0.20251027.1`
+Document version: `0.2.0.20251030.1`
 
 Licence: `Apache License 2.0`
 
@@ -1062,12 +1062,6 @@ Tool for animating HTML elements using the "onscroll" event of the HTML page bod
 | .fadein-up    | Enter and exits with opacity from above. |
 | .fadein-left  | Enter and exit with opacity from the left. |
 | .fadein-right | Enter and exit with opacity from the right. |
-
-#### CSS Variables
-
-| Variable                       | Description |
-| ------------------------------ | ----------- |
-| `--wui-scrolly-paging-bgcolor` |
 
 #### Implementation
 

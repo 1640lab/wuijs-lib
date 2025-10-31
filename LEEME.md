@@ -5,7 +5,7 @@
 
 Versión librería: `0.2.0` ([Registro de Cambio](./REGISTRODECAMBIO.md))
 
-Versión documentación: `0.2.0.20251027.1`
+Versión documentación: `0.2.0.20251030.1`
 
 Licencia: `Licencia Apache 2.0`
 
@@ -1062,10 +1062,6 @@ Herramienta para animación de elementos HTML mediante el evento "onscroll" del 
 | .fadein-up    | Entra y sale con opacidad desde arriba. |
 | .fadein-left  | Entra y sale con opacidad desde la izquierda. |
 | .fadein-right | Entra y sale con opacidad desde la derecha. |
-
-| Variable                       | Descripción |
-| ------------------------------ | ----------- |
-| `--wui-scrolly-paging-bgcolor` |
 
 #### Implementación
 
